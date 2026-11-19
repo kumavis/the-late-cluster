@@ -1,0 +1,18 @@
+{
+  "name": "the-late-cluster",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The Late Cluster: a late-night talk show performed by synthesized puppet heads.",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @vibe-dump/late-cluster",
+    "build": "npm run build -w @vibe-dump/late-cluster"
+  },
+  "devDependencies": {
+    "playwright": "^1.49.1",
+    "vite": "^5.4.11"
+  }
+}
