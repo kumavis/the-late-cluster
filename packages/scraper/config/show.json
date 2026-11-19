@@ -1,6 +1,6 @@
 {
   "$comment": "The show itself, for 'About the show', and the recurring guests. Phrases and link patterns are case-insensitive regexes matched against post text, link URLs and link titles.",
-  "handles": [],
+  "handles": ["latecluster.simcluster.tv", "latecluster.bsky.social"],
   "phrases": ["\\bthe late cluster\\b", "\\blate cluster\\b", "\\blarry nx\\b", "\\blarry nix\\b", "\\bchimera ?tv\\b"],
   "linkPatterns": ["/the-late-cluster\\b", "vibe-dump/tree/[^/]+/packages/late-cluster"],
   "guests": [

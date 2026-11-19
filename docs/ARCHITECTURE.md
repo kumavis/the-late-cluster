@@ -25,7 +25,9 @@ here, change this document in the same commit.
 ```
 the-late-cluster/
   package.json               npm workspaces (packages/*), root commands
-  show.config.json           show-wide settings: the public site URL
+  show.config.json           show-wide settings: the public site URL, the show's Bluesky account
+  .secrets                   local secrets, gitignored (.secrets.example is the template)
+  terraform/                 Cloudflare DNS for the show's domain
   CLAUDE.md                  working rules for agents in this repo
   docs/
     ARCHITECTURE.md          this file
@@ -197,6 +199,7 @@ episode. `<seg>` is a segment id.
 | `npm run scrape -- [--week 2026-W47]` | write the weekly Bluesky digest into `data/` |
 | `npm run bot -- announce <ep> [--live]` | compose the announcement post; dry run unless `--live` |
 | `npm run produce -- --week 2026-W47` | run the weekly pipeline for one episode, stage by stage |
+| `npm run terraform -- <args>` | run Terraform in `terraform/` with the token loaded from `.secrets` |
 | `npm test` | every package's tests (Node builtins only: no install, no browser) |
 
 Exit codes are the same everywhere: `0` done, `1` refused or failed (a missing render, a stale
@@ -274,6 +277,44 @@ can be switched on. Announcing is a separate, manually dispatched workflow.
 
 Stage 7 is not optional. The show puts words in the mouths of puppets that stand for real
 accounts. Nothing airs without a person having read it.
+
+## Configuration and secrets
+
+The two are kept apart.
+
+**Configuration is committed.** Anything that is not secret lives in a file in git, so it is
+reviewable and the same for everyone: `show.config.json` (the site URL and the show's Bluesky
+handle and DID), each package's own `config/` folder (the scraper's cluster, scoring, safety
+and opt-out lists; the bot's wording), and `terraform/terraform.tfvars` (the zone and its
+records).
+
+**Secrets come only from the environment** and are never written to a tracked file, a log
+or a build. There are three: `CLOUDFLARE_API_TOKEN` (Terraform), `BSKY_APP_PASSWORD` (the
+bot, live mode only) and the model credential the weekly pipeline's writer uses. Locally
+they live in `.secrets` at the repo root, which is gitignored, and the root commands that
+need one load that file themselves (`npm run terraform`, `npm run bot`, `npm run produce`).
+In GitHub Actions the same names are repository secrets.
+
+A value belongs in `.secrets` only if leaking it would let someone act as the show. A handle,
+a domain, a zone id and a DID are all public facts and are configuration.
+
+## Infrastructure: `terraform/`
+
+The show's domain is `simcluster.tv`, with DNS on Cloudflare, managed by the Terraform
+configuration in `terraform/` (see its README). It manages records in an existing zone: the
+site's hostname, GitHub's domain verification record, one verification record per Bluesky
+handle, and any other record through a general variable. The zone's real values are committed
+in `terraform/terraform.tfvars`.
+
+- Run it with `npm run terraform -- plan` and `npm run terraform -- apply`, which load the
+  token from `.secrets`.
+- State is local for now (`terraform/terraform.tfstate`, gitignored). Moving it to Cloudflare
+  R2 is the next step and is documented there.
+- `terraform.yml` checks format, validity and the mocked-provider tests on pull requests that
+  touch `terraform/`. It never plans or applies.
+- The site's host is a seam in the configuration, so the site can move from GitHub Pages to
+  Cloudflare Pages without rewriting the records. That is one way out of the size budget
+  above for the published site, though not for the repository's own growth.
 
 ## Decisions
 
