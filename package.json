@@ -15,6 +15,7 @@
     "check": "bun packages/show/tools/check.ts",
     "shoot": "node packages/show/tools/shoot.mjs",
     "thumbnail": "node scripts/thumbnail.mjs",
+    "avatar": "node scripts/avatar.mjs",
     "build": "node scripts/build.mjs",
     "verify": "node scripts/verify.mjs",
     "site": "node packages/site/bin/build-site.mjs",
