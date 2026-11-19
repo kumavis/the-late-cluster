@@ -34,3 +34,17 @@ test('no site URL anywhere (or no show.config.json) leaves it unset', (t) => {
 test('a bad URL in show.config.json is rejected like any other', (t) => {
   assert.throws(() => loadSettings({ env: {}, ...files(t, { show: { siteUrl: 'http://insecure.example.test/' } }) }), /https/);
 });
+
+test('handle: BSKY_HANDLE, else bluesky.handle in show.config.json; the did comes from configuration', (t) => {
+  const paths = files(t, { bot: {}, show: { bluesky: { handle: 'latecluster.simcluster.tv', did: 'did:plc:zdobmviiuyfkc6xyylmpm2sf' } } });
+  const fromConfig = loadSettings({ env: {}, ...paths });
+  assert.equal(fromConfig.handle, 'latecluster.simcluster.tv');
+  assert.equal(fromConfig.handleSource, 'show.config.json');
+  assert.equal(fromConfig.did, 'did:plc:zdobmviiuyfkc6xyylmpm2sf');
+  const fromEnv = loadSettings({ env: { BSKY_HANDLE: '@other.example.test' }, ...paths });
+  assert.equal(fromEnv.handle, 'other.example.test');
+  assert.equal(fromEnv.handleSource, 'BSKY_HANDLE');
+  const none = loadSettings({ env: {}, ...files(t, {}) });
+  assert.equal(none.handle, null);
+  assert.equal(none.handleSource, null);
+});

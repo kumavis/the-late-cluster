@@ -10,7 +10,7 @@ number and title, the episode URL, and a link card with the episode's thumbnail.
 
 ```sh
 npm run bot -- announce 1                 # dry run: print exactly what would be sent
-npm run bot -- announce 001-pilot --live  # post it (needs credentials)
+npm run bot -- announce 001-pilot --live  # post it (needs BSKY_APP_PASSWORD, from .secrets)
 npm run bot -- help
 ```
 
@@ -20,6 +20,8 @@ The bot cannot do any of this for you. Do it once, by hand.
 
 1. **Create the account** in the Bluesky app, with its own email address. Use a handle
    that says what it is; a custom domain handle for the show's site is a good option.
+   (Done: the show's account is `latecluster.simcluster.tv`, and its handle and DID are
+   configuration, in `bluesky` in the repo root's `show.config.json`.)
 2. **Make it recognisably automated.** Bluesky's bot tutorial (atproto.com, "Build an
    Agent", part 3) asks bot accounts to identify themselves with a `bot` self-label on
    their profile (`labels: { $type: 'com.atproto.label.defs#selfLabels', values: [{ val: 'bot' }] }`
@@ -30,25 +32,36 @@ The bot cannot do any of this for you. Do it once, by hand.
 3. **Create an app password** (in the app: Settings, Privacy and security, App passwords).
    Do not tick direct-message access. Never use the account's real password here: the bot
    only ever needs an app password, and one can be revoked without touching the account.
-4. **Set the environment** where the bot runs:
+4. **Put the secret in `.secrets`.** Configuration and secrets are kept apart: the handle
+   is already in `show.config.json` (committed), and the only secret, the app password, goes
+   in `.secrets` at the repo root (gitignored; copy `.secrets.example`). `npm run bot` loads
+   `.secrets` itself (`node --env-file-if-exists=.secrets`), so nothing needs exporting, and
+   variables already in the environment win over the file. The bot reads:
 
    | variable | required | meaning |
    |---|---|---|
-   | `SITE_URL` | no, if set in a config file | the Pages site root, e.g. `https://<owner>.github.io/the-late-cluster/`; falls back to `siteUrl` in `bot.config.json`, then to `siteUrl` in the repo's `show.config.json` |
-   | `BSKY_HANDLE` | for `--live` | the bot account's handle |
-   | `BSKY_APP_PASSWORD` | for `--live` | the app password from step 3 |
+   | `BSKY_APP_PASSWORD` | for `--live` | the app password from step 3; the only value that must come from the environment |
+   | `SITE_URL` | no, if set in a config file | the site root, e.g. `https://simcluster.tv/`; falls back to `siteUrl` in `bot.config.json`, then to `siteUrl` in the repo's `show.config.json` |
+   | `BSKY_HANDLE` | no | overrides `bluesky.handle` in `show.config.json` (for testing with another account) |
    | `BSKY_PDS` | no | PDS host, default `https://bsky.social` |
    | `BOT_USER_AGENT` | no | the `User-Agent` header; the default is generic and names neither the show nor its owner |
 
-   In GitHub Actions, store `BSKY_HANDLE` and `BSKY_APP_PASSWORD` as **repository secrets**
-   (Settings, Secrets and variables, Actions) and `SITE_URL` as a repository variable, then
-   pass them as `env:` to the step that runs `npm run bot -- announce <ep> --live`. Run that
-   step only after the Pages deploy has finished, so the link card can be fetched.
+   In GitHub Actions there is no `.secrets`: store `BSKY_APP_PASSWORD` as a **repository
+   secret** (Settings, Secrets and variables, Actions) and pass it as `env:` to the step
+   that runs `npm run bot -- announce <ep> --live`. Run that step only after the Pages
+   deploy has finished, so the link card can be fetched.
 5. **Dry-run first**, read the output, then post with `--live`.
 
-There is deliberately no default site URL: the bot will not guess a hostname. Credentials
-are read only from the environment. They are never read from a file, written to disk or
-printed; the session token lives in memory for one run.
+There is deliberately no default site URL: the bot will not guess a hostname. The app
+password is read only from the environment (which `npm run bot` fills from `.secrets`); this
+package never reads it from a file, writes it to disk or prints it, and the session token lives
+in memory for one run.
+
+The bot logs in with the handle. `createSession`'s lexicon describes `identifier` as "Handle
+or other identifier supported by the server", and the reference PDS accepts a handle, an
+email or the account's DID there, so the DID in `show.config.json`
+(`did:plc:zdobmviiuyfkc6xyylmpm2sf`) would keep working even if the handle changed. If the
+handle ever stops resolving, setting `BSKY_HANDLE` to the DID is the quick fix.
 
 ### `bot.config.json`
 
@@ -93,7 +106,8 @@ The record is an `app.bsky.feed.post` with:
 
 ### Dry run (default)
 
-Prints the episode, the URL, the target account (`BSKY_HANDLE` if set), the thumbnail path
+Prints the episode, the URL, the target account (and where its handle came from:
+`show.config.json` or `BSKY_HANDLE`), the thumbnail path
 and size, the text length, the four requests live mode would make, and the record JSON.
 In the dry run the thumbnail's `ref` is a placeholder and `createdAt` is the current time;
 live mode fills both in. A dry run makes no network request at all, so it cannot check for
@@ -101,7 +115,8 @@ an earlier announcement.
 
 ### Live
 
-`--live` without both `BSKY_HANDLE` and `BSKY_APP_PASSWORD` is an error. With them:
+`--live` without a handle (`bluesky.handle` in `show.config.json`, or `BSKY_HANDLE`) or
+without `BSKY_APP_PASSWORD` is an error that names what is missing. With them:
 
 1. `com.atproto.server.createSession` with the handle and app password;
 2. `com.atproto.repo.listRecords` on the account's own `app.bsky.feed.post` collection, up
@@ -143,7 +158,7 @@ src/episodes.mjs        finds and validates built episodes
 src/richtext.mjs        UTF-8 byte offsets, grapheme counting
 src/voice.mjs           all of the bot's wording
 src/limits.mjs          Bluesky limits, with their lexicon sources
-src/config.mjs          environment and bot.config.json
+src/config.mjs          environment, bot.config.json and the root show.config.json
 ```
 
 Adding a job: write `src/commands/<name>.mjs` exporting `{ name, summary, usage, options, run }`

@@ -2,7 +2,8 @@ import { test } from 'node:test';
 import assert from 'node:assert/strict';
 import { main } from '../src/cli.mjs';
 import { capture, FIXED_NOW, FIXTURE_ROOT, FIXTURE_THUMB, fakePds, manifest, NO_CONFIG, noNetwork, tempRepo } from './helpers.mjs';
-import { readFileSync } from 'node:fs';
+import { readFileSync, writeFileSync } from 'node:fs';
+import { join } from 'node:path';
 
 const SITE = 'https://example.test/the-late-cluster';
 const URL_1 = 'https://example.test/the-late-cluster/episodes/001-pilot/';
@@ -31,7 +32,7 @@ test('dry run is the default, prints the record, and makes no network call', asy
   assert.equal(r.code, 0, r.err);
   assert.equal(r.fetch.calls.length, 0);
   assert.match(r.out, /^DRY RUN: nothing was sent\. Add --live to post\./);
-  assert.match(r.out, /Account: {3}\(BSKY_HANDLE not set\) on https:\/\/bsky\.social/);
+  assert.match(r.out, /Account: {3}\(no handle: set bluesky\.handle in show\.config\.json\) on https:\/\/bsky\.social/);
   assert.match(r.out, /Thumbnail: dist\/episodes\/001-pilot\/thumbnail\.jpg \(\d+ bytes, image\/jpeg\)/);
   const size = readFileSync(FIXTURE_THUMB).length;
   assert.ok(r.out.includes(`(${size} bytes, image/jpeg)`));
@@ -45,7 +46,7 @@ test('dry run is the default, prints the record, and makes no network call', asy
 test('dry run names the target account when BSKY_HANDLE is set, and never prints the password', async () => {
   const r = await run(['announce', '001-pilot'], { env: CREDS });
   assert.equal(r.code, 0, r.err);
-  assert.match(r.out, /Account: {3}@latecluster\.example\.test on https:\/\/bsky\.social/);
+  assert.match(r.out, /Account: {3}@latecluster\.example\.test on https:\/\/bsky\.social \(handle from BSKY_HANDLE\)/);
   assert.ok(!r.out.includes(PASSWORD));
   assert.equal(r.fetch.calls.length, 0);
 });
@@ -70,10 +71,15 @@ test('refusals surface as errors with exit code 1', async () => {
 });
 
 test('--live without credentials is a clear error and touches nothing', async () => {
-  for (const env of [{ SITE_URL: SITE }, { SITE_URL: SITE, BSKY_HANDLE: 'x.test' }, { SITE_URL: SITE, BSKY_APP_PASSWORD: PASSWORD }]) {
+  for (const [env, re] of [
+    [{ SITE_URL: SITE }, /--live needs a handle: set bluesky\.handle in show\.config\.json.*, and BSKY_APP_PASSWORD in the environment/],
+    [{ SITE_URL: SITE, BSKY_HANDLE: 'x.test' }, /--live needs BSKY_APP_PASSWORD in the environment \(locally: put it in \.secrets/],
+    [{ SITE_URL: SITE, BSKY_APP_PASSWORD: PASSWORD }, /--live needs a handle: set bluesky\.handle in show\.config\.json \(or BSKY_HANDLE\)\./],
+  ]) {
     const r = await run(['announce', '1', '--live'], { env });
     assert.equal(r.code, 1);
-    assert.match(r.err, /--live needs credentials in the environment: .*not set/);
+    assert.match(r.err, re);
+    assert.ok(!r.err.includes(PASSWORD));
     assert.equal(r.fetch.calls.length, 0);
   }
 });
@@ -193,4 +199,32 @@ test('live: a failed login is reported without echoing the password', async () =
   assert.match(r.err, /createSession failed: HTTP 401 AuthenticationRequired: Invalid identifier or password/);
   assert.ok(!r.err.includes(PASSWORD));
   assert.equal(fetch.requests.length, 1);
+});
+
+/** a temp repo root holding one built episode and a show.config.json with the show's identity */
+function repoWithShowConfig(bluesky = { handle: 'show.example.test', did: 'did:plc:showconfig' }) {
+  const root = tempRepo();
+  writeFileSync(join(root, 'show.config.json'), JSON.stringify({ siteUrl: '', bluesky }));
+  return root;
+}
+
+test('the handle comes from show.config.json when BSKY_HANDLE is not set', async () => {
+  const root = repoWithShowConfig();
+  const r = await run(['announce', '1'], { env: { SITE_URL: SITE }, root });
+  assert.equal(r.code, 0, r.err);
+  assert.match(r.out, /Account: {3}@show\.example\.test on https:\/\/bsky\.social \(handle from show\.config\.json\)/);
+  assert.match(r.out, /createSession as @show\.example\.test/);
+});
+
+test('BSKY_HANDLE overrides the configured handle', async () => {
+  const r = await run(['announce', '1'], { env: { SITE_URL: SITE, BSKY_HANDLE: '@other.example.test' }, root: repoWithShowConfig() });
+  assert.match(r.out, /Account: {3}@other\.example\.test on https:\/\/bsky\.social \(handle from BSKY_HANDLE\)/);
+});
+
+test('live: only the app password comes from the environment; the login uses the configured handle', async () => {
+  const fetch = fakePds(happyRoutes());
+  const r = await run(['announce', '1', '--live'], { env: { SITE_URL: SITE, BSKY_APP_PASSWORD: PASSWORD }, fetch, root: repoWithShowConfig() });
+  assert.equal(r.code, 0, r.err);
+  assert.deepEqual(fetch.requests[0].body, { identifier: 'show.example.test', password: PASSWORD });
+  assert.ok(!r.out.includes(PASSWORD) && !r.err.includes(PASSWORD));
 });

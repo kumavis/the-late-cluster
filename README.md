@@ -33,6 +33,12 @@ npm run verify                                  # committed builds match their s
 npm test
 ```
 
+**Configuration and secrets are kept apart.** Settings that are not secret (the site URL, the
+show's Bluesky handle and DID) are committed, in `show.config.json` and the packages' own config
+files. Secrets (the Bluesky app password, the Cloudflare API token) come only from the
+environment: locally from `.secrets` at the repo root (gitignored; copy `.secrets.example`),
+which `npm run bot` and `npm run terraform` load themselves, and in CI from repository secrets.
+
 Every command is listed in the Commands table of `docs/ARCHITECTURE.md`. Writing segments is
 covered in `packages/show/README.md` (the module and the `show` API) and
 `packages/show/tools/README.md` (the script format and the audio tools).

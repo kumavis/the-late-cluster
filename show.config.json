@@ -1,3 +1,7 @@
 {
-  "siteUrl": ""
+  "siteUrl": "",
+  "bluesky": {
+    "handle": "latecluster.simcluster.tv",
+    "did": "did:plc:zdobmviiuyfkc6xyylmpm2sf"
+  }
 }

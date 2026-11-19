@@ -34,9 +34,11 @@ async function run(ctx) {
   const settings = loadSettings({ env, configPath, showConfigPath: join(root, 'show.config.json') });
 
   if (values.live) {
-    const missing = ['BSKY_HANDLE', 'BSKY_APP_PASSWORD'].filter((k) => !env[k]);
+    const missing = [];
+    if (!settings.handle) missing.push('a handle: set bluesky.handle in show.config.json (or BSKY_HANDLE)');
+    if (!env.BSKY_APP_PASSWORD) missing.push('BSKY_APP_PASSWORD in the environment (locally: put it in .secrets; npm run bot loads it)');
     if (missing.length) {
-      throw new BotError(`--live needs credentials in the environment: ${missing.join(' and ')} not set. Use an app password, never the account password.`);
+      throw new BotError(`--live needs ${missing.join(', and ')}. Use an app password, never the account password.`);
     }
   }
 
@@ -50,13 +52,14 @@ async function run(ctx) {
   const shown = (p) => relative(cwd, p) || p;
 
   if (!values.live) {
-    const target = settings.handle ? `@${settings.handle.replace(/^@/, '')}` : '(BSKY_HANDLE not set)';
+    const target = settings.handle ? `@${settings.handle}` : '(no handle: set bluesky.handle in show.config.json)';
+    const source = settings.handle ? ` (handle from ${settings.handleSource})` : '';
     out([
       'DRY RUN: nothing was sent. Add --live to post.',
       '',
       `Episode:   ${episode.id} (${shown(episode.manifestPath)})`,
       `URL:       ${draft.url}`,
-      `Account:   ${target} on ${settings.service}`,
+      `Account:   ${target} on ${settings.service}${source}`,
       `Thumbnail: ${shown(episode.thumbnailPath)} (${bytes.length} bytes, ${mimeType})`,
       `Text:      ${draft.stats.graphemes}/${POST_MAX_GRAPHEMES} graphemes, ${draft.stats.bytes} bytes`,
       '',
@@ -73,7 +76,7 @@ async function run(ctx) {
   }
 
   const client = createClient({ service: settings.service, userAgent: settings.userAgent, fetch });
-  const session = await client.createSession({ identifier: env.BSKY_HANDLE.replace(/^@/, ''), password: env.BSKY_APP_PASSWORD });
+  const session = await client.createSession({ identifier: settings.handle, password: env.BSKY_APP_PASSWORD });
   out(`Logged in as @${session.handle} (${session.did}) on ${client.service}`);
 
   const previous = await findPreviousAnnouncement(client, session.did, draft.url);

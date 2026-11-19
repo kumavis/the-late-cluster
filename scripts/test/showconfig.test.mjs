@@ -1,6 +1,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { readShowConfig } from '../lib/showconfig.mjs'
+import { readShowConfig, normalizeBluesky } from '../lib/showconfig.mjs'
+import { REPO } from '../lib/episodes.mjs'
 import { resolveEpisode } from '../lib/episodes.mjs'
 import { episodePlugin } from '../../packages/show/vite/episode.js'
 import { tempRoot, addEpisode } from './fixture.mjs'
@@ -43,4 +44,33 @@ test('a build\'s Open Graph URLs come from show.config.json, never from SITE_URL
     else process.env.SITE_URL = saved
     fx.cleanup()
   }
+})
+
+test('show.config.json: the bluesky identity is optional, and handle and did go together', () => {
+  const fx = tempRoot()
+  try {
+    fx.put('show.config.json', JSON.stringify({ siteUrl: '' }))
+    assert.equal(readShowConfig(fx.root).bluesky, undefined)
+    fx.put('show.config.json', JSON.stringify({ siteUrl: '', bluesky: { handle: '@LateCluster.Simcluster.TV', did: 'did:plc:zdobmviiuyfkc6xyylmpm2sf' } }))
+    assert.deepEqual(readShowConfig(fx.root).bluesky, { handle: 'latecluster.simcluster.tv', did: 'did:plc:zdobmviiuyfkc6xyylmpm2sf' })
+    assert.deepEqual(normalizeBluesky({ handle: 'show.example.com', did: 'did:web:show.example.com' }), { handle: 'show.example.com', did: 'did:web:show.example.com' })
+    assert.equal(normalizeBluesky({}), undefined)
+    for (const [b, re] of [
+      [{ handle: 'latecluster.simcluster.tv' }, /together/],
+      [{ did: 'did:plc:abc' }, /together/],
+      [{ handle: 'nodot', did: 'did:plc:abc' }, /not a handle/],
+      [{ handle: 'bad_char.example.com', did: 'did:plc:abc' }, /not a handle/],
+      [{ handle: 'example.123', did: 'did:plc:abc' }, /not a handle/],
+      [{ handle: 'show.example.com', did: 'plc:abc' }, /not a DID/],
+      [{ handle: 'show.example.com', did: 'did:PLC:abc' }, /not a DID/],
+      [{ handle: 'show.example.com', did: 'did:plc:abc:' }, /not a DID/],
+      ['latecluster.simcluster.tv', /object/],
+    ]) assert.throws(() => normalizeBluesky(b), re)
+  } finally {
+    fx.cleanup()
+  }
+})
+
+test('the committed show.config.json is valid', () => {
+  assert.doesNotThrow(() => readShowConfig(REPO))
 })

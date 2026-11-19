@@ -20,7 +20,8 @@
     "site": "node packages/site/bin/build-site.mjs",
     "preview": "npm run site && node packages/site/bin/serve.mjs dist",
     "scrape": "node packages/scraper/bin/scrape.mjs",
-    "bot": "node packages/bot/bin/bot.mjs",
+    "bot": "node --env-file-if-exists=.secrets packages/bot/bin/bot.mjs",
+    "terraform": "node --env-file-if-exists=.secrets scripts/terraform.mjs",
     "test": "node --test \"scripts/test/*.test.mjs\" \"packages/*/test/**/*.test.js\" \"packages/*/test/**/*.test.mjs\""
   },
   "devDependencies": {
