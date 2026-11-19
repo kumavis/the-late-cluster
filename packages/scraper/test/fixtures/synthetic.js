@@ -13,6 +13,9 @@ export const ACCOUNTS = {
   quiet: { did: 'did:plc:quiet0000000000000000010', handle: 'quiet.example.test', displayName: 'Quiet', description: 'I post about synths. Please do not quote or screenshot me. No AI.' },
   bot: { did: 'did:plc:bot000000000000000000011', handle: 'builder.alpha.example.test', displayName: 'Builder Bot' },
   chicken: { did: 'did:plc:chicken00000000000000012', handle: 'chicken.example.test', displayName: 'Game Bot', labels: [{ val: 'bot' }] },
+  // a logged-out-hidden account that wins the game, and a third party that posts about rounds
+  lantern: { did: 'did:plc:lantern00000000000000013', handle: 'lantern.example.test', displayName: 'Marigold Lantern', labels: [{ val: '!no-unauthenticated' }] },
+  market: { did: 'did:plc:market000000000000000014', handle: 'market.example.test', displayName: 'Round Market' },
 }
 
 /** A Top Chicken style result post. */
@@ -35,7 +38,8 @@ export const uriOf = (key, rkey) => `at://${ACCOUNTS[key].did}/app.bsky.feed.pos
 /**
  * A PostView. Options: text, at (ISO time), likes, reposts, replies, quotes,
  * reply: { root, parent } (URIs), quote: a PostView to embed, external: { uri, title },
- * images: [alt...], labels: [vals], links: [uri] (as facets), mentions: [{ key, text }]
+ * images: [alt...], labels: [vals], links: [uri] (as facets), mentions: [{ key, text }],
+ * linkFacets: [{ text, uri }] (a link facet over that text), card: { uri, name } (a list card)
  */
 export function post(key, rkey, o = {}) {
   const a = actor(key)
@@ -48,6 +52,10 @@ export function post(key, rkey, o = {}) {
     const start = bytes(record.text.slice(0, record.text.indexOf(m.text)))
     facets.push({ index: { byteStart: start, byteEnd: start + bytes(m.text) }, features: [{ $type: 'app.bsky.richtext.facet#mention', did: ACCOUNTS[m.key].did }] })
   }
+  for (const l of o.linkFacets ?? []) {
+    const start = bytes(record.text.slice(0, record.text.indexOf(l.text)))
+    facets.push({ index: { byteStart: start, byteEnd: start + bytes(l.text) }, features: [{ $type: 'app.bsky.richtext.facet#link', uri: l.uri }] })
+  }
   if (facets.length) record.facets = facets
   let embed
   const media = o.images ? { $type: 'app.bsky.embed.images#view', images: o.images.map((alt) => ({ alt, thumb: 'x', fullsize: 'y' })) } : o.external ? { $type: 'app.bsky.embed.external#view', external: { uri: o.external.uri, title: o.external.title ?? '', description: '' } } : null
@@ -55,7 +63,8 @@ export function post(key, rkey, o = {}) {
     const q = o.quote
     const rec = { $type: 'app.bsky.embed.record#viewRecord', uri: q.uri, cid: 'c', author: q.author, value: q.record, labels: q.labels ?? [], likeCount: q.likeCount, indexedAt: q.indexedAt }
     embed = media ? { $type: 'app.bsky.embed.recordWithMedia#view', media, record: { record: rec } } : { $type: 'app.bsky.embed.record#view', record: rec }
-  } else if (media) embed = media
+  } else if (o.card) embed = { $type: 'app.bsky.embed.record#view', record: { $type: 'app.bsky.graph.defs#listView', uri: o.card.uri, name: o.card.name } }
+  else if (media) embed = media
   return {
     uri: uriOf(key, rkey),
     cid: 'cid-' + rkey,

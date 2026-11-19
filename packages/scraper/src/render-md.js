@@ -36,6 +36,9 @@ function followers(p) {
 const whoF = (p) => who(p) + followers(p)
 const oob = (topics) => `**OUT OF BOUNDS (${topics.join(', ')})**`
 const NOQUOTE = 'asked not to be quoted'
+/** A post whose text the consent rules altered: shown to the writer, never quotable. */
+const REDACTED_NOTE = '*(redacted: names an account that is not included; not quotable)*'
+const red = (p) => (p?.redacted ? ' ' + REDACTED_NOTE : '')
 /** A story whose post asks not to be quoted does not show even its first line. */
 const headlineOrWithheld = (s) => (s.outOfBounds?.topics?.includes(NOQUOTE) ? '*(headline withheld: a post here asks not to be quoted)*' : mdText(s.headline))
 
@@ -62,8 +65,9 @@ function renderPost(p, { maxChars = 600 } = {}) {
   else if (p.hasImages && !p.imageAlts?.length) lines.push('> *[image, no alt text]*')
   for (const alt of (p.imageAlts ?? []).slice(0, 2)) lines.push(`> *[image: ${mdText(clip(alt.replace(/\s+/g, ' '), 200))}]*`)
   for (const l of (p.links ?? []).slice(0, 2)) lines.push(`> *[link: ${l.title ? mdText(l.title) + ' — ' : ''}${l.url}]*`)
-  if (p.quoted) lines.push(`>`, `> > quoting ${whoF(p.quoted)}: ${mdText(clip((p.quoted.text || '').replace(/\s+/g, ' '), 240))}`)
-  if (p.inReplyTo) lines.push(`>`, `> > replying to ${whoF(p.inReplyTo)}: ${mdText(clip((p.inReplyTo.text || '').replace(/\s+/g, ' '), 200))}`)
+  if (p.redacted) lines.push(`> ${REDACTED_NOTE}`)
+  if (p.quoted) lines.push(`>`, `> > quoting ${whoF(p.quoted)}: ${mdText(clip((p.quoted.text || '').replace(/\s+/g, ' '), 240))}${red(p.quoted)}`)
+  if (p.inReplyTo) lines.push(`>`, `> > replying to ${whoF(p.inReplyTo)}: ${mdText(clip((p.inReplyTo.text || '').replace(/\s+/g, ' '), 200))}${red(p.inReplyTo)}`)
   if (p.quote?.state === 'removed') lines.push('> *(quoted post removed: author not included)*')
   if (p.reply?.hidden) lines.push('> *(reply to a post that is not included)*')
   const lift = p.metrics?.lift >= 1 ? ` · ${times(p.metrics.lift)} the author's usual` : ''
@@ -112,7 +116,7 @@ export function renderStory(s, { postsPerStory = 4 } = {}) {
   for (const c of s.context ?? []) {
     out.push(`Started from (before the window): ${whoF(c)}, ${shortTime(c.time)}`)
     out.push(quoteBlock(clip(c.text || '', 400)))
-    out.push(`— [open](${c.url})`)
+    out.push(`— [open](${c.url})${red(c)}`)
     out.push('')
   }
   const shown = s.posts.slice(0, postsPerStory)
@@ -148,8 +152,8 @@ export function renderMarkdown(d) {
   if (o.weeks?.length) out.push(`- **Weeks declared:** ${o.weeks.map((w) => '"' + mdText(w) + '"').join(', ')}`)
   const running = d.appendices.runningBits.slice(0, 5)
   if (running.length) out.push(`- **Running bits (3+ days):** ${running.map((r) => `"${mdText(r.term)}" (${r.days} days, ${r.authors} people)`).join(', ')}`)
-  if (o.biggestPost) out.push(`- **Biggest post:** ${whoF(o.biggestPost)}: "${mdText(o.biggestPost.text)}" (${countsLine(o.biggestPost.counts)}) [open](${o.biggestPost.url})`)
-  if (o.breakoutPost) out.push(`- **Breakout (best against the author's own usual):** ${whoF(o.breakoutPost)}: "${mdText(o.breakoutPost.text)}" (${times(o.breakoutPost.metrics.lift)} usual) [open](${o.breakoutPost.url})`)
+  if (o.biggestPost) out.push(`- **Biggest post:** ${whoF(o.biggestPost)}: "${mdText(o.biggestPost.text)}" (${countsLine(o.biggestPost.counts)}) [open](${o.biggestPost.url})${red(o.biggestPost)}`)
+  if (o.breakoutPost) out.push(`- **Breakout (best against the author's own usual):** ${whoF(o.breakoutPost)}: "${mdText(o.breakoutPost.text)}" (${times(o.breakoutPost.metrics.lift)} usual) [open](${o.breakoutPost.url})${red(o.breakoutPost)}`)
   const busiest = Object.entries(o.postsByDay).sort((a, b) => b[1] - a[1])[0]
   if (busiest) out.push(`- **Busiest day:** ${fmtDate(busiest[0] + 'T00:00:00Z')} (${plural(busiest[1], 'post')})${isWeek ? '' : '; the first and last days of the window may be partial'}`)
   out.push('')
@@ -184,7 +188,7 @@ export function renderMarkdown(d) {
   out.push('|---|---:|---:|---:|---:|---|')
   for (const a of d.appendices.activeAccounts) {
     const f = d.authors?.[a.did]
-    out.push(`| ${who(a)} | ${f?.followers == null ? '' : n(f.followers) + (f.small ? ' (small)' : '')} | ${a.posts} | ${a.repliesToMembers} | ${n(a.engagement)} | [${mdText(clip(a.best?.text ?? '', 70)) || 'open'}](${a.best?.url ?? ''}) |`)
+    out.push(`| ${who(a)} | ${f?.followers == null ? '' : n(f.followers) + (f.small ? ' (small)' : '')} | ${a.posts} | ${a.repliesToMembers} | ${n(a.engagement)} | [${mdText(clip(a.best?.text ?? '', 70)) || 'open'}](${a.best?.url ?? ''})${a.best?.redacted ? ' (redacted)' : ''} |`)
   }
   out.push('')
   out.push('## Appendix B: links that circulated')
@@ -204,7 +208,7 @@ export function renderMarkdown(d) {
     out.push('| phrase | people | per 1k now | per 1k before | ratio | days | first used |')
     out.push('|---|---:|---:|---:|---:|---:|---|')
     for (const p of d.appendices.phrases) {
-      const first = p.outOfBounds ? `out of bounds (${p.outOfBounds.topics.join(', ')})` : p.first ? `[@${p.first.handle}, ${shortTime(p.first.time)}: ${mdText(clip(p.first.text, 60))}](${p.first.url})` : ''
+      const first = p.outOfBounds ? `out of bounds (${p.outOfBounds.topics.join(', ')})` : p.first ? `[@${p.first.handle}, ${shortTime(p.first.time)}: ${mdText(clip(p.first.text, 60))}](${p.first.url})${p.first.redacted ? ' (redacted)' : ''}` : ''
       out.push(`| "${mdText(p.term)}"${p.isNew ? ' (new)' : ''} | ${p.authors} | ${p.per1k} | ${p.baselinePer1k ?? '–'} | ${p.ratio || '–'} | ${p.days} | ${first} |`)
     }
   }
@@ -219,7 +223,7 @@ export function renderMarkdown(d) {
     out.push('| week | people | posts | declared | first used |')
     out.push('|---|---:|---:|:---:|---|')
     for (const w of wk) {
-      const first = w.outOfBounds ? `out of bounds (${w.outOfBounds.topics.join(', ')})` : w.first ? `[@${w.first.handle}, ${shortTime(w.first.time)}: ${mdText(clip(w.first.text, 70))}](${w.first.url})` : ''
+      const first = w.outOfBounds ? `out of bounds (${w.outOfBounds.topics.join(', ')})` : w.first ? `[@${w.first.handle}, ${shortTime(w.first.time)}: ${mdText(clip(w.first.text, 70))}](${w.first.url})${w.first.redacted ? ' (redacted)' : ''}` : ''
       out.push(`| "${mdText(w.term)}" | ${w.authors} | ${w.posts} | ${w.declared ? 'yes' : ''} | ${first} |`)
     }
   }
@@ -233,7 +237,7 @@ export function renderMarkdown(d) {
   out.push(`- Requests: ${n(r.requests)} made, ${n(r.cacheHits)} served from cache, ${n(r.retries)} retries, ${n(r.rateLimited)} rate-limited. Runtime ${r.runtimeSeconds ?? '?'}s.`)
   const ex = st.excluded ?? {}
   const labels = Object.entries(ex.postsDroppedLabel ?? {}).map(([k, v]) => `${v} ${k}`).join(', ')
-  out.push(`- Excluded: ${n(ex.optedOutAccountsSeen)} opted-out, ${n(ex.noUnauthenticatedAccounts)} logged-out-hidden, ${n(ex.selfDeclaredAccounts)} opted out in their profile and ${n(ex.showOptOutRequests)} asked the show to leave them out; posts dropped: ${n(ex.postsDroppedOptOut)} opt-out, ${n(ex.postsDroppedNoUnauthenticated)} logged-out-hidden, ${n(ex.postsDroppedSelfDeclared)} profile opt-out, ${n(ex.postsDroppedShowRequest)} show request, ${labels || '0'} by content label; ${n(ex.quotesStripped)} quoted posts and ${n(ex.replyLinksHidden)} reply links removed from others' posts; ${n(ex.mentionsRedacted)} posts had mentions redacted.`)
+  out.push(`- Excluded: ${n(ex.optedOutAccountsSeen)} opted-out, ${n(ex.noUnauthenticatedAccounts)} logged-out-hidden, ${n(ex.selfDeclaredAccounts)} opted out in their profile and ${n(ex.showOptOutRequests)} asked the show to leave them out; posts dropped: ${n(ex.postsDroppedOptOut)} opt-out, ${n(ex.postsDroppedNoUnauthenticated)} logged-out-hidden, ${n(ex.postsDroppedSelfDeclared)} profile opt-out, ${n(ex.postsDroppedShowRequest)} show request, ${labels || '0'} by content label; ${n(ex.quotesStripped)} quoted posts and ${n(ex.replyLinksHidden)} reply links removed from others' posts; ${n(ex.mentionsRedacted)} posts by others had an excluded account's name redacted (marked, not quotable) and ${n(ex.postsWithheldNamingExcluded)} were withheld as mainly about one${ex.outputScrubbed ? `; **${n(ex.outputScrubbed)} strings were caught only by the final check**` : ''}.`)
   if (st.profiles) out.push(`- Profiles: ${n(st.profiles.checked)} read for follower counts and profile opt-outs; ${n(st.profiles.missing)} authors without one (deleted, or not fetched). Small account: under ${n(st.profiles.smallThreshold)} followers.`)
   out.push('- Sensitivity flags are keyword matches against config/safety.json: a coarse hint. The writer and reviewer still apply R10 themselves.')
   if (r.warnings?.length) out.push(`- Warnings: ${r.warnings.slice(0, 8).map(mdText).join('; ')}${r.warnings.length > 8 ? ` (and ${r.warnings.length - 8} more in digest.json)` : ''}`)
@@ -250,17 +254,17 @@ function renderBuild(b, i) {
   if (b.wish) {
     out.push(`The wish: ${whoF(b.wish)}${b.wish.member ? '' : ' (outside the cluster)'}, ${shortTime(b.wish.time)}, ${countsLine(b.wish.counts)}`)
     out.push(quoteBlock(clip(b.wish.text || '', 300)))
-    out.push(`— [open](${b.wish.url})`)
+    out.push(`— [open](${b.wish.url})${red(b.wish)}`)
     out.push('')
   }
   if (!b.wish && b.inReplyTo) {
-    out.push(`In reply to (not a wish): ${whoF(b.inReplyTo)}, ${shortTime(b.inReplyTo.time)}: ${mdText(clip((b.inReplyTo.text || '').replace(/\s+/g, ' '), 160))} [open](${b.inReplyTo.url})`)
+    out.push(`In reply to (not a wish): ${whoF(b.inReplyTo)}, ${shortTime(b.inReplyTo.time)}: ${mdText(clip((b.inReplyTo.text || '').replace(/\s+/g, ' '), 160))} [open](${b.inReplyTo.url})${red(b.inReplyTo)}`)
     out.push('')
   }
   const bb = b.builtBy
   out.push(`${b.kind === 'built' ? 'Built by' : 'First shared by'} ${whoF(bb)}, ${shortTime(b.builtAt)}, ${countsLine(bb.counts)}`)
   out.push(quoteBlock(clip(bb.text || '', 300)))
-  out.push(`— [open](${bb.url})`)
+  out.push(`— [open](${bb.url})${red(bb)}`)
   if (b.sharedBy.length) out.push('', `Shared by ${b.sharedBy.slice(0, 6).map((x) => `[@${x.handle}](${x.url})${x.smallAccount ? ' (small)' : ''}`).join(', ')}${b.sharedBy.length > 6 ? ` and ${b.sharedBy.length - 6} more` : ''}`)
   out.push('')
   return out.join('\n')
@@ -302,7 +306,7 @@ export function renderGames(games = []) {
       if (r.winner?.excluded) post = '(not included)'
       else if (!r.winningPost) post = 'not resolved'
       else if (r.winningPost.sensitive) post = `flagged (${r.winningPost.sensitive.join(', ')}${r.winningPost.inFlaggedStory ? ', in a flagged story' : ''}), not quoted: [open](${r.winningPost.url})`
-      else post = `${r.winningPost.text?.trim() ? '"' + mdText(clip(r.winningPost.text.replace(/\s+/g, ' '), 120)) + '"' : r.winningPost.imageAlts?.length ? '*[image: ' + mdText(clip(r.winningPost.imageAlts[0], 80)) + ']*' : '*(image or video)*'} [open](${r.winningPost.url})`
+      else post = `${r.winningPost.text?.trim() ? '"' + mdText(clip(r.winningPost.text.replace(/\s+/g, ' '), 120)) + '"' : r.winningPost.imageAlts?.length ? '*[image: ' + mdText(clip(r.winningPost.imageAlts[0], 80)) + ']*' : '*(image or video)*'} [open](${r.winningPost.url})${red(r.winningPost)}`
       out.push(`| ${dayTime(r.time)} | ${personMd(r.winner)}${r.winner?.followers != null ? ` (${n(r.winner.followers)} followers)` : ''} | ${n(r.likes)} | ${r.ofRecord != null ? Math.round(r.ofRecord * 100) + '%' : ''} | ${r.rankInHistory ?? ''} of ${r.ofResults} | ${post} |`)
     }
     out.push('')
@@ -375,7 +379,7 @@ export function renderSections(d) {
     out.push('')
     for (const p of about.posts.slice(0, d.settings?.aboutShowPosts ?? 20)) {
       const tags = [p.why.join(', '), p.correction ? '**possible correction**' : null, p.quotesLines?.length ? `**quotes ${p.quotesLines.map((q) => '"' + mdText(clip(q, 60)) + '"').join(', ')}: check against what was posted**` : null, p.sensitive ? `flagged: ${p.sensitive.join(', ')}` : null].filter(Boolean).join(' · ')
-      out.push(`- ${whoF(p)}, ${shortTime(p.time)} · ${tags}: "${mdText(clip((p.text || '').replace(/\s+/g, ' '), 260))}" (${countsLine(p.counts)}) [open](${p.url})`)
+      out.push(`- ${whoF(p)}, ${shortTime(p.time)} · ${tags}: "${mdText(clip((p.text || '').replace(/\s+/g, ' '), 260))}" (${countsLine(p.counts)}) [open](${p.url})${red(p)}`)
     }
     if (about.posts.length > (d.settings?.aboutShowPosts ?? 20)) out.push(`- and ${about.posts.length - (d.settings?.aboutShowPosts ?? 20)} more in digest.json`)
     out.push('')

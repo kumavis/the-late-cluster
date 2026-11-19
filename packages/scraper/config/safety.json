@@ -370,6 +370,28 @@
       }
     ]
   },
+  "excludedMentions": {
+    "$comment": "R11: someone else's post that names an excluded account (opt-out list, !no-unauthenticated, profile opt-out, request to the show). The reference is replaced with [opted-out] and the post marked redacted (never quotable); the post is withheld whole when it is mainly about the account: it replies to or quotes the account, fewer than minOwnWords words of its own remain, it opens with the reference, the reference is possessive (\"X's post\"), or the sentence holding the reference matches aboutPatterns. Display names shorter than minNameChars letters, or a single stopword, are not matched in text; a display name that commonNameAuthors or more people write outside any conversation with its account is an ordinary word in that run, and is matched only in posts that reply to, quote, mention or link the account or sit in its thread; so is a one-word display name shorter than minLooseNameChars. A post whose image alt text names an excluded account is withheld whole (a screenshot or quote card of it cannot be redacted).",
+    "minOwnWords": 4,
+    "minNameChars": 3,
+    "commonNameAuthors": 3,
+    "minLooseNameChars": 5,
+    "aboutPatterns": [
+      "\\bwinner\\b",
+      "\\bwon\\b",
+      "\\bwins?\\b",
+      "\\bcongrat",
+      "\\bshout ?outs?\\b",
+      "\\bthanks?\\b",
+      "\\bthank you\\b",
+      "\\bhappy birthday\\b",
+      "\\bwelcome\\b",
+      "\\bfollow\\b",
+      "\\b(made|built|drawn|written|posted|shared|started) by\\b",
+      "\\b(art|idea|post|thread|video|bit|game) (by|from)\\b",
+      "\\bcredit"
+    ]
+  },
   "showQuotePattern": "[\"“”]([^\"“”\\n]{3,200})[\"“”]",
   "$commentShowQuote": "showQuotePattern finds a line a viewer quotes in a post about the show ('it sounds exactly like me \"built it\"'). Each quoted line is listed so the writer can check whether the show put it in a real person's mouth."
 }

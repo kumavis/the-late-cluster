@@ -15,6 +15,7 @@ import { engagement, shortHash, publicPost } from './normalize.js'
 import { phrasesOf, firstLine } from './text.js'
 import { utcDay } from './window.js'
 import { storySensitivity } from './sensitivity.js'
+import { consentFlags } from './consent.js'
 
 class DSU {
   constructor() { this.p = new Map(); this.size = new Map() }
@@ -330,6 +331,7 @@ function summarizeContext(p) {
   if (p.authorFollowers != null) out.authorFollowers = p.authorFollowers
   if (p.smallAccount) out.smallAccount = true
   if (p.sensitive?.length) out.sensitive = p.sensitive
+  Object.assign(out, consentFlags(p))
   return out
 }
 

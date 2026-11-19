@@ -343,7 +343,7 @@ export async function collect({ client, config, window, consent, log = () => {},
   learnProfiles(await api.getProfiles(client, unprofiled, { onError: (e) => warnings.push(`author profiles: a batch failed (${e.name === 'BudgetExhausted' ? 'request budget exhausted' : e.message})`) }))
   // People named in game results by handle only (a record holder, say).
   const knownHandles = new Set([...profileMap.values()].map((p) => String(p.handle).toLowerCase()))
-  const namedOnly = [...new Set(gameHandles)].filter((h) => !knownHandles.has(h) && !consent.skipHandle(h)).sort()
+  const namedOnly = [...new Set(gameHandles)].filter((h) => !knownHandles.has(h) && !consent.excludedHandle(h)).sort()
   if (namedOnly.length) learnProfiles(await api.getProfiles(client, namedOnly, { onError: (e) => warnings.push(`game people profiles: ${e.message}`) }))
 
   return {

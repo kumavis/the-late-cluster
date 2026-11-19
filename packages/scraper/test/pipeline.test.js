@@ -31,7 +31,7 @@ function world() {
     post('echo', 'e0', { text: 'simcluster weather is my religion now', at: '2026-11-12T09:30:00Z', likes: 2 }),
     // a member whose profile says not to quote them, quoted by a seed
     post('quiet', 'qt1', { text: 'QUIET TEXT about synths', at: '2026-11-12T08:00:00Z', likes: 4 }),
-    post('alpha', 'a-q', { text: 'replying to quiet', reply: { root: uriOf('quiet', 'qt1') }, at: '2026-11-12T08:30:00Z', likes: 1 }),
+    post('alpha', 'a-q', { text: 'replying to that', reply: { root: uriOf('quiet', 'qt1') }, at: '2026-11-12T08:30:00Z', likes: 1 }),
     // a wish and the build that answered it, by a small bot account on a member's domain
     post('charlie', 'wish', { text: 'someone should make a golem grocery game', at: '2026-11-13T09:00:00Z', likes: 12, replies: 2 }),
     post('bot', 'built', { text: 'built it 🎉 golem.alpha.example.test', reply: { root: uriOf('charlie', 'wish') }, external: { uri: 'https://golem.alpha.example.test/', title: 'Golem Grocer' }, at: '2026-11-13T09:20:00Z', likes: 7 }),
@@ -142,7 +142,8 @@ test('the opted-out seed is never requested and never appears', async () => {
   assert.ok(!out.includes('GHOST TEXT'))
   // the people who replied to or quoted them are still there
   assert.ok(d.posts.some((p) => p.uri === uriOf('echo', 'e1') && p.reply.hidden))
-  assert.ok(d.posts.some((p) => p.uri === uriOf('charlie', 'c2') && p.quote.state === 'removed' && p.text === 'lmao @[opted-out]'))
+  // a quote of them that names them is mainly about them: withheld whole
+  assert.ok(!d.posts.some((p) => p.uri === uriOf('charlie', 'c2')))
 })
 
 test('logged-out-hidden and labelled posts are excluded and counted', async () => {

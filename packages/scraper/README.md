@@ -87,7 +87,10 @@ npm run lookup -- --dir data/weeks/2026-W47 ...   # a given digest (default: the
 ```
 
 It reads `posts.jsonl` and `digest.json`, writes nothing, and prints one JSON record per line
-with the exact text. A thread that is one of the performable threads prints that complete
+with the exact text as stored. A record with `redacted: true` had an excluded account's name
+replaced with `[opted-out]` (see "Naming an excluded account"): it is not the post's verbatim
+text and is never quotable. A post withheld for being about an excluded account is in neither
+file, so no query finds it. A thread that is one of the performable threads prints that complete
 thread; any other is assembled from the posts the digest holds and says so.
 
 ### The response cache
@@ -114,8 +117,11 @@ A post record holds: `uri`, `url` (bsky.app), `authorDid`, `handle`, `displayNam
 `title`), `imageAlts`, `hasImages`, `hasVideo`, `embedded` (a feed or list card), `tags`,
 `labels`, `sources` (how we found it: `author`, `context`, `thread`, `quoted`, `search`,
 `feed`), `member`, `memberReposts` where members reposted it, `authorFollowers` and
-`smallAccount` (under `safety.smallAccountFollowers`, 300), `guest` for a recurring guest, and
-`sensitive` (the out-of-bounds topics it matched). Story posts also carry `inReplyTo` (the
+`smallAccount` (under `safety.smallAccountFollowers`, 300), `guest` for a recurring guest,
+`sensitive` (the out-of-bounds topics it matched), and, when the consent rules changed its
+text, `redacted: true` with `outOfBounds: { topics: ["redacted"], rule: "R11" }` (the field the
+writers' room gates refuse as a source). Every summary of such a post elsewhere in the digest
+(a brief, a quoted post, a reply's parent, a winning post) carries the same two fields. Story posts also carry `inReplyTo` (the
 parent: handle, text, URL) and `quoted`. No avatars, images, video, profile descriptions, or
 follower lists; follower *counts* only.
 
@@ -373,8 +379,8 @@ Candidate threads for performing word for word, chosen deterministically: rooted
 window, `minPosts`-`maxPosts` posts (4-24), at least `minSpeakers` (3) speakers of whom
 `minMemberSpeakers` (3) are members, at least `minTurns` (4) replies to someone else, every
 post under `maxChars` (280) characters with words to say (not only a link or a mention), no
-sensitivity flags, no hostile wording (`avoidPatterns`), no text changed by mention
-redaction, no quote of an excluded post, and every post reachable from the root (nothing
+sensitivity flags, no hostile wording (`avoidPatterns`), no text redacted by the
+consent rules, no quote of an excluded post, and every post reachable from the root (nothing
 excluded or missing in the middle). Ranked by `2·member speakers + 1.5·turns + ln(1 +
 engagement) − mean length / 100`, with a small penalty past 12 posts.
 
@@ -471,9 +477,8 @@ Built into the code path, not left to the reader (`src/consent.js`):
   Their posts are dropped. Someone else's post that quotes them keeps its own text and loses
   the quoted content (`quote.state: "removed"`). A reply to them keeps its own text and loses
   the pointer (`reply.hidden: true`); replies to the same hidden thread are still grouped,
-  by a hash rather than the URI. @-mentions of them in other people's text become
-  `@[opted-out]`, and links to their profile are dropped. Their DID never reaches an output
-  file.
+  by a hash rather than the URI. Anything else that names them follows "Naming an excluded
+  account" below. Their DID never reaches an output file.
 - **`!no-unauthenticated`**: accounts carrying this self-label are treated exactly like
   opt-outs, even though the public AppView does return their posts (verified: 505 of the
   cached W46 responses contained such authors, with post text).
@@ -486,6 +491,7 @@ Built into the code path, not left to the reader (`src/consent.js`):
   checked before the digest is written. The description itself is read and discarded, never
   stored. On W46: 47 accounts, 78 posts; none of them was a member.
 - **Requests to the show**: see "About the show".
+- **Naming an excluded account**: see below. Applies to every kind of exclusion above.
 - **Content labels**: posts labelled `porn`, `sexual`, `nudity`, `graphic-media`, `gore`,
   `nsfl` or `sexual-figurative` (post or account level, `blockedLabels`) are dropped, and so
   is quoted content carrying them.
@@ -512,6 +518,65 @@ Built into the code path, not left to the reader (`src/consent.js`):
 - **Privacy of requests**: the default User-Agent is `weekly-digest-scraper/0.1`. No request
   carries the project's name, the show's name, a person's name or contact details. Config
   validation refuses a User-Agent naming the show.
+
+### Naming an excluded account
+
+An excluded account (any of the four kinds above) appears in no form, so other people's posts
+that name it are handled too (`src/consent.js`). The account is matched **by DID first, and by
+every handle and display name the run has seen for that DID**, whenever it was excluded: a
+handle change or a new display name does not let it back in.
+
+What counts as naming it, in someone else's post:
+
+- an @-mention (its facet), a link facet to its profile, posts or own domain, and a
+  `bsky.app/profile/<its handle or DID>` URL in the text;
+- its handle in plain text, with or without `@`, and its DID;
+- its display name in plain text, by whole words (case-insensitive, decoration such as emoji
+  trimmed). Display names are not unique and many are ordinary words, so a name is matched
+  anywhere only if it is distinctive in this run: at least `minLooseNameChars` (5) letters or
+  more than one word, and written by fewer than `commonNameAuthors` (3) people outside any
+  conversation with the account. Otherwise (and for any name of `minNameChars`, 3, letters or
+  more) it is matched only in a post *in conversation with* the account: one that replies to it
+  (parent or root), quotes, mentions or links it, or sits in its thread. Single stopwords are
+  never matched;
+- a list post cut off inside its last entry ("8. someone — 12 likes\n9. a"): if what is left
+  could be the start of an excluded account's handle or name, it is treated as theirs, because
+  nobody can show it is not. (With a large exclusion list nearly every one-letter fragment
+  matches.)
+
+What happens:
+
+- **A post mainly about the account is withheld whole**: written nowhere, counted in
+  `stats.excluded.postsWithheldNamingExcluded` with the reason in `withheldBecause`. Mainly
+  about it means any of: it replies to or quotes the account and names it (`conversation`);
+  fewer than `minOwnWords` (4) words of its own remain once the reference is gone
+  (`fewOwnWords`); it opens with the reference (`opensWithIt`); the reference is possessive,
+  "X's post" (`possessive`); the sentence holding it matches `aboutPatterns` ("winner", "won",
+  "congrats", "thanks", "made by", ..., `aboutIt`); or an image's alt text names it (`image`: a
+  screenshot or quote card of the account's post cannot be redacted). A game result withheld
+  this way is still reported by the game section as "not included", without its text.
+- **Otherwise the reference is replaced** with `[opted-out]` (an @-mention keeps its `@`:
+  `@[opted-out]`) and the post is marked `redacted` (above), so no role can quote or perform it
+  as verbatim: performable threads and interview pairs skip it, and the gates refuse it. The
+  same applies to link titles and feed or list card names; a link or card pointing at the
+  account is dropped.
+- **A quoted post that names the account** is removed from the quoting post (`quote.state:
+  "removed"`, counted in `quotesStrippedNamingExcluded`): a quote is never shown with holes in it.
+- **Reposts and likes**: the digest keeps no lists of who reposted or liked anything, only
+  counts of members who reposted, from which excluded accounts are left out.
+- **The final check**: before anything is written, every string in `digest.json` and
+  `posts.jsonl` is searched for an excluded account's DID, handle or profile link (display
+  names are not unique, so not here). A hit is redacted, its post marked, the count kept in
+  `stats.excluded.outputScrubbed` and a warning added to `run.warnings`: a hit means a rule
+  above missed something, and should be reported.
+
+The counts by kind of reference are in `stats.excluded.references`. The tests in
+`test/naming.test.js` cover each case with invented accounts.
+
+All four outputs are written beside their final names and then renamed together, so a reader
+of the folder sees the old files or the new ones, never a run half written. The response
+cache keeps raw API responses, names included: it is the scraper's private input, never
+an output.
 
 ## Politeness
 
@@ -567,7 +632,9 @@ makes a parent a wish), `reach.weights`, and `weekDeclarations` (`maxN`, `top`).
 
 `config/safety.json`: `smallAccountFollowers`, `selfDeclaredOptOut.patterns`,
 `showOptOutPatterns.patterns`, `showCorrectionPatterns`, `sensitivity` (`minShare`,
-`minPosts`, `topics`, `combinations`), `showQuotePattern`. Patterns are case-insensitive JavaScript regexes; sensitivity terms get
+`minPosts`, `topics`, `combinations`), `showQuotePattern`, `excludedMentions` (`minOwnWords`,
+`minNameChars`, `minLooseNameChars`, `commonNameAuthors`, `aboutPatterns`; see "Naming an
+excluded account"). Patterns are case-insensitive JavaScript regexes; sensitivity terms get
 word boundaries added. Every pattern is compiled when the config loads, so a bad one fails
 fast.
 

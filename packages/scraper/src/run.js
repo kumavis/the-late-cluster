@@ -1,6 +1,6 @@
 // The scrape command: window -> collect -> analyze -> write.
 
-import { mkdir, readFile, writeFile, rm } from 'node:fs/promises'
+import { mkdir, readFile, writeFile, rm, rename } from 'node:fs/promises'
 import { existsSync, readFileSync } from 'node:fs'
 import { join, resolve, dirname } from 'node:path'
 import { parseArgs } from 'node:util'
@@ -103,6 +103,16 @@ export async function pruneCache(out) {
   await rm(join(out, '.cache'), { recursive: true, force: true })
 }
 
+/**
+ * Write every output beside its final name first, then rename them all, so a reader of the
+ * folder sees the old files or the new ones and never a run half written.
+ */
+export async function writeOutputs(out, files) {
+  const tmp = Object.keys(files).map((name) => [join(out, `.${name}.tmp`), join(out, name)])
+  for (const [i, [t]] of tmp.entries()) await writeFile(t, Object.values(files)[i])
+  for (const [t, f] of tmp) await rename(t, f)
+}
+
 /** Identical warnings once each, with a count. */
 export function collapse(list) {
   const counts = new Map()
@@ -172,7 +182,7 @@ export async function run(argv = process.argv.slice(2), env = process.env) {
     auth: authFromEnv(env, log),
     log,
   })
-  const consent = new Consent({ optOut: config.optOut.accounts, blockedLabels: config.scoring.blockedLabels, selfDeclaredPatterns: config.safety.selfDeclaredOptOut.patterns })
+  const consent = new Consent({ optOut: config.optOut.accounts, blockedLabels: config.scoring.blockedLabels, selfDeclaredPatterns: config.safety.selfDeclaredOptOut.patterns, naming: config.safety.excludedMentions })
 
   const c = await collect({ client, config, window, consent, log, membershipOnly: args['membership-only'] })
   if (c.membershipOnly) {
@@ -270,10 +280,17 @@ export async function run(argv = process.argv.slice(2), env = process.env) {
   }
   digest.coverage = buildCoverage({ collected: c, digest: { ...d, sections: d.sections }, config, seedPlan, previous, run: digest.run, consentStats: consent.stats, ledger, frequent: frequentlyFeatured(ledger, { min: 1, atMs: window.end }).slice(0, 15) })
 
-  await writeFile(join(out, 'posts.jsonl'), d.posts.map((p) => JSON.stringify(p)).join('\n') + (d.posts.length ? '\n' : ''))
-  await writeFile(join(out, 'digest.json'), JSON.stringify(digest, null, 2) + '\n')
-  await writeFile(join(out, 'digest.md'), renderMarkdown(digest))
-  await writeFile(join(out, 'coverage.md'), renderCoverage(digest.coverage, digest.window))
+  // The last line of defence: nothing written may still hold an excluded account's DID,
+  // handle or profile link, whichever section it reached (README "Naming an excluded account").
+  const scrubbed = consent.scrub(digest) + consent.scrub(d.posts)
+  if (scrubbed) digest.run.warnings.push(`consent: ${scrubbed} strings still named an excluded account after filtering and were redacted at the end; a rule missed them, so report it`)
+
+  await writeOutputs(out, {
+    'posts.jsonl': d.posts.map((p) => JSON.stringify(p)).join('\n') + (d.posts.length ? '\n' : ''),
+    'digest.json': JSON.stringify(digest, null, 2) + '\n',
+    'digest.md': renderMarkdown(digest),
+    'coverage.md': renderCoverage(digest.coverage, digest.window),
+  })
 
   // The cache is only removed once every output is written.
   let pruned = false

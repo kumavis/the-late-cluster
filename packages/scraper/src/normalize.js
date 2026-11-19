@@ -129,21 +129,32 @@ function embedParts(embed) {
 
 function facetsOf(record) {
   const links = []
+  const linkFacets = []
   const mentions = []
   const tags = []
   const bytes = Buffer.from(record?.text ?? '', 'utf8')
+  // A facet's byte range as a string range (start, end) in the text, or nulls.
+  const span = (f) => {
+    const { byteStart, byteEnd } = f.index ?? {}
+    if (!Number.isInteger(byteStart) || !Number.isInteger(byteEnd) || byteStart < 0 || byteEnd > bytes.length || byteEnd <= byteStart) return { start: null, end: null, text: null }
+    const start = bytes.subarray(0, byteStart).toString('utf8').length
+    const text = bytes.subarray(byteStart, byteEnd).toString('utf8')
+    return { start, end: start + text.length, text }
+  }
   for (const f of record?.facets ?? []) {
     for (const feat of f.features ?? []) {
       const t = feat.$type ?? ''
-      if (t.endsWith('#link') && feat.uri) links.push(feat.uri)
-      else if (t.endsWith('#mention') && feat.did) {
-        const { byteStart, byteEnd } = f.index ?? {}
-        const text = Number.isInteger(byteStart) ? bytes.subarray(byteStart, byteEnd).toString('utf8') : null
-        mentions.push({ did: feat.did, text })
+      if (t.endsWith('#link') && feat.uri) {
+        links.push(feat.uri)
+        const s = span(f)
+        linkFacets.push({ uri: feat.uri, start: s.start, end: s.end })
+      } else if (t.endsWith('#mention') && feat.did) {
+        const s = span(f)
+        mentions.push({ did: feat.did, text: s.text, start: s.start, end: s.end })
       } else if (t.endsWith('#tag') && feat.tag) tags.push(String(feat.tag).toLowerCase())
     }
   }
-  return { links, mentions, tags }
+  return { links, linkFacets, mentions, tags }
 }
 
 /**
@@ -211,6 +222,7 @@ export function normalizePost(view, { source } = {}) {
     _threadKey: rootUri ?? view.uri,
     _authorLabels: labelVals(author.labels),
     _mentions: facets.mentions,
+    _linkFacets: facets.linkFacets,
     _quoted: quotedView ? normalizePost(quotedView, { source: 'quoted' }) : null,
   }
 }

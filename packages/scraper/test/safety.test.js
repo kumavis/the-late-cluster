@@ -33,9 +33,13 @@ test('a self-declared opt-out is excluded exactly like the opt-out list, and cou
   assert.equal(c.stats.selfDeclaredAccounts, 1)
   assert.equal(c.filterPost(normalizePost(post('quiet', 'q1', { text: 'synths' }))), null)
   assert.equal(c.stats.postsDroppedSelfDeclared, 1)
-  const quoting = c.filterPost(normalizePost(post('alpha', 'a1', { text: 'lol @quiet.example.test', quote: post('quiet', 'q2'), mentions: [{ key: 'quiet', text: '@quiet.example.test' }] })))
+  const quoting = c.filterPost(normalizePost(post('alpha', 'a1', { text: 'this is the best synth patch of the year', quote: post('quiet', 'q2') })))
   assert.equal(quoting.quote.state, 'removed')
-  assert.equal(quoting.text, 'lol @[opted-out]')
+  assert.equal(quoting.text, 'this is the best synth patch of the year')
+  // quoting them and naming them: in conversation with an excluded account, withheld whole
+  const naming = c.filterPost(normalizePost(post('alpha', 'a2', { text: 'lol @quiet.example.test', quote: post('quiet', 'q3'), mentions: [{ key: 'quiet', text: '@quiet.example.test' }] })))
+  assert.equal(naming, null)
+  assert.equal(c.stats.postsWithheldNamingExcluded, 1)
 })
 
 test('a request to the show is an opt-out from then on', () => {

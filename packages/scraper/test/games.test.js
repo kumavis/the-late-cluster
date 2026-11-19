@@ -33,7 +33,11 @@ test('an excluded winner is left out but the result is still reported', () => {
   const consent = new Consent({ optOut: ['ghost.example.test'] })
   const win = post('ghost', 'w', { text: 'GHOST WIN' })
   let r = normalizePost(post('chicken', 'r2', { text: chickenText('ghost.example.test', 300), quote: win, mentions: [{ key: 'ghost', text: '@ghost.example.test' }] }))
-  r = consent.filterPost(r)
+  // the result post is mainly about the winner, so it is withheld from the digest; the game
+  // section still reads it to report the day as "not included"
+  assert.equal(consent.filterPost(r, { count: false }), null)
+  r = consent.filterPost(r, { keepWithheld: true })
+  assert.equal(r._withheld, 'possessive')
   const [res] = gameResults([r], game, { consent, profileByHandle: (h) => profs.get(h) })
   assert.deepEqual(res.winner, { excluded: true })
   assert.equal(res.winningPost, null)

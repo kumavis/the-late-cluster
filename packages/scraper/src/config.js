@@ -52,5 +52,8 @@ export function validate(c) {
     }
   }
   for (const re of c.show.performableThreads?.avoidPatterns ?? []) new RegExp(re, 'iu')
+  for (const re of c.safety.excludedMentions?.aboutPatterns ?? []) {
+    try { new RegExp(re, 'iu') } catch (e) { throw new Error(`config: bad pattern in safety.excludedMentions: ${e.message}`) }
+  }
   need(!/the-late-cluster|late cluster|larry/i.test(c.client.userAgent ?? ''), 'client.userAgent must stay generic')
 }

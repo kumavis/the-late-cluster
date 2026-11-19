@@ -47,11 +47,11 @@ export function interviewCandidates({ posts, lookup, featuredOf, reachOf = () =>
   const by = new Map()
   for (const a of posts) {
     if (!a.member || !a.reply?.parent || a.reply.hidden) continue
-    if (a.sensitive?.length || a._redacted || a.quote?.state === 'removed') continue
+    if (a.sensitive?.length || a._redacted || a.redacted || a.quote?.state === 'removed') continue
     if (!speakable(a.text, C.maxChars)) continue
     const q = lookup(a.reply.parent)
     if (!q || q.authorDid === a.authorDid) continue
-    if (q.sensitive?.length || q._redacted || q.reply?.hidden) continue
+    if (q.sensitive?.length || q._redacted || q.redacted || q.reply?.hidden) continue
     if (!String(q.text ?? '').trim() || [...q.text].length > C.maxQuestionChars) continue
     const kind = askKind(q.text, C)
     if (!kind) continue

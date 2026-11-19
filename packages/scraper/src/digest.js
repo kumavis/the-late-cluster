@@ -12,6 +12,7 @@ import { performableThreads } from './threads.js'
 import { makeReach } from './reach.js'
 import { interviewCandidates } from './interview.js'
 import { firstLine } from './text.js'
+import { consentFlags } from './consent.js'
 import { iso, utcDay } from './window.js'
 
 const byTime = (a, b) => (a.time < b.time ? -1 : a.time > b.time ? 1 : a.uri < b.uri ? -1 : 1)
@@ -39,6 +40,8 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   // Learn every author before filtering, so a label seen anywhere applies everywhere.
   const all = [...posts]
   for (const p of all) consent.learnFromPost(p)
+  // Which excluded accounts' display names are ordinary words in these posts.
+  consent.calibrateNames(all)
 
   // Posts about the show, found before filtering: a request to be left out excludes its
   // author from everything that follows (bible R11).
@@ -73,12 +76,17 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   const removed = []
   const baselinePosts = []
   const context = new Map()
+  // Posts withheld for being mainly about an excluded account: only the game section reads
+  // them (a result it reports as "not included"); they are written nowhere.
+  const withheld = []
   const seen = new Set()
   for (const raw of all.sort((a, b) => (a.uri < b.uri ? -1 : 1))) {
     if (seen.has(raw.uri)) continue
     seen.add(raw.uri)
     const w = inWin(raw)
-    const p = consent.filterPost(raw, { count: w })
+    const kept = consent.filterPost(raw, { count: w, keepWithheld: true })
+    if (kept?._withheld) withheld.push(kept)
+    const p = kept?._withheld ? null : kept
     if (!p) {
       // Remember where a post was removed (never what or whose), for performable threads.
       removed.push({ threadKey: raw._threadKey, parent: raw.reply?.parent ?? null })
@@ -137,7 +145,7 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
       if (parentDid && parentDid !== p.authorDid && memberDids.has(parentDid)) a.repliesToMembers++
       a.engagement += engagement(p.counts, scoring.engagementWeights)
       const m = metric(p)
-      if (m.score > a.bestScore) { a.bestScore = m.score; a.best = { uri: p.uri, url: p.url, text: firstLine(p.text, 100), counts: p.counts } }
+      if (m.score > a.bestScore) { a.bestScore = m.score; a.best = { uri: p.uri, url: p.url, text: firstLine(p.text, 100), counts: p.counts, ...consentFlags(p) } }
     }
     return [...by.values()]
       .map(({ bestScore, ...a }) => ({ ...a, engagement: Math.round(a.engagement) }))
@@ -169,7 +177,7 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
 
   const brief = (p, n = 280) => p && {
     uri: p.uri, url: p.url, handle: p.handle, displayName: p.displayName, text: firstLine(p.text, n), time: p.time, counts: p.counts, reach: reachOf(p),
-    member: !!p.member, authorFollowers: p.authorFollowers ?? null, smallAccount: !!p.smallAccount, ...(p.sensitive ? { sensitive: p.sensitive } : {}),
+    member: !!p.member, authorFollowers: p.authorFollowers ?? null, smallAccount: !!p.smallAccount, ...(p.sensitive ? { sensitive: p.sensitive } : {}), ...consentFlags(p),
   }
   const earliest = (ps) => [...ps].sort(byTime)[0]
   const share = (ps, f) => (ps.length ? ps.filter(f).length / ps.length : 0)
@@ -182,7 +190,7 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
       ratio: ph.ratio, isNew: ph.isNew, score: ph.score,
       outOfBounds: sens ? { topics: [...new Set(ph._posts.flatMap((p) => byUriAll.get(p.uri)?.sensitive ?? []))].sort() } : null,
       first: brief(byUriAll.get(earliest(ph._posts)?.uri), 200),
-      example: ex ? { uri: ex.uri, url: ex.url, handle: ex.handle, text: firstLine(ex.text, 140) } : null,
+      example: ex ? { uri: ex.uri, url: ex.url, handle: ex.handle, text: firstLine(ex.text, 140), ...consentFlags(byUriAll.get(ex.uri) ?? ex) } : null,
     }
   })
   const weeks = weekDeclarations(memberWindow, scoring.weekDeclarations).map((w) => ({
@@ -216,19 +224,19 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   // ---- headline numbers
   const days = {}
   for (const p of windowPosts) { const d = utcDay(Date.parse(p.time)); days[d] = (days[d] ?? 0) + 1 }
-  const top = memberWindow.filter((p) => !p.sensitive).map((p) => ({ p, m: metric(p) }))
+  const top = memberWindow.filter((p) => !p.sensitive && !p.redacted).map((p) => ({ p, m: metric(p) }))
   const biggest = [...top].sort((a, b) => b.m.engagement - a.m.engagement || (a.p.uri < b.p.uri ? -1 : 1))[0]
   const breakout = [...top].filter((x) => x.p.member && x.m.engagement >= (scoring.breakoutMinEngagement ?? 10))
     .sort((a, b) => b.m.lift - a.m.lift || (a.p.uri < b.p.uri ? -1 : 1))[0]
   const describe = (p) => p.text?.trim() || (p.imageAlts?.[0] ? `(image: ${p.imageAlts[0]})` : p.hasVideo ? '(video)' : p.hasImages ? '(image)' : p._quoted?.text ? `(quoting) ${p._quoted.text}` : '')
-  const headlineBrief = (x) => x && { uri: x.p.uri, url: x.p.url, handle: x.p.handle, displayName: x.p.displayName, text: firstLine(describe(x.p), 160), counts: x.p.counts, metrics: x.m, reach: reachOf(x.p), authorFollowers: x.p.authorFollowers, smallAccount: !!x.p.smallAccount }
+  const headlineBrief = (x) => x && { uri: x.p.uri, url: x.p.url, handle: x.p.handle, displayName: x.p.displayName, text: firstLine(describe(x.p), 160), counts: x.p.counts, metrics: x.m, reach: reachOf(x.p), authorFollowers: x.p.authorFollowers, smallAccount: !!x.p.smallAccount, ...consentFlags(x.p) }
 
   // Voices the show has never featured, with a strong window: the strongest few members by
   // the sum of their three best post scores, out-of-bounds posts left out.
   const nv = show.newVoices ?? {}
   const memberPostsBy = new Map()
   for (const p of memberWindow) {
-    if (p.sensitive) continue
+    if (p.sensitive || p.redacted) continue
     if (!memberPostsBy.has(p.authorDid)) memberPostsBy.set(p.authorDid, [])
     memberPostsBy.get(p.authorDid).push(p)
   }
@@ -251,7 +259,7 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   // Community games (config/games.json)
   const byHandle = new Map([...profiles.values()].map((p) => [String(p.handle ?? '').toLowerCase(), p]))
   const gameSections = (games.games ?? []).map((g) => {
-    const gamePosts = [...windowPosts, ...context.values()].filter((p) => p.authorDid === g.account || String(p.handle ?? '').toLowerCase() === String(g.account).toLowerCase())
+    const gamePosts = [...windowPosts, ...context.values(), ...withheld].filter((p) => p.authorDid === g.account || String(p.handle ?? '').toLowerCase() === String(g.account).toLowerCase())
     const all = gameResults(gamePosts, g, { consent, profileByHandle: (h) => byHandle.get(h) ?? null, small })
     for (const r of all) {
       if (!r.winningPost) continue
@@ -264,11 +272,11 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
     const results = all.filter((r) => { const t = Date.parse(r.time); return t >= window.start && t < window.end })
     const personView = (h) => {
       const prof = byHandle.get(h)
-      if (consent.skipHandle(h) || consent.excludedHandles.has(h) || (prof && consent.excludedDid(prof.did))) return { excluded: true }
+      if (consent.excludedHandle(h) || (prof && consent.excludedDid(prof.did))) return { excluded: true }
       return { handle: h }
     }
     const segment = gameSegment(all, gamePosts, { window, game: g, personView })
-    return { id: g.id, name: g.name ?? g.id, account: g.account, label: g.label ?? g.account, about: g.about ?? null, writerNote: g.writerNote ?? null, accountExcluded: consent.skipHandle(g.account) || consent.excludedHandles.has(String(g.account).toLowerCase()), results, segment }
+    return { id: g.id, name: g.name ?? g.id, account: g.account, label: g.label ?? g.account, about: g.about ?? null, writerNote: g.writerNote ?? null, accountExcluded: consent.excludedHandle(g.account) || consent.excludedDid(g.account), results, segment }
   })
 
   // Interview material: real answers to real questions, both sides checked.

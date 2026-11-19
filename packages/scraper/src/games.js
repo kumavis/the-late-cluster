@@ -4,6 +4,7 @@
 
 import { didOfUri } from './normalize.js'
 import { firstLine } from './text.js'
+import { consentFlags } from './consent.js'
 
 const norm = (h) => String(h ?? '').trim().replace(/^@/, '').replace(/\.$/, '').toLowerCase()
 
@@ -52,7 +53,7 @@ export function gameResults(posts, game, { consent, profileByHandle = () => null
       // The winner's DID: from the quoted winning post when the result names its author.
       const quotedDid = k === 'winner' && p.quote?.uri ? didOfUri(p.quote.uri) : null
       const did = prof?.did ?? (k === 'winner' ? quotedDid ?? p._mentions?.[0]?.did : null) ?? null
-      const excluded = consent.skipHandle(h) || consent.excludedHandles.has(h) || (did && consent.excludedDid(did)) ||
+      const excluded = consent.excludedHandle(h) || (did && consent.excludedDid(did)) ||
         (k === 'winner' && p.quote?.state === 'removed')
       if (excluded) {
         people[k] = { excluded: true }
@@ -65,7 +66,7 @@ export function gameResults(posts, game, { consent, profileByHandle = () => null
     let winningPost = null
     if (game.winningPost === 'quote' && people.winner && !people.winner.excluded && p._quoted && norm(p._quoted.handle) === people.winner.handle) {
       const q = p._quoted
-      winningPost = { uri: q.uri, url: q.url, text: q.text, time: q.time, counts: q.counts, imageAlts: q.imageAlts, links: q.links, hasImages: q.hasImages, hasVideo: q.hasVideo, sensitive: q.sensitive ?? null }
+      winningPost = { uri: q.uri, url: q.url, text: q.text, time: q.time, counts: q.counts, imageAlts: q.imageAlts, links: q.links, hasImages: q.hasImages, hasVideo: q.hasVideo, sensitive: q.sensitive ?? null, ...consentFlags(q) }
     }
     const numbers = {}
     for (const k of game.numberFields ?? []) if (f[k] != null) numbers[k] = f[k]
@@ -76,8 +77,10 @@ export function gameResults(posts, game, { consent, profileByHandle = () => null
       ...people,
       ...numbers,
       winningPost,
-      // The result's own words, only when nobody it names is excluded.
-      text: anyExcluded ? null : p.text,
+      // The result's own words, only when nobody it names is excluded and the post was not
+      // withheld for naming someone who is.
+      text: anyExcluded || p._withheld ? null : p.text,
+      ...(p._withheld ? {} : consentFlags(p)),
       excludedPeople: anyExcluded,
     })
   }

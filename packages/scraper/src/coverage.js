@@ -269,7 +269,7 @@ export function renderCoverage(cv, window) {
   const e = cv.excluded
   out.push(`- accounts: ${e.optedOutAccountsSeen ?? 0} opted out, ${e.noUnauthenticatedAccounts ?? 0} hidden from logged-out viewers, ${e.selfDeclaredAccounts ?? 0} opted out in their profile, ${e.showOptOutRequests ?? 0} asked the show`)
   out.push(`- posts dropped: ${e.postsDroppedOptOut ?? 0} opt-out, ${e.postsDroppedNoUnauthenticated ?? 0} logged-out-hidden, ${e.postsDroppedSelfDeclared ?? 0} profile opt-out, ${e.postsDroppedShowRequest ?? 0} show request, ${Object.entries(e.postsDroppedLabel ?? {}).map(([l, n]) => `${n} ${l}`).join(', ') || '0 by label'}`)
-  out.push(`- removed from others' posts: ${e.quotesStripped ?? 0} quoted posts, ${e.replyLinksHidden ?? 0} reply links, ${e.mentionsRedacted ?? 0} posts with mentions redacted`)
+  out.push(`- removed from others' posts: ${e.quotesStripped ?? 0} quoted posts, ${e.replyLinksHidden ?? 0} reply links, ${e.mentionsRedacted ?? 0} posts with an excluded account's name redacted, ${e.postsWithheldNamingExcluded ?? 0} withheld as mainly about one`)
   out.push('')
   return out.join('\n')
 }

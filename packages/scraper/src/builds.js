@@ -6,6 +6,7 @@
 import { engagement } from './normalize.js'
 import { compileBuiltPatterns, ownDomainMatcher } from './stories.js'
 import { firstLine } from './text.js'
+import { consentFlags } from './consent.js'
 
 const hostMatches = (domain, patterns) =>
   !!domain && patterns.some((pat) => (pat.startsWith('*.') ? domain.endsWith(pat.slice(1)) || domain === pat.slice(2) : domain === pat || domain.endsWith('.' + pat)))
@@ -76,7 +77,7 @@ export function buildsThisWeek({ posts, lookup, memberHandles = [], baselineDoma
 
   const brief = (p) => p && {
     uri: p.uri, url: p.url, handle: p.handle, displayName: p.displayName, authorDid: p.authorDid, text: p.text, time: p.time,
-    counts: p.counts, reach: reachOf(p), member: !!p.member, authorFollowers: p.authorFollowers ?? null, smallAccount: !!p.smallAccount, sensitive: p.sensitive ?? [],
+    counts: p.counts, reach: reachOf(p), member: !!p.member, authorFollowers: p.authorFollowers ?? null, smallAccount: !!p.smallAccount, sensitive: p.sensitive ?? [], ...consentFlags(p),
   }
 
   const out = []

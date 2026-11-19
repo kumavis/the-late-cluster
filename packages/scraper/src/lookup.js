@@ -16,7 +16,9 @@ export const LOOKUP_USAGE = `Usage: npm run lookup -- [--dir <digest folder>] <o
   --limit <n>          at most n records (default 20; a story or thread prints whole)
   --dir <folder>       the digest folder (default: the newest under data/weeks or data/ranges)
 
-Output: one JSON record per line. Text is exact; nothing is trimmed.
+Output: one JSON record per line. Text is exact as stored; nothing is trimmed. A record with
+"redacted": true had an excluded account's name replaced with [opted-out]: it is not verbatim
+and must not be quoted. Posts withheld for naming an excluded account are not in the digest.
 `
 
 export function newestDigestDir(roots) {
