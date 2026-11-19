@@ -12,7 +12,9 @@ and this bible. This file is how to turn the first into a pitch. The pitch itsel
    the numbers, and whether there is an artefact (a site, a chart, an image, an object, a post
    worth showing).
 
-Expect 15 to 30 candidates. A five-minute episode uses about 5 to 8.
+Expect 15 to 30 candidates. An episode uses those that pass the first rule: roughly one to one and a
+half stories per minute of running time (a guess from the pilot, which used about a dozen in ten
+minutes).
 
 ## Score each candidate
 
@@ -59,13 +61,13 @@ The pilot found its stories in recurring community behaviours. Look for this wee
 
 ## How many stories
 
-For a five-minute episode, as many as pass the interesting test, up to about:
+As many as pass the interesting test. A typical spread:
 
 - **1 spine story** that carries the question. It appears in at least two segments, and is usually
   the song's theme.
-- **3 to 5 monologue stories**, one joke each (a second joke only for the strongest).
+- **3 to 6 monologue stories**, one joke each (a second joke only for the strongest).
 - **The Top Chicken result**, if there is one, as a quick hit.
-- **1 middle-segment story**: a thread worth performing, a guest, or a feature built from 3 to 5
+- **1 story per middle segment**: a thread worth performing, a guest, or a feature built from 3 to 5
   small items.
 - **1 runner** from the week (gm/gn was the pilot's), if one earns it.
 
@@ -138,5 +140,5 @@ the cluster. Instead:
 
 - Lean on a recurring format (Changelog, Top Chicken) that turns small items into a list.
 - Make the quiet the question ("Where did everybody go this week?"), answered with a real post.
-- Go shorter. Under the first rule a three-and-a-half-minute episode of interesting things is a
-  good episode; a padded five is not.
+- Go shorter. Under the first rule a three-minute episode of interesting things is a good episode;
+  a padded eight is not.

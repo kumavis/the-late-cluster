@@ -8,7 +8,8 @@ Every voice, song, laugh and clap is synthesized by CHIMERA, a physical-model vo
 performers are glowing vector heads on puppet bodies in a drawn studio. Guests are puppets
 playing the posting personas of real accounts, and the screen says so.
 
-It is a weekly show of about five minutes, written and directed by a model from a digest of the
+It is a weekly show, under ten minutes (the owner's ceiling) and as long as its interesting material,
+written and directed by a model from a digest of the
 week's posts and approved by a person before it airs.
 
 ## The first rule

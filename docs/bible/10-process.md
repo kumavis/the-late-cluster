@@ -113,10 +113,11 @@ New lore this episode will create: <...>
 ```
 
 **Good:** everything in the rundown passes the interesting test, and the cuts are recorded; a
-question that the stories genuinely circle; every story with a turn and a source; a rundown of about
-five minutes or less; real people mostly in their own words; a song genre and a theme that pass the
-swap test; the BUILT chain agreed; risks named honestly; an experiment with one variable and a
-measure; an inheritance list that is empty or justified file by file.
+question that the stories genuinely circle; every story with a turn and a source; a rundown under
+ten minutes and no longer than its interesting material; real people mostly in their own words; a
+song genre and a theme that pass the swap test; the BUILT chain agreed; risks named honestly; an
+experiment with one variable and a measure; an inheritance list that is empty or justified file by
+file.
 
 `plan.json` is machine-readable and owned by the pipeline (`packages/writers-room`). The bible relies
 on at least these fields:
@@ -167,7 +168,7 @@ check; anything out of bounds; more than one in three jokes that need the week t
 - Run the renderer's validation as you go; read the IPA it prints for every name.
 
 **Good:** setups of two lines or fewer; punches on sayable words; one reaction sound per joke; the
-`from` values of the BUILT chain match the pitch; total spoken words about 420 to 520, or fewer.
+`from` values of the BUILT chain match the pitch; total spoken words about 1.6 to 2.2 per second of the pitched running time.
 
 ## Stage 4: render
 
@@ -275,7 +276,7 @@ This step only removes things; it never overrides Part A.
 | B7 | **Runner** | Every "Built it." earns its place, no shape repeated, one segment rests; an episode runner, if any, planted and paid off | Repetitive shapes, or a runner unpaid | "Built it." as a tic, kept to move the count |
 | B8 | **Intelligibility** | Every punchline line ✓ in the Whisper pass; names correct in IPA | One or two weak punchlines | A punchline nobody can hear |
 | B9 | **Sound** | One reaction per joke, sized to it; some dry lines; nothing under "Built it." | Over-sweetened in places | Laugh after every line, or biglaughs on mild jokes |
-| B10 | **Shape** | No filler; adjacent segments differ in texture; every segment ends on a button; about five minutes or less | A slack stretch, or two similar segments adjacent | Padded to reach a length, over 6:30, or segments end without buttons |
+| B10 | **Shape** | No filler; adjacent segments differ in texture; every segment ends on a button; under ten minutes and no longer than its material | A slack stretch, or two similar segments adjacent | Padded to reach a length, ten minutes or over, or segments end without buttons |
 | B11 | **Fresh** | Song in a new genre carrying the week's theme (passes the swap test); middle format, guests, runner, descriptor and sincere kind new against the rotation log, or overridden with a good reason | One freshness warning unanswered, or a song theme that would fit any week | Repeats the previous episode's shape; a reused genre, runner or reveal |
 | B12 | **Experiment** | One experiment, stated in `plan.json` with a measure before writing, actually run on screen, result recorded in `dna-amendments.md` | Stated and run, but no measure or no recorded result | No experiment, or one that changes nothing, or changed after the fact |
 

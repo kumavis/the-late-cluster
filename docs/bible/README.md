@@ -26,7 +26,7 @@ in five words, could only this week contain it, would a viewer retell it ([the t
 The [real-people rules](09-real-people.md) decide what is *allowed*; this rule decides what is
 *worth including*; material must pass both. This rule only ever removes things.
 
-**What it is.** A weekly late-night talk show, about five minutes long, about the Bluesky
+**What it is.** A weekly late-night talk show, under ten minutes long, about the Bluesky
 "simcluster": tech, AI and builder posters who make things for each other in public. Every voice,
 song, laugh and clap is synthesized by CHIMERA, a physical-model vocal synth; the performers are
 glowing vector heads on puppet bodies. Guests are puppets playing real accounts' posting personas,
@@ -55,16 +55,17 @@ week, then the archive.
 | **the website bot** | builds it | says "Built it." and almost nothing else |
 | **guests** | real personas | norvid, Abel, Samantha, BorJev so far; speak only their own published words, in their own context |
 
-**An episode** (about five minutes or less, about 420 to 520 spoken words; every slot a default,
-not a requirement):
+**An episode** (under ten minutes, the owner's ceiling, with no minimum: as long as its
+interesting material; spoken words about 1.6 to 2.2 per second of running time; every slot a
+default, not a requirement, and the order may grow by more middle segments):
 
-1. **Cold open** (15–25 s + theme hook): a real post asks for something; "Built it."; "Larry... Nx!"
-2. **Monologue** (50–70 s): three to five of the week's stories, one joke each, each with an
+1. **Cold open** (15–55 s, theme included): a real post asks for something; "Built it."; "Larry... Nx!"
+2. **Monologue** (50–90 s): three to six of the week's stories, one joke each, each with an
    artefact; the Top Chicken result as a quick hit when there is one.
-3. **Middle** (50–75 s): the week's best of a performed thread (real people word for word, the
+3. **Middle** (50–80 s each, one or more): the week's best of a performed thread (real people word for word, the
    preferred way to have them on), a panel, a feature in a TV genre.
-4. **Song** (45–70 s): standing; a **new genre every episode**, carrying **the week's theme**.
-5. **Goodnight** (30–45 s): runners pay off; the week's question answered with a real post; "gn,
+4. **Song** (45–95 s): standing; a **new genre every episode**, carrying **the week's theme**.
+5. **Goodnight** (30–70 s): runners pay off; the week's question answered with a real post; "gn,
    simcluster."; "Press E to leave."
 
 **Fixed, fresh and evolving** ([episode shape](03-episode-shape.md#fixed-and-fresh)): the frame

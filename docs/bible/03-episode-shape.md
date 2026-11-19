@@ -19,25 +19,26 @@ once. A weekly episode does not need to.
 ## The weekly running order
 
 Every slot below is subject to [the first rule](00-constitution.md#1-only-include-it-if-its-interesting):
-only include it if it's interesting. Target **about five minutes; shorter is fine, padding is
-not**. Five segments, about 420 to 520 spoken words.
+only include it if it's interesting. The owner's ceiling is **under ten minutes**. There is no
+minimum: an episode is as long as its interesting material, and padding fails. Spoken words follow
+from the length ([runtime arithmetic](#runtime-arithmetic)).
+
+The five slots below are the default order. The pilot ran about ten minutes in eight segments, so an
+episode may extend the order, usually with more middle segments, when more material passes the
+first rule. The slot lengths are ranges from a short episode to a long one, guessed from the pilot.
 
 | slot | length | format shelf ([formats](04-formats.md)) | must do |
 |---|---|---|---|
-| 1. Cold open | 15–25 s, plus the 8 s theme hook | The Ask | a real post from the week asks for something; "Built it."; counter 0 → 1; Sibyl's intro |
-| 2. Monologue | 50–70 s | The Monologue | 3–5 of the week's stories, one joke each; the Top Chicken result as a quick hit when there is one; plant the episode runner |
-| 3. Middle | 50–75 s | the week's best of: The Thread, The Panel, Top Chicken Tonight (full), Simcluster Channel, Built or Bit?, Changelog, Field Guide, Live From the Build, The Interview (proposed) | the week's second-biggest story, ideally with real people in their own words |
-| 4. Song | 45–70 s | The Number | a **new genre every episode**, carrying **the week's theme** |
-| 5. Goodnight | 30–45 s | Goodnight | runner payoff; the tally; the question answered with the community's words; "gn, simcluster."; "Press E to leave." |
+| 1. Cold open | 15–55 s, including the theme (an 8 s hook, or the full theme and announce as in the pilot's 55 s) | The Ask | a real post from the week asks for something; "Built it."; counter 0 → 1; Sibyl's intro |
+| 2. Monologue | 50–90 s | The Monologue | 3–6 of the week's stories, one joke each; the Top Chicken result as a quick hit when there is one; plant the episode runner |
+| 3. Middle | 50–80 s each; one or more | the week's best of: The Thread, The Panel, Top Chicken Tonight (full), Simcluster Channel, Built or Bit?, Changelog, Field Guide, Live From the Build, The Interview (proposed) | the week's second-biggest story, ideally with real people in their own words |
+| 4. Song | 45–95 s | The Number | a **new genre every episode**, carrying **the week's theme** |
+| 5. Goodnight | 30–70 s | Goodnight | runner payoff; the tally; the question answered with the community's words; "gn, simcluster."; "Press E to leave." |
 
-That adds to about 3:30 to 5:00. A second middle segment (a feature and a guest, say) is allowed
-when both pass the interesting test and the episode stays near five minutes; never add one to
-reach a length.
-
-**What gave way to the song.** The earlier order had a feature *and* a guest as standing slots
-and no song. Now they share one middle slot; the monologue lost ten seconds and a story; the song
-is capped at 70 s (the pilot's ran 95); the theme hook can shrink to a 2 s sting in a week when
-the song is long.
+Five slots at their short ends make about three minutes; at their long ends, about six and a
+half. Each extra middle segment adds about a minute. Add one only when it passes the
+interesting test, never to reach a length, and stay under ten minutes. In a short episode, the theme
+can shrink to a 2 s sting.
 
 The song usually sits in slot 4, as the episode's peak before the come-down. If this week's genre
 is quiet (a motet, a lullaby, a torch song), swap it with the middle slot so two quiet segments
@@ -97,9 +98,9 @@ previous segment's final value; agree the chain in the pitch.
 
 - **It starts at 0 every episode** and its first bump is the cold open's "Built it." The pilot's
   cold open hides the counter until that bump, so it arrives with the first build.
-- **Up to about 9 bumps** in a five-minute episode (the pilot ran 15 in ten minutes, the same
-  rate), and fewer whenever the week's builds aren't interesting: a bump that exists only to move
-  the count is filler. Put the last one in goodnight, after Larry reads the tally, so the tally is immediately
+- **At most about one and a half bumps a minute** (the pilot's rate: 15 in about ten minutes; a
+  guess from one episode), and fewer whenever the week's builds aren't interesting: a bump that
+  exists only to move the count is filler. Put the last one in goodnight, after Larry reads the tally, so the tally is immediately
   wrong ("fourteen things built" → the bot builds the gn checker → 15).
 - **At least one segment has no bump.** The runner needs rests to stay funny. The pilot's song
   stacks four because the song's form is built on them; that is a reason, not a precedent.
@@ -120,8 +121,10 @@ Each episode also has one runner of its own, drawn from the week. The pilot's is
 | escalate | goodnight | Larry: "Now somebody should finally say gn." Sibyl tries it raw; the engine has no vowel (PRONUNCIATION ENGINE · RAW OUTPUT, NOT A WORD). The bot builds a site that checks: *HAS ANYONE SAID GN TONIGHT? NO.* |
 | pay off | goodnight | "Everyone says gm. Nobody says gn." An elephant trumpets; GanWeaving's real *Good night, weirdos!* appears. "See? Somebody always says gn." / "So. gn, simcluster." The gn post goes viral on screen. |
 
-In a five-minute episode: plant in the monologue or the middle segment, escalate once anywhere
-(the song is a good place), pay off in goodnight. A week with no runner worth running has none. A runner that only appears twice is a callback; three times is a runner. Choose
+Plant it in the first third (the monologue or the first middle segment), escalate once in the
+middle (twice in a long episode; the song is a good place), pay off in goodnight. A short episode
+with few segments may not have room for three appearances; then use a callback instead. A week
+with no runner worth running has none. A runner that only appears twice is a callback; three times is a runner. Choose
 something from the week that can be **said or shown in five words** each time.
 
 ## Callbacks
@@ -157,8 +160,11 @@ Segments cut straight into one another. So:
 - So a 70-second segment is about 110 to 150 words. Write to that, then render; the renderer's
   timeline tells you the truth.
 - Music is expensive: the pilot's song carries 48 spoken words in 95 seconds.
-- An episode is about 12 MB per ten minutes once built (see the architecture document's size
-  budget). Five minutes is also the right length for the archive.
+- So an episode's spoken words are its running time in seconds times 1.6 to 2.2: about 380 to 530
+  for four minutes, about 860 to 1,190 for nine. The pilot as a whole carried about 900 in 9:51 (1.5
+  a second, with its long theme and song). These rates come from the pilot alone.
+- An episode is about 12 MB per ten minutes once built; longer episodes spend the architecture
+  document's size budget faster.
 
 ## Fixed and fresh
 
@@ -319,7 +325,10 @@ tests one, mark it here ("held in NNN" or "changed in NNN") in that episode's pu
 | five slots in this order; the song before goodnight | this chapter | untested |
 | the Ask with "Built it." as the cold open | 04, format 1 | untested |
 | Sibyl's "Larry... Nx!" intro and the theme hook | this chapter | untested |
-| up to about nine BUILT bumps; one segment rests | this chapter | untested |
+| at most about 1.5 BUILT bumps a minute; one segment rests | this chapter | untested |
+| slot lengths (cold open 15–55 s, monologue 50–90 s, middle 50–80 s, song 45–95 s, goodnight 30–70 s) | this chapter | untested |
+| 1.6–2.2 spoken words per second of running time | this chapter | untested |
+| about one to one and a half stories per minute | 05 | untested |
 | fact, turn, punch, picture; every graphic carries a tag | 06 | untested |
 | buttons of six words or fewer, mostly Larry's | this chapter, 06 | untested |
 | one reaction sound per joke; three or four big laughs | 07 | untested |
