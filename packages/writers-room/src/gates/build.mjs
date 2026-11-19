@@ -39,7 +39,7 @@ export function parseScorecard(md) {
 
 export async function selfCheckScorecard(ctx) {
   const g = gate('self-check.scorecard')
-  const spec = scorecardSpec(ctx.root)
+  const spec = scorecardSpec(ctx.bibleDir)
   if (spec.error) {
     g.fail(`${spec.error}; the self-check cannot be judged until the pipeline reads the bible's scorecard again`)
     return g.done()
@@ -100,6 +100,8 @@ export async function selfCheckLore(ctx) {
   const now = new Set(loreIds(text))
   const lost = before.filter((id) => !now.has(id))
   if (lost.length) g.fail(`the lore file lost entries ${lost.join(', ')}; never renumber or delete, set a status instead (lore.md, how to append)`)
+  const exp = /^##\s+Experiment log[^\n]*\n([\s\S]*?)(?=^##\s|$(?![\s\S]))/im.exec(text)?.[1]
+  if (exp !== undefined && !new RegExp(`^\\|\\s*0*${ctx.paths.number}\\s*\\|`, 'm').test(exp)) g.fail(`the experiment log in the lore file has no row for ${String(ctx.paths.number).padStart(3, '0')}; add one from plan.json and dna-amendments.md (bible 10, stage 6)`)
   const log = rotationLog(text)
   if (log.error) g.fail(log.error)
   else if (!log.rows.some((r) => Number(r.ep) === ctx.paths.number)) g.fail(`the rotation log in the lore file has no row for ${String(ctx.paths.number).padStart(3, '0')}; add one, copied from plan.json (bible 03, the mechanism)`)

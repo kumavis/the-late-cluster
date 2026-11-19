@@ -5,8 +5,9 @@
 // loop). In text files, __ID__, __NUMBER__ (001), __WEEK__ and __TITLE__ are substituted. Two
 // names are special: `episode.patch.json` is merged into episode.json, and `lore.append.md` is
 // appended to the lore file (once: not when the episode's E-NNN entry is already there), and its
-// lines starting with `| NNN |` are inserted into the rotation log table instead.
-import { cpSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
+// lines starting with `| NNN |` are inserted into the rotation log table instead. Files under
+// `bible-append/` are appended to the bible chapter of the same name (a DNA amendment), once.
+import { appendFileSync, cpSync, existsSync, mkdirSync, readFileSync, readdirSync, statSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { formatEpisodeJson } from '../repo.mjs'
 
@@ -16,7 +17,7 @@ export function fixtureWriter({ dir, print = () => {} } = {}) {
   if (!dir || !existsSync(dir)) throw new Error(`the fixture writer needs --fixture <dir> (got ${dir})`)
   return {
     name: 'fixture',
-    async run({ stage, paths, id, week, attempt = 1, loreFile }) {
+    async run({ stage, paths, id, week, attempt = 1, loreFile, bibleDir }) {
       const number = String(paths.number).padStart(3, '0')
       const meta = JSON.parse(readFileSync(paths.episodeJson, 'utf8'))
       const sub = (s) => s.replaceAll('__ID__', id).replaceAll('__NUMBER__', number).replaceAll('__WEEK__', week).replaceAll('__TITLE__', meta.title ?? '')
@@ -31,6 +32,10 @@ export function fixtureWriter({ dir, print = () => {} } = {}) {
             writeFileSync(paths.episodeJson, formatEpisodeJson({ ...cur, ...JSON.parse(sub(readFileSync(from, 'utf8'))) }))
           } else if (rel === 'lore.append.md') {
             appendLore(loreFile, sub(readFileSync(from, 'utf8')), number)
+          } else if (rel.startsWith('bible-append/')) {
+            const to = join(bibleDir, rel.slice('bible-append/'.length))
+            const text = sub(readFileSync(from, 'utf8'))
+            if (!(existsSync(to) && readFileSync(to, 'utf8').includes(text))) appendFileSync(to, text)
           } else {
             const to = join(paths.dir, rel)
             mkdirSync(dirname(to), { recursive: true })
@@ -56,20 +61,30 @@ function files(d, prefix = '') {
   return out.sort()
 }
 
+/**
+ * lore.append.md: table rows go into the table under the heading named by the last
+ * `<!-- into: <heading> -->` line before them (default: Rotation log); other lines are appended.
+ */
 function appendLore(file, text, number) {
   const cur = readFileSync(file, 'utf8')
   if (new RegExp(`\\*\\*E-${number}\\b`).test(cur)) return
-  const rows = text.split('\n').filter((l) => new RegExp(`^\\|\\s*${number}\\s*\\|`).test(l))
-  const rest = text.split('\n').filter((l) => !rows.includes(l)).join('\n')
-  let out = cur
-  if (rows.length) {
-    const lines = out.split('\n')
-    const h = lines.findIndex((l) => /^##\s+Rotation log/i.test(l))
+  let into = 'Rotation log'
+  const rows = []
+  const rest = []
+  for (const l of text.split('\n')) {
+    const m = /^<!--\s*into:\s*(.+?)\s*-->$/.exec(l.trim())
+    if (m) into = m[1]
+    else if (/^\|/.test(l)) rows.push({ into, l })
+    else rest.push(l)
+  }
+  const lines = cur.split('\n')
+  for (const { into: heading, l } of rows) {
+    const h = lines.findIndex((x) => new RegExp(`^##\\s+${heading}`, 'i').test(x))
+    if (h < 0) continue
     let k = h + 1
     while (k < lines.length && !/^\|/.test(lines[k])) k++
     while (k < lines.length && /^\|/.test(lines[k])) k++
-    lines.splice(k, 0, ...rows)
-    out = lines.join('\n')
+    lines.splice(k, 0, l)
   }
-  writeFileSync(file, out.replace(/\n*$/, '\n') + rest.replace(/^\n*/, '\n'))
+  writeFileSync(file, lines.join('\n').replace(/\n*$/, '\n') + rest.join('\n').replace(/^\n*/, '\n'))
 }

@@ -90,7 +90,7 @@ export async function directDisclaimer(ctx) {
 /** A2 as far as text can go: each sources.json post used as a card appears verbatim in a segment */
 export async function directCards(ctx) {
   const g = gate('direct.cards')
-  const cards = (ctx.sources?.posts ?? []).filter((p) => p?.use === 'card')
+  const cards = (ctx.sources?.posts ?? []).filter((p) => ['card', 'quote'].includes(p?.use))
   if (!cards.length) {
     g.skip('no post cards in sources.json')
     return g.done()

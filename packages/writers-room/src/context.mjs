@@ -35,7 +35,7 @@ export const isInvented = (entry) => !entry?.handle || exampleHost(castHandle(en
  * ctx for the gates. `digestDir` defaults to data/weeks/<week>/. The digest is loaded lazily and
  * cached on the returned object.
  */
-export async function loadContext({ root, id, week, digestDir, config, limits, tools, network = false, loreFile }) {
+export async function loadContext({ root, id, week, digestDir, config, limits, tools, network = false, loreFile, bibleDir, bibleSnapshot = null }) {
   const paths = episodePaths(root, id)
   const meta = readJson(paths.episodeJson)
   const ctx = {
@@ -48,7 +48,9 @@ export async function loadContext({ root, id, week, digestDir, config, limits, t
     limits: limits ?? config.limits,
     tools,
     network,
-    loreFile: loreFile ?? join(root, 'docs', 'bible', 'lore.md'),
+    bibleDir: bibleDir ?? join(root, 'docs', 'bible'),
+    bibleSnapshot,
+    loreFile: loreFile ?? join(bibleDir ?? join(root, 'docs', 'bible'), 'lore.md'),
     digestDir: digestDir ?? join(root, 'data', 'weeks', week),
     optOutFile: join(root, 'packages', 'scraper', 'config', 'optout.json'),
   }

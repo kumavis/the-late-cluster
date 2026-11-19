@@ -140,13 +140,13 @@ export const STUDIO_CAST = `export const CAST = {
 }
 `
 
-/** the scorecard with the real chapter's shape: A1–A11, B1–B11, 15 of 22, no 0 in B1, B2, B8, B11 */
+/** the scorecard with the real chapter's shape: A1–A12, B1–B12, 16 of 24, no 0 in B1, B2, B8, B11, B12 */
 const FULL_CARD = (md) => {
   const rows = (p, n) => Array.from({ length: n }, (_, k) => `| ${p}${k + 1} | x | y | z |`).join('\n')
   return md
-    .replace(/(### Part A[^\n]*\n\n\|[^\n]*\n\|[^\n]*\n)(\|[^\n]*\n)+/, (_, h) => h + rows('A', 11) + '\n')
-    .replace(/(### Part B[^\n]*\n\n\|[^\n]*\n\|[^\n]*\n)(\|[^\n]*\n)+/, (_, h) => h + rows('B', 11) + '\n')
-    .replace(/totals \*\*4 or more\*\*, with no 0 in\nB1 or B3\./, 'totals **15 or more**, with no 0 in\nB1, B2, B8 or B11.')
+    .replace(/(### Part A[^\n]*\n\n\|[^\n]*\n\|[^\n]*\n)(\|[^\n]*\n)+/, (_, h) => h + rows('A', 12) + '\n')
+    .replace(/(### Part B[^\n]*\n\n\|[^\n]*\n\|[^\n]*\n)(\|[^\n]*\n)+/, (_, h) => h + rows('B', 12) + '\n')
+    .replace(/totals \*\*4 or more\*\*, with no 0 in\nB1 or B3\./, 'totals **16 or more**, with no 0 in\nB1, B2, B8, B11 or B12.')
 }
 
 /** a fresh fake repo with the pilot published; returns its root */
@@ -157,6 +157,9 @@ export function fakeRepo({ optOut = ['nope.test'], pilotPlan = true, fullScoreca
   put(root, 'docs/bible/10-process.md', fullScorecard ? FULL_CARD(BIBLE_10) : BIBLE_10)
   put(root, 'docs/bible/09-real-people.md', BIBLE_09)
   put(root, 'docs/bible/lore.md', LORE)
+  put(root, 'docs/bible/03-episode-shape.md', '# 3. The shape of an episode\n\nFive segments, about five minutes.\n')
+  put(root, 'docs/bible/00-constitution.md', '# 0. Constitution\n\nOnly the owner changes this file.\n')
+  put(root, 'episodes/001-pilot/segments/cold-open/script.js', "export default { id: 'cold-open', title: 'Cold Open', beats: [{ say: 'larry', text: 'Good evening.' }] }\n")
   put(root, `data/weeks/${WEEK}/digest.json`, digest())
   put(root, 'episodes/001-pilot/episode.json', formatEpisodeJson({ id: '001-pilot', number: 1, slug: 'pilot', title: 'Pilot', description: 'd', airDate: '2026-11-13', week: '2026-W46', status: 'published', rundown: ['cold-open'] }))
   if (pilotPlan)
@@ -222,9 +225,9 @@ export const SCRIPT_CHAT = `export default {
   title: 'The Thread',
   beats: [
     { say: 'larry', id: 'intro', text: 'This week, two people had a conversation.' },
-    // verbatim: ${POSTS.anaClaim.uri}
+    // verbatim: ${POSTS.anaClaim.uri} · context: ${POSTS.anaClaim.uri}
     { say: 'ana', id: 'p1', text: 'concept: a talk show, but the host is a throat' },
-    { say: 'bo', id: 'p2', text: 'claim.' }, // verbatim: ${POSTS.boReply.uri}
+    { say: 'bo', id: 'p2', text: 'claim.' }, // verbatim: ${POSTS.boReply.uri} · context: ${POSTS.anaClaim.uri}
     { say: 'bot', id: 'built', text: 'Built it.' },
   ],
 }
@@ -242,7 +245,7 @@ export const SOURCES = {
   format: 'late-cluster-sources/1',
   week: WEEK,
   accounts: [
-    { handle: 'ana.test', role: 'guest', cast: 'ana', catchphrases: ['what else is like this'] },
+    { handle: 'ana.test', role: 'guest', cast: 'ana', catchphrases: [{ phrase: 'what else is like this', posts: [POSTS.anaAgain.uri] }] },
     { handle: 'bo.test', role: 'guest', cast: 'bo' },
     { handle: 'cy.test', role: 'credited' },
   ],
@@ -252,6 +255,10 @@ export const SOURCES = {
     { uri: POSTS.build.uri, author: 'cy.test', use: 'card', segment: 'cold-open' },
   ],
   links: [{ url: 'https://golem.cy.test', use: 'credit' }],
+  lines: [
+    { segment: 'chat', line: 'p1', kind: 'verbatim', post: POSTS.anaClaim.uri, context: POSTS.anaClaim.uri, situation: 'a top-level post proposing a show, on a Tuesday morning', setup: { who: 'larry', text: 'This week, two people had a conversation.' } },
+    { segment: 'chat', line: 'p2', kind: 'verbatim', post: POSTS.boReply.uri, context: POSTS.anaClaim.uri, contextText: POSTS.anaClaim.text, setup: { who: 'ana', text: 'concept: a talk show, but the host is a throat' } },
+  ],
 }
 
 /** fake tools: render writes cues.json from the script's lines, shoot prints frames, etc. */
@@ -304,9 +311,11 @@ export function fakeTools(root, { whisper = false, whisperOut = {}, renderFail =
         case 'thumbnail':
           writeFileSync(ep('thumbnail.jpg'), Buffer.from([0xff, 0xd8, 0xff, 0xe0, 1, 2, 3]))
           return ok(`thumbnail episodes/${id}/thumbnail.jpg\n`)
-        case 'build':
-          put(root, `dist/episodes/${id}/episode.json`, '{}')
-          return ok(`built ${id} dist/episodes/${id} segments=2 public=2 carried=0 sourceHash=abc\n`)
+        case 'build': {
+          const out = args.includes('--preview') ? `preview/${id}` : `dist/episodes/${id}`
+          put(root, `${out}/episode.json`, '{}')
+          return ok(`built ${id} ${out} segments=2 public=2 carried=0 sourceHash=abc\n`)
+        }
         case 'verify':
           return ok('ok 001-pilot\nverify: 2 published, 0 drafts, 0 problems\n')
         case 'scrape':

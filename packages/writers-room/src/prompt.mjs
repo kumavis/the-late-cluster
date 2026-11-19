@@ -9,34 +9,37 @@ import { PKG } from './repo.mjs'
 export const PLAYBOOK = { pitch: 'pitch.md', write: 'write.md', direct: 'direct.md', 'self-check': 'self-check.md' }
 
 /** what a stage's writer may change and run (paths relative to the repo root) */
-export function stageScope({ stage, id, week, lore = 'docs/bible/lore.md' }) {
+export function stageScope({ stage, id, week, lore = 'docs/bible/lore.md', bible = 'docs/bible', constitution = ['00-constitution.md', '09-real-people.md'], digestDir = `data/weeks/${week}` }) {
   const ep = `episodes/${id}`
   const check = `npm run produce -- --week ${week} --check ${stage}`
-  const base = { check, read: ['the whole repository', `data/weeks/${week}/ (the digest)`, `shots/${id}/ (review frames)`] }
+  const base = {
+    check,
+    read: [`${ep}/ (this episode, including production/inherited/: the earlier work the pitch chose to carry forward)`, `${bible}/ (the bible)`, 'packages/show/ (the studio: its READMEs, templates/ and the reference episode reference/)', 'packages/writers-room/playbooks/', `${digestDir}/ (the digest)`, `shots/${id}/ (this episode's frames)`],
+  }
   switch (stage) {
     case 'pitch':
       return { ...base, edit: [`${ep}/production/pitch.md`, `${ep}/production/plan.json`, `${ep}/episode.json`], run: [check] }
     case 'write':
       return {
         ...base,
-        edit: [`${ep}/segments/*/script.js`, `${ep}/cast.js`, `${ep}/looks.js`, `${ep}/episode.json`, `${ep}/production/sources.json`, `${ep}/production/intelligibility.json`, `${ep}/production/pitch.md`, `${ep}/production/plan.json`],
+        edit: [`${ep}/segments/*/script.js`, `${ep}/segments/<seg>/<helper>.js`, `${ep}/cast.js`, `${ep}/looks.js`, `${ep}/episode.json`, `${ep}/production/sources.json`, `${ep}/production/intelligibility.json`, `${ep}/production/pitch.md`, `${ep}/production/plan.json`],
         run: [`npm run segment:new -- ${id} <seg>`, `npm run render -- ${id} <seg>...`, `npm run check -- ${id} [<seg>...]`, `bun packages/show/tools/analyze.ts whisper ${id} <seg>`, check],
       }
     case 'direct':
       return {
         ...base,
-        edit: [`${ep}/segments/*/index.js`, `${ep}/looks.js`, `${ep}/production/thumbnail.txt`],
+        edit: [`${ep}/segments/*/index.js`, `${ep}/segments/<seg>/<helper>.js`, `${ep}/looks.js`, `${ep}/production/thumbnail.txt`],
         run: [`npm run shoot -- ${id} <seg> <t>...`, `npm run check -- ${id} [<seg>...]`, check],
       }
     case 'self-check':
-      return { ...base, edit: [`${ep}/production/scorecard.md`, lore], run: [check] }
+      return { ...base, edit: [`${ep}/production/scorecard.md`, `${ep}/production/dna-amendments.md`, lore, `the DNA chapters in ${bible}/ (every file except ${constitution.join(' and ')})`], run: [check] }
     default:
       throw new Error(`not a creative stage: ${stage}`)
   }
 }
 
-export function buildPrompt({ stage, id, week, number, title, digestDir, limits, limitsAreDefault = true, attempt = 1, maxAttempts = 3, feedback = [], lore = 'docs/bible/lore.md', playbooks = join(PKG, 'playbooks') }) {
-  const scope = stageScope({ stage, id, week, lore })
+export function buildPrompt({ stage, id, week, number, title, digestDir, limits, limitsAreDefault = true, attempt = 1, maxAttempts = 3, feedback = [], lore = 'docs/bible/lore.md', bible = 'docs/bible', constitution = ['00-constitution.md', '09-real-people.md'], others = [], inherited = [], playbooks = join(PKG, 'playbooks') }) {
+  const scope = stageScope({ stage, id, week, lore, bible, constitution, digestDir })
   const common = readFileSync(join(playbooks, 'README.md'), 'utf8')
   const book = readFileSync(join(playbooks, PLAYBOOK[stage]), 'utf8')
   const lines = [
@@ -52,6 +55,12 @@ export function buildPrompt({ stage, id, week, number, title, digestDir, limits,
     `- the lore file: \`${lore}\``,
     `- limits for this run: ${JSON.stringify(stripComments(limits))}${limitsAreDefault ? ' (the defaults)' : ' (NOT the defaults: this is a trial run)'}`,
     `- attempt ${attempt} of ${maxAttempts}`,
+    '',
+    '## What you may read',
+    '',
+    `Read: ${scope.read.join('; ')}.`,
+    `Do not read any other episode (${others.length ? others.map((o) => `\`episodes/${o}/\``).join(', ') : 'there are none yet'}), any build in \`dist/episodes/\`, \`preview/\`, or another episode's frames. Inheritance is a decision made at the pitch: ${inherited.length ? `this episode carries forward ${inherited.map((f) => `\`${f}\``).join(', ')}, read-only reference copies` : 'this episode carries nothing forward'}. For a working example use the studio's reference episode, the templates and the technical READMEs. Read files one by one (with the headless writer, the Read tool: shell commands that print or search files are refused); never search across \`episodes/\` or \`dist/\`.`,
+    `The constitution (${constitution.map((f) => `\`${bible}/${f}\``).join(' and ')}) is the owner's. Read it; never change it.`,
     '',
     '## What you may change and run',
     '',

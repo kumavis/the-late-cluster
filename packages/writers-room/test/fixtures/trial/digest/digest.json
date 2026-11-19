@@ -1,24 +1,117 @@
 {
   "format": "late-cluster-digest/1",
   "$comment": "An invented digest for the trial fixture. Every account is on .example and every URI is made up.",
-  "window": { "label": "trial", "kind": "iso-week" },
-  "overview": { "outOfBounds": [] },
+  "window": {
+    "label": "trial",
+    "kind": "iso-week"
+  },
+  "overview": {
+    "outOfBounds": []
+  },
   "stories": [
     {
-      "id": "s-trial-ask", "rank": 1, "kind": "post", "headline": "somebody should make a talk show with only two segments", "outOfBounds": null,
+      "id": "s-trial-ask",
+      "rank": 1,
+      "kind": "post",
+      "headline": "somebody should make a talk show with only two segments",
+      "outOfBounds": null,
       "posts": [
-        { "uri": "at://did:plc:trialasker/app.bsky.feed.post/t1", "url": "https://bsky.app/profile/asker.example/post/t1", "handle": "asker.example", "authorDid": "did:plc:trialasker", "displayName": "Asker", "text": "somebody should make a talk show with only two segments", "time": "2099-01-06T12:00:00Z", "counts": { "likes": 3, "reposts": 0, "replies": 1, "quotes": 0 }, "member": true, "authorFollowers": 40, "smallAccount": true }
+        {
+          "uri": "at://did:plc:trialasker/app.bsky.feed.post/t1",
+          "url": "https://bsky.app/profile/asker.example/post/t1",
+          "handle": "asker.example",
+          "authorDid": "did:plc:trialasker",
+          "displayName": "Asker",
+          "text": "somebody should make a talk show with only two segments",
+          "time": "2099-01-06T12:00:00Z",
+          "counts": {
+            "likes": 3,
+            "reposts": 0,
+            "replies": 1,
+            "quotes": 0
+          },
+          "member": true,
+          "authorFollowers": 40,
+          "smallAccount": true
+        }
       ]
     },
     {
-      "id": "s-trial-zed", "rank": 2, "kind": "post", "headline": "a test account says hello", "outOfBounds": null,
+      "id": "s-trial-zed",
+      "rank": 2,
+      "kind": "post",
+      "headline": "a test account says hello",
+      "outOfBounds": null,
       "posts": [
-        { "uri": "at://did:plc:trialzed/app.bsky.feed.post/z1", "url": "https://bsky.app/profile/zed.example/post/z1", "handle": "zed.example", "authorDid": "did:plc:trialzed", "displayName": "Zed", "text": "hello. I am a test.", "time": "2099-01-07T09:00:00Z", "counts": { "likes": 1, "reposts": 0, "replies": 0, "quotes": 0 }, "member": true, "authorFollowers": 5, "smallAccount": true }
+        {
+          "uri": "at://did:plc:trialzed/app.bsky.feed.post/z1",
+          "url": "https://bsky.app/profile/zed.example/post/z1",
+          "handle": "zed.example",
+          "authorDid": "did:plc:trialzed",
+          "displayName": "Zed",
+          "text": "hello. I am a test.",
+          "time": "2099-01-07T09:00:00Z",
+          "counts": {
+            "likes": 1,
+            "reposts": 0,
+            "replies": 0,
+            "quotes": 0
+          },
+          "member": true,
+          "authorFollowers": 5,
+          "smallAccount": true
+        }
       ]
     }
   ],
   "members": [
-    { "did": "did:plc:trialasker", "handle": "asker.example", "displayName": "Asker", "followers": 40, "small": true },
-    { "did": "did:plc:trialzed", "handle": "zed.example", "displayName": "Zed", "followers": 5, "small": true }
-  ]
+    {
+      "did": "did:plc:trialasker",
+      "handle": "asker.example",
+      "displayName": "Asker",
+      "followers": 40,
+      "small": true
+    },
+    {
+      "did": "did:plc:trialzed",
+      "handle": "zed.example",
+      "displayName": "Zed",
+      "followers": 5,
+      "small": true
+    },
+    {
+      "did": "did:plc:trialfan",
+      "handle": "fan.example",
+      "displayName": "Fan",
+      "followers": 12,
+      "small": true
+    }
+  ],
+  "sections": {
+    "aboutShow": {
+      "posts": [
+        {
+          "uri": "at://did:plc:trialfan/app.bsky.feed.post/f1",
+          "url": "https://bsky.app/profile/fan.example/post/f1",
+          "handle": "fan.example",
+          "authorDid": "did:plc:trialfan",
+          "displayName": "Fan",
+          "text": "the pilot was long but I watched all of it",
+          "time": "2099-01-05T20:00:00Z",
+          "counts": {
+            "likes": 2,
+            "reposts": 0,
+            "replies": 0,
+            "quotes": 0
+          },
+          "member": true,
+          "authorFollowers": 12,
+          "smallAccount": true,
+          "why": [
+            "names the show"
+          ]
+        }
+      ]
+    }
+  }
 }

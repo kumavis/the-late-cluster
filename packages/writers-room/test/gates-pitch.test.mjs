@@ -43,7 +43,7 @@ test('pitch.plan fails: fields, ceiling, BUILT chain, song without genre', async
   await withEpisode({}, async (ctx) => fails(await pitchPlan(ctx), /plan\.json is missing/))
   await withEpisode({ 'production/plan.json': plan({ week: '2026-W48' }) }, async (ctx) => fails(await pitchPlan(ctx), /"week" is "2026-W48"/))
   await withEpisode({ 'production/plan.json': plan({ question: '' }) }, async (ctx) => fails(await pitchPlan(ctx), /"question" is empty/))
-  await withEpisode({ 'production/plan.json': plan({ segments: [{ id: 'a', format: 'ask', seconds: 200 }, { id: 'b', format: 'panel', seconds: 200 }], guests: [] }) }, async (ctx) => fails(await pitchPlan(ctx), /over the 330 s ceiling/))
+  await withEpisode({ 'production/plan.json': plan({ segments: [{ id: 'a', format: 'ask', seconds: 300 }, { id: 'b', format: 'panel', seconds: 300 }], guests: [] }) }, async (ctx) => fails(await pitchPlan(ctx), /over the 590 s ceiling/))
   await withEpisode({ 'production/plan.json': plan({ segments: [{ id: 'a', format: 'ask', seconds: 20, built: [0, 1] }, { id: 'b', format: 'monologue', seconds: 20, built: [2, 3] }], guests: [] }) }, async (ctx) => fails(await pitchPlan(ctx), /BUILT chain breaks/))
   await withEpisode({ 'production/plan.json': plan({ segments: [{ id: 'song', format: 'song', seconds: 50, theme: 'x' }], guests: [] }) }, async (ctx) => fails(await pitchPlan(ctx), /needs "genre"/))
   await withEpisode({ 'production/plan.json': plan({ segments: [{ id: 'Bad Id', format: 'ask', seconds: 20 }], guests: [] }) }, async (ctx) => fails(await pitchPlan(ctx), /"id" must be a segment id/))

@@ -13,8 +13,10 @@
 //   --fixture <dir>          the fixture writer's prepared outputs
 //   --digest <dir>           read the digest from here instead of data/weeks/<week>/
 //   --limits <file>          JSON merged over the default limits (a trial run; the PR says so)
-//   --lore <file>            the lore file the self-check appends to (default docs/bible/lore.md)
+//   --bible <dir>            the bible to read and amend (default docs/bible; a copy for trial runs)
+//   --lore <file>            the lore file the self-check appends to (default <bible>/lore.md)
 //   --network                check invented handles against the public Bluesky API
+//   --preview-only           build a draft into preview/<id>/ and never publish (remembered)
 //   --max-attempts <n>       writer attempts per stage (default 3)
 //
 // Stages: scrape scaffold pitch write render direct build self-check pr.
@@ -24,9 +26,9 @@ import { ProduceError, REPO } from '../src/repo.mjs'
 import { STAGES } from '../src/state.mjs'
 import { WRITERS } from '../src/writers/index.mjs'
 
-const USAGE = 'usage: npm run produce -- --week 2026-W47 [--status | --stage <s> | --from <s> | --check <s>] [--writer claude|manual|fixture] [--model id] [--fixture dir] [--digest dir] [--limits file] [--lore file] [--network] [--max-attempts n]'
-const VALUE = new Set(['week', 'stage', 'from', 'check', 'writer', 'model', 'fixture', 'digest', 'limits', 'lore', 'max-attempts', 'root'])
-const FLAG = new Set(['status', 'network', 'help'])
+const USAGE = 'usage: npm run produce -- --week 2026-W47 [--status | --stage <s> | --from <s> | --check <s>] [--writer claude|manual|fixture] [--model id] [--fixture dir] [--digest dir] [--limits file] [--bible dir] [--lore file] [--network] [--preview-only] [--max-attempts n]'
+const VALUE = new Set(['week', 'stage', 'from', 'check', 'writer', 'model', 'fixture', 'digest', 'limits', 'lore', 'bible', 'max-attempts', 'root'])
+const FLAG = new Set(['status', 'network', 'help', 'preview-only'])
 
 export function parseArgs(argv) {
   const o = {}
@@ -34,7 +36,7 @@ export function parseArgs(argv) {
     const m = /^--([a-z-]+)(?:=(.*))?$/.exec(argv[i])
     if (!m) throw new ProduceError(`unexpected argument ${JSON.stringify(argv[i])}; ${USAGE}`, 2)
     const [, k, inline] = m
-    if (FLAG.has(k)) o[k] = true
+    if (FLAG.has(k)) o[k.replace(/-([a-z])/g, (_, c) => c.toUpperCase())] = true
     else if (VALUE.has(k)) {
       const v = inline ?? argv[++i]
       if (v === undefined || v.startsWith('--')) throw new ProduceError(`--${k} needs a value; ${USAGE}`, 2)

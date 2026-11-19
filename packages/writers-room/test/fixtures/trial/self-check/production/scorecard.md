@@ -22,6 +22,7 @@ Fixture data for the pipeline trial. It satisfies the gate; it is not a judgemen
 | A9 | pass | Every invented name is on .example: asker.example, zed.example. |
 | A10 | pass | No ranking or Top Chicken result is named. |
 | A11 | pass | npm run check and npm run verify passed in the build stage. |
+| A12 | pass | The run's constitution gate found both constitution files unchanged. |
 
 ## Part B
 
@@ -38,5 +39,6 @@ Fixture data for the pipeline trial. It satisfies the gate; it is not a judgemen
 | B9 | 1 | One applause and one laugh, sized small. |
 | B10 | 2 | Two short segments, each ending on a button: "Larry Nx!" and "Zed, everybody!". |
 | B11 | 1 | No song to be fresh; the descriptor is new against the rotation log. |
+| B12 | 2 | The experiment (two segments, no song) was stated in plan.json with a measure and its result is in dna-amendments.md. |
 
-Total: 18 of 22. Approve (fixture).
+Total: 20 of 24. Approve (fixture).

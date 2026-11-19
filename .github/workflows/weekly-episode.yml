@@ -169,7 +169,10 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -c "$BRANCH"
-          git add "episodes/$ID" "dist/episodes/$ID" docs/bible/lore.md
+          # docs/bible/ whole: the lore entries and any DNA amendments travel with the episode, so the
+          # reviewer approves them together. The constitution gate has already refused a run that
+          # touched 00-constitution.md or 09-real-people.md.
+          git add "episodes/$ID" "dist/episodes/$ID" docs/bible/
           git commit -m "Episode $ID, produced by the weekly pipeline" -m "Model: ${{ inputs.model }}. Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           git push --set-upstream origin "$BRANCH"
           gh pr create --base "${{ github.event.repository.default_branch }}" --head "$BRANCH" \

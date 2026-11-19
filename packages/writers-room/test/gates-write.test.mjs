@@ -62,7 +62,8 @@ test('write.guest-lines: verbatim caption must equal the post; respell only in a
   fails(await run(writeGuestLines, { 'segments/chat/script.js': SCRIPT_CHAT.replace("text: 'claim.'", "text: 'Claim!'") }), /not .* verbatim: differs/)
   ok(await run(writeGuestLines, { 'segments/chat/script.js': SCRIPT_CHAT.replace("text: 'claim.'", "text: 'claim.', as: 'klaym.'") }))
   fails(await run(writeGuestLines, { 'segments/chat/script.js': SCRIPT_CHAT.replace("text: 'claim.'", "text: 'claim.', as: 'I claim it.'") }), /adds words/)
-  ok(await run(writeGuestLines, { 'segments/chat/script.js': SCRIPT_CHAT.replace("text: 'concept: a talk show, but the host is a throat'", "text: 'concept: a talk show…'") }))
+  const cut = { ...SOURCES, lines: SOURCES.lines.map((r) => (r.line === 'p2' ? { ...r, setup: { who: 'ana', text: 'concept: a talk show…' } } : r)) }
+  ok(await run(writeGuestLines, { 'segments/chat/script.js': SCRIPT_CHAT.replace("text: 'concept: a talk show, but the host is a throat'", "text: 'concept: a talk show…'"), 'production/sources.json': cut }))
 })
 
 test('write.guest-lines: a guest may only speak their own posts', async () => {
@@ -77,24 +78,49 @@ test('write.guest-lines: a verbatim thread out of order, or with a house charact
   fails(await run(writeGuestLines, { 'segments/chat/script.js': house }), /larry \(house\) speaks a real post in the verbatim thread/)
 })
 
-test('write.guest-lines: catchphrase and pastiche are backed by sources and the digest', async () => {
+const SETUP = "  { say: 'larry', id: 'q', text: 'And Ana?' },"
+const cpRecord = (context = POSTS.anaAgain.uri) => ({ segment: 'chat', line: 'cp', kind: 'catchphrase', phrase: 'what else is like this', context, contextText: POSTS.anaAgain.text, setup: { who: 'larry', text: 'And Ana?' } })
+const withLines = (lines, accounts = SOURCES.accounts) => ({ ...SOURCES, accounts, lines })
+
+test('write.guest-lines: a catchphrase cites the author\'s own use; pastiche of a real account fails', async () => {
   const p = plan({ segments: [plan().segments[0], { id: 'chat', format: 'panel', seconds: 40 }] })
-  ok(await run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': chat("  { say: 'ana', text: 'What else is like this?' }, // catchphrase") }))
-  fails(await run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': chat("  { say: 'ana', text: 'I love this show' }, // catchphrase") }), /not one of ana\.test's catchphrases/)
-  fails(await run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': chat("  { say: 'bo', text: 'claim.' }, // catchphrase") }), /catchphrase is not backed/)
-  const r = await run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': chat("  { say: 'ana', text: 'concept: a show, but it is a museum' }, // pastiche of \"concept:\"") })
-  ok(r)
-  assert.match(r.warnings.join(' '), /pastiche lines for the reviewer/)
-  fails(await run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': chat("  { say: 'bo', text: 'hot take: shows are bad' }, // pastiche of \"hot take:\"") }), /no post by bo\.test .* uses the format "hot take:"/)
-  const many = chat(Array.from({ length: 3 }, (_, k) => `  { say: 'ana', text: 'concept: thing ${k}' }, // pastiche of "concept:"`).join('\n'))
-  assert.match((await run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': many })).warnings.join(' '), /3 pastiche lines.*a line or two per episode/)
+  const cpLine = (text = 'What else is like this?', ctxUri = POSTS.anaAgain.uri) => chat(`${SETUP}\n  { say: 'ana', id: 'cp', text: '${text}' }, // catchphrase: "what else is like this" · context: ${ctxUri}`)
+  ok(await run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': cpLine(), 'production/sources.json': withLines([cpRecord()]) }))
+  fails(await run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': cpLine('I love this show'), 'production/sources.json': withLines([cpRecord()]) }), /not one of ana\.test's catchphrases/)
+  fails(await run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': chat(`${SETUP}\n  { say: 'ana', id: 'cp', text: 'What else is like this?' }, // catchphrase`), 'production/sources.json': withLines([cpRecord()]) }), /the catchphrase tag has no occasion/)
+  fails(await run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': chat(`${SETUP}\n  { say: 'bo', id: 'cp', text: 'claim.' }, // catchphrase: "claim." · context: ${POSTS.boReply.uri}`) }), /catchphrase is not backed/)
+  fails(await run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': cpLine('What else is like this?', POSTS.boReply.uri), 'production/sources.json': withLines([cpRecord(POSTS.boReply.uri)]) }), /a post by bo\.test, not by ana\.test/)
+  fails(await run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': cpLine('What else is like this?', POSTS.anaClaim.uri), 'production/sources.json': withLines([cpRecord(POSTS.anaClaim.uri)]) }), /which does not use it/)
+  const noPosts = SOURCES.accounts.map((a) => (a.handle === 'ana.test' ? { ...a, catchphrases: ['what else is like this'] } : a))
+  ok(await run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': cpLine(), 'production/sources.json': withLines([cpRecord()], noPosts) }))
+  fails(await run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': chat(`${SETUP}\n  { say: 'ana', id: 'x', text: 'concept: a show, but it is a museum' }, // pastiche of \"concept:\"`) }), /ana plays the real account ana\.test, and pastiche is not a permitted source for a real account/)
 })
 
-test('write.guest-lines: // invented is for fictional guests only', async () => {
+test('write.guest-lines: every real line carries its occasion, checked against the digest and sources.json', async () => {
+  const p = plan({ segments: [plan().segments[0], { id: 'chat', format: 'panel', seconds: 40 }] })
+  const line = (tail) => chat(`  { say: 'larry', id: 'q', text: 'Is Bo here?' },\n  { say: 'bo', id: 'r', text: 'claim.' }, // verbatim: ${POSTS.boReply.uri}${tail}`)
+  const rec = (over = {}) => withLines([{ segment: 'chat', line: 'r', kind: 'verbatim', post: POSTS.boReply.uri, context: POSTS.anaClaim.uri, contextText: POSTS.anaClaim.text, setup: { who: 'larry', text: 'Is Bo here?' }, ...over }])
+  const go = (tail, sources = rec()) => run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': line(tail), 'production/sources.json': sources })
+  ok(await go(` · context: ${POSTS.anaClaim.uri}`))
+  fails(await go(''), /the verbatim tag has no occasion: add `· context: at:\/\/…` \(the post it replied to/)
+  fails(await go(` · context: ${POSTS.build.uri}`, rec({ context: POSTS.build.uri })), /according to the digest .*b1 replied to .*a1/)
+  fails(await go(` · context: ${POSTS.boReply.uri}`, rec({ context: POSTS.boReply.uri })), /according to the digest .*b1 replied to .*a1/)
+  fails(await go(' · context: at://did:plc:zz/app.bsky.feed.post/zz'), /the context at:\/\/did:plc:zz.* is not in the week's digest/)
+  fails(await go(` · context: ${POSTS.anaClaim.uri}`, withLines([])), /sources\.json "lines" has no record for this line/)
+  fails(await go(` · context: ${POSTS.anaClaim.uri}`, rec({ contextText: 'concept: a talk show' })), /"contextText" is not the text of/)
+  fails(await go(` · context: ${POSTS.anaClaim.uri}`, rec({ setup: { who: 'larry', text: 'Something else.' } })), /"setup" must be the line spoken just before it: \{ "who": "larry", "text": "Is Bo here\?" \}/)
+  // a top-level post: its own URI is the context, and the record gives the situation
+  const top = (rec2) => run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': chat(`  { say: 'larry', id: 'q', text: 'Ana?' },\n  { say: 'ana', id: 't', text: 'concept: a talk show, but the host is a throat' }, // verbatim: ${POSTS.anaClaim.uri} · context: ${POSTS.anaClaim.uri}`), 'production/sources.json': withLines([{ segment: 'chat', line: 't', kind: 'verbatim', post: POSTS.anaClaim.uri, context: POSTS.anaClaim.uri, setup: { who: 'larry', text: 'Ana?' }, ...rec2 }]) })
+  ok(await top({ situation: 'a morning post proposing a show' }))
+  fails(await top({}), /needs "situation"/)
+})
+
+test('write.guest-lines: // invented is for fictional guests only, and they are free of the real-account rules', async () => {
   const p = plan({ segments: [plan().segments[0], { id: 'chat', format: 'panel', seconds: 40 }], guests: [] })
   const cast = "export const CAST = { zed: { name: 'Zed', handle: '@zed.example', guest: true, body: { female: 0, child: 0 }, f0: 130 } }\n"
   ok(await run(writeGuestLines, { 'production/plan.json': p, 'cast.js': cast, 'segments/chat/script.js': chat("  { say: 'zed', text: 'hello' }, // invented") }))
-  fails(await run(writeGuestLines, { 'production/plan.json': p, 'cast.js': cast, 'segments/chat/script.js': chat("  { say: 'zed', text: 'hello' },") }), /zed says "hello" with no source comment.*or \/\/ invented/)
+  ok(await run(writeGuestLines, { 'production/plan.json': p, 'cast.js': cast, 'segments/chat/script.js': chat("  { say: 'zed', text: 'concept: hello' }, // pastiche of \"concept:\"") }))
+  fails(await run(writeGuestLines, { 'production/plan.json': p, 'cast.js': cast, 'segments/chat/script.js': chat("  { say: 'zed', text: 'hello' },") }), /zed says "hello" with no source comment.*\/\/ invented/)
   fails(await run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': chat("  { say: 'ana', text: 'hello' }, // invented") }), /only for fictional guests/)
 })
 
@@ -129,7 +155,23 @@ test('write.optout: an opted-out handle anywhere fails (R11)', async () => {
 
 test('write.length: a ceiling on words, no minimum', async () => {
   ok(await run(writeLength))
-  const long = chat(Array.from({ length: 60 }, (_, k) => `  { say: 'larry', text: 'one two three four five six seven eight nine ten' },`).join('\n'))
-  fails(await run(writeLength, { 'segments/chat/script.js': long }), /604 spoken words .* ceiling is 520/)
+  const long = chat(Array.from({ length: 110 }, (_, k) => `  { say: 'larry', text: 'one two three four five six seven eight nine ten' },`).join('\n'))
+  fails(await run(writeLength, { 'segments/chat/script.js': long }), /1104 spoken words .* ceiling is 1020/)
   assert.equal(spokenWords({ beats: [{ say: 'a', text: 'one two' }, { sing: 'a', lyrics: 'la la la' }, { music: { tracks: [{ lyrics: 'oh oh' }, { shout: 'hey' }] } }] }), 7)
+})
+
+test('the pull request shows each real line beside its staged setup and its original occasion', async () => {
+  const { prBody } = await import('../src/pr.mjs')
+  const { newState } = await import('../src/state.mjs')
+  const p = plan({ segments: [plan().segments[0], { id: 'chat', format: 'panel', seconds: 40 }], retro: null, dna: { keep: [], change: [], experiment: { what: 'x', why: 'y', success: 'z' } }, inherit: [] })
+  const script = chat([
+    "  { say: 'larry', id: 'hi', text: 'Bo, any thoughts on the show?' },",
+    `  { say: 'bo', id: 'r', text: 'claim.' }, // verbatim: ${POSTS.boReply.uri} · context: ${POSTS.anaClaim.uri}`,
+    "  { say: 'larry', id: 'q', text: 'And Ana?' },",
+    `  { say: 'ana', id: 'cp', text: 'What else is like this?' }, // catchphrase: "what else is like this" · context: ${POSTS.anaAgain.uri}`,
+  ].join('\n'))
+  const body = await run((ctx) => prBody({ ctx, state: newState({ week: ctx.week, episode: ctx.id, limits: 'default' }), branch: 'b' }), { 'production/plan.json': p, 'segments/chat/script.js': script })
+  assert.match(body, /## Real people's lines, as staged and as said/)
+  assert.match(body, /\*\*`segments\/chat\/script\.js:3 \(r\)`\*\* \(verbatim, \[post\]\(https:\/\/bsky\.app\/profile\/bo\.test\/post\/b1\)\)\n\n> \*\*staged setup, larry:\*\* Bo, any thoughts on the show\?\n>\n> \*\*bo \(@bo\.test\):\*\* claim\.\n>\n> \*\*original, it replied to, @ana\.test:\*\* concept: a talk show,/)
+  assert.match(body, /> \*\*staged setup, larry:\*\* And Ana\?\n>\n> \*\*ana \(@ana\.test\):\*\* What else is like this\?\n>\n> \*\*original, their own use, @ana\.test:\*\* what else is like this 🦜/)
 })

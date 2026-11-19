@@ -1,5 +1,26 @@
 # Episode __NUMBER__ pitch: Two Segments  (week __WEEK__)
 
+## Retro
+Previous episode: 001-pilot
+Worked: the engine reads in the cold open: a wish, a beat, then "Built it."   Didn't: nearly ten minutes is too long for a weekly show.
+Reactions: at://did:plc:trialfan/app.bsky.feed.post/f1 — says the pilot was long, and they watched all of it.
+Last experiment's verdict: the show itself; people seemed to want another (the lore's experiment log).
+One-page check: the README's one-page version describes a five-segment episode; this trial is deliberately shorter.
+
+## Keep
+The Ask and "Built it." in the cold open.
+
+## Change
+Two segments instead of five, because this is a trial of the shortest show the format allows.
+
+## Experiment
+What: cut the episode to two segments and no song.   Why: to see whether the show still reads as itself at its shortest.
+Success: the reviewer can name the show's engine from the cold open alone.
+Register: the pilot's five-slot running order.
+
+## Inherit
+From 001-pilot, path segments/cold-open/script.js, why: the pilot's cold open as a reference for the Ask's timing. Nothing is imported from it.
+
 ## The episode in one sentence
 "The one where somebody asks for a show with only two segments, and gets one."
 

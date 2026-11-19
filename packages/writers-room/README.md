@@ -21,10 +21,64 @@ npm test                                               # includes packages/write
 Options: `--writer claude|manual|fixture` (default claude), `--model <id>` (default
 `claude-fable-5-2`; `claude-opus-5-5` is the documented alternative; or `PRODUCE_MODEL`),
 `--fixture <dir>`, `--digest <dir>` (instead of `data/weeks/<week>/`), `--limits <file>` (JSON merged
-over the default limits: a trial run, and the pull request says so), `--lore <file>` (instead of
-`docs/bible/lore.md`), `--network` (check invented handles against the public API),
-`--max-attempts <n>` (writer attempts per stage, default 3). `--digest`, `--limits` and `--lore` are
-remembered in `state.json`, so a resume needs only `--week`.
+over the default limits: a trial run, and the pull request says so), `--bible <dir>` (read and amend
+a copy of the bible instead of `docs/bible/`: trial runs), `--lore <file>` (instead of
+`<bible>/lore.md`), `--network` (check invented handles against the public API), `--max-attempts <n>`
+(writer attempts per stage, default 3), `--preview-only` (the build stage builds a draft into
+`preview/<id>/` and never sets `published` or writes `dist/`; for trials that must not air).
+`--digest`, `--limits`, `--bible`, `--lore` and `--preview-only` are remembered in `state.json`, so a
+resume needs only `--week`.
+
+**An unpublished trial with the manual writer** (the digest already in `data/weeks/<week>/`, whatever
+window it covers; the pipeline uses the `--week` value only to name and find the episode):
+
+```sh
+npm run produce -- --week 2026-W47 --writer manual --preview-only   # scaffolds, prints the pitch prompt, waits
+# the writer does the stage from the printed prompt (also in shots/<id>/_production/prompts/pitch.md), checking with:
+npm run produce -- --week 2026-W47 --check pitch
+npm run produce -- --week 2026-W47 --writer manual                  # gates the pitch, copies inheritance, prints the write prompt
+# … the same for write, direct and self-check; render and build are run by the pipeline in between …
+npm run produce -- --week 2026-W47 --status                         # where it is at any point
+```
+
+The build stage then runs `npm run thumbnail`, `npm run build -- <id> --preview` and `npm run verify`;
+the episode stays `draft`, nothing goes into `dist/`, and the pull request text says "Preview only".
+
+## The two layers of the bible, and how an episode changes the show
+
+The bible (`docs/bible/`) has two layers (bible 00, the constitution):
+
+- **The constitution**: `00-constitution.md` and `09-real-people.md` (`constitution` in
+  `config/pipeline.json`). Only the owner changes it. The pipeline enforces this twice: the headless
+  writer is denied editing either file in every stage, and, independent of any permission, every
+  creative stage runs a `*.constitution` gate that compares both files with the sha256 hashes taken
+  when the episode was scaffolded (`state.json` `bible.snapshot`; no git involved). A run that
+  touched either stops before the pull request.
+- **The DNA**: every other file in `docs/bible/`. It is meant to move. Each pitch writes a retro on
+  the previous episode, what it keeps and changes, and one experiment with a success measure
+  (`plan.json` `retro`, `dna`); the self-check judges the experiment before air and may edit DNA
+  chapters in the same pull request, declaring every edit in `production/dna-amendments.md`. The
+  `self-check.dna` gate compares the bible with the scaffold-time hashes and fails when a changed DNA
+  file is not declared, or a declared one did not change. The pull request puts the retro, the
+  experiment and its verdict, the inherited files and the DNA edits at the top, so the reviewer
+  approves a change to the show together with the episode. The workflow commits the whole of
+  `docs/bible/` with the episode.
+
+**Inheritance is a decision.** The headless writer cannot read any other episode or any build. The
+pitch names what it carries forward in `plan.json` `inherit: [{ from, path, why }]` (usually empty);
+`pitch.inherit` checks each file exists in an earlier episode and has a reason; when the pitch passes
+the pipeline copies exactly those files, read-only, to `production/inherited/<from>/<path>` and records
+them (with sha256) in `state.json`. `production/` is outside the build's `sourceHash`
+(`scripts/lib/hash.mjs`: `episode.json`, `cast.js`, `looks.js`, `thumbnail.jpg` and the rundown
+segments' folders) and segments are found only under `segments/<seg>/`, so a copy can never become a
+segment or enter a build unseen: `write.imports` and `direct.imports` fail any import from
+`production/`, from outside the episode, or of an episode file the hash does not cover. To change
+the inheritance, edit the plan and re-run `--from pitch` (`*.inherit` gates hold the copies to the
+plan). The manual writer's prompt states the same rule.
+
+**The studio earns its contents.** The writer cannot edit `packages/`. Episode-local props and
+helpers live in the segment folder that uses them and are imported as
+`@late-cluster/episode/segments/<seg>/<file>.js`, which the source hash covers.
 
 Output is one line per event (`stage …`, `gate <name> ok|FAIL|skip`, indented `FAIL` and `warn`
 lines) and the repo's exit codes: **0** done (or nothing to do), **1** refused, failed, or waiting
@@ -64,13 +118,21 @@ with the frames).
 builds into `dist/`, verifies and stops. Nothing here deploys, announces, commits or pushes;
 merging the pull request is what publishes.
 
+**No step waits for the people the show depicts.** The show works from what people publish openly
+and does not ask permission first (bible 00, Article 3). Nothing in the pipeline contacts anyone or
+waits on a reply from a person an episode depicts. The protections are the opt-out list, the
+sourced and verbatim rules, the out-of-bounds flags and the reviewer's checks; the owner's own
+review of the pull request before publishing is the show's editorial review, not consent.
+
 **Where a mid-week interview stage would attach.** *Proposal only, not built.* Bible 10, "Stage 0:
 ask", describes interviews conducted by the show's account during the week. It would run before
-`scrape` as a stage of its own (`ask`: the writer drafts questions from the week so far, a person
-approves them, the bot posts them to people who opted in), and the scrape would collect the replies.
-The pipeline already accepts `// interview: at://…` source comments and checks them like verbatim
-lines (the post must be in the digest, by that guest, word for word), so nothing downstream would
-change. It needs bot work and the consent design in bible 09 first.
+`scrape` as a stage of its own (`ask`: the writer drafts questions from the week so far, the show's
+reviewer approves them, the bot posts them to people who opted in to being asked), and the scrape
+would collect whatever public replies exist by then. **It would be non-blocking by design**: the
+stage only posts questions and never waits; an unanswered question never holds an episode, and the
+run proceeds without it. The pipeline already accepts `// interview: at://… · context: at://<the
+question>` source comments and checks them like verbatim lines, so nothing downstream would change.
+It needs bot work first.
 
 ## The writers
 
@@ -87,13 +149,30 @@ up to `--max-attempts`.
   ```sh
   claude -p --model claude-fable-5-2 --output-format json --permission-mode dontAsk \
     --setting-sources project --strict-mcp-config --disable-slash-commands --no-session-persistence \
-    --tools Read,Glob,Grep,Edit,Write,Bash --max-turns 200 --max-budget-usd 25 \
-    --allowedTools Read Glob Grep "Bash(npm run produce -- --week W --check write)" \
-      "Edit(episodes/<id>/segments/**/script.js)" "Write(…)" … "Bash(npm run render -- <id> *)" … \
-    --disallowedTools WebFetch WebSearch "Bash(git *)" "Bash(gh *)" "Bash(curl *)" \
-      "Bash(npm run bot *)" "Bash(npm run build *)" "Edit(episodes/<id>/production/state.json)" \
-      "Edit(episodes/001-pilot/**)" "Edit(packages/**)" "Edit(scripts/**)" "Edit(.github/**)" …
+    --tools Read,Edit,Write,Bash --max-turns 200 --max-budget-usd 25 \
+    --allowedTools Read "Bash(ls)" "Bash(ls *)" "Bash(npm run produce -- --week W --check write)" \
+      "Edit(episodes/<id>/segments/**)" … "Bash(npm run render -- <id> *)" … \
+    --disallowedTools WebFetch WebSearch "Bash(git *)" "Bash(gh *)" "Bash(curl *)" … \
+      "Read(episodes/<every other id>/**)" "Edit(episodes/<every other id>/**)" \
+      "Read(shots/<every other id>/**)" "Read(preview/<every other id>/**)" \
+      "Read(dist/episodes/**)" "Read(preview/**)" "Read(video/**)" "Read(.secrets)" "Read(.env*)" \
+      "Bash(cat)" "Bash(cat *)" … "Bash(grep *)" "Bash(rg *)" "Bash(find *)" … "Bash(ls -*R*)" \
+      "Edit(docs/bible/00-constitution.md)" "Edit(docs/bible/09-real-people.md)" \
+      "Edit(episodes/<id>/production/state.json)" "Edit(episodes/<id>/production/inherited/**)" \
+      "Edit(episodes/<id>/segments/**/cues.json)" "Edit(packages/**)" "Edit(scripts/**)" …
   ```
+
+  **Why reads are shut this way.** permissions.md ("What Read and Edit rules cover") says a
+  `Read(path)` deny rule covers the Read tool, Bash file commands Claude Code recognises (`cat`,
+  `head`, `tail`, `sed`, `tee`) and redirections; for Grep and Glob it is applied only "best-effort",
+  and a search started from a folder above the denied one is not stopped ("Grep and Glob search the
+  directory the `path` argument resolves to"); and `Grep(path)` / `Glob(path)` rules never match. So
+  the writer gets no Glob or Grep at all, every shell command that prints or searches files is denied
+  by name (`READ_COMMANDS` in `claude.mjs`, plus recursive `ls`), and it reads with the Read tool,
+  which the `Read(...)` denies cover. `ls` stays, so it can see folder names. A `Read` deny also
+  blocks editing the same path. The stage's own episode (including `production/inherited/`), the
+  studio, the bible, the playbooks and the digest stay readable; a test checks that for several
+  earlier episodes.
 
   Where each flag comes from in the Claude Code documentation (code.claude.com/docs/en/…):
   `-p`, `--output-format json` and prompts on stdin: *headless.md*. `--permission-mode dontAsk`
@@ -103,10 +182,11 @@ up to `--max-attempts`.
   `--strict-mcp-config`, `--disable-slash-commands`, `--no-session-persistence`, `--max-turns`,
   `--max-budget-usd`, `--model`: *cli-reference.md*. Model names: *model-config.md*. Credentials:
   `ANTHROPIC_API_KEY`, or `CLAUDE_CODE_OAUTH_TOKEN` from `claude setup-token` (*authentication.md*).
-  Locally, the contract has `npm run produce` load `.secrets`. Each stage's allow list is in
-  `permissions()`: pitch edits only its two papers and `episode.json`; write edits scripts, cast,
-  looks and sources and runs `segment:new`, `render`, `check` and the Whisper pass; direct edits
-  `index.js` and runs `shoot`; self-check edits the scorecard and the lore file. User and local
+  Locally, `npm run produce` loads `.secrets`. Each stage's allow list is in `permissions()`: pitch
+  edits only its two papers and `episode.json`; write edits its segment folders, cast, looks and
+  sources and runs `segment:new`, `render`, `check` and the Whisper pass; direct edits its segment
+  folders except `script.js` and runs `shoot`; self-check edits the scorecard, `dna-amendments.md` and
+  the bible, except the constitution (deny rules win over allow rules). User and local
   settings are ignored so their allow rules cannot widen this. Extra flags: `PRODUCE_CLAUDE_ARGS`.
   Turn and dollar budgets per stage are in `config/pipeline.json`.
 - **manual**: writes the prompt to `shots/<id>/_production/prompts/<stage>.md`, prints it with the
@@ -127,11 +207,18 @@ Each gate is a small function in `src/gates/` that returns precise failures writ
 |---|---|---|---|
 | pitch | `pitch.document` | `pitch.md` heading (number, week); every `##` section of the template in bible 10 (read from the bible), none empty or with a placeholder; every numbered story cites a post; every real guest has a "real-people check"; every cited post is in the digest | bible 10 stage 2; R2, R14 |
 | pitch | `pitch.plan` | `plan.json` schema (below); segment ids; `seconds` add up under the ceiling (no minimum); the BUILT chain starts at 0 and joins up; a song has genre and theme; a thread's posts are in the digest, with text, in thread order; guests are in this week's digest and not opted out; no cited post from an out-of-bounds story; cuts have reasons | bible 03; R10, R11, R14; format 9 rules 1–2 |
+| pitch | `pitch.retro` | when a published episode came before: `retro` names it, says what worked or didn't, and cites reactions that are in this week's digest ("About the show"); an empty list needs `reactionsNote` | bible 00 Art. 6; bible 03 evolving the show |
+| pitch | `pitch.dna` | `dna.keep`, `dna.change` (each with a why) and one `dna.experiment` with what, why and a success measure; **fails** on the same words as an earlier episode's experiment, **warns** on a near match | bible 00 Art. 6 |
+| pitch | `pitch.inherit` | `inherit` is present (`[]` is the default); each entry names an existing source file in an earlier episode (not `public/` or `production/`), with a reason | bible 00 Art. 6 |
+| write, direct | `*.inherit` | `production/inherited/` holds exactly the plan's files | bible 03 inheritance |
+| write, direct | `*.imports` | episode code imports only `@late-cluster/show/...`, packages, and its own files that `sourceHash` covers; never `production/`, another episode, or the studio by relative path | the studio earns its contents; frozen builds |
+| pitch, write, direct, self-check | `*.constitution` | `00-constitution.md` and `09-real-people.md` are byte-identical to the hashes taken at scaffold | bible 00; scorecard A12 |
+| self-check | `self-check.dna` | `dna-amendments.md` gives the experiment's verdict before air and lists exactly the DNA files that changed (or "none" with a reason); the lore file's routine entries need not be listed | bible 00 Art. 6; bible 10 stage 6 |
 | pitch | `pitch.freshness` | **fails** when the song's genre equals the previous published episode's; **warns** (answerable in `overrides` or a guest's `repeatReason`) on a genre within 8 episodes, the middle format from last week, a guest two weeks running, a reused runner, descriptor, Ask post or thread post, a repeated "Built it." shape, the same sincere kind as last week, more than 2 callbacks | bible 03, fixed and fresh |
 | pitch, write | `*.optout` | no handle or DID from `packages/scraper/config/optout.json` (or flagged opted out in the digest) in any file of the episode, papers included; the message never repeats the name | R11, A1 |
 | write | `write.rundown` | `episode.json` rundown equals the plan; title and description set; still a draft; every `script.js` exists | |
 | write | `write.sources` | `sources.json`: every account, post and link is in the digest; real accounts only; post `text` is the post's exact text; nothing out of bounds; every real guest who speaks is listed as a guest | R2, R4, R10, R12 (record) |
-| write | `write.guest-lines` | every line a guest speaks or sings has a source comment: verbatim / interview (the caption equals that guest's own post exactly; `as` only respells), catchphrase (listed for the account in `sources.json`), pastiche (the format string appears in the guest's posts this week), invented (fictional guests only); in a thread segment the verbatim lines follow `thread.posts` and no house character speaks a real post; more than 2 pastiche lines warn | R3, A4; format 9 rules 1–4 |
+| write | `write.guest-lines` | every line a guest speaks or sings has a source comment. A real account's puppet may use only `guestLines.realAccount` in the config: **verbatim** and **interview** (the caption equals that guest's own post exactly; `as` only respells; outside a declared thread, a post that was a reply must record its original occasion, the post it answered, on the tag as `· context: at://…` or in `sources.json` as `occasion`; a top-level post with nothing recorded warns) and **catchphrase** (listed for the account in `sources.json` with at least one of the author's own posts that uses it). **Pastiche of a real account fails.** `// invented` (or anything) only for guests on `.example`. In a thread segment the verbatim lines follow `thread.posts` and no house character speaks a real post. Warns if the config's kinds differ from the tags R3 names | R3, R4, A4; format 9 rules 1–4 |
 | write | `write.labels` | a cast entry with a real handle has `guest: true`; every guest in `sources.json` is played by such an entry | R9, A8 |
 | write | `write.names` | every handle, domain and URL in the episode's strings and comments is in `sources.json` or on `.example`; every at:// or bsky.app post in them is in `sources.json`; with `--network`, invented handles must not resolve | R8, R4, A9 |
 | write | `write.length` | spoken words and the runtime they imply are under the ceiling | bible 03, 10 stage 3 |
@@ -141,20 +228,31 @@ Each gate is a small function in `src/gates/` that returns precise failures writ
 | render | `render.lengths` | each segment within 10 % of the plan; the total under the ceiling | bible 10 stage 4 |
 | direct | `direct.modules` | every segment has `index.js` | |
 | direct | `direct.disclaimer` | the first segment with a guest has a `disclaimer` | R9, A8 |
-| direct | `direct.cards` | every post `sources.json` marks as a card appears verbatim in a segment's strings | R4, A2 |
+| direct | `direct.cards` | every post `sources.json` marks as a `card` or `quote` appears verbatim in a segment's strings | R4, A2 |
 | direct | `direct.frames` | frames at every cue, line id and music start plus six across each segment: no page errors, console errors or unknown cues | bible 10 stage 5, A11 |
 | build | `build.thumbnail`, `build.build`, `build.verify` | the thumbnail is a JPEG under 1 MB; build and verify exit 0 | A11 |
-| self-check | `self-check.scorecard` | Step 0 lists every segment; every Part A and B row of the bible's scorecard (read from bible 10, not hard-coded; fails loudly if its shape changes) has a result and a sentence of evidence; no Part A fail; Part B meets the approval rule (today 15 of 22, no 0 in B1, B2, B8, B11) | bible 10 scorecard |
-| self-check | `self-check.lore` | the lore file has `E-NNN`, a rotation-log row for the episode (with the plan's song genre), and lost no entry id | bible lore.md |
+| self-check | `self-check.scorecard` | Step 0 lists every segment; every Part A and B row of the bible's scorecard (read from bible 10, not hard-coded; fails loudly if its shape changes) has a result and a sentence of evidence; no Part A fail; Part B meets the approval rule (at the tested commit 16 of 24, no 0 in B1, B2, B8, B11, B12) | bible 10 scorecard |
+| self-check | `self-check.lore` | the lore file has `E-NNN`, a rotation-log row (with the plan's song genre) and an experiment-log row for the episode, and lost no entry id | bible lore.md |
 
 **What is not gated, and is the reviewer's alone** (the pull request says so): whether anything is
-interesting (the first rule; Step 0 and B1–B11 are the writer's self-assessment); R1 persona not
-person; R3's "never an opinion" inside catchphrase and pastiche lines (the gate checks the source
-exists, not what the line implies); R4 context and framing (A3); R5 no invented scandal (A5); R6 the
+interesting (the first rule; Step 0 and the B scores are the writer's self-assessment); whether the
+experiment is a good one and whether it worked; whether a DNA edit is defensible; R1 persona not
+person; **whether a staged exchange recreates the way a real line was said** (the gate makes sure the
+original is recorded; the pull request shows each real line beside its staged setup and its original
+prompt, catchphrases beside their cited use); **whether a catchphrase is used the way its author uses
+it**; R4 framing on screen (A3); R5 no invented scandal (A5); R6 the
 repost test and R7 small accounts only as heroes (A7; the pull request flags small accounts); R10
 topics the digest did not flag (A6); A10 rankings; R12 that a number is benign; R13 bots; R15 unclear
 references; the self-declared opt-outs in posts or bios that the scraper's patterns missed; the
 quality of the direction (the frames are an artifact for a person to look at); and the B scores.
+
+**Allowed source kinds, as implemented.** For a real account: `verbatim`, `interview`, `catchphrase`
+(config `guestLines.realAccount`). For an invented `.example` guest: `invented`, and any of the
+others. Mapping to `docs/bible/09-real-people.md` R3: verbatim = R3 source 1 (own posts, verbatim),
+interview = source 2 (answers to the show's account; a proposal), catchphrase = source 3 (used the way
+they use them); R3's "no pastiche" = the pastiche failure. The `· context: at://…` part of R3's tags
+is read as the original occasion (verbatim, interview) or a cited use (catchphrase); `sources.json`
+can record the same as `occasion` and `catchphrases[].posts`.
 
 ## Files
 
@@ -212,16 +310,18 @@ a few minutes, the model stages most of the rest: a run should fit well inside t
 
 ## What has and has not been exercised
 
-Exercised: every gate against passing and failing fixtures (`test/`, 69 tests, Node builtins only);
+Exercised: every gate against passing and failing fixtures (`test/`, Node builtins only);
 the orchestrator end to end with fake tools (state, resume, `--status`, `--stage`, `--from`, `--check`,
 the manual writer, retries, render failures returned to the writer, the pull request text); and the
 whole pipeline with the real tools on this machine via `bin/self-test.mjs` (scaffold, render, check,
-Whisper, shoot, thumbnail, build, verify), including a planted violation stopping the run and a
-resume after the fix. The read-only gates were also run against the pilot (it predates them: its
+Whisper, shoot, thumbnail, build, verify) with a retro, an experiment, one inherited file and one DNA
+amendment against a scratch copy of the bible, including planted violations (a guest line with no
+source, a real-TLD handle, an edit to the constitution) stopping the run, and a resume after a fix. The read-only gates were also run against the pilot (it predates them: its
 guest lines carry no source comments and it uses `@made.a.website`-style names on real TLDs).
 
 Not exercised: the claude writer producing anything (its command line and permissions are unit
-tested; one trivial call reached the CLI but this machine's login had expired); either workflow on
+tested, including the read denies for several earlier episodes; one trivial call reached the CLI but
+this machine's login had expired, so no deny rule has been observed refusing a real tool call); either workflow on
 GitHub; a real week's scrape through to a pitch; `--network` against the live API; the verbatim-thread
 gate against the scraper's real thread section, which is still being added (the digest reader looks
 for any object with a root and an ordered posts list).

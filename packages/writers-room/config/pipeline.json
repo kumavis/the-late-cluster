@@ -1,10 +1,11 @@
 {
   "$comment": "Settings for npm run produce. Numbers marked 'bible' come from docs/bible; change them there first. A run records the limits it used in production/state.json, and the pull request says when they were not these defaults.",
   "maxAttempts": 3,
+  "constitution": ["00-constitution.md", "09-real-people.md"],
   "limits": {
-    "$comment": "Ceilings only: nothing in the rundown is mandatory and there is no minimum length (bible 01, the first rule; bible 03: 'about five minutes; shorter is fine, padding is not'). runtimeSeconds.max: about five minutes, with the half minute of slack bible 03's slot lengths allow. words.max: bible 10, stage 3 ('about 420 to 520, or fewer'). wordsPerSecond: bible 03, runtime arithmetic. segmentTolerance: bible 10, stage 4. stories: bible 03's monologue (3 to 5) plus the middle and goodnight; outside it is a warning, never a failure.",
-    "runtimeSeconds": { "max": 330 },
-    "words": { "max": 520 },
+    "$comment": "Ceilings only, never a target: there is no minimum length, and the first rule (bible 00, Article 1: only include it if it's interesting) decides how long an episode actually is. runtimeSeconds.max is the owner's ceiling ('aim for less than 10 minutes'): 590 s, just under ten minutes. words.max scales bible 10's 520 words for five minutes (300 s) to 590 s at the same rate (520 x 590 / 300, rounded down to 1020), inside bible 03's arithmetic of 1.6 to 2.2 spoken words per second of running time. wordsPerSecond: bible 03, runtime arithmetic. segmentTolerance: bible 10, stage 4. stories: outside this range is a warning, never a failure.",
+    "runtimeSeconds": { "max": 590 },
+    "words": { "max": 1020 },
     "wordsPerSecond": { "min": 1.6, "max": 2.2 },
     "segmentTolerance": 0.1,
     "stories": { "min": 3, "max": 9 }
@@ -13,8 +14,12 @@
     "$comment": "bible 03, fixed and fresh. History: each earlier published episode's production/plan.json, or its row in the rotation log in docs/bible/lore.md when it has no plan. One gate: the song's genre differs from the previous episode's. Everything else is a warning the plan may answer in 'overrides' (or a guest's 'repeatReason').",
     "genreWarnWindow": 8,
     "maxCallbacks": 2,
-    "maxPastichePerEpisode": 2,
     "standingFormats": ["ask", "the-ask", "cold-open", "monologue", "song", "the-number", "goodnight"]
+  },
+  "guestLines": {
+    "$comment": "The source comments a guest's line may carry (rule R3). realAccount: a puppet standing for a real account says only what that account published (the owner's rule: published content, essentially in its original context; no words put in their mouth), so pastiche is not here. invented: guests on .example. A verbatim line outside a thread must record its original occasion (the post it answered); whether the staged exchange recreates it is the reviewer's judgement. The guest-lines gate warns when realAccount differs from the tags R3 names.",
+    "realAccount": ["verbatim", "interview", "catchphrase"],
+    "invented": ["invented", "verbatim", "interview", "catchphrase", "pastiche"]
   },
   "pitchSections": {
     "$comment": "The pitch's required sections are read from the template in docs/bible/10-process.md (stage 2). This list is used only if that template cannot be found, and the gate warns when it is.",

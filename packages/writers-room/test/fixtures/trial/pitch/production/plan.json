@@ -5,16 +5,88 @@
   "title": "Two Segments",
   "description": "A pipeline trial: somebody asks for a talk show with two segments, and gets one.",
   "question": "Is two segments enough?",
-  "segments": [
-    { "id": "cold-open", "format": "ask", "seconds": 11, "built": [0, 1], "ask": "at://did:plc:trialasker/app.bsky.feed.post/t1" },
-    { "id": "chat", "format": "panel", "seconds": 11, "built": [1, 1] }
+  "retro": {
+    "episode": "001-pilot",
+    "worked": [
+      "The engine reads in the cold open: a wish, a beat, then \"Built it.\""
+    ],
+    "didnt": [
+      "Nearly ten minutes is too long for a weekly show"
+    ],
+    "reactions": [
+      "at://did:plc:trialfan/app.bsky.feed.post/f1"
+    ]
+  },
+  "dna": {
+    "keep": [
+      "The Ask and \"Built it.\" in the cold open"
+    ],
+    "change": [
+      {
+        "what": "two segments instead of five",
+        "why": "a trial of the shortest show the format allows"
+      }
+    ],
+    "experiment": {
+      "what": "Cut the episode to two segments and no song",
+      "why": "to see whether the show still reads as itself at its shortest",
+      "success": "the reviewer can name the show's engine from the cold open alone"
+    }
+  },
+  "inherit": [
+    {
+      "from": "001-pilot",
+      "path": "segments/cold-open/script.js",
+      "why": "the pilot's cold open, as a reference for the Ask's timing; nothing is imported from it"
+    }
   ],
-  "guests": [{ "cast": "zed", "handle": "zed.example", "source": "panel", "segment": "chat", "repeatReason": null }],
+  "segments": [
+    {
+      "id": "cold-open",
+      "format": "ask",
+      "seconds": 11,
+      "built": [
+        0,
+        1
+      ],
+      "ask": "at://did:plc:trialasker/app.bsky.feed.post/t1"
+    },
+    {
+      "id": "chat",
+      "format": "panel",
+      "seconds": 11,
+      "built": [
+        1,
+        1
+      ]
+    }
+  ],
+  "guests": [
+    {
+      "cast": "zed",
+      "handle": "zed.example",
+      "source": "panel",
+      "segment": "chat",
+      "repeatReason": null
+    }
+  ],
   "runner": "",
-  "builtShapes": ["plain"],
+  "builtShapes": [
+    "plain"
+  ],
   "descriptor": "a man who is mostly air",
-  "sincere": { "kind": "", "source": null },
+  "sincere": {
+    "kind": "",
+    "source": null
+  },
   "callbacks": [],
-  "cut": [{ "what": "monologue, song and goodnight", "why": "a two-segment pipeline trial" }],
-  "overrides": { "middle-format": "a pipeline trial; the panel is the simplest guest segment to render" }
+  "cut": [
+    {
+      "what": "monologue, song and goodnight",
+      "why": "a two-segment pipeline trial"
+    }
+  ],
+  "overrides": {
+    "middle-format": "a pipeline trial; the panel is the simplest guest segment to render"
+  }
 }

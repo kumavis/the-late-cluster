@@ -5,8 +5,11 @@
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-const readBible = (root, file) => {
-  const f = join(root, 'docs', 'bible', file)
+/** the bible folder: docs/bible/ in the repo, or a copy given with --bible */
+export const bibleDirOf = (root) => join(root, 'docs', 'bible')
+
+const readBible = (bibleDir, file) => {
+  const f = join(bibleDir, file)
   return existsSync(f) ? readFileSync(f, 'utf8') : null
 }
 
@@ -27,8 +30,8 @@ export function section(md, heading, level = 2) {
 }
 
 /** the `## ` headings of the pitch template in 10-process.md, stage 2 */
-export function pitchTemplateSections(root) {
-  const md = readBible(root, '10-process.md')
+export function pitchTemplateSections(bibleDir) {
+  const md = readBible(bibleDir, '10-process.md')
   const stage = md && section(md, 'Stage 2')
   const fence = stage && /```markdown\n([\s\S]*?)```/.exec(stage)?.[1]
   if (!fence) return { error: 'docs/bible/10-process.md has no ```markdown pitch template under "## Stage 2"' }
@@ -40,8 +43,8 @@ export function pitchTemplateSections(root) {
  * The scorecard in 10-process.md: the Part A and Part B row ids, the Part B total needed and the
  * rows that may not score 0 ("Part B totals **15 or more**, with no 0 in B1, B2, B8 or B11").
  */
-export function scorecardSpec(root) {
-  const md = readBible(root, '10-process.md')
+export function scorecardSpec(bibleDir) {
+  const md = readBible(bibleDir, '10-process.md')
   const card = md && section(md, 'The scorecard')
   if (!card) return { error: 'docs/bible/10-process.md has no "## The scorecard" section' }
   const ids = (part) => [...(section(card, `Part ${part}`, 3) ?? '').matchAll(/^\|\s*([AB]\d+)\s*\|/gm)].map((m) => m[1])
@@ -55,8 +58,8 @@ export function scorecardSpec(root) {
 }
 
 /** the reviewer's checklist: the numbered list under "## What the reviewer checks" in 09-real-people.md */
-export function reviewerChecklist(root) {
-  const md = readBible(root, '09-real-people.md')
+export function reviewerChecklist(bibleDir) {
+  const md = readBible(bibleDir, '09-real-people.md')
   const body = md && section(md, 'What the reviewer checks')
   if (!body) return { error: 'docs/bible/09-real-people.md has no "## What the reviewer checks" section' }
   const items = []
@@ -108,4 +111,16 @@ export function planFromLogRow(row) {
     descriptor: row.descriptor,
     sincere: { kind: row.sincere },
   }
+}
+
+/**
+ * The source-comment kinds rule R3 names (`// verbatim: at://…`, `// catchphrase`, …), read from
+ * 09-real-people.md, so the guest-lines gate can say when config/pipeline.json no longer matches.
+ */
+export function r3Tags(bibleDir) {
+  const md = readBible(bibleDir, '09-real-people.md')
+  const body = md && section(md, 'R3', 3)
+  if (!body) return { error: '09-real-people.md has no "### R3" section' }
+  const tags = [...new Set([...body.matchAll(/`\/\/\s*([a-z]+)\b/gi)].map((m) => m[1].toLowerCase()))]
+  return tags.length ? { tags } : { error: 'R3 names no source-comment tags' }
 }

@@ -64,6 +64,16 @@ test('the whole pipeline runs to a pull request with the fixture writer', async 
     for (const re of [/Merging this pull request publishes/, /Trial limits/, /## Risks and open questions/, /This is a fixture/, /## Real accounts and posts used/, /npm run preview/, /- \[ \] Every real account is in sources\.json/, /render\.whisper: whisper is not installed/])
       assert.match(body, re)
     assert.match(lines.at(-1), /done; pull request text in/)
+    // inheritance: exactly the plan's file, copied and recorded
+    assert.ok(existsSync(join(ep.dir, 'production/inherited/001-pilot/segments/cold-open/script.js')))
+    assert.deepEqual(state.stages.pitch.data.inherited.map((x) => `${x.from}/${x.path}`), ['001-pilot/segments/cold-open/script.js'])
+    assert.ok(state.bible.snapshot.constitution['00-constitution.md'] && state.bible.snapshot.dna['03-episode-shape.md'])
+    // the change to the show sits near the top of the pull request
+    const top = body.indexOf('## This pull request also changes the show')
+    assert.ok(top > 0 && top < body.indexOf('## The episode'))
+    for (const re of [/\*\*Retro of 001-pilot\.\*\* Worked: The engine reads/, /Reactions: <https:\/\/bsky\.app\/profile\/fan\.example\/post\/f1>/, /\*\*Experiment:\*\* Cut the episode to two segments/, /Writer's verdict before air: \*\*worked\*\*/, /- `001-pilot\/segments\/cold-open\/script\.js`: the pilot's cold open/, /- `docs\/bible\/03-episode-shape\.md` \(modified\): adds a trial note/, /The constitution is unchanged/])
+      assert.match(body, re)
+    assert.match(readFileSync(join(root, 'docs/bible/03-episode-shape.md'), 'utf8'), /Trial note/)
     assert.match(readFileSync(join(root, 'docs/bible/lore.md'), 'utf8'), /\*\*E-002 Two Segments\*\*/)
     // running again does nothing
     lines.length = 0
@@ -106,6 +116,22 @@ test('a planted violation stops the run; after the fix it resumes where it stopp
     state = loadState(join(ep.dir, 'production', 'state.json'))
     assert.equal(state.stages.write.status, 'done')
     assert.ok(tools.calls.length > pitchCalls)
+  } finally {
+    cleanup(root)
+    cleanup(fx)
+  }
+})
+
+test('touching the constitution fails the self-check, whatever the writer was allowed', async () => {
+  const fx = fixtureCopy()
+  put(fx, 'self-check/bible-append/00-constitution.md', '\n## 7. A new article the writer wrote\n')
+  const { root, lines, run } = setup({ fixture: fx })
+  try {
+    assert.equal(await run({ maxAttempts: 1 }), 1)
+    const out = lines.join('\n')
+    assert.match(out, /gate self-check\.constitution FAIL\n  FAIL 00-constitution\.md is part of the constitution and has changed since this run started/)
+    assert.match(out, /stopped at self-check/)
+    assert.ok(!existsSync(join(findEpisodeForWeek(root, WEEK).dir, 'production/pr-body.md')), 'no pull request text')
   } finally {
     cleanup(root)
     cleanup(fx)
@@ -171,6 +197,23 @@ test('--stage needs earlier stages done; --from resets and redoes', async () => 
     assert.equal(await run({ from: 'direct' }), 0, lines.join('\n'))
     assert.match(lines[0], /stage direct start/)
     assert.ok(lines.some((l) => l.startsWith('stage build start')))
+  } finally {
+    cleanup(root)
+  }
+})
+
+test('--preview-only keeps the episode a draft, builds into preview/ and never into dist/', async () => {
+  const { root, tools, lines, run } = setup()
+  try {
+    assert.equal(await run({ previewOnly: true, stage: 'scaffold' }), 0)
+    assert.equal(await run(), 0, lines.join('\n'))
+    const ep = findEpisodeForWeek(root, WEEK)
+    assert.equal(ep.meta.status, 'draft')
+    assert.ok(tools.calls.some((c) => c[0] === 'build' && c.includes('--preview')))
+    assert.ok(!tools.calls.some((c) => c[0] === 'build' && !c.includes('--preview')))
+    assert.ok(!existsSync(join(root, 'dist/episodes', ep.id)))
+    assert.equal(loadState(join(ep.dir, 'production/state.json')).previewOnly, true)
+    assert.match(readFileSync(join(ep.dir, 'production/pr-body.md'), 'utf8'), /\*\*Preview only\.\*\*/)
   } finally {
     cleanup(root)
   }

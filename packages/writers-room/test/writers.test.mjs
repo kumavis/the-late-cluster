@@ -13,6 +13,9 @@ import { findPost, isOptedOut, loadDigest, postRefs } from '../src/digest.mjs'
 import { episodePaths } from '../src/repo.mjs'
 import { cleanup, fakeRepo, POSTS, WEEK, ID } from './helpers.mjs'
 
+/** a minimal glob for these tests: ** any depth, * one segment */
+const matches = (pattern, path) => new RegExp('^' + pattern.replace(/[.+^${}()|[\]\\]/g, '\\$&').replace(/\*\*/g, '\0').replace(/\*/g, '[^/]*').replace(/\0/g, '.*') + '$').test(path)
+
 const { config } = loadConfig()
 
 test('buildPrompt: run values, scope, check command, feedback, then the playbooks', () => {
@@ -48,7 +51,7 @@ test('claudeArgs: headless, dontAsk, restricted tools, model and budgets, variad
   assert.equal(at('--output-format'), 'json')
   assert.equal(at('--permission-mode'), 'dontAsk')
   assert.equal(at('--setting-sources'), 'project')
-  assert.equal(at('--tools'), 'Read,Glob,Grep,Edit,Write,Bash')
+  assert.equal(at('--tools'), 'Read,Edit,Write,Bash', 'no Glob or Grep: Read deny rules do not stop a search from above')
   assert.equal(at('--max-turns'), '200')
   assert.equal(at('--max-budget-usd'), '25')
   for (const f of ['--strict-mcp-config', '--disable-slash-commands', '--no-session-persistence']) assert.ok(a.includes(f), f)
@@ -59,18 +62,54 @@ test('claudeArgs: headless, dontAsk, restricted tools, model and budgets, variad
 
 test('permissions: each stage edits only its files and runs only its commands; git, network, bot, build denied', () => {
   const w = permissions({ stage: 'write', id: ID, week: WEEK })
-  assert.ok(w.allow.includes(`Edit(episodes/${ID}/segments/**/script.js)`))
+  assert.ok(w.allow.includes(`Edit(episodes/${ID}/segments/**)`))
   assert.ok(w.allow.includes(`Bash(npm run render -- ${ID} *)`))
-  assert.ok(!w.allow.some((r) => /index\.js|lore\.md|Bash\(git|npm run build|npm run bot/.test(r)))
-  for (const d of ['Bash(git *)', 'Bash(gh *)', 'Bash(npm run bot *)', 'Bash(npm run build *)', 'WebFetch', 'WebSearch', 'Bash(curl *)', `Edit(episodes/${ID}/production/state.json)`, 'Edit(episodes/001-pilot/**)']) assert.ok(w.deny.includes(d), d)
+  assert.ok(!w.allow.some((r) => /docs\/bible|Bash\(git|npm run build|npm run bot|Glob|Grep/.test(r)))
+  for (const d of ['Bash(git *)', 'Bash(gh *)', 'Bash(npm run bot *)', 'Bash(npm run build *)', 'WebFetch', 'WebSearch', 'Bash(curl *)', `Edit(episodes/${ID}/production/state.json)`, `Edit(episodes/${ID}/production/inherited/**)`, 'Read(.secrets)']) assert.ok(w.deny.includes(d), d)
   const d = permissions({ stage: 'direct', id: ID, week: WEEK })
-  assert.ok(d.allow.includes(`Edit(episodes/${ID}/segments/**/index.js)`) && !d.allow.some((r) => /script\.js|sources\.json/.test(r)))
+  assert.ok(d.allow.includes(`Edit(episodes/${ID}/segments/**)`) && d.deny.includes(`Edit(episodes/${ID}/segments/**/script.js)`), 'direct may add helpers but not touch scripts')
+  assert.ok(!d.allow.some((r) => /sources\.json/.test(r)))
   assert.ok(d.allow.includes(`Bash(npm run shoot -- ${ID} *)`))
-  const s = permissions({ stage: 'self-check', id: ID, week: WEEK })
-  assert.ok(s.allow.includes('Edit(docs/bible/lore.md)') && s.allow.includes(`Edit(episodes/${ID}/production/scorecard.md)`))
-  assert.ok(!s.deny.some((r) => r.includes('docs/')), 'a deny on docs/ would beat the lore allow')
   const p = permissions({ stage: 'pitch', id: ID, week: WEEK })
   assert.ok(!p.allow.some((r) => r.startsWith('Bash(npm run render')))
+})
+
+test('permissions: no other episode, no build, in every creative stage; its own episode stays readable', () => {
+  const others = ['001-pilot', '003-later', '004-even-later']
+  for (const stage of ['pitch', 'write', 'direct', 'self-check']) {
+    const { allow, deny } = permissions({ stage, id: ID, week: WEEK, others })
+    for (const o of others) for (const r of [`Read(episodes/${o}/**)`, `Edit(episodes/${o}/**)`, `Read(shots/${o}/**)`, `Read(preview/${o}/**)`]) assert.ok(deny.includes(r), `${stage}: ${r}`)
+    for (const r of ['Read(dist/episodes/**)', 'Read(preview/**)', 'Read(video/**)']) assert.ok(deny.includes(r), `${stage}: ${r}`)
+    // shell readers and searchers cannot route around the Read rules
+    for (const c of ['grep', 'rg', 'find', 'cat', 'head', 'awk', 'diff', 'xargs']) assert.ok(deny.includes(`Bash(${c} *)`) && deny.includes(`Bash(${c})`), `${stage}: ${c}`)
+    assert.ok(deny.includes('Bash(ls -*R*)'))
+    // nothing denies its own episode, its inherited copies, the studio, the bible or the digest
+    const own = [`episodes/${ID}/production/inherited/001-pilot/segments/cold-open/script.js`, `episodes/${ID}/production/plan.json`, 'packages/show/reference/segments/demo/index.js', 'docs/bible/03-episode-shape.md', `data/weeks/${WEEK}/digest.json`, 'packages/writers-room/playbooks/write.md']
+    for (const f of own) assert.ok(!deny.some((r) => r.startsWith('Read(') && matches(r.slice(5, -1), f)), `${stage}: ${f} is readable`)
+    assert.ok(allow.includes('Read'))
+  }
+})
+
+test('permissions: the self-check may amend the DNA and never the constitution', () => {
+  const s = permissions({ stage: 'self-check', id: ID, week: WEEK, bible: 'docs/bible', constitution: ['00-constitution.md', '09-real-people.md'] })
+  assert.ok(s.allow.includes('Edit(docs/bible/**)') && s.allow.includes(`Edit(episodes/${ID}/production/dna-amendments.md)`))
+  assert.ok(s.deny.includes('Edit(docs/bible/00-constitution.md)') && s.deny.includes('Edit(docs/bible/09-real-people.md)'), 'deny wins over the bible allow')
+  for (const stage of ['pitch', 'write', 'direct']) {
+    const p = permissions({ stage, id: ID, week: WEEK })
+    assert.ok(!p.allow.some((r) => r.includes('docs/bible')), `${stage} cannot edit the bible`)
+    assert.ok(p.deny.includes('Edit(docs/bible/00-constitution.md)'))
+  }
+  const trial = permissions({ stage: 'self-check', id: ID, week: WEEK, bible: '../tmp/bible', lore: '../tmp/bible/lore.md' })
+  assert.ok(trial.allow.includes('Edit(../tmp/bible/**)') && trial.deny.includes('Edit(../tmp/bible/09-real-people.md)'))
+})
+
+test('buildPrompt states the reading rule and the inheritance for any writer, the manual one included', () => {
+  const p = buildPrompt({ stage: 'direct', id: ID, week: WEEK, number: '002', digestDir: 'x', limits: {}, others: ['001-pilot'], inherited: ['production/inherited/001-pilot/segments/cold-open/index.js'] })
+  assert.match(p, /Do not read any other episode \(`episodes\/001-pilot\/`\), any build in `dist\/episodes\/`/)
+  assert.match(p, /carries forward `production\/inherited\/001-pilot\/segments\/cold-open\/index\.js`/)
+  assert.match(p, /The constitution \(`docs\/bible\/00-constitution\.md` and `docs\/bible\/09-real-people\.md`\) is the owner's/)
+  assert.match(buildPrompt({ stage: 'pitch', id: ID, week: WEEK, number: '002', digestDir: 'x', limits: {} }), /carries nothing forward/)
+  for (const stage of ['pitch', 'write', 'direct', 'self-check']) assert.ok(!/episodes\/001-pilot\/segments/.test(buildPrompt({ stage, id: ID, week: WEEK, number: '002', digestDir: 'x', limits: {} })), `${stage} playbook points at the pilot`)
 })
 
 test('claudeWriter: passes the prompt on stdin, records cost, maps failures', async () => {

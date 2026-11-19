@@ -4,6 +4,13 @@
   "week": "2026-W46",
   "title": "Pilot",
   "description": "The first episode: Larry Nx sizes up a week in the simcluster where every joke gets built, with the weather from Samantha, the Top Chicken standings, a round of Built or Bit?, norvid and Abel on the panel, and a song from Hy Oid & The Formants.",
+  "retro": null,
+  "dna": {
+    "keep": [],
+    "change": [],
+    "experiment": { "what": "the show itself (the formation)", "why": "the first episode: nothing came before it to keep or to change", "success": "that people want another" }
+  },
+  "inherit": [],
   "question": "What is the simcluster?",
   "segments": [
     { "id": "cold-open", "format": "ask", "seconds": 55, "built": [0, 1] },
@@ -27,5 +34,5 @@
   "sincere": { "kind": "belonging", "source": "https://bsky.app/profile/shimmermathlabs.com/post/3mys3uefthc23" },
   "callbacks": [],
   "cut": [],
-  "$comment": "Written after the fact by the pipeline's author, from the pilot's segments and the rotation log in docs/bible/lore.md, so the freshness checks have a first episode to compare with. Seconds are the rendered durations, rounded."
+  "$comment": "Written after the fact by the pipeline's author, from the pilot's segments, the rotation log and the experiment log in docs/bible/lore.md, so the freshness and experiment checks have a first episode to compare with. Seconds are the rendered durations, rounded. The pilot had no retro (nothing came before it) and inherits nothing; its experiment is the show itself, in the experiment log's words."
 }

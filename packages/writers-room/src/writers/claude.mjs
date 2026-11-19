@@ -6,9 +6,14 @@
 //   --model <id>                    model-config.md: an alias or a full model name
 //   --output-format json            headless.md: one JSON result (result, session_id, total_cost_usd)
 //   --permission-mode dontAsk       permission-modes.md: anything not allowed is denied, never prompted
-//   --tools <list>                  cli-reference.md: the built-in tools that exist at all
+//   --tools <list>                  cli-reference.md: the built-in tools that exist at all (no Glob or
+//                                   Grep: permissions.md says Read deny rules apply to them only as a
+//                                   best effort, and not to a search started above a denied folder)
 //   --allowedTools <rules…>         permissions.md: rules that are allowed without asking
-//   --disallowedTools <rules…>      permissions.md: deny rules, which win over allow rules
+//   --disallowedTools <rules…>      permissions.md: deny rules, which win over allow rules. Read(path)
+//                                   deny rules cover the Read tool and the file commands Claude Code
+//                                   recognises in Bash (cat, head, tail, sed, tee) and redirections;
+//                                   other shell readers and searchers are denied by name below
 //   --setting-sources project       cli-reference.md: ignore user and local settings (their allow rules)
 //   --strict-mcp-config             cli-reference.md: no MCP servers unless given with --mcp-config
 //   --disable-slash-commands        cli-reference.md: no skills or custom commands
@@ -22,22 +27,30 @@ import { mkdirSync, writeFileSync, appendFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { spawnSync } from 'node:child_process'
 
-/** the permission rules for a stage: what the headless writer may edit and run */
-export function permissions({ stage, id, week, lore = 'docs/bible/lore.md' }) {
+/** Bash commands that print or search file contents, denied so the Read deny rules cannot be routed around */
+export const READ_COMMANDS = ['cat', 'head', 'tail', 'less', 'more', 'grep', 'egrep', 'fgrep', 'rg', 'ag', 'ack', 'find', 'tree', 'du', 'diff', 'cmp', 'od', 'xxd', 'hexdump', 'strings', 'awk', 'sed', 'sort', 'uniq', 'cut', 'nl', 'wc', 'jq', 'file', 'stat', 'xargs']
+
+/**
+ * The permission rules for a stage: what the headless writer may edit and run, and what it may not
+ * read. `others` are the other episodes' ids (it may read none of them, nor any build); `bible` is
+ * the bible folder and `constitution` its constitution files (never editable; the self-check may
+ * amend the rest of the bible, the DNA).
+ */
+export function permissions({ stage, id, week, lore = 'docs/bible/lore.md', bible = 'docs/bible', constitution = ['00-constitution.md', '09-real-people.md'], others = [] }) {
   const ep = `episodes/${id}`
-  const edit = (p) => [`Edit(${p})`, `Write(${p})`]
+  const edit = (p) => [`Edit(${p})`]
   const check = `Bash(npm run produce -- --week ${week} --check ${stage})`
-  const allow = ['Read', 'Glob', 'Grep', check]
+  const allow = ['Read', 'Bash(ls)', 'Bash(ls *)', check]
   if (stage === 'pitch') allow.push(...edit(`${ep}/production/pitch.md`), ...edit(`${ep}/production/plan.json`), ...edit(`${ep}/episode.json`))
   if (stage === 'write') {
-    allow.push(...edit(`${ep}/segments/**/script.js`), ...edit(`${ep}/cast.js`), ...edit(`${ep}/looks.js`), ...edit(`${ep}/episode.json`), ...edit(`${ep}/production/sources.json`), ...edit(`${ep}/production/intelligibility.json`), ...edit(`${ep}/production/pitch.md`), ...edit(`${ep}/production/plan.json`))
+    allow.push(...edit(`${ep}/segments/**`), ...edit(`${ep}/cast.js`), ...edit(`${ep}/looks.js`), ...edit(`${ep}/episode.json`), ...edit(`${ep}/production/sources.json`), ...edit(`${ep}/production/intelligibility.json`), ...edit(`${ep}/production/pitch.md`), ...edit(`${ep}/production/plan.json`))
     allow.push(`Bash(npm run segment:new -- ${id} *)`, `Bash(npm run render -- ${id} *)`, `Bash(npm run check -- ${id} *)`, `Bash(npm run check -- ${id})`, `Bash(bun packages/show/tools/analyze.ts whisper ${id} *)`)
   }
   if (stage === 'direct') {
-    allow.push(...edit(`${ep}/segments/**/index.js`), ...edit(`${ep}/looks.js`), ...edit(`${ep}/production/thumbnail.txt`))
+    allow.push(...edit(`${ep}/segments/**`), ...edit(`${ep}/looks.js`), ...edit(`${ep}/production/thumbnail.txt`))
     allow.push(`Bash(npm run shoot -- ${id} *)`, `Bash(npm run check -- ${id} *)`, `Bash(npm run check -- ${id})`)
   }
-  if (stage === 'self-check') allow.push(...edit(`${ep}/production/scorecard.md`), ...edit(lore), `Bash(npm run check -- ${id})`, `Bash(npm run verify)`)
+  if (stage === 'self-check') allow.push(...edit(`${ep}/production/scorecard.md`), ...edit(`${ep}/production/dna-amendments.md`), ...edit(`${bible}/**`), ...edit(lore), `Bash(npm run check -- ${id})`, `Bash(npm run verify)`)
   const deny = [
     'WebFetch',
     'WebSearch',
@@ -52,9 +65,22 @@ export function permissions({ stage, id, week, lore = 'docs/bible/lore.md' }) {
     'Bash(npm run build *)',
     'Bash(npm run scrape *)',
     'Bash(node packages/bot/*)',
+    // inheritance is a decision: no other episode, no build, no preview, no other episode's frames
+    ...others.flatMap((o) => [`Read(episodes/${o}/**)`, `Edit(episodes/${o}/**)`, `Read(shots/${o}/**)`, `Read(preview/${o}/**)`]),
+    'Read(dist/episodes/**)',
+    'Read(preview/**)',
+    'Read(video/**)',
+    'Read(.secrets)',
+    'Read(.env*)',
+    // the Read tool is the way to read; shell readers and searchers would bypass the rules above
+    ...READ_COMMANDS.flatMap((c) => [`Bash(${c})`, `Bash(${c} *)`]),
+    'Bash(ls -*R*)',
+    // the constitution belongs to the owner
+    ...constitution.flatMap((f) => edit(`${bible}/${f}`)),
     ...edit(`${ep}/production/state.json`),
+    ...edit(`${ep}/production/inherited/**`),
     ...edit(`${ep}/segments/**/cues.json`),
-    ...edit('episodes/001-pilot/**'),
+    ...(stage === 'direct' ? edit(`${ep}/segments/**/script.js`) : []),
     ...edit('dist/**'),
     ...edit('packages/**'),
     ...edit('scripts/**'),
@@ -65,8 +91,8 @@ export function permissions({ stage, id, week, lore = 'docs/bible/lore.md' }) {
 }
 
 /** the claude command line for a stage (the prompt goes on stdin) */
-export function claudeArgs({ stage, id, week, model, maxTurns, maxBudgetUsd, lore, extra = [] }) {
-  const { allow, deny } = permissions({ stage, id, week, lore })
+export function claudeArgs({ stage, id, week, model, maxTurns, maxBudgetUsd, lore, bible, constitution, others, extra = [] }) {
+  const { allow, deny } = permissions({ stage, id, week, lore, bible, constitution, others })
   return [
     '-p',
     '--model', model,
@@ -76,7 +102,8 @@ export function claudeArgs({ stage, id, week, model, maxTurns, maxBudgetUsd, lor
     '--strict-mcp-config',
     '--disable-slash-commands',
     '--no-session-persistence',
-    '--tools', 'Read,Glob,Grep,Edit,Write,Bash',
+    // no Glob or Grep: a search from a folder above an episode is not stopped by Read deny rules
+    '--tools', 'Read,Edit,Write,Bash',
     ...(maxTurns ? ['--max-turns', String(maxTurns)] : []),
     ...(maxBudgetUsd ? ['--max-budget-usd', String(maxBudgetUsd)] : []),
     ...extra,
@@ -93,9 +120,9 @@ export function claudeWriter({ config, model, print = console.log, spawn = spawn
   return {
     name: 'claude',
     model: chosen,
-    async run({ stage, prompt, root, id, week, paths, loreRel }) {
+    async run({ stage, prompt, root, id, week, paths, loreRel, bibleRel, constitution, others = [] }) {
       const s = c.stages[stage] ?? {}
-      const args = claudeArgs({ stage, id, week, model: chosen, maxTurns: s.maxTurns, maxBudgetUsd: s.maxBudgetUsd, lore: loreRel, extra })
+      const args = claudeArgs({ stage, id, week, model: chosen, maxTurns: s.maxTurns, maxBudgetUsd: s.maxBudgetUsd, lore: loreRel, bible: bibleRel, constitution, others, extra })
       mkdirSync(join(paths.work, 'prompts'), { recursive: true })
       writeFileSync(join(paths.work, 'prompts', `${stage}.md`), prompt)
       print(`claude ${stage}: ${c.command} -p --model ${chosen} (turns ${s.maxTurns ?? '-'}, budget $${s.maxBudgetUsd ?? '-'}); prompt ${paths.rel(join(paths.work, 'prompts', `${stage}.md`))}`)

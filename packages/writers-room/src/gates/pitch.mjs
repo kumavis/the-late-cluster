@@ -46,7 +46,7 @@ export async function pitchDocument(ctx) {
     if (Number(head[1]) !== ctx.paths.number) g.fail(`pitch.md: the heading says episode ${head[1]}, but this is episode ${String(ctx.paths.number).padStart(3, '0')}`)
     if (head[3] !== ctx.week) g.fail(`pitch.md: the heading says week ${head[3]}, but this run is for ${ctx.week}`)
   }
-  const tpl = pitchTemplateSections(ctx.root)
+  const tpl = pitchTemplateSections(ctx.bibleDir)
   if (tpl.error) g.warn(`${tpl.error}; checking the fallback section list in config/pipeline.json instead`)
   const want = tpl.sections ?? ctx.config.pitchSections.fallback
   const secs = sections(md)
@@ -129,7 +129,7 @@ export async function pitchPlan(ctx) {
   }
   if (segs.length && segs[0].built && segs[0].built[0] !== 0) g.fail('plan.json: the BUILT counter starts at 0 every episode (bible 03)')
   const max = ctx.limits.runtimeSeconds?.max
-  if (max && total > max) g.fail(`plan.json: the segments add up to ${total} s, over the ${max} s ceiling (bible 03: about five minutes, shorter is fine); cut what is least interesting`)
+  if (max && total > max) g.fail(`plan.json: the segments add up to ${total} s, over the ${max} s ceiling (the owner's: under ten minutes; there is no minimum); cut what is least interesting`)
   for (const [k, gst] of (p.guests ?? []).entries()) {
     const where = `plan.json guests[${k}]`
     if (!gst?.cast) g.fail(`${where}: "cast" must be the cast id the guest is played as`)

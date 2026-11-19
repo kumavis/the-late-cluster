@@ -197,6 +197,15 @@ export function scriptLines(src) {
  *   // invented               (a fictional guest on .example only)
  */
 export function sourceTag(comments) {
+  const tag = baseTag(comments)
+  // bible 09, R3: a tag may carry its context, `· context: at://…` (the post it answered, the root of
+  // its thread, or for a catchphrase a post where the author uses it that way)
+  const ctx = /\bcontext\s*:\s*(at:\/\/[^\s·;|]+|https?:\/\/bsky\.app\/[^\s·;|]+)/i.exec(comments.join(' '))
+  if (tag && ctx) tag.context = ctx[1].replace(/[.,)]+$/, '')
+  return tag
+}
+
+function baseTag(comments) {
   for (const c of comments) {
     for (const part of c.split(/\s*[·;|]\s*|\s{2,}/)) {
       let m
@@ -209,7 +218,7 @@ export function sourceTag(comments) {
   // also accept the tag anywhere in a comment, as the bible writes it inline
   const all = comments.join(' ')
   let m
-  if ((m = /(verbatim|interview)\s*:\s*(at:\/\/\S+|https?:\/\/bsky\.app\/\S+)/i.exec(all))) return { kind: m[1].toLowerCase(), ref: m[2].replace(/[.,)]+$/, '') }
+  if ((m = /(verbatim|interview)\s*:\s*(at:\/\/[^\s·;|]+|https?:\/\/bsky\.app\/[^\s·;|]+)/i.exec(all))) return { kind: m[1].toLowerCase(), ref: m[2].replace(/[.,)]+$/, '') }
   if (/\bcatchphrase\b/i.test(all)) return { kind: 'catchphrase', phrase: /catchphrase\s*:?\s*["“](.+?)["”]/i.exec(all)?.[1] ?? null }
   if ((m = /pastiche of\s+["“](.+?)["”]/i.exec(all))) return { kind: 'pastiche', format: m[1] }
   return null

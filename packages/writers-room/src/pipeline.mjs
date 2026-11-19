@@ -14,14 +14,26 @@ import { DIRECT_GATES } from './gates/direct.mjs'
 import { PITCH_GATES } from './gates/pitch.mjs'
 import { RENDER_GATES } from './gates/render.mjs'
 import { WRITE_GATES } from './gates/write.mjs'
+import { constitutionUnchanged, episodeImports, inheritConsistent, pitchDna, pitchInherit, pitchRetro, selfCheckDna } from './gates/dna.mjs'
+import { bibleSnapshot } from './dna.mjs'
+import { copyInherited, removeInherited } from './inherit.mjs'
 import { writePr } from './pr.mjs'
 import { buildPrompt } from './prompt.mjs'
-import { checkWeek, episodePaths, findEpisodeForWeek, formatEpisodeJson, PKG, ProduceError, readJson, rel, weekSlug } from './repo.mjs'
+import { checkWeek, episodePaths, findEpisodeForWeek, formatEpisodeJson, listEpisodes, PKG, ProduceError, readJson, rel, weekSlug } from './repo.mjs'
 import { CREATIVE, loadState, newState, nextStage, resetFrom, saveState, STAGES } from './state.mjs'
 import { makeTools } from './tools.mjs'
 import { makeWriter } from './writers/index.mjs'
 
-export const GATES = { pitch: PITCH_GATES, write: WRITE_GATES, render: RENDER_GATES, direct: DIRECT_GATES, 'self-check': SELF_CHECK_GATES, build: [buildThumbnail] }
+/** a shared gate under a stage's name (pitch.constitution, write.imports, …) */
+const as = (fn, name) => Object.defineProperty((ctx) => fn(ctx, name), 'name', { value: name })
+export const GATES = {
+  pitch: [...PITCH_GATES, pitchRetro, pitchDna, pitchInherit, as(constitutionUnchanged, 'pitch.constitution')],
+  write: [...WRITE_GATES, as(inheritConsistent, 'write.inherit'), as(episodeImports, 'write.imports'), as(constitutionUnchanged, 'write.constitution')],
+  render: RENDER_GATES,
+  direct: [...DIRECT_GATES, as(inheritConsistent, 'direct.inherit'), as(episodeImports, 'direct.imports'), as(constitutionUnchanged, 'direct.constitution')],
+  build: [buildThumbnail],
+  'self-check': [...SELF_CHECK_GATES, selfCheckDna, as(constitutionUnchanged, 'self-check.constitution')],
+}
 
 export function loadConfig({ limitsFile } = {}) {
   const config = readJson(join(PKG, 'config', 'pipeline.json'))
@@ -72,11 +84,12 @@ export async function produce(o) {
   if (o.status) return printStatus({ print, week, found, state })
 
   const digestDir = resolve(root, o.digest ?? state?.digest ?? join('data', 'weeks', week))
-  const loreFile = resolve(root, o.lore ?? state?.lore ?? join('docs', 'bible', 'lore.md'))
+  const bibleDir = resolve(root, o.bible ?? state?.bible?.dir ?? join('docs', 'bible'))
+  const loreFile = resolve(root, o.lore ?? state?.lore ?? join(bibleDir, 'lore.md'))
   const logDir = () => (paths ? join(paths.work, 'logs') : null)
   const tools = o.tools ?? makeTools({ root, logDir: logDir() })
   const ctxFor = async () => {
-    const ctx = await loadContext({ root, id: paths.id, week, digestDir, config, limits: state?.limits && state.limits !== 'default' ? { ...config.limits, ...state.limits } : config.limits, tools, network: Boolean(o.network), loreFile })
+    const ctx = await loadContext({ root, id: paths.id, week, digestDir, bibleDir, bibleSnapshot: state?.bible?.snapshot, config, limits: state?.limits && state.limits !== 'default' ? { ...config.limits, ...state.limits } : config.limits, tools, network: Boolean(o.network), loreFile })
     ctx.loreIdsBefore = state?.stages?.['self-check']?.data?.loreIdsBefore
     return ctx
   }
@@ -113,7 +126,9 @@ export async function produce(o) {
     found = findEpisodeForWeek(root, week)
     paths = episodePaths(root, found.id)
     state = newState({ week, episode: found.id, digest: rel(root, digestDir), limits: custom ?? 'default' })
-    if (loreFile !== resolve(root, 'docs/bible/lore.md')) state.lore = rel(root, loreFile)
+    if (loreFile !== join(bibleDir, 'lore.md')) state.lore = rel(root, loreFile)
+    state.bible = { dir: rel(root, bibleDir), snapshot: bibleSnapshot(bibleDir, config.constitution) }
+    if (o.previewOnly) state.previewOnly = true
     state.stages.scrape = { status: 'done', attempts: 0, note: o.digest ? `digest from ${rel(root, digestDir)}` : undefined }
     state.stages.scaffold = { status: 'done', attempts: 0, note: `npm run episode:new created ${found.id}` }
     saveState(paths.state, state)
@@ -125,10 +140,14 @@ export async function produce(o) {
     state = newState({ week, episode: found.id, digest: rel(root, digestDir), limits: custom ?? 'default' })
     state.stages.scrape.status = existsSync(join(digestDir, 'digest.json')) ? 'done' : 'pending'
     state.stages.scaffold = { status: 'done', attempts: 0, note: 'adopted an existing episode folder' }
+    state.bible = { dir: rel(root, bibleDir), snapshot: bibleSnapshot(bibleDir, config.constitution) }
   }
+  if (!state.bible) state.bible = { dir: rel(root, bibleDir), snapshot: bibleSnapshot(bibleDir, config.constitution) }
+  if (o.bible && state.bible.dir !== rel(root, bibleDir)) state.bible = { dir: rel(root, bibleDir), snapshot: bibleSnapshot(bibleDir, config.constitution) }
   if (custom && JSON.stringify(state.limits) !== JSON.stringify(custom)) state.limits = custom
   if (o.digest) state.digest = rel(root, digestDir)
   if (o.lore) state.lore = rel(root, loreFile)
+  if (o.previewOnly) state.previewOnly = true
   const save = () => saveState(paths.state, state)
 
   // which stages to run
@@ -137,6 +156,7 @@ export async function produce(o) {
     if (!STAGES.includes(o.from)) throw new ProduceError(`--from takes one of ${STAGES.join(', ')}`, 2)
     resetFrom(state, o.from)
     if (STAGES.indexOf(o.from) <= STAGES.indexOf('build')) setStatus(paths, 'draft')
+    if (STAGES.indexOf(o.from) <= STAGES.indexOf('pitch')) removeInherited(paths.dir)
     todo = STAGES.slice(STAGES.indexOf(o.from))
   } else if (o.stage) {
     if (!STAGES.includes(o.stage)) throw new ProduceError(`--stage takes one of ${STAGES.join(', ')}`, 2)
@@ -156,7 +176,7 @@ export async function produce(o) {
 
   let writer = null
   const getWriter = () => (writer ??= o.writerImpl ?? makeWriter(o.writer ?? 'claude', { config, model: o.model, dir: o.fixture && resolve(o.fixture), print }))
-  const env = { root, week, paths, config, state, print, tools, maxAttempts, loreFile, digestDir, ctxFor, getWriter, save }
+  const env = { root, week, paths, config, state, print, tools, maxAttempts, loreFile, bibleDir, digestDir, ctxFor, getWriter, save }
 
   for (const name of todo) {
     if (['scrape', 'scaffold'].includes(name) && state.stages[name].status !== 'pending') continue
@@ -197,7 +217,7 @@ const brief = (results) => results.map((r) => ({ name: r.name, ok: r.ok, skipped
 
 /** a creative stage: (gates if a person had it) → writer → gates, retried with the failures */
 async function creative(env, stage, { feedbackFrom = null } = {}) {
-  const { state, print, maxAttempts, paths, week, root, loreFile } = env
+  const { state, print, maxAttempts, paths, week, root, loreFile, config } = env
   const st = state.stages[stage]
   let attempts = st.attempts ?? 0
   let feedback = feedbackFrom ?? []
@@ -216,9 +236,9 @@ async function creative(env, stage, { feedbackFrom = null } = {}) {
     state.stages[stage] = { ...state.stages[stage], status: 'running', attempts }
     env.save()
     const ctx = await env.ctxFor()
-    const prompt = buildPrompt({ stage, id: paths.id, week, number: String(paths.number).padStart(3, '0'), title: ctx.meta.title, digestDir: rel(root, ctx.digestDir), limits: ctx.limits, limitsAreDefault: state.limits === 'default', attempt: k + 1, maxAttempts, feedback, lore: rel(root, loreFile) })
+    const prompt = buildPrompt({ stage, id: paths.id, week, number: String(paths.number).padStart(3, '0'), title: ctx.meta.title, digestDir: rel(root, ctx.digestDir), limits: ctx.limits, limitsAreDefault: state.limits === 'default', attempt: k + 1, maxAttempts, feedback, lore: rel(root, loreFile), bible: rel(root, env.bibleDir), constitution: config.constitution, others: otherEpisodes(root, paths.id), inherited: inheritedList(state) })
     print(`stage ${stage} attempt ${attempts} writer=${env.getWriter().name}${feedback.length ? ` (${feedback.length} failures to fix)` : ''}`)
-    const w = await env.getWriter().run({ stage, prompt, root, id: paths.id, week, paths, attempt: attempts, feedback, loreFile, loreRel: rel(root, loreFile) })
+    const w = await env.getWriter().run({ stage, prompt, root, id: paths.id, week, paths, attempt: attempts, feedback, loreFile, loreRel: rel(root, loreFile), bibleDir: env.bibleDir, bibleRel: rel(root, env.bibleDir), constitution: config.constitution, others: otherEpisodes(root, paths.id) })
     if (w.status === 'waiting') return { status: 'waiting', attempts, note: w.detail }
     const g = await runGates(await env.ctxFor(), GATES[stage], print)
     if (g.ok) return finish(env, stage, { status: 'done', attempts, gates: brief(g.results), ...(w.status === 'failed' ? { note: `the writer reported: ${w.detail}; the gates passed anyway` } : {}) })
@@ -230,10 +250,17 @@ async function creative(env, stage, { feedbackFrom = null } = {}) {
   return { status: 'failed', attempts, gates: state.stages[stage].gates, note: `the gates still fail after ${maxAttempts} attempts; the failures are above and in production/state.json` }
 }
 
-/** after a pitch passes: the plan's title and description go into episode.json */
+/** every episode folder but this one: what the writer may not read */
+export const otherEpisodes = (root, id) => listEpisodes(root).map((e) => e.id).filter((x) => x !== id)
+const inheritedList = (state) => (state.stages.pitch?.data?.inherited ?? []).map((e) => `production/inherited/${e.from}/${e.path}`)
+
+/** after a pitch passes: the plan's title and description go into episode.json; inherited files are copied */
 async function finish(env, stage, result) {
   if (stage === 'pitch') {
     const plan = readJson(env.paths.plan)
+    const inherited = copyInherited(env.root, env.paths.dir, plan)
+    result.data = { ...(env.state.stages.pitch.data ?? {}), inherited }
+    for (const e of inherited) env.print(`  inherited ${e.from}/${e.path} → production/inherited/${e.from}/${e.path}`)
     const meta = JSON.parse(readFileSync(env.paths.episodeJson, 'utf8'))
     let changed = false
     if (plan.title && meta.title !== plan.title) (meta.title = plan.title), (changed = true)
@@ -294,14 +321,22 @@ async function buildStage(env) {
   results.push(t)
   print(`gate ${t.name} ${t.ok ? 'ok' : 'FAIL'}`)
   if (!t.ok) return { status: 'failed', gates: results, note: t.failures.join('; ') }
-  setStatus(paths, 'published')
-  print(`stage build run: npm run build -- ${paths.id}`)
-  const b = tools.npm('build', [paths.id])
-  if (!step('build.build', b, b.code === 0 && /^built /m.test(b.out))) {
-    setStatus(paths, 'draft')
-    return { status: 'failed', gates: results, note: 'the build failed; the episode is back to draft' }
+  if (env.state.previewOnly) {
+    // a trial that must stay unpublished: a draft built into preview/<id>/ (gitignored), never dist/
+    print(`stage build run: npm run build -- ${paths.id} --preview  (preview only: the episode stays a draft)`)
+    const b = tools.npm('build', [paths.id, '--preview'])
+    if (!step('build.preview', b, b.code === 0 && /^built /m.test(b.out))) return { status: 'failed', gates: results, note: 'the preview build failed' }
+    print(`  ${/^built .*$/m.exec(b.out)[0]}`)
+  } else {
+    setStatus(paths, 'published')
+    print(`stage build run: npm run build -- ${paths.id}`)
+    const b = tools.npm('build', [paths.id])
+    if (!step('build.build', b, b.code === 0 && /^built /m.test(b.out))) {
+      setStatus(paths, 'draft')
+      return { status: 'failed', gates: results, note: 'the build failed; the episode is back to draft' }
+    }
+    print(`  ${/^built .*$/m.exec(b.out)[0]}`)
   }
-  print(`  ${/^built .*$/m.exec(b.out)[0]}`)
   print('stage build run: npm run verify')
   const v = tools.npm('verify', [])
   if (!step('build.verify', v)) return { status: 'failed', gates: results }

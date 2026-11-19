@@ -3,10 +3,12 @@
 //
 // Runs the whole pipeline end to end with the fixture writer and the real tools on this machine
 // (scaffold, render, check, Whisper if installed, shoot, thumbnail, build, verify): a two-segment
-// trial episode from an invented digest, with trial limits, appending to a scratch copy of the lore
-// file. Then removes every trace (the episode, its build, preview, frames and Whisper scratch)
-// unless --keep. Needs bun, ffmpeg and Playwright's Chromium. Exit code: the pipeline's.
-import { copyFileSync, existsSync, mkdtempSync, readdirSync, rmSync } from 'node:fs'
+// trial episode from an invented digest, with trial limits, a retro, an experiment, one inherited
+// file and one DNA amendment. The bible it reads and amends is a scratch copy of docs/bible/
+// (--bible), so the real one is never written. Then removes every trace (the episode, its build,
+// preview, frames and Whisper scratch) unless --keep. Needs bun, ffmpeg and Playwright's Chromium.
+// Exit code: the pipeline's.
+import { cpSync, existsSync, mkdtempSync, readdirSync, rmSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { produce } from '../src/pipeline.mjs'
@@ -24,13 +26,13 @@ if (findEpisodeForWeek(REPO, week) && !extra.from && !argv.includes('--resume'))
   process.exit(1)
 }
 const scratch = mkdtempSync(join(tmpdir(), 'writers-room-self-test-'))
-const lore = join(scratch, 'lore.md')
-copyFileSync(join(REPO, 'docs', 'bible', 'lore.md'), lore)
-console.log(`self-test ${week}: fixture ${fixture}; lore copy ${lore}`)
+const bible = join(scratch, 'bible')
+cpSync(join(REPO, 'docs', 'bible'), bible, { recursive: true })
+console.log(`self-test ${week}: fixture ${fixture}; bible copy ${bible}`)
 
 let code = 1
 try {
-  code = await produce({ root: REPO, week, writer: 'fixture', fixture, digest: join(fixture, 'digest'), limits: join(fixture, 'limits.json'), lore, ...extra })
+  code = await produce({ root: REPO, week, writer: 'fixture', fixture, digest: join(fixture, 'digest'), limits: join(fixture, 'limits.json'), bible, ...extra })
 } finally {
   const ep = findEpisodeForWeek(REPO, week)
   if (ep && !keep) {
@@ -44,7 +46,8 @@ try {
     const locks = join(REPO, 'packages', 'show', 'tools', '.cache', 'locks')
     if (existsSync(locks)) for (const f of readdirSync(locks)) if (f.startsWith(`${ep.id}--`)) rmSync(join(locks, f), { force: true })
     for (const d of ['preview', 'shots']) if (existsSync(join(REPO, d)) && !readdirSync(join(REPO, d)).length) rmSync(join(REPO, d), { recursive: true })
-    rmSync(scratch, { recursive: true, force: true })
+    if (!argv.includes('--keep-bible')) rmSync(scratch, { recursive: true, force: true })
+    else console.log(`self-test: kept the bible copy ${bible}`)
     console.log(`self-test: removed ${gone.join(', ')}`)
   } else if (ep) console.log(`self-test: kept ${ep.id} (--keep); remove episodes/${ep.id}, dist/episodes/${ep.id}, preview/${ep.id}, shots/${ep.id} by hand`)
 }

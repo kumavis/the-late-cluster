@@ -76,7 +76,7 @@ test('render.whisper: weak lines fail unless waived; "Built it." must be heard',
 test('render.lengths: within ten percent of the plan, under the ceiling', async () => {
   ok(await run(renderLengths))
   fails(await run(renderLengths, { 'segments/chat/cues.json': { id: 'chat', duration: 60 } }), /chat renders at 60\.0 s but the plan gives it 40 s/)
-  fails(await run(renderLengths, { 'production/plan.json': plan({ segments: [{ id: 'cold-open', format: 'ask', seconds: 300 }, { id: 'chat', format: 'thread', seconds: 300 }] }), 'segments/cold-open/cues.json': { duration: 300 }, 'segments/chat/cues.json': { duration: 300 } }), /over the 330 s ceiling/)
+  fails(await run(renderLengths, { 'production/plan.json': plan({ segments: [{ id: 'cold-open', format: 'ask', seconds: 300 }, { id: 'chat', format: 'thread', seconds: 300 }] }), 'segments/cold-open/cues.json': { duration: 300 }, 'segments/chat/cues.json': { duration: 300 } }), /over the 590 s ceiling/)
 })
 
 test('render.check respects the exit code', async () => {
@@ -172,13 +172,14 @@ test('rotationLog parses the table into rows', () => {
 })
 
 test('the bible readers understand the real bible (skipped outside the repository)', { skip: !existsSync(join(REPO, 'docs', 'bible', '10-process.md')) }, () => {
-  const spec = scorecardSpec(REPO)
+  const BIBLE = join(REPO, 'docs', 'bible')
+  const spec = scorecardSpec(BIBLE)
   assert.equal(spec.error, undefined, spec.error)
   assert.ok(spec.a.length >= 10 && spec.b.length >= 10 && spec.approveAt > 0 && spec.noZero.length)
-  const tpl = pitchTemplateSections(REPO)
+  const tpl = pitchTemplateSections(BIBLE)
   assert.equal(tpl.error, undefined, tpl.error)
   assert.ok(tpl.sections.includes('Risks and open questions'))
-  assert.ok(reviewerChecklist(REPO).items.length >= 5)
+  assert.ok(reviewerChecklist(BIBLE).items.length >= 5)
   const log = rotationLog(readFileSync(join(REPO, 'docs', 'bible', 'lore.md'), 'utf8'))
   assert.ok(log.rows.some((r) => r.ep === '001' && r.genre))
 })
