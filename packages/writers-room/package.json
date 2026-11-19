@@ -12,6 +12,6 @@
   },
   "scripts": {
     "test": "node --test \"test/*.test.mjs\"",
-    "self-test": "node bin/self-test.mjs"
+    "end-to-end": "node bin/end-to-end.mjs"
   }
 }

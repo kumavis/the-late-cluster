@@ -1,0 +1,36 @@
+{
+  "reviewer": "reviewer-1",
+  "round": 1,
+  "items": [
+    {
+      "id": "talk-ask",
+      "version": "__VERSION:talk-ask__",
+      "verdict": "fresh",
+      "reason": "not done before"
+    },
+    {
+      "id": "interview",
+      "version": "__VERSION:interview__",
+      "verdict": "fresh",
+      "reason": "not done before"
+    },
+    {
+      "id": "made-soup",
+      "version": "__VERSION:made-soup__",
+      "verdict": "fresh",
+      "reason": "not done before"
+    },
+    {
+      "id": "top-chicken",
+      "version": "__VERSION:top-chicken__",
+      "verdict": "fresh",
+      "reason": "not done before"
+    },
+    {
+      "id": "music",
+      "version": "__VERSION:music__",
+      "verdict": "fresh",
+      "reason": "not done before"
+    }
+  ]
+}

@@ -1,9 +1,12 @@
 name: Weekly episode
 
-# Produces one week's episode and opens a pull request for a person to review: the scraper writes
-# the week's digest, then `npm run produce` drives the episode through pitch, write, render,
-# direct, build and the writer's self-check (packages/writers-room/README.md), with Claude Code
-# running headless as the writer and deterministic gates between the stages.
+# Produces one episode and opens a pull request for a person to review: the scraper writes the
+# digest (its default window: since the previous aired episode), then `npm run produce` drives the
+# episode through the eleven stages of docs/WORKFLOW.md with the headless runner: each task's brief
+# goes to Claude Code as the role's subagent (`claude -p --agent researcher|writer|reviewer|builder`,
+# .claude/agents/, which carry the model for each role), with deterministic gates between them.
+# Locally the project manager spawns the same subagents by hand (the manual runner); see
+# packages/writers-room/playbooks/project-manager.md.
 #
 # Why it is manual: the show puts words in the mouths of puppets that stand for real people, and
 # the pipeline has not yet produced an episode worth airing. Until a few manual runs have, a person
@@ -11,7 +14,7 @@ name: Weekly episode
 # what publishes (deploy.yml), and announcing is announce.yml, also manual.
 #
 # Needs (Settings → Secrets and variables → Actions):
-#   ANTHROPIC_API_KEY        the writer's model credential (or CLAUDE_CODE_OAUTH_TOKEN from
+#   ANTHROPIC_API_KEY        the subagents' model credential (or CLAUDE_CODE_OAUTH_TOKEN from
 #                            `claude setup-token`; the API key wins when both are set)
 #   PR_TOKEN (optional)      a fine-grained token or GitHub App token with contents and pull
 #                            requests write on this repository. Pull requests opened with the
@@ -24,17 +27,14 @@ on:
   workflow_dispatch:
     inputs:
       week:
-        description: ISO week to produce, e.g. 2026-W47 (empty = the last complete week, UTC)
+        description: ISO week that names the run, e.g. 2026-W47 (empty = the last complete week, UTC). The digest's window runs from the previous aired episode either way.
         required: false
         type: string
-      model:
-        description: The writer's model
-        required: true
-        type: choice
-        default: claude-fable-5-2
-        options:
-          - claude-fable-5-2
-          - claude-opus-5-5
+      preview_only:
+        description: Build a draft into preview/ and never set the episode to published (a trial)
+        required: false
+        type: boolean
+        default: true
       whisper:
         description: Install Whisper and run the intelligibility pass (adds about 5 minutes)
         required: false
@@ -42,7 +42,7 @@ on:
         default: true
   # Switch this on only after several manual runs have produced episodes a reviewer approved
   # without heavy rewrites, and once someone is committed to reviewing every Monday's pull request.
-  # The digest covers Monday 00:00 to Monday 00:00 UTC; this runs on Monday afternoon, UTC.
+  # The digest runs from the previous aired episode to now; this runs on Monday afternoon, UTC.
   # schedule:
   #   - cron: '0 14 * * 1'
 
@@ -99,7 +99,8 @@ jobs:
           pip install --quiet openai-whisper
           whisper --help > /dev/null
 
-      # The claude writer: Claude Code, pinned to the version the pipeline was tested with.
+      # The headless runner: Claude Code, pinned to the version the pipeline was tested with. The
+      # model for each role comes from .claude/agents/<role>.md, never from this workflow.
       - name: Install Claude Code
         run: |
           npm install -g "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}"
@@ -123,19 +124,24 @@ jobs:
           echo "week=$WEEK" >> "$GITHUB_OUTPUT"
           echo "Producing $WEEK"
 
-      - name: Scrape the week
+      # No window flag: the scraper's default window starts at the previous aired episode (it reads
+      # docs/ledger/ and the episode's airDate). The digest lands where the pipeline expects it.
+      - name: Scrape
         env:
           WEEK: ${{ steps.week.outputs.week }}
-        run: npm run scrape -- --week "$WEEK"
+        run: npm run scrape -- --out "data/weeks/$WEEK"
 
       - name: Produce the episode
         id: produce
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
           CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
-          MODEL: ${{ inputs.model }}
           WEEK: ${{ steps.week.outputs.week }}
-        run: npm run produce -- --week "$WEEK" --model "$MODEL" --network
+          PREVIEW_ONLY: ${{ inputs.preview_only }}
+        run: |
+          set -- --week "$WEEK" --runner headless --network
+          if [ "$PREVIEW_ONLY" = "true" ]; then set -- "$@" --preview-only; fi
+          npm run produce -- "$@"
 
       - name: Find the episode
         id: episode
@@ -147,7 +153,7 @@ jobs:
           echo "id=$ID" >> "$GITHUB_OUTPUT"
           if [ -n "$ID" ]; then npm run --silent produce -- --week "$WEEK" --status; fi
 
-      # Review frames, prompts, logs and the writer's cost, whether or not the run finished.
+      # Review frames, briefs, verdicts and logs, whether or not the run finished.
       - name: Upload the review frames and logs
         if: ${{ always() && steps.episode.outputs.id != '' }}
         uses: actions/upload-artifact@v7
@@ -169,11 +175,13 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch -c "$BRANCH"
-          # docs/bible/ whole: the lore entries and any DNA amendments travel with the episode, so the
-          # reviewer approves them together. The constitution gate has already refused a run that
-          # touched 00-constitution.md or 09-real-people.md.
-          git add "episodes/$ID" "dist/episodes/$ID" docs/bible/
-          git commit -m "Episode $ID, produced by the weekly pipeline" -m "Model: ${{ inputs.model }}. Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          # docs/bible/ (any DNA amendments) and docs/ledger/ (the episode's ledger entry and the
+          # featured tracker) travel with the episode, so the reviewer approves them together. The
+          # constitution gate has already refused a run that touched 00-constitution.md or
+          # 09-real-people.md. A preview-only run has no dist/episodes/<id>/ to add.
+          git add "episodes/$ID" docs/bible/ docs/ledger/
+          if [ -d "dist/episodes/$ID" ]; then git add "dist/episodes/$ID"; fi
+          git commit -m "Episode $ID, produced by the weekly pipeline" -m "Models by role (.claude/agents/). Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           git push --set-upstream origin "$BRANCH"
           gh pr create --base "${{ github.event.repository.default_branch }}" --head "$BRANCH" \
             --title "$(cat "episodes/$ID/production/pr-title.txt")" \

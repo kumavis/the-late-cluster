@@ -35,6 +35,9 @@ function followers(p) {
 
 const whoF = (p) => who(p) + followers(p)
 const oob = (topics) => `**OUT OF BOUNDS (${topics.join(', ')})**`
+const NOQUOTE = 'asked not to be quoted'
+/** A story whose post asks not to be quoted does not show even its first line. */
+const headlineOrWithheld = (s) => (s.outOfBounds?.topics?.includes(NOQUOTE) ? '*(headline withheld: a post here asks not to be quoted)*' : mdText(s.headline))
 
 function countsLine(c = {}) {
   const parts = [plural(c.likes, 'like'), plural(c.reposts, 'repost'), plural(c.replies, 'reply', 'replies')]
@@ -64,9 +67,10 @@ function renderPost(p, { maxChars = 600 } = {}) {
   if (p.quote?.state === 'removed') lines.push('> *(quoted post removed: author not included)*')
   if (p.reply?.hidden) lines.push('> *(reply to a post that is not included)*')
   const lift = p.metrics?.lift >= 1 ? ` · ${times(p.metrics.lift)} the author's usual` : ''
+  const reach = p.reach ? ` · reach ${n(p.reach.score)} (${plural(p.reach.participants, 'participant')})` : ''
   const rp = p.memberReposts ? ` · reposted by ${plural(p.memberReposts, 'member')}` : ''
   const flag = p.sensitive?.length ? ` · *flagged: ${p.sensitive.join(', ')}*` : ''
-  lines.push(`— ${whoF(p)}${p.guest ? ' · recurring guest' : ''}${p.member === false ? ' (outside the cluster)' : ''}${flag} · ${shortTime(p.time)} · ${countsLine(p.counts)}${lift}${rp} · [open](${p.url})`)
+  lines.push(`— ${whoF(p)}${p.guest ? ' · recurring guest' : ''}${p.member === false ? ' (outside the cluster)' : ''}${flag} · ${shortTime(p.time)} · ${countsLine(p.counts)}${reach}${lift}${rp} · [open](${p.url})`)
   return lines.join('\n')
 }
 
@@ -81,21 +85,24 @@ function topComponents(scores, k = 3) {
 
 const times = (lift) => (lift >= 7 ? 'over 100x' : `${Math.round(2 ** lift * 10) / 10}x`)
 
+/** Bluesky publishes no views; say what "reach" is wherever it is shown. */
+const reachNote = (d) => `*Reach is not views (Bluesky does not publish them): ${mdText(d.overview?.reachFormula ?? '')}, where participants are the distinct accounts that replied, quoted or (members) reposted, from the data the digest holds.*`
+
 const KIND = { thread: 'conversation', 'quote-chain': 'quote chain', link: 'shared link', built: 'built', phrase: 'phrase', post: 'single post' }
 
 export function renderStory(s, { postsPerStory = 4 } = {}) {
   const out = []
   const st = s.stats
   if (s.outOfBounds) {
-    out.push(`### ${s.rank}. ${oob(s.outOfBounds.topics)}: ${mdText(s.headline)}`)
+    out.push(`### ${s.rank}. ${oob(s.outOfBounds.topics)}: ${headlineOrWithheld(s)}`)
     out.push('')
-    out.push(`Not for the show (bible R10). ${plural(st.posts, 'post')}, ${plural(st.members, 'member')}; flagged posts by topic: ${Object.entries(s.outOfBounds.counts).map(([t, k]) => `${t} ${k}`).join(', ')}. No posts quoted here; the flag is a keyword hint, so check it yourself before using anything near it. id \`${s.id}\``)
+    out.push(`Not for the show (bible ${s.outOfBounds.topics.includes(NOQUOTE) ? 'R11' : 'R10'}). ${plural(st.posts, 'post')}, ${plural(st.members, 'member')}; flagged posts by topic: ${Object.entries(s.outOfBounds.counts).map(([t, k]) => `${t} ${k}`).join(', ')}. No posts quoted here; the flag is a keyword hint, so check it yourself before using anything near it. id \`${s.id}\``)
     out.push('')
     return out.join('\n')
   }
   out.push(`### ${s.rank}. ${mdText(s.headline)}`)
   out.push('')
-  out.push(`\`${KIND[s.kind] ?? s.kind}\` · ${plural(st.posts, 'post')} · ${plural(st.members, 'member')} · ${st.days.length > 1 ? `${st.days[0]} → ${st.days.at(-1)}` : st.days[0] ?? ''} · score ${s.scores.total.toFixed(2)} (${topComponents(s.scores)}) · id \`${s.id}\``)
+  out.push(`\`${KIND[s.kind] ?? s.kind}\` · ${plural(st.posts, 'post')} · ${plural(st.members, 'member')} · ${st.days.length > 1 ? `${st.days[0]} → ${st.days.at(-1)}` : st.days[0] ?? ''} · ${s.reach ? `reach ${n(s.reach.score)} (${n(s.reach.interactions)} interactions, ${plural(s.reach.participants, 'participant')}) · ` : ''}score ${s.scores.total.toFixed(2)} (${topComponents(s.scores)}) · id \`${s.id}\``)
   out.push('')
   out.push(`*Why these are together:* ${s.reason.map(mdText).join('; ')}.`)
   if (s.phrases?.length) out.push(`*Spiked phrases here:* ${s.phrases.slice(0, 5).map((t) => '"' + mdText(t) + '"').join(', ')}`)
@@ -153,6 +160,7 @@ export function renderMarkdown(d) {
   out.push(`## Stories`)
   out.push('')
   out.push(`Ranked by the score in README "Scoring". Each story is a group of related posts; the lead post comes first, then the strongest replies and quotes.`)
+  if (d.overview?.reachFormula) out.push('', reachNote(d))
   out.push('')
   for (const s of shown) {
     out.push(renderStory(s, { postsPerStory: d.settings?.postsPerStory ?? 4 }))
@@ -164,7 +172,7 @@ export function renderMarkdown(d) {
     out.push('### Also ran')
     out.push('')
     for (const s of rest) {
-      if (s.outOfBounds) out.push(`- ${s.rank}. ${oob(s.outOfBounds.topics)}: ${mdText(s.headline)}`)
+      if (s.outOfBounds) out.push(`- ${s.rank}. ${oob(s.outOfBounds.topics)}: ${headlineOrWithheld(s)}`)
       else out.push(`- ${s.rank}. ${mdText(s.headline)} (${KIND[s.kind] ?? s.kind}, ${plural(s.stats.posts, 'post')}) [open](${s.posts[0]?.url ?? ''})`)
     }
     out.push('')
@@ -240,9 +248,13 @@ function renderBuild(b, i) {
   out.push(`**${i + 1}. [${mdText(clip(b.title || main.url, 80))}](${main.url})**${others.length ? ` (also ${others.join(', ')})` : ''}${main.story ? ` · story ${main.story}` : ''}`)
   out.push('')
   if (b.wish) {
-    out.push(`${b.kind === 'built' ? 'The wish' : 'In reply to'}: ${whoF(b.wish)}${b.wish.member ? '' : ' (outside the cluster)'}, ${shortTime(b.wish.time)}, ${countsLine(b.wish.counts)}`)
+    out.push(`The wish: ${whoF(b.wish)}${b.wish.member ? '' : ' (outside the cluster)'}, ${shortTime(b.wish.time)}, ${countsLine(b.wish.counts)}`)
     out.push(quoteBlock(clip(b.wish.text || '', 300)))
     out.push(`— [open](${b.wish.url})`)
+    out.push('')
+  }
+  if (!b.wish && b.inReplyTo) {
+    out.push(`In reply to (not a wish): ${whoF(b.inReplyTo)}, ${shortTime(b.inReplyTo.time)}: ${mdText(clip((b.inReplyTo.text || '').replace(/\s+/g, ' '), 160))} [open](${b.inReplyTo.url})`)
     out.push('')
   }
   const bb = b.builtBy
@@ -264,37 +276,46 @@ const dayTime = (t) => {
   return `${DAYS[d.getUTCDay()]} ${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]} ${d.toISOString().slice(11, 16)}Z`
 }
 
+const personMd = (x) => (!x ? '?' : x.excluded ? '(not included)' : `@${x.handle}${x.small ? ' (small account)' : ''}`)
+
 export function renderGames(games = []) {
   const out = []
   if (!games.length) return ''
   out.push('## Community games')
   out.push('')
   for (const g of games) {
-    out.push(`### ${mdText(g.name)} (@${g.account})`)
+    out.push(`### ${mdText(g.name)} (@${g.label ?? g.account})`)
     out.push('')
     if (g.about) out.push(`*${mdText(g.about)}*`, '')
     if (g.writerNote) out.push(`**For the writer:** ${mdText(g.writerNote)}`, '')
     if (g.accountExcluded) { out.push('The game account is excluded by the consent rules.', ''); continue }
     if (!g.results.length) { out.push('No results posted in the window.', ''); continue }
-    for (const r of g.results) {
-      const parts = []
-      if (r.winner?.excluded) parts.push(`a result was posted; the winner is not included (consent rules)${r.likes != null ? `. The winning post got ${n(r.likes)} likes` : ''}`)
-      else if (r.winner) {
-        parts.push(`${r.winner.displayName ? `**${mdText(r.winner.displayName)}** ` : ''}@${r.winner.handle}${followers({ followers: r.winner.followers, small: r.winner.small })} won${r.likes != null ? ` with ${plural(r.likes, 'like')}` : ''}`)
-      }
-      const line = [`- **${dayTime(r.time)}**: ${parts.join('')}.`]
-      if (r.winningPost) {
-        if (r.winningPost.sensitive) line.push(` Winning post flagged (${r.winningPost.sensitive.join(', ')}), not quoted: [open](${r.winningPost.url}).`)
-        else {
-          const body = r.winningPost.text?.trim() ? `"${mdText(clip(r.winningPost.text.replace(/\s+/g, ' '), 280))}"` : r.winningPost.imageAlts?.length ? `*[image: ${mdText(clip(r.winningPost.imageAlts[0], 160))}]*` : '*(image or video, no text)*'
-          line.push(` The post: ${body} (${n(r.winningPost.counts?.likes)} likes now) [open](${r.winningPost.url}).`)
-        }
-      } else if (r.winner && !r.winner.excluded) line.push(' The winning post could not be resolved.')
-      if (r.recordScore != null) line.push(` All-time record: ${r.recordHolder?.excluded ? '(holder not included)' : r.recordHolder ? '@' + r.recordHolder.handle : '?'}, ${n(r.recordScore)}.`)
-      if (r.posted != null) line.push(` Window: ${n(r.posted)} of ${n(r.eligible)} eligible people posted, ${plural(r.windowPosts, 'post')}.`)
-      line.push(` [result post](${r.resultPost.url})`)
-      out.push(line.join(''))
+    const sg = g.segment
+    out.push('Facts from the game\'s own posts; the show writes its own speculation.')
+    out.push('')
+    out.push('**Standings**')
+    out.push('')
+    out.push('| day | winner | likes | of the record | rank in history | the post |')
+    out.push('|---|---|---:|---:|---:|---|')
+    for (const r of sg?.standings ?? []) {
+      let post = ''
+      if (r.winner?.excluded) post = '(not included)'
+      else if (!r.winningPost) post = 'not resolved'
+      else if (r.winningPost.sensitive) post = `flagged (${r.winningPost.sensitive.join(', ')}${r.winningPost.inFlaggedStory ? ', in a flagged story' : ''}), not quoted: [open](${r.winningPost.url})`
+      else post = `${r.winningPost.text?.trim() ? '"' + mdText(clip(r.winningPost.text.replace(/\s+/g, ' '), 120)) + '"' : r.winningPost.imageAlts?.length ? '*[image: ' + mdText(clip(r.winningPost.imageAlts[0], 80)) + ']*' : '*(image or video)*'} [open](${r.winningPost.url})`
+      out.push(`| ${dayTime(r.time)} | ${personMd(r.winner)}${r.winner?.followers != null ? ` (${n(r.winner.followers)} followers)` : ''} | ${n(r.likes)} | ${r.ofRecord != null ? Math.round(r.ofRecord * 100) + '%' : ''} | ${r.rankInHistory ?? ''} of ${r.ofResults} | ${post} |`)
     }
+    out.push('')
+    if (sg?.record) out.push(`- **Record:** ${n(sg.record.score)} likes, held by ${personMd(sg.record.holder)}; ${sg.record.changedInWindow ? 'it changed in the window' : 'unchanged through the window'}.`)
+    out.push(`- **Repeat winners in the window:** ${sg?.repeatWinners?.length ? sg.repeatWinners.map((x) => `@${x.handle} (${x.wins})`).join(', ') : 'none'}.`)
+    out.push(`- **Streaks (consecutive results):** ${sg?.streaks?.length ? sg.streaks.map((x) => `@${x.handle}, ${x.length} in a row to ${dayTime(x.to)}`).join('; ') : 'none'}.`)
+    if (sg?.history?.results) out.push(`- **Recent history** (${mdText(sg.history.note)}, ${dayTime(sg.history.from)} to ${dayTime(sg.history.to)}): median winning score ${n(sg.history.medianWinningLikes)}, highest ${n(sg.history.highest)}, lowest ${n(sg.history.lowest)}, ${plural(sg.history.winners, 'different winner')}.`)
+    if (sg?.participation) {
+      const pt = sg.participation
+      out.push(`- **Participation:** ${pt.days.map((x) => `${DAYS[new Date(x.time).getUTCDay()]} ${x.posted}/${x.eligible}`).join(', ')} people posted (share ${Math.round(pt.lowestShare * 100)}% to ${Math.round(pt.highestShare * 100)}%); the eligible pool went from ${n(pt.eligibleFrom)} to ${n(pt.eligibleTo)}.`)
+    }
+    if (sg?.leaderboard) out.push(`- **Near the record** (all-time leaderboard, ${dayTime(sg.leaderboard.time)}): ${sg.leaderboard.entries.slice(0, 6).map((e) => `${e.rank}. ${e.excluded ? '(not included)' : '@' + e.handle} ${n(e.score)}${e.behindRecord ? ` (${n(e.behindRecord)} behind)` : ''}`).join('; ')} [open](${sg.leaderboard.url})`)
+    if (sg?.cameClose && !sg.cameClose.known) out.push(`- **Who came close on the day:** not known; ${mdText(sg.cameClose.note)}.`)
     out.push('')
   }
   return out.join('\n')
@@ -353,38 +374,61 @@ export function renderSections(d) {
     out.push(`${plural(about.posts.length, 'post')} name or link the show, or reply to or quote one that does. Read for reactions and corrections.`)
     out.push('')
     for (const p of about.posts.slice(0, d.settings?.aboutShowPosts ?? 20)) {
-      const tags = [p.why.join(', '), p.correction ? '**possible correction**' : null, p.sensitive ? `flagged: ${p.sensitive.join(', ')}` : null].filter(Boolean).join(' · ')
+      const tags = [p.why.join(', '), p.correction ? '**possible correction**' : null, p.quotesLines?.length ? `**quotes ${p.quotesLines.map((q) => '"' + mdText(clip(q, 60)) + '"').join(', ')}: check against what was posted**` : null, p.sensitive ? `flagged: ${p.sensitive.join(', ')}` : null].filter(Boolean).join(' · ')
       out.push(`- ${whoF(p)}, ${shortTime(p.time)} · ${tags}: "${mdText(clip((p.text || '').replace(/\s+/g, ' '), 260))}" (${countsLine(p.counts)}) [open](${p.url})`)
     }
     if (about.posts.length > (d.settings?.aboutShowPosts ?? 20)) out.push(`- and ${about.posts.length - (d.settings?.aboutShowPosts ?? 20)} more in digest.json`)
     out.push('')
   }
 
-  out.push(`## Recurring guests ${thisP}`)
+  // Voices the show has never featured
+  const nv = sec.newVoices ?? []
+  out.push('## New voices')
   out.push('')
-  if (sec.guestsExcluded) out.push(`*${plural(sec.guestsExcluded, 'configured guest')} excluded ${thisP} by the consent rules.*`, '')
-  const perf = sec.performableThreads
-  const guestsEnd = () => {
-    if (!perf) return
-    out.push('## Threads you could perform')
+  if (!nv.length) out.push(d.ledger?.found === false ? 'No ledger was given, so the digest cannot tell who is new to the show.' : `No strong new voices ${thisP}.`, '')
+  else {
+    out.push(`Members the show has never featured (per the ledger), with the strongest ${unit}: the sum of their three best post scores, out-of-bounds posts left out. ${reachNote(d)}`)
     out.push('')
-    if (!perf.threads.length) { out.push(`No thread passed the checks ${thisP}.`, ''); return }
-    out.push(`Real back-and-forth between cluster members, every post short enough to speak, no sensitivity flags, nobody excluded in the middle. Chosen from ${perf.considered} qualifying threads. **The exact text is in digest.json under \`sections.performableThreads\`**; a performed line must match it character for character. Markdown here is escaped for display only.`)
-    out.push('')
-    for (const [i, t] of perf.threads.entries()) out.push(renderThread(t, i))
+    for (const v of nv) {
+      out.push(`### ${who(v)}${followers({ followers: v.followers, small: v.small })}`)
+      out.push('')
+      out.push(`${plural(v.postsInWindow, 'post')} ${thisP}. Strongest:`)
+      out.push('')
+      for (const p of v.top) { out.push(renderPost(p, { maxChars: 400 })); out.push('') }
+    }
   }
-  for (const g of sec.guests ?? []) {
-    out.push(`### ${who(g)}${followers({ followers: g.followers, small: g.small })}`)
+
+  // Interview material
+  const iv = sec.interview
+  out.push('## Interview material')
+  out.push('')
+  if (!iv?.candidates?.length) out.push(`No member had enough question-and-answer pairs ${thisP}.`, '')
+  else {
+    out.push(`For a constructed interview: every answer is a member's real post, every question is what that post was replying to, exact text in digest.json under \`sections.interview\`. ${mdText(iv.rule)} Both sides pass the consent and sensitivity rules. Nobody who appeared in the previous episode; people the show featured earlier are listed after those it never has.`)
     out.push('')
-    if (!g.postsThisWeek) { out.push(`No posts ${thisP}.`, ''); continue }
-    out.push(`${plural(g.postsThisWeek, 'post')} ${thisP}${g.skippedOutOfBounds ? ` (${g.skippedOutOfBounds} flagged out of bounds and not shown)` : ''}. Strongest:`)
-    out.push('')
-    if (!g.top.length) out.push(`Nothing usable ${thisP}.`, '')
-    for (const p of g.top) {
-      out.push(renderPost(p, { maxChars: 400 }))
+    for (const c of iv.candidates) {
+      out.push(`### ${who(c)}${followers({ followers: c.followers, small: c.small })}${c.featuredEarlier ? ` (featured in an earlier episode: ${c.featuredEarlier})` : ''}`)
+      out.push('')
+      out.push(`${plural(c.pairCount, 'pair')} (${c.questions} direct questions), from ${plural(c.questioners, 'different asker')}.`)
+      out.push('')
+      for (const x of c.pairs.slice(0, d.settings?.interviewPairs ?? 4)) {
+        out.push(`- **Q** (${x.question.kind}, @${x.question.handle}${x.question.smallAccount ? ', small account' : ''}): ${mdText(clip(x.question.text.replace(/\s+/g, ' '), 200))} [open](${x.question.url})`)
+        out.push(`  **A**: ${mdText(x.answer.text.replace(/\s+/g, ' '))} [open](${x.answer.url})`)
+      }
       out.push('')
     }
   }
-  guestsEnd()
+  // Threads a writer could perform word for word
+  const perf = sec.performableThreads
+  if (perf) {
+    out.push('## Threads you could perform')
+    out.push('')
+    if (!perf.threads.length) out.push(`No thread passed the checks ${thisP}.`, '')
+    else {
+      out.push(`Real back-and-forth between cluster members, every post short enough to speak, no sensitivity flags, nobody excluded in the middle. Chosen from ${perf.considered} qualifying threads. **The exact text is in digest.json under \`sections.performableThreads\`** (or \`npm run lookup -- --thread <address>\`); a performed line must match it character for character. Markdown here is escaped for display only.`)
+      out.push('')
+      for (const [i, t] of perf.threads.entries()) out.push(renderThread(t, i))
+    }
+  }
   return out.join('\n')
 }

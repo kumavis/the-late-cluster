@@ -1,132 +1,21 @@
-// The gates of the evolving-DNA design: the pitch's retro, DNA notes, experiment and inheritance
-// decision; inheritance kept to what the plan names; episode code importing only what the build
-// covers; the constitution untouched; and every DNA amendment declared.
+// The bible's two layers and the build's integrity: inheritance kept to what the plan names; episode
+// code importing only what the build covers (and a segment only from its own folder); the
+// constitution untouched; every edit to the craft bible (the DNA) declared.
 import { existsSync, readFileSync } from 'node:fs'
 import { dirname, join, normalize, relative, resolve, sep } from 'node:path'
 import { pathToFileURL } from 'node:url'
-import { findPost, postRefs } from '../digest.mjs'
 import { bibleChanges, parseAmendments } from '../dna.mjs'
-import { inheritedFiles, inheritProblems } from '../inherit.mjs'
+import { experimentProblems } from '../experiment.mjs'
+import { inheritedFiles } from '../inherit.mjs'
 import { lex } from '../scan.mjs'
 import { gate, list, read, rundown } from './common.mjs'
 
-const words = (s) => new Set(String(s ?? '').toLowerCase().replace(/[^a-z0-9 ]+/g, ' ').split(/\s+/).filter((w) => w.length > 2))
-export function similarity(a, b) {
-  const A = words(a)
-  const B = words(b)
-  if (!A.size || !B.size) return 0
-  let n = 0
-  for (const w of A) if (B.has(w)) n++
-  return n / (A.size + B.size - n)
-}
-const norm = (s) => String(s ?? '').toLowerCase().replace(/[^a-z0-9]+/g, ' ').trim()
-const strings = (x) => Array.isArray(x) && x.every((s) => typeof s === 'string' && s.trim())
-
-/** the previous published episode, if any */
-const previous = (ctx) => [...ctx.history].sort((a, b) => b.number - a.number)[0] ?? null
-
-/**
- * plan.json "retro": required when a published episode came before. It names that episode, says
- * what worked and what didn't, and cites the reactions to it from this week's digest ("About the
- * show"); an empty list needs a stated reason in "reactionsNote".
- */
-export async function pitchRetro(ctx) {
-  const g = gate('pitch.retro')
-  const p = ctx.plan
-  if (!p) {
-    g.skip('no plan.json')
-    return g.done()
-  }
-  const prev = previous(ctx)
-  const r = p.retro
-  if (!prev) {
-    if (r !== null && r !== undefined) g.warn('there is no earlier published episode, so "retro" should be null')
-    else g.skip('no earlier published episode')
-    return g.done()
-  }
-  if (!r || typeof r !== 'object') {
-    g.fail(`plan.json: "retro" is required: look back at ${prev.id} before planning this one (what worked, what didn't, the reactions)`)
-    return g.done()
-  }
-  if (r.episode !== prev.id) g.fail(`plan.json retro.episode is ${JSON.stringify(r.episode)}; the previous published episode is ${prev.id}`)
-  if (!Array.isArray(r.worked) || !Array.isArray(r.didnt) || !strings([...(r.worked ?? []), ...(r.didnt ?? [])])) g.fail('plan.json retro: "worked" and "didnt" must be lists of sentences')
-  else if (!r.worked.length && !r.didnt.length) g.fail('plan.json retro: say at least one thing that worked or didn\'t')
-  if (!Array.isArray(r.reactions)) g.fail('plan.json retro: "reactions" must be a list of post URIs (or empty, with "reactionsNote")')
-  else {
-    for (const u of r.reactions) {
-      if (!postRefs(String(u)).length) g.fail(`plan.json retro.reactions: ${JSON.stringify(u)} is not a post URI`)
-      else if (!findPost(ctx.digest, u)) g.fail(`plan.json retro.reactions: ${u} is not in this week's digest; reactions come from its "About the show" section`)
-    }
-    const about = ctx.digest.sections?.aboutShow?.posts ?? []
-    if (!r.reactions.length) {
-      if (!String(r.reactionsNote ?? '').trim()) g.fail(`plan.json retro: no reactions cited; add "reactionsNote" saying why (for example: the digest's "About the show" section is empty this week)`)
-      if (about.length) g.warn(`the digest has ${about.length} posts about the show, and the retro cites none of them`)
-    }
-  }
-  return g.done()
-}
-
-/**
- * plan.json "dna": what this episode keeps, what it changes and why, and one experiment with how
- * we will know it worked. The experiment must not restate an earlier episode's (fail on the same
- * words; warn on a near match).
- */
-export async function pitchDna(ctx) {
-  const g = gate('pitch.dna')
-  const p = ctx.plan
-  if (!p) {
-    g.skip('no plan.json')
-    return g.done()
-  }
-  const d = p.dna
-  if (!d || typeof d !== 'object') {
-    g.fail('plan.json: "dna" is required: { "keep": [...], "change": [{ "what", "why" }], "experiment": { "what", "why", "success" } }')
-    return g.done()
-  }
-  if (!Array.isArray(d.keep) || !(d.keep.length === 0 || strings(d.keep))) g.fail('plan.json dna.keep must be a list of sentences (what this episode deliberately keeps)')
-  if (!Array.isArray(d.change) || !d.change.every((c) => String(c?.what ?? '').trim() && String(c?.why ?? '').trim())) g.fail('plan.json dna.change must be a list of { "what", "why" }, both filled in')
-  const e = d.experiment
-  for (const k of ['what', 'why', 'success']) if (!String(e?.[k] ?? '').trim()) g.fail(`plan.json dna.experiment.${k} is empty: one deliberate experiment, why, and how we will know it worked`)
-  if (String(e?.what ?? '').trim()) {
-    for (const h of ctx.history) {
-      const past = h.plan?.dna?.experiment?.what
-      if (!past) continue
-      if (norm(past) === norm(e.what)) g.fail(`plan.json dna.experiment restates ${h.id}'s experiment ("${past}"); try something new`)
-      else if (similarity(past, e.what) >= 0.5) g.warn(`the experiment is close to ${h.id}'s ("${past}"); make sure it is a new one`)
-    }
-  }
-  return g.done()
-}
-
-/** plan.json "inherit": each entry names an existing file in an earlier episode, with a reason */
-export async function pitchInherit(ctx) {
-  const g = gate('pitch.inherit')
-  const p = ctx.plan
-  if (!p) {
-    g.skip('no plan.json')
-    return g.done()
-  }
-  if (p.inherit === undefined) g.fail('plan.json: "inherit" is required; [] (carry nothing forward) is the default and a good one')
-  else if (!Array.isArray(p.inherit)) g.fail('plan.json: "inherit" must be a list')
-  else {
-    const seen = new Set()
-    p.inherit.forEach((e, k) => {
-      for (const why of inheritProblems(ctx.root, ctx.id, e)) g.fail(`plan.json inherit[${k}]: ${why}`)
-      const key = `${e?.from}/${e?.path}`
-      if (seen.has(key)) g.fail(`plan.json inherit[${k}]: ${key} is listed twice`)
-      seen.add(key)
-    })
-    if (p.inherit.length) g.warn(`inherits ${list(p.inherit.map((e) => `${e.from}/${e.path}`))}`)
-  }
-  return g.done()
-}
-
-/** production/inherited/ holds exactly what the plan names (change it with --from pitch) */
+/** production/inherited/ holds exactly what the plan names (change it with --from select) */
 export async function inheritConsistent(ctx, name = 'inherit.consistent') {
   const g = gate(name)
   const want = (ctx.plan?.inherit ?? []).map((e) => `${e.from}/${e.path}`).sort()
   const have = inheritedFiles(ctx.paths.dir).sort()
-  if (want.join('\n') !== have.join('\n')) g.fail(`production/inherited/ holds [${list(have) || 'nothing'}] but plan.json inherits [${list(want) || 'nothing'}]; inheritance is decided at the pitch: change plan.json "inherit" and re-run with --from pitch`)
+  if (want.join('\n') !== have.join('\n')) g.fail(`production/inherited/ holds [${list(have) || 'nothing'}] but plan.json inherits [${list(want) || 'nothing'}]; inheritance is decided at the pitch: change plan.json "inherit" and re-run with --from select`)
   return g.done()
 }
 
@@ -192,6 +81,12 @@ export async function episodeImports(ctx, name = 'imports') {
       target = normalize(target).split(sep).join('/')
       if (target.startsWith('production/')) g.fail(`${f}: imports ${spec}, from production/ (working papers and inherited reference are never part of a build); copy what you need into the segment's folder`)
       else if (!covered.has(target)) g.fail(`${f}: imports ${spec}, which the build's sourceHash does not cover (episode.json, cast.js, looks.js and the rundown segments' folders), so verify could not see it change; put the helper in the segment's folder`)
+      else {
+        // a segment imports only from its own folder (packages/show/README: "Don't import from another segment"; trial finding 38)
+        const own = /^segments\/([^/]+)\//.exec(f)?.[1]
+        const other = /^segments\/([^/]+)\//.exec(target)?.[1]
+        if (own && other && own !== other) g.fail(`${f}: imports ${spec}, from another segment's folder (${other}); a segment imports only from its own folder: copy the helper into segments/${own}/`)
+      }
     }
   }
   return g.done()
@@ -212,14 +107,18 @@ export async function constitutionUnchanged(ctx, name = 'constitution') {
 /**
  * production/dna-amendments.md (format: bible 10, stage 6): the experiment with the writer's verdict
  * before air, and every DNA file this run changed with a one-line summary, or "none" with the
- * reason. The lore file's routine entries (episode log, rotation and experiment log rows) need not
- * be listed; everything else in the DNA must be.
+ * reason. Optional when the run did not touch the DNA.
  */
 export async function selfCheckDna(ctx) {
-  const g = gate('self-check.dna')
+  const g = gate('review.dna')
+  // the episode's experiment, proposed by a reviewer at the rank stage and judged in scorecard row B12
+  const exp = read(join(ctx.paths.production, 'experiment.md'))
+  for (const p of experimentProblems(exp)) g.fail(p)
   const md = read(join(ctx.paths.production, 'dna-amendments.md'))
+  const changedNow = ctx.bibleSnapshot ? bibleChanges(ctx.bibleSnapshot, ctx.bibleDir, ctx.config.constitution).dna : []
   if (md === null) {
-    g.fail('production/dna-amendments.md is missing (format: docs/bible/10-process.md, stage 6)')
+    if (changedNow.length) g.fail(`the craft bible changed in this run (${changedNow.map((c) => c.file).join(', ')}) but production/dna-amendments.md is missing: list each edit with a one-line summary`)
+    else if (exp !== null && !experimentProblems(exp).length) g.warn('no edit to the craft bible in this run')
     return g.done()
   }
   const a = parseAmendments(md)
@@ -231,12 +130,10 @@ export async function selfCheckDna(ctx) {
     g.skip('no snapshot of the bible in state.json')
     return g.done()
   }
-  const lore = relative(ctx.bibleDir, ctx.loreFile).split(sep).join('/')
-  const changed = bibleChanges(ctx.bibleSnapshot, ctx.bibleDir, ctx.config.constitution).dna
-  const amended = changed.filter((c) => c.file !== lore)
+  const amended = changedNow
   const listed = new Set(a.files.map((f) => f.file))
   for (const c of amended) if (!listed.has(c.file)) g.fail(`dna-amendments.md does not list ${c.file}, which this run ${c.change}; list every edit to the DNA with a one-line summary`)
-  for (const f of a.files) if (f.file !== lore && !amended.some((c) => c.file === f.file)) g.fail(`dna-amendments.md lists ${f.file}, which has not changed in this run`)
+  for (const f of a.files) if (!amended.some((c) => c.file === f.file)) g.fail(`dna-amendments.md lists ${f.file}, which has not changed in this run`)
   for (const f of a.files) if (f.summary.replace(/[^a-z0-9]/gi, '').length < 8) g.fail(`dna-amendments.md: give ${f.file} a one-line summary of the change`)
   if (a.hasEdits && !a.files.length && (a.none === null || !a.none.replace(/[^a-z0-9]/gi, ''))) g.fail('dna-amendments.md: no DNA edits listed, so say "none" and the reason (for example: the experiment is judged after air)')
   if (amended.length && a.verdict && a.verdict !== 'worked') g.warn(`DNA edited although the experiment's verdict is "${a.verdict}"; the reviewer should check each edit stands on its own`)

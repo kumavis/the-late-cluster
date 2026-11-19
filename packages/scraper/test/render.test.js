@@ -48,8 +48,10 @@ test('the full digest renders overview, stories and every appendix', () => {
         sharedBy: [{ handle: 's.example.test', url: 'https://bsky.app/s' }],
       }],
       aboutShow: { posts: [{ handle: 'r.example.test', text: 'loved the crow', time: '2026-11-11T10:00:00Z', counts: { likes: 1, reposts: 0, replies: 0, quotes: 0 }, url: 'https://bsky.app/r', why: ['names the show'], correction: true }], optOutRequests: [{ handle: 'o.example.test', url: 'https://bsky.app/o' }] },
-      guests: [{ handle: 'g.example.test', displayName: 'G', followers: 5000, postsThisWeek: 7, skippedOutOfBounds: 1, top: [{ handle: 'g.example.test', text: 'gm', time: '2026-11-12T10:00:00Z', counts: { likes: 5, reposts: 0, replies: 0, quotes: 0 }, url: 'https://bsky.app/g', authorFollowers: 5000 }] }],
-      guestsExcluded: 1,
+      newVoices: [{ handle: 'g.example.test', displayName: 'G', followers: 120, small: true, postsInWindow: 7, top: [{ handle: 'g.example.test', text: 'gm', time: '2026-11-12T10:00:00Z', counts: { likes: 5, reposts: 0, replies: 0, quotes: 0 }, url: 'https://bsky.app/g', authorFollowers: 120, smallAccount: true, reach: { score: 10, participants: 1, interactions: 5 } }] }],
+      interview: { rule: 'A parent is a question if ...', candidates: [{ handle: 'i.example.test', displayName: 'I', followers: 900, small: false, featuredEarlier: null, pairCount: 3, questions: 2, questioners: 2, pairs: [
+        { kind: 'question', question: { kind: 'question', handle: 'q.example.test', text: 'what is the crow for?', url: 'https://bsky.app/q' }, answer: { text: 'the crow is for everyone', url: 'https://bsky.app/a' } },
+      ] }] },
     },
     stories: [story],
     appendices: {
@@ -78,9 +80,12 @@ test('the full digest renders overview, stories and every appendix', () => {
   // about the show
   assert.match(md, /Requests to be left out \(1\)[\s\S]*- @o\.example\.test: \[the post\]\(https:\/\/bsky\.app\/o\)/)
   assert.match(md, /@r\.example\.test, Wed 10:00Z · names the show · \*\*possible correction\*\*: "loved the crow"/)
-  // guests
-  assert.match(md, /\*1 configured guest excluded this week by the consent rules\.\*/)
-  assert.match(md, /### \*\*G\*\* @g\.example\.test \(5,000 followers\)\n\n7 posts this week \(1 flagged out of bounds and not shown\)/)
+  // new voices and interview material
+  assert.match(md, /## New voices[\s\S]*### \*\*G\*\* @g\.example\.test \(\*\*small account\*\*, 120 followers\)\n\n7 posts this week\. Strongest:/)
+  assert.match(md, /reach 10 \(1 participant\)/)
+  assert.match(md, /Reach is not views/)
+  assert.match(md, /## Interview material[\s\S]*### \*\*I\*\* @i\.example\.test \(900 followers\)\n\n3 pairs \(2 direct questions\), from 2 different askers\.\n\n- \*\*Q\*\* \(question, @q\.example\.test\): what is the crow for\? \[open\]\(https:\/\/bsky\.app\/q\)\n  \*\*A\*\*: the crow is for everyone \[open\]/)
+  assert.ok(!md.includes('Recurring guests'))
   // phrases and weeks
   assert.match(md, /\| "the thing" \(new\) \| 5 \| 12\.5 \| 0 \| 6 \| 4 \| \[@a\.example\.test, Mon 08:00Z: the thing\]/)
   assert.match(md, /## Appendix D: "X week" declarations[\s\S]*\| "thing week" \| 2 \| 3 \| yes \|/)
@@ -121,4 +126,10 @@ test('a performable thread renders as indented dialogue with removal markers', a
   assert.match(md, /- \*\*A\*\* \(@a\.example\.test\): what if \\\*crows\\\*\n  - \*\*b\.example\.test\*\* \(@b\.example\.test, small account\): line one\n    line two\n    - \*\(a reply here not included\)\*\n  - \*\*C\*\* \(@c\.example\.test\): yes/)
   const g = renderGames([{ name: 'Game', account: 'g.example.test', about: 'daily', writerNote: 'keep winners anonymous', results: [] }])
   assert.match(g, /### Game \(@g\.example\.test\)\n\n\*daily\*\n\n\*\*For the writer:\*\* keep winners anonymous\n\nNo results posted in the window\./)
+})
+
+test('a story with a post asking not to be quoted withholds even its headline', () => {
+  const md = renderStory({ ...story, outOfBounds: { topics: ['asked not to be quoted'], counts: { 'asked not to be quoted': 1 } } })
+  assert.match(md, /^### 1\. \*\*OUT OF BOUNDS \(asked not to be quoted\)\*\*: \*\(headline withheld: a post here asks not to be quoted\)\*/)
+  assert.ok(!md.includes('I built the'))
 })

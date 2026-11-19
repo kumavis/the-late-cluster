@@ -1,0 +1,12 @@
+{
+  "reviewer": "reviewer-2",
+  "round": 2,
+  "items": [
+    {
+      "id": "talk-ask",
+      "version": "__VERSION:talk-ask__",
+      "verdict": "fresh",
+      "reason": "the count is gone"
+    }
+  ]
+}

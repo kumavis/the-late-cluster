@@ -1,0 +1,16 @@
+{
+  "id": "__ID__",
+  "aired": false,
+  "guests": [],
+  "featured": [],
+  "formats": [
+    "cold open",
+    "interview"
+  ],
+  "song": null,
+  "runners": [],
+  "catchphrases": [],
+  "devices": [
+    "a request read aloud from a card"
+  ]
+}

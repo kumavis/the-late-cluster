@@ -1,0 +1,16 @@
+{
+  "slug": "top-chicken",
+  "title": "Top Chicken",
+  "format": "sports desk",
+  "seconds": 15,
+  "standing": "top-chicken",
+  "cards": [],
+  "ideas": [],
+  "speakers": [],
+  "featured": [],
+  "results": [
+    "at://did:plc:trialchicken/app.bsky.feed.post/tc1",
+    "at://did:plc:trialchicken/app.bsky.feed.post/tc2",
+    "at://did:plc:trialchicken/app.bsky.feed.post/tc3"
+  ]
+}

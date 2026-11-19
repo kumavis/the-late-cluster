@@ -1,0 +1,22 @@
+{
+  "did:plc:pilotguest": {
+    "handle": "norvid.example",
+    "appearances": [
+      {
+        "episode": "001-pilot",
+        "date": "2026-11-13",
+        "role": "spoke"
+      }
+    ]
+  },
+  "did:plc:pilotshown": {
+    "handle": "shown.example",
+    "appearances": [
+      {
+        "episode": "001-pilot",
+        "date": "2026-11-13",
+        "role": "shown"
+      }
+    ]
+  }
+}

@@ -8,6 +8,8 @@ import { Consent } from '../src/consent.js'
 import { XrpcClient } from '../src/http.js'
 import { loadConfig } from '../src/config.js'
 import { isoWeekWindow } from '../src/window.js'
+import { featuredLookup } from '../src/ledger.js'
+import { buildCoverage, renderCoverage } from '../src/coverage.js'
 import { post, actor, profile, ACCOUNTS, uriOf, chickenText } from './fixtures/synthetic.js'
 
 const W = isoWeekWindow('2026-W46') // 9-16 Nov 2026
@@ -37,7 +39,7 @@ function world() {
     post('delta', 'share', { text: 'everyone go play the golem game', external: { uri: 'https://golem.alpha.example.test', title: 'Golem Grocer' }, at: '2026-11-13T12:00:00Z', likes: 3 }),
     // the show, a reaction, and a request to be left out
     post('delta', 'show', { text: 'watched The Late Cluster last night, the crow bit got me', at: '2026-11-14T10:00:00Z', likes: 5, replies: 2 }),
-    post('bravo', 'react', { text: 'actually the crow was in the cold open', reply: { root: uriOf('delta', 'show') }, at: '2026-11-14T10:10:00Z', likes: 2 }),
+    post('bravo', 'react', { text: 'that is not what I said, the crow was in the cold open', reply: { root: uriOf('delta', 'show') }, at: '2026-11-14T10:10:00Z', likes: 2 }),
     post('foxtrot', 'f0', { text: 'FOXTROT EARLIER POST', at: '2026-11-10T09:00:00Z', likes: 3 }),
     post('alpha', 'a-f', { text: 'ha', reply: { root: uriOf('foxtrot', 'f0') }, at: '2026-11-10T09:10:00Z', likes: 1 }),
     post('foxtrot', 'f1', { text: 'please leave me out of the show', reply: { root: uriOf('delta', 'show') }, at: '2026-11-14T11:00:00Z', likes: 1 }),
@@ -57,7 +59,7 @@ function world() {
 function fakeAppView({ posts, root }) {
   const requested = []
   const byActor = (a) => Object.values(ACCOUNTS).find((x) => x.did === a || x.handle === a)
-  const follows = { alpha: ['charlie', 'delta', 'echo', 'ghost', 'hidden', 'quiet', 'bot', 'foxtrot'], bravo: ['charlie', 'delta', 'echo', 'ghost', 'quiet', 'bot', 'foxtrot'] }
+  const follows = { alpha: ['charlie', 'delta', 'echo', 'ghost', 'hidden', 'quiet', 'bot', 'foxtrot'], bravo: ['charlie', 'delta', 'echo', 'ghost', 'quiet', 'bot', 'foxtrot'], delta: ['charlie'], echo: ['bravo', 'charlie', 'bigacct'], charlie: ['delta', 'echo'] }
   const fetchImpl = async (url) => {
     requested.push(url)
     const u = new URL(url)
@@ -92,15 +94,28 @@ function fakeAppView({ posts, root }) {
   return { fetchImpl, requested }
 }
 
-async function runFake() {
+// A synthetic ledger: alpha spoke in the previous episode; bravo was shown in an earlier one.
+const LEDGER = {
+  found: true, tracker: [],
+  episodes: [
+    { id: '000-earlier', aired: true, airedMs: Date.parse('2026-10-20T00:00:00Z'), guests: [], featured: [{ did: null, handle: 'bravo.example.test' }] },
+    { id: '001-previous', aired: true, airedMs: Date.parse('2026-11-06T00:00:00Z'), guests: [{ did: ACCOUNTS.alpha.did, handle: 'renamed.example.test' }], featured: [] },
+  ],
+}
+
+async function runFake({ showFollows = false } = {}) {
   const base = loadConfig()
   const config = structuredClone(base)
-  config.cluster.seeds = ['alpha.example.test', 'bravo.example.test', 'ghost.example.test']
+  config.cluster.seeds = showFollows
+    ? [{ did: ACCOUNTS.alpha.did, reason: 'bootstrap' }, { did: ACCOUNTS.ghost.did, reason: 'bootstrap, but opted out' }, { did: ACCOUNTS.chicken.did, reason: 'bootstrap, but a bot' }]
+    : ['alpha.example.test', 'bravo.example.test', 'ghost.example.test']
   config.cluster.feeds = []
   config.cluster.search.enabled = true // off by default; the test exercises the code path
   config.cluster.search.host = 'https://search.example.test'
   config.optOut.accounts = ['ghost.example.test']
-  config.show.guests = ['alpha.example.test', 'bravo.example.test']
+  config.cluster.seedSelection.mode = showFollows ? 'show-follows' : 'fixed'
+  config.cluster.showAccount = { did: ACCOUNTS.delta.did }
+  config.cluster.rosters = [{ id: 'game', account: ACCOUNTS.echo.did, follows: true, followers: false, reason: 'test roster' }]
   config.games.games[0].account = 'chicken.example.test'
   config.show.performableThreads.minTurns = 2
   config.show.performableThreads.minPosts = 3
@@ -109,9 +124,10 @@ async function runFake() {
   const client = new XrpcClient({ fetchImpl: fake.fetchImpl, sleep: async () => {}, minIntervalMs: 0, maxRetries: 0, maxRequests: 200 })
   const consent = new Consent({ optOut: config.optOut.accounts, blockedLabels: config.scoring.blockedLabels, selfDeclaredPatterns: config.safety.selfDeclaredOptOut.patterns })
   const c = await collect({ client, config, window: W, consent })
-  const d = analyze({ posts: c.store.posts.values(), memberDids: c.memberDids, members: c.members, reposts: c.store.reposts, window: W, baselineStart: c.baselineStart, baselineWeeks: 3, consent, scoring: config.scoring, profiles: c.profiles, guestDids: c.guestDids, guestsExcluded: c.guestsExcluded, safety: config.safety, show: config.show, games: config.games, completeThreads: c.completeThreads, gaps: c.store.gaps })
-  const digest = { window: d.window, run: { generatedAt: '2026-11-19T00:00:00Z', requests: client.stats.requests, warnings: c.warnings }, stats: { cluster: { members: c.members.length, seeds: c.seeds.length }, posts: { window: d.counts.windowPosts }, excluded: consent.stats }, overview: d.overview, sections: d.sections, authors: d.authors, stories: d.stories, appendices: d.appendices, settings: { storiesInMarkdown: 40, postsPerStory: 4 } }
-  return { c, d, digest, md: renderMarkdown(digest), fake, consent }
+  const d = analyze({ posts: c.store.posts.values(), memberDids: c.memberDids, members: c.members, reposts: c.store.reposts, window: W, baselineStart: c.baselineStart, baselineWeeks: 3, consent, scoring: config.scoring, profiles: c.profiles, featured: featuredLookup(LEDGER, W.end), safety: config.safety, show: config.show, games: config.games, completeThreads: c.completeThreads, gaps: c.store.gaps })
+  const digest = { window: d.window, run: { generatedAt: '2026-11-19T00:00:00Z', requests: client.stats.requests, warnings: c.warnings }, stats: { cluster: { members: c.members.length, seeds: c.seeds.length }, posts: { window: d.counts.windowPosts }, excluded: consent.stats }, overview: d.overview, sections: d.sections, authors: d.authors, stories: d.stories, appendices: d.appendices, settings: { storiesInMarkdown: 40, postsPerStory: 4 }, ledger: { found: true } }
+  const coverage = buildCoverage({ collected: c, digest: d, config, seedPlan: { mode: config.cluster.seedSelection.mode, previousSeeds: [] }, previous: { label: 'W45', members: [{ did: ACCOUNTS.alpha.did, handle: 'alpha.example.test' }, { did: 'did:plc:gone', handle: 'gone.example.test' }] }, run: { byEndpoint: { 'app.bsky.feed.getAuthorFeed': 14 } }, consentStats: consent.stats, ledger: LEDGER, frequent: [] })
+  return { c, d, digest, md: renderMarkdown(digest), fake, consent, coverage, config }
 }
 
 test('the opted-out seed is never requested and never appears', async () => {
@@ -156,7 +172,7 @@ test('members, window and the top story come out as expected', async () => {
 
 test('the markdown has the sections a writer needs', async () => {
   const { md } = await runFake()
-  for (const h of ['# Cluster digest: 2026-W46', '## The week at a glance', '## Built this week', '## About the show', '## Recurring guests this week', '## Stories', '### 1. ', 'Appendix A: most active accounts', 'Appendix B: links that circulated', 'Appendix C: phrases that spiked', 'Appendix D: "X week" declarations', 'Appendix E: how this was made']) {
+  for (const h of ['# Cluster digest: 2026-W46', '## The week at a glance', '## Built this week', '## About the show', '## New voices', '## Interview material', '## Threads you could perform', '## Stories', '### 1. ', 'Appendix A: most active accounts', 'Appendix B: links that circulated', 'Appendix C: phrases that spiked', 'Appendix D: "X week" declarations', 'Appendix E: how this was made']) {
     assert.ok(md.includes(h), h)
   }
   assert.match(md, /\[open\]\(https:\/\/bsky\.app\/profile\/alpha\.example\.test\/post\/root\)/)
@@ -190,7 +206,9 @@ test('authors carry follower counts and small accounts are marked in both output
   const echo = d.authors[ACCOUNTS.echo.did]
   assert.deepEqual([echo.followers, echo.small], [120, true])
   assert.equal(d.authors[ACCOUNTS.alpha.did].small, false)
-  assert.equal(d.authors[ACCOUNTS.alpha.did].guest, true)
+  assert.equal(d.authors[ACCOUNTS.alpha.did].featuredPrevious, 'spoke', 'matched by DID although the ledger has an old handle')
+  assert.equal(d.authors[ACCOUNTS.bravo.did].featuredEarlier, 'shown')
+  assert.equal(d.authors[ACCOUNTS.charlie.did].featuredPrevious, null)
   const p = d.posts.find((x) => x.authorDid === ACCOUNTS.echo.did)
   assert.equal(p.smallAccount, true)
   assert.equal(p.authorFollowers, 120)
@@ -242,12 +260,16 @@ test('out-of-bounds stories are flagged, kept as headlines, and kept out of the 
   assert.ok(!/— .*\[open\]/.test(block))
 })
 
-test('recurring guests get their strongest posts of the week', async () => {
+test('new voices: strong members the show has never featured, nobody it has', async () => {
   const { d, md } = await runFake()
-  const alpha = d.sections.guests.find((g) => g.handle === 'alpha.example.test')
-  assert.ok(alpha.top.length > 0 && alpha.top.length <= 4)
-  assert.equal(alpha.top[0].uri, uriOf('alpha', 'root'))
-  assert.match(md, /### \*\*Alpha Tester\*\* @alpha\.example\.test \(1,000 followers\)/)
+  const handles = d.sections.newVoices.map((v) => v.handle)
+  assert.ok(!handles.includes('alpha.example.test'), 'featured in the previous episode')
+  assert.ok(!handles.includes('bravo.example.test'), 'featured earlier')
+  for (const v of d.sections.newVoices) {
+    assert.ok(v.top.length > 0 && v.top.length <= 3)
+    assert.ok(v.top.every((p) => !p.sensitive))
+  }
+  assert.ok(!md.includes('Recurring guests'))
 })
 
 test('declared weeks are listed with their first post', async () => {
@@ -269,7 +291,12 @@ test('community games: each result with winner, winning post and stats; an exclu
   assert.deepEqual(b.winner, { excluded: true })
   assert.equal(b.text, null)
   assert.ok(md.indexOf('## Community games') < md.indexOf('## Built this week'))
-  assert.match(md, /a result was posted; the winner is not included \(consent rules\)\. The winning post got 50 likes/)
+  assert.match(md, /\| \(not included\) \| 50 \| [^|]* \| [^|]* \| \(not included\) \|/)
+  assert.match(md, /\*\*Who came close on the day:\*\* not known/)
+  const sg = g.segment
+  assert.equal(sg.standings.length, 2)
+  assert.equal(sg.record.score, 999)
+  assert.equal(sg.participation.days.length, 2)
   assert.ok(!JSON.stringify(d.sections.games).includes('ghost'))
 })
 
@@ -281,4 +308,38 @@ test('performable threads come out whole, in order, with exact text', async () =
   assert.equal(t.posts[1].text, 'built it 🎉 golem.alpha.example.test')
   assert.equal(t.posts[2].inReplyTo, uriOf('bot', 'built'))
   assert.match(md, /## Threads you could perform[\s\S]*- \*\*Charlie C\*\* \(@charlie\.example\.test\): someone should make a golem grocery game\n  - \*\*Builder Bot\*\* \(@builder\.alpha\.example\.test, small account\): built it 🎉/)
+})
+
+test('seeds: the show account\'s follows plus the bootstrap list, by DID; consent and bots apply', async () => {
+  const { c, config, fake } = await runFake({ showFollows: true })
+  const seeds = config.cluster.seeds
+  assert.deepEqual(seeds.map((x) => x.handle).sort(), ['alpha.example.test', 'charlie.example.test'])
+  assert.ok(seeds.every((x) => x.did.startsWith('did:')))
+  assert.equal(seeds.find((x) => x.handle === 'charlie.example.test').reason, "followed by the show's account")
+  assert.deepEqual(config.cluster.seedsSkipped.filter((x) => !x.excluded).map((x) => [x.did, x.why]), [[ACCOUNTS.chicken.did, 'a self-labelled bot (bots follow no one)']])
+  assert.deepEqual(config.cluster.seedsSkipped.filter((x) => x.excluded), [{ excluded: true }], 'the opted-out seed is counted, not named')
+  assert.ok(c.members.filter((m) => m.seed).every((m) => [ACCOUNTS.alpha.did, ACCOUNTS.charlie.did].includes(m.did)))
+  assert.ok(!fake.requested.some((u) => decodeURIComponent(u).includes(`actor=${ACCOUNTS.ghost.did}`)), 'an opted-out seed is never asked about')
+})
+
+test('coverage: how members qualified, concentration, change, signals, the cap, worries', async () => {
+  const { coverage: cv, c } = await runFake()
+  const total = Object.values(cv.byRule).reduce((a, b) => a + b, 0)
+  assert.equal(total, c.members.length)
+  assert.ok(cv.byRule.seed >= 1)
+  assert.ok(cv.concentration.top10.posts > 0 && cv.concentration.top10.posts <= 1)
+  assert.equal(cv.change.previous, 'W45')
+  assert.equal(cv.change.left, 1)
+  assert.deepEqual(cv.change.leftSample, ['gone.example.test'])
+  const roster = cv.independent.find((x) => x.name === 'roster: game')
+  assert.ok(roster, 'the roster is compared')
+  assert.equal(typeof roster.overlapOfMembers, 'number')
+  assert.equal(cv.cap.cap, 120)
+  assert.ok(cv.seeds.suggestions.every((x) => !c.members.find((m) => m.did === x.did)?.seed))
+  assert.ok(cv.seeds.suggestions.every((x) => /talked with \d+ members/.test(x.reason)))
+  assert.ok(Array.isArray(cv.worries))
+  assert.ok(cv.worries.some((w) => /ten most active/.test(w)), 'a tiny cluster is concentrated, and the report says so')
+  const md = renderCoverage(cv, { label: 'W46', start: 'a', end: 'b' })
+  for (const h of ['# Coverage: W46', '## Worries', '## Seeds', 'Suggested additional seeds', '## How members qualified', '## Concentration', '## Featured before (the tracker)', '## New and gone', '## Against independent signs of the community', '## The cap', '## Excluded, in counts']) assert.ok(md.includes(h), h)
+  assert.ok(!md.includes('ghost'), 'no opted-out account in the report: ' + md.split('\n').filter((l) => l.includes('ghost')).join(' | '))
 })

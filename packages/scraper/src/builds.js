@@ -19,11 +19,18 @@ const hostMatches = (domain, patterns) =>
  * @param {object} a.cfg scoring config (genericDomains, buildHosts, builtPatterns, builds)
  * @param {Map} a.storyOfUrl url -> story rank
  */
-export function buildsThisWeek({ posts, lookup, memberHandles = [], baselineDomains = new Set(), cfg, storyOfUrl = new Map() }) {
+export function buildsThisWeek({ posts, lookup, memberHandles = [], baselineDomains = new Set(), cfg, storyOfUrl = new Map(), reachOf = () => null }) {
   const generic = cfg.genericDomains ?? []
   const hosts = cfg.buildHosts ?? []
   const builtRes = compileBuiltPatterns(cfg.builtPatterns)
   const memberOwn = ownDomainMatcher(memberHandles)
+  const wishRes = (cfg.wishPatterns ?? []).map((x) => new RegExp(x, 'iu'))
+  const looksLikeWish = (w, b) => {
+    const t = w.text ?? ''
+    if (wishRes.some((re) => re.test(t))) return true
+    if ((w._mentions ?? []).some((m) => m.did === b.authorDid) || (b.handle && t.toLowerCase().includes('@' + b.handle.toLowerCase()))) return true
+    return /\?\s*$/.test(t.trim())
+  }
   const W = { wish: 3, wishByOther: 1, sharers: 1.5, engagement: 0.5, announced: 1, ownDomain: 1, reactions: 0.75, ...(cfg.builds?.weights ?? {}) }
 
   // candidate build links
@@ -69,18 +76,24 @@ export function buildsThisWeek({ posts, lookup, memberHandles = [], baselineDoma
 
   const brief = (p) => p && {
     uri: p.uri, url: p.url, handle: p.handle, displayName: p.displayName, authorDid: p.authorDid, text: p.text, time: p.time,
-    counts: p.counts, member: !!p.member, authorFollowers: p.authorFollowers ?? null, smallAccount: !!p.smallAccount, sensitive: p.sensitive ?? [],
+    counts: p.counts, reach: reachOf(p), member: !!p.member, authorFollowers: p.authorFollowers ?? null, smallAccount: !!p.smallAccount, sensitive: p.sensitive ?? [],
   }
 
   const out = []
   for (const x of entries.values()) {
     const b = x.builder
     // The wish: what the builder replied to or quoted. Skip the builder's own thread posts.
+    // The wish: what the builder replied to or quoted, by someone else, and only if it reads
+    // as asking for something (wishPatterns, a mention of the builder, or a question).
+    // Otherwise it is only what the build replied to.
     let wish = null
+    let inReplyTo = null
     const cands = [b.quote?.uri, b.reply?.parent, b.reply?.root].filter(Boolean)
     for (const uri of cands) {
       const w = lookup(uri)
-      if (w && w.authorDid !== b.authorDid) { wish = w; break }
+      if (!w || w.authorDid === b.authorDid) continue
+      if (looksLikeWish(w, b)) { wish = w; break }
+      inReplyTo ??= w
     }
     const sharerList = [...x.sharers.values()].sort((a, c) => (a.time < c.time ? -1 : 1))
     const memberSharers = sharerList.filter((p) => p.member).length
@@ -106,6 +119,7 @@ export function buildsThisWeek({ posts, lookup, memberHandles = [], baselineDoma
       builtAt: b.time,
       announced: x.announced,
       wish: brief(wish),
+      inReplyTo: wish ? null : brief(inReplyTo),
       sharedBy: sharerList.map((p) => ({ handle: p.handle, displayName: p.displayName, url: p.url, time: p.time, member: !!p.member, smallAccount: !!p.smallAccount })),
       score: Math.round(score * 1000) / 1000,
       scoreParts: Object.fromEntries(Object.entries(parts).map(([k, v]) => [k, Math.round(v * 1000) / 1000])),

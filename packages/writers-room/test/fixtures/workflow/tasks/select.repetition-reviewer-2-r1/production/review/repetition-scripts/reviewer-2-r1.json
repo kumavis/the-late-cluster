@@ -1,0 +1,41 @@
+{
+  "reviewer": "reviewer-2",
+  "round": 1,
+  "items": [
+    {
+      "id": "talk-ask",
+      "version": "__VERSION:talk-ask__",
+      "verdict": "repeat",
+      "avoid": "a segment that announces itself as one of two, the way an earlier cold open counted its own segments",
+      "reason": "fixture"
+    },
+    {
+      "id": "interview",
+      "version": "__VERSION:interview__",
+      "verdict": "fresh",
+      "avoid": "",
+      "reason": "fixture"
+    },
+    {
+      "id": "made-soup",
+      "version": "__VERSION:made-soup__",
+      "verdict": "fresh",
+      "avoid": "",
+      "reason": "fixture"
+    },
+    {
+      "id": "top-chicken",
+      "version": "__VERSION:top-chicken__",
+      "verdict": "fresh",
+      "avoid": "",
+      "reason": "fixture"
+    },
+    {
+      "id": "music",
+      "version": "__VERSION:music__",
+      "verdict": "fresh",
+      "avoid": "",
+      "reason": "fixture"
+    }
+  ]
+}

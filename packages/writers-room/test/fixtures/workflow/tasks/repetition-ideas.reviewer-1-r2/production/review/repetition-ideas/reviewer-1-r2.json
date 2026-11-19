@@ -1,0 +1,11 @@
+{
+  "reviewer": "reviewer-1",
+  "round": 2,
+  "items": [
+    {
+      "id": "writer-1-3-r1",
+      "verdict": "fresh",
+      "reason": "not done before"
+    }
+  ]
+}

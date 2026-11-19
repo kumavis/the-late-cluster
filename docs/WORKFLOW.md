@@ -61,26 +61,31 @@ or drafted joke, runner, format, guest, account shown on a card, song genre and 
 device, by episode. It includes **the tracker**, `docs/ledger/featured.json`: who was
 featured when, keyed by DID with the handle as last seen, one entry per appearance giving
 the episode, the date, and whether the person's puppet spoke or their post was shown. It is written by reviewers after each episode and read only by reviewers
-and the project manager. The writer-facing bible must not catalogue it: craft is taught there
+and the project manager. One exception, by the owner's ruling: researchers and writers may see
+who has been featured and when (the digest's `featuredPrevious`, `featuredEarlier` and
+`timesFeatured`), facts from the tracker that steer toward fresh people. They never see what
+anyone said or did on the show. The writer-facing bible must not catalogue it: craft is taught there
 by principle and by examples that are not from the show's own episodes.
 
 ## Stages
 
 Each stage reads the previous stage's files and writes its own under
 `episodes/<id>/production/`, so a run can stop, be inspected, and resume. A stage marked
-**blocks** cannot be passed by the tool until its condition holds.
+**blocks** cannot be passed by the tool until its condition holds. Who does a task is the
+tool's runner: `manual` (the default: the project manager spawns subagents from the briefs the
+tool writes), `headless` (Claude Code per brief, in CI) or `fixture` (tests).
 
 | # | stage | done by | writes | blocks until |
 |---|---|---|---|---|
 | 1 | **scope** | tool, then 1 reviewer | the digest in `data/`; `scope/coverage.md`; `scope/review.md` | a reviewer agrees the scrape draws on the right community, widely enough |
-| 2 | **research** | 3 to 5 researchers in parallel, one lane each; then 1 reviewer | `research/cards/*.json`, `research/longlist.json`, `research/screen.md` | every card is sourced and passes the constitution screen |
+| 2 | **research** | 3 to 5 researchers in parallel, one lane each; then 1 reviewer | `research/cards/*.json`, `research/longlist.json`, `research/screen.json` and `.md` | every card is sourced and passes the constitution screen |
 | 3 | **brainstorm** | 3 or more writers in parallel, independently | `brainstorm/ideas.jsonl` | every card on the longlist has ideas from at least two writers |
-| 4 | **rank** | tool for reach; 2 or more reviewers for judgement; tool combines | `rank/scores.json`, `rank/shortlist.md` | scores exist from two reviewers for every card |
+| 4 | **rank** | tool for reach; 2 or more reviewers for judgement; tool combines; then 1 reviewer proposes the experiment | `rank/scores.json`, `rank/shortlist.md`, `experiment.md` | scores exist from two reviewers for every card, and the experiment has a measure |
 | 5 | **repetition gate (ideas)** | 2 reviewers with the ledger | `review/repetition-ideas.json` | no shortlisted idea is a repeat |
 | 6 | **draft** | writers in parallel, one segment each | `drafts/<slug>/script.js` and notes | more drafted running time than the target, and every standing segment has a draft |
-| 7 | **select** | 2 or more reviewers; tool combines; **repetition gate (scripts)** | `select/scores.json`, `review/repetition-scripts.json`, `plan.json` | no selected script repeats, and the rundown fits |
-| 8 | **assemble** | 1 writer, then tools | final `segments/*/script.js`, `sources.json`, audio | scripts validate and render; the real-people, heard-text and unread-text gates pass |
-| 9 | **stage** | builders in parallel, one segment each; then 1 reviewer on the frames | `segments/*/index.js`, frames | frames render clean and the reviewer finds nothing unreadable or unperformed |
+| 7 | **select** | 2 or more reviewers; tool combines; **repetition gate (scripts)** | `select/scores.json`, `review/repetition-scripts.json`, `plan.json` (its inheritance from the select reviewers) | no selected script repeats, and the rundown fits |
+| 8 | **assemble** | 1 writer, then tools | final `segments/*/script.js`, `sources.json`, audio | scripts validate and render; the real-people and heard-text gates pass |
+| 9 | **stage** | builders in parallel, one segment each; then 1 reviewer on the frames | `segments/*/index.js`, frames | frames render clean, the unread-text and credits gates pass, and the reviewer finds nothing unreadable or unperformed |
 | 10 | **build** | tools | thumbnail, preview or published build | the build and `verify` pass |
 | 11 | **review** | 1 reviewer | `scorecard.md`, ledger entries, the pull request text | nothing; a send-back is a valid result and routes to the stage that can fix it |
 
@@ -89,7 +94,7 @@ Then the owner watches the whole episode with sound. Nothing is published withou
 ### 1. Scope: are we looking at the right community, widely enough?
 
 The scraper writes the digest for the window, which by default runs from the previous
-episode's air date to now. Alongside it the tool writes a coverage report: how each account
+aired episode's air date to now. Alongside it the tool writes a coverage report: how each account
 came to be in the cluster, how concentrated the material is (the share of posts and of
 candidate stories from the ten most active accounts, from the seed accounts, and from people
 the show has featured before), who is new this window, how the cluster compares with
@@ -118,8 +123,8 @@ happened in neutral words, lists the posts with their addresses and exact text, 
 was involved with their follower counts, carries the tool's reach figures, and notes
 anything sensitive. A card contains no jokes.
 
-**Reach** stands in for "how many people saw it", which Bluesky does not publish. The tool
-computes it from likes, reposts, quotes, replies and the number of distinct accounts that
+**Reach** stands in for "how many people saw it", which Bluesky does not publish. The scraper
+computes it per post from likes, reposts, quotes, replies and the number of distinct accounts that
 took part, and says so wherever it is shown.
 
 A reviewer then screens the longlist against the constitution: out-of-bounds subjects,
@@ -147,6 +152,12 @@ two cards make each other better, is there a through-line) and **variety** (diff
 people, different subjects, different kinds of comedy, and different from the last episode).
 The result is a shortlist with the ideas chosen for each card.
 
+**The experiment.** With the shortlist in hand, one reviewer, who can see what the show has
+already tried, proposes the episode's one experiment in `experiment.md`: what to try that the
+show has not done, why, and a measure someone else can check. The file goes to the writers
+and builders, so it says only what to try and never describes an earlier episode. The final
+review judges it in scorecard row B12.
+
 ### 5 and 7. The repetition gate
 
 **A joke the show has already done is blocked.** Two reviewers, with the ledger and the
@@ -161,7 +172,9 @@ script, one of three verdicts.
 
 The gate covers jokes, runners and catchphrases, the shape of a segment, staging devices,
 and people: a guest who spoke in the previous episode does not speak in this one, and the
-accounts featured on screen must be mostly new. Beyond the previous episode, the tool reads
+accounts featured on screen must be mostly new. Only aired episodes count: "the previous
+episode" is the previous aired one, "mostly new" looks back over a set number of aired
+episodes, and an unaired draft blocks no one. Beyond the previous episode, the tool reads
 the tracker and warns when someone has been featured in more than a set share of recent
 episodes, so that reviewers weigh it in the variety pass; fresh people are preferred, and
 nobody is barred for having appeared before. At most one **turned** item per episode
@@ -197,11 +210,13 @@ is shown is performed or read aloud, or it is short enough to take in at a glanc
 One writer assembles the selected drafts into an episode: the order, the open and the
 close, the joins. Tools render the audio, and three gates run on the result in addition to
 the earlier ones: every line spoken by a real account's puppet is exact and in its own
-context; nothing in what the transcription **heard** is offensive, alarming or says
-something about a real person that the script does not; and no card carries more unspoken
-text than a glance can take in.
+context; and nothing in what the transcription **heard** is offensive, alarming or says
+something about a real person that the script does not.
 
-Builders stage the segments in parallel and a reviewer looks at the frames. The tools build
+Builders stage the segments in parallel. Two gates run on the staging, where on-screen text
+first exists: no card or label carries more unspoken text than a glance can take in; and the
+credits name the real accounts whose personas were played and say every voice is
+synthesized. A reviewer looks at the frames. The tools build
 a preview. A reviewer fills in the scorecard and writes the episode into the ledger. A
 send-back at any review is a valid result: it names the stage that can fix it, and the run
 returns there.

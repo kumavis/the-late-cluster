@@ -1,0 +1,20 @@
+{
+  "id": "made-zed",
+  "lane": "made",
+  "title": "A test account says hello",
+  "summary": "A five-follower account posted a greeting.",
+  "posts": [
+    {
+      "uri": "at://did:plc:trialzed/app.bsky.feed.post/z1",
+      "text": "hello. I am a test.",
+      "handle": "zed.example"
+    }
+  ],
+  "people": [
+    {
+      "handle": "zed.example",
+      "followers": 5
+    }
+  ],
+  "sensitive": "a very small account"
+}

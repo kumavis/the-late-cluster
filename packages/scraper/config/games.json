@@ -1,10 +1,10 @@
 {
-  "$comment": "Community games and metrics whose results an account posts publicly. Each game is an account plus patterns; adding a game needs no code. resultPattern decides which posts are results; it and fieldPatterns are case-insensitive regexes whose named groups become fields. Groups named in personFields hold handles and go through the consent rules: an excluded person is left out and the result still reported. numberFields are parsed as numbers. winningPost: 'quote' resolves the winning post from the post the result quotes; 'none' reports the person only.",
+  "$comment": "Community games and metrics whose results an account posts publicly. Each game is an account plus patterns; adding a game needs no code. resultPattern decides which posts are results; it and fieldPatterns are case-insensitive regexes whose named groups become fields. Groups named in personFields hold handles and go through the consent rules: an excluded person is left out and the result still reported. numberFields are parsed as numbers. winningPost: 'quote' resolves the winning post from the post the result quotes; 'none' reports the person only. historyDays: how far back the game account's posts are read for streaks and history. leaderboard: patterns for an all-time leaderboard post (entryPattern needs groups rank, person, score).",
   "games": [
     {
       "id": "top-chicken",
       "name": "Top Chicken",
-      "account": "topchicken.bsky.social",
+      "account": "did:plc:bty3nc67lteylmmb7hvgxeu5",
       "about": "Daily: the most liked post in a 24-hour window among people the game's maintainer follows or is followed by, for accounts under the Grace Limit (7k followers).",
       "resultPattern": "New Top Chicken! @(?<winner>[a-z0-9.-]+?)'s post got (?<likes>\\d+) likes",
       "fieldPatterns": [
@@ -23,8 +23,14 @@
         "windowPosts"
       ],
       "winningPost": "quote",
-      "maxPages": 2,
-      "writerNote": "Bible R7: winning is a hero moment, so the winner may be named on air, subject to the opt-out rules. Never name or rank anyone who did not win."
+      "maxPages": 3,
+      "writerNote": "Bible R7: winning is a hero moment, so the winner may be named on air, subject to the opt-out rules. Never name or rank anyone who did not win.",
+      "historyDays": 42,
+      "leaderboard": {
+        "headerPattern": "All-time Top Chicken leaderboard",
+        "entryPattern": "^(?<rank>\\d+)\\.\\s+@?(?<person>[a-z0-9.-]+?)\\s+[—–-]\\s+(?<score>\\d+) likes"
+      },
+      "label": "topchicken.bsky.social"
     }
   ]
 }

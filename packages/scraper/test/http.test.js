@@ -115,3 +115,17 @@ test('authenticated mode is a reserved seam that does nothing today', () => {
   assert.equal(warnings.length, 1)
   assert.equal(authFromEnv({}), null)
 })
+
+test('fresh reads skip the cache but still refresh it', async () => {
+  const dir = await mkdtemp(join(tmpdir(), 'scraper-fresh-'))
+  try {
+    const f = fakeFetch([json({ v: 1 }), json({ v: 2 })])
+    const c = new XrpcClient({ fetchImpl: f, ...noSleep, cacheDir: dir })
+    assert.deepEqual(await c.get('m', { a: 1 }), { v: 1 })
+    assert.deepEqual(await c.get('m', { a: 1 }, { fresh: true }), { v: 2 })
+    assert.deepEqual(await c.get('m', { a: 1 }), { v: 2 }, 'the fresh answer was cached')
+    assert.equal(f.calls.length, 2)
+  } finally {
+    await rm(dir, { recursive: true, force: true })
+  }
+})

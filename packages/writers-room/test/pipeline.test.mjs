@@ -1,277 +1,198 @@
-// The orchestrator end to end with the fixture writer and fake tools: stage order, state.json,
-// resume after a failure, --status / --stage / --from / --check, the week-to-episode mapping, the
-// manual writer, the retry loop, render failures going back to the writer, and the pull request.
+// The orchestrator end to end on the workflow fixture, with fake tools (no bun, ffmpeg or browser):
+// the eleven stages in order, the briefs and the status listing, the repetition gate blocking at
+// ideas and at scripts and passing a turned verdict, the heard-text and unread-text gates blocking,
+// rework, send-backs, the runner remembered, preview-only.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { cpSync, existsSync, mkdtempSync, readFileSync, writeFileSync } from 'node:fs'
+import { cpSync, existsSync, mkdtempSync, readFileSync, readdirSync, rmSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { produce } from '../src/pipeline.mjs'
-import { findEpisodeForWeek, PKG, weekSlug, checkWeek, listEpisodes } from '../src/repo.mjs'
+import { findEpisodeForWeek, PKG, checkWeek, weekSlug, listEpisodes } from '../src/repo.mjs'
 import { loadState, STAGES } from '../src/state.mjs'
 import { parseArgs } from '../bin/produce.mjs'
 import { cleanup, fakeRepo, fakeTools, put } from './helpers.mjs'
 
-const TRIAL = join(PKG, 'test', 'fixtures', 'trial')
+const FX = join(PKG, 'test', 'fixtures', 'workflow')
 const WEEK = '2099-W01'
 
-function setup({ fixture = TRIAL } = {}) {
-  const root = fakeRepo({ fullScorecard: true })
-  const tools = fakeTools(root)
+function setup({ fixture = join(FX, 'tasks'), whisper = true } = {}) {
+  const root = fakeRepo({ fullScorecard: true, ledger: false })
+  cpSync(join(FX, 'ledger'), join(root, 'docs/ledger'), { recursive: true })
+  const tools = fakeTools(root, { whisper })
   const lines = []
-  const run = (o = {}) => produce({ root, week: WEEK, writer: 'fixture', fixture, digest: join(fixture, 'digest'), limits: join(fixture, 'limits.json'), tools, print: (l) => lines.push(l), ...o })
+  const run = (o = {}) => produce({ root, week: WEEK, runner: 'fixture', fixture, digest: join(FX, 'digest'), settings: join(FX, 'settings.json'), tools, print: (l) => lines.push(l), ...o })
   return { root, tools, lines, run }
 }
-/** a copy of the trial fixture to plant violations in */
-function fixtureCopy() {
-  const d = mkdtempSync(join(tmpdir(), 'writers-room-fixture-'))
-  cpSync(TRIAL, d, { recursive: true })
-  return d
-}
+const out = (lines) => lines.join('\n')
 
-test('week to episode: none, one, or an error for two', () => {
-  const root = fakeRepo()
+test('the eleven stages run end to end; repeats block and are reworked; heard text and unread text block until reworked', async () => {
+  const { root, lines, run, tools } = setup()
   try {
-    assert.equal(findEpisodeForWeek(root, '2026-W47'), null)
-    assert.equal(findEpisodeForWeek(root, '2026-W46').id, '001-pilot')
-    put(root, 'episodes/005-dupe/episode.json', { id: '005-dupe', status: 'draft', week: '2026-W46', rundown: [] })
-    assert.throws(() => findEpisodeForWeek(root, '2026-W46'), /claimed by 001-pilot and 005-dupe/)
-    assert.equal(weekSlug('2026-W47'), '2026-w47')
-    assert.throws(() => checkWeek('2026-47'), /not an ISO week/)
-  } finally {
-    cleanup(root)
-  }
-})
-
-test('the whole pipeline runs to a pull request with the fixture writer', async () => {
-  const { root, tools, lines, run } = setup()
-  try {
-    assert.equal(await run(), 0, lines.join('\n'))
+    // to the first block: the assemble stage's heard-text gate (the draft says "bomb")
+    assert.equal(await run(), 1, out(lines))
+    let o = out(lines)
+    for (const s of STAGES.slice(0, 7)) assert.match(o, new RegExp(`stage ${s} done`))
+    // the repetition gate on ideas: one repeat, reworked, then judged again
+    assert.match(o, /fixture repetition-ideas\.rework-writer-1-3: 1 file/)
+    assert.match(o, /fixture repetition-ideas\.reviewer-1-r2/)
+    assert.match(o, /warn idea writer-2-3 is turned: the wish granted on the spot → granted so literally/)
+    // the repetition gate on scripts: the selected talk-ask repeats, is redrafted, judged again
+    assert.match(o, /fixture select\.redraft-talk-ask: 1 file/)
+    assert.match(o, /fixture select\.repetition-reviewer-2-r2/)
+    // heard text
+    assert.match(o, /gate render\.heard FAIL\n  FAIL talk-ask calm \(larry, [\d.]+ s\): heard "Relax\. This show is not a bomb\.", which contains "bomb"\. No waiver/)
+    assert.match(o, /stopped at assemble/)
     const ep = findEpisodeForWeek(root, WEEK)
-    assert.equal(ep.id, '002-2099-w01')
-    const state = loadState(join(ep.dir, 'production', 'state.json'))
+    const prod = join(ep.dir, 'production')
+    for (const f of ['scope/coverage.md', 'research/longlist.json', 'brainstorm/ideas.jsonl', 'rank/scores.json', 'rank/shortlist.md', 'experiment.md', 'review/repetition-ideas.json', 'select/scores.json', 'review/repetition-scripts.json', 'plan.json']) assert.ok(existsSync(join(prod, f)), f)
+    const plan = JSON.parse(readFileSync(join(prod, 'plan.json'), 'utf8'))
+    assert.deepEqual(plan.segments.map((s) => s.id), ['talk-ask', 'interview'])
+    const longlist = JSON.parse(readFileSync(join(prod, 'research/longlist.json'), 'utf8'))
+    assert.equal(longlist.cards.find((c) => c.id === 'made-zed').kept, false)
+    assert.ok(longlist.cards.find((c) => c.id === 'talk-ask').reach > longlist.cards.find((c) => c.id === 'talk-bit').reach)
+    assert.match(readFileSync(join(prod, 'briefs/draft/draft.interview.md'), 'utf8'), /production\/experiment\.md/)
+    assert.match(o, /gate rank\.experiment ok/)
+    // every brief exists, one per task
+    const briefs = readdirSync(join(prod, 'briefs/brainstorm'))
+    assert.deepEqual(briefs.sort(), ['brainstorm.writer-1.md', 'brainstorm.writer-2.md', 'brainstorm.writer-3.md'])
+    // rework the assembler: its output is set aside, the new brief carries the failure
+    lines.length = 0
+    assert.equal(await run({ rework: ['assemble.writer'] }), 1, out(lines))
+    o = out(lines)
+    assert.match(o, /fixture assemble\.writer: \d+ files \(run 2\)/)
+    assert.match(o, /gate render\.heard ok/)
+    assert.match(o, /stage assemble done/)
+    // the unread-text gate at staging
+    assert.match(o, /gate stage\.unread FAIL\n  FAIL segments\/talk-ask\/index\.js:\d+: "THE REQUEST, AS POSTED ON TUESDAY BY AN ACCOUNT WITH FOUR HUNDRED FOLL…" \(13 words\) is on screen but only \d+ % of it is spoken/)
+    assert.match(readFileSync(join(prod, 'briefs/assemble/assemble.writer.md'), 'utf8'), /## Sent back to you[\s\S]*bomb/)
+    lines.length = 0
+    assert.equal(await run({ rework: ['stage.talk-ask'] }), 0, out(lines))
+    o = out(lines)
+    for (const s of ['stage', 'build', 'review']) assert.match(o, new RegExp(`stage ${s} done`))
+    assert.match(o, /gate stage\.credits ok/)
+    assert.match(o, /done; pull request text in/)
+    const body = readFileSync(join(prod, 'pr-body.md'), 'utf8')
+    for (const re of [/## Why these segments/, /\| talk-ask \| ✓ \|/, /## How the material was ranked/, /turned writer-2-3 \(carries something forward from the previous episode\)/, /\*\*Trial settings:\*\*/, /Verdict: \*\*approve\*\*/, /Reviewer's checklist/]) assert.match(body, re)
+    assert.ok(existsSync(join(root, 'docs/ledger', `${ep.id}.json`)))
+    const state = loadState(join(prod, 'state.json'))
     assert.deepEqual(STAGES.map((s) => state.stages[s].status), STAGES.map(() => 'done'))
-    assert.equal(state.stages.pitch.attempts, 1)
-    assert.ok(!/\d{4}-\d{2}-\d{2}T\d{2}:/.test(readFileSync(join(ep.dir, 'production', 'state.json'), 'utf8')), 'no timestamps in state.json')
-    assert.equal(ep.meta.status, 'published')
-    assert.equal(ep.meta.title, 'Two Segments')
-    assert.deepEqual(ep.meta.rundown, ['cold-open', 'chat'])
-    // the stages called the repo's commands, in order
-    const order = tools.calls.map((c) => c[0]).filter((c, k, a) => c !== a[k - 1])
-    assert.deepEqual(order, ['episode:new', 'render', 'check', 'shoot', 'thumbnail', 'build', 'verify'])
-    const body = readFileSync(join(ep.dir, 'production', 'pr-body.md'), 'utf8')
-    assert.match(readFileSync(join(ep.dir, 'production', 'pr-title.txt'), 'utf8'), /^Episode 002: Two Segments \(week 2099-W01\)/)
-    for (const re of [/Merging this pull request publishes/, /Trial limits/, /## Risks and open questions/, /This is a fixture/, /## Real accounts and posts used/, /npm run preview/, /- \[ \] Every real account is in sources\.json/, /render\.whisper: whisper is not installed/])
-      assert.match(body, re)
-    assert.match(lines.at(-1), /done; pull request text in/)
-    // inheritance: exactly the plan's file, copied and recorded
-    assert.ok(existsSync(join(ep.dir, 'production/inherited/001-pilot/segments/cold-open/script.js')))
-    assert.deepEqual(state.stages.pitch.data.inherited.map((x) => `${x.from}/${x.path}`), ['001-pilot/segments/cold-open/script.js'])
-    assert.ok(state.bible.snapshot.constitution['00-constitution.md'] && state.bible.snapshot.dna['03-episode-shape.md'])
-    // the change to the show sits near the top of the pull request
-    const top = body.indexOf('## This pull request also changes the show')
-    assert.ok(top > 0 && top < body.indexOf('## The episode'))
-    for (const re of [/\*\*Retro of 001-pilot\.\*\* Worked: The engine reads/, /Reactions: <https:\/\/bsky\.app\/profile\/fan\.example\/post\/f1>/, /\*\*Experiment:\*\* Cut the episode to two segments/, /Writer's verdict before air: \*\*worked\*\*/, /- `001-pilot\/segments\/cold-open\/script\.js`: the pilot's cold open/, /- `docs\/bible\/03-episode-shape\.md` \(modified\): adds a trial note/, /The constitution is unchanged/])
-      assert.match(body, re)
-    assert.match(readFileSync(join(root, 'docs/bible/03-episode-shape.md'), 'utf8'), /Trial note/)
-    assert.match(readFileSync(join(root, 'docs/bible/lore.md'), 'utf8'), /\*\*E-002 Two Segments\*\*/)
-    // running again does nothing
-    lines.length = 0
-    assert.equal(await run(), 0)
-    assert.match(lines.join('\n'), /already done/)
+    assert.equal(state.runner, 'fixture')
+    assert.ok(!/\d{4}-\d{2}-\d{2}T\d{2}:/.test(readFileSync(join(prod, 'state.json'), 'utf8')), 'no timestamps')
+    // logs are labelled by run
+    assert.ok(tools.calls.length > 0)
   } finally {
     cleanup(root)
   }
 })
 
-test('a planted violation stops the run; after the fix it resumes where it stopped', async () => {
-  const fx = fixtureCopy()
-  const chat = join(fx, 'write/segments/chat/script.js')
-  const good = readFileSync(chat, 'utf8')
-  writeFileSync(chat, good.replace(" // invented", ''))
-  const { root, lines, run, tools } = setup({ fixture: fx })
-  try {
-    assert.equal(await run({ maxAttempts: 2 }), 1)
-    const out = lines.join('\n')
-    assert.match(out, /gate write\.guest-lines FAIL\n  FAIL segments\/chat\/script\.js:9 \(hello\): zed says "Hello, Larry\. I am a test\." with no source comment \(rule R3\)/)
-    assert.match(out, /stage write attempt 2 writer=fixture \(1 failures to fix\)/)
-    assert.match(out, /produce 002-2099-w01: stopped at write/)
-    const ep = findEpisodeForWeek(root, WEEK)
-    let state = loadState(join(ep.dir, 'production', 'state.json'))
-    assert.equal(state.stages.pitch.status, 'done')
-    assert.equal(state.stages.write.status, 'failed')
-    assert.equal(state.stages.write.attempts, 2)
-    // --status shows where it is
-    lines.length = 0
-    assert.equal(await run({ status: true }), 0)
-    assert.match(lines.join('\n'), /write {6}failed attempts=2[\s\S]*FAIL write\.guest-lines[\s\S]*next: write/)
-    // fix the fixture and resume: pitch is not redone, and the same episode is used
-    writeFileSync(chat, good)
-    lines.length = 0
-    const pitchCalls = tools.calls.length
-    assert.equal(await run(), 0, lines.join('\n'))
-    assert.ok(!lines.some((l) => l.startsWith('stage pitch')), 'pitch is not re-run')
-    assert.match(lines[0], /stage write start/)
-    assert.equal(listEpisodes(root).length, 2, 'no second episode for the week')
-    state = loadState(join(ep.dir, 'production', 'state.json'))
-    assert.equal(state.stages.write.status, 'done')
-    assert.ok(tools.calls.length > pitchCalls)
-  } finally {
-    cleanup(root)
-    cleanup(fx)
-  }
-})
-
-test('touching the constitution fails the self-check, whatever the writer was allowed', async () => {
-  const fx = fixtureCopy()
-  put(fx, 'self-check/bible-append/00-constitution.md', '\n## 7. A new article the writer wrote\n')
-  const { root, lines, run } = setup({ fixture: fx })
-  try {
-    assert.equal(await run({ maxAttempts: 1 }), 1)
-    const out = lines.join('\n')
-    assert.match(out, /gate self-check\.constitution FAIL\n  FAIL 00-constitution\.md is part of the constitution and has changed since this run started/)
-    assert.match(out, /stopped at self-check/)
-    assert.ok(!existsSync(join(findEpisodeForWeek(root, WEEK).dir, 'production/pr-body.md')), 'no pull request text')
-  } finally {
-    cleanup(root)
-    cleanup(fx)
-  }
-})
-
-test('a real-TLD handle fails write.names and stops the run', async () => {
-  const fx = fixtureCopy()
-  const f = join(fx, 'write/cast.js')
-  writeFileSync(f, readFileSync(f, 'utf8').replace('@zed.example', '@zed.social'))
-  const { root, lines, run } = setup({ fixture: fx })
-  try {
-    assert.equal(await run({ maxAttempts: 1 }), 1)
-    assert.match(lines.join('\n'), /FAIL cast\.js: @zed\.social is neither on \.example nor in sources\.json/)
-  } finally {
-    cleanup(root)
-    cleanup(fx)
-  }
-})
-
-test('a retry overlay (<stage>@2) fixes the stage on its second attempt', async () => {
-  const fx = fixtureCopy()
-  const pitch = join(fx, 'pitch/production/pitch.md')
-  const good = readFileSync(pitch, 'utf8')
-  writeFileSync(pitch, good.replace('## Risks and open questions', '## Risks'))
-  put(fx, 'pitch@2/production/pitch.md', good)
-  const { root, lines, run } = setup({ fixture: fx })
-  try {
-    assert.equal(await run({ stage: undefined, from: undefined }), 0, lines.join('\n'))
-    assert.match(lines.join('\n'), /FAIL pitch\.md: no "## Risks and open questions"[\s\S]*stage pitch attempt 2[\s\S]*stage pitch done attempts=2/)
-  } finally {
-    cleanup(root)
-    cleanup(fx)
-  }
-})
-
-test('render failures go back to the write stage\'s writer', async () => {
-  const fx = fixtureCopy()
-  put(fx, 'write@2/segments/chat/script.js', readFileSync(join(fx, 'write/segments/chat/script.js'), 'utf8').replace("title: 'The Guest',", "title: 'The Guest', // duration: 11"))
-  // the first write renders at 30 s (too long for an 11 s plan); the rewrite renders at 11 s
-  writeFileSync(join(fx, 'write/segments/chat/script.js'), readFileSync(join(fx, 'write/segments/chat/script.js'), 'utf8').replace("title: 'The Guest',", "title: 'The Guest', // duration: 30"))
-  const { root, lines, run } = setup({ fixture: fx })
-  try {
-    assert.equal(await run(), 0, lines.join('\n'))
-    const out = lines.join('\n')
-    assert.match(out, /FAIL chat renders at 30\.0 s but the plan gives it 11 s/)
-    assert.match(out, /stage render: back to the write stage's writer with 1 failures/)
-    assert.match(out, /stage render done/)
-  } finally {
-    cleanup(root)
-    cleanup(fx)
-  }
-})
-
-test('--stage needs earlier stages done; --from resets and redoes', async () => {
+test('--status says exactly which subagents to spawn; the manual runner waits; the runner is remembered', async () => {
   const { root, lines, run } = setup()
   try {
-    await assert.rejects(run({ stage: 'direct' }), /no episode for 2099-W01 yet/)
-    assert.equal(await run({ stage: 'scaffold' }), 0)
-    await assert.rejects(run({ stage: 'direct' }), /direct needs pitch, write, render done first/)
-    assert.equal(await run(), 0)
+    assert.equal(await run({ runner: 'manual' }), 1)
+    assert.match(out(lines), /waiting at scope for 1 subagent/)
     lines.length = 0
-    assert.equal(await run({ from: 'direct' }), 0, lines.join('\n'))
-    assert.match(lines[0], /stage direct start/)
-    assert.ok(lines.some((l) => l.startsWith('stage build start')))
+    assert.equal(await run({ status: true, runner: undefined }), 0)
+    assert.match(out(lines), /next: scope: spawn 1 subagent[\s\S]*spawn reviewer\s+scope\.reviewer\s+brief episodes\/002-2099-w01\/production\/briefs\/scope\/scope\.reviewer\.md\s+writes episodes\/002-2099-w01\/production\/scope\/review\.md/)
+    lines.length = 0
+    // no --runner: the run remembers manual, and does not fall back to anything else (trial finding 12)
+    assert.equal(await produce({ root, week: WEEK, tools: fakeTools(root), print: (l) => lines.push(l) }), 1)
+    assert.match(out(lines), /spawn reviewer\s+scope\.reviewer/)
+    const st = loadState(join(findEpisodeForWeek(root, WEEK).dir, 'production/state.json'))
+    assert.equal(st.runner, 'manual')
+    assert.equal(listEpisodes(root).length, 2, 'the same week maps to the same episode')
   } finally {
     cleanup(root)
   }
 })
 
-test('--preview-only keeps the episode a draft, builds into preview/ and never into dist/', async () => {
-  const { root, tools, lines, run } = setup()
+test('briefs only point at what the role may read', async () => {
+  const { root, run } = setup()
   try {
-    assert.equal(await run({ previewOnly: true, stage: 'scaffold' }), 0)
-    assert.equal(await run(), 0, lines.join('\n'))
+    await run({ runner: 'manual' })
+    await run({ runner: 'fixture' }).catch(() => {})
+    const prod = join(findEpisodeForWeek(root, WEEK).dir, 'production')
+    const writer = readFileSync(join(prod, 'briefs/brainstorm/brainstorm.writer-1.md'), 'utf8')
+    assert.match(writer, /\*\*Role:\*\* writer \(spawn the `writer` subagent/)
+    assert.match(writer, /## Do not read[\s\S]*docs\/ledger\/ \(the ledger\)[\s\S]*episodes\/001-pilot\//)
+    assert.ok(!/## Read[\s\S]*docs\/ledger\/ \(the ledger: what the show has already done\)[\s\S]*## Do not read/.test(writer))
+    const reviewer = readFileSync(join(prod, 'briefs/repetition-ideas/repetition-ideas.reviewer-1-r1.md'), 'utf8')
+    assert.match(reviewer, /## Read[\s\S]*docs\/ledger\/ \(the ledger: what the show has already done\)/)
+    assert.ok(!/## Do not read/.test(reviewer))
+  } finally {
+    cleanup(root)
+  }
+})
+
+test('a send-back at review routes the run to the stage that can fix it', async () => {
+  const fx = mkdtempSync(join(tmpdir(), 'wr-fx-'))
+  cpSync(join(FX, 'tasks'), fx, { recursive: true })
+  // assemble and stage pass at once; the review sends the episode back to stage
+  cpSync(join(fx, 'assemble.writer@2'), join(fx, 'assemble.writer'), { recursive: true })
+  cpSync(join(fx, 'stage.talk-ask@2'), join(fx, 'stage.talk-ask'), { recursive: true })
+  writeFileSync(join(fx, 'review.reviewer/production/review.json'), JSON.stringify({ verdict: 'send-back', route: 'stage', reasons: ['the card in talk-ask is gone before it can be read'] }))
+  const { root, lines, run } = setup({ fixture: fx })
+  try {
+    assert.equal(await run(), 1, out(lines))
+    assert.match(out(lines), /SEND-BACK to stage: the card in talk-ask is gone before it can be read/)
+    assert.match(out(lines), /review sent the episode back to stage/)
+    lines.length = 0
+    await run()
+    assert.match(out(lines), /sent back from review to stage/)
+    assert.match(out(lines), /stage stage start/)
+    const prod = join(findEpisodeForWeek(root, WEEK).dir, 'production')
+    assert.ok(existsSync(join(prod, 'review.json.rejected-1')), 'the verdict is set aside')
+  } finally {
+    cleanup(root)
+    cleanup(fx)
+  }
+})
+
+test('--preview-only keeps the episode a draft and builds into preview/', async () => {
+  const fx = mkdtempSync(join(tmpdir(), 'wr-fx-'))
+  cpSync(join(FX, 'tasks'), fx, { recursive: true })
+  cpSync(join(fx, 'assemble.writer@2'), join(fx, 'assemble.writer'), { recursive: true })
+  cpSync(join(fx, 'stage.talk-ask@2'), join(fx, 'stage.talk-ask'), { recursive: true })
+  const { root, lines, run, tools } = setup({ fixture: fx })
+  try {
+    assert.equal(await run({ previewOnly: true }), 0, out(lines))
     const ep = findEpisodeForWeek(root, WEEK)
     assert.equal(ep.meta.status, 'draft')
     assert.ok(tools.calls.some((c) => c[0] === 'build' && c.includes('--preview')))
-    assert.ok(!tools.calls.some((c) => c[0] === 'build' && !c.includes('--preview')))
     assert.ok(!existsSync(join(root, 'dist/episodes', ep.id)))
-    assert.equal(loadState(join(ep.dir, 'production/state.json')).previewOnly, true)
     assert.match(readFileSync(join(ep.dir, 'production/pr-body.md'), 'utf8'), /\*\*Preview only\.\*\*/)
   } finally {
     cleanup(root)
+    cleanup(fx)
   }
 })
 
-test('--check runs one stage\'s gates and exits 1 on a failure', async () => {
-  const { root, lines, run } = setup()
+test('the repetition gate blocks a repeat idea; --exclude drops it instead of reworking it', async () => {
+  const fx = mkdtempSync(join(tmpdir(), 'wr-fx-'))
+  cpSync(join(FX, 'tasks'), fx, { recursive: true })
+  rmSync(join(fx, 'repetition-ideas.rework-writer-1-3'), { recursive: true })
+  const { root, lines, run } = setup({ fixture: fx })
   try {
-    await run({ stage: 'scaffold' })
+    assert.equal(await run(), 1)
+    assert.match(out(lines), /the fixture has no output for task repetition-ideas\.rework-writer-1-3/)
     lines.length = 0
-    assert.equal(await run({ check: 'pitch' }), 1)
-    assert.match(lines.join('\n'), /check pitch 002-2099-w01: FAIL/)
+    assert.equal(await run({ exclude: ['writer-1-3'], stage: 'repetition-ideas' }), 0, out(lines))
+    assert.match(out(lines), /excluded at repetition-ideas: writer-1-3/)
+    assert.match(out(lines), /gate repetition\.ideas ok/)
+    const rep = JSON.parse(readFileSync(join(findEpisodeForWeek(root, WEEK).dir, 'production/review/repetition-ideas.json'), 'utf8'))
+    assert.deepEqual(rep.excluded, ['writer-1-3'])
+    assert.ok(!rep.shortlist.some((c) => c.ideas.includes('writer-1-3')))
   } finally {
     cleanup(root)
+    cleanup(fx)
   }
 })
 
-test('the manual writer prints the prompt and waits; the next run checks the work first', async () => {
-  const { root, lines, run } = setup()
-  try {
-    assert.equal(await run({ writer: 'manual' }), 1)
-    const out = lines.join('\n')
-    assert.match(out, /manual pitch: the prompt is in shots\/002-2099-w01\/_production\/prompts\/pitch\.md/)
-    assert.match(out, /# The Late Cluster: the pitch stage of episode 002-2099-w01/)
-    assert.match(out, /produce 002-2099-w01: waiting at pitch/)
-    const ep = findEpisodeForWeek(root, WEEK)
-    assert.equal(loadState(join(ep.dir, 'production', 'state.json')).stages.pitch.status, 'waiting')
-    // a person does the stage (here: copies the fixture), then runs produce again
-    cpSync(join(TRIAL, 'pitch/production'), join(ep.dir, 'production'), { recursive: true })
-    for (const f of ['pitch.md', 'plan.json']) {
-      const p = join(ep.dir, 'production', f)
-      writeFileSync(p, readFileSync(p, 'utf8').replaceAll('__ID__', ep.id).replaceAll('__NUMBER__', '002').replaceAll('__WEEK__', WEEK))
-    }
-    lines.length = 0
-    assert.equal(await run({ writer: 'manual' }), 1)
-    assert.match(lines.join('\n'), /stage pitch done[\s\S]*manual write:/)
-  } finally {
-    cleanup(root)
-  }
-})
-
-test('a scrape runs only when the digest is missing', async () => {
-  const root = fakeRepo()
-  const tools = fakeTools(root)
-  const lines = []
-  try {
-    const go = (week) => produce({ root, week, writer: 'fixture', fixture: TRIAL, tools, print: (l) => lines.push(l), stage: 'scaffold' })
-    assert.equal(await go('2026-W47'), 0)
-    assert.match(lines[0], /stage scrape skip \(digest exists/)
-    assert.equal(await go('2026-W50'), 0)
-    assert.ok(tools.calls.some((c) => c[0] === 'scrape' && c[2] === '2026-W50'))
-  } finally {
-    cleanup(root)
-  }
-})
-
-test('produce arguments: required week, one mode, known writers, exit code 2 on bad input', () => {
-  assert.deepEqual(parseArgs(['--week', '2026-W47', '--from', 'write', '--max-attempts', '2']), { week: '2026-W47', from: 'write', maxAttempts: '2' })
-  for (const [argv, re] of [[[], /--week is required/], [['--week', 'x', '--stage', 'nope'], /--stage must be one of/], [['--week', 'x', '--status', '--from', 'write'], /use one of/], [['--week', 'x', '--writer', 'gpt'], /--writer must be one of/], [['--week', 'x', '--writer', 'fixture'], /needs --fixture/], [['--week'], /needs a value/], [['--wat'], /unknown option/]])
+test('produce arguments', () => {
+  assert.deepEqual(parseArgs(['--week', '2026-W47', '--check', 'stage', '--segment', 'a']), { week: '2026-W47', check: 'stage', segment: 'a' })
+  assert.deepEqual(parseArgs(['--week', 'x', '--rework', 'a,b']).rework, ['a', 'b'])
+  for (const [argv, re] of [[[], /--week is required/], [['--week', 'x', '--runner', 'gpt'], /--runner must be one of/], [['--week', 'x', '--runner', 'fixture'], /needs --fixture/], [['--week', 'x', '--segment', 'a'], /--segment goes with --check stage/], [['--week', 'x', '--status', '--from', 'draft'], /use one of/]])
     assert.throws(() => parseArgs(argv), (e) => e.code === 2 && re.test(e.message))
+  assert.equal(weekSlug('2026-W47'), '2026-w47')
+  assert.throws(() => checkWeek('2026-47'))
 })

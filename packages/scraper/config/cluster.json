@@ -1,11 +1,94 @@
 {
-  "$comment": "Who the cluster is. See README 'Config: cluster.json'. Handles or DIDs everywhere.",
+  "$comment": "Who the cluster is. See README 'Who is the cluster'. Seeds are whoever the show's Bluesky account follows, read fresh every run, plus the bootstrap list here; everything about a seed is by DID, the handle is only a label. The roster and the community feed widen the area beyond what the seeds reach. Handles or DIDs everywhere; prefer DIDs.",
+  "seedsComment": "Bootstrap seeds, by DID, each with its reason. Used together with the show account's follows (seedSelection.mode 'show-follows', the default), alone ('fixed'), or only on a cold start ('drift'). The label is the handle as last seen; the profile refreshes it.",
   "seeds": [
-    "norvid-studies.bsky.social",
-    "abeliansoup.bsky.social",
-    "samantha.wiki",
-    "borjev.bsky.social"
+    {
+      "did": "did:plc:c2x5i7fneh7xbvpvw2r3omes",
+      "label": "kumavis.me",
+      "reason": "the show's owner, who asked to be a seed by name"
+    },
+    {
+      "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+      "label": "norvid-studies.bsky.social",
+      "reason": "on the owner's bootstrap list: a long-standing centre of the community's conversation (the most connected member in 2026-W46)"
+    },
+    {
+      "did": "did:plc:kbdtfnqrqpwwf62f6eekr7m2",
+      "label": "abeliansoup.bsky.social",
+      "reason": "on the owner's bootstrap list: a long-standing community account"
+    },
+    {
+      "did": "did:plc:sna3qx44beg2mb5fao44gsxh",
+      "label": "samantha.wiki",
+      "reason": "on the owner's bootstrap list: a long-standing community account and builder"
+    },
+    {
+      "did": "did:plc:5m2kgmia2wjplfqhk3khe6nt",
+      "label": "borjev.bsky.social",
+      "reason": "on the owner's bootstrap list (a self-labelled bot: it follows no one, so it is skipped as a seed and replaced by nobody)"
+    }
   ],
+  "seedSelection": {
+    "$comment": "mode: 'show-follows' (default): the bootstrap list plus whoever the show's account follows, read fresh every run; the owner moves the area by following people. 'fixed': the bootstrap list only. 'drift' (optional, off): each window's seeds are the previous run's most connected members, at most maxTurnover changing per run. Self-labelled bots never seed.",
+    "mode": "show-follows",
+    "count": 4,
+    "maxTurnover": 2,
+    "keepWithinTop": 12
+  },
+  "rosters": [
+    {
+      "id": "top-chicken",
+      "account": "did:plc:hovt6k22s64dq63jjmoyibk3",
+      "follows": true,
+      "followers": true,
+      "maxPages": 12,
+      "reason": "Top Chicken's pinned post defines its contenders as the people this account follows and his followers: the community's own public roster for its daily game",
+      "label": "dave.9000ish.uk"
+    }
+  ],
+  "references": [
+    {
+      "name": "the \"Are you in the simcluster?\" checker",
+      "url": "https://shimmermathlabs.com/simcluster.html",
+      "$comment": "A community member's published membership checker. Its page script names 14 seeds and 14 hubs and scores an account by seeds it follows (30), seeds that follow it (30), mutual seed follows (20) and hubs it follows (20). Listed here only to compare against; never submitted to, never automated. Its footer: 'Your score is a function of who started the crawl, not who you are.'",
+      "seeds": [
+        "abeliansoup.bsky.social",
+        "solarapparition.bsky.social",
+        "prer.at",
+        "movail.bsky.social",
+        "yielding.bsky.social",
+        "ganweaving.bsky.social",
+        "simcluster.social",
+        "samantha.wiki",
+        "clamclaw.pds.samantha.wiki",
+        "norvid-studies.bsky.social",
+        "void.comind.network",
+        "kira.pds.witchcraft.systems",
+        "seasaltshrimp.bsky.social",
+        "ai.bsky.art"
+      ],
+      "hubs": [
+        "vibe-coded.com",
+        "vgel.me",
+        "cee.wtf",
+        "carbonadoks.com",
+        "joshuashew.bsky.social",
+        "godoglyness.bsky.social",
+        "tbabb.bsky.social",
+        "croissanthology.com",
+        "astrra.space",
+        "isolyth.dev",
+        "tautologer.com",
+        "moskov.goodventures.org",
+        "minormobius.bsky.social",
+        "dave.9000ish.uk"
+      ]
+    }
+  ],
+  "ledger": {
+    "$comment": "The show's ledger: docs/ledger/featured.json (the tracker: who was featured when, keyed by DID) and one <episode-id>.json per episode (guests and featured as handles or { did, handle }). Used to mark who the show has featured, for concentration figures, and to start the default window at the previous aired episode. Never used to choose seeds or members.",
+    "dir": "docs/ledger"
+  },
   "lists": [],
   "starterPacks": [],
   "feeds": [
@@ -18,7 +101,9 @@
   "search": {
     "enabled": false,
     "host": "https://api.bsky.app",
-    "terms": ["simcluster"],
+    "terms": [
+      "simcluster"
+    ],
     "maxPagesPerTerm": 3,
     "$comment": "searchPosts answers 403 on public.api.bsky.app (its CDN blocks it) but works unauthenticated on api.bsky.app, the same AppView without the CDN."
   },
@@ -26,18 +111,75 @@
     "maxFollowPagesPerSeed": 10,
     "seedThreadsPerSeed": 5,
     "rules": [
-      { "seedFollows": 2, "interactions": 1 },
-      { "seedFollows": 3 },
-      { "seedFollows": 1, "interactions": 3 },
-      { "interactions": 6 },
-      { "listed": true },
-      { "termPosts": 1, "seedFollows": 1 },
-      { "termPosts": 2 },
-      { "feedPosts": 2, "seedFollows": 1 }
+      {
+        "seedFollows": 2,
+        "interactions": 1
+      },
+      {
+        "seedFollows": 3
+      },
+      {
+        "seedFollows": 1,
+        "interactions": 3
+      },
+      {
+        "interactions": 6
+      },
+      {
+        "listed": true
+      },
+      {
+        "roster": true,
+        "seedFollows": 1
+      },
+      {
+        "roster": true,
+        "interactions": 1
+      },
+      {
+        "roster": true,
+        "feedPosts": 1
+      },
+      {
+        "termPosts": 1,
+        "seedFollows": 1
+      },
+      {
+        "termPosts": 2
+      },
+      {
+        "feedPosts": 2,
+        "seedFollows": 1
+      }
     ],
-    "weights": { "seedFollows": 3, "interactions": 1, "termPosts": 2, "feedPosts": 1, "listed": 10 },
-    "caps": { "interactions": 12, "termPosts": 3, "feedPosts": 3 },
-    "maxMembers": 120
+    "weights": {
+      "seedFollows": 3,
+      "interactions": 1,
+      "termPosts": 2,
+      "feedPosts": 1,
+      "listed": 10,
+      "roster": 4
+    },
+    "caps": {
+      "interactions": 12,
+      "termPosts": 3,
+      "feedPosts": 3,
+      "rosters": 1
+    },
+    "maxMembers": 120,
+    "ruleNames": [
+      "followed by 2 seeds and talked with one",
+      "followed by 3 seeds",
+      "followed by a seed and 3 interactions",
+      "6 interactions with seeds",
+      "on a configured list",
+      "on a roster and followed by a seed",
+      "on a roster and talked with a seed",
+      "on a roster and in the community feed",
+      "used a search term and followed by a seed",
+      "used a search term twice",
+      "twice in the community feed and followed by a seed"
+    ]
   },
   "collection": {
     "baselineWeeks": 3,
@@ -48,5 +190,28 @@
     "threadDepth": 4,
     "threadOutsiderMinLikes": 5,
     "profileReserve": 250
+  },
+  "coverage": {
+    "$comment": "Thresholds for the coverage report's worries. Shares are 0..1.",
+    "thresholds": {
+      "top10PostShare": 0.35,
+      "top10StoryShare": 0.4,
+      "seedPostShare": 0.15,
+      "seedStoryShare": 0.25,
+      "featuredStoryShare": 0.3,
+      "featuredBuiltShare": 0.3,
+      "rosterOverlapMin": 0.5,
+      "feedOverlapMin": 0.3,
+      "cutShareMax": 0.25,
+      "newMembersMin": 5,
+      "turnoverMax": 0.5,
+      "topStories": 30,
+      "sample": 8
+    }
+  },
+  "showAccount": {
+    "$comment": "The show's own Bluesky account. Its follows are seeds. The DID comes from show.config.json at the repo root (bluesky.did); set 'did' here only to override it.",
+    "did": null,
+    "from": "show.config.json"
   }
 }

@@ -1,0 +1,11 @@
+{
+  "id": "__ID__",
+  "number": 2,
+  "slug": "2099-w01",
+  "title": "Two Segments",
+  "description": "A workflow trial: somebody asks for a talk show with two segments, and gets one, with an interview.",
+  "airDate": "2099-01-02",
+  "week": "__WEEK__",
+  "status": "draft",
+  "rundown": ["talk-ask", "interview"]
+}

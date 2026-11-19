@@ -1,33 +1,36 @@
 #!/usr/bin/env node
 // npm run produce -- --week 2026-W47 [options]
 //
-// Runs the weekly pipeline for one episode, stage by stage, resuming from
-// episodes/<id>/production/state.json. See packages/writers-room/README.md.
+// Drives one episode through the eleven stages of docs/WORKFLOW.md, resuming from
+// episodes/<id>/production/state.json. The tool never calls a model: it writes a brief per subagent
+// task and stops until their files exist (see playbooks/project-manager.md).
 //
-//   --status                 where the week's run is, and stop
+//   --status                 where the run is, and exactly which subagents to spawn next
+//   --check <stage>          run a stage's gates only (what a subagent runs before it stops)
+//   --segment <seg>          with --check stage: one segment's frames and checks (builders in parallel)
+//   --find "<uri|url|text>"  look a post up in the digest (exact text, counts, what it replied to)
 //   --stage <name>           run one stage (earlier stages must be done)
 //   --from <name>            re-run from a stage (it and everything after are reset)
-//   --check <stage>          run a stage's gates only (what a writer runs before it stops)
-//   --writer claude|manual|fixture   who does the creative stages (default claude)
-//   --model <id>             the claude writer's model (default from config: claude-fable-5-2)
-//   --fixture <dir>          the fixture writer's prepared outputs
-//   --digest <dir>           read the digest from here instead of data/weeks/<week>/
-//   --limits <file>          JSON merged over the default limits (a trial run; the PR says so)
-//   --bible <dir>            the bible to read and amend (default docs/bible; a copy for trial runs)
-//   --lore <file>            the lore file the self-check appends to (default <bible>/lore.md)
-//   --network                check invented handles against the public Bluesky API
+//   --rework <task id,…>     set a task's output aside and brief it again with the failures
+//   --exclude <id,…>         drop an idea (repetition gate) or a draft (select), recorded with the run
+//   --runner manual|fixture|headless   who does the tasks (default manual; remembered)
+//   --fixture <dir>          the fixture runner's prepared outputs
+//   --digest <dir>           the digest folder (default data/weeks/<week>/)
+//   --bible <dir> --ledger <dir>   copies to read and write (trial runs)
+//   --limits <file>          JSON merged over the default limits
+//   --settings <file>        JSON merged over the whole config (trial runs; remembered, and the PR says so)
 //   --preview-only           build a draft into preview/<id>/ and never publish (remembered)
-//   --max-attempts <n>       writer attempts per stage (default 3)
+//   --network                check invented handles against the public Bluesky API
 //
-// Stages: scrape scaffold pitch write render direct build self-check pr.
-// Exit codes: 0 done (or nothing to do), 1 refused, failed or waiting for a person, 2 bad arguments.
+// Stages: scope research brainstorm rank repetition-ideas draft select assemble stage build review.
+// Exit codes: 0 done, 1 waiting for subagents, failed or sent back, 2 bad arguments.
 import { produce } from '../src/pipeline.mjs'
 import { ProduceError, REPO } from '../src/repo.mjs'
 import { STAGES } from '../src/state.mjs'
-import { WRITERS } from '../src/writers/index.mjs'
+import { RUNNERS } from '../src/runners.mjs'
 
-const USAGE = 'usage: npm run produce -- --week 2026-W47 [--status | --stage <s> | --from <s> | --check <s>] [--writer claude|manual|fixture] [--model id] [--fixture dir] [--digest dir] [--limits file] [--bible dir] [--lore file] [--network] [--preview-only] [--max-attempts n]'
-const VALUE = new Set(['week', 'stage', 'from', 'check', 'writer', 'model', 'fixture', 'digest', 'limits', 'lore', 'bible', 'max-attempts', 'root'])
+const USAGE = 'usage: npm run produce -- --week 2026-W47 [--status | --check <stage> [--segment s] | --find "…" | --stage <s> | --from <s> | --rework <task> | --exclude <id>] [--runner manual|fixture|headless] [--fixture dir] [--digest dir] [--bible dir] [--ledger dir] [--limits file] [--preview-only] [--network]'
+const VALUE = new Set(['week', 'stage', 'from', 'check', 'segment', 'find', 'rework', 'exclude', 'runner', 'fixture', 'digest', 'limits', 'settings', 'bible', 'ledger', 'root'])
 const FLAG = new Set(['status', 'network', 'help', 'preview-only'])
 
 export function parseArgs(argv) {
@@ -46,10 +49,11 @@ export function parseArgs(argv) {
   if (o.help) return o
   if (!o.week) throw new ProduceError(`--week is required; ${USAGE}`, 2)
   for (const k of ['stage', 'from']) if (o[k] && !STAGES.includes(o[k])) throw new ProduceError(`--${k} must be one of ${STAGES.join(', ')}`, 2)
-  if ([o.status, o.stage, o.from, o.check].filter(Boolean).length > 1) throw new ProduceError('use one of --status, --stage, --from, --check', 2)
-  if (o.writer && !WRITERS.includes(o.writer)) throw new ProduceError(`--writer must be one of ${WRITERS.join(', ')}`, 2)
-  if (o.writer === 'fixture' && !o.fixture) throw new ProduceError('--writer fixture needs --fixture <dir>', 2)
-  if (o.maxAttempts !== undefined && !(Number(o.maxAttempts) >= 1)) throw new ProduceError('--max-attempts must be 1 or more', 2)
+  if ([o.status, o.stage, o.from, o.check, o.find].filter(Boolean).length > 1) throw new ProduceError('use one of --status, --stage, --from, --check, --find', 2)
+  if (o.runner && !RUNNERS.includes(o.runner)) throw new ProduceError(`--runner must be one of ${RUNNERS.join(', ')}`, 2)
+  if (o.runner === 'fixture' && !o.fixture) throw new ProduceError('--runner fixture needs --fixture <dir>', 2)
+  if (o.segment && o.check !== 'stage') throw new ProduceError('--segment goes with --check stage', 2)
+  for (const k of ['rework', 'exclude']) if (o[k]) o[k] = o[k].split(',').map((x) => x.trim()).filter(Boolean)
   return o
 }
 

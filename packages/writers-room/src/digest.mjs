@@ -72,7 +72,7 @@ function addAccount(d, a) {
   const h = normHandle(a.handle)
   if (!h) return
   const prev = d.accounts.get(h) ?? {}
-  const acc = { ...prev, handle: h, did: a.did ?? a.authorDid ?? prev.did, displayName: a.displayName ?? prev.displayName, followers: a.followers ?? a.authorFollowers ?? prev.followers, small: a.small ?? a.smallAccount ?? prev.small, guest: a.guest ?? prev.guest }
+  const acc = { ...prev, handle: h, did: a.did ?? a.authorDid ?? prev.did, displayName: a.displayName ?? prev.displayName, followers: a.followers ?? a.authorFollowers ?? prev.followers, small: a.small ?? a.smallAccount ?? prev.small, guest: a.guest ?? prev.guest, featuredPrevious: a.featuredPrevious ?? prev.featuredPrevious ?? null, featuredEarlier: a.featuredEarlier ?? prev.featuredEarlier ?? null, timesFeatured: a.timesFeatured ?? prev.timesFeatured ?? 0, featuredBefore: Boolean(a.featuredBefore ?? a.featuredPrevious ?? a.featuredEarlier ?? (a.timesFeatured > 0 ? true : null) ?? prev.featuredBefore) }
   d.accounts.set(h, acc)
   // defensive: any opt-out style flag the scraper may add to an account record
   if (a.optedOut || a.optOut || a.selfDeclaredOptOut || a.excluded) {
@@ -90,6 +90,12 @@ function addPost(d, p, story) {
     handle: normHandle(p.handle ?? p.author?.handle ?? prev?.handle),
     did: p.authorDid ?? p.author?.did ?? prev?.did ?? parseAtUri(p.uri)?.did,
     text: typeof p.text === 'string' ? p.text : prev?.text ?? null,
+    displayName: p.displayName ?? p.author?.displayName ?? prev?.displayName ?? null,
+    counts: p.counts && typeof p.counts === 'object' ? { likes: p.counts.likes ?? 0, reposts: p.counts.reposts ?? 0, replies: p.counts.replies ?? 0, quotes: p.counts.quotes ?? 0 } : prev?.counts ?? null,
+    // the scraper's reach: separate numbers plus a combined score ({ likes, …, participants, score })
+    reach: p.reach && typeof p.reach === 'object' ? p.reach : typeof p.reach === 'number' ? { score: p.reach } : prev?.reach ?? null,
+    featured: p.featured ?? prev?.featured ?? null,
+    imageOnly: (typeof p.text !== 'string' || !p.text.trim()) && (p.hasImages || (p.imageAlts ?? []).length > 0) ? true : prev?.imageOnly ?? false,
     time: p.time ?? p.createdAt ?? prev?.time ?? null,
     parent: p.reply?.parent ?? p.inReplyTo ?? prev?.parent ?? null,
     root: p.reply?.root ?? prev?.root ?? null,
@@ -155,4 +161,44 @@ export function postRefs(text) {
   for (const m of String(text).matchAll(/at:\/\/[^\s)'"`<>\]]+\/app\.bsky\.feed\.post\/[a-z0-9]+/gi)) out.push(m[0])
   for (const m of String(text).matchAll(/https?:\/\/(?:www\.)?bsky\.app\/profile\/[^\s/)'"`<>]+\/post\/[a-z0-9]+/gi)) out.push(m[0])
   return out
+}
+
+/**
+ * Look posts up by address (at:// URI or bsky.app URL) or by text, because the digest is too big to
+ * read whole (trial finding 2). Text matching is case-insensitive and whitespace-insensitive.
+ */
+export function lookupPosts(d, query, { limit = 20 } = {}) {
+  const q = String(query ?? '').trim()
+  if (!q) return []
+  const exact = findPost(d, q)
+  if (exact) return [exact]
+  const needle = q.toLowerCase().replace(/\s+/g, ' ')
+  const out = []
+  for (const p of d.posts.values()) {
+    if (p.text && p.text.toLowerCase().replace(/\s+/g, ' ').includes(needle)) out.push(p)
+    else if (p.handle && p.handle === needle.replace(/^@/, '')) out.push(p)
+    if (out.length >= limit) break
+  }
+  return out
+}
+
+/** one post, as the lookup command prints it: exact text, author, counts, what it replied to */
+export function describePost(d, p) {
+  const parent = p.parent ? findPost(d, p.parent) : null
+  return {
+    uri: p.uri,
+    url: p.url,
+    handle: p.handle,
+    did: p.did ?? null,
+    displayName: p.displayName,
+    followers: d.accounts.get(p.handle)?.followers ?? null,
+    time: p.time,
+    counts: p.counts,
+    reach: p.reach?.score ?? undefined,
+    text: p.text,
+    imageOnly: p.imageOnly || undefined,
+    parent: p.parent ? { uri: p.parent, handle: parent?.handle ?? null, text: parent?.text ?? null } : null,
+    root: p.root && p.root !== p.parent ? p.root : null,
+    outOfBounds: p.outOfBounds || undefined,
+  }
 }

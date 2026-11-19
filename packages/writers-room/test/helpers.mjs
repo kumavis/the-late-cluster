@@ -9,6 +9,7 @@ import { loadContext } from '../src/context.mjs'
 import { loadConfig } from '../src/pipeline.mjs'
 import { formatEpisodeJson } from '../src/repo.mjs'
 import { scriptLines } from '../src/scan.mjs'
+import { bibleSnapshot } from '../src/dna.mjs'
 
 export const WEEK = '2026-W47'
 export const ID = '002-2026-w47'
@@ -150,7 +151,9 @@ const FULL_CARD = (md) => {
 }
 
 /** a fresh fake repo with the pilot published; returns its root */
-export function fakeRepo({ optOut = ['nope.test'], pilotPlan = true, fullScorecard = false } = {}) {
+export const PILOT_LEDGER = { id: '001-pilot', aired: true, guests: [{ did: 'did:plc:bo', handle: 'bo.test' }], featured: [{ did: 'did:plc:bo', handle: 'bo.test' }, { did: 'did:plc:cy', handle: 'cy.test' }], formats: ['panel'], song: { genre: 'stomp-clap anthem', theme: 'belonging' }, runners: [], catchphrases: [], devices: [] }
+
+export function fakeRepo({ optOut = ['nope.test'], pilotPlan = true, fullScorecard = false, ledger = true } = {}) {
   const root = mkdtempSync(join(tmpdir(), 'writers-room-test-'))
   put(root, 'packages/show/src/cast.js', STUDIO_CAST)
   put(root, 'packages/scraper/config/optout.json', { accounts: optOut })
@@ -161,6 +164,11 @@ export function fakeRepo({ optOut = ['nope.test'], pilotPlan = true, fullScoreca
   put(root, 'docs/bible/00-constitution.md', '# 0. Constitution\n\nOnly the owner changes this file.\n')
   put(root, 'episodes/001-pilot/segments/cold-open/script.js', "export default { id: 'cold-open', title: 'Cold Open', beats: [{ say: 'larry', text: 'Good evening.' }] }\n")
   put(root, `data/weeks/${WEEK}/digest.json`, digest())
+  if (ledger) {
+    put(root, 'docs/ledger/001-pilot.json', PILOT_LEDGER)
+    put(root, 'docs/ledger/001-pilot.md', '# 001\n')
+    put(root, 'docs/ledger/featured.json', { 'did:plc:bo': { handle: 'bo.test', appearances: [{ episode: '001-pilot', date: '2026-11-13', role: 'spoke' }] } })
+  }
   put(root, 'episodes/001-pilot/episode.json', formatEpisodeJson({ id: '001-pilot', number: 1, slug: 'pilot', title: 'Pilot', description: 'd', airDate: '2026-11-13', week: '2026-W46', status: 'published', rundown: ['cold-open'] }))
   if (pilotPlan)
     put(root, 'episodes/001-pilot/production/plan.json', {
@@ -175,7 +183,7 @@ export function fakeRepo({ optOut = ['nope.test'], pilotPlan = true, fullScoreca
 /** a draft episode for the week, with optional files: { 'segments/x/script.js': '…', … } */
 export function makeEpisode(root, { rundown = ['cold-open', 'chat'], files = {}, meta = {} } = {}) {
   put(root, `episodes/${ID}/episode.json`, formatEpisodeJson({ id: ID, number: 2, slug: '2026-w47', title: 'The Throat Show', description: 'Larry learns a thing.', airDate: '2026-11-20', week: WEEK, status: 'draft', rundown, ...meta }))
-  for (const [rel, content] of Object.entries(files)) put(root, `episodes/${ID}/${rel}`, content)
+  for (const [rel, content] of Object.entries(files)) if (content !== null) put(root, `episodes/${ID}/${rel}`, content)
   return join(root, 'episodes', ID)
 }
 
@@ -245,33 +253,61 @@ export const SOURCES = {
   format: 'late-cluster-sources/1',
   week: WEEK,
   accounts: [
-    { handle: 'ana.test', role: 'guest', cast: 'ana', catchphrases: [{ phrase: 'what else is like this', posts: [POSTS.anaAgain.uri] }] },
-    { handle: 'bo.test', role: 'guest', cast: 'bo' },
-    { handle: 'cy.test', role: 'credited' },
+    { handle: 'ana.test', did: 'did:plc:ana', role: 'guest', cast: 'ana', catchphrases: [{ phrase: 'what else is like this', posts: [POSTS.anaAgain.uri] }] },
+    { handle: 'bo.test', did: 'did:plc:bo', role: 'guest', cast: 'bo' },
+    { handle: 'cy.test', did: 'did:plc:cy', role: 'credited' },
   ],
   posts: [
-    { uri: POSTS.anaClaim.uri, author: 'ana.test', use: 'thread', segment: 'chat' },
-    { uri: POSTS.boReply.uri, author: 'bo.test', use: 'thread', segment: 'chat', text: 'claim.' },
-    { uri: POSTS.build.uri, author: 'cy.test', use: 'card', segment: 'cold-open' },
+    { uri: POSTS.anaClaim.uri, author: 'ana.test', displayName: null, likes: 0, reposts: 0, replies: 0, use: 'thread', segment: 'chat' },
+    { uri: POSTS.boReply.uri, author: 'bo.test', displayName: null, likes: 0, reposts: 0, replies: 0, use: 'thread', segment: 'chat', text: 'claim.' },
+    { uri: POSTS.build.uri, author: 'cy.test', displayName: null, likes: 0, reposts: 0, replies: 0, use: 'card', segment: 'cold-open' },
   ],
   links: [{ url: 'https://golem.cy.test', use: 'credit' }],
   lines: [
-    { segment: 'chat', line: 'p1', kind: 'verbatim', post: POSTS.anaClaim.uri, context: POSTS.anaClaim.uri, situation: 'a top-level post proposing a show, on a Tuesday morning', setup: { who: 'larry', text: 'This week, two people had a conversation.' } },
-    { segment: 'chat', line: 'p2', kind: 'verbatim', post: POSTS.boReply.uri, context: POSTS.anaClaim.uri, contextText: POSTS.anaClaim.text, setup: { who: 'ana', text: 'concept: a talk show, but the host is a throat' } },
+    { segment: 'chat', line: 'p1', kind: 'verbatim', post: POSTS.anaClaim.uri, context: POSTS.anaClaim.uri, situation: 'a top-level post proposing a show, on a Tuesday morning', setup: { line: 'intro', who: 'larry', text: 'This week, two people had a conversation.' } },
+    { segment: 'chat', line: 'p2', kind: 'verbatim', post: POSTS.boReply.uri, context: POSTS.anaClaim.uri, contextText: POSTS.anaClaim.text, setup: { line: 'p1', who: 'ana', text: 'concept: a talk show, but the host is a throat' } },
   ],
 }
 
 /** fake tools: render writes cues.json from the script's lines, shoot prints frames, etc. */
-export function fakeTools(root, { whisper = false, whisperOut = {}, renderFail = false, shootWarn = null } = {}) {
+/** a Whisper report for a rendered segment: every line heard as written, unless `heard` changes it */
+export function whisperReport(root, id, seg, heard = {}) {
+  const f = join(root, 'episodes', id, 'segments', seg, 'cues.json')
+  if (!existsSync(f)) return ''
+  const lines = JSON.parse(readFileSync(f, 'utf8')).lines.filter((l) => l.kind === 'say' || (l.kind === 'sing' && l.caption))
+  const rows = lines.map((l) => {
+    const h = heard[l.id] ?? l.text
+    const flag = heard[l.id] && heard[l.id] !== l.text ? '~' : '✓'
+    const n = String(l.text).split(/\s+/).length
+    return `${flag} ${Number(l.t0 ?? 0).toFixed(1).padStart(6)} ${l.who.padEnd(8)} ${n}/${n}  "${l.text}"\n                          heard: "${h}"`
+  })
+  return `\n${seg}: what Whisper (base.en) hears in each line, cut from the final mix  (1 s)\n${rows.join('\n')}\n\n1/1 caption words heard (100%)\n`
+}
+
+export function fakeTools(root, { whisper = false, whisperOut = {}, heard = {}, renderFail = false, shootWarn = null } = {}) {
   const calls = []
   const ok = (out = '') => ({ code: 0, out, stdout: out })
   return {
     calls,
     has: (p) => (p === 'whisper' ? whisper : true),
     fetch: async () => ({ ok: false, status: 400 }),
-    exec: () => ok(),
+    exec: (label, cmd, args) => {
+      calls.push([label, cmd, ...args])
+      if (label !== 'credits') return ok()
+      // the studio's credits, approximately: guests with handles, and the synthesized line
+      const [, r, id, who] = args
+      const text = [readFileSync(join(r, 'packages/show/src/cast.js'), 'utf8'), existsSync(join(r, 'episodes', id, 'cast.js')) ? readFileSync(join(r, 'episodes', id, 'cast.js'), 'utf8') : ''].join('\n')
+      const lines = [{ head: 'The Late Cluster' }, { head: 'Puppets played the' }, { head: 'posting personas of' }]
+      for (const castId of (who ?? '').split(',').filter(Boolean)) {
+        const m = new RegExp(`${castId}: \\{[^}]*handle: '(@[^']+)'[^}]*guest: true`).exec(text)
+        if (m) lines.push([castId, m[1]])
+      }
+      lines.push('Every voice in this programme', 'is synthesized by CHIMERA.')
+      return ok(JSON.stringify(lines) + '\n')
+    },
     bun: (args) => {
       calls.push(['bun', ...args])
+      if (args[1] === 'whisper') return ok(whisperOut[args[3]] ?? whisperReport(root, args[2], args[3], heard[args[3]] ?? {}))
       return ok(whisperOut[args[3]] ?? '')
     },
     npm: (script, args = []) => {
@@ -297,7 +333,7 @@ export function fakeTools(root, { whisper = false, whisperOut = {}, renderFail =
             const plan = existsSync(ep('production/plan.json')) ? JSON.parse(readFileSync(ep('production/plan.json'), 'utf8')) : null
             const planned = plan?.segments?.find((s) => s.id === seg)?.seconds
             const duration = durHint ? Number(durHint[1]) : planned ?? 10
-            put(root, `episodes/${id}/segments/${seg}/cues.json`, { id: seg, duration, lines: lines.map((l, i) => ({ i, id: l.id, who: l.who[0], text: l.text, t0: i, t1: i + 0.8 })), cues: { start: 0.5 }, sfx: [], music: [] })
+            put(root, `episodes/${id}/segments/${seg}/cues.json`, { id: seg, duration, lines: lines.map((l, i) => ({ i, id: l.id, who: l.who[0], kind: l.kind === 'lyrics' ? 'sing' : l.kind, caption: true, text: l.text, t0: i, t1: i + 0.8 })), cues: { start: 0.5 }, sfx: [], music: [] })
           }
           return ok('rendered\n')
         }
@@ -328,9 +364,11 @@ export function fakeTools(root, { whisper = false, whisperOut = {}, renderFail =
   }
 }
 
-export async function ctxFor(root, { tools, network = false, limits } = {}) {
+export async function ctxFor(root, { tools, network = false, limits, onlySegment, snapshot = true } = {}) {
   const { config } = loadConfig()
-  return loadContext({ root, id: ID, week: WEEK, config, limits: limits ?? config.limits, tools: tools ?? fakeTools(root), network })
+  const ctx = await loadContext({ root, id: ID, week: WEEK, config, limits: limits ?? config.limits, tools: tools ?? fakeTools(root), network, onlySegment })
+  if (snapshot) ctx.bibleSnapshot = bibleSnapshot(ctx.bibleDir, config.constitution)
+  return ctx
 }
 
 export const cleanup = (root) => rmSync(root, { recursive: true, force: true })

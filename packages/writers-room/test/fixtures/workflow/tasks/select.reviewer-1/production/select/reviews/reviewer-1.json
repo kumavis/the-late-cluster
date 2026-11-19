@@ -1,0 +1,41 @@
+{
+  "reviewer": "reviewer-1",
+  "drafts": {
+    "talk-ask": {
+      "funny": 8,
+      "interesting": 8,
+      "television": 8,
+      "variety": 7,
+      "reason": "fixture reason for talk-ask"
+    },
+    "interview": {
+      "funny": 8,
+      "interesting": 7,
+      "television": 8,
+      "variety": 8,
+      "reason": "fixture reason for interview"
+    },
+    "made-soup": {
+      "funny": 6,
+      "interesting": 6,
+      "television": 6,
+      "variety": 6,
+      "reason": "fixture reason for made-soup"
+    },
+    "top-chicken": {
+      "funny": 5,
+      "interesting": 5,
+      "television": 5,
+      "variety": 5,
+      "reason": "fixture reason for top-chicken"
+    },
+    "music": {
+      "funny": 4,
+      "interesting": 4,
+      "television": 4,
+      "variety": 6,
+      "reason": "fixture reason for music"
+    }
+  },
+  "inherit": []
+}

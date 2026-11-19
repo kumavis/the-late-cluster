@@ -83,7 +83,9 @@ export class XrpcClient {
   } = {}) {
     Object.assign(this, { host, userAgent, concurrency, minIntervalMs, maxRequests, maxRetries,
       backoffBaseMs, backoffMaxMs, timeoutMs, cacheDir, auth, fetchImpl, sleep, log })
-    this.stats = { requests: 0, cacheHits: 0, retries: 0, errors: 0, rateLimited: 0, byEndpoint: {} }
+    // byEndpoint counts network requests; callsByEndpoint also counts cache hits, which is
+    // what a run would cost with a cold cache.
+    this.stats = { requests: 0, cacheHits: 0, retries: 0, errors: 0, rateLimited: 0, byEndpoint: {}, callsByEndpoint: {} }
     this.active = 0
     this.queue = []
     this.nextStart = 0
@@ -131,9 +133,12 @@ export class XrpcClient {
   }
 
   /** GET an XRPC method. Resolves to the JSON body; rejects with XrpcError or BudgetExhausted. */
-  async get(nsid, params = {}, { host } = {}) {
+  async get(nsid, params = {}, { host, fresh = false } = {}) {
     const url = buildUrl(host ?? this.host, nsid, params)
-    const cached = await this.readCache(url)
+    this.stats.callsByEndpoint[nsid] = (this.stats.callsByEndpoint[nsid] ?? 0) + 1
+    // `fresh` skips the cache read (the answer is still written), for things that must be
+    // current on every run, such as who the show's account follows.
+    const cached = fresh ? null : await this.readCache(url)
     if (cached) {
       this.stats.cacheHits++
       if (cached.status !== 200) throw new XrpcError(cached.status, cached.body, url)

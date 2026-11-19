@@ -51,7 +51,9 @@ npm run produce -- --week 2026-W47     # the whole weekly pipeline, stage by sta
 - Their words, in their context: a puppet of a real account says only what that account
   published, the way they said it. No pastiche, nothing invented, nothing private. The
   opt-out list is absolute. The show does not wait on anyone's reply.
-- Every episode runs one deliberate experiment and starts from a retro on the last one.
+- Every episode runs one deliberate experiment. A reviewer proposes it after the shortlist
+  exists, because reviewers are the ones who can see what the show has already tried; writers
+  build it in without seeing the past.
 - Do not open an earlier episode's source to copy from it. Carry something forward only by
   naming it in the plan with a reason.
 - New props and helpers live with the episode. Something moves into `packages/show` only when

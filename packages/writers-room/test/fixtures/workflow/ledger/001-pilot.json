@@ -1,0 +1,38 @@
+{
+  "id": "001-pilot",
+  "aired": true,
+  "guests": [
+    {
+      "did": "did:plc:pilotguest",
+      "handle": "norvid.example"
+    }
+  ],
+  "featured": [
+    {
+      "did": "did:plc:pilotguest",
+      "handle": "norvid.example"
+    },
+    {
+      "did": "did:plc:pilotshown",
+      "handle": "shown.example"
+    }
+  ],
+  "formats": [
+    "ask",
+    "monologue",
+    "panel",
+    "song",
+    "goodnight"
+  ],
+  "song": {
+    "genre": "stomp-clap anthem",
+    "theme": "belonging"
+  },
+  "runners": [
+    "the bot builds every wish on the spot"
+  ],
+  "catchphrases": [],
+  "devices": [
+    "a counter of things built"
+  ]
+}

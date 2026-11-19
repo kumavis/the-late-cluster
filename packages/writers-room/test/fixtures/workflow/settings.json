@@ -1,0 +1,31 @@
+{
+  "$comment": "Trial settings for the workflow fixture: three research lanes, a two-card shortlist, an episode of about twenty seconds.",
+  "limits": {
+    "runtimeSeconds": {
+      "max": 60
+    },
+    "targetSeconds": 20,
+    "words": {
+      "max": 120
+    }
+  },
+  "parallel": {
+    "researchLanes": [
+      {
+        "id": "made",
+        "title": "things that got made and shown"
+      },
+      {
+        "id": "talk",
+        "title": "conversations and running bits"
+      },
+      {
+        "id": "interview",
+        "title": "interview candidates"
+      }
+    ]
+  },
+  "ranking": {
+    "shortlist": 2
+  }
+}

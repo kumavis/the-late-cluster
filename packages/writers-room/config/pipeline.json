@@ -1,46 +1,92 @@
 {
-  "$comment": "Settings for npm run produce. Numbers marked 'bible' come from docs/bible; change them there first. A run records the limits it used in production/state.json, and the pull request says when they were not these defaults.",
-  "maxAttempts": 3,
+  "$comment": "Settings for npm run produce, the deterministic backbone of docs/WORKFLOW.md. Numbers that come from the contract or the bible say so; change them there first. A run records the limits it used in production/state.json, and the pull request says when they were not these defaults.",
   "constitution": ["00-constitution.md", "09-real-people.md"],
+  "ledger": {
+    "$comment": "The record of what the show has done (docs/ledger/<episode-id>.json), read by reviewers and by the people rules, never by writers, researchers or builders.",
+    "dir": "docs/ledger"
+  },
   "limits": {
-    "$comment": "Ceilings only, never a target: there is no minimum length, and the first rule (bible 00, Article 1: only include it if it's interesting) decides how long an episode actually is. runtimeSeconds.max is the owner's ceiling ('aim for less than 10 minutes'): 590 s, just under ten minutes. words.max scales bible 10's 520 words for five minutes (300 s) to 590 s at the same rate (520 x 590 / 300, rounded down to 1020), inside bible 03's arithmetic of 1.6 to 2.2 spoken words per second of running time. wordsPerSecond: bible 03, runtime arithmetic. segmentTolerance: bible 10, stage 4. stories: outside this range is a warning, never a failure.",
+    "$comment": "Ceilings only, never a target for the gate: there is no minimum length, and the first rule (only include it if it's interesting) decides how long an episode actually is. runtimeSeconds.max is the owner's ceiling ('aim for less than 10 minutes'): 590 s. targetSeconds is the contract's 'about eight minutes', used by selection and by the draft stage's 'more drafted running time than the target'. words.max scales 520 words per 300 s to 590 s. wordsPerSecond: running-time arithmetic (spoken words per second of running time, laughs and music included).",
     "runtimeSeconds": { "max": 590 },
+    "targetSeconds": 480,
     "words": { "max": 1020 },
     "wordsPerSecond": { "min": 1.6, "max": 2.2 },
-    "segmentTolerance": 0.1,
-    "stories": { "min": 3, "max": 9 }
+    "segmentTolerance": 0.15
   },
-  "freshness": {
-    "$comment": "bible 03, fixed and fresh. History: each earlier published episode's production/plan.json, or its row in the rotation log in docs/bible/lore.md when it has no plan. One gate: the song's genre differs from the previous episode's. Everything else is a warning the plan may answer in 'overrides' (or a guest's 'repeatReason').",
-    "genreWarnWindow": 8,
-    "maxCallbacks": 2,
-    "standingFormats": ["ask", "the-ask", "cold-open", "monologue", "song", "the-number", "goodnight"]
+  "parallel": {
+    "$comment": "How many subagents work independently on a task (docs/WORKFLOW.md, stages). researchLanes are the lanes of stage 2, one researcher each.",
+    "researchLanes": [
+      { "id": "made", "title": "things that got made and shown" },
+      { "id": "talk", "title": "conversations and running bits" },
+      { "id": "games", "title": "the community's games and numbers (Top Chicken, forecasts, markets)" },
+      { "id": "voices", "title": "new and smaller voices" },
+      { "id": "interview", "title": "interview candidates: one member whose public posts answer real prompts" }
+    ],
+    "brainstormWriters": 3,
+    "reviewers": 2,
+    "minWritersPerCard": 2
+  },
+  "reach": {
+    "$comment": "Reach stands in for how many people saw something, which Bluesky does not publish. One source: the scraper's own figure per post (digest post reach.score, weights in weightsFrom, the scraper's config). A card's reach is the sum over its posts; a post without the scraper's figure is scored from its counts with the same weights. Normalised by log against the week's largest card.",
+    "weightsFrom": "packages/scraper/config/scoring.json"
+  },
+  "ranking": {
+    "$comment": "Stage 4. First pass: reach (tool), interest and best joke (reviewers, 0-10). The top `pool` cards go to a second pass for synergy and variety (reviewers, 0-2). The top `shortlist` cards by the final score are shortlisted.",
+    "weights": { "reach": 0.25, "interest": 0.35, "bestJoke": 0.4 },
+    "secondPass": { "synergy": 0.1, "variety": 0.1 },
+    "pool": 12,
+    "shortlist": 6
+  },
+  "selection": {
+    "$comment": "Stage 7. Each draft is scored 0-10 by two or more reviewers on four criteria; the tool combines with these weights and fills the rundown greedily by score toward targetSeconds, never past the ceiling.",
+    "weights": { "funny": 0.35, "interesting": 0.25, "television": 0.25, "variety": 0.15 }
+  },
+  "standing": {
+    "$comment": "Drafted every week, selected on merit (docs/WORKFLOW.md, stage 6). topChickenMinResults: how many of the window's results the Top Chicken draft must draw on, when the digest has that many.",
+    "segments": ["interview", "top-chicken", "music"],
+    "topChickenMinResults": 3
+  },
+  "repetition": {
+    "$comment": "The repetition gate (stages 5 and 7): verdicts fresh, turned or repeat from at least `reviewers` reviewers; the stricter stands; any repeat blocks; at most `maxTurnedFromPrevious` turned items per episode carry something forward from the previous episode.",
+    "reviewers": 2,
+    "maxTurnedFromPrevious": 1
+  },
+  "people": {
+    "$comment": "Deterministic people rules from the ledger, matched by DID (handles change): only aired episodes count, and an unaired draft never blocks anyone. A guest who spoke in the previous aired episode does not speak in this one; at most maxRepeatFeaturedShare of the accounts featured on screen may have been featured in the last recentEpisodes aired episodes ('mostly new', a fixed window, so it does not tighten every week). Nobody is barred for having appeared before. A warning, never a failure, when someone would be featured in more than frequentShare of the last recentEpisodes aired episodes. Being a scraper seed has nothing to do with these rules.",
+    "maxRepeatFeaturedShare": 0.5,
+    "recentEpisodes": 4,
+    "frequentShare": 0.5
+  },
+  "music": {
+    "$comment": "The music draft's genre must differ from the previous episode's (ledger song.genre); a genre used within genreWarnWindow episodes is a warning.",
+    "genreWarnWindow": 8
   },
   "guestLines": {
-    "$comment": "The source comments a guest's line may carry (rule R3). realAccount: a puppet standing for a real account says only what that account published (the owner's rule: published content, essentially in its original context; no words put in their mouth), so pastiche is not here. invented: guests on .example. A verbatim line outside a thread must record its original occasion (the post it answered); whether the staged exchange recreates it is the reviewer's judgement. The guest-lines gate warns when realAccount differs from the tags R3 names.",
+    "$comment": "The source comments a real account's line may carry (bible 09, R3): verbatim, interview, catchphrase, each with `· context: at://…`. Invented guests on .example may use `// invented`. Pastiche of a real account fails. The gate warns when realAccount differs from the kinds R3 names (ignoring `invented`, which R3 reserves for fiction).",
     "realAccount": ["verbatim", "interview", "catchphrase"],
     "invented": ["invented", "verbatim", "interview", "catchphrase", "pastiche"]
   },
-  "pitchSections": {
-    "$comment": "The pitch's required sections are read from the template in docs/bible/10-process.md (stage 2). This list is used only if that template cannot be found, and the gate warns when it is.",
-    "fallback": ["The episode in one sentence", "The week in one sentence", "The question", "Stories (ranked)", "Rundown", "The song", "Top Chicken", "Threads", "Cut, and why", "Guests", "Runners and callbacks", "Sincere beat", "Risks and open questions"]
+  "screen": {
+    "$comment": "Television: nothing is put on screen for the viewer to read in silence. glanceWords is the most on-screen text that may appear without being spoken; a longer string drawn in a segment must be spoken in that segment (docs/WORKFLOW.md, 'Television').",
+    "glanceWords": 8,
+    "spokenCoverage": 0.8
+  },
+  "heard": {
+    "$comment": "The heard-text gate scans what the transcription heard, line by line. Any of these terms (whole words, case-insensitive) fails the line regardless of its score, and so do the out-of-bounds subjects. A real person's name in a caption that was heard as something else fails until a writer records in production/heard-waivers.json, quoting the heard text exactly, that it is harmless.",
+    "alarming": ["auschwitz", "holocaust", "nazi", "nazis", "hitler", "genocide", "gestapo", "kkk", "rape", "raped", "rapist", "molest", "pedophile", "paedophile", "murder", "murdered", "killed", "kill yourself", "suicide", "terrorist", "terrorism", "bomb", "shooting", "massacre", "slave", "slavery", "lynch", "isis", "jihad"],
+    "outOfBounds": ["cancer", "tumor", "died", "dead", "death", "funeral", "dying", "overdose", "depression", "psychosis", "schizophrenic", "autistic", "disabled", "abortion", "pregnant", "gay", "lesbian", "trans", "transgender", "muslim", "jewish", "christian", "israel", "palestine", "gaza", "ukraine", "russia", "trump", "biden", "election", "democrat", "republican", "layoff", "laid off", "fired", "bankrupt", "evicted", "arrested", "lawsuit", "sued", "harassment", "abuse"]
   },
   "frames": {
-    "$comment": "direct: frames are shot at every cue plus this many evenly spaced moments across each segment, at most maxPerSegment in all.",
+    "$comment": "Stage 9: frames are shot at every cue plus this many evenly spaced moments across each segment, at most maxPerSegment in all. The end card is shot at endTimes for the credits gate.",
     "across": 6,
-    "maxPerSegment": 40
+    "maxPerSegment": 40,
+    "endTimes": [2, 8, 14]
   },
-  "claude": {
-    "$comment": "The headless writer. model can be overridden with --model or PRODUCE_MODEL. Budgets are per writer call, in US dollars, enforced by Claude Code's --max-budget-usd (a client-side estimate).",
+  "headless": {
+    "$comment": "Optional: --runner headless runs each pending brief through Claude Code (claude -p --agent <role>) with the role's deny rules. The default runner is manual: the project manager spawns the subagents from the briefs. The tool itself never calls a model.",
     "command": "claude",
-    "model": "claude-fable-5-2",
-    "alternativeModel": "claude-opus-5-5",
     "timeoutMinutes": 60,
-    "stages": {
-      "pitch": { "maxTurns": 60, "maxBudgetUsd": 8 },
-      "write": { "maxTurns": 200, "maxBudgetUsd": 25 },
-      "direct": { "maxTurns": 250, "maxBudgetUsd": 30 },
-      "self-check": { "maxTurns": 80, "maxBudgetUsd": 8 }
-    }
+    "maxTurns": 200,
+    "maxBudgetUsd": 20
   }
 }

@@ -38,13 +38,13 @@ export async function getProfiles(client, actors, { onError } = {}) {
 
 const profileKey = (actor) => `profile:${String(actor).toLowerCase()}`
 
-async function paginate(client, nsid, params, key, { maxPages = 10, stop } = {}) {
+async function paginate(client, nsid, params, key, { maxPages = 10, stop, fresh = false } = {}) {
   const items = []
   let cursor = params.cursor
   let pages = 0
   let complete = false
   while (pages < maxPages) {
-    const res = await client.get(nsid, { ...params, cursor })
+    const res = await client.get(nsid, { ...params, cursor }, { fresh })
     pages++
     const batch = res[key] ?? []
     items.push(...batch)
@@ -57,8 +57,12 @@ async function paginate(client, nsid, params, key, { maxPages = 10, stop } = {})
   return { items, pages, complete, cursor }
 }
 
-export async function getFollows(client, actor, { maxPages = 10 } = {}) {
-  return paginate(client, 'app.bsky.graph.getFollows', { actor, limit: 100 }, 'follows', { maxPages })
+export async function getFollows(client, actor, { maxPages = 10, fresh = false } = {}) {
+  return paginate(client, 'app.bsky.graph.getFollows', { actor, limit: 100 }, 'follows', { maxPages, fresh })
+}
+
+export async function getFollowers(client, actor, { maxPages = 10 } = {}) {
+  return paginate(client, 'app.bsky.graph.getFollowers', { actor, limit: 100 }, 'followers', { maxPages })
 }
 
 export async function getList(client, list, { maxPages = 10 } = {}) {

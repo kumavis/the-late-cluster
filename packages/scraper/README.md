@@ -12,7 +12,8 @@ community talked about, built and laughed at. Stage 1 of the weekly pipeline
 ## Run it
 
 ```sh
-npm run scrape                          # the most recent complete ISO week (UTC)
+npm run scrape                          # since the previous episode aired (from the ledger),
+                                        # else the most recent complete ISO week (UTC)
 npm run scrape -- --week 2026-W46       # a given ISO week, Monday 00:00 to Monday 00:00 UTC
 npm run scrape -- --days 7              # a rolling 7-day window ending now
 npm run scrape -- --since 2026-11-13    # from 00:00 UTC on a date, to now
@@ -21,6 +22,10 @@ npm run scrape -- --out /tmp/digest     # somewhere other than data/weeks/<week>
 npm run scrape -- --max-requests 300    # a tighter request budget for this run
 npm run scrape -- --no-cache            # ignore the response cache
 npm run scrape -- --prune-cache         # delete the week's response cache after a successful run
+npm run scrape -- --ledger docs/ledger  # where the ledger is (default docs/ledger)
+npm run scrape -- --seeds did:plc:a,did:plc:b   # these seeds only, for a comparison
+npm run scrape -- --membership-only     # the cluster only: membership.json, no posts
+npm run lookup -- --text "pen plotter"  # find exact records in the newest digest
 npm test                                # unit and pipeline tests, no network
 ```
 
@@ -59,9 +64,31 @@ Written to `data/weeks/<week>/` at the repo root (gitignored), or to `--out`:
 | file | what |
 |---|---|
 | `posts.jsonl` | every kept post in the window, one JSON object per line, oldest first |
-| `digest.json` | `format: late-cluster-digest/1`: window, run metadata, stats, overview, `sections` (`games`, `built`, `aboutShow`, `guests`, `performableThreads`), ranked `stories`, `appendices`, `members`, `authors` |
-| `digest.md` | the same for a writer with ten minutes, in this order: the week at a glance; **Community games**; **Built this week**; **About the show**; **Recurring guests this week**; **Threads you could perform**; the top 15 stories with their best posts quoted and linked (out-of-bounds stories as marked headlines only); then appendices (A most active accounts, B links that circulated, C phrases that spiked, D "X week" declarations, E how it was made) |
+| `digest.json` | `format: late-cluster-digest/1`: window (with its `source`), run metadata, stats, overview, `sections` (`games`, `built`, `aboutShow`, `newVoices`, `interview`, `performableThreads`), ranked `stories`, `appendices`, `members`, `authors`, `ledger`, `coverage` |
+| `coverage.md` | the coverage report for the scope review; see "Coverage" |
+| `digest.md` | the same for a writer with ten minutes, in this order: the week at a glance; **Community games** (Top Chicken as a segment); **Built this week**; **About the show**; **New voices**; **Interview material**; **Threads you could perform**; the top 15 stories with their best posts quoted and linked (out-of-bounds stories as marked headlines only); then appendices (A most active accounts, B links that circulated, C phrases that spiked, D "X week" declarations, E how it was made) |
 | `.cache/http/` | raw API responses keyed by URL; see "The response cache" |
+
+Each author in `authors` carries `followers`, `small`, `member`, and from the ledger
+`featuredPrevious` / `featuredEarlier` (`"spoke"`, `"shown"` or null) and `timesFeatured`;
+posts carry `featured` when either is set, and `reach` (see "Reach").
+
+### Looking things up
+
+`digest.json` is several megabytes. Agents should not read it whole; they ask for records:
+
+```sh
+npm run lookup -- --uri at://did:plc:.../app.bsky.feed.post/...   # or --url https://bsky.app/profile/.../post/...
+npm run lookup -- --text "pen plotter"            # posts containing the words
+npm run lookup -- --author cee.wtf                # an account's posts, oldest first
+npm run lookup -- --story s-4781333501            # a story's header and posts
+npm run lookup -- --thread https://bsky.app/...   # a thread from its root, in reply order
+npm run lookup -- --dir data/weeks/2026-W47 ...   # a given digest (default: the newest)
+```
+
+It reads `posts.jsonl` and `digest.json`, writes nothing, and prints one JSON record per line
+with the exact text. A thread that is one of the performable threads prints that complete
+thread; any other is assembled from the posts the digest holds and says so.
 
 ### The response cache
 
@@ -117,46 +144,64 @@ A story in `digest.json`:
 
 ## Who is "the cluster"
 
-Nobody keeps a list and membership is meant to be fuzzy, so membership is computed every
-run from configured seeds, then capped. `src/cluster.js` is the rule, `src/collect.js` the
-fetching.
+The simcluster is amorphous and changes as its participants change. As the community's own
+"are you in the simcluster?" checker does, the cluster is carved out from seed accounts, then
+widened by signals that do not depend on the seeds. `src/cluster.js` is the rule,
+`src/collect.js` the fetching, `src/seeds.js` the seed choice.
 
-1. **Seeds** (`cluster.json` `seeds`) are always members, unless opted out.
-2. **Signals** are gathered for every account near the seeds:
-   - `seedFollows`: how many seeds follow it (`app.bsky.graph.getFollows`, up to
-     `maxFollowPagesPerSeed` pages each).
-   - `interactions`: in the seeds' own feeds over the window and baseline weeks, each time a
-     seed replied to it, joined its thread, quoted it, reposted it or mentioned it; plus each
-     reply it made under a seed's busiest posts of the week (`getPostThread`).
-   - `termPosts`: window posts matching a configured search term. **Search is off by
-     default** (see "Search" below), so this signal is zero unless the owner turns it on.
-   - `feedPosts`: posts in a configured community feed generator.
-   - `listed`: on a configured list or starter pack.
-3. **Rules** (`expansion.rules`): an account is a member if it satisfies any one rule; all
-   conditions in a rule must hold. The shipped rules are, in order: followed by 2 seeds and
-   at least 1 interaction; followed by 3 seeds; followed by 1 seed and 3 interactions;
-   6 interactions; listed; 1 term post and followed by 1 seed; 2 term posts; 2 feed posts and
-   followed by 1 seed.
-4. **Cap** (`maxMembers`): members are ranked by
-   `3·seedFollows + 1·min(interactions, 12) + 2·min(termPosts, 3) + 1·min(feedPosts, 3) + 10·listed`,
-   ties broken by DID, and cut to the cap. Seeds are never cut.
+**Seeds**, by DID (handles are only labels, refreshed from the profile):
 
-Then each member's posts, replies and reposts in the window are fetched, a sample of the
-baseline weeks after that, and the busiest conversations (`threadsToExpand`) are expanded
-with `getPostThread` to pick up replies by members and outsider replies with at least
-`threadOutsiderMinLikes` likes. Posts by outsiders that members replied to, quoted or
-reposted are kept as context and marked `member: false`.
+- whoever the show's own Bluesky account follows, read fresh on every run (never from the
+  cache). The account's DID comes from `show.config.json` at the repo root (`bluesky.did`);
+  `cluster.json` `showAccount.did` overrides it. The owner moves or widens the area by
+  following people from that account;
+- plus the bootstrap list in `cluster.json` `seeds`, each with its reason.
 
-Before any member's posts are fetched, their profiles are read (`getProfiles`, 25 per
-request): a description that opts out removes them there, so their feed is never requested.
-After collection, the profiles of everyone who can appear in the output (authors since the
-baseline start, and accounts they mention) are read the same way, for follower counts and
-profile opt-outs.
+Every consent rule applies to seeds: an opted-out seed is never requested, and is counted, not
+named. A self-labelled bot is skipped (bots follow no one). Being featured by the show does not
+disqualify a seed: a seed decides where the show looks, not who it puts on screen. The tracker
+and the repetition gate keep the same people from appearing too often.
 
-On 2026-W46, with search off, this produced 120 members from 1,602 candidates (189
-qualified; the cap cut 69). With search on it was the same 120 accounts: the 7 extra
-accounts that qualified only through search ranked below the cap. Raising `maxMembers`
-costs roughly 4 requests per extra member.
+`seedSelection.mode`: `show-follows` (default) as above; `fixed` uses the bootstrap list only;
+`drift` (optional, off) takes each window's seeds from the previous run's most connected
+members (distinct members who replied to or quoted them, or whom they replied to or quoted),
+keeping a seed while it stays in the top `keepWithinTop` and changing at most `maxTurnover`
+per run. The show's history plays no part in it. `--seeds a,b,...` replaces the seeds for one
+run, for comparisons.
+
+**Signals** for every account near the seeds:
+
+- `seedFollows`: how many seeds follow it.
+- `interactions`: in the seeds' own feeds over the window and baseline weeks, each time a seed
+  replied to it, joined its thread, quoted, reposted or mentioned it; plus each reply it made
+  under a seed's busiest posts of the week.
+- `rosters`: on a community's own public roster (`cluster.json` `rosters`). Top Chicken's
+  pinned post defines its contenders as the people its maintainer follows plus his followers;
+  that graph is public, about 860 accounts, about 11 requests.
+- `feedPosts`: posts in the community "SimCluster" feed.
+- `listed`: on a configured list or starter pack. `termPosts`: search hits (search is off).
+
+**Rules** (`expansion.rules`, named in `expansion.ruleNames`): a member satisfies any one rule.
+Shipped: followed by 2 seeds and talked with one; followed by 3 seeds; followed by a seed and
+3 interactions; 6 interactions; on a list; **on a roster and followed by a seed; on a roster
+and talked with a seed; on a roster and in the community feed**; search rules; twice in the
+feed and followed by a seed.
+
+**Cap** (`maxMembers`, 120): members are ranked by
+`3·seedFollows + 1·min(interactions, 12) + 4·roster + 2·min(termPosts, 3) + 1·min(feedPosts, 3) + 10·listed`,
+ties by DID. Seeds are never cut. The coverage report says how many qualified accounts the
+cap cut, who the strongest of them are, and what including them would cost.
+
+Before any member's posts are fetched, their profiles are read: a description that opts out
+removes them there. After collection, everyone who can appear in the output is checked the
+same way.
+
+**The checker, compared.** The community's "Are you in the simcluster?" page
+(shimmermathlabs.com/simcluster.html) publishes its method in its page script: 14 seeds and
+14 hubs, and a score out of 100 from seeds the account follows (30), seeds that follow it
+(30), mutual seed follows (20) and hubs it follows (20). Its footer says the score is "a
+function of who started the crawl". Its lists are in `cluster.json` `references`, used only
+to compare against in the coverage report; nothing is ever submitted to it.
 
 ### Search
 
@@ -225,6 +270,62 @@ exist they are added to the baseline.
 
 **Running bits** are spiked phrases used on 3 or more days.
 
+## Coverage: is this the right community, widely enough?
+
+Every run writes `coverage.md` and `digest.json` `coverage`, for the scope review (WORKFLOW
+stage 1). It holds:
+
+- **worries** in plain words, each against a threshold in `cluster.json` `coverage.thresholds`;
+- **seeds**: each with its DID and reason, the show account's follow count, seeds not used and
+  why (an excluded one counted, not named), and **suggested additional seeds** for the owner
+  to follow from the show's account: members ranked by members they talked with in the window,
+  plus half the accounts outside the cluster they talked with (how much they would widen it),
+  plus 3 if on a roster;
+- **how members qualified**: counts by rule, the signals among members, and how many
+  qualified only through the seeds;
+- **concentration**: the share of member posts, of the top 30 stories (by lead author) and of
+  the builds that come from the ten most active accounts, from the seeds, and from accounts
+  the show has featured before (from the ledger);
+- **featured before**: from the tracker, how many aired episodes each featured account has
+  appeared in;
+- **new and gone** since the previous run, in counts with a sample;
+- **independent signals**: the cluster against each roster and the community feed (members in
+  it, members not in it, and its accounts that are not members but are active in the
+  window's data, with samples), and how many of the checker's accounts are members;
+- **the cap**: qualified, cut, the share cut, requests per member and the cost of including
+  every qualified account, the strongest cuts;
+- **excluded**, in counts only.
+
+## The ledger
+
+`--ledger <dir>` or `cluster.json` `ledger.dir` (default `docs/ledger`):
+`featured.json` (the tracker: keyed by DID, the handle as last seen, appearances with
+`episode`, `date`, `role` `spoke` or `shown`) and `<episode-id>.json` files whose `guests`
+and `featured` are handles or `{ did, handle }`. Matching is by DID, then by handle. Only
+aired episodes count (an episode with `aired: false` is a draft); an episode's date comes
+from the file or from `episodes/<id>/episode.json` `airDate`. A missing or empty directory
+means no featured marks and a worry in the coverage report. The ledger marks authors and
+feeds the concentration figures; it never ranks anyone up and plays no part in seeds. The
+default window starts at the latest aired episode's date.
+
+## Reach
+
+Bluesky publishes no view counts, so "how many people saw it" is approximated, per post and
+per story, by what people did with it, kept as separate numbers plus one figure:
+
+- `likes`, `reposts`, `quotes`, `replies` as the API counts them, and `interactions`, their sum;
+- `participants`: distinct accounts that took part, in the data the digest holds: for a post,
+  who replied to it, quoted it or (members) reposted it; for a story, who posted in it plus
+  members who reposted any of it;
+- `score` = `1×likes + 2×reposts + 3×quotes + 1.5×replies + 5×participants`
+  (`scoring.json` `reach.weights`). The formula is printed wherever reach is shown.
+
+The reposters' audience is left out. `getRepostedBy` gives who reposted (one request per
+post per 100 reposters) but not their follower counts, which need `getProfiles` as well, and
+summing followers double-counts overlapping audiences and is still not views. The part
+already in hand, the followers of members who reposted, is reported as
+`memberRepostAudience`, never in the score.
+
 ## What the writers get (design bible)
 
 `docs/bible/README.md` ("What the bible assumes the digest provides") lists what the writer
@@ -233,14 +334,14 @@ needs. Where each item is:
 | bible asks for | where |
 |---|---|
 | per post: URI, URL, verbatim text, handle, display name, date, counts, reply/quote of what, alt text, links | every post record; story posts add `inReplyTo` and `quoted` |
-| per author: follower count, recurring guest | `authors`, `members`, and `authorFollowers` / `smallAccount` / `guest` on posts; `digest.md` writes "(**small account**, 43 followers)" next to every name |
+| per author: follower count, featured before | `authors`, `members`, and `authorFollowers` / `smallAccount` / `featured` on posts; `digest.md` writes "(**small account**, 43 followers)" next to every name |
 | thread context for anything quotable | `inReplyTo` on story posts; the thread root as `context`; stories list the strongest replies |
 | opt-outs applied, plus bios and posts asking not to be quoted, and posts to the show's account | see "Consent and safety"; requests to the show are listed in About the show |
 | sensitivity flags | `outOfBounds` on stories, builds and phrases; `sensitive` on posts |
 | things built this week | `sections.built`, "Built this week" |
 | recurring phrases, "X week" declarations, first posts of anything that spread | `appendices.phrases` (with `first`), `appendices.weeks` |
 | reactions to the show | `sections.aboutShow`, "About the show" |
-| recurring guests' own posts | `sections.guests`, "Recurring guests this week" |
+| new voices, interview candidates | `sections.newVoices`, `sections.interview` |
 | community games and metrics | `sections.games`, "Community games": Top Chicken is configured; the Simcluster Channel's forecasts and prediction markets have no known public account yet, and are one entry each in `config/games.json` once they do |
 
 ### Community games
@@ -289,7 +390,10 @@ digest.json is the source a character-for-character check should compare against
 
 For each build: the link and title, who built it and when, who else shared it, and **the
 wish**: the post the build replied to or quoted, with its author and text (the builder's
-own earlier posts in the same thread do not count). A link counts when it is on a member's
+own earlier posts in the same thread do not count), **and only if it reads as asking for
+something**: it matches `scoring.json` `wishPatterns` ("someone should", "can you", "I want",
+"what if", "concept:", ...), mentions the builder, or ends in a question mark. Otherwise it is
+listed as what the build replied to, "in reply to (not a wish)". A link counts when it is on a member's
 own domain (their handle is a domain and the link is on it or a subdomain), on a build host
 (`buildHosts`, not a host's front page), or on a domain not seen in the baseline that the
 post says it built (`builtPatterns`). The builder is whoever announced it, else whoever owns
@@ -306,21 +410,50 @@ answered counts for more than likes.
 
 Posts that name the show (`show.json` `phrases`: "the late cluster", "Larry Nx", ...), link it
 (`linkPatterns`), or mention its account (`handles`, empty until the bot account exists),
-plus replies under and quotes of those posts. Each carries why it matched and a **possible
-correction** flag (`safety.json` `showCorrectionPatterns`). A post in this set that matches
+plus replies under and quotes of those posts. Each carries why it matched, a **possible
+correction** flag (`safety.json` `showCorrectionPatterns`: "that's not what I said", "never
+said that", "wasn't me", "misquoted", ... and no longer "actually" or "I didn't write", which
+fired on praise), and **the lines it quotes** (`showQuotePattern`), so a viewer quoting
+something the show put in a real person's mouth is listed for the writer to check. A post in this set that matches
 `showOptOutPatterns` ("leave me out", "please don't", "remove me", "not ok with", "without my
 consent", "opt out", ...) is treated as a request to be left out: its author is excluded from
 everything else in the digest, and the section lists them by handle and link only, for the
 reviewer to add to `optout.json` (R11). Ordinary posts saying "don't quote me" are not
 treated this way; it is too common an idiom outside the show.
 
-### Recurring guests
+### New voices
 
-For each account in `show.json` `guests` (default: the four seeds), the strongest
-`postsPerGuest` posts of the week by post score, leaving out posts flagged out of bounds,
-with follower count, alt text, links, quoted post and parent. A guest who did not make the
-cluster still has their week fetched. A guest excluded by the consent rules is counted, not
-named.
+Members the ledger says the show has never featured, with at least three posts in the window,
+ranked by the sum of their three best post scores, out-of-bounds posts left out; the eight
+strongest with their three best posts. This replaces the old "recurring guests" section: the
+digest no longer promotes anyone the show has featured.
+
+### Interview material
+
+For the constructed interview: every answer is a real post, every question recreates what
+that post was replying to. For each member, their window posts that reply to someone else's
+post that asks something. A parent is a **question** if a question mark falls in its last
+80 characters (trailing links and emoji set aside), or it opens with an interrogative word
+(what, why, how, who, ... would, should, can, do, is, anyone) and is at most 140 characters;
+a **prompt** if it is at most 140 characters and matches a configured pattern ("thoughts",
+"name a", "favourite", "hot take", "concept:", "tell me", "what's your", ...). Both sides must
+pass every consent and sensitivity rule (no flag, no redaction, nobody excluded), the answer
+must be speakable (at most 280 characters, words to say) and the question at most 400.
+Candidates need three good pairs; someone who appeared in the previous episode is never a
+candidate, and people featured earlier come after people never featured. Each pair carries
+both posts' exact text, author and address. Config: `show.json` `interview`.
+
+### Top Chicken as a segment
+
+The game account's posts are read back `historyDays` (42) before the window. From them, as
+facts only: the window's standings (day, winner, likes, the winning post, its share of the
+record, its rank among every result fetched), repeat winners and streaks, the record and
+whether it moved, recent history (median, highest and lowest winning score, how many
+different winners), participation each day (people who posted against those eligible, and how
+the eligible pool moved), and the latest all-time leaderboard with each entry's distance from
+the record. The game's posts name only the winner, so who came close on a day is not known,
+and the digest says so. Every person named goes through the consent rules. A winning post
+inside an out-of-bounds story carries that story's flag.
 
 ### Phrases and weeks
 
@@ -360,7 +493,11 @@ Built into the code path, not left to the reader (`src/consent.js`):
   list per out-of-bounds topic (health, grief and disaster, identity, partisan politics, jobs
   and money trouble, legal trouble and harassment, minors, people leaving, interpersonal
   conflict), matched as whole words against a post's text, alt text, link titles and quoted
-  text. A story is flagged when its lead or thread root matches, when at least `minShare`
+  text. `combinations` catch what no single word gives away: a post that asks for or makes a
+  pastiche, stereotype, caricature or accent **and** names a nation, region or people is
+  `identity` (the trial missed a request for "a pastiche of clips celebrating the newfie
+  lifestyle"); "Nick Land" and neoreaction terms are `partisan politics`. A winning Top Chicken
+  post inside a flagged story carries the story's flag. A story is flagged when its lead or thread root matches, when at least `minShare`
   (20%) of its member posts match, or when `minPosts` (3) posts match one topic. Flagged
   stories are kept and ranked, so the writer knows the week's big story was one the show
   leaves alone, but `digest.md` shows them as **OUT OF BOUNDS (topic)** headlines with no
@@ -393,14 +530,20 @@ lists what it skipped under `run.warnings`. An authenticated session would plug 
 
 | key | meaning |
 |---|---|
-| `seeds` | handles or DIDs that define the cluster |
+| `seeds` | the bootstrap seeds, `[{ did, label, reason }]`; DIDs preferred, a reason required |
+| `showAccount` | `{ did }` overrides the show account's DID (normally read from `show.config.json`) |
+| `seedSelection` | `mode` (`show-follows`, `fixed`, `drift`), and for `drift` `count`, `maxTurnover`, `keepWithinTop` |
+| `rosters` | `[{ id, account, label, follows, followers, maxPages, reason }]`: public rosters whose accounts get the `roster` signal |
+| `references` | other published definitions (the checker's seeds and hubs), compared in the coverage report only |
+| `ledger` | `{ dir }`, default `docs/ledger` |
+| `coverage.thresholds` | the coverage report's worry thresholds |
 | `lists` | `at://` list URIs whose members are `listed` |
 | `starterPacks` | `at://` starter pack URIs; their lists are read |
 | `feeds` | `[{ uri, maxPages }]` feed generators whose authors get `feedPosts` |
 | `search` | `{ enabled, host, terms, maxPagesPerTerm }`: `searchPosts` within the window |
 | `expansion.maxFollowPagesPerSeed` | pages of 100 follows read per seed |
 | `expansion.seedThreadsPerSeed` | busiest seed posts per seed whose repliers count as interactions |
-| `expansion.rules` | any-of rules, each `{ seedFollows?, interactions?, termPosts?, feedPosts?, listed? }` |
+| `expansion.rules`, `ruleNames` | any-of rules, each `{ seedFollows?, interactions?, termPosts?, feedPosts?, listed?, roster? }`, and a plain name for each |
 | `expansion.weights`, `expansion.caps` | the member ranking score |
 | `expansion.maxMembers` | the cap |
 | `collection.baselineWeeks` | weeks before the window used as the baseline |
@@ -416,27 +559,30 @@ lists what it skipped under `run.warnings`. An authenticated session would plug 
 built; `*.` matches subdomains), `builtPatterns` (case-insensitive regexes), `digest` (how many
 stories, posts per story and appendix rows to write).
 
-Also in `scoring.json`: `builds` (`weights`, `max`) for Built this week, and
-`weekDeclarations` (`maxN`, `top`).
+Also in `scoring.json`: `builds` (`weights`, `max`) for Built this week, `wishPatterns` (what
+makes a parent a wish), `reach.weights`, and `weekDeclarations` (`maxN`, `top`).
 
 `config/client.json`: `host`, `userAgent`, `concurrency`, `minIntervalMs`, `maxRequests`,
 `maxRetries`, `backoffBaseMs`, `timeoutMs`, `pruneCacheAfterRun`.
 
 `config/safety.json`: `smallAccountFollowers`, `selfDeclaredOptOut.patterns`,
 `showOptOutPatterns.patterns`, `showCorrectionPatterns`, `sensitivity` (`minShare`,
-`minPosts`, `topics`). Patterns are case-insensitive JavaScript regexes; sensitivity terms get
+`minPosts`, `topics`, `combinations`), `showQuotePattern`. Patterns are case-insensitive JavaScript regexes; sensitivity terms get
 word boundaries added. Every pattern is compiled when the config loads, so a bad one fails
 fast.
 
-`config/show.json`: `handles` (the show's accounts), `phrases`, `linkPatterns`, `guests`,
-`postsPerGuest`, `performableThreads` (`count`, `prefetch`, `minPosts`, `maxPosts`,
+`config/show.json`: `handles` (the show's accounts, DIDs preferred), `phrases`, `linkPatterns`,
+`newVoices` (`count`, `postsEach`, `minPosts`), `interview` (`candidates`, `pairsEach`,
+`minPairs`, `maxChars`, `maxQuestionChars`, `questionTailChars`, `promptMaxChars`,
+`promptPatterns`), `performableThreads` (`count`, `prefetch`, `minPosts`, `maxPosts`,
 `minSpeakers`, `minMemberSpeakers`, `minTurns`, `maxChars`, `requireRootInWindow`,
 `avoidPatterns`).
 
-`config/games.json`: `games`, each `{ id, name, account, about, writerNote, resultPattern,
-fieldPatterns, personFields, numberFields, winningPost, maxPages }`.
+`config/games.json`: `games`, each `{ id, name, account (DID preferred), label, about,
+writerNote, resultPattern, fieldPatterns, personFields, numberFields, winningPost, maxPages,
+historyDays, leaderboard: { headerPattern, entryPattern } }`.
 
-`config/optout.json`: `accounts`.
+`config/optout.json`: `accounts`, handles or DIDs (prefer DIDs: handles change).
 
 ## Public API findings (unauthenticated, November 2026)
 
@@ -484,6 +630,17 @@ Does not work:
   interactions to count. Adding seeds or a curated list is the lever.
 - An account removed by its profile after selection is not replaced from below the cap.
 - Sensitivity and opt-out detection are keyword lists, in English. See their caveats above.
+- The cap is the binding limit once the show's account follows a dozen or more people: on
+  the trial window 913 accounts qualified and the cap of 120 cut 793. The coverage report gives
+  the cost of raising it (about 3.7 author-feed requests per member with a cold cache).
+- Interview candidates are ranked by how many good pairs they have, which favours prolific
+  posters who reply to questions all day, often about outside news. Reviewers should weigh
+  them; the sensitivity flags catch only part of the news talk.
+- "Who came close" on a Top Chicken day is not knowable: the game's posts name only the
+  winner. The all-time leaderboard is the only list of near-winners.
+- The checker's comparison counts only whether the accounts it names are members; scoring our
+  members by its method would need every member's follows (several hundred requests) and is
+  not done.
 - Performable threads are strict: a single reply that is only a mention ("@someone") rejects
   the whole thread, which cost W46 the golem-grocer thread.
 - A build whose wish was posted before the window is found only if the wish was fetched

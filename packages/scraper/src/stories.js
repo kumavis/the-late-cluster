@@ -109,7 +109,7 @@ const hostMatches = (domain, patterns) =>
  * @param {Map} args.memberReposts uri -> number of members who reposted it
  * @param {object} args.cfg scoring config
  */
-export function buildStories({ posts, baselines, phrases = [], baselineDomains = new Set(), context = new Map(), memberReposts = new Map(), memberHandles = [], sensitivity = {}, cfg }) {
+export function buildStories({ posts, baselines, phrases = [], baselineDomains = new Set(), context = new Map(), memberReposts = new Map(), memberHandles = [], sensitivity = {}, reach = null, cfg }) {
   const sorted = [...posts].sort((a, b) => (a.uri < b.uri ? -1 : 1))
   const byUri = new Map(sorted.map((p) => [p.uri, p]))
   const metrics = new Map(sorted.map((p) => [p.uri, postMetrics(p, baselines, cfg)]))
@@ -285,7 +285,7 @@ export function buildStories({ posts, baselines, phrases = [], baselineDomains =
     r.total = round(total)
   }
 
-  const stories = raw.map((r) => shapeStory(r, { byUri, metrics, quoteTarget, context, memberReposts, cfg, phraseTerms, sensitivity }))
+  const stories = raw.map((r) => shapeStory(r, { byUri, metrics, quoteTarget, context, memberReposts, cfg, phraseTerms, sensitivity, reach }))
   stories.sort((a, b) => b.scores.total - a.scores.total || (a.id < b.id ? -1 : 1))
   stories.forEach((s, i) => { s.rank = i + 1 })
   return stories
@@ -333,7 +333,7 @@ function summarizeContext(p) {
   return out
 }
 
-function shapeStory(r, { byUri, metrics, quoteTarget, context, memberReposts, cfg, phraseTerms, sensitivity }) {
+function shapeStory(r, { byUri, metrics, quoteTarget, context, memberReposts, cfg, phraseTerms, sensitivity, reach }) {
   const scored = r.ps.map((p) => ({ p, m: metrics.get(p.uri) }))
   // Members first, then outsiders; best first within each.
   scored.sort((a, b) => Number(b.p.member) - Number(a.p.member) || b.m.score - a.m.score || (a.p.uri < b.p.uri ? -1 : 1))
@@ -353,6 +353,7 @@ function shapeStory(r, { byUri, metrics, quoteTarget, context, memberReposts, cf
     // Thread context for anything a writer might quote (bible R4): what it replied to.
     const parent = p.reply?.parent && p.reply.parent !== lead ? lookup(p.reply.parent) : null
     if (parent) out.inReplyTo = summarizeContext(parent)
+    if (reach) out.reach = reach.post(p)
     if (memberReposts.get(p.uri)) out.memberReposts = memberReposts.get(p.uri)
     if (p._quoted && !r.inStory.has(p._quoted.uri)) out.quoted = summarizeContext(p._quoted)
     return out
@@ -370,6 +371,7 @@ function shapeStory(r, { byUri, metrics, quoteTarget, context, memberReposts, cf
     anchor: { kind: anchorKind, value: anchorKind === 'thread' ? (r.anchor.slice(2).startsWith('at://') ? r.anchor.slice(2) : 'hidden') : r.anchor.slice(2) },
     reason: reasons(r, { quoteTarget, byUri, phraseTerms }),
     outOfBounds,
+    ...(reach ? { reach: reach.story(r.ps) } : {}),
     scores: { total: r.total, ...r.scores },
     stats: {
       posts: r.ps.length,

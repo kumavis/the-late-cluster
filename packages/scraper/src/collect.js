@@ -67,7 +67,7 @@ function threadAuthors(node, out = [], depth = 0) {
 /** The few profile fields kept: follower count is for the small-account rule (R7). */
 const slimProfile = (p) => ({ did: p.did, handle: p.handle, displayName: p.displayName?.trim() || null, followersCount: p.followersCount ?? null })
 
-export async function collect({ client, config, window, consent, log = () => {} }) {
+export async function collect({ client, config, window, consent, log = () => {}, membershipOnly = false }) {
   const { cluster } = config
   const col = cluster.collection
   const exp = cluster.expansion
@@ -78,8 +78,20 @@ export async function collect({ client, config, window, consent, log = () => {} 
   const coverage = { authorsFetched: 0, windowTruncated: 0, baselineTruncated: 0 }
 
   // ---- 1. seeds
-  const seedInputs = cluster.seeds.filter((s) => !consent.skipHandle(s))
-  const skippedSeeds = cluster.seeds.length - seedInputs.length
+  const seedList = cluster.seeds.map((s) => (typeof s === 'string' ? (s.startsWith('did:') ? { did: s } : { handle: s }) : { ...s }))
+  // The show's own account: whoever it follows is a seed, read fresh every run.
+  const mode = cluster.seedSelection?.mode ?? 'show-follows'
+  let showFollows = null
+  if (mode === 'show-follows' && cluster.showAccount?.did) {
+    const f = await api.soft(warnings, "the show account's follows", () => api.getFollows(client, cluster.showAccount.did, { maxPages: 20, fresh: true }))
+    showFollows = f?.items?.length ?? null
+    for (const a of f?.items ?? []) {
+      if (seedList.some((s) => s.did === a.did)) { seedList.find((s) => s.did === a.did).reason += "; also followed by the show's account"; continue }
+      seedList.push({ did: a.did, label: a.handle, reason: "followed by the show's account" })
+    }
+  }
+  const seedInputs = seedList.filter((s) => !consent.skipHandle(s.handle ?? s.label ?? '') && !consent.excludedDid(s.did)).map((s) => s.did ?? s.handle)
+  const skippedSeeds = seedList.length - seedInputs.length
   const profiles = (await api.soft(warnings, 'seed profiles', () => api.getProfiles(client, seedInputs))) ?? []
   const profileMap = new Map()
   const learnProfiles = (list) => {
@@ -89,7 +101,35 @@ export async function collect({ client, config, window, consent, log = () => {} 
     }
   }
   learnProfiles(profiles)
-  const seeds = profiles.filter((p) => !consent.excludedDid(p.did) && !consent.check(p))
+  // A seed must be eligible: not excluded by consent, and not a self-labelled bot (bots do
+  // not follow people, so they carve nothing out). Replacements come from the ranking.
+  const eligible = (p) => !consent.excludedDid(p.did) && !consent.check(p) && !(p.labels ?? []).some((l) => l.val === 'bot')
+  const seeds = profiles.filter(eligible)
+  const replaced = []
+  for (const r of mode === 'drift' ? cluster.seedReserves ?? [] : []) {
+    if (seeds.length >= seedList.length) break
+    if (seeds.some((x) => x.did === r.did) || consent.excludedDid(r.did)) continue
+    const [p] = (await api.soft(warnings, 'reserve seed profile', () => api.getProfiles(client, [r.did ?? r.handle]))) ?? []
+    if (!p) continue
+    learnProfiles([p])
+    if (eligible(p)) { seeds.push(p); replaced.push({ handle: p.handle, did: p.did, reason: r.reason }) }
+  }
+  // Seeds are recorded by DID; the handle is a label, refreshed from the profile.
+  const byDid = new Map(seeds.map((p) => [p.did, p]))
+  const byH = new Map(seeds.map((p) => [String(p.handle).toLowerCase(), p]))
+  // A seed excluded by consent is counted, never named; a bot or a missing account is named.
+  const skippedNotEligible = seedList.filter((s) => !(s.did ? byDid.has(s.did) : byH.has(String(s.handle).toLowerCase()))).map((s) => {
+    const excl = consent.skipHandle(s.handle ?? s.label ?? '') || (s.did && consent.excludedDid(s.did)) || consent.excludedHandles.has(String(s.handle ?? s.label ?? '').toLowerCase())
+    if (excl) return { excluded: true }
+    const p = profileMap.get(s.did)
+    return { did: s.did ?? null, label: p?.handle ?? s.label ?? s.handle ?? null, why: p ? 'a self-labelled bot (bots follow no one)' : 'not found' }
+  })
+  cluster.seeds = [...seedList.map((s) => {
+    const p = s.did ? byDid.get(s.did) : byH.get(String(s.handle).toLowerCase())
+    return p ? { did: p.did, handle: p.handle, reason: s.reason } : null
+  }).filter(Boolean), ...replaced]
+  cluster.seedsSkipped = skippedNotEligible
+  cluster.showFollows = showFollows
   const seedDids = new Set(seeds.map((s) => s.did))
   for (const s of seeds) cands.get(s.did, s)
   log(`seeds: ${seeds.map((s) => '@' + s.handle).join(' ')}${skippedSeeds ? ` (${skippedSeeds} opted out)` : ''}`)
@@ -99,6 +139,18 @@ export async function collect({ client, config, window, consent, log = () => {} 
     if (!s.followsCount) continue
     const res = await api.soft(warnings, `follows of a seed`, () => api.getFollows(client, s.did, { maxPages: exp.maxFollowPagesPerSeed }))
     for (const f of res?.items ?? []) if (!consent.check(f)) cands.follow(s.did, f)
+  }
+
+  // ---- 2b. community rosters: who a community game or list says takes part
+  const rosterSets = new Map()
+  for (const r of cluster.rosters ?? []) {
+    if (consent.skipHandle(r.account)) continue
+    const set = new Set()
+    const take = (list) => { for (const a of list ?? []) if (!consent.check(a)) { set.add(a.did); cands.get(a.did, a).rosters.add(r.id) } }
+    if (r.follows) take((await api.soft(warnings, `roster ${r.id} follows`, () => api.getFollows(client, r.account, { maxPages: r.maxPages ?? 12 })))?.items)
+    if (r.followers) take((await api.soft(warnings, `roster ${r.id} followers`, () => api.getFollowers(client, r.account, { maxPages: r.maxPages ?? 12 })))?.items)
+    rosterSets.set(r.id, set)
+    log(`roster ${r.id}: ${set.size} accounts`)
   }
 
   // ---- 3. curated lists and starter packs
@@ -113,11 +165,13 @@ export async function collect({ client, config, window, consent, log = () => {} 
   }
 
   // ---- 4. community feeds
+  const feedAuthors = new Set()
   for (const f of cluster.feeds ?? []) {
     const res = await api.soft(warnings, `feed ${f.uri}`, () => api.getFeed(client, f.uri, { maxPages: f.maxPages ?? 2 }))
     for (const it of res?.items ?? []) {
       const a = it.post?.author
       if (!a || consent.check(a)) continue
+      feedAuthors.add(a.did)
       cands.get(a.did, a).feedPosts++
       store.addFeedItem(it, 'feed')
     }
@@ -198,17 +252,9 @@ export async function collect({ client, config, window, consent, log = () => {} 
   const memberDids = new Set(sel.members.map((m) => m.did))
   log(`cluster: ${sel.members.length} members (${sel.qualified} qualified of ${sel.considered} candidates, ${sel.cut} cut by the cap${bioExcluded ? `, ${bioExcluded} excluded by their profile` : ''})`)
 
-  // Recurring guests who did not make the cluster this week still get their week fetched.
-  const guestHandles = (config.show?.guests ?? []).filter((h) => !consent.skipHandle(h))
-  const known = new Map([...profileMap.values()].map((p) => [String(p.handle).toLowerCase(), p.did]))
-  const missingGuests = guestHandles.filter((h) => !known.has(h.toLowerCase().replace(/^@/, '')) && !h.startsWith('did:'))
-  if (missingGuests.length) learnProfiles(await api.soft(warnings, 'guest profiles', () => api.getProfiles(client, missingGuests)))
-  const guestDids = new Set()
-  for (const h of guestHandles) {
-    const did = h.startsWith('did:') ? h : [...profileMap.values()].find((p) => String(p.handle).toLowerCase() === h.toLowerCase().replace(/^@/, ''))?.did
-    if (did && !consent.excludedDid(did)) guestDids.add(did)
+  if (membershipOnly) {
+    return { membershipOnly: true, seeds, members: sel.members, memberDids, warnings, selection: { considered: sel.considered, qualified: sel.qualified, cut: sel.cut, cutRows: sel.cutRows, skippedSeeds }, rosterSets, feedAuthors, profiles: profileMap }
   }
-  const guestsExcluded = guestHandles.length - guestDids.size
 
   // ---- 9. member feeds: the whole window first, then as much baseline as the budget allows
   const others = sel.members.filter((m) => !m.seed)
@@ -241,12 +287,6 @@ export async function collect({ client, config, window, consent, log = () => {} 
   }
   const windowPages = col.maxWindowPagesPerAuthor
 
-  for (const did of guestDids) {
-    if (memberDids.has(did)) continue
-    const items = await fetchAuthor(did, 'a guest', { windowPages: col.maxWindowPagesPerAuthor, baselinePages: 0 })
-    for (const it of items) store.addFeedItem(it, 'author')
-  }
-
   // ---- 10. expand the busiest conversations
   const inWin = (p) => { const t = Date.parse(p.time); return t >= window.start && t < window.end }
   const threadMembers = new Map()
@@ -273,12 +313,12 @@ export async function collect({ client, config, window, consent, log = () => {} 
   const gameHandles = []
   const games = config.games?.games ?? []
   for (const g of games) {
-    if (consent.skipHandle(g.account)) continue
+    if (consent.skipHandle(g.account) || consent.excludedDid(g.account)) continue
     learnProfiles(await api.soft(warnings, `game account ${g.id}`, () => api.getProfiles(client, [g.account])))
-    const prof = [...profileMap.values()].find((p) => String(p.handle).toLowerCase() === g.account.toLowerCase())
+    const prof = profileMap.get(g.account) ?? [...profileMap.values()].find((p) => String(p.handle).toLowerCase() === String(g.account).toLowerCase())
     if (!prof || consent.excludedDid(prof.did)) continue
     const res = await api.soft(warnings, `game ${g.id} feed`, () =>
-      api.getAuthorFeedRange(client, prof.did, { since: window.start, until: window.end, maxPages: g.maxPages ?? 2, seek: col.seekCursor }))
+      api.getAuthorFeedRange(client, prof.did, { since: window.start - (g.historyDays ?? 0) * 86_400_000, until: window.end, maxPages: g.maxPages ?? 2, seek: col.seekCursor }))
     const mine = []
     for (const it of res?.items ?? []) {
       const p = store.addFeedItem(it, 'game')
@@ -307,9 +347,9 @@ export async function collect({ client, config, window, consent, log = () => {} 
   if (namedOnly.length) learnProfiles(await api.getProfiles(client, namedOnly, { onError: (e) => warnings.push(`game people profiles: ${e.message}`) }))
 
   return {
-    profiles: profileMap, guestDids, guestsExcluded, completeThreads, gaps: store.gaps,
+    profiles: profileMap, completeThreads, gaps: store.gaps, rosterSets, feedAuthors,
     seeds, members: sel.members, memberDids, store, warnings, coverage, baselineStart,
-    selection: { considered: sel.considered, qualified: sel.qualified, cut: sel.cut, skippedSeeds },
+    selection: { considered: sel.considered, qualified: sel.qualified, cut: sel.cut, cutRows: sel.cutRows, skippedSeeds },
     searchWorked,
     pagesPerMember: { window: windowPages, baseline: baselinePages },
     threadsExpanded: toExpand.length,

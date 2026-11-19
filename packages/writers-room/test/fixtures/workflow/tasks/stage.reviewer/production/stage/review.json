@@ -1,0 +1,17 @@
+{
+  "verdict": "pass",
+  "route": null,
+  "segments": {
+    "talk-ask": {
+      "unreadable": [],
+      "unperformed": [],
+      "notes": "the card is short enough to read at a glance"
+    },
+    "interview": {
+      "unreadable": [],
+      "unperformed": [],
+      "notes": "labelled"
+    }
+  },
+  "reasons": []
+}

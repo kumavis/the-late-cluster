@@ -51,7 +51,7 @@ export async function writeSources(ctx) {
   const g = gate('write.sources')
   const s = ctx.sources
   if (!s) {
-    g.fail('production/sources.json is missing: list every real account, post and link the episode uses (format: playbooks/write.md)')
+    g.fail('production/sources.json is missing: list every real account, post and link the episode uses (format: packages/writers-room/playbooks/sources.md)')
     return g.done()
   }
   if (s.format !== 'late-cluster-sources/1') g.fail('sources.json: "format" must be "late-cluster-sources/1"')
@@ -66,6 +66,10 @@ export async function writeSources(ctx) {
     if (isExampleHost(h)) g.fail(`sources.json accounts[${k}]: ${h} is invented (.example); sources.json lists real accounts only`)
     else if (isOptedOut(d, h)) g.fail(`sources.json accounts[${k}]: an opted-out account (rule R11); remove it and everything it touches`)
     else if (!d.accounts.has(h)) g.fail(`sources.json accounts[${k}]: ${h} is not in the week's digest (rule R2: material comes from the digest)`)
+    // people are tracked by DID, because handles change (the ledger's tracker)
+    const acc = d.accounts.get(h)
+    if (!a.did) g.fail(`sources.json accounts[${k}] (${h}): add "did"${acc?.did ? ` (the digest has ${acc.did})` : ''}`)
+    else if (acc?.did && a.did !== acc.did) g.fail(`sources.json accounts[${k}] (${h}): "did" is ${a.did}, the digest has ${acc.did}`)
     if (!['guest', 'quoted', 'credited', 'mentioned'].includes(a.role)) g.fail(`sources.json accounts[${k}] (${h}): "role" must be guest, quoted, credited or mentioned`)
     if (a.role === 'guest' && !a.cast) g.fail(`sources.json accounts[${k}] (${h}): a guest needs "cast", the cast id it is played as`)
   }
@@ -80,9 +84,18 @@ export async function writeSources(ctx) {
     if (normHandle(p.author) !== post.handle) g.fail(`sources.json posts[${k}]: "author" is ${JSON.stringify(p.author)}, but the digest says ${post.handle}`)
     if (!acc.has(post.handle)) g.fail(`sources.json posts[${k}]: its author ${post.handle} is not in "accounts"`)
     if (post.outOfBounds) g.fail(`sources.json posts[${k}]: ${post.uri} is in a story the digest marks out of bounds (rule R10)`)
-    if (typeof p.text === 'string' && post.text !== null) {
+    if (post.imageOnly && !String(post.text ?? '').trim()) {
+      if (p.text) g.fail(`sources.json posts[${k}] (${post.uri}) is an image-only post: leave "text" out and describe it in "alt"`)
+    } else if (typeof p.text === 'string' && post.text !== null) {
       const why = verbatimMismatch(p.text, post.text)
       if (why) g.fail(`sources.json posts[${k}] (${post.uri}): "text" is not the post's text (rule R4): ${why}`)
+    }
+    // what a card shows: the real display name and the counts (trial findings 14, 25)
+    if (!('displayName' in p)) g.fail(`sources.json posts[${k}] (${post.uri}): add "displayName"${post.displayName != null ? ` (the digest has ${JSON.stringify(post.displayName)})` : ''}`)
+    else if (post.displayName != null && p.displayName !== post.displayName) g.fail(`sources.json posts[${k}] (${post.uri}): "displayName" is ${JSON.stringify(p.displayName)}, the digest has ${JSON.stringify(post.displayName)}`)
+    for (const c of ['likes', 'reposts', 'replies']) {
+      if (typeof p[c] !== 'number') g.fail(`sources.json posts[${k}] (${post.uri}): add "${c}"${post.counts ? ` (the digest has ${post.counts[c]})` : ''}`)
+      else if (post.counts && p[c] !== post.counts[c]) g.warn(`sources.json posts[${k}] (${post.uri}): "${c}" is ${p[c]}, the digest has ${post.counts[c]}; a card shows the number as of the digest, and says so if it changed`)
     }
   }
   for (const [k, l] of (s.links ?? []).entries()) {
@@ -139,101 +152,119 @@ const loose = (s) => String(s ?? '').toLowerCase().replace(/[\s.,!?;:'"“”‘
  */
 export async function writeGuestLines(ctx) {
   const g = gate('write.guest-lines')
+  const plan = new Map(planSegments(ctx).map((s) => [s.id, s]))
+  for (const w of r3Drift(ctx)) g.warn(w)
+  for (const seg of rundown(ctx)) {
+    const text = read(ctx.paths.segFile(seg, 'script.js'))
+    if (text === null) continue
+    const thread = plan.get(seg)?.thread ?? (/^thread$/i.test(plan.get(seg)?.format ?? '') ? { posts: [] } : null)
+    const r = checkGuestLines(ctx, { seg, file: `segments/${seg}/script.js`, text, thread })
+    r.failures.forEach((f) => g.fail(f))
+    r.warnings.forEach((w) => g.warn(w))
+  }
+  return g.done()
+}
+
+/** a warning when the config's allowed kinds differ from the kinds R3 names (`invented` is fiction's, not a real account's) */
+export function r3Drift(ctx) {
+  const rules = ctx.config.guestLines
+  const drift = r3Tags(ctx.bibleDir)
+  if (drift.error) return []
+  const named = drift.tags.filter((k) => !['invented', 'pastiche'].includes(k))
+  const missing = rules.realAccount.filter((k) => !named.includes(k))
+  const extra = named.filter((k) => !rules.realAccount.includes(k))
+  return missing.length || extra.length ? [`config guestLines.realAccount [${rules.realAccount.join(', ')}] differs from the kinds R3 names in 09-real-people.md [${named.join(', ')}]; update packages/writers-room/config/pipeline.json to follow the bible`] : []
+}
+
+/**
+ * The guest-line rules for one script (a segment, or a draft at stage 6). `ctx.sources` is the
+ * sources.json the lines are checked against (a draft passes its own). Returns { failures, warnings }.
+ */
+export function checkGuestLines(ctx, { seg, file, text, thread = null }) {
+  const failures = []
+  const warnings = []
+  const fail = (m) => failures.push(m)
   const { cast, guests } = guestsOf(ctx)
   const src = sourcesIndex(ctx)
   const d = ctx.digest
   const rules = ctx.config.guestLines
-  const plan = new Map(planSegments(ctx).map((s) => [s.id, s]))
-  const drift = r3Tags(ctx.bibleDir)
-  if (!drift.error) {
-    const missing = rules.realAccount.filter((k) => !drift.tags.includes(k))
-    const extra = drift.tags.filter((k) => !rules.realAccount.includes(k))
-    if (missing.length || extra.length) g.warn(`config guestLines.realAccount [${rules.realAccount.join(', ')}] differs from the tags R3 names in 09-real-people.md [${drift.tags.join(', ')}]; update packages/writers-room/config/pipeline.json to follow the bible`)
-  }
-  const tags = (kinds) => kinds.map((k) => (k === 'verbatim' || k === 'interview' ? `// ${k}: at://…` : k === 'pastiche' ? '// pastiche of "<format>"' : `// ${k}`)).join(', ')
-  for (const seg of rundown(ctx)) {
-    const file = `segments/${seg}/script.js`
-    const text = read(ctx.paths.segFile(seg, 'script.js'))
-    if (text === null) continue
-    const thread = plan.get(seg)?.thread ?? (/^thread$/i.test(plan.get(seg)?.format ?? '') ? { posts: [] } : null)
-    const performed = []
-    const all = scriptLines(text)
-    for (const [li, l] of all.entries()) {
-      const at = `${file}:${l.line}${l.id ? ` (${l.id})` : ''}`
-      const guestWho = l.who.filter((w) => guests.has(w))
-      const tag = sourceTag(l.comments)
-      if (!guestWho.length) {
-        if (thread && (tag?.kind === 'verbatim' || tag?.kind === 'interview')) {
-          const post = findPost(d, tag.ref)
-          if (post && !isExampleHost(post.handle)) g.fail(`${at}: ${l.who.join(', ')} (house) speaks a real post in the verbatim thread; in a thread, a real post is performed by its author's puppet only`)
-        }
+  const tags = (kinds) => kinds.map((k) => (k === 'verbatim' || k === 'interview' ? `// ${k}: at://… · context: at://…` : k === 'catchphrase' ? '// catchphrase: "<phrase>" · context: at://…' : k === 'pastiche' ? '// pastiche of "<format>"' : `// ${k}`)).join(', ')
+  const performed = []
+  const all = scriptLines(text)
+  for (const l of all) {
+    const at = `${file}:${l.line}${l.id ? ` (${l.id})` : ''}`
+    const guestWho = l.who.filter((w) => guests.has(w))
+    const tag = sourceTag(l.comments)
+    if (!guestWho.length) {
+      if (thread && (tag?.kind === 'verbatim' || tag?.kind === 'interview')) {
+        const post = findPost(d, tag.ref)
+        if (post && !isExampleHost(post.handle)) fail(`${at}: ${l.who.join(', ')} (house) speaks a real post in the verbatim thread; in a thread, a real post is performed by its author's puppet only`)
+      }
+      continue
+    }
+    if (!l.literal || l.text === null) {
+      fail(`${at}: ${guestWho.join(', ')} has a line whose text is not a plain string literal; write guest lines as literal strings so their source can be checked`)
+      continue
+    }
+    for (const who of guestWho) {
+      const invented = isInvented(cast[who])
+      const allowed = invented ? rules.invented : rules.realAccount
+      if (!tag) {
+        fail(`${at}: ${who} says "${l.text.slice(0, 50)}" with no source comment (rule R3). Tag it ${tags(allowed)}`)
         continue
       }
-      if (!l.literal || l.text === null) {
-        g.fail(`${at}: ${guestWho.join(', ')} has a line whose text is not a plain string literal; write guest lines as literal strings so their source can be checked`)
+      if (!allowed.includes(tag.kind)) {
+        if (tag.kind === 'invented') fail(`${at}: ${who} plays the real account ${castHandle(cast[who])}; "// invented" is only for fictional guests on .example (rule R3)`)
+        else if (tag.kind === 'pastiche') fail(`${at}: ${who} plays the real account ${castHandle(cast[who])}, and pastiche is not a permitted source for a real account: a puppet says only what the person posted (rule R3). Use their post verbatim or a catchphrase, and let the show's own characters do the joking around it`)
+        else fail(`${at}: "// ${tag.kind}" is not a permitted source for ${who} (allowed: ${tags(allowed)})`)
         continue
       }
-      for (const who of guestWho) {
-        const invented = isInvented(cast[who])
-        const allowed = invented ? rules.invented : rules.realAccount
-        if (!tag) {
-          g.fail(`${at}: ${who} says "${l.text.slice(0, 50)}" with no source comment (rule R3). Tag it ${tags(allowed)}`)
+      if (invented) continue
+      const h = castHandle(cast[who])
+      for (const f of occasionChecks(ctx, { seg, line: l, all, tag, handle: h })) fail(`${at}: ${f}`)
+      if (tag.kind === 'verbatim' || tag.kind === 'interview') {
+        const post = findPost(d, tag.ref)
+        if (!post) {
+          fail(`${at}: ${tag.ref} is not in the window's digest`)
           continue
         }
-        if (!allowed.includes(tag.kind)) {
-          if (tag.kind === 'invented') g.fail(`${at}: ${who} plays the real account ${castHandle(cast[who])}; "// invented" is only for fictional guests on .example (rule R3)`)
-          else if (tag.kind === 'pastiche') g.fail(`${at}: ${who} plays the real account ${castHandle(cast[who])}, and pastiche is not a permitted source for a real account: a puppet says only what the person posted (rule R3). Use their post verbatim or a catchphrase, and let the show's own characters do the joking around it`)
-          else g.fail(`${at}: "// ${tag.kind}" is not a permitted source for ${who} (allowed: ${tags(allowed)})`)
-          continue
+        if (post.handle !== h) fail(`${at}: ${who} (${h}) is given ${post.handle}'s post; a guest's words come from their own posts (rule R3)`)
+        if (!src.posts.get(post.uri)) fail(`${at}: ${post.uri} is not listed in sources.json posts`)
+        if (post.text === null) fail(`${at}: the digest has no text for ${post.uri}, so the line cannot be checked; use a post with text`)
+        else {
+          const why = verbatimMismatch(l.text, post.text)
+          if (why) fail(`${at}: the caption is not ${post.uri} verbatim: ${why}. Respell for the engine in "as", never in "text"`)
+          const res = respellingMismatch(l.text, l.as)
+          if (res) fail(`${at}: ${res} (the as respelling only respells)`)
         }
-        if (invented) continue
-        const h = castHandle(cast[who])
-        for (const f of occasionChecks(ctx, { seg, line: l, setup: all[li - 1] ?? null, tag, handle: h })) g.fail(`${at}: ${f}`)
-        if (tag.kind === 'verbatim' || tag.kind === 'interview') {
-          const post = findPost(d, tag.ref)
-          if (!post) {
-            g.fail(`${at}: ${tag.ref} is not in the week's digest`)
-            continue
-          }
-          if (post.handle !== h) g.fail(`${at}: ${who} (${h}) is given ${post.handle}'s post; a guest's words come from their own posts (rule R3)`)
-          const entry = src.posts.get(post.uri)
-          if (!entry) g.fail(`${at}: ${post.uri} is not listed in sources.json posts`)
-          if (post.text === null) g.fail(`${at}: the digest has no text for ${post.uri}, so the line cannot be checked; use a post with text`)
-          else {
-            const why = verbatimMismatch(l.text, post.text)
-            if (why) g.fail(`${at}: the caption is not ${post.uri} verbatim: ${why}. Respell for the engine in "as", never in "text"`)
-            const res = respellingMismatch(l.text, l.as)
-            if (res) g.fail(`${at}: ${res} (bible 07, the as respelling; format 9, rule 3)`)
-          }
-          performed.push(post.uri)
-        } else if (tag.kind === 'catchphrase') {
-          const listed = catchphrasesOf(src.accounts.get(h))
-          const entry = listed.find((c) => loose(c.phrase) === loose(l.text))
-          if (!listed.length) g.fail(`${at}: ${who}'s catchphrase is not backed: list it under "catchphrases" for ${h} in sources.json as { "phrase", "posts": ["at://…"] }, citing their own posts that use it`)
-          else if (!entry) g.fail(`${at}: "${l.text}" is not one of ${h}'s catchphrases in sources.json (${listed.map((c) => c.phrase).join(' / ')})`)
-          else {
-            // the owner's rule: catchphrases are fine if used the way they use them. A gate can only
-            // check that the usage is cited; whether this use matches it is the reviewer's call.
-            const uses = [...new Set([...(entry.posts ?? []), ...(tag.context ? [tag.context] : [])])]
-            const cited = uses.map((u) => findPost(d, u))
-            if (!cited.length) g.fail(`${at}: the catchphrase "${entry.phrase}" cites none of ${h}'s posts; add "posts": ["at://…"] with at least one of their own posts that uses it, so the reviewer can compare the usage`)
-            for (const [k, post] of cited.entries()) {
-              const u = uses[k]
-              if (!post) g.fail(`${at}: the catchphrase "${entry.phrase}" cites ${u}, which is not in the week's digest`)
-              else if (post.handle !== h) g.fail(`${at}: the catchphrase "${entry.phrase}" cites ${u}, a post by ${post.handle}, not by ${h}`)
-              else if (post.text !== null && !loose(post.text).includes(loose(entry.phrase))) g.fail(`${at}: the catchphrase "${entry.phrase}" cites ${u}, which does not use it`)
-            }
+        performed.push(post.uri)
+      } else if (tag.kind === 'catchphrase') {
+        const listed = catchphrasesOf(src.accounts.get(h))
+        const entry = listed.find((c) => loose(c.phrase) === loose(l.text))
+        if (!listed.length) fail(`${at}: ${who}'s catchphrase is not backed: list it under "catchphrases" for ${h} in sources.json as { "phrase", "posts": ["at://…"] }, citing their own posts that use it`)
+        else if (!entry) fail(`${at}: "${l.text}" is not one of ${h}'s catchphrases in sources.json (${listed.map((c) => c.phrase).join(' / ')})`)
+        else {
+          // the owner's rule: catchphrases are fine if used the way they use them. A gate can only
+          // check that the usage is cited; whether this use matches it is the reviewer's call.
+          const uses = [...new Set([...(entry.posts ?? []), ...(tag.context ? [tag.context] : [])])]
+          const cited = uses.map((u) => findPost(d, u))
+          if (!cited.length) fail(`${at}: the catchphrase "${entry.phrase}" cites none of ${h}'s posts; add "posts": ["at://…"] with at least one of their own posts that uses it, so the reviewer can compare the usage`)
+          for (const [k, post] of cited.entries()) {
+            const u = uses[k]
+            if (!post) fail(`${at}: the catchphrase "${entry.phrase}" cites ${u}, which is not in the window's digest`)
+            else if (post.handle !== h) fail(`${at}: the catchphrase "${entry.phrase}" cites ${u}, a post by ${post.handle}, not by ${h}`)
+            else if (post.text !== null && !loose(post.text).includes(loose(entry.phrase))) fail(`${at}: the catchphrase "${entry.phrase}" cites ${u}, which does not use it`)
           }
         }
       }
     }
-    if (thread) {
-      const want = (thread.posts ?? []).map((r) => findPost(d, r)?.uri ?? r)
-      const got = performed.filter((u, k) => u !== performed[k - 1])
-      if (want.join(' ') !== got.join(' ')) g.fail(`${file}: a verbatim thread: the verbatim guest lines perform [${list(got, 8) || 'nothing'}] but plan.json thread.posts is [${list(want, 8)}]; perform the listed posts, in order, each by its author's puppet (format 9, rules 1 and 4)`)
-    }
   }
-  return g.done()
+  if (thread) {
+    const want = (thread.posts ?? []).map((r) => findPost(d, r)?.uri ?? r)
+    const got = performed.filter((u, k) => u !== performed[k - 1])
+    if (want.join(' ') !== got.join(' ')) fail(`${file}: a verbatim thread: the verbatim guest lines perform [${list(got, 8) || 'nothing'}] but thread.posts is [${list(want, 8)}]; perform the listed posts, in order, each by its author's puppet`)
+  }
+  return { failures, warnings }
 }
 
 /**
@@ -247,11 +278,12 @@ export async function writeGuestLines(ctx) {
  * In sources.json "lines": one record per such line,
  *   { "segment", "line": "<line id>", "kind", "post": "at://…" (verbatim, interview), "phrase" (catchphrase),
  *     "context": "at://…", "contextText": "<the context post's exact text>",
- *     "situation": "<one line, for a top-level post>", "setup": { "who": "larry", "text": "<the line before it>" } }
- * The setup must be the line spoken just before it in the script, so the record cannot go stale.
+ *     "situation": "<one line, for a top-level post>", "setup": { "line": "<line id>", "who": "larry", "text": "…" } }
+ * The setup is the staged prompt the line answers: a line of the same script, before it, named by its
+ * id, whose speaker and text the record repeats (trial finding 57: not just the previous line).
  * Whether the setup recreates the occasion is the reviewer's judgement (A3), not a gate.
  */
-export function occasionChecks(ctx, { seg, line, setup, tag, handle }) {
+export function occasionChecks(ctx, { seg, line, all = [], tag, handle }) {
   const out = []
   const d = ctx.digest
   const ex = `· context: at://…`
@@ -272,7 +304,7 @@ export function occasionChecks(ctx, { seg, line, setup, tag, handle }) {
   const recs = (ctx.sources?.lines ?? []).filter((r) => r && r.segment === seg && (line.id ? r.line === line.id : true) && (tag.kind === 'catchphrase' ? true : findPost(d, r.post)?.uri === findPost(d, tag.ref)?.uri))
   if (!line.id) out.push(`give the line an id, so sources.json "lines" can record its occasion`)
   if (!recs.length) {
-    out.push(`sources.json "lines" has no record for this line: { "segment": "${seg}", "line": "${line.id ?? '<id>'}", "kind": "${tag.kind}", ${tag.kind === 'catchphrase' ? '"phrase": "…"' : `"post": "${tag.ref}"`}, "context": "${tag.context}", ${ctxPost && tag.kind === 'verbatim' && ctxPost.uri === findPost(d, tag.ref)?.uri ? '"situation": "<one line on the situation it was said in>"' : '"contextText": "<the context post\'s exact text>"'}, "setup": { "who": "…", "text": "<the line before it>" } } (bible 09, R3)`)
+    out.push(`sources.json "lines" has no record for this line: { "segment": "${seg}", "line": "${line.id ?? '<id>'}", "kind": "${tag.kind}", ${tag.kind === 'catchphrase' ? '"phrase": "…"' : `"post": "${tag.ref}"`}, "context": "${tag.context}", ${ctxPost && tag.kind === 'verbatim' && ctxPost.uri === findPost(d, tag.ref)?.uri ? '"situation": "<one line on the situation it was said in>"' : '"contextText": "<the context post\'s exact text>"'}, "setup": { "line": "<the staged prompt's id>", "who": "…", "text": "…" } } (bible 09, R3)`)
     return out
   }
   const r = recs[0]
@@ -283,8 +315,12 @@ export function occasionChecks(ctx, { seg, line, setup, tag, handle }) {
     if (!String(r.situation ?? '').trim()) out.push(`a top-level post: sources.json lines record needs "situation", one line on the situation it was said in`)
   } else if (typeof r.contextText !== 'string' || !r.contextText.trim()) out.push(`sources.json lines record needs "contextText", the exact text of ${tag.context}`)
   else if (ctxPost?.text != null && verbatimMismatch(r.contextText, ctxPost.text)) out.push(`sources.json lines record "contextText" is not the text of ${tag.context}: ${verbatimMismatch(r.contextText, ctxPost.text)}`)
-  if (!setup) out.push(`the line has no setup before it in the segment; the occasion test compares the show's setup with the original prompt`)
-  else if (!r.setup || r.setup.text !== setup.text || (r.setup.who && !setup.who.includes(r.setup.who))) out.push(`sources.json lines record "setup" must be the line spoken just before it: { "who": "${setup.who.join('+')}", "text": ${JSON.stringify(setup.text)} }`)
+  const idx = all.indexOf(line)
+  const staged = r.setup?.line ? all.find((x) => x.id === r.setup.line) : null
+  if (!r.setup?.line) out.push(`sources.json lines record "setup" must name the staged prompt this line answers: { "line": "<its id>", "who": "…", "text": "…" }`)
+  else if (!staged) out.push(`sources.json lines record "setup.line" is ${JSON.stringify(r.setup.line)}, which is not a line id in ${seg}`)
+  else if (all.indexOf(staged) >= idx) out.push(`the staged prompt ${r.setup.line} comes after the line it is meant to set up`)
+  else if (r.setup.text !== staged.text || (r.setup.who && !staged.who.includes(r.setup.who))) out.push(`sources.json lines record "setup" must repeat the staged prompt exactly: { "line": "${staged.id}", "who": "${staged.who.join('+')}", "text": ${JSON.stringify(staged.text)} }`)
   return out
 }
 
@@ -303,8 +339,9 @@ export function realLines(ctx) {
       if (!tag || !['verbatim', 'interview', 'catchphrase'].includes(tag.kind)) return
       for (const who of l.who.filter((w) => guests.has(w) && !isInvented(cast[w]))) {
         const h = castHandle(cast[who])
-        const prev = lines[k - 1]
-        const block = { at: `segments/${seg}/script.js:${l.line}${l.id ? ` (${l.id})` : ''}`, kind: tag.kind, who, handle: h, text: l.text, setup: prev ? { who: prev.who.join('+'), text: prev.text } : null, original: [] }
+        const rec0 = (ctx.sources?.lines ?? []).find((r) => r?.segment === seg && r.line === l.id)
+        const staged = rec0?.setup?.line ? lines.find((x) => x.id === rec0.setup.line) : lines[k - 1]
+        const block = { at: `segments/${seg}/script.js:${l.line}${l.id ? ` (${l.id})` : ''}`, kind: tag.kind, who, handle: h, text: l.text, setup: staged ? { who: staged.who.join('+'), text: staged.text } : null, original: [] }
         if (tag.kind === 'catchphrase') {
           const entry = catchphrasesOf(src.accounts.get(h)).find((c) => loose(c.phrase) === loose(l.text))
           for (const u of [...new Set([...(entry?.posts ?? []), ...(tag.context ? [tag.context] : [])])]) block.original.push({ label: 'their own use', post: findPost(d, u) ?? { uri: u, text: null } })
@@ -362,6 +399,7 @@ export async function writeNames(ctx) {
       const post = findPost(ctx.digest, ref)
       if (seen.has(`${f} ${ref}`)) continue
       seen.add(`${f} ${ref}`)
+      if (post && isExampleHost(post.handle)) continue // an invented account's post: fiction, not a source
       if (!post) g.fail(`${f}: ${ref} is not in the week's digest (rules R2, R4)`)
       else if (!src.posts.has(post.uri)) g.fail(`${f}: ${ref} is not in sources.json posts (rule R4: every real post is recorded)`)
     }

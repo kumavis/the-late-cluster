@@ -9,6 +9,8 @@
 //   termPosts     posts in the window matching a configured search term
 //   feedPosts     posts in a configured community feed
 //   listed        it is on a configured list or starter pack
+//   roster        it is on a community's own public roster (config cluster.rosters), for
+//                 example the Top Chicken game's contenders
 // An account is a member if it is a seed, or if it satisfies any one rule in
 // expansion.rules (all conditions in a rule must hold). Members beyond maxMembers are cut
 // by score, ties broken by DID so the result is stable.
@@ -21,7 +23,7 @@ export class Candidates {
   get(did, actor) {
     let c = this.map.get(did)
     if (!c) {
-      c = { did, handle: null, displayName: null, labels: [], seedFollows: new Set(), interactions: 0, interactionKinds: {}, termPosts: 0, feedPosts: 0, listed: false }
+      c = { did, handle: null, displayName: null, labels: [], seedFollows: new Set(), interactions: 0, interactionKinds: {}, termPosts: 0, feedPosts: 0, listed: false, rosters: new Set() }
       this.map.set(did, c)
     }
     if (actor) {
@@ -51,7 +53,8 @@ export function candidateScore(c, { weights, caps }) {
     weights.interactions * cap(c.interactions, 'interactions') +
     weights.termPosts * cap(c.termPosts, 'termPosts') +
     weights.feedPosts * cap(c.feedPosts, 'feedPosts') +
-    (c.listed ? weights.listed : 0)
+    (c.listed ? weights.listed : 0) +
+    (weights.roster ?? 0) * Math.min(c.rosters.size, caps?.rosters ?? 1)
   )
 }
 
@@ -61,6 +64,7 @@ export function satisfies(c, rule) {
   if (rule.termPosts != null && c.termPosts < rule.termPosts) return false
   if (rule.feedPosts != null && c.feedPosts < rule.feedPosts) return false
   if (rule.listed && !c.listed) return false
+  if (rule.roster && c.rosters.size === 0) return false
   return true
 }
 
@@ -83,10 +87,15 @@ export function selectMembers(cands, seedDids, expansion, excluded = () => false
   rows.sort((a, b) => Number(b.seed) - Number(a.seed) || b.score - a.score || (a.c.did < b.c.did ? -1 : 1))
   const max = expansion.maxMembers ?? 150
   const kept = rows.slice(0, Math.max(max, rows.filter((r) => r.seed).length))
+  const shape = ({ c, seed, rule, score }) => ({
+    did: c.did, handle: c.handle, displayName: c.displayName, seed, rule: seed ? 'seed' : rule, score: Math.round(score * 100) / 100,
+    signals: { seedFollows: c.seedFollows.size, interactions: c.interactions, termPosts: c.termPosts, feedPosts: c.feedPosts, listed: c.listed, rosters: [...c.rosters].sort() },
+  })
   return {
     considered: cands.map.size,
     qualified: rows.length,
     cut: rows.length - kept.length,
+    cutRows: rows.slice(kept.length).map(shape),
     members: kept.map(({ c, seed, rule, score }) => ({
       did: c.did,
       handle: c.handle,
@@ -100,6 +109,7 @@ export function selectMembers(cands, seedDids, expansion, excluded = () => false
         termPosts: c.termPosts,
         feedPosts: c.feedPosts,
         listed: c.listed,
+        rosters: [...c.rosters].sort(),
       },
     })),
   }

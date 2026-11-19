@@ -1,34 +1,37 @@
-// render, direct, build and self-check gates, and the bible readers
+// the gates after the scripts: render (intelligibility, heard text, lengths), stage (frames per
+// segment, disclaimer, cards, unread text, credits), build and review (scorecard, ledger, verdict),
+// and the bible readers
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { existsSync, readFileSync } from 'node:fs'
+import { existsSync, readFileSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
-import { parseWhisper, renderCheck, renderLengths, renderWhisper } from '../src/gates/render.mjs'
-import { directCards, directDisclaimer, directFrames, directModules, frameTimes, parseShoot } from '../src/gates/direct.mjs'
-import { buildThumbnail, parseScorecard, selfCheckLore, selfCheckScorecard } from '../src/gates/build.mjs'
-import { pitchTemplateSections, reviewerChecklist, rotationLog, scorecardSpec } from '../src/bible.mjs'
+import { parseWhisper, renderCheck, renderHeard, renderLengths, renderWhisper } from '../src/gates/render.mjs'
+import { directCards, directCredits, directDisclaimer, directFrames, directModules, directUnread, frameTimes, parseShoot, spokenShare } from '../src/gates/direct.mjs'
+import { buildPreviewVerify, buildThumbnail, parseScorecard, reviewLedger, reviewScorecard, reviewVerdict } from '../src/gates/build.mjs'
+import { reviewerChecklist, scorecardSpec, r3Tags } from '../src/bible.mjs'
 import { REPO } from '../src/repo.mjs'
-import { cleanup, ctxFor, fakeRepo, fakeTools, ID, LORE, makeEpisode, plan, POSTS, put, SCRIPT_CHAT, SCRIPT_COLD, SOURCES } from './helpers.mjs'
+import { cleanup, ctxFor, fakeRepo, fakeTools, ID, makeEpisode, plan, POSTS, put, SCRIPT_CHAT, SCRIPT_COLD, SOURCES } from './helpers.mjs'
 
+const cues = (id, duration, lines = []) => ({ id, duration, lines, cues: { a: 1 }, sfx: [], music: [] })
+const L = (i, id, who, text) => ({ i, id, who, kind: 'say', caption: true, text, t0: i, t1: i + 0.8 })
 const files = () => ({
   'production/plan.json': plan(),
   'production/sources.json': SOURCES,
   'segments/cold-open/script.js': SCRIPT_COLD,
   'segments/chat/script.js': SCRIPT_CHAT,
-  'segments/cold-open/cues.json': { id: 'cold-open', duration: 20.5, lines: [], cues: { a: 1 }, sfx: [], music: [] },
-  'segments/chat/cues.json': { id: 'chat', duration: 41, lines: [], cues: {}, sfx: [], music: [] },
+  'segments/cold-open/cues.json': cues('cold-open', 20.5, [L(0, 'hello', 'larry', 'Good evening.'), L(1, 'built', 'bot', 'built it: https://golem.cy.test')]),
+  'segments/chat/cues.json': cues('chat', 41, [L(0, 'intro', 'larry', 'This week, two people had a conversation.'), L(1, 'p1', 'ana', 'concept: a talk show, but the host is a throat'), L(2, 'p2', 'bo', 'claim.')]),
   'segments/cold-open/index.js': "export default { shots: [{ at: 0, shot: 'desk' }], drawFront(ctx, t, show) { show.draw.skeetCard(ctx, { text: 'built it: https://golem.cy.test' }) } }\n",
-  'segments/chat/index.js': `export default { guests: ['ana', 'bo'], disclaimer: { text: 'Performed verbatim from a public thread. Puppets play posting personas.', from: 0, dur: 6 } }\n`,
+  'segments/chat/index.js': `export default { guests: ['ana', 'bo'], disclaimer: { text: 'Performed verbatim from a public thread. Puppets play posting personas.', from: 0, dur: 6 }, drawFront(ctx, t, show) { show.draw.skeetCard(ctx, { text: 'concept: a talk show, but the host is a throat' }) } }\n`,
 })
-async function run(gateFn, over = {}, { tools, drop = [], lore } = {}) {
-  const root = fakeRepo()
+async function run(gateFn, over = {}, { tools, drop = [], onlySegment, setup } = {}) {
+  const root = fakeRepo({ fullScorecard: true })
   try {
     const all = { ...files(), ...over }
     for (const d of drop) delete all[d]
     makeEpisode(root, { files: all })
-    if (lore !== undefined) put(root, 'docs/bible/lore.md', lore)
-    const ctx = await ctxFor(root, { tools: tools?.(root) })
-    ctx.loreIdsBefore = ['SL-01', 'SL-02', 'E-001']
+    if (setup) setup(root)
+    const ctx = await ctxFor(root, { tools: tools?.(root), onlySegment })
     return await gateFn(ctx)
   } finally {
     cleanup(root)
@@ -39,6 +42,9 @@ const fails = (r, re) => {
   assert.equal(r.ok, false, `expected a failure matching ${re}`)
   assert.ok(r.failures.some((f) => re.test(f)), `no failure matching ${re}:\n${r.failures.join('\n')}`)
 }
+const whisperTools = (heard, extra = {}) => (root) => fakeTools(root, { whisper: true, heard, ...extra })
+
+// ---------------------------------------------------------------- render
 
 const WHISPER = `
 chat: what Whisper (base.en) hears in each line, cut from the final mix  (3 s)
@@ -48,35 +54,55 @@ chat: what Whisper (base.en) hears in each line, cut from the final mix  (3 s)
                           heard: "concept a talk show but the throat"
 ✗    4.1 bo       0/1  "claim."
                           heard: "flame"
-✓    5.0 bot      2/2  "Built it."
-                          heard: "Build it."
 
-14/18 caption words heard (78%); weak lines: p2
+12/16 caption words heard (75%); weak lines: p2
 `
 
-test('parseWhisper reads rows, weak ids and the total', () => {
+test('parseWhisper reads rows with what was heard, weak ids and the total', () => {
   const w = parseWhisper(WHISPER)
-  assert.equal(w.lines.length, 4)
+  assert.equal(w.lines.length, 3)
+  assert.equal(w.lines[2].heard, 'flame')
   assert.deepEqual(w.weak, ['p2'])
-  assert.equal(w.heard, 14)
-  assert.equal(w.lines[2].flag, '✗')
+  assert.equal(w.heard, 12)
 })
 
-test('render.whisper: weak lines fail unless waived; "Built it." must be heard', async () => {
-  const t = (out) => (root) => fakeTools(root, { whisper: true, whisperOut: { chat: out, 'cold-open': '' } })
-  fails(await run(renderWhisper, {}, { tools: t(WHISPER) }), /chat p2: "claim\." was heard as "flame" \(0\/1\): Whisper heard under 60 %/)
-  const waived = await run(renderWhisper, { 'production/intelligibility.json': { chat: { p2: 'claim. is the catchphrase; IPA /kleɪm/ is right' } } }, { tools: t(WHISPER) })
-  ok(waived)
-  assert.match(waived.warnings.join(' '), /waived: claim\./)
-  fails(await run(renderWhisper, { 'production/intelligibility.json': { chat: { p2: 'x' } } }, { tools: t(WHISPER.replace('✓    5.0 bot      2/2', '~    5.0 bot      1/2')) }), /"Built it\." was not heard/)
-  const skipped = await run(renderWhisper, {}, { tools: (root) => fakeTools(root, { whisper: false }) })
-  assert.match(skipped.skipped, /not installed/)
+test('render.whisper: a weak line fails; a waiver is accepted only for a name (finding 56)', async () => {
+  const t = (extra) => (root) => fakeTools(root, { whisper: true, whisperOut: { chat: WHISPER, 'cold-open': '' }, ...extra })
+  fails(await run(renderWhisper, {}, { tools: t() }), /chat p2: "claim\." was heard as "flame" \(0\/1\)/)
+  fails(await run(renderWhisper, { 'production/intelligibility.json': { chat: { p2: 'it is fine' } } }, { tools: t() }), /waivers are only for names Whisper cannot know/)
+  const named = WHISPER.replace(/"claim\."/g, '"Bo, claim."')
+  const w = await run(renderWhisper, { 'production/intelligibility.json': { chat: { p2: 'Bo is a name' } } }, { tools: t({ whisperOut: { chat: named, 'cold-open': '' } }) })
+  ok(w)
+  assert.match(w.warnings.join(' '), /waived as a name/)
+  assert.match((await run(renderWhisper, {}, { tools: (root) => fakeTools(root, { whisper: false }) })).skipped, /not installed/)
 })
 
-test('render.lengths: within ten percent of the plan, under the ceiling', async () => {
-  ok(await run(renderLengths))
-  fails(await run(renderLengths, { 'segments/chat/cues.json': { id: 'chat', duration: 60 } }), /chat renders at 60\.0 s but the plan gives it 40 s/)
-  fails(await run(renderLengths, { 'production/plan.json': plan({ segments: [{ id: 'cold-open', format: 'ask', seconds: 300 }, { id: 'chat', format: 'thread', seconds: 300 }] }), 'segments/cold-open/cues.json': { duration: 300 }, 'segments/chat/cues.json': { duration: 300 } }), /over the 590 s ceiling/)
+test('render.heard: an alarming term heard fails with no waiver, whatever the score (finding 51)', async () => {
+  fails(await run(renderHeard, {}, { tools: whisperTools({ chat: { intro: 'Last week, Auschwitz said' } }) }), /chat intro \(larry, [\d.]+ s\): heard "Last week, Auschwitz said", which contains "auschwitz"\. No waiver/)
+  ok(await run(renderHeard, {}, { tools: whisperTools({}) }))
+  fails(await run(renderHeard, { 'production/heard-waivers.json': { chat: { intro: { heard: 'Last week, Auschwitz said', judgement: 'surely fine, says the writer' } } } }, { tools: whisperTools({ chat: { intro: 'Last week, Auschwitz said' } }) }), /No waiver/)
+})
+
+test('render.heard: an out-of-bounds subject heard fails until a waiver quotes the heard text exactly', async () => {
+  const heard = { chat: { intro: 'This week, two people had a funeral.' } }
+  fails(await run(renderHeard, {}, { tools: whisperTools(heard) }), /touches an out-of-bounds subject \("funeral"\)/)
+  ok(await run(renderHeard, { 'production/heard-waivers.json': { chat: { intro: { heard: 'This week, two people had a funeral.', judgement: 'a mishearing of conversation, plainly harmless in context' } } } }, { tools: whisperTools(heard) }))
+  const stale = await run(renderHeard, { 'production/heard-waivers.json': { chat: { intro: { heard: 'something else', judgement: 'an older mishearing, judged harmless' } } } }, { tools: whisperTools(heard) })
+  fails(stale, /out-of-bounds/)
+  assert.match(stale.warnings.join(' '), /the waiver no longer applies/)
+})
+
+test('render.heard: a real name in the caption heard as something else fails until judged harmless', async () => {
+  const over = { 'segments/chat/cues.json': cues('chat', 41, [L(0, 'intro', 'larry', 'Ana posted this on Tuesday.')]) }
+  fails(await run(renderHeard, over, { tools: whisperTools({ chat: { intro: 'Anna posted this on Tuesday.' } }) }), /the caption names ana, but the transcription heard "Anna posted this on Tuesday\."/)
+  ok(await run(renderHeard, { ...over, 'production/heard-waivers.json': { chat: { intro: { heard: 'Anna posted this on Tuesday.', judgement: 'Anna for Ana says nothing about anyone' } } } }, { tools: whisperTools({ chat: { intro: 'Anna posted this on Tuesday.' } }) }))
+})
+
+test('render.lengths: under the ceiling (a segment off its estimate is only a warning)', async () => {
+  const r = await run(renderLengths, { 'segments/chat/cues.json': cues('chat', 60) })
+  ok(r)
+  assert.match(r.warnings.join(' '), /chat renders at 60\.0 s; the draft estimated 40 s/)
+  fails(await run(renderLengths, { 'segments/cold-open/cues.json': cues('cold-open', 300), 'segments/chat/cues.json': cues('chat', 300) }), /over the 590 s ceiling/)
 })
 
 test('render.check respects the exit code', async () => {
@@ -84,102 +110,121 @@ test('render.check respects the exit code', async () => {
   fails(await run(renderCheck, {}, { tools: (root) => ({ ...fakeTools(root), npm: () => ({ code: 1, out: 'FAIL chat  (no cues.json)' }) }) }), /FAIL chat/)
 })
 
-test('frameTimes: every cue, line id and music start, plus evenly spaced frames', () => {
-  const t = frameTimes({ duration: 10, cues: { a: 1.234, b: 20 }, lines: [{ id: 'x', t0: 3, t1: 4 }], music: [{ t0: 5 }] }, { across: 3, max: 40 })
-  assert.deepEqual(t, [1.23, 2.5, 3.4, 5, 5.5, 7.5])
-})
+// ---------------------------------------------------------------- stage
 
-test('parseShoot ignores GPU chatter and catches unknown cues, console errors and page errors', () => {
-  const out = `/x/shots/e/s/s@1.png  (0.4 s)
-   warning: [.WebGL-0x1]GL Driver Message (OpenGL, Performance): GPU stall due to ReadPixels
-/x/shots/e/s/s@2.png  (0.4 s)
-   warning: unknown cue "punch-in"
-   pageerror: show.draw.nope is not a function
-s @ 3: Timeout 90000ms exceeded`
-  const r = parseShoot(out)
-  assert.equal(r.frames.length, 2)
+test('frameTimes and parseShoot', () => {
+  assert.deepEqual(frameTimes({ duration: 10, cues: { a: 1.234, b: 20 }, lines: [{ id: 'x', t0: 3, t1: 4 }], music: [{ t0: 5 }] }, { across: 3, max: 40 }), [1.23, 2.5, 3.4, 5, 5.5, 7.5])
+  const r = parseShoot('/x/s@1.png  (0.4 s)\n   warning: [.WebGL-0x1]GL Driver Message: GPU stall\n/x/s@2.png  (0.4 s)\n   warning: unknown cue "punch-in"\n   pageerror: boom\ns @ 3: Timeout')
   assert.deepEqual(r.problems.map((p) => [p.t, p.kind]), [['2', 'warning'], ['2', 'pageerror'], ['3', 'failed']])
 })
 
-test('direct.frames fails an unknown cue and passes clean frames', async () => {
+test('stage.frames: clean frames pass; an unknown cue fails; --segment shoots one segment only (finding 29)', async () => {
   ok(await run(directFrames, {}, { tools: (root) => fakeTools(root) }))
   fails(await run(directFrames, { 'segments/chat/index.js': files()['segments/chat/index.js'] + '// UNKNOWN_CUE\n' }, { tools: (root) => fakeTools(root) }), /chat @ .*: warning: unknown cue/)
+  let calls
+  await run(directFrames, {}, { tools: (root) => { const t = fakeTools(root); calls = t.calls; return t }, onlySegment: 'chat' })
+  assert.deepEqual(calls.filter((c) => c[0] === 'shoot').map((c) => c[2]), ['chat'])
 })
 
-test('direct.modules and direct.disclaimer (R9)', async () => {
+test('stage.modules and stage.disclaimer', async () => {
   ok(await run(directModules))
   fails(await run(directModules, {}, { drop: ['segments/chat/index.js'] }), /chat\/index\.js is missing/)
   ok(await run(directDisclaimer))
   fails(await run(directDisclaimer, { 'segments/chat/index.js': "export default { guests: ['ana'] }\n" }), /first segment with a guest needs a disclaimer/)
-  const none = await run(directDisclaimer, { 'segments/chat/script.js': SCRIPT_COLD.replace("'cold-open'", "'chat'"), 'segments/chat/index.js': 'export default {}\n' })
-  assert.match(none.skipped, /no guest/)
 })
 
-test('direct.cards: a card shows its post verbatim (A2)', async () => {
+test('stage.cards: cards, quotes and thread posts are shown verbatim (finding 40)', async () => {
   ok(await run(directCards))
   fails(await run(directCards, { 'segments/cold-open/index.js': "export default { f() { return 'Built it: https://golem.cy.test' } }\n" }), /card for .*c1 in cold-open does not show the post's text verbatim/)
+  fails(await run(directCards, { 'segments/chat/index.js': `export default { guests: ['ana'], disclaimer: 'x' }\n`, 'segments/chat/script.js': SCRIPT_CHAT.replaceAll('the host is a throat', 'the host is a neck') }), /the thread for .* in chat does not show the post's text verbatim/)
 })
 
-test('build.thumbnail: a JPEG under a megabyte', async () => {
+test('stage.unread: on-screen text longer than a glance must be spoken; the disclaimer is exempt', async () => {
+  assert.equal(spokenShare('the host is a throat', 'concept: a talk show, but the host is a throat'), 1)
+  assert.ok(spokenShare('one two three', 'three') < 0.5)
+  ok(await run(directUnread))
+  fails(await run(directUnread, { 'segments/chat/index.js': `export default { guests: ['ana'], disclaimer: { text: 'Performed verbatim from a public thread. Puppets play posting personas.' }, drawFront(ctx, t, show) { show.draw.label(ctx, 'AND HERE IS A LONG PARAGRAPH NOBODY ON THE SHOW EVER READS ALOUD', 0, 0) } }\n` }), /segments\/chat\/index\.js:1: "AND HERE IS A LONG PARAGRAPH NOBODY ON THE SHOW EVER READS ALOUD" \(13 words\) is on screen but only 15 % of it is spoken in the segment/)
+  ok(await run(directUnread, { 'segments/chat/index.js': `export default { drawFront(ctx, t, show) { show.draw.label(ctx, 'SHORT TAG', 0, 0) } }\n` }))
+})
+
+test('stage.credits: the end card names the personas played, with handles, and says every voice is synthesized (finding 52)', async () => {
+  const r = await run(directCredits, {}, { tools: (root) => fakeTools(root) })
+  ok(r)
+  assert.match(r.warnings.join(' '), /credits: @ana\.test, @bo\.test/)
+  const noLine = (root) => ({ ...fakeTools(root), exec: () => ({ code: 0, out: '', stdout: JSON.stringify([{ head: 'Puppets played the' }, { head: 'posting personas of' }, ['ana', '@ana.test'], ['bo', '@bo.test']]) }) })
+  fails(await run(directCredits, {}, { tools: noLine }), /does not say that every voice is synthesized/)
+  const noBo = (root) => ({ ...fakeTools(root), exec: () => ({ code: 0, out: '', stdout: JSON.stringify([{ head: 'posting personas of' }, ['ana', '@ana.test'], 'Every voice in this programme', 'is synthesized by CHIMERA.']) }) })
+  fails(await run(directCredits, {}, { tools: noBo }), /does not credit @bo\.test, whose persona bo played/)
+  let calls
+  await run(directCredits, {}, { tools: (root) => { const t = fakeTools(root); calls = t.calls; return t } })
+  assert.ok(calls.some((c) => c[0] === 'shoot' && c[2] === 'end'), 'the end card is shot')
+})
+
+// ---------------------------------------------------------------- build and review
+
+test('build.thumbnail and build.preview-verify', async () => {
   fails(await run(buildThumbnail), /thumbnail\.jpg is missing/)
   ok(await run(buildThumbnail, { 'thumbnail.jpg': Buffer.from([0xff, 0xd8, 0xff, 0xe0, 0]) }))
-  fails(await run(buildThumbnail, { 'thumbnail.jpg': Buffer.from('PNG') }), /not a JPEG/)
+  fails(await run(buildPreviewVerify), /preview\/002-2026-w47\/episode\.json is missing/)
+  const r = await run(buildPreviewVerify, {}, { setup: (root) => put(root, `preview/${ID}/episode.json`, { build: { sourceHash: 'x' } }) })
+  assert.match(r.skipped ?? '', /hash\.mjs is not here/)
 })
 
 const CARD = (over = {}) => {
-  const rows = { A1: 'pass | No opted-out account appears anywhere; checked every file.', A2: 'pass | The golem card matches c1 word for word.', B1: '2 | Asked in the cold open and the thread, answered by a2.', B2: '1 | The thread lands; the cold open is flat.', B3: '2 | The song genre is new and the theme is the week.', ...over }
-  return `# Scorecard\n\n## Step 0\n\n- cold-open: retell; turn\n- chat: retell; feeling\n\n## Part A\n\n| # | result | evidence |\n|---|---|---|\n${Object.entries(rows).filter(([k]) => k.startsWith('A')).map(([k, v]) => `| ${k} | ${v} |`).join('\n')}\n\n## Part B\n\n| # | score | evidence |\n|---|---|---|\n${Object.entries(rows).filter(([k]) => k.startsWith('B')).map(([k, v]) => `| ${k} | ${v} |`).join('\n')}\n`
+  const rows = { ...Object.fromEntries(Array.from({ length: 12 }, (_, k) => [`A${k + 1}`, 'pass | Fixture evidence: checked every frame and line.'])), ...Object.fromEntries(Array.from({ length: 12 }, (_, k) => [`B${k + 1}`, '2 | Fixture evidence: checked every frame and line.'])), ...over }
+  return `# Scorecard\n\n## Step 0\n\n- cold-open: retell\n- chat: retell\n\n## Part A\n\n| # | result | evidence |\n|---|---|---|\n${Object.entries(rows).filter(([k]) => k.startsWith('A')).map(([k, v]) => `| ${k} | ${v} |`).join('\n')}\n\n## Part B\n\n| # | score | evidence |\n|---|---|---|\n${Object.entries(rows).filter(([k]) => k.startsWith('B')).map(([k, v]) => `| ${k} | ${v} |`).join('\n')}\n`
 }
 
-test('self-check.scorecard reads its rows and approval rule from the bible', async () => {
-  ok(await run(selfCheckScorecard, { 'production/scorecard.md': CARD() }))
-  fails(await run(selfCheckScorecard), /scorecard\.md is missing/)
-  fails(await run(selfCheckScorecard, { 'production/scorecard.md': CARD({ A2: 'fail | the card trims a word.' }) }), /A2 fails by the writer's own check/)
-  fails(await run(selfCheckScorecard, { 'production/scorecard.md': CARD({ B3: '0 | the song is the same genre.' }) }), /B3 scores 0, which sends the episode back/)
-  fails(await run(selfCheckScorecard, { 'production/scorecard.md': CARD({ B1: '1 | some point, not answered.', B2: '1 | flat in places, one laugh.', B3: '1 | one freshness warning unanswered.' }) }), /totals 3 of 6; approval needs 4/)
-  fails(await run(selfCheckScorecard, { 'production/scorecard.md': CARD({ A2: 'pass | ok' }) }), /A2: give one sentence of evidence/)
-  fails(await run(selfCheckScorecard, { 'production/scorecard.md': CARD({ B9: '2 | a row the bible does not have here.' }) }), /row B9, which the bible's scorecard does not/)
-  fails(await run(selfCheckScorecard, { 'production/scorecard.md': CARD().replace('- chat: retell; feeling\n', '') }), /Step 0 does not list the segment chat/)
+test('review.scorecard: complete, and the verdict follows the card; a send-back with a failing card is valid (finding 55)', async () => {
+  ok(await run(reviewScorecard, { 'production/scorecard.md': CARD(), 'production/review.json': { verdict: 'approve' } }))
+  fails(await run(reviewScorecard, { 'production/scorecard.md': CARD({ A2: 'fail | the card trims a word that changes it.' }), 'production/review.json': { verdict: 'approve' } }), /review\.json approves, but the scorecard does not \(Part A fails: A2\)/)
+  ok(await run(reviewScorecard, { 'production/scorecard.md': CARD({ A2: 'fail | the card trims a word that changes it.' }), 'production/review.json': { verdict: 'send-back', route: 'stage' } }))
+  fails(await run(reviewScorecard, { 'production/scorecard.md': CARD({ B9: undefined }).replace('| B9 | undefined |\n', ''), 'production/review.json': { verdict: 'send-back' } }), /no row B9/)
+  fails(await run(reviewScorecard, { 'production/scorecard.md': CARD().replace('- chat: retell\n', '') }), /Step 0 does not list the segment chat/)
   assert.deepEqual([...parseScorecard('| **A1** | **Pass** | yes it is fine |').entries()], [['A1', { result: 'pass', evidence: 'yes it is fine' }]])
 })
 
-test('self-check.scorecard fails loudly when the bible\'s scorecard changes shape', async () => {
-  const root = fakeRepo()
-  try {
-    makeEpisode(root, { files: { ...files(), 'production/scorecard.md': CARD() } })
-    put(root, 'docs/bible/10-process.md', '# 10\n\n## The scorecard\n\nNo tables any more.\n')
-    fails(await selfCheckScorecard(await ctxFor(root)), /changed shape/)
-  } finally {
-    cleanup(root)
-  }
+test('review.verdict: approve passes; send-back routes; an unknown route fails', async () => {
+  ok(await run((c) => reviewVerdict(c), { 'production/review.json': { verdict: 'approve' } }))
+  const r = await run((c) => reviewVerdict(c), { 'production/review.json': { verdict: 'send-back', route: 'assemble', reasons: ['a line is heard wrongly'] } })
+  assert.deepEqual(r.sentBack, { route: 'assemble', reason: 'a line is heard wrongly' })
+  fails(await run((c) => reviewVerdict(c), { 'production/review.json': { verdict: 'send-back', route: 'pitch' } }), /names the stage that can fix it/)
+  ok(await run((c) => reviewVerdict(c, 'stage.review'), { 'production/stage/review.json': { verdict: 'pass' } }))
 })
 
-const LORE_002 = LORE.replace('| 001 | ask, monologue', '| 002 | ask, thread | — | — | Ana (thread; V), Bo (thread; V) | the throat | plain | "a man made of air" | credit | none |\n| 001 | ask, monologue') + '- **E-002 The Throat Show** (week 2026-W47).\n'
+const LEDGER = { id: ID, aired: false, guests: [{ did: 'did:plc:ana', handle: 'ana.test' }, { did: 'did:plc:bo', handle: 'bo.test' }], featured: [{ did: 'did:plc:ana', handle: 'ana.test' }, { did: 'did:plc:bo', handle: 'bo.test' }, { did: 'did:plc:cy', handle: 'cy.test' }], formats: ['thread'], song: null, runners: [], catchphrases: [], devices: [] }
+const TRACKER = { 'did:plc:ana': { handle: 'ana.test', appearances: [{ episode: ID, date: '2026-11-20', role: 'spoke' }] }, 'did:plc:bo': { handle: 'bo.test', appearances: [{ episode: '001-pilot', date: '2026-11-13', role: 'spoke' }, { episode: ID, date: '2026-11-20', role: 'spoke' }] }, 'did:plc:cy': { handle: 'cy.test', appearances: [{ episode: ID, date: '2026-11-20', role: 'shown' }] } }
+const withLedger = (ledger, tracker) => (root) => {
+  if (ledger) put(root, `docs/ledger/${ID}.json`, ledger)
+  put(root, `docs/ledger/${ID}.md`, '# 002\n')
+  if (tracker) put(root, 'docs/ledger/featured.json', tracker)
+}
 
-test('self-check.lore: the episode log entry and rotation log row are there, nothing deleted', async () => {
-  ok(await run(selfCheckLore, {}, { lore: LORE_002 }))
-  fails(await run(selfCheckLore, {}, { lore: LORE }), /no episode log entry \*\*E-002/)
-  fails(await run(selfCheckLore, {}, { lore: LORE_002.replace('- **SL-02** Larry is a throat. (001)\n', '') }), /lost entries SL-02/)
-  fails(await run(selfCheckLore, {}, { lore: LORE_002.replace(/\| 002 \|.*\n/, '') }), /rotation log .* has no row for 002/)
+test('review.ledger: the ledger entry and the tracker agree with the screen, by DID', async () => {
+  ok(await run(reviewLedger, {}, { setup: withLedger(LEDGER, TRACKER) }))
+  fails(await run(reviewLedger, {}, { setup: withLedger(null, TRACKER) }), /002-2026-w47\.json is missing/)
+  fails(await run(reviewLedger, {}, { setup: withLedger({ ...LEDGER, guests: LEDGER.guests.slice(0, 1) }, TRACKER) }), /"guests" is missing did:plc:bo/)
+  fails(await run(reviewLedger, {}, { setup: withLedger({ ...LEDGER, guests: ['ana.test', 'bo.test'] }, TRACKER) }), /every entry in "guests" needs its "did"/)
+  fails(await run(reviewLedger, {}, { setup: withLedger({ ...LEDGER, featured: LEDGER.featured.slice(0, 2) }, TRACKER) }), /"featured" is missing did:plc:cy/)
+  const noCy = { ...TRACKER, 'did:plc:cy': { handle: 'cy.test', appearances: [] } }
+  fails(await run(reviewLedger, {}, { setup: withLedger(LEDGER, noCy) }), /tracker \(featured\.json\) has no appearance \{ "episode": "002-2026-w47", "role": "shown" \} for did:plc:cy/)
+  const extra = { ...TRACKER, 'did:plc:zz': { handle: 'zz.test', appearances: [{ episode: ID, role: 'shown' }] } }
+  fails(await run(reviewLedger, {}, { setup: withLedger(LEDGER, extra) }), /lists zz\.test in 002-2026-w47, who is not on screen/)
 })
 
-test('rotationLog parses the table into rows', () => {
-  const r = rotationLog(LORE)
-  assert.equal(r.rows.length, 1)
-  assert.equal(r.rows[0].genre, 'stomp-clap anthem')
-  assert.deepEqual(r.rows[0].guests, ['Ana'])
-  assert.equal(r.rows[0].descriptor, 'a throat')
-})
+// ---------------------------------------------------------------- the bible
 
 test('the bible readers understand the real bible (skipped outside the repository)', { skip: !existsSync(join(REPO, 'docs', 'bible', '10-process.md')) }, () => {
   const BIBLE = join(REPO, 'docs', 'bible')
   const spec = scorecardSpec(BIBLE)
   assert.equal(spec.error, undefined, spec.error)
-  assert.ok(spec.a.length >= 10 && spec.b.length >= 10 && spec.approveAt > 0 && spec.noZero.length)
-  const tpl = pitchTemplateSections(BIBLE)
-  assert.equal(tpl.error, undefined, tpl.error)
-  assert.ok(tpl.sections.includes('Risks and open questions'))
+  // chapter 10 today: Step 0, gates A1 to A16, rows B1 to B13 (26 possible), approve at 18 with no 0 in six rows
+  assert.equal(spec.step0, true)
+  assert.deepEqual(spec.a, Array.from({ length: 16 }, (_, k) => `A${k + 1}`))
+  assert.deepEqual(spec.b, Array.from({ length: 13 }, (_, k) => `B${k + 1}`))
+  assert.equal(spec.maxB, 26)
+  assert.equal(spec.approveAt, 18)
+  assert.deepEqual(spec.noZero, ['B1', 'B2', 'B7', 'B8', 'B11', 'B12'])
   assert.ok(reviewerChecklist(BIBLE).items.length >= 5)
-  const log = rotationLog(readFileSync(join(REPO, 'docs', 'bible', 'lore.md'), 'utf8'))
-  assert.ok(log.rows.some((r) => r.ep === '001' && r.genre))
+  assert.ok(r3Tags(BIBLE).tags.includes('verbatim'))
 })

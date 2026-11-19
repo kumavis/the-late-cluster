@@ -2,19 +2,29 @@
 // reviewer, who still apply R10 themselves: keyword lists miss things and flag innocent
 // posts, and both kinds of mistake are expected.
 
-/** Compile { topic: [terms] } into matchers. Each term is matched as a whole word or phrase. */
-export function compileTopics(topics = {}) {
-  return Object.entries(topics).map(([topic, terms]) => ({
-    topic,
-    re: new RegExp(`(?<![\\p{L}\\p{N}])(?:${terms.join('|')})(?![\\p{L}\\p{N}])`, 'iu'),
-  }))
+const wordsRe = (terms) => new RegExp(`(?<![\\p{L}\\p{N}])(?:${terms.join('|')})(?![\\p{L}\\p{N}])`, 'iu')
+
+/**
+ * Compile { topic: [terms] } into matchers. Each term is matched as a whole word or phrase.
+ * `combinations` ([{ topic, all: [[terms], [terms]] }]) flag a topic when a text matches a
+ * term from every list, for things no single word gives away (national pastiche).
+ */
+export function compileTopics(topics = {}, combinations = []) {
+  const list = Object.entries(topics).map(([topic, terms]) => ({ topic, test: (t) => wordsRe(terms).test(t) }))
+  const res = Object.fromEntries(Object.entries(topics).map(([topic, terms]) => [topic, wordsRe(terms)]))
+  for (const l of list) l.test = (t) => res[l.topic].test(t)
+  for (const c of combinations) {
+    const parts = c.all.map(wordsRe)
+    list.push({ topic: c.topic, test: (t) => parts.every((re) => re.test(t)) })
+  }
+  return list
 }
 
-/** Topics a text touches, in config order. */
+/** Topics a text touches, in config order, each once. */
 export function topicsOf(text, compiled) {
   const t = String(text ?? '')
   if (!t) return []
-  return compiled.filter(({ re }) => re.test(t)).map(({ topic }) => topic)
+  return [...new Set(compiled.filter((c) => c.test(t)).map((c) => c.topic))]
 }
 
 /** Everything a post shows: its text, alt text, link titles and quoted text. */

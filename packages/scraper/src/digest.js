@@ -6,9 +6,11 @@ import { spikedPhrases, weekDeclarations } from './phrases.js'
 import { authorBaselines, buildStories, postMetrics } from './stories.js'
 import { compileTopics, topicsOf, postText } from './sensitivity.js'
 import { buildsThisWeek } from './builds.js'
-import { findShowPosts, correctionFlag } from './show.js'
-import { gameResults } from './games.js'
+import { findShowPosts, correctionFlag, quotedLines } from './show.js'
+import { gameResults, gameSegment } from './games.js'
 import { performableThreads } from './threads.js'
+import { makeReach } from './reach.js'
+import { interviewCandidates } from './interview.js'
 import { firstLine } from './text.js'
 import { iso, utcDay } from './window.js'
 
@@ -26,11 +28,11 @@ const byTime = (a, b) => (a.time < b.time ? -1 : a.time > b.time ? 1 : a.uri < b
  * @param {Consent} a.consent
  * @param {object} a.scoring config.scoring
  * @param {Map} a.profiles did -> { handle, displayName, followersCount }
- * @param {Set} a.guestDids recurring guests (config/show.json guests)
+ * @param {Function} a.featured handle -> { previous, earlier, episodes } from the ledger
  * @param {object} a.safety config.safety
  * @param {object} a.show config.show
  */
-export function analyze({ posts, memberDids, members = [], reposts = new Map(), window, baselineStart, baselineWeeks, priorPosts = [], consent, scoring, profiles = new Map(), guestDids = new Set(), guestsExcluded = 0, safety = {}, show = {}, games = {}, completeThreads = new Set(), gaps = [] }) {
+export function analyze({ posts, memberDids, members = [], reposts = new Map(), window, baselineStart, baselineWeeks, priorPosts = [], consent, scoring, profiles = new Map(), featured = () => ({ previous: null, earlier: null, episodes: [], appearances: 0 }), safety = {}, show = {}, games = {}, completeThreads = new Set(), gaps = [] }) {
   const inWin = (p) => { const t = Date.parse(p.time); return t >= window.start && t < window.end }
   const inBase = (p) => { const t = Date.parse(p.time); return t >= baselineStart && t < window.start }
 
@@ -51,12 +53,13 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   consent.stats.showOptOutRequests = consent.showRequests.size
 
   const small = safety.smallAccountFollowers ?? 300
-  const topics = compileTopics(safety.sensitivity?.topics)
+  const topics = compileTopics(safety.sensitivity?.topics, safety.sensitivity?.combinations)
   const annotate = (p) => {
     const f = profiles.get(p.authorDid)?.followersCount
     p.authorFollowers = Number.isFinite(f) ? f : null
     p.smallAccount = Number.isFinite(f) && f < small
-    if (guestDids.has(p.authorDid)) p.guest = true
+    const fe = featured(p.authorDid, p.handle)
+    if (fe.previous || fe.earlier) p.featured = { previous: fe.previous, earlier: fe.earlier }
     const t = topicsOf(postText(p), topics)
     if (t.length) p.sensitive = t
     if (p._quoted) {
@@ -112,7 +115,11 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   for (const p of baselinePosts) for (const l of p.links ?? []) if (l.domain) baselineDomains.add(l.domain)
 
   const memberHandles = members.map((m) => m.handle).filter(Boolean)
-  const stories = buildStories({ posts: windowPosts, baselines, phrases, baselineDomains, context, memberReposts, memberHandles, sensitivity: safety.sensitivity, cfg: scoring })
+  const memberReposters = new Map()
+  for (const [uri, set] of reposts) memberReposters.set(uri, new Set([...set].filter((d) => memberDids.has(d) && !consent.excludedDid(d))))
+  const reach = makeReach([...windowPosts, ...context.values()], memberReposters, (did) => profiles.get(did)?.followersCount ?? null, scoring.reach?.weights)
+  const reachOf = (p) => reach.post(p)
+  const stories = buildStories({ posts: windowPosts, baselines, phrases, baselineDomains, context, memberReposts, memberHandles, sensitivity: safety.sensitivity, reach, cfg: scoring })
   const inBounds = stories.filter((s) => !s.outOfBounds)
   const byUriAll = new Map(windowPosts.map((p) => [p.uri, p]))
   const lookup = (uri) => byUriAll.get(uri) ?? context.get(uri) ?? null
@@ -161,7 +168,7 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   })()
 
   const brief = (p, n = 280) => p && {
-    uri: p.uri, url: p.url, handle: p.handle, displayName: p.displayName, text: firstLine(p.text, n), time: p.time, counts: p.counts,
+    uri: p.uri, url: p.url, handle: p.handle, displayName: p.displayName, text: firstLine(p.text, n), time: p.time, counts: p.counts, reach: reachOf(p),
     member: !!p.member, authorFollowers: p.authorFollowers ?? null, smallAccount: !!p.smallAccount, ...(p.sensitive ? { sensitive: p.sensitive } : {}),
   }
   const earliest = (ps) => [...ps].sort(byTime)[0]
@@ -187,29 +194,23 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   // ---- sections the bible asks for
   const storyOfUrl = new Map()
   for (const s of stories) for (const l of s.links) if (!storyOfUrl.has(l.url)) storyOfUrl.set(l.url, s.rank)
-  const builds = buildsThisWeek({ posts: windowPosts, lookup, memberHandles, baselineDomains, cfg: scoring, storyOfUrl })
+  // A post inside an out-of-bounds story carries the story's flag wherever it appears.
+  const storyFlag = new Map()
+  for (const st of stories) if (st.outOfBounds) for (const p of st.posts) storyFlag.set(p.uri, st.outOfBounds.topics)
+  const builds = buildsThisWeek({ posts: windowPosts, lookup, memberHandles, baselineDomains, cfg: scoring, storyOfUrl, reachOf })
+  for (const b of builds) {
+    const inherited = [...new Set([b.builtBy?.uri, b.wish?.uri].flatMap((u) => storyFlag.get(u) ?? []))]
+    if (inherited.length) b.outOfBounds = { topics: [...new Set([...(b.outOfBounds?.topics ?? []), ...inherited])].sort(), inFlaggedStory: true }
+  }
 
   const aboutShow = {
     posts: windowPosts.filter((p) => showFound.about.has(p.uri)).sort(byTime).map((p) => ({
-      ...brief(p, 400), why: showFound.about.get(p.uri), correction: correctionFlag(p.text, safety),
+      ...brief(p, 400), why: showFound.about.get(p.uri), correction: correctionFlag(p.text, safety), quotesLines: quotedLines(p.text, safety),
       ...(p.reply?.parent && lookup(p.reply.parent) ? { inReplyTo: brief(lookup(p.reply.parent), 160) } : {}),
     })),
     // Handle and link only, so the reviewer can add them to config/optout.json. Their posts
     // are excluded from every other part of the digest.
     optOutRequests: optOutRequests.map((r) => ({ handle: r.handle, url: r.url })),
-  }
-
-  const guests = []
-  for (const did of [...guestDids].sort()) {
-    const own = windowPosts.filter((p) => p.authorDid === did && !p.sensitive)
-    const prof = profiles.get(did)
-    const top = own.map((p) => ({ p, m: metric(p) })).sort((a, b) => b.m.score - a.m.score || (a.p.uri < b.p.uri ? -1 : 1)).slice(0, show.postsPerGuest ?? 4)
-    guests.push({
-      did, handle: prof?.handle ?? own[0]?.handle ?? null, displayName: prof?.displayName ?? own[0]?.displayName ?? null,
-      followers: prof?.followersCount ?? null, small: Number.isFinite(prof?.followersCount) && prof.followersCount < small, postsThisWeek: windowPosts.filter((p) => p.authorDid === did).length,
-      skippedOutOfBounds: windowPosts.filter((p) => p.authorDid === did && p.sensitive).length,
-      top: top.map(({ p, m }) => ({ ...brief(p, 400), imageAlts: p.imageAlts, links: p.links, quoted: p._quoted ? brief(p._quoted, 200) : null, metrics: m, ...(p.reply?.parent && lookup(p.reply.parent) ? { inReplyTo: brief(lookup(p.reply.parent), 160) } : {}) })),
-    })
   }
 
   // ---- headline numbers
@@ -220,35 +221,78 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   const breakout = [...top].filter((x) => x.p.member && x.m.engagement >= (scoring.breakoutMinEngagement ?? 10))
     .sort((a, b) => b.m.lift - a.m.lift || (a.p.uri < b.p.uri ? -1 : 1))[0]
   const describe = (p) => p.text?.trim() || (p.imageAlts?.[0] ? `(image: ${p.imageAlts[0]})` : p.hasVideo ? '(video)' : p.hasImages ? '(image)' : p._quoted?.text ? `(quoting) ${p._quoted.text}` : '')
-  const headlineBrief = (x) => x && { uri: x.p.uri, url: x.p.url, handle: x.p.handle, displayName: x.p.displayName, text: firstLine(describe(x.p), 160), counts: x.p.counts, metrics: x.m, authorFollowers: x.p.authorFollowers, smallAccount: !!x.p.smallAccount }
+  const headlineBrief = (x) => x && { uri: x.p.uri, url: x.p.url, handle: x.p.handle, displayName: x.p.displayName, text: firstLine(describe(x.p), 160), counts: x.p.counts, metrics: x.m, reach: reachOf(x.p), authorFollowers: x.p.authorFollowers, smallAccount: !!x.p.smallAccount }
+
+  // Voices the show has never featured, with a strong window: the strongest few members by
+  // the sum of their three best post scores, out-of-bounds posts left out.
+  const nv = show.newVoices ?? {}
+  const memberPostsBy = new Map()
+  for (const p of memberWindow) {
+    if (p.sensitive) continue
+    if (!memberPostsBy.has(p.authorDid)) memberPostsBy.set(p.authorDid, [])
+    memberPostsBy.get(p.authorDid).push(p)
+  }
+  const newVoices = [...memberPostsBy.entries()]
+    .filter(([did, ps]) => ps.length >= (nv.minPosts ?? 3) && featured(did, ps[0].handle).episodes.length === 0)
+    .map(([did, ps]) => {
+      const scored = ps.map((p) => ({ p, m: metric(p) })).sort((a, b) => b.m.score - a.m.score || (a.p.uri < b.p.uri ? -1 : 1))
+      const strength = scored.slice(0, 3).reduce((x, y) => x + y.m.score, 0)
+      const prof = profiles.get(did)
+      return {
+        did, handle: ps[0].handle, displayName: ps[0].displayName, followers: prof?.followersCount ?? null,
+        small: Number.isFinite(prof?.followersCount) && prof.followersCount < small, postsInWindow: ps.length,
+        strength: Math.round(strength * 1000) / 1000,
+        top: scored.slice(0, nv.postsEach ?? 3).map(({ p, m }) => ({ ...brief(p, 400), imageAlts: p.imageAlts, links: p.links, quoted: p._quoted ? brief(p._quoted, 200) : null, metrics: m, reach: reachOf(p), ...(p.reply?.parent && lookup(p.reply.parent) ? { inReplyTo: brief(lookup(p.reply.parent), 160) } : {}) })),
+      }
+    })
+    .sort((a, b) => b.strength - a.strength || (a.did < b.did ? -1 : 1))
+    .slice(0, nv.count ?? 8)
 
   // Community games (config/games.json)
   const byHandle = new Map([...profiles.values()].map((p) => [String(p.handle ?? '').toLowerCase(), p]))
   const gameSections = (games.games ?? []).map((g) => {
-    const results = gameResults(windowPosts, g, { consent, profileByHandle: (h) => byHandle.get(h) ?? null, small })
-    for (const r of results) {
-      if (r.winningPost) {
-        const t = topicsOf(r.winningPost.text, topics)
-        if (t.length) r.winningPost.sensitive = t
-      }
+    const gamePosts = [...windowPosts, ...context.values()].filter((p) => p.authorDid === g.account || String(p.handle ?? '').toLowerCase() === String(g.account).toLowerCase())
+    const all = gameResults(gamePosts, g, { consent, profileByHandle: (h) => byHandle.get(h) ?? null, small })
+    for (const r of all) {
+      if (!r.winningPost) continue
+      const t = topicsOf(r.winningPost.text, topics)
+      const inStory = storyFlag.get(r.winningPost.uri)
+      const merged = [...new Set([...t, ...(inStory ?? [])])]
+      if (merged.length) r.winningPost.sensitive = merged
+      if (inStory) r.winningPost.inFlaggedStory = true
     }
-    return { id: g.id, name: g.name ?? g.id, account: g.account, about: g.about ?? null, writerNote: g.writerNote ?? null, accountExcluded: consent.skipHandle(g.account) || consent.excludedHandles.has(String(g.account).toLowerCase()), results }
+    const results = all.filter((r) => { const t = Date.parse(r.time); return t >= window.start && t < window.end })
+    const personView = (h) => {
+      const prof = byHandle.get(h)
+      if (consent.skipHandle(h) || consent.excludedHandles.has(h) || (prof && consent.excludedDid(prof.did))) return { excluded: true }
+      return { handle: h }
+    }
+    const segment = gameSegment(all, gamePosts, { window, game: g, personView })
+    return { id: g.id, name: g.name ?? g.id, account: g.account, label: g.label ?? g.account, about: g.about ?? null, writerNote: g.writerNote ?? null, accountExcluded: consent.skipHandle(g.account) || consent.excludedHandles.has(String(g.account).toLowerCase()), results, segment }
   })
+
+  // Interview material: real answers to real questions, both sides checked.
+  const interview = interviewCandidates({ posts: windowPosts, lookup, featuredOf: featured, reachOf, profiles, small, cfg: show.interview })
 
   // Threads a writer could stage word for word.
   const performable = show.performableThreads?.count
     ? performableThreads({ posts: [...windowPosts, ...context.values()], removed: [...removed, ...gaps], complete: completeThreads, window, cfg: show.performableThreads })
     : { threads: [], considered: 0, rejected: {} }
 
-  // Every author who appears, with the follower count the small-account rule needs.
+  // Every author who appears, with the follower count the small-account rule needs and
+  // whether the show featured them in the previous episode or an earlier one.
+  const authorEntry = (p) => {
+    const fe = featured(p.authorDid, p.handle)
+    return { handle: p.handle, displayName: p.displayName, followers: p.authorFollowers, small: !!p.smallAccount, member: !!p.member, featuredPrevious: fe.previous, featuredEarlier: fe.earlier, timesFeatured: fe.appearances }
+  }
   const authors = {}
   for (const p of windowPosts) {
     if (authors[p.authorDid]) continue
-    authors[p.authorDid] = { handle: p.handle, displayName: p.displayName, followers: p.authorFollowers, small: !!p.smallAccount, member: !!p.member, guest: guestDids.has(p.authorDid) }
+    authors[p.authorDid] = authorEntry(p)
   }
   for (const p of context.values()) {
     if (authors[p.authorDid] || inBase(p)) continue
-    authors[p.authorDid] = { handle: p.handle, displayName: p.displayName, followers: p.authorFollowers, small: !!p.smallAccount, member: !!p.member, guest: guestDids.has(p.authorDid) }
+    authors[p.authorDid] = authorEntry(p)
   }
 
   return {
@@ -259,6 +303,7 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
       activeMembers: new Set(memberWindow.map((p) => p.authorDid)).size,
       clusterSize: memberDids.size,
       postsByDay: days,
+      reachFormula: reach.formula,
       topStories: inBounds.slice(0, 5).map((s) => ({ id: s.id, rank: s.rank, kind: s.kind, headline: s.headline })),
       outOfBoundsWithin: 30,
       outOfBounds: stories.slice(0, 30).filter((s) => s.outOfBounds).map((s) => ({ id: s.id, rank: s.rank, headline: s.headline, topics: s.outOfBounds.topics })),
@@ -269,7 +314,7 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
       breakoutPost: headlineBrief(breakout),
     },
     stories,
-    sections: { games: gameSections, built: builds, aboutShow, guests, guestsExcluded, performableThreads: performable },
+    sections: { games: gameSections, built: builds, aboutShow, newVoices, interview, performableThreads: performable },
     authors,
     appendices: { activeAccounts, links, phrases: phraseList, weeks, runningBits: phraseList.filter((p) => p.days >= 3).map((p) => ({ term: p.term, days: p.days, authors: p.authors })) },
     members,

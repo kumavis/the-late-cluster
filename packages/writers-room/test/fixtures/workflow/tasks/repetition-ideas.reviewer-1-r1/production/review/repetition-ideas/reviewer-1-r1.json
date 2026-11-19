@@ -1,0 +1,27 @@
+{
+  "reviewer": "reviewer-1",
+  "round": 1,
+  "items": [
+    {
+      "id": "writer-1-3",
+      "verdict": "repeat",
+      "avoid": "a wish granted on the spot by the show itself, which the show has done as a runner",
+      "reason": "the ledger's runner"
+    },
+    {
+      "id": "writer-2-3",
+      "verdict": "turned",
+      "turned": {
+        "what": "the wish granted on the spot",
+        "how": "granted so literally that it is useless: the show is two segments and nobody can stop it"
+      },
+      "fromPrevious": true,
+      "reason": "inverts the runner"
+    },
+    {
+      "id": "writer-2-1",
+      "verdict": "fresh",
+      "reason": "not done before"
+    }
+  ]
+}

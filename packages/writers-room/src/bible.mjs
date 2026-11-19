@@ -1,6 +1,6 @@
 // The parts of the design bible the pipeline reads at run time instead of copying, so the two
-// cannot drift silently: the pitch template's sections and the scorecard's rows and approval rule
-// (10-process.md), the reviewer's checklist (09-real-people.md) and the rotation log (lore.md).
+// cannot drift silently: the scorecard's rows and approval rule (10-process.md), the reviewer's
+// checklist and the source kinds of R3 (09-real-people.md).
 // Each reader fails loudly (returns { error }) when the text no longer has the expected shape.
 import { existsSync, readFileSync } from 'node:fs'
 import { join } from 'node:path'
@@ -27,16 +27,6 @@ export function section(md, heading, level = 2) {
     out.push(l)
   }
   return out.join('\n')
-}
-
-/** the `## ` headings of the pitch template in 10-process.md, stage 2 */
-export function pitchTemplateSections(bibleDir) {
-  const md = readBible(bibleDir, '10-process.md')
-  const stage = md && section(md, 'Stage 2')
-  const fence = stage && /```markdown\n([\s\S]*?)```/.exec(stage)?.[1]
-  if (!fence) return { error: 'docs/bible/10-process.md has no ```markdown pitch template under "## Stage 2"' }
-  const names = [...fence.matchAll(/^##\s+(.+?)\s*$/gm)].map((m) => m[1])
-  return names.length ? { sections: names } : { error: 'the pitch template in docs/bible/10-process.md has no ## sections' }
 }
 
 /**
@@ -69,48 +59,6 @@ export function reviewerChecklist(bibleDir) {
     else if (items.length && /^\s{2,}\S/.test(line)) items[items.length - 1] += ' ' + line.trim()
   }
   return items.length ? { items } : { error: 'the reviewer checklist in docs/bible/09-real-people.md has no numbered items' }
-}
-
-/**
- * The rotation log in lore.md: one row per episode. Returns [{ ep, formats: [], genre, theme,
- * guests: [], runner, shapes, descriptor, sincere, topChicken }] keyed by the header names.
- */
-export function rotationLog(text) {
-  const body = section(String(text ?? ''), 'Rotation log')
-  if (!body) return { error: 'the lore file has no "## Rotation log" table', rows: [] }
-  const rows = body.split('\n').filter((l) => /^\|/.test(l)).map((l) => l.split('|').slice(1, -1).map((c) => c.trim()))
-  if (rows.length < 2) return { rows: [], header: rows[0] ?? [] }
-  const header = rows[0].map((h) => h.toLowerCase().replace(/["“”]/g, ''))
-  const col = (name) => header.findIndex((h) => h.includes(name))
-  const out = []
-  for (const r of rows.slice(2)) {
-    const get = (name) => (col(name) >= 0 ? r[col(name)] ?? '' : '')
-    out.push({
-      ep: get('ep'),
-      formats: get('formats').split(',').map((s) => s.replace(/\(.*?\)/g, '').trim()).filter(Boolean),
-      genre: get('song genre'),
-      theme: get('song theme'),
-      guests: get('guests').split(/,(?![^()]*\))/).map((s) => s.replace(/\(.*?\)/g, '').trim()).filter(Boolean),
-      runner: get('runner'),
-      shapes: get('shapes'),
-      descriptor: get('descriptor').replace(/^["“]|["”]$/g, ''),
-      sincere: get('sincere'),
-      topChicken: get('top chicken'),
-    })
-  }
-  return { rows: out, header }
-}
-
-/** a plan-shaped summary of a rotation log row, for episodes that have no plan.json */
-export function planFromLogRow(row) {
-  return {
-    fromLog: true,
-    segments: row.formats.map((f, k) => ({ id: `#${k + 1}`, format: f, ...(/^song$/i.test(f) ? { genre: row.genre, theme: row.theme } : {}) })),
-    guests: row.guests.map((g) => ({ name: g })),
-    runner: row.runner,
-    descriptor: row.descriptor,
-    sincere: { kind: row.sincere },
-  }
 }
 
 /**

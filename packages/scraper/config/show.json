@@ -1,15 +1,20 @@
 {
-  "$comment": "The show itself, for 'About the show', and the recurring guests. Phrases and link patterns are case-insensitive regexes matched against post text, link URLs and link titles.",
-  "handles": ["latecluster.simcluster.tv", "latecluster.bsky.social"],
-  "phrases": ["\\bthe late cluster\\b", "\\blate cluster\\b", "\\blarry nx\\b", "\\blarry nix\\b", "\\bchimera ?tv\\b"],
-  "linkPatterns": ["/the-late-cluster\\b", "vibe-dump/tree/[^/]+/packages/late-cluster"],
-  "guests": [
-    "norvid-studies.bsky.social",
-    "abeliansoup.bsky.social",
-    "samantha.wiki",
-    "borjev.bsky.social"
+  "$comment": "The show itself, for 'About the show'; the new-voices section; interview material; performable threads. Phrases and link patterns are case-insensitive regexes matched against post text, link URLs and link titles. Nothing here names people to feature.",
+  "handles": [
+    "latecluster.simcluster.tv",
+    "latecluster.bsky.social"
   ],
-  "postsPerGuest": 4,
+  "phrases": [
+    "\\bthe late cluster\\b",
+    "\\blate cluster\\b",
+    "\\blarry nx\\b",
+    "\\blarry nix\\b",
+    "\\bchimera ?tv\\b"
+  ],
+  "linkPatterns": [
+    "/the-late-cluster\\b",
+    "vibe-dump/tree/[^/]+/packages/late-cluster"
+  ],
   "performableThreads": {
     "$comment": "Threads a writer could stage word for word. All conditions must hold. avoidPatterns are case-insensitive regexes for hostile wording; any match rejects the thread. prefetch: how many candidate threads are fetched in full with getPostThread so they are complete.",
     "count": 6,
@@ -21,6 +26,57 @@
     "minTurns": 4,
     "maxChars": 280,
     "requireRootInWindow": true,
-    "avoidPatterns": ["\\bshut up\\b", "\\bidiot\\w*", "\\bstupid\\b", "\\bmoron\\w*", "\\bdumbass\\b", "\\bfuck (you|off)\\b", "\\bkys\\b", "\\bblock(ed|ing)? you\\b", "\\bhow dare\\b", "\\bdisgusting\\b", "\\bpathetic\\b", "\\bclown\\b", "\\bratio\\b", "\\bget lost\\b"]
+    "avoidPatterns": [
+      "\\bshut up\\b",
+      "\\bidiot\\w*",
+      "\\bstupid\\b",
+      "\\bmoron\\w*",
+      "\\bdumbass\\b",
+      "\\bfuck (you|off)\\b",
+      "\\bkys\\b",
+      "\\bblock(ed|ing)? you\\b",
+      "\\bhow dare\\b",
+      "\\bdisgusting\\b",
+      "\\bpathetic\\b",
+      "\\bclown\\b",
+      "\\bratio\\b",
+      "\\bget lost\\b"
+    ]
+  },
+  "newVoices": {
+    "$comment": "Members the ledger says the show has never featured, ranked by the sum of their three best post scores in the window.",
+    "count": 8,
+    "postsEach": 3,
+    "minPosts": 3
+  },
+  "interview": {
+    "$comment": "See README 'Interview material'. A parent is a question if a '?' falls in its last questionTailChars characters, or it starts with an interrogative word and is short; a prompt if it is short and matches a promptPattern.",
+    "candidates": 5,
+    "pairsEach": 8,
+    "minPairs": 3,
+    "maxChars": 280,
+    "maxQuestionChars": 400,
+    "questionTailChars": 80,
+    "promptMaxChars": 140,
+    "promptPatterns": [
+      "\\bthoughts\\b",
+      "\\btell me\\b",
+      "\\bname (a|one|your|the)\\b",
+      "\\bfavou?rite\\b",
+      "\\bhot takes?\\b",
+      "\\bunpopular opinion",
+      "\\bask me\\b",
+      "\\bdescribe\\b",
+      "\\bexplain\\b",
+      "\\brank (your|the|these)\\b",
+      "\\bpick (one|a|your)\\b",
+      "^(concept|prompt|poll|question|q)\\s*:",
+      "\\breply with\\b",
+      "\\bdrop (your|a|the)\\b",
+      "\\bwhat'?s your\\b",
+      "\\bgo\\b[.!]*$",
+      "\\bfill in the blank\\b",
+      "\\bwrong answers only\\b"
+    ]
   }
 }

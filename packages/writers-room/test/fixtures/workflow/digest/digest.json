@@ -1,0 +1,410 @@
+{
+ "format": "late-cluster-digest/1",
+ "$comment": "An invented digest for the workflow fixture. Every account is on .example and every URI is made up.",
+ "window": {
+  "label": "2099-01-02T0000Z_2099-01-09T0000Z",
+  "kind": "range",
+  "start": "2099-01-02T00:00:00Z",
+  "end": "2099-01-09T00:00:00Z"
+ },
+ "overview": {
+  "outOfBounds": []
+ },
+ "stats": {
+  "excluded": {
+   "optedOutAccountsSeen": 0
+  }
+ },
+ "stories": [
+  {
+   "id": "s-ask",
+   "rank": 1,
+   "kind": "post",
+   "headline": "somebody should make a talk show with only two segments",
+   "outOfBounds": null,
+   "posts": [
+    {
+     "uri": "at://did:plc:trialasker/app.bsky.feed.post/t1",
+     "url": "https://bsky.app/profile/asker.example/post/t1",
+     "handle": "asker.example",
+     "authorDid": "did:plc:trialasker",
+     "displayName": "Asker",
+     "text": "somebody should make a talk show with only two segments",
+     "time": "2099-01-06T12:00:00Z",
+     "counts": {
+      "likes": 40,
+      "reposts": 6,
+      "replies": 4,
+      "quotes": 2
+     },
+     "member": true,
+     "authorFollowers": 400,
+     "smallAccount": false
+    }
+   ]
+  },
+  {
+   "id": "s-soup",
+   "rank": 2,
+   "kind": "built",
+   "headline": "I built a website that only shows the word soup",
+   "outOfBounds": null,
+   "posts": [
+    {
+     "uri": "at://did:plc:trialmaker/app.bsky.feed.post/m1",
+     "url": "https://bsky.app/profile/maker.example/post/m1",
+     "handle": "maker.example",
+     "authorDid": "did:plc:trialmaker",
+     "displayName": "Maker",
+     "text": "I built a website that only shows the word soup",
+     "time": "2099-01-06T15:00:00Z",
+     "counts": {
+      "likes": 25,
+      "reposts": 3,
+      "replies": 5,
+      "quotes": 1
+     },
+     "member": true,
+     "authorFollowers": 800,
+     "smallAccount": false
+    }
+   ]
+  },
+  {
+   "id": "s-bit",
+   "rank": 3,
+   "kind": "thread",
+   "headline": "is it a bit if nobody laughs",
+   "outOfBounds": null,
+   "posts": [
+    {
+     "uri": "at://did:plc:trialtalker/app.bsky.feed.post/c1",
+     "url": "https://bsky.app/profile/talker.example/post/c1",
+     "handle": "talker.example",
+     "authorDid": "did:plc:trialtalker",
+     "displayName": "Talker",
+     "text": "is it a bit if nobody laughs",
+     "time": "2099-01-07T10:00:00Z",
+     "counts": {
+      "likes": 12,
+      "reposts": 0,
+      "replies": 3,
+      "quotes": 0
+     },
+     "member": true,
+     "authorFollowers": 300,
+     "smallAccount": false
+    },
+    {
+     "uri": "at://did:plc:trialtalker2/app.bsky.feed.post/c2",
+     "url": "https://bsky.app/profile/talker2.example/post/c2",
+     "handle": "talker2.example",
+     "authorDid": "did:plc:trialtalker2",
+     "displayName": "Talker Two",
+     "text": "it is now",
+     "time": "2099-01-07T10:05:00Z",
+     "counts": {
+      "likes": 9,
+      "reposts": 0,
+      "replies": 0,
+      "quotes": 0
+     },
+     "member": true,
+     "authorFollowers": 120,
+     "smallAccount": true,
+     "reply": {
+      "parent": "at://did:plc:trialtalker/app.bsky.feed.post/c1",
+      "root": "at://did:plc:trialtalker/app.bsky.feed.post/c1"
+     }
+    }
+   ]
+  },
+  {
+   "id": "s-quinn",
+   "rank": 4,
+   "kind": "thread",
+   "headline": "a spoon, honestly",
+   "outOfBounds": null,
+   "posts": [
+    {
+     "uri": "at://did:plc:trialhost/app.bsky.feed.post/q0",
+     "url": "https://bsky.app/profile/host.example/post/q0",
+     "handle": "host.example",
+     "authorDid": "did:plc:trialhost",
+     "displayName": "Host",
+     "text": "what is your favourite tool?",
+     "time": "2099-01-05T18:00:00Z",
+     "counts": {
+      "likes": 4,
+      "reposts": 0,
+      "replies": 2,
+      "quotes": 0
+     },
+     "member": true,
+     "authorFollowers": 600,
+     "smallAccount": false
+    },
+    {
+     "uri": "at://did:plc:trialquinn/app.bsky.feed.post/q1",
+     "url": "https://bsky.app/profile/quinn.example/post/q1",
+     "handle": "quinn.example",
+     "authorDid": "did:plc:trialquinn",
+     "displayName": "Quinn",
+     "text": "a spoon, honestly",
+     "time": "2099-01-05T18:10:00Z",
+     "counts": {
+      "likes": 30,
+      "reposts": 0,
+      "replies": 0,
+      "quotes": 0
+     },
+     "member": true,
+     "authorFollowers": 700,
+     "smallAccount": false,
+     "reply": {
+      "parent": "at://did:plc:trialhost/app.bsky.feed.post/q0",
+      "root": "at://did:plc:trialhost/app.bsky.feed.post/q0"
+     }
+    },
+    {
+     "uri": "at://did:plc:trialfan2/app.bsky.feed.post/q2",
+     "url": "https://bsky.app/profile/fan2.example/post/q2",
+     "handle": "fan2.example",
+     "authorDid": "did:plc:trialfan2",
+     "displayName": "Fan Two",
+     "text": "do you ever sleep?",
+     "time": "2099-01-06T20:00:00Z",
+     "counts": {
+      "likes": 2,
+      "reposts": 0,
+      "replies": 0,
+      "quotes": 0
+     },
+     "member": true,
+     "authorFollowers": 90,
+     "smallAccount": true
+    },
+    {
+     "uri": "at://did:plc:trialquinn/app.bsky.feed.post/q3",
+     "url": "https://bsky.app/profile/quinn.example/post/q3",
+     "handle": "quinn.example",
+     "authorDid": "did:plc:trialquinn",
+     "displayName": "Quinn",
+     "text": "no, never",
+     "time": "2099-01-06T20:04:00Z",
+     "counts": {
+      "likes": 22,
+      "reposts": 0,
+      "replies": 0,
+      "quotes": 0
+     },
+     "member": true,
+     "authorFollowers": 700,
+     "smallAccount": false,
+     "reply": {
+      "parent": "at://did:plc:trialfan2/app.bsky.feed.post/q2",
+      "root": "at://did:plc:trialfan2/app.bsky.feed.post/q2"
+     }
+    }
+   ]
+  },
+  {
+   "id": "s-zed",
+   "rank": 5,
+   "kind": "post",
+   "headline": "hello. I am a test.",
+   "outOfBounds": null,
+   "posts": [
+    {
+     "uri": "at://did:plc:trialzed/app.bsky.feed.post/z1",
+     "url": "https://bsky.app/profile/zed.example/post/z1",
+     "handle": "zed.example",
+     "authorDid": "did:plc:trialzed",
+     "displayName": "Zed",
+     "text": "hello. I am a test.",
+     "time": "2099-01-07T09:00:00Z",
+     "counts": {
+      "likes": 1,
+      "reposts": 0,
+      "replies": 0,
+      "quotes": 0
+     },
+     "member": true,
+     "authorFollowers": 5,
+     "smallAccount": true
+    }
+   ]
+  }
+ ],
+ "sections": {
+  "aboutShow": {
+   "posts": [
+    {
+     "uri": "at://did:plc:trialfan/app.bsky.feed.post/f1",
+     "url": "https://bsky.app/profile/fan.example/post/f1",
+     "handle": "fan.example",
+     "authorDid": "did:plc:trialfan",
+     "displayName": "Fan",
+     "text": "the pilot was long but I watched all of it",
+     "time": "2099-01-05T20:00:00Z",
+     "counts": {
+      "likes": 2,
+      "reposts": 0,
+      "replies": 0,
+      "quotes": 0
+     },
+     "member": true,
+     "authorFollowers": 12,
+     "smallAccount": true
+    }
+   ]
+  },
+  "games": [
+   {
+    "id": "top-chicken",
+    "name": "Top Chicken (trial)",
+    "account": "chicken.example",
+    "results": [
+     {
+      "game": "top-chicken",
+      "time": "2099-01-05T23:00:00Z",
+      "resultPost": {
+       "uri": "at://did:plc:trialchicken/app.bsky.feed.post/tc1",
+       "url": "https://bsky.app/profile/chicken.example/post/tc1",
+       "handle": "chicken.example",
+       "authorDid": "did:plc:trialchicken",
+       "displayName": "Top Chicken (trial)",
+       "text": "Day 1: today's top chicken is asker.example, with 40 likes",
+       "time": "2099-01-05T23:00:00Z",
+       "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+       },
+       "member": true,
+       "authorFollowers": 900,
+       "smallAccount": false
+      }
+     },
+     {
+      "game": "top-chicken",
+      "time": "2099-01-06T23:00:00Z",
+      "resultPost": {
+       "uri": "at://did:plc:trialchicken/app.bsky.feed.post/tc2",
+       "url": "https://bsky.app/profile/chicken.example/post/tc2",
+       "handle": "chicken.example",
+       "authorDid": "did:plc:trialchicken",
+       "displayName": "Top Chicken (trial)",
+       "text": "Day 2: today's top chicken is maker.example, with 25 likes",
+       "time": "2099-01-06T23:00:00Z",
+       "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+       },
+       "member": true,
+       "authorFollowers": 900,
+       "smallAccount": false
+      }
+     },
+     {
+      "game": "top-chicken",
+      "time": "2099-01-07T23:00:00Z",
+      "resultPost": {
+       "uri": "at://did:plc:trialchicken/app.bsky.feed.post/tc3",
+       "url": "https://bsky.app/profile/chicken.example/post/tc3",
+       "handle": "chicken.example",
+       "authorDid": "did:plc:trialchicken",
+       "displayName": "Top Chicken (trial)",
+       "text": "Day 3: today's top chicken is quinn.example, with 30 likes",
+       "time": "2099-01-07T23:00:00Z",
+       "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+       },
+       "member": true,
+       "authorFollowers": 900,
+       "smallAccount": false
+      }
+     }
+    ]
+   }
+  ]
+ },
+ "members": [
+  {
+   "did": "did:plc:trialasker",
+   "handle": "asker.example",
+   "displayName": "Asker",
+   "followers": 400,
+   "small": false
+  },
+  {
+   "did": "did:plc:trialzed",
+   "handle": "zed.example",
+   "displayName": "Zed",
+   "followers": 5,
+   "small": true
+  },
+  {
+   "did": "did:plc:trialmaker",
+   "handle": "maker.example",
+   "displayName": "Maker",
+   "followers": 800,
+   "small": false
+  },
+  {
+   "did": "did:plc:trialtalker",
+   "handle": "talker.example",
+   "displayName": "Talker",
+   "followers": 300,
+   "small": false
+  },
+  {
+   "did": "did:plc:trialtalker2",
+   "handle": "talker2.example",
+   "displayName": "Talker Two",
+   "followers": 120,
+   "small": true
+  },
+  {
+   "did": "did:plc:trialhost",
+   "handle": "host.example",
+   "displayName": "Host",
+   "followers": 600,
+   "small": false
+  },
+  {
+   "did": "did:plc:trialquinn",
+   "handle": "quinn.example",
+   "displayName": "Quinn",
+   "followers": 700,
+   "small": false
+  },
+  {
+   "did": "did:plc:trialfan2",
+   "handle": "fan2.example",
+   "displayName": "Fan Two",
+   "followers": 90,
+   "small": true
+  },
+  {
+   "did": "did:plc:trialfan",
+   "handle": "fan.example",
+   "displayName": "Fan",
+   "followers": 12,
+   "small": true
+  },
+  {
+   "did": "did:plc:trialchicken",
+   "handle": "chicken.example",
+   "displayName": "Top Chicken (trial)",
+   "followers": 900,
+   "small": false
+  }
+ ]
+}

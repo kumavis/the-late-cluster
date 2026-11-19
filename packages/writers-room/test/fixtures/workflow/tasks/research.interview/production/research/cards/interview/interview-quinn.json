@@ -1,0 +1,25 @@
+{
+  "id": "interview-quinn",
+  "lane": "interview",
+  "title": "Quinn answers questions",
+  "summary": "Quinn replied to two questions this window; each reply answers a real prompt.",
+  "posts": [
+    {
+      "uri": "at://did:plc:trialquinn/app.bsky.feed.post/q1",
+      "text": "a spoon, honestly",
+      "handle": "quinn.example"
+    },
+    {
+      "uri": "at://did:plc:trialquinn/app.bsky.feed.post/q3",
+      "text": "no, never",
+      "handle": "quinn.example"
+    }
+  ],
+  "people": [
+    {
+      "handle": "quinn.example",
+      "followers": 700
+    }
+  ],
+  "sensitive": "none"
+}

@@ -62,7 +62,7 @@ test('write.guest-lines: verbatim caption must equal the post; respell only in a
   fails(await run(writeGuestLines, { 'segments/chat/script.js': SCRIPT_CHAT.replace("text: 'claim.'", "text: 'Claim!'") }), /not .* verbatim: differs/)
   ok(await run(writeGuestLines, { 'segments/chat/script.js': SCRIPT_CHAT.replace("text: 'claim.'", "text: 'claim.', as: 'klaym.'") }))
   fails(await run(writeGuestLines, { 'segments/chat/script.js': SCRIPT_CHAT.replace("text: 'claim.'", "text: 'claim.', as: 'I claim it.'") }), /adds words/)
-  const cut = { ...SOURCES, lines: SOURCES.lines.map((r) => (r.line === 'p2' ? { ...r, setup: { who: 'ana', text: 'concept: a talk show…' } } : r)) }
+  const cut = { ...SOURCES, lines: SOURCES.lines.map((r) => (r.line === 'p2' ? { ...r, setup: { line: 'p1', who: 'ana', text: 'concept: a talk show…' } } : r)) }
   ok(await run(writeGuestLines, { 'segments/chat/script.js': SCRIPT_CHAT.replace("text: 'concept: a talk show, but the host is a throat'", "text: 'concept: a talk show…'"), 'production/sources.json': cut }))
 })
 
@@ -73,13 +73,13 @@ test('write.guest-lines: a guest may only speak their own posts', async () => {
 
 test('write.guest-lines: a verbatim thread out of order, or with a house character speaking a post, fails', async () => {
   const swapped = chat(`  { say: 'bo', text: 'claim.' }, // verbatim: ${POSTS.boReply.uri}\n  { say: 'ana', text: 'concept: a talk show, but the host is a throat' }, // verbatim: ${POSTS.anaClaim.uri}`)
-  fails(await run(writeGuestLines, { 'segments/chat/script.js': swapped }), /perform \[.*b1, .*a1\] but plan\.json thread\.posts is/)
+  fails(await run(writeGuestLines, { 'segments/chat/script.js': swapped }), /perform \[.*b1, .*a1\] but thread\.posts is/)
   const house = SCRIPT_CHAT.replace("{ say: 'bot', id: 'built', text: 'Built it.' },", `{ say: 'larry', text: 'what else is like this 🦜 https://thing.test' }, // verbatim: ${POSTS.anaAgain.uri}`)
   fails(await run(writeGuestLines, { 'segments/chat/script.js': house }), /larry \(house\) speaks a real post in the verbatim thread/)
 })
 
 const SETUP = "  { say: 'larry', id: 'q', text: 'And Ana?' },"
-const cpRecord = (context = POSTS.anaAgain.uri) => ({ segment: 'chat', line: 'cp', kind: 'catchphrase', phrase: 'what else is like this', context, contextText: POSTS.anaAgain.text, setup: { who: 'larry', text: 'And Ana?' } })
+const cpRecord = (context = POSTS.anaAgain.uri) => ({ segment: 'chat', line: 'cp', kind: 'catchphrase', phrase: 'what else is like this', context, contextText: POSTS.anaAgain.text, setup: { line: 'q', who: 'larry', text: 'And Ana?' } })
 const withLines = (lines, accounts = SOURCES.accounts) => ({ ...SOURCES, accounts, lines })
 
 test('write.guest-lines: a catchphrase cites the author\'s own use; pastiche of a real account fails', async () => {
@@ -99,7 +99,7 @@ test('write.guest-lines: a catchphrase cites the author\'s own use; pastiche of 
 test('write.guest-lines: every real line carries its occasion, checked against the digest and sources.json', async () => {
   const p = plan({ segments: [plan().segments[0], { id: 'chat', format: 'panel', seconds: 40 }] })
   const line = (tail) => chat(`  { say: 'larry', id: 'q', text: 'Is Bo here?' },\n  { say: 'bo', id: 'r', text: 'claim.' }, // verbatim: ${POSTS.boReply.uri}${tail}`)
-  const rec = (over = {}) => withLines([{ segment: 'chat', line: 'r', kind: 'verbatim', post: POSTS.boReply.uri, context: POSTS.anaClaim.uri, contextText: POSTS.anaClaim.text, setup: { who: 'larry', text: 'Is Bo here?' }, ...over }])
+  const rec = (over = {}) => withLines([{ segment: 'chat', line: 'r', kind: 'verbatim', post: POSTS.boReply.uri, context: POSTS.anaClaim.uri, contextText: POSTS.anaClaim.text, setup: { line: 'q', who: 'larry', text: 'Is Bo here?' }, ...over }])
   const go = (tail, sources = rec()) => run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': line(tail), 'production/sources.json': sources })
   ok(await go(` · context: ${POSTS.anaClaim.uri}`))
   fails(await go(''), /the verbatim tag has no occasion: add `· context: at:\/\/…` \(the post it replied to/)
@@ -108,9 +108,9 @@ test('write.guest-lines: every real line carries its occasion, checked against t
   fails(await go(' · context: at://did:plc:zz/app.bsky.feed.post/zz'), /the context at:\/\/did:plc:zz.* is not in the week's digest/)
   fails(await go(` · context: ${POSTS.anaClaim.uri}`, withLines([])), /sources\.json "lines" has no record for this line/)
   fails(await go(` · context: ${POSTS.anaClaim.uri}`, rec({ contextText: 'concept: a talk show' })), /"contextText" is not the text of/)
-  fails(await go(` · context: ${POSTS.anaClaim.uri}`, rec({ setup: { who: 'larry', text: 'Something else.' } })), /"setup" must be the line spoken just before it: \{ "who": "larry", "text": "Is Bo here\?" \}/)
+  fails(await go(` · context: ${POSTS.anaClaim.uri}`, rec({ setup: { line: 'q', who: 'larry', text: 'Something else.' } })), /"setup" must repeat the staged prompt exactly: \{ "line": "q", "who": "larry", "text": "Is Bo here\?" \}/)
   // a top-level post: its own URI is the context, and the record gives the situation
-  const top = (rec2) => run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': chat(`  { say: 'larry', id: 'q', text: 'Ana?' },\n  { say: 'ana', id: 't', text: 'concept: a talk show, but the host is a throat' }, // verbatim: ${POSTS.anaClaim.uri} · context: ${POSTS.anaClaim.uri}`), 'production/sources.json': withLines([{ segment: 'chat', line: 't', kind: 'verbatim', post: POSTS.anaClaim.uri, context: POSTS.anaClaim.uri, setup: { who: 'larry', text: 'Ana?' }, ...rec2 }]) })
+  const top = (rec2) => run(writeGuestLines, { 'production/plan.json': p, 'segments/chat/script.js': chat(`  { say: 'larry', id: 'q', text: 'Ana?' },\n  { say: 'ana', id: 't', text: 'concept: a talk show, but the host is a throat' }, // verbatim: ${POSTS.anaClaim.uri} · context: ${POSTS.anaClaim.uri}`), 'production/sources.json': withLines([{ segment: 'chat', line: 't', kind: 'verbatim', post: POSTS.anaClaim.uri, context: POSTS.anaClaim.uri, setup: { line: 'q', who: 'larry', text: 'Ana?' }, ...rec2 }]) })
   ok(await top({ situation: 'a morning post proposing a show' }))
   fails(await top({}), /needs "situation"/)
 })

@@ -21,6 +21,7 @@
     "site": "node packages/site/bin/build-site.mjs",
     "preview": "npm run site && node packages/site/bin/serve.mjs dist",
     "scrape": "node packages/scraper/bin/scrape.mjs",
+    "lookup": "node packages/scraper/bin/lookup.mjs",
     "bot": "node --env-file-if-exists=.secrets packages/bot/bin/bot.mjs",
     "produce": "node --env-file-if-exists=.secrets packages/writers-room/bin/produce.mjs",
     "terraform": "node --env-file-if-exists=.secrets scripts/terraform.mjs",

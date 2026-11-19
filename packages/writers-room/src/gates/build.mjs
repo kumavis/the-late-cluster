@@ -1,9 +1,15 @@
-// Stage 6, build (tools) and self-check (writer): the thumbnail, the build and verify; then
-// production/scorecard.md (bible 10, the scorecard, with evidence in every row) and this episode's
-// entry in the lore file.
+// Stage 10, build (tools), and stage 11, review (a reviewer): the thumbnail; a preview build that
+// matches its source; the scorecard filled in from the bible's; the episode written into the ledger
+// and the tracker of who was featured when; and the reviewer's verdict, where a send-back is a valid
+// end that routes to the stage that can fix it.
 import { existsSync, readFileSync } from 'node:fs'
+import { join } from 'node:path'
+import { pathToFileURL } from 'node:url'
 import { gate, read } from './common.mjs'
-import { rotationLog, scorecardSpec } from '../bible.mjs'
+import { scorecardSpec } from '../bible.mjs'
+import { normHandle } from '../digest.mjs'
+import { keyOf, person } from '../ledger.mjs'
+import { STAGES } from '../stages.mjs'
 
 export async function buildThumbnail(ctx) {
   const g = gate('build.thumbnail')
@@ -16,14 +22,39 @@ export async function buildThumbnail(ctx) {
   return g.done()
 }
 
-/** the id lines in the lore file: SL-01, G-07, CL-12, E-001 … */
-export const loreIds = (text) => [...new Set([...String(text).matchAll(/\*\*((?:SL|G|CL|E)-\d+)/g)].map((m) => m[1]))]
+/**
+ * `npm run verify` checks published builds only, so it says nothing about a draft (trial finding 54).
+ * A preview build is verified here the same way: its manifest's sourceHash equals the source's,
+ * computed by scripts/lib/hash.mjs, the module verify uses.
+ */
+export async function buildPreviewVerify(ctx) {
+  const g = gate('build.preview-verify')
+  const manifest = join(ctx.paths.preview, 'episode.json')
+  if (!existsSync(manifest)) {
+    g.fail(`preview/${ctx.id}/episode.json is missing: the preview build did not finish`)
+    return g.done()
+  }
+  const lib = join(ctx.root, 'scripts', 'lib', 'hash.mjs')
+  if (!existsSync(lib)) {
+    g.skip('scripts/lib/hash.mjs is not here: the preview could not be compared with its source')
+    return g.done()
+  }
+  const { sourceHash } = await import(pathToFileURL(lib).href)
+  const want = sourceHash(ctx.paths.dir)
+  const got = JSON.parse(readFileSync(manifest, 'utf8')).build?.sourceHash
+  if (got !== want) g.fail(`preview/${ctx.id} was built from other sources (manifest ${String(got).slice(0, 12)}, source ${want.slice(0, 12)}): rebuild it`)
+  const meta = JSON.parse(readFileSync(ctx.paths.episodeJson, 'utf8'))
+  if (meta.status !== 'draft') g.fail(`a preview-only episode must stay a draft (it is ${meta.status})`)
+  if (existsSync(ctx.paths.dist)) g.fail(`a preview-only episode was built into dist/episodes/${ctx.id}/`)
+  return g.done()
+}
 
 /**
  * production/scorecard.md: a Step 0 section, then Part A rows as `| A1 | pass | evidence |` and
- * Part B rows as `| B1 | 2 | evidence |`. The rows and the approval rule are read from
- * docs/bible/10-process.md (bible.mjs, scorecardSpec), not hard-coded. Every row has evidence (one
- * sentence: a line, a timestamp, a URI). A self-check that would send the episode back stops the run.
+ * Part B rows as `| B1 | 2 | evidence |`. The rows are read from the bible's scorecard
+ * (docs/bible/10-process.md), not hard-coded, and the gate fails loudly when its shape changes.
+ * The gate checks the card is complete and agrees with the verdict; a failing card with a send-back
+ * verdict is a valid result, never a reason to rework the card (trial finding 55).
  */
 export function parseScorecard(md) {
   const rows = new Map()
@@ -37,37 +68,41 @@ export function parseScorecard(md) {
   return rows
 }
 
-export async function selfCheckScorecard(ctx) {
-  const g = gate('self-check.scorecard')
+const verdictFile = (ctx) => join(ctx.paths.production, 'review.json')
+const verdictOf = (f) => (existsSync(f) ? JSON.parse(readFileSync(f, 'utf8')) : null)
+
+export async function reviewScorecard(ctx) {
+  const g = gate('review.scorecard')
   const spec = scorecardSpec(ctx.bibleDir)
   if (spec.error) {
-    g.fail(`${spec.error}; the self-check cannot be judged until the pipeline reads the bible's scorecard again`)
+    g.fail(`${spec.error}; the review cannot be checked until the pipeline reads the bible's scorecard again`)
     return g.done()
   }
   const md = read(ctx.paths.scorecard)
   if (md === null) {
-    g.fail('production/scorecard.md is missing (format: playbooks/self-check.md)')
+    g.fail('production/scorecard.md is missing (rows: the bible\'s scorecard)')
     return g.done()
   }
-  // Step 0: every segment listed with its retell and its turn or feeling
   if (spec.step0) {
     const step0 = /^#{2,3}\s+Step 0[^\n]*\n([\s\S]*?)(?=^#{2,3}\s)/im.exec(md + '\n## end')?.[1] ?? null
-    if (step0 === null) g.fail('scorecard.md: no "## Step 0" section: list every segment, standing item and runner with its one-sentence retell and its turn or feeling in five words (bible 10)')
+    if (step0 === null) g.fail('scorecard.md: no "## Step 0" section')
     else for (const seg of ctx.meta.rundown ?? []) if (!step0.includes(seg)) g.fail(`scorecard.md Step 0 does not list the segment ${seg}`)
   }
   const rows = parseScorecard(md)
   const known = new Set([...spec.a, ...spec.b])
-  for (const id of rows.keys()) if (!known.has(id)) g.fail(`scorecard.md has a row ${id}, which the bible's scorecard does not (rows: ${[...known].join(' ')}); copy the rows from docs/bible/10-process.md`)
+  for (const id of rows.keys()) if (!known.has(id)) g.fail(`scorecard.md has a row ${id}, which the bible's scorecard does not (rows: ${[...known].join(' ')})`)
+  let failsA = []
   for (const id of spec.a) {
     const a = rows.get(id)
     if (!a) g.fail(`scorecard.md: no row ${id}`)
     else {
       if (!['pass', 'fail'].includes(a.result)) g.fail(`scorecard.md ${id}: the result must be pass or fail, not ${JSON.stringify(a.result)}`)
-      else if (a.result === 'fail') g.fail(`scorecard.md ${id} fails by the writer's own check: ${a.evidence || '(no evidence)'}. Fix it at the stage that made it (produce --from write or --from direct)`)
-      if (a.evidence.replace(/[^a-z0-9]/gi, '').length < 12) g.fail(`scorecard.md ${id}: give one sentence of evidence (a line, a timestamp, a URI), not just a result`)
+      if (a.result === 'fail') failsA.push(id)
+      if (a.evidence.replace(/[^a-z0-9]/gi, '').length < 12) g.fail(`scorecard.md ${id}: give one sentence of evidence (a line, a timestamp, a URI)`)
     }
   }
   let b = 0
+  const zeros = []
   for (const id of spec.b) {
     const q = rows.get(id)
     if (!q) {
@@ -78,39 +113,85 @@ export async function selfCheckScorecard(ctx) {
     if (score === null) g.fail(`scorecard.md ${id}: the score must be 0, 1 or 2, not ${JSON.stringify(q.result)}`)
     else {
       b += score
-      if (score === 0 && spec.noZero.includes(id)) g.fail(`scorecard.md ${id} scores 0, which sends the episode back (bible 10); revise before review`)
+      if (score === 0 && spec.noZero.includes(id)) zeros.push(id)
     }
-    if (q.evidence.replace(/[^a-z0-9]/gi, '').length < 12) g.fail(`scorecard.md ${id}: give one sentence of evidence, not just a score`)
+    if (q.evidence.replace(/[^a-z0-9]/gi, '').length < 12) g.fail(`scorecard.md ${id}: give one sentence of evidence`)
   }
-  if (spec.b.every((id) => rows.has(id)) && b < spec.approveAt) g.fail(`scorecard.md: Part B totals ${b} of ${spec.maxB}; approval needs ${spec.approveAt} (bible 10). Revise the weakest criteria first`)
-  g.warn(`self-check: Part B ${b}/${spec.maxB} (approve at ${spec.approveAt}, no 0 in ${spec.noZero.join(', ')})`)
+  const approvable = !failsA.length && !zeros.length && b >= spec.approveAt
+  const v = verdictOf(verdictFile(ctx))
+  if (v?.verdict === 'approve' && !approvable) g.fail(`review.json approves, but the scorecard does not (${[failsA.length ? `Part A fails: ${failsA.join(', ')}` : '', zeros.length ? `0 in ${zeros.join(', ')}` : '', b < spec.approveAt ? `Part B ${b} of ${spec.maxB}, under ${spec.approveAt}` : ''].filter(Boolean).join('; ')}): the verdict follows the card`)
+  g.warn(`scorecard: Part B ${b}/${spec.maxB} (approve at ${spec.approveAt}, no 0 in ${spec.noZero.join(', ')})${failsA.length ? `; Part A fails ${failsA.join(', ')}` : ''}`)
   return g.done()
 }
 
-export async function selfCheckLore(ctx) {
-  const g = gate('self-check.lore')
-  const text = read(ctx.loreFile)
-  if (text === null) {
-    g.fail(`the lore file ${ctx.loreFile} is missing`)
+/**
+ * The episode in the ledger (docs/ledger/<id>.json) and the tracker (docs/ledger/featured.json)
+ * agree with what is on screen, by DID: guests are sources.json's accounts with role "guest";
+ * featured are those and every account whose post is shown or performed.
+ */
+export async function reviewLedger(ctx) {
+  const g = gate('review.ledger')
+  const file = join(ctx.ledgerDir, `${ctx.id}.json`)
+  if (!existsSync(file)) {
+    g.fail(`${ctx.paths.rel(file)} is missing: write the episode into the ledger`)
     return g.done()
   }
-  const e = `E-${String(ctx.paths.number).padStart(3, '0')}`
-  if (!new RegExp(`\\*\\*${e}\\b`).test(text)) g.fail(`the lore file has no episode log entry **${e} ...** for this episode (bible lore.md, how to append)`)
-  const before = ctx.loreIdsBefore ?? []
-  const now = new Set(loreIds(text))
-  const lost = before.filter((id) => !now.has(id))
-  if (lost.length) g.fail(`the lore file lost entries ${lost.join(', ')}; never renumber or delete, set a status instead (lore.md, how to append)`)
-  const exp = /^##\s+Experiment log[^\n]*\n([\s\S]*?)(?=^##\s|$(?![\s\S]))/im.exec(text)?.[1]
-  if (exp !== undefined && !new RegExp(`^\\|\\s*0*${ctx.paths.number}\\s*\\|`, 'm').test(exp)) g.fail(`the experiment log in the lore file has no row for ${String(ctx.paths.number).padStart(3, '0')}; add one from plan.json and dna-amendments.md (bible 10, stage 6)`)
-  const log = rotationLog(text)
-  if (log.error) g.fail(log.error)
-  else if (!log.rows.some((r) => Number(r.ep) === ctx.paths.number)) g.fail(`the rotation log in the lore file has no row for ${String(ctx.paths.number).padStart(3, '0')}; add one, copied from plan.json (bible 03, the mechanism)`)
-  else {
-    const row = log.rows.find((r) => Number(r.ep) === ctx.paths.number)
-    const song = (ctx.plan?.segments ?? []).find((s) => /^(song|the-number)$/i.test(s.format ?? ''))
-    if (song?.genre && row.genre.toLowerCase().trim() !== String(song.genre).toLowerCase().trim()) g.fail(`the rotation log row for ${row.ep} gives the song genre "${row.genre}", but plan.json says "${song.genre}"`)
+  if (!existsSync(join(ctx.ledgerDir, `${ctx.id}.md`))) g.fail(`${ctx.paths.rel(join(ctx.ledgerDir, ctx.id + '.md'))} is missing: the prose record a reviewer reads`)
+  let j
+  try {
+    j = JSON.parse(readFileSync(file, 'utf8'))
+  } catch (e) {
+    g.fail(`${ctx.paths.rel(file)}: ${e.message}`)
+    return g.done()
   }
+  if (j.id !== ctx.id) g.fail(`${ctx.paths.rel(file)}: "id" must be ${ctx.id}`)
+  for (const k of ['formats', 'runners', 'catchphrases', 'devices']) if (!Array.isArray(j[k])) g.fail(`${ctx.paths.rel(file)}: "${k}" must be a list`)
+  for (const k of ['guests', 'featured']) {
+    if (!Array.isArray(j[k])) g.fail(`${ctx.paths.rel(file)}: "${k}" must be a list of { "did", "handle" }`)
+    else for (const p of j[k]) if (!p?.did || !String(p.did).startsWith('did:')) g.fail(`${ctx.paths.rel(file)}: every entry in "${k}" needs its "did" (handles change)`)
+  }
+  const d = ctx.digest
+  const s = ctx.sources ?? {}
+  const accounts = new Map((s.accounts ?? []).map((a) => [normHandle(a.handle), a]))
+  const didOf = (h) => accounts.get(normHandle(h))?.did ?? keyOf(h, d)
+  const spoke = new Set((s.accounts ?? []).filter((a) => a.role === 'guest').map((a) => a.did ?? keyOf(a.handle, d)))
+  const shown = new Set([...spoke, ...(s.posts ?? []).filter((p) => ['card', 'quote', 'thread', 'line'].includes(p.use)).map((p) => didOf(p.author))])
+  const has = (list, k) => (list ?? []).some((p) => keyOf(p, d) === k)
+  for (const k of spoke) if (!has(j.guests, k)) g.fail(`${ctx.paths.rel(file)}: "guests" is missing ${k}, whose puppet speaks in the episode`)
+  for (const p of j.guests ?? []) if (!spoke.has(keyOf(p, d))) g.fail(`${ctx.paths.rel(file)}: "guests" lists ${person(p).handle ?? keyOf(p, d)}, who does not speak in the episode`)
+  for (const k of shown) if (!has(j.featured, k)) g.fail(`${ctx.paths.rel(file)}: "featured" is missing ${k}, who is shown on screen`)
+  const music = (ctx.plan?.segments ?? []).find((x) => x.genre)
+  if (music && String(j.song?.genre ?? '').toLowerCase().trim() !== String(music.genre).toLowerCase().trim()) g.fail(`${ctx.paths.rel(file)}: "song.genre" is ${JSON.stringify(j.song?.genre)}, the episode's song is ${JSON.stringify(music.genre)}`)
+  // the tracker of who was featured when
+  const tracker = ctx.ledger.tracker ?? {}
+  if (!existsSync(join(ctx.ledgerDir, 'featured.json'))) g.fail(`${ctx.paths.rel(join(ctx.ledgerDir, 'featured.json'))} is missing: add this episode's appearances to the tracker`)
+  for (const k of shown) {
+    const t = tracker[k]
+    const role = spoke.has(k) ? 'spoke' : 'shown'
+    if (!t?.appearances?.some((a) => a.episode === ctx.id && a.role === role)) g.fail(`the tracker (featured.json) has no appearance { "episode": "${ctx.id}", "role": "${role}" } for ${k}`)
+  }
+  for (const [k, t] of Object.entries(tracker)) for (const a of t?.appearances ?? []) if (a.episode === ctx.id && !shown.has(k)) g.fail(`the tracker lists ${t.handle ?? k} in ${ctx.id}, who is not on screen`)
   return g.done()
 }
 
-export const SELF_CHECK_GATES = [selfCheckScorecard, selfCheckLore]
+/**
+ * A review's verdict file: production/review.json (stage 11) or production/stage/review.json
+ * (stage 9). "approve"/"pass" passes; "send-back" is a valid end that names the stage that can fix it.
+ */
+export async function reviewVerdict(ctx, name = 'review.verdict') {
+  const g = gate(name)
+  const file = name.startsWith('stage') ? join(ctx.paths.production, 'stage', 'review.json') : verdictFile(ctx)
+  const v = verdictOf(file)
+  if (!v) {
+    g.fail(`${ctx.paths.rel(file)} is missing`)
+    return g.done()
+  }
+  if (['approve', 'pass'].includes(v.verdict)) return g.done()
+  if (v.verdict !== 'send-back') {
+    g.fail(`${ctx.paths.rel(file)}: "verdict" must be ${name.startsWith('stage') ? '"pass"' : '"approve"'} or "send-back"`)
+    return g.done()
+  }
+  if (!STAGES.includes(v.route)) g.fail(`${ctx.paths.rel(file)}: a send-back names the stage that can fix it in "route" (${STAGES.join(', ')})`)
+  else g.sendBack(v.route, (v.reasons ?? []).join('; ') || 'no reason given')
+  return g.done()
+}

@@ -53,3 +53,9 @@ export function findShowPosts(rawWindowPosts, show, safety) {
 export function correctionFlag(text, safety) {
   return (safety?.showCorrectionPatterns ?? []).some((x) => new RegExp(x, 'iu').test(text ?? ''))
 }
+
+/** Lines a post about the show quotes, which may be words the show put in someone's mouth. */
+export function quotedLines(text, safety) {
+  if (!safety?.showQuotePattern) return []
+  return [...String(text ?? '').matchAll(new RegExp(safety.showQuotePattern, 'gu'))].map((m) => m[1].trim()).filter(Boolean)
+}

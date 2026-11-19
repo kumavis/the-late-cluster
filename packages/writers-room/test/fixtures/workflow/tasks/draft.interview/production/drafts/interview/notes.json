@@ -1,0 +1,19 @@
+{
+  "slug": "interview",
+  "title": "The Interview",
+  "format": "interview",
+  "seconds": 12,
+  "standing": "interview",
+  "cards": [
+    "interview-quinn"
+  ],
+  "ideas": [
+    "writer-1-4"
+  ],
+  "speakers": [
+    "quinn.example"
+  ],
+  "featured": [
+    "quinn.example"
+  ]
+}

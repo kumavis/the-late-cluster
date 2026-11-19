@@ -7,7 +7,7 @@ import { pathToFileURL } from 'node:url'
 import { emptyDigest, loadDigest, normHandle } from './digest.mjs'
 import { episodePaths, listEpisodes, readJson } from './repo.mjs'
 import { isExampleHost as exampleHost } from './scan.mjs'
-import { planFromLogRow, rotationLog } from './bible.mjs'
+import { loadLedger } from './ledger.mjs'
 
 /** import a plain data module freshly (its mtime busts Node's module cache) */
 export async function importFresh(file) {
@@ -35,7 +35,7 @@ export const isInvented = (entry) => !entry?.handle || exampleHost(castHandle(en
  * ctx for the gates. `digestDir` defaults to data/weeks/<week>/. The digest is loaded lazily and
  * cached on the returned object.
  */
-export async function loadContext({ root, id, week, digestDir, config, limits, tools, network = false, loreFile, bibleDir, bibleSnapshot = null }) {
+export async function loadContext({ root, id, week, digestDir, config, limits, tools, network = false, bibleDir, bibleSnapshot = null, ledgerDir, onlySegment = null }) {
   const paths = episodePaths(root, id)
   const meta = readJson(paths.episodeJson)
   const ctx = {
@@ -50,7 +50,8 @@ export async function loadContext({ root, id, week, digestDir, config, limits, t
     network,
     bibleDir: bibleDir ?? join(root, 'docs', 'bible'),
     bibleSnapshot,
-    loreFile: loreFile ?? join(bibleDir ?? join(root, 'docs', 'bible'), 'lore.md'),
+    ledgerDir: ledgerDir ?? join(root, config.ledger?.dir ?? 'docs/ledger'),
+    onlySegment,
     digestDir: digestDir ?? join(root, 'data', 'weeks', week),
     optOutFile: join(root, 'packages', 'scraper', 'config', 'optout.json'),
   }
@@ -64,17 +65,8 @@ export async function loadContext({ root, id, week, digestDir, config, limits, t
   ctx.plan = existsSync(paths.plan) ? readJson(paths.plan) : null
   ctx.sources = existsSync(paths.sources) ? readJson(paths.sources) : null
   ctx.castInfo = await loadCast(root, paths)
-  // history for the freshness checks: each earlier published episode's plan.json, or else its row
-  // in the lore file's rotation log
-  const log = existsSync(ctx.loreFile) ? rotationLog(readFileSync(ctx.loreFile, 'utf8')) : { rows: [] }
-  ctx.history = listEpisodes(root)
-    .filter((e) => e.id !== id && e.number < paths.number && e.meta.status === 'published')
-    .map((e) => {
-      const f = join(e.dir, 'production', 'plan.json')
-      const row = log.rows.find((r) => Number(r.ep) === e.number)
-      const plan = existsSync(f) ? safeJson(f) : row ? planFromLogRow(row) : null
-      return { id: e.id, number: e.number, plan, source: existsSync(f) ? 'plan.json' : row ? 'rotation log' : null }
-    })
+  ctx.ledger = loadLedger(ctx.ledgerDir)
+  ctx.prod = paths.production
   return ctx
 }
 

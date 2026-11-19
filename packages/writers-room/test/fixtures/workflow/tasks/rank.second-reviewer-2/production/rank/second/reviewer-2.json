@@ -1,0 +1,40 @@
+{
+  "reviewer": "reviewer-2",
+  "cards": {
+    "talk-ask": {
+      "synergy": 2,
+      "variety": 1,
+      "ideas": [
+        "writer-1-3",
+        "writer-2-3"
+      ],
+      "with": [],
+      "reason": "the episode's through-line"
+    },
+    "made-soup": {
+      "synergy": 1,
+      "variety": 2,
+      "ideas": [
+        "writer-2-1"
+      ],
+      "with": [],
+      "reason": "a different kind of comedy"
+    },
+    "talk-bit": {
+      "synergy": 0,
+      "variety": 1,
+      "ideas": [
+        "writer-3-2"
+      ],
+      "reason": "thin"
+    },
+    "interview-quinn": {
+      "synergy": 1,
+      "variety": 1,
+      "ideas": [
+        "writer-1-4"
+      ],
+      "reason": "the interview is drafted anyway"
+    }
+  }
+}

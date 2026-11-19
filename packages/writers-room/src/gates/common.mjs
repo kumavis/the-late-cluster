@@ -16,7 +16,11 @@ export function gate(name) {
   r.skip = (why) => {
     r.skipped = why
   }
-  r.done = () => ({ name: r.name, ok: r.ok, failures: r.failures, warnings: r.warnings, ...(r.skipped ? { skipped: r.skipped } : {}) })
+  // a review's send-back: a valid end to a stage, routed to the stage that can fix it (trial finding 55)
+  r.sendBack = (route, reason) => {
+    r.sentBack = { route, reason }
+  }
+  r.done = () => ({ name: r.name, ok: r.ok, failures: r.failures, warnings: r.warnings, ...(r.skipped ? { skipped: r.skipped } : {}), ...(r.sentBack ? { sentBack: r.sentBack } : {}) })
   return r
 }
 

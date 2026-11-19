@@ -1,0 +1,26 @@
+{
+  "reviewer": "reviewer-2",
+  "round": 1,
+  "items": [
+    {
+      "id": "writer-1-3",
+      "verdict": "fresh",
+      "reason": "I do not see it in the ledger"
+    },
+    {
+      "id": "writer-2-3",
+      "verdict": "turned",
+      "turned": {
+        "what": "the wish granted on the spot",
+        "how": "the literal grant makes fun of the joke itself"
+      },
+      "fromPrevious": true,
+      "reason": "inverts the runner"
+    },
+    {
+      "id": "writer-2-1",
+      "verdict": "fresh",
+      "reason": "not done before"
+    }
+  ]
+}
