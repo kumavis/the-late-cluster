@@ -103,8 +103,14 @@ frame; real cards verbatim; fictional handles on `.example`; no console warnings
 
 ## Stage 6: build
 
-`npm run build -- <id>`, `npm run verify`, a `thumbnail.jpg` that shows a puppet and the episode's
-best picture (not a real person's post card).
+`npm run thumbnail -- <id> <seg> <t>` for a `thumbnail.jpg` that shows a puppet and the episode's
+best picture (not a real person's post card). Then set the episode to `published`, run
+`npm run build -- <id>` and `npm run verify`.
+
+Fill in the scorecard below as `production/scorecard.md`, and append to [lore](lore.md): the
+episode log entry, new running gags, new established facts, the set's end state, and any community
+lore the episode explained. The lore change goes in the same pull request as the episode, so the
+reviewer reads it with the scripts.
 
 ## Stage 7: review
 
@@ -114,9 +120,8 @@ reviewer may send back with notes; the writer revises from stage 2 or 3.
 
 ## Stage 8: publish, and after
 
-Merge deploys. The bot announces (dry run first). Then append to [lore](lore.md): the episode log
-entry, new running gags, new established facts, the set's end state, and any community lore the
-episode explained. If anyone responds asking to be left out, see R11.
+Merge deploys. The bot announces (dry run first). If anyone responds asking to be left out, see
+R11.
 
 ---
 
