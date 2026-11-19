@@ -68,6 +68,9 @@ fixture the tools are tested against and the place to try a new prop or shot.
 
 The studio owns the **house cast** (`src/cast.js`, `src/looks.js`): Larry, Sibyl, the Formants,
 Eppy, the website bot, and recurring guests. An episode can add one-off guests of its own.
+`src/legacy/pilot-guests.js` holds the first episode's guests (and the bot's title and screen text
+from that episode), merged into the cast and looks unchanged, only because `001-pilot` has no
+`cast.js` of its own and its source is frozen; it is not a guest list.
 
 The studio must not contain episode content: no rundown, no episode segments, no episode audio.
 

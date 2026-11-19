@@ -411,7 +411,7 @@ COSTUMES.blazer = {
   },
 }
 
-/** a dark long coat with a ruff of feathers at the collar (norvid) */
+/** a dark long coat with a ruff of feathers at the collar */
 COSTUMES.featherCoat = {
   back(ctx, a, c) {
     const H = a.floor != null ? Math.min(a.bottom, 62) : a.bottom

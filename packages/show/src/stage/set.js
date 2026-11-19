@@ -22,7 +22,7 @@ export const SET_PIECES = ['truss', 'wall', 'window', 'curtain', 'bandstand', 'd
 const WIN = { x: 1220, y: 140, w: 740, h: 500 }
 const CURTAIN = { x: 760, y: 110, w: 420, h: 850 }
 export const DESK = { x: 1600, top: 728, w: 360 }
-/** the giant PRESS E TO LEAVE key on the desk's front-left corner (world; `keycap` centre + scale) */
+/** the big key cap (set.eKey) on the desk's front-left corner (world; `keycap` centre + scale) */
 export const EKEY = { x: DESK.x + 34, y: DESK.top - 30, scale: 0.8 }
 export const CHAIR = { x: 1475 }
 export const COUCH = { x0: 1150, x1: 1400 }
@@ -395,7 +395,7 @@ function desk(ctx, S, show) {
   for (const [dx, dy] of em) dot(ctx, ex + dx, ey + dy, 2.6, P.gold, 0.9)
   label(ctx, 'LC', ex, ey + 74, { size: 16, align: 'center', color: P.gold, alpha: 0.6, ls: 0.4 })
 
-  // the mug (right of the E key's corner): steam curls rise from it
+  // the mug (right of the key cap's corner): steam curls rise from it
   const mx = x + 96, my = top - 14
   const mug = new Path2D()
   mug.moveTo(mx - 15, my - 40)
@@ -453,7 +453,7 @@ function desk(ctx, S, show) {
   occlude(ctx, plate)
   beam(ctx, plate, P.gold, 1.4, { hot: true })
   label(ctx, show.nameplate ?? 'LARRY NX', nx, ny - 9, { size: 15, align: 'center', color: P.gold, weight: 'm', ls: 0.22 })
-  // blue cards, squared up on the corner (unless the E key sits there)
+  // blue cards, squared up on the corner (unless the key cap sits there)
   if ((show.setNow ?? show.set).eKey) return
   const cards = new Path2D()
   cards.moveTo(x + 22, top - 6)
@@ -647,7 +647,7 @@ export function drawInstrument(ctx, kind, x, y, show, who) {
 }
 
 /**
- * A prop that stands beside a puppet (look.prop). 'contraption': Abel's machine under a dust
+ * A prop that stands beside a puppet (look.prop). 'contraption': a machine under a dust
  * sheet; params.unveil 0..1 whips the sheet off (it rises and flies away), params.run 0..1 sets it going.
  */
 export function drawProp(ctx, kind, x, y, show, params = {}) {
@@ -709,12 +709,12 @@ export function drawProp(ctx, kind, x, y, show, params = {}) {
   }
 }
 
-/** norvid's crow living on the set: 'circling' in the skyline window, true (on the sill), 'perched-desk' */
+/** the set's crow (set.crow): 'circling' in the skyline window, true (on the sill), 'perched-desk' */
 function setCrow(ctx, mode, show) {
   const t = show.wall
   if (mode === 'circling') {
     // circle in whatever part of the window this shot sees (a desk shot only sees its lower half),
-    // a little below the top of the frame so it clears the BUILT counter and the APPLAUSE sign
+    // a little below the top of the frame so it clears the episode counter and the APPLAUSE sign
     const a = t * 0.45
     const cam = show.cam ?? { x: 1000, y: 560, zoom: 1 }
     if (cam.zoom > 2.2) return // a head close-up: it would read as perched on the head

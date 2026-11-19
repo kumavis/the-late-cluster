@@ -132,7 +132,7 @@ async function captionWords(text: string, as: string | undefined, clip: Clip, at
   const spoken = (as ?? text).split(/\s+/).filter(Boolean);
   if (cw.length && spoken.length === cap.length) {
     if (cw.length === cap.length) return cap.map((w, i) => [cw[i][0], cw[i][1], w]);
-    // group G2P words by token ("2025" → four spoken words, "@prer.at" → two, "—" → none)
+    // group G2P words by token ("2025" → four spoken words, "@zed.example" → two, "—" → none)
     const counts = spoken.map((w) => {
       try {
         return g2p.toPhrases(w).flatMap((p) => p.words).length;

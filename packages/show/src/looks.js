@@ -13,11 +13,17 @@
 //             under .example (bible R8). The house characters are not accounts and have none: their
 //             chyrons show name and title.
 //   fx        a default puppet effect: 'hologram' | 'monitor' (see show.puppet(id).fx)
-//   prop      a prop that stands beside them: 'contraption' (unveil with show.puppet(id).prop({ unveil }))
+//   prop      a prop that stands beside them: 'contraption', a machine under a dust sheet (see
+//             stage/set.js drawProp; animate it with show.puppet(id).prop({ unveil, run }))
 //
-// Segment authors: add your guests here (or pass a look to show.puppet(id).dress({...}) at runtime).
+// Segment authors: a guest's look goes in the episode's own looks.js (or pass a look to
+// show.puppet(id).dress({...}) at runtime); this file holds the house cast's.
+//
+// legacy/pilot-guests.js is merged in at the end so the first episode still builds. It is not a
+// guest list; see its header.
 import { headPalette } from './engine/palette.js'
 import { hashSeed } from './kit/ease.js'
+import { PILOT_LOOKS, PILOT_BOT } from './legacy/pilot-guests.js'
 
 const look = (color, costume, extra = {}) => ({ color, head: headPalette(extra.headColor ?? color, extra.headOver), costume, scale: 1, ...extra })
 
@@ -34,13 +40,12 @@ export const LOOKS = {
 
   // ---- the correspondents
   eppy: look('#ff7a2e', { kind: 'blazer', color: '#ff7a2e', trim: '#ffc861', crest: true, holds: 'headset' }),
-  bot: look('#5effc8', { kind: 'terminal', color: '#5effc8', model: 'WEBSITE-BOT', text: ['> npm create site', '> it builds!', '> deploy: yes', '> PARTY!'], holds: 'popper' }, { scale: 0.85 }),
+  // the bot: a small mint terminal. Its chest-screen text and held prop are the first episode's,
+  // kept so nothing renders differently (legacy/pilot-guests.js)
+  bot: look('#5effc8', { kind: 'terminal', color: '#5effc8', model: 'WEBSITE-BOT', ...PILOT_BOT.costume }, { scale: 0.85 }),
 
-  // ---- guests (puppets playing posting personas — the chyron says so)
-  norvid: look('#9a6bff', { kind: 'featherCoat', color: '#5a3d9e', trim: '#b98cff', holds: 'clipboard', clipText: 'LIST OF' }),
-  abel: look('#3fd17a', { kind: 'cardigan', color: '#3fd17a', shirt: '#b6ff5c', trim: '#eef6f8' }, { prop: 'contraption' }),
-  samantha: look('#34e0ff', { kind: 'blazer', color: '#34e0ff', shirt: '#eef6f8', trim: '#ffffff', holds: 'clicker' }),
-  borjev: look('#c8956a', { kind: 'terminal', color: '#c8956a', model: 'BORJEV', text: ['> opt-in only', '> consent: y', '> hello'] }, { scale: 0.62 }),
+  // ---- legacy: the first episode's guests, last, as before (not a guest list)
+  ...Object.fromEntries(Object.entries(PILOT_LOOKS).map(([id, args]) => [id, look(...args)])),
 }
 
 /** signature hues handed to guests nobody has styled yet */

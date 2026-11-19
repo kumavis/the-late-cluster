@@ -8,7 +8,7 @@ import { CAST } from '../cast.js'
 
 const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
-/** the title card's episode line: NO. 001 · PILOT · 13 NOV 2026 (parts that are missing are left out) */
+/** the title card's episode line, e.g. NO. 012 · <TITLE> · 4 DEC 2026 (parts that are missing are left out) */
 export function episodeLine(ep) {
   if (!ep) return ''
   const d = /^(\d{4})-(\d{2})-(\d{2})$/.exec(ep.airDate ?? '')

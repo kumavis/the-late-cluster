@@ -227,7 +227,7 @@ export class Show {
   // ================================================================= direction
 
   /**
-   * Choose the shot for this frame: show.shot('guest', { guest: 'ganweaving' }).
+   * Choose the shot for this frame: show.shot('guest', { guest: 'zed' }).
    * opts.push (s) eases the camera/puppets from the previous shot instead of cutting;
    * opts.since (s or cue) pins when the change happened (otherwise: the first frame it's asked for).
    */
@@ -328,7 +328,7 @@ export class Show {
         over().scaleTo = k
         return this
       },
-      /** parameters for the look's prop this frame, e.g. Abel's contraption: .prop({ unveil: 0..1 }) */
+      /** parameters for the look's prop this frame, e.g. a 'contraption': .prop({ unveil: 0..1 }) */
       prop(params) {
         over().prop = { ...(over().prop ?? {}), ...params }
         return this
@@ -354,7 +354,7 @@ export class Show {
 
   /**
    * A lower-third for a cast member (or { name, title, color }) between two times/cues:
-   * show.chyron('ganweaving', { from: 'guest-in', dur: 6 })   // or { from, to } (cues or seconds)
+   * show.chyron('zed', { from: 'guest-in', dur: 6 })   // or { from, to } (cues or seconds)
    */
   chyron(who, o = {}) {
     const spec = typeof who === 'string' ? { id: who } : who
@@ -465,7 +465,7 @@ export class Show {
     this._captionState(t)
   }
 
-  /** the episode-long BUILT counter: from + bumps passed (module.built = { from, bumps: [cue…] }) */
+  /** the episode-long counter (stage/chrome.js builtCounter): from + bumps passed (module.built = { from, bumps: [cue…] }) */
   _builtState(t) {
     const b = this.module.built
     if (!b) {

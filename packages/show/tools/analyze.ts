@@ -175,7 +175,7 @@ const norm = (s: string) =>
   s.toLowerCase().replace(/%/g, " percent ").replace(/\d+/g, (d) => " " + numWords(+d) + " ").replace(/[^a-z' ]/g, " ").split(/\s+/).filter(Boolean);
 /** how many reference words Whisper heard (bag of words, each heard word used once) */
 export function wordScore(ref: string, heard: string): [number, number] {
-  // "built it" and "build it" sound the same (the t flaps before a vowel): count either
+  // "built" and "build" sound the same before a vowel (the t flaps): count either
   const SAME: Record<string, string> = { build: "built", builds: "built" };
   const r = norm(ref).map((w) => SAME[w] ?? w), h = norm(heard).map((w) => SAME[w] ?? w);
   // compounds count ("simcluster" covers "sim" and "cluster")
@@ -231,7 +231,7 @@ export async function whisperSegment(ep: any, id: string): Promise<boolean> {
     console.log(`${flag} ${l.t0.toFixed(1).padStart(6)} ${l.who.padEnd(8)} ${ok}/${all}  "${l.text}"\n${" ".repeat(26)}heard: "${heard}"`);
   });
   console.log(`\n${got}/${tot} caption words heard (${Math.round((100 * got) / Math.max(1, tot))}%)${weak.length ? `; weak lines: ${weak.join(", ")}` : ""}`);
-  console.log("Whisper doesn't know invented names (norvid, Jevbot, …): judge those by the IPA in the render timeline.");
+  console.log("Whisper doesn't know invented names and handles: judge those by the IPA in the render timeline.");
   return true;
 }
 

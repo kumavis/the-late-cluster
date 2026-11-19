@@ -14,15 +14,15 @@ addressed as `ref`. The layout and the build contract are in
 
 ## Quick start
 
-All from the repo root. `<ep>` is an episode number or id (`1`, `001`, `001-pilot`) or `ref`.
+All from the repo root. `<ep>` is an episode number or id (`1`, `001`, the full `001-<slug>`) or `ref`.
 
 ```bash
 npm install                                   # once
-npm run dev -- 1                              # the pilot → http://localhost:5173/
+npm run dev -- 1                              # episode 1 → http://localhost:5173/
 npm run dev -- ref                            # the reference episode (?seg=demo, ?seg=kit-tour)
 npm run render -- ref demo                    # render a segment's audio + telemetry + cues
 npm run shoot -- ref demo 3 14.5 31           # frozen frames → shots/ref/demo/demo@3.png …
-npm run build -- 1                            # → dist/episodes/001-pilot/ (works from any sub-path)
+npm run build -- 1                            # → dist/episodes/<id>/ (works from any sub-path)
 ```
 
 The script format and the audio tools are documented in [`tools/README.md`](tools/README.md).
@@ -62,8 +62,9 @@ to the committed build `dist/episodes/<id>/`.
 src/
   app.js            flow: title → segments → end card; keyboard; frame loop; ?freeze mode
   episode.js        the current episode (from vite/episode.js) + its cast/looks merged in
-  cast.js           who's who, and how they sound: the house cast and recurring guests
+  cast.js           who's who, and how they sound: the house cast
   looks.js          how they look: colour, head palette, costume
+  legacy/           pilot-guests.js: the first episode's guests, kept only so it still builds (not a guest list)
   show/show.js      the `show` API (below)          show/puppet.js   one cast member on stage
   show/segments.js  loading + caching               show/builtins.js title, in-production, end cards
   stage/stage.js    the renderer                    stage/shots.js   named camera setups, marks
@@ -73,7 +74,7 @@ src/
   engine/tele.js    telemetry decoder               engine/transport.js the clock
   engine/palette.js per-character head colour
   kit/draw.js       the drawing kit                 kit/ease.js      easing, tweens, seeded RNG
-  kit/props.js      shared props (crow, chicken, E key, stamp, weather, tvFrame, credits…)
+  kit/props.js      shared props (animals, key cap, stamp, weather, tvFrame, credits…)
 vite/episode.js     the episode plugin and the Vite config for one episode
 tools/              render, check, analyze, shoot, video (see tools/README.md)
 templates/          what episode:new and segment:new start from
@@ -95,8 +96,8 @@ one that renders and plays as-is, and appends it to the rundown):
 Studio code is imported by package name, never by relative path, so episodes keep working when
 folders move: `import { EKEY } from '@late-cluster/show/stage/set.js'`.
 
-The running order is the `rundown` in `episodes/<ep>/episode.json` (the pilot's: `cold-open
-monologue weather top-chicken built-or-bit panel song goodnight`). Segments play back-to-back and cut straight
+The running order is the `rundown` in `episodes/<ep>/episode.json`, a list of segment ids (for
+example `["open", "desk-piece", "interview", "close"]`). Segments play back-to-back and cut straight
 into one another: there is no title card between them (a module's old `bumper` field is ignored;
 the segment's title shows in the transport bar and its chapter list). An id whose folder doesn't exist
 yet plays a short "SEGMENT 0n · IN PRODUCTION" card and is skipped; the chapter list marks it.
@@ -105,8 +106,8 @@ module or 30 s), so you can block shots first.
 
 Two reference segments, in the reference episode (`npm run dev -- ref`, then `?seg=`):
 `reference/segments/demo/` (a real rendered segment: dialogue, captions, music, the `ots` chart, a skeet
-card) and `reference/segments/kit-tour/` (silent: every newer shot, prop, effect and the BUILT counter,
-four seconds each, plus a line-up of the whole cast). Read them alongside this section.
+card) and `reference/segments/kit-tour/` (silent: every newer shot, prop, effect and the episode counter,
+four seconds each, plus a line-up of the cast). Read them alongside this section.
 
 ### The module
 
@@ -114,12 +115,12 @@ four seconds each, plus a line-up of the whole cast). Read them alongside this s
 export default {
   title: 'Cold Open',            // optional: defaults to cues.json's title
   cast: ['hy', 'al'],            // extra puppets for wide shots (speakers are cast automatically)
-  guests: ['ganweaving'],        // optional: guest order for guest/panel shots (default: non-house speakers)
+  guests: ['zed'],               // optional: guest order for guest/panel shots (default: non-house speakers)
   set: { window: false },        // optional: hide set pieces (see "The set")
   defaultShot: 'desk',           // when nothing else picks one
   drift: true,                   // the subtle idle camera drift
   autoPanel: true,               // draw the empty frame of the `ots` graphics panel for you
-  built: { from: 3, bumps: ['site-up', 'demo-works'] },   // the episode-long BUILT counter (below)
+  built: { from: 0, bumps: ['tally-1', 'tally-2'] },   // optional: the episode counter (below)
   disclaimer: 'Guests are puppets playing posting personas.',  // or { text, from, dur }: a footer for a few seconds
   shots: [                       // declarative shots (below)
     { at: 0, shot: 'mono' },
@@ -182,7 +183,7 @@ export default {
 | `  .bob(false)` | stop it bobbing on the beat |
 | `  .fx(kind, o)` | an effect this frame (see Puppet effects): `'hologram'`, `'monitor'`, `'none'` |
 | `  .shake(px)`, `.scaleTo(k)` | jitter it / scale head and body by `k` this frame (tween `k` for grow and shrink gags) |
-| `  .prop({ … })` | parameters for its look's prop this frame, e.g. `puppet('abel').prop({ unveil: 0..1, run: 0..1 })` |
+| `  .prop({ … })` | parameters for its look's prop this frame, e.g. `puppet(id).prop({ unveil: 0..1, run: 0..1 })` for a `contraption` (see Looks) |
 | `  .dress({ color, costume, head, scale })` | change its look for good |
 | `  .name`, `.color`, `.look`, `.speaking`, `.screen` | `screen` = `{ x, y, size }` of its head (stage units) |
 | `show.headOf(id)` | `{ x, y, size, mouth: [x, y], crown: [x, y] }` in stage units, or null if off screen |
@@ -196,7 +197,7 @@ export default {
 | `show.chyron(who, { from, to \| dur })` | a lower third, sliding in at `from` (cue or seconds) and out at `to` (or `from + dur`, default 5). `who` is a cast id or `{ name, title, handle, color }`. Call it every frame (it's declarative). |
 | `show.caption(text, who)` / `show.caption(null)` | replace / hide the caption this frame (captions otherwise follow lines with `caption: true`, with the current word lit) |
 | `show.sign(text, level)` | light the APPLAUSE sign yourself this frame |
-| `show.built` | the BUILT counter's current value (null when the segment has no `built`) |
+| `show.built` | the episode counter's current value (null when the segment has no `built`) |
 | `show.set`, `show.nameplate`, `show.onAir` | toggle set pieces, the desk name plate's text, the ON AIR light |
 
 **Helpers** — `show.ease` (`linear, inQuad, outQuad, inOutQuad, inCubic, outCubic, inOutCubic,
@@ -229,13 +230,13 @@ them only through their parameters (computed from `t`).
 
 | | |
 |---|---|
-| `confetti(ctx, x, y, age, { seed, count, colors, spread })` | a "built it" burst of vector sparkles, `age` s after it fired (gone by ~1.4 s) |
-| `crow(ctx, x, y, { scale, flap, facing, perched, color })` | norvid's crow (scale 1 ≈ 60 long); `flap` = wing phase (e.g. `(t*2)%1`). On the set: `set: { crow: true \| 'circling' \| 'perched-desk' }` |
-| `chicken(ctx, x, y, { scale, crown, bob, facing })`, `crown(ctx, x, y, scale)` | Top Chicken (≈ 90 tall) and his crown |
-| `keycap(ctx, x, y, { label: 'E', scale, pressed, glow })` | the giant PRESS E TO LEAVE key (≈ 80 wide). On the desk: `set: { eKey: true }` (or a number = how pressed); it sits on the desk's front-left corner at `EKEY` (`import { EKEY } from '@late-cluster/show/stage/set.js'`: world `{ x, y, scale }`) — use that to draw at/over it |
+| `confetti(ctx, x, y, age, { seed, count, colors, spread })` | a burst of vector sparkles, `age` s after it fired (gone by ~1.4 s) |
+| `crow(ctx, x, y, { scale, flap, facing, perched, color })` | a crow (scale 1 ≈ 60 long); `flap` = wing phase (e.g. `(t*2)%1`). On the set: `set: { crow: true \| 'circling' \| 'perched-desk' }` |
+| `chicken(ctx, x, y, { scale, crown, bob, facing })`, `crown(ctx, x, y, scale)` | a chicken (≈ 90 tall; `crown: true` puts a crown on it) and the crown on its own |
+| `keycap(ctx, x, y, { label: 'E', scale, pressed, glow })` | a big key cap showing `label` (≈ 80 wide). On the desk: `set: { eKey: true }` (or a number = how pressed) puts one labelled E on the desk; it sits on the desk's front-left corner at `EKEY` (`import { EKEY } from '@late-cluster/show/stage/set.js'`: world `{ x, y, scale }`) — use that to draw at/over it |
 | `seal(ctx, x, y, { scale, ball, t, facing })`, `gator(ctx, x, y, { scale, jaw, facing })`, `elephant(ctx, x, y, { scale, trunk, facing })` | simple animal glyphs |
 | `book(ctx, x, y, { scale, open, title, color })` | closed (with a title) or opening |
-| `stamp(ctx, x, y, 'CLAIM', { age, rot, size, color })` | a rubber-stamp slam: drops in over the 0.15 s before `age` 0, ink spatter after |
+| `stamp(ctx, x, y, 'APPROVED', { age, rot, size, color })` | a rubber-stamp slam: drops in over the 0.15 s before `age` 0, ink spatter after |
 | `speechBubble(ctx, x, y, text, { side, w, size, appear, think })` | tail at (x, y) — use `show.headOf(id).mouth` |
 | `podium3(ctx, x, y, w, { labels, rise, color })` | 1-2-3 winners' podium; returns the top centres `[first, second, third]` to stand things on |
 | `limboBar(ctx, x, y, { w, height, wobble })` | |
@@ -246,15 +247,16 @@ them only through their parameters (computed from `t`).
 | `creditsRoll(ctx, lines, t, { rect, speed, split })` | rolling credits: strings, `[role, name]` pairs, `{ head }` |
 | `lectern(ctx, x, y, { w, h, label, color, lights })` | a lectern / game-show stand front |
 
-### The BUILT counter
+### The episode counter
 
-An episode-long runner. Export `built: { from: <n>, bumps: ['cue-or-line-id', …] }` and a small
-counter sits top-left — **BUILT DURING THIS EPISODE · n** — where `n = from + bumps already passed`
-at time `t`. Each bump pops the number, flashes the box and throws a little confetti. It's a pure
-function of `t` (seek-safe); segments without `built` don't show it. Pass the running total on:
-each segment's `from` is the previous segment's final `n` (agree the numbers in the rundown doc).
-`show.built` is the current value. The pilot's chain: cold-open 0→1, monologue 1→2, weather 2→3,
-top-chicken 3→4, built-or-bit 4→8, panel 8→10, song 10→14, goodnight 14→15.
+An optional tally that can run across an episode. Export `built: { from: <n>, bumps:
+['cue-or-line-id', …] }` and a small box sits top-left showing a label and `n`, where
+`n = from + bumps already passed` at time `t`. Each bump pops the number, flashes the box and
+throws a little confetti. It's a pure function of `t` (seek-safe); segments without `built` don't
+show it. To carry a total across segments, each segment's `from` is the previous segment's final
+`n` (agree the numbers in the plan). `show.built` is the current value. The label text is fixed in
+`stage/chrome.js` (`builtCounter`) and the module field keeps its old name, `built`: a counter that
+says something else needs a label option added there first (a studio change).
 
 ### Puppet effects
 
@@ -278,7 +280,7 @@ Placement can also carry `clip: { x, y, w, h }` (stage units): the puppet is dra
 | `mono` | Larry standing centre in front of the curtain | `look`, `zoom` |
 | `desk` | Larry at the desk, medium close | `look`, `zoom` |
 | `guest` | one guest in the chair screen-left, Larry at the desk screen-right, facing each other | `guest`, `zoom` |
-| `panel` | Larry + 2–3 guests (chair, couch), optionally a small puppet popping up from behind the couch | `guests`, `look`, `pop: 'borjev'`, `popUp: 0..1` (animate it), `popScale` |
+| `panel` | Larry + 2–3 guests (chair, couch), optionally a small puppet popping up from behind the couch | `guests`, `look`, `pop: '<id>'`, `popUp: 0..1` (animate it), `popScale` |
 | `band` | Hy Oid & The Formants on the bandstand | `look`, `zoom`, `with` (e.g. `'sibyl'`) |
 | `wide` | the whole studio, everyone cast in their spot | `larry: 'desk'\|'mono'`, `band: false`, `guests` |
 | `ots` | news style: the presenter in one third, `show.panel` (default `{ x: 520, y: 64, w: 720, h: 470 }`) for your graphics. Larry sits at his desk; anyone else (`who`) stands in front of the window | `who`, `side: 'left'\|'right'` (the presenter's side), `pip: '<id>'` (a small monitor with that puppet in the panel's corner; `pipLabel`, `pipLive`), `panel`, `zoom` |
@@ -313,8 +315,14 @@ own when their `look` target changes, and snap on a cut or a seek.
 `src/looks.js` maps cast ids to a look (an episode's own `looks.js` adds or overrides entries,
 each applied with `defineLook`): `color` (caption name, chyron), `head` (the 3D head's
 palette — by default structure in `color`, articulators in chimera's tongue-green / jaw-red /
-lip-pink), `costume`, `handle`, `bodyScale`. Unknown ids get a signature hue and a hoodie. Guests:
-add an entry (a recurring guest in `src/looks.js`, a one-off in the episode's `looks.js`), or from `setup`: `show.defineLook('ganweaving', { color: '#58f0e8', costume: { kind: 'labcoat' } })`.
+lip-pink), `costume`, `handle`, `bodyScale`, `prop`. Unknown ids get a signature hue and a hoodie.
+Guests: add an entry in the episode's `looks.js` (one moves to `src/looks.js` only when a second
+episode needs it), or from `setup`: `show.defineLook('zed', { color: '#58f0e8', costume: { kind: 'labcoat' } })`.
+
+A look's `prop: 'contraption'` stands a machine under a dust sheet beside the puppet (150 world
+units to its left; `propSide: 1` in the look, or `side` per frame, puts it on the right).
+`show.puppet(id).prop({ unveil: 0..1, run: 0..1, side })` whips the sheet off and sets its gears
+and lights going; it is hidden while the puppet is clipped (in a monitor).
 
 Costume kinds (`src/stage/costumes.js`): `tux` (Larry: peaked lapels, bow tie, studs, pocket
 square — `color shirt tie square`), `band` (`color trim monogram`), `announcer`, `suit` (`tie`),
@@ -327,12 +335,11 @@ scrolling chest screen). Any costume can `holds: 'clipboard' | 'clicker' | 'popp
 kinds: add `COSTUMES.myKind = { back(ctx, a, c) {}, front(ctx, a, c) {} }` there (drawn in cm about
 the neck base; see the file's header).
 
-The cast's looks: **larry** gold tux · **sibyl** silver announcer · **the Formants** magenta band
-jackets, each head its own hue · **eppy** hot-orange sports blazer + headset · **bot** mint, a small
-terminal with a party popper · **norvid** crow-violet feather coat with a LIST OF clipboard ·
-**abel** alligator-green cardigan, with a `contraption` prop under a dust sheet beside him
-(`puppet('abel').prop({ unveil, run, side })`) · **samantha** sky-cyan presenter blazer with a
-clicker · **borjev** a tiny sepia terminal.
+The house cast's looks: **larry** gold tux · **sibyl** silver announcer · **the Formants** magenta
+band jackets, each head its own hue · **eppy** hot-orange sports blazer + headset · **bot** a small
+mint terminal with a chest screen. (`src/legacy/pilot-guests.js` holds the first episode's guests
+and the bot's screen text and held prop from that episode, only so it still builds; it is not a
+guest list, and an episode that uses the bot gives it its own entry in its `cast.js`/`looks.js`.)
 
 **Chyrons** read the cast (`src/cast.js` plus the episode's own `cast.js`): a `handle` shows after the title, and `guest: true` adds a
 **PUPPET · PARODY** tag — these are puppets playing real accounts' posting personas, and the show
@@ -346,10 +353,10 @@ handle, so their chyrons show name and title only.
 Back: `wall truss floor window` (the simcluster skyline) `curtain onair sign` (APPLAUSE/LAUGH,
 lit by `cues.sfx` named `applause* laugh* biglaugh chuckle cheer`) `bandstand couch chair`.
 Front: `desk` (mug, desk mic, name plate) and the chair/couch arms. Extras, off by default:
-`crow: true | 'circling' | 'perched-desk'` (norvid's crow on the window sill, circling the
-skyline, or on the desk) and `eKey: true` (the big E key on the desk's front-left corner; the mug
+`crow: true | 'circling' | 'perched-desk'` (a crow on the window sill, circling the
+skyline, or on the desk) and `eKey: true` (a big key cap labelled E on the desk's front-left corner; the mug
 sits right of it). `'circling'` flies in whatever part of the window the current camera sees (a
-desk shot only sees its lower half), below the BUILT counter, and hides in head close-ups
+desk shot only sees its lower half), below the episode counter, and hides in head close-ups
 (zoom > 2.2). Set flags are module state: if `direct` changes `show.set.*`, assign it on every
 frame (not only after a cue), or seeking backwards keeps the change. Hide any with
 `set: { window: false }` in the module or `show.set.window = false` in `direct`. `set.dim`
@@ -400,7 +407,7 @@ the authoring loop needs a build: `dev`, `shoot` and `check` read fresh renders 
 
 `src/show/builtins.js`. The title card's TONIGHT list reads the titles of the rundown segments
 that exist (two numbered columns, each title cut at its first ':'; empty while none do), and a
-line in the TONIGHT row names the episode: `NO. 001 · PILOT · 13 NOV 2026` (number, title and air
+line in the TONIGHT row names the episode, e.g. `NO. 012 · <TITLE> · 4 DEC 2026` (number, title and air
 date from `episode.json`). After the last segment the end card plays the band out under the logo
 with rolling credits built from the cast, listing only who appears in this episode (everyone
 with a line, plus each segment's `cast` and `guests`), and a WATCH AGAIN button. As the

@@ -6,7 +6,7 @@ rendered offline by these tools. Each segment ships as one mixed mp3 plus compac
 that the page replays on the 3D heads.
 
 Every command runs from the repo root and takes an episode first: `<ep>` is `1`, `001`,
-`001-pilot`, or `ref` for the studio's reference episode (`packages/show/reference/`, where the
+the full id (`001-<slug>`), or `ref` for the studio's reference episode (`packages/show/reference/`, where the
 `demo` segment below lives). Paths are resolved by one resolver (`scripts/lib/episodes.mjs`).
 
 ```sh
@@ -303,11 +303,13 @@ sound needs a plausible envelope sparkline with no NaN or DC.
 
 ## Voice design
 
-**Where cast entries live.** `packages/show/src/cast.js` is the roster of recurring characters:
-the house cast and the guests who come back. A guest only one episode uses goes in that
-episode's own `episodes/<ep>/cast.js` (and its look in `episodes/<ep>/looks.js`); both are
-optional and are merged over the studio's entries by the renderer, the checker and the page
-alike, so an episode can also override a house entry:
+**Where cast entries live.** `packages/show/src/cast.js` is the house cast. A guest goes in
+the episode's own `episodes/<ep>/cast.js` (and its look in `episodes/<ep>/looks.js`), and moves
+into the studio only when a second episode needs them. Both files are optional and are merged
+over the studio's entries by the renderer, the checker and the page alike, so an episode can
+also override a house entry (a whole entry: the merge replaces it, it does not patch fields).
+(`src/legacy/pilot-guests.js` holds the first episode's guests only so that episode still
+builds; it is not a guest list.)
 
 ```js
 // episodes/<ep>/cast.js
@@ -356,39 +358,36 @@ you can check a new entry.
 two carry most of a voice's identity. `bun packages/show/tools/analyze.ts voices` prints each voice's median
 f0, its spectral centroid and its three nearest neighbours. Distance combines pitch (semitones
 ÷ 2) and the long-term average spectrum (rms dB difference ÷ 2.5). Below about 1.5, two voices
-are easy to confuse. In the final cast every voice's nearest neighbour is at least 1.5 away
-(before tuning, Dee and Borjev were 0.48 apart and Hy and Norvid 0.77). The cast as tuned
-(median f0 is measured, so accent raises it above the set f0):
+are easy to confuse. Among the house voices every nearest neighbour is at least 1.5 away. The
+house cast as tuned (median f0 is measured, so accent raises it above the set f0; `nearest` is
+among these eight, from `analyze.ts voices larry sibyl hy al dee pete eppy bot`):
 
 | id | role | body f/c | f0 (median) | rate | accent | source | nearest |
 |---|---|---|---|---|---|---|---|
+| al | bass | 0 / 0 | 84 (79) | 0.95 | 0.14 | tension 0.45, fry 0.2 (gravel) | larry 2.85 |
 | larry | host | 0 / 0 | 104 (107) | 1.0 | 0.16 | breath 0.12, tension 0.5 | pete 1.54 |
-| al | bass | 0 / 0 | 84 (79) | 0.95 | 0.14 | tension 0.45, fry 0.2 (gravel) | abel 2.31 |
-| abel | low, fast, breathy | 0 / 0 | 92 (101) | 1.26 | 0.24 | breath 0.55, tension 0.35, bright 0.1 | larry 2.02 |
 | pete | percussion | 0.65 / 0.4 | 115 (119) | 1.05 | 0.18 | tension 0.55, bright 0.4 | larry 1.54 |
 | hy | bandleader | 0.35 / 0 | 135 (143) | 0.95 | 0.2 | breath 0.3, tension 0.42, bright 0.12 (warm) | dee 1.79 |
-| norvid | dry, clipped, croaky | 0.25 / 0.15 | 160 (138) | 1.2 | 0.1 | tension 0.66, rough 0.5, fry 0.2, bright 0.5 | pete 1.92 |
-| dee | alto | 0.9 / 0.1 | 155 (159) | 1.0 | 0.18 | breath 0.18, tension 0.45, bright 0.25 | borjev 1.52 |
-| borjev | small odd bot | 0.1 / 0.4 | 178 (175) | 0.95 | 0.05 | tension 0.62, rough 0.6, bright 0.3, drift 40 | dee 1.52 |
-| eppy | shouty sports | 0.15 / 0.2 | 165 (189) | 1.16 | 0.36 | tension 0.68, bright 0.55 | borjev 1.82 |
-| sibyl | announcer | 1 / 0 | 196 (207) | 1.04 | 0.2 | breath 0.2 | borjev 1.79 |
-| samantha | broadcast | 1 / 0.15 | 228 (253) | 1.08 | 0.32 | breath 0.08, bright 0.5 | bot 1.84 |
-| bot | chirpy, flat | 0.5 / 0.4 | 275 (274) | 1.0 | 0.06 | tension 0.7, bright 0.6 | samantha 1.84 |
+| dee | alto | 0.9 / 0.1 | 155 (159) | 1.0 | 0.18 | breath 0.18, tension 0.45, bright 0.25 | hy 1.79 |
+| eppy | shouty sports | 0.15 / 0.2 | 165 (189) | 1.16 | 0.36 | tension 0.68, bright 0.55 | sibyl 2.07 |
+| sibyl | announcer | 1 / 0 | 196 (207) | 1.04 | 0.2 | breath 0.2 | eppy 2.07 |
+| bot | chirpy, flat | 0.5 / 0.4 | 275 (274) | 1.0 | 0.06 | tension 0.7, bright 0.6 | eppy 4.21 |
 
-Rate and accent separate voices too: the table's distance doesn't measure them. Abel at 1.26
-and Larry at 1.0 sound very different at nearly the same pitch (101 and 107 Hz).
+Rate and accent separate voices too: the table's distance doesn't measure them, so two voices
+at nearly the same pitch can still sound very different if one is faster or more animated.
 
 Whisper (base.en) on the two test sentences: every voice gets "Good evening, and welcome back
 to the show." 8/8. The harder "…the feed knows what I had for breakfast?" scores 7–10 of 13
 for every voice, the host included, so that is the G2P and engine rather than any one voice.
-Overall scores are 71–86 % per voice: al 86, hy 81, eppy 81, borjev 81,
-larry 76, sibyl 76, dee 76, pete 76, bot 76, abel 76, norvid 71, samantha 71.
+Overall scores are 76–86 % per house voice: al 86, hy 81, eppy 81, larry 76, sibyl 76, dee 76,
+pete 76, bot 76.
 
 To add a guest, find an open spot. The gaps are in measured median f0 (what `analyze.ts voices`
 prints, the number in brackets above), not the `f0` you set: a typical `accent` (0.15–0.35)
 raises the median about 6–12 Hz above the set `f0`, so set `f0` that much lower than the gap.
-Gaps left: about 120–130 Hz with a neutral male body, about 200 Hz with body 0.3–0.5 / child 0,
-and 240–250 Hz breathy. Then set the attitude: `rate` (0.9
+Among the house voices (medians 79, 107, 119, 143, 159, 189, 207, 274 Hz) the widest open
+ranges are roughly 85–100 Hz, 165–180 Hz and 215–265 Hz; an episode's other guests take room
+too, so measure them together (`--ep <ep>` and their ids). Then set the attitude: `rate` (0.9
 deliberate, 1.2 hurried), `accent` (0.05 robotic, 0.35 excitable), breathiness 0.3+ (intimate),
 fry or roughness (croaky), and brightness with tension (brassy). Run
 `bun packages/show/tools/analyze.ts voices [--ep <ep>] <id> --wav /tmp/v --whisper`: keep the nearest distance at 1.5 or
@@ -397,8 +396,8 @@ more and the Whisper score near the others. Pan guests away from whoever they ta
 **Respelling with `as`.** Unknown words go through letter-to-sound rules, which are often
 wrong. Watch the IPA in the timeline, then check with `--whisper`. Join multi-word respellings
 with hyphens so the caption's word timings still map. Watch out: **each hyphen part is G2P'd as
-its own word, and function words get their weak form**. `for-mints` comes out /fəɹ/, `at-proto`
-/ət/ and `nor-vid` /nəɹ/. Spell those parts so they aren't function words (`four`, `att`, `nore`).
+its own word, and function words get their weak form**. `for-mints` comes out /fəɹ/ and `at-proto`
+/ət/. Spell those parts so they aren't function words (`four`, `att`).
 
 These were tested on Larry in "Next up, X, live.", with the IPA and what Whisper heard:
 
@@ -412,13 +411,7 @@ These were tested on Larry in "Next up, X, live.", with the IPA and what Whisper
 | gm | `gee-em` (or `good-morning`) | dʒiɛm | the letters are read out anyway. Whisper doesn't parse bare letters |
 | gn | `gee-en` (or `good-night`) | dʒiɛn | as-is gives /gn/, which is unpronounceable |
 | atproto | `att-pro-toe` | ættpɹoʊtoʊ | as-is gives /ætpɹoʊɾɑ/ ("Ask Prada"). `at-proto` reduces to /ət/ |
-| Piranesi | `pier-ah-nay-see` | pɪɹɑneɪsi | Whisper: "Piranesi". As-is gives /pɝeɪnɛsɪ/ |
-| norvid | as-is | nɔɹvɪd | correct. `nor-vid` reduces to /nəɹ/ |
-| Jevbot | `jev-bot` | dʒɛvbɔt | as-is is also fine (/dʒɛvbɑt/) |
-| catoid | `cat-oid` | kætɔɪd | as-is gives /keɪɾɔɪd/ ("Kay-toyed") |
-| Top Chicken | as-is | tɑptʃɪkən | correct. Whisper mishears "top" as "tap" |
 | Nx | `En-Ex` | ɛnɛks | as-is gives /nks/ |
-| Abelian | `a-bee-lee-an` | əbiliən | as-is gives /eɪbɛlɪæn/ |
 | AI | `ay-eye` | eɪaɪ | as-is gives "eye" |
 | skeet | as-is | skit | in the dictionary |
 
@@ -429,8 +422,8 @@ is padded with 0.6 s of digital silence, because Whisper hallucinates ("Thank yo
 "Cheers!") on sub-second clips that touch the clip edge. All cuts are transcribed in one local
 Whisper (base.en) run. It prints caption vs heard per line with a word score: ✓ ≥ 85 %, ~ ≥ 60 %,
 ✗ below. Digits and % are normalized ("90 %" counts as "ninety percent") and compounds count
-("Simcluster" covers "sim cluster"). "build" counts as "built", because the t of "built it" is
-flapped and the two are indistinguishable. Whisper doesn't know invented names, so judge those by
+("Simcluster" covers "sim cluster"). "build" and "built" count as the same word: before a vowel
+the t is flapped and the two are indistinguishable. Whisper doesn't know invented names, so judge those by
 the IPA. The demo scores 62/82 caption words (76 %), and the sung music lead is the weakest.
 Fix a weak line by respelling it, slowing it down (`rate: 0.9`), giving it more `gap` from a
 loud sfx, or lowering the sfx's `vol`.
@@ -440,10 +433,10 @@ voice: isolated and in-context renders, several noise levels, Whisper base.en. T
 articulation limits in the engine, and no respelling or voice setting fixed them:
 - **/tʃ/ before /ɪ/** ("chicken" → "written", "returned"). The affricate comes out as a noisy
   burst with almost no vowel after it. More than a dozen spellings failed (chick-in, chikkin,
-  chih-kin, chiggin, …). The only ones Whisper took as "chicken" were `shicken`/`Top Shicken`
-  (2/3), and a person would hear "shicken", so they are not used. Caption the word and accept it.
-- **/dʒ/** ("joke" → "broke", "drug"). `djoke` (an extra closure) worked 3/3 in the monologue
-  line and 0/3 in the cold-open lines.
+  chih-kin, chiggin, …). The only one Whisper took as "chicken" was `shicken` (2/3), and a person
+  would hear "shicken", so it is not used. Caption the word and accept it.
+- **/dʒ/** ("joke" → "broke", "drug"). `djoke` (an extra closure) worked 3/3 in one line and
+  0/3 in others.
 - **Initial /k/ + /l/** ("claim" → "flame", "lame"). Nothing helped, including `klame`, `kleym`
   and pressure 10–11.5.
 - **Final /ŋ/ after /p/** ("Pong" → "on", "pun"). Nothing robust.
@@ -455,12 +448,12 @@ articulation limits in the engine, and no respelling or voice setting fixed them
 Slowing a line down doesn't fix a weak consonant (rate 0.7 was often *worse*). A presence boost
 (+4 or +8 dB high shelf at 2 kHz, on all 234 lines) changed Whisper's score by 0.1 %.
 
-**"Built it."** (the runner): `{ say: 'bot', text: 'Built it.', rate: 0.9 }` with the bot's base
-rate at 1.0, so the effective rate is 0.9. It is reliably heard as "Build it" / "Built it" in
-isolation (40/40 variants) and against a laugh starting at the line's end (211/240 across
-voices and spellings; every failure was the hyphenated `Built-it.` spelling). What breaks it in
-a mix is an sfx *under* it: a buzzer or gasp overlapping the line, or a creature call with its
-low duck depth. Start sfx 0.15 s after it, or give them `duck: 1`.
+**Short lines against sfx.** A two-word line at an effective rate of 0.9 was tested in isolation
+(40/40 variants heard right) and against a laugh starting at the line's end (211/240 across
+voices and spellings; every failure was a hyphenated spelling of the two words, so don't
+hyphenate them). What breaks a short line in a mix is an sfx *under* it: a buzzer or gasp
+overlapping the line, or a creature call with its low duck depth. Start sfx 0.15 s after it, or
+give them `duck: 1`.
 
 **The Whisper score is noisy.** Unchanged lines change their transcription when anything else
 in the mix shifts, even a 1 dB global gain change. Segment totals move ±3–5 % run to run for
@@ -511,10 +504,10 @@ clips by hand if the order changed.
 ```sh
 node packages/show/tools/video.mjs 1 --all --bluesky    # every clip + late-cluster-full.mp4 + late-cluster-bluesky.mp4
 node packages/show/tools/video.mjs 1 --all              # every clip (01-…, numbered by the rundown) + late-cluster-full.mp4
-node packages/show/tools/video.mjs 1 song               # one clip (or several ids)
-node packages/show/tools/video.mjs 1 --full             # rebuild late-cluster-full.mp4 from the clips already in video/001-pilot/
+node packages/show/tools/video.mjs 1 <seg>              # one clip (or several ids)
+node packages/show/tools/video.mjs 1 --full             # rebuild late-cluster-full.mp4 from the clips already in video/<ep-id>/
 node packages/show/tools/video.mjs 1 --bluesky          # rebuild only the posting cut, from the clips (second generation)
-node packages/show/tools/video.mjs 1 cold-open --frames 90   # a 3 s test → video/001-pilot/test-01-cold-open.mp4
+node packages/show/tools/video.mjs 1 <seg> --frames 90  # a 3 s test → video/<ep-id>/test-<nn>-<seg>.mp4
 ```
 
 Options: `--jobs 3` (segments in parallel, each in its own browser), `--scale 1.5` (stage backing
@@ -538,7 +531,7 @@ generation like the master. That takes about 1 GB per minute of temp space while
 ```sh
 node packages/show/tools/video.mjs 1 --youtube          # late-cluster-youtube.mp4 (+ .srt, .vtt): no burned-in captions
 node packages/show/tools/video.mjs 1 --subs             # only late-cluster-youtube.srt / .vtt (about 10 s, no pictures)
-node packages/show/tools/video.mjs 1 song --no-captions # a clip without captions → video/001-pilot/07-song-nocaps.mp4
+node packages/show/tools/video.mjs 1 <seg> --no-captions # a clip without captions → video/<ep-id>/<nn>-<seg>-nocaps.mp4
 ```
 
 `--youtube` re-renders every segment with the stage's caption system off, using
@@ -550,7 +543,7 @@ captions off removes two things:
 - the `[ LAUGHTER ]` / `[ APPLAUSE ]` box that replaces it when nobody is talking.
 
 Everything a segment draws itself stays: chyrons, post cards, the APPLAUSE/LAUGH sign, the
-BUILT counter, the disclaimer footer and the song's on-stage lyric lines. With the caption bar
+episode counter, the disclaimer footer and any on-stage lyric lines. With the caption bar
 gone, a chyron sits at its lower position (y 560 rather than 478), as it does in the app with
 captions off.
 
@@ -559,7 +552,7 @@ segment is stepped, the tool records what the caption bar would show on every fr
 - the line, with the speaker's display name and kind;
 - the laugh caption.
 
-That way segments' own overrides are included, such as the song hiding the bar for its sung
+That way segments' own overrides are included, such as a segment hiding the bar for its sung
 lyrics. Runs of identical frames become cues. A line counts as shown while the bar is more than
 half faded in, which is roughly t0 to t1 + 0.55 s. The full-file times use the rendered frame
 counts, so nothing drifts. The conventions:

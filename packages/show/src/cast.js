@@ -4,7 +4,18 @@
 // `source` a patch on the engine's voice source (breathiness, tension, fry, roughness,
 // vibratoDepth, vibratoRate, drift, brightness, pressure). `pan` (-1..1) places the voice in the mix.
 //
+// A guest is a puppet playing the posting persona of a real Bluesky account: `name` and `handle`
+// are the account's (the credits and chyrons show them), and `guest: true` puts PUPPET · PARODY
+// on the chyron. A real account's puppet says only what that account published, the way they said
+// it, in its original context; never words the show wrote for them (bible: constitution Article 3,
+// R3). A guest is defined by the episode that books them, in episodes/<ep>/cast.js; one moves
+// here only when a second episode needs them. This file holds the house cast.
+//
 // Read by the offline renderer (tools/render.ts) and by the page. Looks live in src/looks.js.
+//
+// legacy/pilot-guests.js is merged in at the end so the first episode still builds. It is not a
+// guest list; see its header.
+import { PILOT_CAST, PILOT_BOT } from './legacy/pilot-guests.js'
 
 export const CAST = {
   // ---- the house
@@ -70,55 +81,15 @@ export const CAST = {
   },
   bot: {
     name: 'A website bot',
-    title: 'Builds it',
+    title: 'House bot',
     body: { female: 0.5, child: 0.4 },
     f0: 275, rate: 1.0, accent: 0.06,
     source: { tension: 0.7, brightness: 0.6, breathiness: 0.02 },
     pan: 0.45,
+    // the first episode's chyron title, kept so nothing renders differently (legacy/pilot-guests.js)
+    ...PILOT_BOT.cast,
   },
 
-  // ---- guests: puppets playing the posting personas of real Bluesky accounts (guest: true puts
-  // PUPPET · PARODY on the chyron; the credits name the account by `name` and `handle`).
-  // A real account's puppet says only what that account published, the way they said it, in its
-  // original context; never words the show wrote for them (bible: constitution Article 3, R3).
-  norvid: {
-    name: 'norvid_studies',
-    handle: '@norvid-studies.bsky.social',
-    title: 'Crow of claims',
-    guest: true,
-    body: { female: 0.25, child: 0.15 },
-    f0: 160, rate: 1.2, accent: 0.1,
-    source: { tension: 0.66, roughness: 0.5, fry: 0.2, brightness: 0.5 },
-    pan: -0.25,
-  },
-  abel: {
-    name: 'Abel',
-    handle: '@abeliansoup.bsky.social',
-    title: 'Abeliancorp',
-    guest: true,
-    body: { female: 0, child: 0 },
-    f0: 92, rate: 1.26, accent: 0.24,
-    source: { breathiness: 0.55, tension: 0.35, brightness: 0.1 },
-    pan: -0.5,
-  },
-  samantha: {
-    name: 'Samantha',
-    handle: '@samantha.wiki',
-    title: 'The Simcluster Channel',
-    guest: true,
-    body: { female: 1, child: 0.15 },
-    f0: 228, rate: 1.08, accent: 0.32,
-    source: { breathiness: 0.08, brightness: 0.5 },
-    pan: -0.2,
-  },
-  borjev: {
-    name: 'BorJev',
-    handle: '@borjev.bsky.social',
-    title: "Abel's bot · opt-in only",
-    guest: true,
-    body: { female: 0.1, child: 0.4 },
-    f0: 178, rate: 0.95, accent: 0.05,
-    source: { tension: 0.62, roughness: 0.6, brightness: 0.3, drift: 40 },
-    pan: -0.6,
-  },
+  // ---- legacy: the first episode's guests, last, as before (not a guest list)
+  ...PILOT_CAST,
 }

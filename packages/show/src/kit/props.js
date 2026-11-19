@@ -29,7 +29,7 @@ const W = (px, s) => px / Math.abs(s)
 // ---------------------------------------------------------------- confetti
 
 /**
- * A "built it" burst of vector sparkles from (x, y). age = seconds since the burst (draws nothing
+ * A burst of vector sparkles from (x, y). age = seconds since the burst (draws nothing
  * before 0 or after ~1.4 s). o: { seed, count, colors, spread }
  */
 export function confetti(ctx, x, y, age, o = {}) {
@@ -58,7 +58,7 @@ export function confetti(ctx, x, y, age, o = {}) {
 // ---------------------------------------------------------------- creatures
 
 /**
- * A crow (norvid's motif). scale 1 ≈ 60 units long. o: { scale, flap (0..1 wing phase; animate
+ * A crow. scale 1 ≈ 60 units long. o: { scale, flap (0..1 wing phase; animate
  * with t), facing (1 right / -1 left), perched (folded wings, feet down), color, alpha }
  */
 export function crow(ctx, x, y, o = {}) {
@@ -128,7 +128,7 @@ export function crown(ctx, x, y, scale = 1, o = {}) {
 }
 
 /**
- * A chicken (Top Chicken). scale 1 ≈ 90 tall. o: { scale, crown (bool), bob (0..1 head bob
+ * A chicken, optionally crowned. scale 1 ≈ 90 tall. o: { scale, crown (bool), bob (0..1 head bob
  * phase), facing, color }
  */
 export function chicken(ctx, x, y, o = {}) {
@@ -275,7 +275,7 @@ export function elephant(ctx, x, y, o = {}) {
 // ---------------------------------------------------------------- objects
 
 /**
- * A key cap ("PRESS E TO LEAVE"). scale 1 ≈ 80 wide. o: { label, scale, pressed (0..1), glow (0..1), color }
+ * A single keyboard key cap with a label. scale 1 ≈ 80 wide. o: { label, scale, pressed (0..1), glow (0..1), color }
  */
 export function keycap(ctx, x, y, o = {}) {
   const s = o.scale ?? 1
@@ -322,7 +322,7 @@ export function book(ctx, x, y, o = {}) {
 }
 
 /**
- * A rubber-stamp slam ("CLAIM"). age = seconds since it landed (it drops in over 0.15 s before
+ * A rubber-stamp slam of `text`. age = seconds since it landed (it drops in over 0.15 s before
  * that, so start drawing at age −0.15). o: { rot (rad), color, size }
  */
 export function stamp(ctx, x, y, text, o = {}) {

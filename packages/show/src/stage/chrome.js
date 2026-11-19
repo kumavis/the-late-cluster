@@ -174,10 +174,11 @@ export function laughCaption(ctx, text, a, lift = 0) {
   ctx.restore()
 }
 
-// ---------------------------------------------------------------- the BUILT counter, the disclaimer
+// ---------------------------------------------------------------- the episode counter, the disclaimer
 
 /**
- * The episode-long runner, top-left: "BUILT DURING THIS EPISODE · n". b = show.builtNow
+ * An episode-long counter, top-left: a fixed label (`head` below; there is no option for it yet)
+ * and the number n. b = show.builtNow
  * ({ n, age: seconds since the last bump, seed }); a bump pops the number, flashes, and throws confetti.
  */
 export function builtCounter(ctx, b, t) {
