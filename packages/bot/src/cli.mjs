@@ -8,7 +8,10 @@ import { BotError } from './errors.mjs';
 
 function help() {
   const lines = ['usage: npm run bot -- <command> [args]', '', 'commands:'];
-  for (const c of commands.values()) lines.push(`  ${c.usage.padEnd(36)} ${c.summary}`);
+  for (const c of commands.values()) {
+    if (c.usage.length < 36) lines.push(`  ${c.usage.padEnd(36)} ${c.summary}`);
+    else lines.push(`  ${c.usage}`, `  ${''.padEnd(36)} ${c.summary}`);
+  }
   lines.push('', 'Dry run is the default. Nothing is posted without --live. See packages/bot/README.md.');
   return lines.join('\n');
 }

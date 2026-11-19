@@ -1,5 +1,6 @@
 {
   "siteUrl": "",
   "service": "https://bsky.social",
-  "langs": ["en"]
+  "langs": ["en"],
+  "avatar": "brand/avatar.png"
 }

@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "The Late Cluster's Bluesky account: announces published episodes. Dry run by default.",
+  "description": "The Late Cluster's Bluesky account: announces episodes, sets the avatar, interviews by DM. Dry run by default.",
   "engines": { "node": ">=22" },
   "scripts": {
     "test": "node --test \"test/*.test.mjs\"",

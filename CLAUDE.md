@@ -76,8 +76,10 @@ npm run produce -- --week 2026-W47     # the whole weekly pipeline, stage by sta
   it, print it, or copy a value out of it. Commands that need a secret load it themselves.
 
 **Outward-facing actions: ask first**
-- `npm run bot -- announce` is a dry run. Never add `--live` unless the owner says so in that
-  conversation. The bot never mentions or tags anyone.
+- Every bot command that changes anything (`announce`, `profile`, `dm send`) is a dry run. Never
+  add `--live` unless the owner says so in that conversation. The bot never mentions or tags
+  anyone. Direct-message text is private: it stays in the gitignored `data/bot/dm/` and is never
+  committed, quoted or performed unless the person says it may be.
 - Terraform: `npm run terraform -- plan` freely; `apply` only for a change the owner asked
   for, after the plan shows exactly that change. Edit `terraform.tfvars` and
   `terraform/tests/committed.tftest.hcl` together. Never edit or delete `terraform.tfstate`.

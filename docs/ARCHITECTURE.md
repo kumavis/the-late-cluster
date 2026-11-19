@@ -202,6 +202,9 @@ episode. `<seg>` is a segment id.
 | `npm run preview` | generate the index, then serve `dist/` locally |
 | `npm run scrape -- [--week 2026-W47 \| --since 2026-11-13 --out <dir>]` | write the Bluesky digest for a week, or since a date, into `data/` |
 | `npm run bot -- announce <ep> [--live]` | compose the announcement post; dry run unless `--live` |
+| `npm run bot -- profile [--avatar <file>] [--live] [--no-backup]` | set the account's profile picture (`avatar` in `bot.config.json`); dry run unless `--live` |
+| `npm run bot -- dm send <handle-or-did> --file <path> [--live]` | send interview questions by direct message; dry run unless `--live` |
+| `npm run bot -- dm read <handle-or-did> [--limit 50] [--json]` | read that conversation; logs in, changes nothing |
 | `npm run produce -- --week 2026-W47 [--writer manual] [--preview-only]` | run the pipeline for one episode, stage by stage; `--preview-only` never publishes |
 | `npm run terraform -- <args>` | run Terraform in `terraform/` with the token loaded from `.secrets` |
 | `npm test` | every package's tests (Node builtins only: no install, no browser) |
@@ -250,6 +253,16 @@ The show's Bluesky account. Its first job is to announce a published episode wit
 It is dry-run by default and posts only with `--live` and credentials in the environment
 (`BSKY_HANDLE`, `BSKY_APP_PASSWORD`). Later jobs, such as handling opt-out requests sent to the
 account, are on the roadmap.
+
+`profile` sets the account's avatar and nothing else: it keeps every other field of the
+profile record, writes with `swapRecord` so a concurrent change is refused, and first saves
+the picture it replaces to `data/bot/` (gitignored). `dm send` and `dm read` interview one
+person by direct message through the chat service (`atproto-proxy: did:web:api.bsky.chat#bsky_chat`);
+they need an app password with direct-message access, refuse anyone on the scraper's opt-out
+list, and send plain text only, never a mention or link. Message text is private: it lives
+only in the terminal and the gitignored `data/bot/dm/`, never in anything committed. `dm read`
+never marks a conversation read and never creates one. Both live commands refuse unless the
+session's DID is `bluesky.did` in `show.config.json`.
 
 ## The weekly pipeline: `packages/writers-room`
 

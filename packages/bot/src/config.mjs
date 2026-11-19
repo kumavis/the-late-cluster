@@ -12,6 +12,8 @@ export const PACKAGE_DIR = fileURLToPath(new URL('..', import.meta.url));
 export const REPO_ROOT = fileURLToPath(new URL('../../..', import.meta.url));
 export const CONFIG_PATH = fileURLToPath(new URL('../bot.config.json', import.meta.url));
 export const SHOW_CONFIG_PATH = join(REPO_ROOT, 'show.config.json');
+/** The profile picture `profile` sets, relative to the repo root, when bot.config.json names none. */
+export const DEFAULT_AVATAR = 'brand/avatar.png';
 
 export function readConfigFile(path = CONFIG_PATH) {
   let text;
@@ -35,6 +37,7 @@ export function loadSettings({ env = {}, configPath = CONFIG_PATH, showConfigPat
     service: env.BSKY_PDS || file.service || DEFAULT_SERVICE,
     userAgent: env.BOT_USER_AGENT || file.userAgent || DEFAULT_USER_AGENT,
     langs: Array.isArray(file.langs) && file.langs.length ? file.langs : ['en'],
+    avatar: typeof file.avatar === 'string' && file.avatar ? file.avatar : DEFAULT_AVATAR,
     handle: envHandle || showHandle || null,
     handleSource: envHandle ? 'BSKY_HANDLE' : showHandle ? 'show.config.json' : null,
     did: typeof show.bluesky?.did === 'string' && show.bluesky.did ? show.bluesky.did : null,
