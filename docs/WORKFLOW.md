@@ -58,7 +58,9 @@ two reviewers working independently, then combined by a tool.
 
 **The ledger** (`docs/ledger/`) is the record of what the show has already done: every aired
 or drafted joke, runner, format, guest, account shown on a card, song genre and staging
-device, by episode. It is written by reviewers after each episode and read only by reviewers
+device, by episode. It includes **the tracker**, `docs/ledger/featured.json`: who was
+featured when, keyed by DID with the handle as last seen, one entry per appearance giving
+the episode, the date, and whether the person's puppet spoke or their post was shown. It is written by reviewers after each episode and read only by reviewers
 and the project manager. The writer-facing bible must not catalogue it: craft is taught there
 by principle and by examples that are not from the show's own episodes.
 
@@ -97,8 +99,15 @@ what was excluded and why, in counts.
 A reviewer reads it and answers three questions in `scope/review.md`: is this the community
 the show is about; is it wide enough that the episode will not be about the same few people;
 is anything obviously missing. If not, the project manager changes the scraper's
-configuration and runs it again. The cluster definition is configuration, reviewed every
-run, never a fixed list of the show's past guests.
+configuration and runs it again.
+
+**Seeds.** The community is carved out from seed accounts, and the seeds are whoever the
+show's own Bluesky account follows, read fresh on every run, together with a small list kept
+in the scraper's configuration. The owner widens or moves the area by following people from
+the show's account. Seeds are recorded by DID, never by handle alone, because handles
+change. People the show has featured may be seeds: being a seed decides where the show
+looks, not who it puts on screen. What keeps the same people from appearing too often is
+the tracker below and the repetition gate.
 
 ### 2. Research: what is there to work with?
 
@@ -152,7 +161,10 @@ script, one of three verdicts.
 
 The gate covers jokes, runners and catchphrases, the shape of a segment, staging devices,
 and people: a guest who spoke in the previous episode does not speak in this one, and the
-accounts featured on screen must be mostly new. At most one **turned** item per episode
+accounts featured on screen must be mostly new. Beyond the previous episode, the tool reads
+the tracker and warns when someone has been featured in more than a set share of recent
+episodes, so that reviewers weigh it in the variety pass; fresh people are preferred, and
+nobody is barred for having appeared before. At most one **turned** item per episode
 carries anything forward from the previous one. When reviewers disagree, the stricter
 verdict stands. A blocked item goes back to a writer with only as much description of the
 earlier joke as is needed to avoid it or turn it.
