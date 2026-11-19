@@ -23,6 +23,7 @@ variables {
   github_pages_verification_code = null
   bluesky_handles                = {}
   extra_records                  = {}
+  redirects                      = {}
 }
 
 # ---------------------------------------------------------------------------------------
@@ -33,12 +34,12 @@ run "nothing_set_plans_nothing" {
   command = plan
 
   assert {
-    condition     = length(cloudflare_dns_record.site) + length(cloudflare_dns_record.github_pages_verification) + length(cloudflare_dns_record.bluesky_handle) + length(cloudflare_dns_record.extra) == 0
+    condition     = length(cloudflare_dns_record.site) + length(cloudflare_dns_record.github_pages_verification) + length(cloudflare_dns_record.bluesky_handle) + length(cloudflare_dns_record.extra) + length(cloudflare_dns_record.redirect) + length(cloudflare_ruleset.redirects) == 0
     error_message = "With no variables set, no record may be planned."
   }
 
   assert {
-    condition     = output.site_url == null && output.github_pages_custom_domain == null && length(output.records) == 0
+    condition     = output.site_url == null && output.github_pages_custom_domain == null && length(output.records) == 0 && length(output.redirects) == 0
     error_message = "With no variables set, the outputs must be empty."
   }
 }
@@ -52,8 +53,8 @@ run "zone_only_plans_nothing" {
   }
 
   assert {
-    condition     = length(output.records) == 0
-    error_message = "A zone with nothing switched on must plan no record."
+    condition     = length(output.records) == 0 && length(cloudflare_ruleset.redirects) == 0
+    error_message = "A zone with nothing switched on must plan no record and no ruleset."
   }
 }
 
@@ -290,6 +291,159 @@ run "readme_example" {
       "extra[\"spf\"]"                       = { name = "example.com", type = "TXT", content = "\"v=spf1 -all\"" }
     }
     error_message = "The README example must plan exactly these three records."
+  }
+}
+
+# ---------------------------------------------------------------------------------------
+# Redirects
+# ---------------------------------------------------------------------------------------
+
+run "one_static_redirect" {
+  command = plan
+
+  variables {
+    zone_id   = "0123456789abcdef0123456789abcdef"
+    zone_name = "example.com"
+    redirects = {
+      "apex" = { hostname = "example.com", target_url = "https://example.net/profile/someone", status_code = 302 }
+    }
+  }
+
+  assert {
+    condition = (
+      cloudflare_dns_record.redirect["apex"].name == "example.com" &&
+      cloudflare_dns_record.redirect["apex"].type == "A" &&
+      cloudflare_dns_record.redirect["apex"].content == "192.0.2.1" &&
+      cloudflare_dns_record.redirect["apex"].proxied == true &&
+      cloudflare_dns_record.redirect["apex"].ttl == 1
+    )
+    error_message = "A redirect needs a proxied placeholder A record 192.0.2.1 at its hostname."
+  }
+
+  assert {
+    condition = (
+      length(cloudflare_ruleset.redirects) == 1 &&
+      cloudflare_ruleset.redirects[0].zone_id == "0123456789abcdef0123456789abcdef" &&
+      cloudflare_ruleset.redirects[0].kind == "zone" &&
+      cloudflare_ruleset.redirects[0].phase == "http_request_dynamic_redirect" &&
+      length(cloudflare_ruleset.redirects[0].rules) == 1
+    )
+    error_message = "Redirects must be one zone ruleset in the Single Redirects phase."
+  }
+
+  assert {
+    condition = (
+      cloudflare_ruleset.redirects[0].rules[0].ref == "apex" &&
+      cloudflare_ruleset.redirects[0].rules[0].action == "redirect" &&
+      cloudflare_ruleset.redirects[0].rules[0].enabled == true &&
+      cloudflare_ruleset.redirects[0].rules[0].expression == "(http.host eq \"example.com\")" &&
+      cloudflare_ruleset.redirects[0].rules[0].action_parameters.from_value.status_code == 302 &&
+      cloudflare_ruleset.redirects[0].rules[0].action_parameters.from_value.preserve_query_string == false &&
+      cloudflare_ruleset.redirects[0].rules[0].action_parameters.from_value.target_url.value == "https://example.net/profile/someone" &&
+      cloudflare_ruleset.redirects[0].rules[0].action_parameters.from_value.target_url.expression == null
+    )
+    error_message = "A static redirect must match the hostname and send every request to target_url exactly, with its status code."
+  }
+
+  assert {
+    condition     = output.redirects["apex"].from == "https://example.com/" && output.redirects["apex"].to == "https://example.net/profile/someone" && output.redirects["apex"].status_code == 302
+    error_message = "The redirects output must describe the redirect."
+  }
+}
+
+run "several_redirects_share_one_ruleset" {
+  command = plan
+
+  variables {
+    zone_id   = "0123456789abcdef0123456789abcdef"
+    zone_name = "example.com"
+    redirects = {
+      "old"  = { hostname = "old.example.com", target_url = "https://example.net/", status_code = 301 }
+      "apex" = { hostname = "example.com", target_url = "https://example.net/", status_code = 307 }
+      "keep" = { hostname = "keep.example.com", target_url = "https://example.net/base/", status_code = 308, keep_path_and_query = true }
+    }
+  }
+
+  assert {
+    condition     = length(cloudflare_ruleset.redirects) == 1 && length(cloudflare_dns_record.redirect) == 3
+    error_message = "Several redirects must be one ruleset and one placeholder record each."
+  }
+
+  assert {
+    condition     = [for r in cloudflare_ruleset.redirects[0].rules : r.ref] == ["apex", "keep", "old"]
+    error_message = "Rules must be ordered by key."
+  }
+
+  assert {
+    condition = (
+      cloudflare_ruleset.redirects[0].rules[1].expression == "(http.host eq \"keep.example.com\")" &&
+      cloudflare_ruleset.redirects[0].rules[1].action_parameters.from_value.target_url.expression == "concat(\"https://example.net/base\", http.request.uri.path)" &&
+      cloudflare_ruleset.redirects[0].rules[1].action_parameters.from_value.target_url.value == null &&
+      cloudflare_ruleset.redirects[0].rules[1].action_parameters.from_value.preserve_query_string == true &&
+      cloudflare_ruleset.redirects[0].rules[1].action_parameters.from_value.status_code == 308
+    )
+    error_message = "keep_path_and_query must append the request path to target_url (without a doubled slash) and preserve the query string."
+  }
+}
+
+# The handle's record is at _atproto.<host>, so a redirect on the handle's hostname is fine.
+run "redirect_on_a_bluesky_handle_hostname" {
+  command = plan
+
+  variables {
+    zone_id         = "0123456789abcdef0123456789abcdef"
+    zone_name       = "example.com"
+    bluesky_handles = { "example.com" = "did:plc:abcdefghijklmnopqrstuvwx" }
+    redirects = {
+      "apex" = { hostname = "example.com", target_url = "https://example.net/profile/example.com", status_code = 302 }
+    }
+  }
+
+  assert {
+    condition     = cloudflare_dns_record.bluesky_handle["example.com"].name == "_atproto.example.com" && cloudflare_dns_record.redirect["apex"].name == "example.com"
+    error_message = "A handle and a redirect on the same hostname must coexist."
+  }
+}
+
+# MX and TXT records may share a redirect's hostname; only address records collide.
+run "redirect_beside_mx_and_txt" {
+  command = plan
+
+  variables {
+    zone_id   = "0123456789abcdef0123456789abcdef"
+    zone_name = "example.com"
+    extra_records = {
+      "mx"  = { name = "example.com", type = "MX", content = "mail.example.net", priority = 10 }
+      "spf" = { name = "example.com", type = "TXT", content = "v=spf1 -all" }
+    }
+    redirects = {
+      "apex" = { hostname = "example.com", target_url = "https://example.net/", status_code = 302 }
+    }
+  }
+
+  assert {
+    condition     = length(cloudflare_dns_record.extra) == 2 && length(cloudflare_dns_record.redirect) == 1
+    error_message = "MX and TXT records must coexist with a redirect on the same hostname."
+  }
+}
+
+# A subdomain site and a redirect on the apex are different hostnames.
+run "redirect_beside_a_subdomain_site" {
+  command = plan
+
+  variables {
+    zone_id            = "0123456789abcdef0123456789abcdef"
+    zone_name          = "example.com"
+    site_hostname      = "show.example.com"
+    github_pages_owner = "example-owner"
+    redirects = {
+      "apex" = { hostname = "example.com", target_url = "https://show.example.com/", status_code = 302 }
+    }
+  }
+
+  assert {
+    condition     = keys(cloudflare_dns_record.site) == ["CNAME"] && cloudflare_dns_record.redirect["apex"].name == "example.com"
+    error_message = "A subdomain site and an apex redirect must coexist."
   }
 }
 
@@ -607,4 +761,171 @@ run "allows_extra_txt_at_apex_site" {
     condition     = length(cloudflare_dns_record.site) == 8 && length(cloudflare_dns_record.extra) == 1
     error_message = "An apex site and a TXT record at the apex must coexist."
   }
+}
+
+run "fails_redirects_without_zone_id" {
+  command = plan
+  variables {
+    zone_name = "example.com"
+    redirects = { "apex" = { hostname = "example.com", target_url = "https://example.net/", status_code = 302 } }
+  }
+  expect_failures = [var.zone_id]
+}
+
+run "fails_redirect_bad_key" {
+  command = plan
+  variables {
+    zone_id   = "0123456789abcdef0123456789abcdef"
+    zone_name = "example.com"
+    redirects = { "Apex Redirect" = { hostname = "example.com", target_url = "https://example.net/", status_code = 302 } }
+  }
+  expect_failures = [var.redirects]
+}
+
+run "fails_redirect_uppercase_hostname" {
+  command = plan
+  variables {
+    zone_id   = "0123456789abcdef0123456789abcdef"
+    zone_name = "example.com"
+    redirects = { "apex" = { hostname = "Example.com", target_url = "https://example.net/", status_code = 302 } }
+  }
+  expect_failures = [var.redirects]
+}
+
+run "fails_redirect_wildcard_hostname" {
+  command = plan
+  variables {
+    zone_id   = "0123456789abcdef0123456789abcdef"
+    zone_name = "example.com"
+    redirects = { "all" = { hostname = "*.example.com", target_url = "https://example.net/", status_code = 302 } }
+  }
+  expect_failures = [var.redirects]
+}
+
+run "fails_redirect_hostname_outside_zone" {
+  command = plan
+  variables {
+    zone_id   = "0123456789abcdef0123456789abcdef"
+    zone_name = "example.com"
+    redirects = { "other" = { hostname = "example.net", target_url = "https://example.org/", status_code = 302 } }
+  }
+  expect_failures = [var.redirects]
+}
+
+run "fails_redirect_hostname_too_deep" {
+  command = plan
+  variables {
+    zone_id   = "0123456789abcdef0123456789abcdef"
+    zone_name = "example.com"
+    redirects = { "deep" = { hostname = "a.old.example.com", target_url = "https://example.net/", status_code = 302 } }
+  }
+  expect_failures = [var.redirects]
+}
+
+run "fails_redirect_duplicate_hostname" {
+  command = plan
+  variables {
+    zone_id   = "0123456789abcdef0123456789abcdef"
+    zone_name = "example.com"
+    redirects = {
+      "one" = { hostname = "example.com", target_url = "https://example.net/", status_code = 302 }
+      "two" = { hostname = "example.com", target_url = "https://example.org/", status_code = 302 }
+    }
+  }
+  expect_failures = [var.redirects]
+}
+
+run "fails_redirect_target_without_scheme" {
+  command = plan
+  variables {
+    zone_id   = "0123456789abcdef0123456789abcdef"
+    zone_name = "example.com"
+    redirects = { "apex" = { hostname = "example.com", target_url = "example.net/page", status_code = 302 } }
+  }
+  expect_failures = [var.redirects]
+}
+
+run "fails_redirect_target_with_quote" {
+  command = plan
+  variables {
+    zone_id   = "0123456789abcdef0123456789abcdef"
+    zone_name = "example.com"
+    redirects = { "apex" = { hostname = "example.com", target_url = "https://example.net/\"x", status_code = 302 } }
+  }
+  expect_failures = [var.redirects]
+}
+
+run "fails_redirect_to_itself" {
+  command = plan
+  variables {
+    zone_id   = "0123456789abcdef0123456789abcdef"
+    zone_name = "example.com"
+    redirects = { "loop" = { hostname = "old.example.com", target_url = "https://old.example.com/new", status_code = 302 } }
+  }
+  expect_failures = [var.redirects]
+}
+
+run "fails_redirect_keep_path_with_query_target" {
+  command = plan
+  variables {
+    zone_id   = "0123456789abcdef0123456789abcdef"
+    zone_name = "example.com"
+    redirects = { "apex" = { hostname = "example.com", target_url = "https://example.net/?from=apex", status_code = 302, keep_path_and_query = true } }
+  }
+  expect_failures = [var.redirects]
+}
+
+run "fails_redirect_bad_status_code" {
+  command = plan
+  variables {
+    zone_id   = "0123456789abcdef0123456789abcdef"
+    zone_name = "example.com"
+    redirects = { "apex" = { hostname = "example.com", target_url = "https://example.net/", status_code = 200 } }
+  }
+  expect_failures = [var.redirects]
+}
+
+run "fails_redirect_on_site_hostname" {
+  command = plan
+  variables {
+    zone_id            = "0123456789abcdef0123456789abcdef"
+    zone_name          = "example.com"
+    site_hostname      = "example.com"
+    github_pages_owner = "example-owner"
+    redirects          = { "apex" = { hostname = "example.com", target_url = "https://example.net/", status_code = 302 } }
+  }
+  expect_failures = [var.redirects]
+}
+
+run "fails_redirect_beside_extra_a" {
+  command = plan
+  variables {
+    zone_id       = "0123456789abcdef0123456789abcdef"
+    zone_name     = "example.com"
+    extra_records = { "old" = { name = "old.example.com", type = "A", content = "192.0.2.10" } }
+    redirects     = { "old" = { hostname = "old.example.com", target_url = "https://example.net/", status_code = 302 } }
+  }
+  expect_failures = [var.redirects]
+}
+
+run "fails_redirect_beside_extra_aaaa" {
+  command = plan
+  variables {
+    zone_id       = "0123456789abcdef0123456789abcdef"
+    zone_name     = "example.com"
+    extra_records = { "old" = { name = "old.example.com", type = "AAAA", content = "2001:db8::10" } }
+    redirects     = { "old" = { hostname = "old.example.com", target_url = "https://example.net/", status_code = 302 } }
+  }
+  expect_failures = [var.redirects]
+}
+
+run "fails_redirect_beside_extra_cname" {
+  command = plan
+  variables {
+    zone_id       = "0123456789abcdef0123456789abcdef"
+    zone_name     = "example.com"
+    extra_records = { "old" = { name = "old.example.com", type = "CNAME", content = "example.net" } }
+    redirects     = { "old" = { hostname = "old.example.com", target_url = "https://example.net/", status_code = 302 } }
+  }
+  expect_failures = [var.redirects]
 }

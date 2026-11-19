@@ -15,5 +15,18 @@ output "records" {
     { for i, r in cloudflare_dns_record.github_pages_verification : "github_pages_verification[${i}]" => { name = r.name, type = r.type, content = r.content, proxied = r.proxied } },
     { for k, r in cloudflare_dns_record.bluesky_handle : "bluesky_handle[\"${k}\"]" => { name = r.name, type = r.type, content = r.content, proxied = r.proxied } },
     { for k, r in cloudflare_dns_record.extra : "extra[\"${k}\"]" => { name = r.name, type = r.type, content = r.content, proxied = r.proxied } },
+    { for k, r in cloudflare_dns_record.redirect : "redirect[\"${k}\"]" => { name = r.name, type = r.type, content = r.content, proxied = r.proxied } },
   )
+}
+
+output "redirects" {
+  description = "Every redirect, by key: the hostname, where it goes, the status code and whether the path and query are kept."
+  value = {
+    for k, r in var.redirects : k => {
+      from                = "https://${r.hostname}/"
+      to                  = r.target_url
+      status_code         = r.status_code
+      keep_path_and_query = r.keep_path_and_query
+    }
+  }
 }

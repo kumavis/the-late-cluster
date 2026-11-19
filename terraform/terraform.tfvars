@@ -49,6 +49,25 @@ bluesky_handles = {
   "latecluster.simcluster.tv" = "did:plc:zdobmviiuyfkc6xyylmpm2sf"
 }
 
+# --- Redirects -----------------------------------------------------------------------------
+# Hostname => where every request to it goes. Each creates a proxied placeholder A record
+# (192.0.2.1, no origin) and one rule in the zone's Single Redirects ruleset. Needs the
+# token permission Zone, Single Redirect, Edit. A redirect hostname cannot be site_hostname,
+# so when the show's site takes the apex, this entry goes.
+redirects = {
+  "bluesky-profile" = {
+    hostname   = "simcluster.tv"
+    target_url = "https://bsky.app/profile/latecluster.simcluster.tv"
+    # 302 is temporary on purpose: the apex may host the show's own site later, and
+    # browsers cache a permanent 301 or 308 indefinitely, so visitors who saw it would keep
+    # going to Bluesky after the site moves in. Change to 301 only if this is for good.
+    status_code         = 302
+    keep_path_and_query = false
+  }
+  # www is not redirected. To add it, copy the entry above with hostname
+  # "www.simcluster.tv" and a new key such as "www-bluesky-profile".
+}
+
 # --- Any other record --------------------------------------------------------------------
 # Keyed by a short name of your choosing; the key is the record's address in state, so do
 # not rename it casually. Types: A, AAAA, CNAME, MX, TXT, NS. ttl defaults to 1 (automatic),

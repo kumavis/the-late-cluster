@@ -7,9 +7,10 @@
 #
 # Validations may refer to other variables, but the references must not form a cycle. They
 # point one way only: zone_id checks everything; github_pages_verification_code checks
-# github_pages_owner and zone_name; github_pages_owner checks the site; extra_records checks
-# the site and the zone; site_hostname and bluesky_handles check zone_name; zone_name and
-# site_target check nothing else. A missing zone_name shows up as a hostname that is "not
+# github_pages_owner and zone_name; github_pages_owner checks the site; redirects checks the
+# site, extra_records and the zone; extra_records checks the site and the zone;
+# site_hostname and bluesky_handles check zone_name; zone_name and site_target check
+# nothing else. A missing zone_name shows up as a hostname that is "not
 # in the zone".
 #
 # The hostname pattern used below (RE2): one or more labels of letters, digits and inner
@@ -34,9 +35,10 @@ variable "zone_id" {
       var.site_hostname == null &&
       var.github_pages_verification_code == null &&
       length(var.bluesky_handles) == 0 &&
-      length(var.extra_records) == 0
+      length(var.extra_records) == 0 &&
+      length(var.redirects) == 0
     )
-    error_message = "zone_id is required once any record is configured (site_hostname, github_pages_verification_code, bluesky_handles or extra_records)."
+    error_message = "zone_id is required once any record is configured (site_hostname, github_pages_verification_code, bluesky_handles, extra_records or redirects)."
   }
 }
 
@@ -213,5 +215,82 @@ variable "extra_records" {
       )
     ])
     error_message = "An extra_records entry cannot be at site_hostname when it is an A, AAAA or CNAME record (GitHub refuses to issue a certificate when other address records are present), nor at all when site_hostname is a subdomain (its CNAME must stand alone)."
+  }
+}
+
+# ---------------------------------------------------------------------------------------
+# Redirects
+# ---------------------------------------------------------------------------------------
+
+variable "redirects" {
+  description = "Hostnames in the zone that redirect elsewhere, keyed by a short stable name you choose (the key is the rule's ref and the placeholder record's address in state). Each gets a proxied placeholder A record and one rule in the zone's Single Redirects ruleset."
+  type = map(object({
+    hostname    = string
+    target_url  = string
+    status_code = number
+    # Carry the request's path and query string over to the target: /x?y on the hostname
+    # goes to <target_url>/x?y. When false, every request goes to target_url exactly.
+    keep_path_and_query = optional(bool, false)
+  }))
+  default  = {}
+  nullable = false
+
+  validation {
+    condition     = alltrue([for k in keys(var.redirects) : can(regex("^[a-z0-9][a-z0-9_-]{0,62}$", k))])
+    error_message = "Each redirects key must be 1 to 63 lowercase letters, digits, hyphens or underscores, starting with a letter or digit (for example \"apex\")."
+  }
+
+  validation {
+    condition     = alltrue([for r in values(var.redirects) : can(regex("^([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\\.)+[a-z]([a-z0-9-]{0,61}[a-z0-9])?$", r.hostname))])
+    error_message = "Each redirects hostname must be a lowercase, fully qualified hostname such as \"example.com\" or \"old.example.com\": no scheme, no path, no trailing dot, no wildcard."
+  }
+
+  validation {
+    condition     = alltrue([for r in values(var.redirects) : try(r.hostname == var.zone_name || endswith(r.hostname, ".${var.zone_name}"), false)])
+    error_message = "Each redirects hostname must be zone_name itself or a name under it, and zone_name must be set."
+  }
+
+  validation {
+    condition     = alltrue([for r in values(var.redirects) : try(r.hostname == var.zone_name || can(regex("^[a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?$", trimsuffix(r.hostname, ".${var.zone_name}"))), true)])
+    error_message = "A redirects hostname must be the apex or one level below it (\"old.example.com\", not \"a.old.example.com\"): Cloudflare's Universal SSL certificate covers only those, so a deeper name would fail over HTTPS before the redirect runs."
+  }
+
+  validation {
+    condition     = length(distinct([for r in values(var.redirects) : r.hostname])) == length(var.redirects)
+    error_message = "Each hostname may appear in redirects only once: one hostname, one redirect."
+  }
+
+  validation {
+    condition     = alltrue([for r in values(var.redirects) : can(regex("^https?://[a-z0-9]([a-z0-9.-]{0,251}[a-z0-9])?(:[0-9]{1,5})?(/[^\\s\"\\\\]*)?$", r.target_url))])
+    error_message = "Each redirects target_url must be an absolute http or https URL with a lowercase host, such as \"https://example.net/page\", with no spaces, double quotes or backslashes."
+  }
+
+  validation {
+    condition     = alltrue([for r in values(var.redirects) : try(regex("^https?://([^/:]+)", r.target_url)[0] != r.hostname, true)])
+    error_message = "A redirects target_url must not be on the redirect's own hostname: the rule matches every request to that hostname, so it would redirect to itself forever."
+  }
+
+  validation {
+    condition     = alltrue([for r in values(var.redirects) : !r.keep_path_and_query || !can(regex("[?#]", r.target_url))])
+    error_message = "A redirects target_url with keep_path_and_query = true must not have its own query string or fragment: the request's path is appended to it."
+  }
+
+  validation {
+    condition     = alltrue([for r in values(var.redirects) : contains([301, 302, 307, 308], r.status_code)])
+    error_message = "Each redirects status_code must be 301 or 308 (permanent: browsers cache it, possibly indefinitely) or 302 or 307 (temporary). Prefer a temporary code for anything that may change."
+  }
+
+  validation {
+    condition     = var.site_hostname == null || alltrue([for r in values(var.redirects) : r.hostname != var.site_hostname])
+    error_message = "A redirects hostname cannot be site_hostname: the site's records and the redirect's placeholder record would be at the same name. Remove one of them."
+  }
+
+  validation {
+    condition = alltrue([
+      for r in values(var.redirects) : alltrue([
+        for e in values(var.extra_records) : !(e.name == r.hostname && contains(["A", "AAAA", "CNAME"], e.type))
+      ])
+    ])
+    error_message = "A redirects hostname cannot also have an A, AAAA or CNAME record in extra_records: the redirect creates its own proxied placeholder address record there. Other types (MX, TXT) at the same name are fine."
   }
 }

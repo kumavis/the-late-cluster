@@ -1,9 +1,8 @@
 # Cloudflare DNS
 
-Terraform configuration for the show's DNS records in the existing Cloudflare zone
-`simcluster.tv`. It is built to grow: today it manages DNS only, and a Cloudflare Pages
-project can be added later without rewriting the records (see "Moving the site to
-Cloudflare Pages").
+Terraform configuration for the show's DNS records and redirects in the existing Cloudflare
+zone `simcluster.tv`. It is built to grow: a Cloudflare Pages project can be added later
+without rewriting the records (see "Moving the site to Cloudflare Pages").
 
 What it can manage, each piece only when its variables are set:
 
@@ -11,7 +10,9 @@ What it can manage, each piece only when its variables are set:
   A and four AAAA records for the apex, chosen from `site_hostname` and `zone_name`;
 - GitHub's domain verification TXT record;
 - Bluesky handle verification TXT records, one per handle;
-- any other record, through `extra_records`.
+- any other record, through `extra_records`;
+- redirects of whole hostnames to another URL, through `redirects`: a proxied placeholder
+  record per hostname and one rule each in the zone's Single Redirects ruleset.
 
 What it does not manage: the zone itself (it is referenced by `zone_id`), the domain
 registration, the zone's settings (SSL/TLS mode, caching), and anything at GitHub or Bluesky.
@@ -19,8 +20,8 @@ With no variables set, the plan is empty.
 
 Secrets are kept apart from configuration. The configuration, the real variable values
 included, is committed in `terraform.tfvars`: hostnames and DIDs are public in DNS, and the
-zone id is an identifier that grants nothing without a token. The only secret is the Cloudflare API token, which is read from the
-`CLOUDFLARE_API_TOKEN` environment variable and never written in this folder.
+zone id is an identifier that grants nothing without a token. The only secret is the
+Cloudflare API token, which is read from the `CLOUDFLARE_API_TOKEN` environment variable and never written in this folder.
 
 Files:
 
@@ -30,8 +31,9 @@ Files:
 | `variables.tf` | every input, with its validation |
 | `terraform.tfvars` | the show's configuration, committed, with every variable shown and commented |
 | `dns.tf` | the records, and the seam between the site's hostname and its host |
-| `outputs.tf` | `site_url`, `github_pages_custom_domain`, `records` |
-| `imports.tf` | commented `import` blocks for adopting records that already exist |
+| `redirects.tf` | the redirects' placeholder records and the Single Redirects ruleset |
+| `outputs.tf` | `site_url`, `github_pages_custom_domain`, `records`, `redirects` |
+| `imports.tf` | commented `import` blocks for adopting records or a ruleset that already exist |
 | `backend.tf.example` | remote state on Cloudflare R2, ready to rename |
 | `tests/dns.tftest.hcl` | every case, against a mocked provider, independent of `terraform.tfvars` |
 | `tests/committed.tftest.hcl` | what the committed `terraform.tfvars` plans |
@@ -64,10 +66,16 @@ The rest of this README writes commands as `terraform <args>`; either form runs 
 ## Where things stand
 
 - The zone `simcluster.tv` is on Cloudflare and is referenced, not managed.
-- One record is applied and verified: the Bluesky handle `latecluster.simcluster.tv`,
+- Applied and verified: the Bluesky handle `latecluster.simcluster.tv`,
   `cloudflare_dns_record.bluesky_handle["latecluster.simcluster.tv"]`, the TXT record
-  `_atproto.latecluster.simcluster.tv`. `tests/committed.tftest.hcl` asserts that this is
-  the only record the committed configuration plans.
+  `_atproto.latecluster.simcluster.tv`.
+- Configured, not applied yet: `simcluster.tv` redirects with a temporary 302 to
+  `https://bsky.app/profile/latecluster.simcluster.tv`, path and query dropped. Applying it
+  adds `cloudflare_dns_record.redirect["bluesky-profile"]` (proxied A `simcluster.tv`
+  `192.0.2.1`) and `cloudflare_ruleset.redirects[0]` (one rule). The token needs the Single
+  Redirect permission first (step 1 below); until then plan and apply fail on the ruleset.
+- `tests/committed.tftest.hcl` asserts that the committed configuration plans exactly these
+  three resources: the handle record, the placeholder record and the ruleset with its rule.
 - The site's hostname is not chosen yet: the owner is deciding between the apex and a
   subdomain, so the site variables in `terraform.tfvars` are commented out.
 - State is local: `terraform.tfstate` exists only on the owner's machine. Moving it to R2
@@ -81,11 +89,18 @@ You need Terraform 1.11 or later.
 1. **Create the API token**, if you do not have one. In the Cloudflare dashboard, open My
    Profile, API Tokens, Create Token, and start from the "Edit zone DNS" template or a
    custom token with:
-   - Permissions: Zone, DNS, Edit.
+   - Permissions: Zone, DNS, Edit, and Zone, Single Redirect, Edit.
    - Zone Resources: Include, Specific zone, `simcluster.tv`.
 
    Nothing else is needed: the configuration takes the zone id as a variable, so it never
-   reads the zone. The token is shown once.
+   reads the zone. The token is shown once. An existing token can be edited in place (API
+   Tokens, the token's menu, Edit) to add a permission; its value does not change.
+
+   DNS Edit covers the records. Single Redirect Edit covers the zone's Single Redirects
+   ruleset, which `redirects` manages. Without it, plan and apply stop at
+   `cloudflare_ruleset.redirects` with an "Authentication error" from the rulesets API,
+   even though the DNS records would be fine. (In the API's permission-group list the same
+   permission is called "Dynamic URL Redirects Write".)
 
 2. **Put it in `.secrets`** at the repository root, which git ignores. Copy the template if
    the file does not exist yet, and fill in `CLOUDFLARE_API_TOKEN=`:
@@ -100,10 +115,12 @@ You need Terraform 1.11 or later.
    npm run terraform -- init
    ```
 
-4. **Plan**, and read it. On the machine that holds the state it should report no changes.
-   On a machine without the state it wants to create the handle record, which already
-   exists: do not apply, and see "Recovering lost state" (or move the state to R2 first,
-   from the machine that has it, and use it from everywhere).
+4. **Plan**, and read it. On the machine that holds the state it should report only what
+   "Where things stand" lists as not applied yet (today, the redirect's placeholder record
+   and the ruleset); apply that, and the next plan reports no changes. On a machine
+   without the state it also wants to create the handle record, which already exists: do
+   not apply, and see "Recovering lost state" (or move the state to R2 first, from the
+   machine that has it, and use it from everywhere).
 
    ```sh
    npm run terraform -- plan
@@ -206,6 +223,7 @@ All are optional. Hostnames are fully qualified and lowercase, never `@` or a ba
 | `github_pages_verification_code` | string | null | GitHub's verification code. Creates TXT `_github-pages-challenge-<owner>.<zone_name>`. |
 | `bluesky_handles` | map(string) | `{}` | Handle hostname to DID (`did:plc:...` or `did:web:...`). Creates TXT `_atproto.<handle>` with `did=<DID>`. |
 | `extra_records` | map(object) | `{}` | Other records, keyed by a short name you choose. Fields below. |
+| `redirects` | map(object) | `{}` | Hostnames that redirect elsewhere, keyed by a short name you choose. Fields below, and "Redirects". |
 
 `extra_records` fields: `name` (hostname in the zone; labels may start with `_`),
 `type` (A, AAAA, CNAME, MX, TXT or NS), `content`, `ttl` (default 1, meaning automatic, or
@@ -220,9 +238,79 @@ alone. Records whose value has several fields (CAA, SRV and others) need their o
 `cloudflare_dns_record` resource with a `data` block. If you ever add a CAA record, one must
 allow `letsencrypt.org`, or GitHub's certificate fails.
 
+`redirects` fields: `hostname` (the apex or one level below it, in the zone), `target_url`
+(an absolute http or https URL, not on the same hostname), `status_code` (required: 302 or
+307 temporary, 301 or 308 permanent), `keep_path_and_query` (default false). The key is the
+rule's `ref` and the placeholder record's address, `cloudflare_dns_record.redirect["<key>"]`.
+A redirect hostname may not be `site_hostname`, may not appear twice, and may not have an A,
+AAAA or CNAME record in `extra_records`; MX and TXT records at the same name are fine, and so
+is a Bluesky handle (its record is at `_atproto.<hostname>`). Such a handle must be verified
+by DNS, as `bluesky_handles` does: Bluesky's other method, a file at
+`https://<hostname>/.well-known/atproto-did`, would be redirected like every other path.
+
 Outputs: `site_url` (with a trailing slash, for `show.config.json`),
-`github_pages_custom_domain` (what to type in the repository's Pages settings), and
-`records` (every managed record by address, with name, type, content and proxied).
+`github_pages_custom_domain` (what to type in the repository's Pages settings),
+`records` (every managed record by address, with name, type, content and proxied), and
+`redirects` (each redirect's from, to, status code and whether path and query are kept).
+
+## Redirects
+
+A redirect sends every request for a hostname in the zone to another URL. Each entry in
+`redirects` creates two things, which is what Cloudflare needs for a hostname with no
+server behind it:
+
+- a proxied A record at the hostname pointing at `192.0.2.1`, the placeholder address
+  Cloudflare documents for this ("Redirect one domain to another"). It routes nowhere; it
+  only makes requests for the hostname reach Cloudflare, which answers with the redirect.
+- a rule in the zone's Single Redirects ruleset (phase `http_request_dynamic_redirect`)
+  matching `http.host eq "<hostname>"`, over HTTP and HTTPS. A zone has at most one
+  entry-point ruleset per phase, so all redirects are rules in the one
+  `cloudflare_ruleset.redirects` resource. Removing the last redirect deletes the ruleset.
+
+With `keep_path_and_query = false` (the default) every request goes to `target_url` exactly.
+With `true`, `/x?y` on the hostname goes to `<target_url>/x?y`.
+
+The status code is a deliberate choice. 301 and 308 are permanent: browsers cache them, for
+practical purposes indefinitely, so a visitor who saw one keeps being sent to the old target
+after you change it. 302 and 307 are temporary and safe to change later. The apex redirect to
+the Bluesky profile is 302 for that reason, since the apex may host the show's site later;
+when it does, delete the redirect (a redirect hostname cannot also be `site_hostname`) and
+set up the site.
+
+A hostname must be the apex or one level below it, because Cloudflare's free Universal SSL
+certificate covers only those; a deeper name would fail over HTTPS before the redirect runs.
+
+To redirect `www.simcluster.tv` the same way, add a second entry with its own key:
+
+```hcl
+redirects = {
+  "bluesky-profile" = { ... }
+  "www-bluesky-profile" = {
+    hostname            = "www.simcluster.tv"
+    target_url          = "https://bsky.app/profile/latecluster.simcluster.tv"
+    status_code         = 302
+    keep_path_and_query = false
+  }
+}
+```
+
+Then update `tests/committed.tftest.hcl`, plan, apply and commit.
+
+If the zone already has a Single Redirects ruleset (redirect rules made in the dashboard,
+or an empty one Cloudflare created), creating `cloudflare_ruleset.redirects` fails because
+the phase's entry point already exists. Find its id and import it with the block in
+`imports.tf`:
+
+```sh
+curl -s -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+  "https://api.cloudflare.com/client/v4/zones/0da61adff2a379b4aca38f85be7f3d10/rulesets/phases/http_request_dynamic_redirect/entrypoint" |
+  jq '.result | {id, name, rules: [.rules[]? | {ref, expression}]}'
+```
+
+The import id is `zones/<zone_id>/<ruleset id>`. After the import, the next apply replaces
+the ruleset's rules with those from `redirects`, so describe any rule you want to keep there
+first. Likewise, if a hostname already has an address record, import it as
+`cloudflare_dns_record.redirect["<key>"]` or delete it.
 
 ## Adopting records that already exist
 
@@ -268,9 +356,12 @@ they are, but Terraform no longer knows it manages them, and a plan wants to cre
 again (apply would fail with "record already exists"). Recover by importing each one:
 
 1. Find the record ids (step 2 of "Adopting records that already exist"). For the handle,
-   look for the TXT record `_atproto.latecluster.simcluster.tv`.
+   look for the TXT record `_atproto.latecluster.simcluster.tv`; for the redirect, the A
+   record `simcluster.tv` with content `192.0.2.1`. The ruleset's id comes from the
+   entry-point request in "Redirects".
 2. In `imports.tf`, uncomment the recovery block for the handle, check its id against the
-   API, and add one block per other record the configuration manages by then.
+   API, and add one block per other record the configuration manages by then (the
+   redirect's placeholder record and `cloudflare_ruleset.redirects[0]` once applied).
 3. `terraform plan` must show only imports (and at most in-place updates). Apply.
 4. Comment the blocks out again, and move the state to R2 so this does not recur.
 

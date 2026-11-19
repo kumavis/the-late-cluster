@@ -46,6 +46,21 @@
 #   id = "${var.zone_id}/0123456789abcdef0123456789abcdef"
 # }
 
+# A redirect's placeholder A record, if the hostname already has one (the key is yours):
+# import {
+#   to = cloudflare_dns_record.redirect["bluesky-profile"]
+#   id = "${var.zone_id}/0123456789abcdef0123456789abcdef"
+# }
+
+# The zone's Single Redirects ruleset, if the zone already has one (made in the dashboard,
+# or an empty one Cloudflare created). The id is "zones/<zone_id>/<ruleset_id>"; README.md,
+# "Redirects", shows how to find the ruleset id. Importing replaces its rules with the ones
+# from var.redirects on the next apply, so carry any rule you want to keep into redirects.
+# import {
+#   to = cloudflare_ruleset.redirects[0]
+#   id = "zones/${var.zone_id}/0123456789abcdef0123456789abcdef"
+# }
+
 # Any other record, after describing it in extra_records (the key is yours):
 # import {
 #   to = cloudflare_dns_record.extra["mail-mx"]
