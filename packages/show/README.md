@@ -296,12 +296,16 @@ Placement fields (`shot` layouts and `puppet().place()`): `x, y` head centre (wo
 null), `seat` (world y where a seated body ends), `instrument` (`keys`, `bass`, `drums`, `mic`,
 `lectern`, `stand`, `sportsdesk`), `clip` (stage rect), `fx`.
 Numeric shot options (`popUp`, `zoom`, …) can change every frame without counting as a new shot.
+That also means changing only a number never cuts or pushes: the new value applies at once, so
+tween it yourself (`zoom: show.tween(t, a, b, 1.2, 1.6, show.ease.inOutCubic)`) to ease it.
 Layouts may also return `set: { … }` overrides, `monitors: [...]` and `lane` (see `shots.js`; the
 `monitor(L, who, rect, o)` helper puts a puppet in a tvFrame).
 Add a shot: `show.SHOTS.myShot = (show, opts) => ({ cam: { x, y, zoom }, place: { … }, audience: 0..1, panel })`
 from `setup` (shots are shared, so prefix your names).
 
-Cuts are the default; `push` eases camera and puppets between shots. Heads turn smoothly on their
+Cuts are the default; `push` eases camera and puppets between shots. During a push the shot's
+own `set` overrides are dropped (only camera and placements blend), so if a look depends on set
+flags, assign `show.set.*` in `direct` every frame rather than relying on the shot's `set`. Heads turn smoothly on their
 own when their `look` target changes, and snap on a cut or a seek.
 
 ### Looks and costumes
@@ -333,7 +337,9 @@ clicker · **borjev** a tiny sepia terminal.
 **Chyrons** read the cast (`src/cast.js` plus the episode's own `cast.js`): a `handle` shows after the title, and `guest: true` adds a
 **PUPPET · PARODY** tag — these are puppets playing real accounts' posting personas, and the show
 says so on screen. A segment's `disclaimer` shows a one-line footer along the bottom for a few
-seconds (captions lift above it).
+seconds (captions lift above it). Handles are only ever a real account's (the guests'), or an
+invented one under `.example` (bible R8); the house characters are not accounts and have no
+handle, so their chyrons show name and title only.
 
 ### The set
 
@@ -397,7 +403,11 @@ that exist (two numbered columns, each title cut at its first ':'; empty while n
 line in the TONIGHT row names the episode: `NO. 001 · PILOT · 13 NOV 2026` (number, title and air
 date from `episode.json`). After the last segment the end card plays the band out under the logo
 with rolling credits built from the cast, listing only who appears in this episode (everyone
-with a line, plus each segment's `cast` and `guests`), and a WATCH AGAIN button. Shoot them as
+with a line, plus each segment's `cast` and `guests`), and a WATCH AGAIN button. As the
+constitution (Article 4) and R9 require, the credits list the house cast under STARRING, then
+every guest who appears, by display name and handle (from the cast entry, including the episode's
+own `cast.js`), under PUPPETS PLAYED THE POSTING PERSONAS OF, and say that every voice is
+synthesized by CHIMERA. So a guest's cast entry needs its real `name` and `handle`. Shoot them as
 `title`, `end`, or any not-yet-made rundown id (`npm run shoot -- <ep> <id> 1` shows its "in
 production" card).
 
@@ -411,6 +421,9 @@ production" card).
 - **Don't** keep state across frames in `direct`/`draw*` — compute from `t`. Use `show.rng(seed)`.
 - `closeup` frames a puppet where it was last placed (`show.markOf`), ignoring placements inside a
   monitor/PiP (clipped); for a guest seen only in an ots/PiP, give the closeup an explicit spot.
+- **Fade with the `alpha` option, not the context.** Beams, labels and the other kit drawers set
+  `ctx.globalAlpha` themselves, so wrapping them in `ctx.globalAlpha = a` does not fade them: pass
+  `alpha` (or `appear`, where a drawer has it) to each call.
 - **Do** `occlude()` behind any graphic that sits over the set; beams add light, so overlapping
   lines without a black fill get messy.
 - **Don't** fight the captions: keep big graphics above y ≈ 610, or hide captions for that

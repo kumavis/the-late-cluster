@@ -87,13 +87,26 @@ export function productionModule(title, n) {
   }
 }
 
-/** the credits: the cast from cast.js (only those in `who`, if given), then the people behind the curtain */
+/**
+ * The credits (Article 4, R9): the house cast who appear; the real accounts whose posting personas
+ * guest puppets played, by display name and handle (from the cast, including an episode's own
+ * cast.js); that every voice is synthesized; the CHIMERA project. `who`: the ids that appear (all
+ * if null). Lines are kept short enough for the roll's column (see endModule).
+ */
 export function credits(who = null) {
+  const appears = ([id]) => !who || who.has(id)
+  const cast = Object.entries(CAST).filter(appears)
   const out = [{ head: 'The Late Cluster' }, ['with', 'Larry Nx'], '']
   out.push({ head: 'Starring' })
-  for (const [id, c] of Object.entries(CAST)) if (!who || who.has(id)) out.push([c.title ?? '', c.guest ? `${c.name} (puppet)` : c.name])
-  out.push('', { head: 'Voices & faces' }, ['physical models', 'CHIMERA vocal synth'], ['by', 'jamesondh · MIT'], ['', 'github.com/jamesondh/chimera-vocal-synth'], '')
-  out.push('Guests are puppets playing posting personas.', 'No accounts were simclustered in the making of this programme.', '', { head: 'Good night, Bluesky' })
+  for (const [, c] of cast) if (!c.guest) out.push([c.title ?? '', c.name])
+  const guests = cast.filter(([, c]) => c.guest)
+  if (guests.length) {
+    out.push('', { head: 'Puppets played the' }, { head: 'posting personas of' })
+    for (const [, c] of guests) out.push(c.handle ? [c.name, c.handle] : ['', c.name])
+  }
+  out.push('', { head: 'Voices & faces' }, 'Every voice in this programme', 'is synthesized by CHIMERA.', '')
+  out.push(['physical models', 'CHIMERA vocal synth'], ['by', 'jamesondh · MIT'], ['github.com', 'jamesondh/chimera-vocal-synth'], '')
+  out.push('Guests are puppets', 'playing posting personas.', 'No accounts were simclustered', 'in the making of this programme.', '', { head: 'Good night, Bluesky' })
   return out
 }
 
@@ -116,15 +129,17 @@ export function endModule(who = null) {
       const a = ease.outCubic(clamp(unlerp(0.2, 1.4, t)))
       logo(ctx, 640, 200, 0.62, { t, align: 'center', alpha: a })
       // the credits roll in a column under the logo (and loop)
-      const rect = { x: 390, y: 300, w: 500, h: 270 }
+      // wide enough for a guest's handle in the right-hand column (split 0.44), clear of the band and the desk
+      const rect = { x: 370, y: 300, w: 560, h: 270 }
       ctx.save()
       ctx.globalAlpha = 0.75 * a
       ctx.fillStyle = '#000'
       ctx.fillRect(rect.x, rect.y, rect.w, rect.h)
       ctx.restore()
       const speed = 34
-      const total = lines.length * 40 + rect.h
-      creditsRoll(ctx, lines, (Math.max(0, t - 1) * speed % total) / speed, { rect, speed })
+      // one loop: the lines' height (creditsRoll: 34 per line, 1.5× for a heading) plus the window
+      const total = lines.reduce((h, l) => h + (l?.head ? 51 : 34), 0) + rect.h
+      creditsRoll(ctx, lines, (Math.max(0, t - 1) * speed % total) / speed, { rect, speed, split: 0.44 })
     },
   }
 }

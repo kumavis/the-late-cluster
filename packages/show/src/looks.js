@@ -9,7 +9,9 @@
 //   costume   { kind, color, trim, … } — kinds: tux, band, announcer, suit, hoodie, cardigan,
 //             labcoat, turtleneck, tee, terminal (an AI agent's boxy bot body). See stage/costumes.js.
 //   scale     head size multiplier (1 = adult)
-//   handle    shown on chyrons (cast.js's `handle` wins)
+//   handle    shown on chyrons (cast.js's `handle` wins). Only a real account's handle, or an invented one
+//             under .example (bible R8). The house characters are not accounts and have none: their
+//             chyrons show name and title.
 //   fx        a default puppet effect: 'hologram' | 'monitor' (see show.puppet(id).fx)
 //   prop      a prop that stands beside them: 'contraption' (unveil with show.puppet(id).prop({ unveil }))
 //
@@ -21,15 +23,14 @@ const look = (color, costume, extra = {}) => ({ color, head: headPalette(extra.h
 
 export const LOOKS = {
   larry: look('#ffc861', { kind: 'tux', color: '#ffd27a', shirt: '#fff3d6', tie: '#ffb340', square: '#ff73cf' }, {
-    handle: '@larry.nx',
     headOver: { blueMid: '#e4ab50', blueDim: '#a3762f', frame: '#4a3514' },
   }),
-  sibyl: look('#c9d8ff', { kind: 'announcer', color: '#9fb7ff', trim: '#eef6f8' }, { handle: '@sibyl.ant' }),
+  sibyl: look('#c9d8ff', { kind: 'announcer', color: '#9fb7ff', trim: '#eef6f8' }),
   // Hy Oid & The Formants: matching bandstand jackets in magenta with gold trim, each head its own hue
-  hy: look('#ff73cf', { kind: 'band', color: '#ff5fd2', trim: '#ffc861', monogram: 'F' }, { handle: '@hyoid.band' }),
-  al: look('#58f0e8', { kind: 'band', color: '#ff5fd2', trim: '#ffc861', monogram: 'F' }, { handle: '@alveolar.band' }),
-  dee: look('#b6ff5c', { kind: 'band', color: '#ff5fd2', trim: '#ffc861', monogram: 'F' }, { handle: '@deephthong.band' }),
-  pete: look('#ff9a5c', { kind: 'band', color: '#ff5fd2', trim: '#ffc861', monogram: 'F' }, { handle: '@plosivepete.band' }),
+  hy: look('#ff73cf', { kind: 'band', color: '#ff5fd2', trim: '#ffc861', monogram: 'F' }),
+  al: look('#58f0e8', { kind: 'band', color: '#ff5fd2', trim: '#ffc861', monogram: 'F' }),
+  dee: look('#b6ff5c', { kind: 'band', color: '#ff5fd2', trim: '#ffc861', monogram: 'F' }),
+  pete: look('#ff9a5c', { kind: 'band', color: '#ff5fd2', trim: '#ffc861', monogram: 'F' }),
 
   // ---- the correspondents
   eppy: look('#ff7a2e', { kind: 'blazer', color: '#ff7a2e', trim: '#ffc861', crest: true, holds: 'headset' }),

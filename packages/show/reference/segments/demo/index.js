@@ -53,7 +53,7 @@ export default {
     // lower thirds
     show.chyron('larry', { from: 1.6, dur: 4.5 })
     show.chyron('sibyl', { from: show.at('interrupt') + 0.3, to: 'again' })
-    if (show.since('band-in') > 0.5) show.chyron({ name: 'Hy Oid & The Formants', title: 'The house band', handle: '@formants.band', color: show.P.magenta }, { from: show.at('band-in') + 0.6, dur: 4 })
+    if (show.since('band-in') > 0.5) show.chyron({ name: 'Hy Oid & The Formants', title: 'The house band', color: show.P.magenta }, { from: show.at('band-in') + 0.6, dur: 4 })
     show.chyron({ name: 'We’ll be right back', title: 'The Late Cluster', color: show.P.gold }, { from: 'back', to: show.duration })
   },
 
@@ -93,7 +93,7 @@ export default {
       const u = show.since('accurate') + 0.2
       draw.skeetCard(ctx, {
         x: show.panel.x + 120, y: show.panel.y + 290, w: 500,
-        name: 'Larry Nx', handle: 'larrynx.bsky.social', time: '2m', initials: 'L', color: P.gold,
+        name: 'Larry Nx', handle: 'larrynx.example', time: '2m', initials: 'L', color: P.gold,
         text: 'finally, an algorithm that understands me',
         replies: 12, reposts: Math.round(40 + 300 * show.clamp(u / 2)), likes: Math.round(120 + 2400 * show.clamp(u / 2.5)),
         appear: u / 0.5, reveal: (u - 0.2) / 1.2, likePulse: (u - 1.6) / 0.4, liked: u > 1.6,

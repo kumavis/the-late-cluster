@@ -373,7 +373,7 @@ are easy to confuse. In the final cast every voice's nearest neighbour is at lea
 | eppy | shouty sports | 0.15 / 0.2 | 165 (189) | 1.16 | 0.36 | tension 0.68, bright 0.55 | borjev 1.82 |
 | sibyl | announcer | 1 / 0 | 196 (207) | 1.04 | 0.2 | breath 0.2 | borjev 1.79 |
 | samantha | broadcast | 1 / 0.15 | 228 (253) | 1.08 | 0.32 | breath 0.08, bright 0.5 | bot 1.84 |
-| bot | chirpy, flat | 0.5 / 0.4 | 275 (274) | 1.18 | 0.06 | tension 0.7, bright 0.6 | samantha 1.84 |
+| bot | chirpy, flat | 0.5 / 0.4 | 275 (274) | 1.0 | 0.06 | tension 0.7, bright 0.6 | samantha 1.84 |
 
 Rate and accent separate voices too: the table's distance doesn't measure them. Abel at 1.26
 and Larry at 1.0 sound very different at nearly the same pitch (101 and 107 Hz).
@@ -384,8 +384,11 @@ for every voice, the host included, so that is the G2P and engine rather than an
 Overall scores are 71–86 % per voice: al 86, hy 81, eppy 81, borjev 81,
 larry 76, sibyl 76, dee 76, pete 76, bot 76, abel 76, norvid 71, samantha 71.
 
-To add a guest, find an open spot. Gaps left: about 120–130 Hz with a neutral male body, about
-200 Hz with body 0.3–0.5 / child 0, and 240–250 Hz breathy. Then set the attitude: `rate` (0.9
+To add a guest, find an open spot. The gaps are in measured median f0 (what `analyze.ts voices`
+prints, the number in brackets above), not the `f0` you set: a typical `accent` (0.15–0.35)
+raises the median about 6–12 Hz above the set `f0`, so set `f0` that much lower than the gap.
+Gaps left: about 120–130 Hz with a neutral male body, about 200 Hz with body 0.3–0.5 / child 0,
+and 240–250 Hz breathy. Then set the attitude: `rate` (0.9
 deliberate, 1.2 hurried), `accent` (0.05 robotic, 0.35 excitable), breathiness 0.3+ (intimate),
 fry or roughness (croaky), and brightness with tension (brassy). Run
 `bun packages/show/tools/analyze.ts voices [--ep <ep>] <id> --wav /tmp/v --whisper`: keep the nearest distance at 1.5 or

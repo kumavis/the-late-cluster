@@ -77,8 +77,10 @@ export const CAST = {
     pan: 0.45,
   },
 
-  // ---- guests: puppets playing the posting personas of real Bluesky accounts.
-  // Parody, not impersonation: they speak the accounts' own catchphrases or obvious pastiche.
+  // ---- guests: puppets playing the posting personas of real Bluesky accounts (guest: true puts
+  // PUPPET · PARODY on the chyron; the credits name the account by `name` and `handle`).
+  // A real account's puppet says only what that account published, the way they said it, in its
+  // original context; never words the show wrote for them (bible: constitution Article 3, R3).
   norvid: {
     name: 'norvid_studies',
     handle: '@norvid-studies.bsky.social',

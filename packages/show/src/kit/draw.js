@@ -371,7 +371,7 @@ export function skeetCard(ctx, o) {
   const nx = pad + 58
   label(ctx, o.name ?? 'Someone', nx, pad + 15, { size: 17, color: P.white, weight: 'm', ls: 0.04 })
   const nw = labelWidth(ctx, o.name ?? 'Someone', { size: 17, weight: 'm', ls: 0.04 })
-  label(ctx, `@${o.handle ?? 'someone.bsky.social'}${o.time ? ' · ' + o.time : ''}`, nx + nw + 10, pad + 15, { size: 13, color: o.handleColor ?? P.blueMid, ls: 0.05 })
+  label(ctx, `@${o.handle ?? 'someone.example'}${o.time ? ' · ' + o.time : ''}`, nx + nw + 10, pad + 15, { size: 13, color: o.handleColor ?? P.blueMid, ls: 0.05 })
   butterfly(ctx, w - pad - 10, pad + 10, 22, color, { width: 1.2, hot: false, alpha: 0.7 })
   // text (optionally typed on)
   const total = body.length
