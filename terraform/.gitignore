@@ -1,0 +1,26 @@
+# Provider plugins and module cache written by terraform init.
+.terraform/
+
+# State is local by default (see README.md, "Remote state on R2"). State holds record ids
+# and can hold secrets, so it never goes into git.
+*.tfstate
+*.tfstate.*
+
+# terraform.tfvars is the committed configuration (nothing secret goes in it). Any other
+# .tfvars file is a local override and stays out of git.
+*.tfvars
+*.tfvars.json
+!terraform.tfvars
+
+# Plan files written by terraform plan -out.
+*.tfplan
+
+# Crash logs and personal CLI overrides.
+crash.log
+crash.*.log
+override.tf
+override.tf.json
+*_override.tf
+*_override.tf.json
+.terraformrc
+terraform.rc

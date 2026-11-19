@@ -1,0 +1,52 @@
+name: Terraform
+
+# Checks the Cloudflare DNS configuration in terraform/ without credentials: format, init
+# without a backend, validate, and the tests, which run against a mocked Cloudflare provider.
+# The real values are committed in terraform/terraform.tfvars (nothing secret is in it), and
+# tests/committed.tftest.hcl checks what they plan, so a bad edit fails here first.
+# Nothing here talks to Cloudflare. The only network use is downloading the provider from the
+# public registry, checked against the committed .terraform.lock.hcl.
+#
+# There is deliberately no plan and no apply. A plan-and-apply workflow is a later step and
+# needs two things first: remote state (terraform/backend.tf.example, R2) so a runner sees
+# the same state as the owner's machine, and a CLOUDFLARE_API_TOKEN repository secret scoped
+# to the one zone (terraform/README.md). Until then, plan and apply are run by hand.
+
+on:
+  pull_request:
+    paths:
+      - 'terraform/**'
+      - '.github/workflows/terraform.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: terraform
+    steps:
+      - uses: actions/checkout@v7
+
+      # The same version as the owner's machine; providers.tf requires >= 1.11.
+      - uses: hashicorp/setup-terraform@v4
+        with:
+          terraform_version: 1.14.4
+          terraform_wrapper: false
+
+      - name: Format
+        run: terraform fmt -check -recursive -diff
+
+      # No backend: state is never read here. readonly fails if the lock file is stale.
+      - name: Init
+        run: terraform init -backend=false -input=false -lockfile=readonly
+
+      - name: Validate
+        run: terraform validate
+
+      # Mocked provider: no token, no API calls.
+      - name: Test
+        run: terraform test
