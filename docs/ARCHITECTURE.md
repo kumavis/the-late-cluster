@@ -17,8 +17,10 @@ here, change this document in the same commit.
    Bluesky bot and the weekly production pipeline live side by side and share conventions.
 4. **A weekly cadence that a human can trust.** The pipeline does the labour. A person approves
    what airs, because the show jokes about real people.
-5. **Taste is written down.** The design bible in `docs/bible/` says what a good episode is, so
-   that a writer who has never seen the show, human or model, can make one.
+5. **Taste is written down, and allowed to change.** The design bible in `docs/bible/` says what
+   a good episode is, so that a writer who has never seen the show, human or model, can make
+   one. It has a short constitution that only the owner changes, and DNA that each episode may
+   amend.
 
 ## Layout
 
@@ -198,9 +200,9 @@ episode. `<seg>` is a segment id.
 | `npm run verify` | committed builds match their sources (Node builtins only) |
 | `npm run site` | generate the archive index into `dist/` (ignored, never committed) |
 | `npm run preview` | generate the index, then serve `dist/` locally |
-| `npm run scrape -- [--week 2026-W47]` | write the weekly Bluesky digest into `data/` |
+| `npm run scrape -- [--week 2026-W47 \| --since 2026-11-13 --out <dir>]` | write the Bluesky digest for a week, or since a date, into `data/` |
 | `npm run bot -- announce <ep> [--live]` | compose the announcement post; dry run unless `--live` |
-| `npm run produce -- --week 2026-W47` | run the weekly pipeline for one episode, stage by stage |
+| `npm run produce -- --week 2026-W47 [--writer manual] [--preview-only]` | run the pipeline for one episode, stage by stage; `--preview-only` never publishes |
 | `npm run terraform -- <args>` | run Terraform in `terraform/` with the token loaded from `.secrets` |
 | `npm test` | every package's tests (Node builtins only: no install, no browser) |
 
@@ -324,6 +326,31 @@ in `terraform/terraform.tfvars`.
 - The site's host is a seam in the configuration, so the site can move from GitHub Pages to
   Cloudflare Pages without rewriting the records. That is one way out of the size budget
   above for the published site, though not for the repository's own growth.
+
+## How the show stays able to change
+
+Projects lose flexibility after their first formation, and a bible written from one pilot
+hardens into a recipe for remaking it. Three mechanisms push the other way.
+
+- **Two layers.** The constitution is `docs/bible/00-constitution.md` and
+  `docs/bible/09-real-people.md`: only include it if it's interesting; use people's words in
+  their own context and never put words in their mouths; be honest on screen about what the
+  show is; the show's own review signs off before publishing. Only the owner changes it, and
+  the pipeline fails any run in which either file changed. Everything else in the bible is
+  DNA.
+- **Every episode amends the DNA.** A pitch starts with a retro on the previous episode, then
+  what it keeps, what it changes, and one experiment with a stated measure. When the
+  experiment works, the same pull request edits the DNA chapters, so the reviewer approves
+  the change to the show together with the episode. Git history is the lineage.
+- **Inheritance is a decision.** The writer cannot read earlier episodes' source or builds.
+  The plan names anything carried forward, with a reason, and the pipeline copies exactly
+  those files into `production/inherited/` as reference. Earlier source stays in the repo so
+  builds remain verifiable; it is hidden from the writer, not deleted.
+
+The studio follows the same idea: a prop, shot or helper enters `packages/show` only once a
+second episode needs it. Until then it lives with the episode that made it. The pilot's
+single-use props are a known exception. The house cast and the studio are kept for now by the
+owner's choice, which is recorded in the DNA, not the constitution.
 
 ## Decisions
 

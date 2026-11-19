@@ -26,9 +26,18 @@ npm run produce -- --week 2026-W47     # the whole weekly pipeline, stage by sta
 ## Rules that are easy to break
 
 **Episodes**
-- The first rule of the show: only include it if it's interesting. It overrules structure.
-- Real people: `docs/bible/09-real-people.md` is not optional. Guests speak their own words
-  first. Nothing about a real person is invented. The opt-out list is absolute.
+- The constitution is `docs/bible/00-constitution.md` and `docs/bible/09-real-people.md`.
+  Only the owner changes those two files. Everything else in the bible is DNA, and an episode
+  is expected to amend it.
+- Only include it if it's interesting. That overrules structure, formats and length.
+- Their words, in their context: a puppet of a real account says only what that account
+  published, the way they said it. No pastiche, nothing invented, nothing private. The
+  opt-out list is absolute. The show does not wait on anyone's reply.
+- Every episode runs one deliberate experiment and starts from a retro on the last one.
+- Do not open an earlier episode's source to copy from it. Carry something forward only by
+  naming it in the plan with a reason.
+- New props and helpers live with the episode. Something moves into `packages/show` only when
+  a second episode needs it.
 - Nothing airs without a person reading it. The pipeline opens a pull request; it never
   deploys and never announces.
 - Episodes import studio code as `@late-cluster/show/...`, never by relative path. Episode
