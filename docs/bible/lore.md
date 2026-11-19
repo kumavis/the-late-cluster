@@ -169,6 +169,15 @@ type (V verbatim, I interview, C catchphrase, P pastiche).
 |---|---|---|---|---|---|---|---|---|---|
 | 001 | ask, monologue, simcluster-channel, top-chicken (full), built-or-bit, panel, song, goodnight | stomp-clap anthem | wanting a place to belong, in a scene that builds every want at once | Samantha (presenter; V, C), norvid (panel; V, C, P), Abel (panel; C, P), BorJev (cameo; V) | gm/gn | all eleven in the joke-craft table | "a man who is, technically, a throat" | belonging | rules only; crown on a blank card |
 
+## Experiment log
+
+One row per episode, written at the self-check from `plan.json` and `dna-amendments.md`. The next
+episode's retro fills in the after-air verdict.
+
+| ep | experiment | success measure | before air (writer) | after air (retro: reactions, reviewer) | DNA change |
+|---|---|---|---|---|---|
+| 001 | the show itself (the formation) | that people want another | — | people seemed to like Larry Nx and the Formants (the owner's report) | the DNA as first written; the house cast kept for now |
+
 ## Episode log
 
 - **E-001 Pilot** (airDate 2026-11-13, week 2026-W46, 9:51). *Question:* what is the simcluster?

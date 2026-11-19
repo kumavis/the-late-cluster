@@ -1,10 +1,10 @@
 # 4. Segment formats
 
 A shelf of repeatable segments. Pick one per story, and only if the story passes
-[the first rule](01-premise.md#the-first-rule-only-include-it-if-its-interesting). Each card gives
+[the first rule](00-constitution.md#1-only-include-it-if-its-interesting). Each card gives
 the premise, the comic engine, a beat template, what the format needs from the digest, its length,
 staging, the pilot example, and how it goes wrong. Formats 1 to 8 are established by the pilot
-(each from one example, so treat the templates as strong defaults, not law). Format 9, The Thread,
+(each from one example: starting points, and the first candidates for experiments). Format 9, The Thread,
 is established by the owner's decision and is the preferred way to put real people on the show.
 Formats 10 to 14 are **proposals**; 14, The Interview, depends on bot work that does not exist yet.
 
@@ -12,9 +12,11 @@ How a format is used is logged per episode (see [fixed and fresh](03-episode-sha
 the middle slot's format does not repeat two weeks running, and the song's genre changes every
 episode.
 
-Shot and prop names refer to `packages/show/README.md`. The pilot's segments are in
-`episodes/001-pilot/segments/<id>/`; read the matching one before writing a format for the first
-time.
+Shot and prop names refer to `packages/show/README.md`. The pilot examples below are evidence,
+quoted here; they are not source to copy. Earlier episodes' files are available only when the plan
+inherits them ([evolving the show](03-episode-shape.md#evolving-the-show)). A prop a format needs that
+the studio lacks is built in the episode; it moves into the studio only when a second episode needs
+it.
 
 ---
 
@@ -307,7 +309,8 @@ word, in order.
      thread's own joke.
 - **Which threads qualify.** Public, in the cluster, and one of: funny on its own terms, a good
   example of the week's question, or a small kindness. Short: up to about eight posts or 60 seconds.
-  Every participant passes the opt-out rule (R11) and would happily repost the clip (R6); small
+  Every participant passes the opt-out rule (R11) and, in the writer's judgement from their public
+  posts, would happily repost the clip (R6; nobody is asked); small
   accounts only where they come off well (R7). It has a shape: a build-up and a turn.
 - **Which do not.** Arguments, corrections, callouts, dunks, anyone upset; anything touching R10
   topics; a thread where a post has been deleted or edited since the digest; any post under a reply
@@ -388,7 +391,7 @@ word, in order.
 
 ## 14. Proposal: The Interview (by the show's account)
 
-**Not built.** It depends on bot work that does not exist yet, and on the consent design in
+**Not built.** It depends on bot work that does not exist yet, and on the interview design in
 [real people](09-real-people.md#interviews-by-the-shows-account-proposal).
 
 - **Premise.** During the week the show's account asks people who have opted in a question or two in
@@ -401,6 +404,11 @@ word, in order.
   one build, Larry's button. Two or three people answering the same question works well as a montage.
 - **Needs.** The question post, the opted-in replies, verbatim, still live at air time.
 - **Length.** 30 to 60 s.
-- **Rules.** Those of The Thread, plus the consent rules in chapter 9. Larry speaks the question as
+- **Rules.** Those of The Thread, plus the interview rules in chapter 9. An unanswered question
+  never holds up the episode. Larry speaks the question as
   it was posted.
 
+
+## Retired
+
+Formats removed from the shelf, one line each: name, episode, reason. None yet.

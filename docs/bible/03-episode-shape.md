@@ -18,7 +18,7 @@ once. A weekly episode does not need to.
 
 ## The weekly running order
 
-Every slot below is subject to [the first rule](01-premise.md#the-first-rule-only-include-it-if-its-interesting):
+Every slot below is subject to [the first rule](00-constitution.md#1-only-include-it-if-its-interesting):
 only include it if it's interesting. Target **about five minutes; shorter is fine, padding is
 not**. Five segments, about 420 to 520 spoken words.
 
@@ -96,7 +96,7 @@ Mechanics are in `packages/show/README.md` ("The BUILT counter"). Each segment's
 previous segment's final value; agree the chain in the pitch.
 
 - **It starts at 0 every episode** and its first bump is the cold open's "Built it." The pilot's
-  cold open hides the counter until that bump; keep doing that.
+  cold open hides the counter until that bump, so it arrives with the first build.
 - **Up to about 9 bumps** in a five-minute episode (the pilot ran 15 in ten minutes, the same
   rate), and fewer whenever the week's builds aren't interesting: a bump that exists only to move
   the count is filler. Put the last one in goodnight, after Larry reads the tally, so the tally is immediately
@@ -163,13 +163,17 @@ Segments cut straight into one another. So:
 ## Fixed and fresh
 
 The owner names this as the central challenge of a weekly show: what stays the same so it is
-recognisably the same show, and what changes so it isn't the same episode. What follows is a
-**proposal for the owner to adjust**. The first rule sits above all of it, the frame included.
+recognisably the same show, and what changes so it isn't the same episode. All of it is DNA: a
+**proposal for the owner to adjust**, and amendable by episodes as described in
+[evolving the show](#evolving-the-show). The constitution's first rule sits above it, the frame
+included.
 
-### The frame (stays, as a default)
+### The frame (stays, as a default, for now)
 
 The things a viewer should be able to count on. Each is kept unless it isn't interesting this
-week; even then, its *shape* stays and its *content* is new.
+week; even then, its *shape* stays and its *content* is new. The frame is DNA, not law. **Larry
+Nx, the Formants and the studio are kept for now, by the owner's choice, because people liked
+them.** An episode may experiment with how they are used; retiring any of them is the owner's call.
 
 - The name, the studio, the vector look, Larry hosting, the house cast and their attitudes.
 - The cold open's shape: an Ask from this week, "Built it.", the theme hook, "And now... [new
@@ -180,7 +184,7 @@ week; even then, its *shape* stays and its *content* is new.
 - Goodnight's shape: the tally, the question answered in the community's words, "gn,
   simcluster.", "Press E to leave.", the CRT power-down, credits over the skyline with Dee's
   lullaby (proposal: the lullaby is the frame's closing music and does not rotate).
-- Chapter 9's labels and credits (these are not subject to the first rule at all).
+- The constitution's labels and credits (Article 4: these are not DNA and never rotate).
 
 ### What rotates (must be new each week)
 
@@ -206,43 +210,127 @@ week; even then, its *shape* stays and its *content* is new.
 
 ### The mechanism
 
-1. **The pitch writes `episodes/<id>/production/plan.json`** alongside `pitch.md`. The file is owned by
-   the pipeline (`packages/writers-room`); the bible needs at least these fields:
-
-   ```json
-   {
-     "id": "002-example",
-     "week": "2026-W47",
-     "question": "…",
-     "segments": [
-       { "id": "cold-open", "format": "ask", "seconds": 25, "built": [0, 1] },
-       { "id": "monologue", "format": "monologue", "seconds": 60, "built": [1, 2], "topChicken": "hit" },
-       { "id": "middle", "format": "thread", "seconds": 65, "built": [2, 3] },
-       { "id": "song", "format": "song", "genre": "sea shanty", "theme": "…", "seconds": 60, "built": [3, 5] },
-       { "id": "goodnight", "format": "goodnight", "seconds": 40, "built": [5, 6] }
-     ],
-     "guests": [{ "handle": "…", "source": "thread", "segment": "middle", "repeatReason": null }],
-     "runner": "…",
-     "builtShapes": ["plain", "interrupting", "physical"],
-     "descriptor": "…",
-     "sincere": { "kind": "admiration", "source": "at://…" },
-     "callbacks": ["SL-10"],
-     "cut": [{ "what": "Changelog", "why": "only two of the five items had a turn" }]
-   }
-   ```
-
+1. **The pitch writes `episodes/<id>/production/plan.json`** alongside `pitch.md`. The pipeline
+   owns the schema; the example and the fields the bible relies on are in
+   [process](10-process.md#stage-2-pitch).
 2. **`lore.md` keeps a rotation log**: one row per episode with formats, song genre and theme,
-   guests and how they appeared, runner, "Built it." shapes, descriptor and sincere kind. The
-   pilot's row is there.
-3. **The pipeline checks `plan.json` against the log** and prints warnings: a genre used in the last
-   eight episodes; a middle format used last week; a guest booked last week without a
-   `repeatReason`; a reused runner, descriptor or thread; a repeated shape within the episode; the
-   same sincere kind as last week; more than two callbacks. A warning is not a gate. The writer may
-   override it with a reason in the pitch, and the reviewer sees both.
-
-   One check is a gate, because it is the owner's rule and not a rule of thumb: **the song's genre
-   must differ from the previous episode's.** The pipeline stops the pitch until it does.
+   guests and how they appeared, runner, "Built it." shapes, descriptor and sincere kind.
+3. **The pipeline checks `plan.json` against the log.** A repeated song genre against the previous
+   episode is refused; the other repeats print warnings: a genre used in the last eight episodes, a
+   middle format used last week, a guest booked last week without a `repeatReason`, a reused runner,
+   descriptor or thread, a repeated shape within the episode, the same sincere kind as last week,
+   more than two callbacks. The writer may answer a warning with a reason in the pitch; the reviewer
+   sees both.
 
 Numbers such as "eight episodes" are starting points. Adjust them once the shelf and the archive
 are bigger.
+
+## Evolving the show
+
+The constitution says *that* every episode amends the DNA. This is *how* to do it well.
+
+### The retro, and keep / change / experiment
+
+Every pitch starts by looking back: the previous episode's `plan.json` and
+`production/dna-amendments.md`, its scorecard, the reviewer's notes if the pipeline carries them,
+and the digest's "About the show" section for how the community reacted. Then it writes down what
+it **keeps**, what it **changes** and why (each change motivated by the retro or the week, at most
+two), and **one experiment**. The previous episode's experiment gets its after-air verdict in the
+[experiment log](lore.md#experiment-log).
+
+### A good experiment
+
+- **One variable.** Change one thing and hold the rest, or you can't tell what worked.
+- **Sized to an episode.** One segment, one element, one habit; reversible next week.
+- **Stated in advance,** in `plan.json`, with a success measure someone other than the writer could
+  check: "people quote the Thread's last line back in replies", not "it's funnier".
+- **Judged honestly.** "Didn't work" and "can't tell" are results. Record them.
+- **Never constitutional.** An experiment can't relax any article of the constitution or chapter 9, including the show's own review.
+
+Good: "No monologue; Sibyl reads the week as release notes instead. Success: the reviewer scores B2
+at 2 and the next digest's reactions mention the changelog." Bad: "Make the panel better" (no
+measure). Bad: "New format, new character and no BUILT counter" (three variables).
+
+### Evidence
+
+In order of weight: what the community said in the next digest's "About the show" (replies,
+quotes, lines repeated back, requests, complaints; silence is weak evidence either way); the
+reviewer's notes; the scorecard rows the experiment touched. Engagement numbers are a tiebreaker:
+popular is not interesting. One good reaction means "try it again"; the same signal twice is a
+pattern.
+
+### When a result changes the DNA
+
+- **Change the DNA** when an experiment worked and would work in another week, when it worked twice,
+  or when it showed a rule was wrong. Edit the chapter where the rule lives, in this episode's pull
+  request, and list the edits in `production/dna-amendments.md`. Keep the edit small: a sentence, a
+  row, a format card.
+- **Keep it a one-off** when it worked because of this week's story, or the evidence is thin. Note it
+  in the experiment log so a later week can try it again.
+
+### Retiring things
+
+Delete the text from the DNA in the episode's pull request and record what, when and why in
+[lore](lore.md); git history keeps the original. Specifically:
+
+- **a format:** delete the card and add one line under "Retired" at the end of the formats chapter,
+  so nobody reinvents it by accident;
+- **a runner or gag:** set its lore status to retired, with the episode; one callback later is fine;
+- **a recurring guest:** stop booking them and mark the lore entry. Never announce on air that a real
+  person's persona is retired;
+- **a DNA rule:** delete it and say in `dna-amendments.md` what it was protecting, and check that the
+  constitution still covers that;
+- **the house cast and the studio** are kept by the owner's choice; an episode may propose retiring
+  something, and the owner decides.
+
+### Two ways to fail
+
+- **Drift: becoming a different show by accident.** Signs: changes with no stated reason, more than
+  two a week, the frame changed without an experiment, the one-page version in the
+  [README](README.md) no longer describes the episode. Guard: every retro checks the one-page version
+  against the last episode; if they disagree, either the episode or the README is wrong, and the pull
+  request says which.
+- **Ossifying: remaking the pilot.** Signs: cosmetic experiments, three episodes without a DNA edit, a
+  growing inheritance list, every format from the pilot's shelf, jokes that rhyme with the pilot's.
+  Guard: one real experiment every episode, and at least one experiment in every four aimed at the
+  register below.
+
+### Inheritance
+
+By default the writer cannot read earlier episodes' source. To carry something forward (a segment's
+direction, a prop, a script structure), name it in `plan.json` under `inherit` with a reason; the
+pipeline copies exactly those files to `production/inherited/<from>/<path>` as read-only reference.
+Adapt, don't paste. Usually the list is empty. A file inherited by two episodes in a row probably
+belongs in the studio.
+
+### The studio earns its contents
+
+A prop, shot or helper goes into the shared studio only once a second episode needs it; until then
+it lives in the episode that made it. The pilot's single-use props (the limbo bar, the podium, the
+weather map kit and others) are in the studio today: a known exception to tidy later, not precedent.
+
+### Rules that rest only on the pilot
+
+These were inferred from one episode and are the first candidates for challenge. When an experiment
+tests one, mark it here ("held in NNN" or "changed in NNN") in that episode's pull request.
+
+| rule | where | status |
+|---|---|---|
+| five slots in this order; the song before goodnight | this chapter | untested |
+| the Ask with "Built it." as the cold open | 04, format 1 | untested |
+| Sibyl's "Larry... Nx!" intro and the theme hook | this chapter | untested |
+| up to about nine BUILT bumps; one segment rests | this chapter | untested |
+| fact, turn, punch, picture; every graphic carries a tag | 06 | untested |
+| buttons of six words or fewer, mostly Larry's | this chapter, 06 | untested |
+| one reaction sound per joke; three or four big laughs | 07 | untested |
+| setups quick, punches slow (rate 1.0–1.06 / 0.88–0.94) | 07 | untested |
+| stamps as the house punctuation, about one per 20 s | 08 | untested |
+| the sincere beat at goodnight, from real posts, under ~20 s | 01 | untested |
+| "gn, simcluster." and "Press E to leave." as the close | 04, format 8 | untested |
+| a guest built from four ingredients | 02 | untested |
+| Larry as the loser; Sibyl overruled only by the bot | 02 | untested |
+| the monologue's over-the-shoulder artefact framing | 04, 08 | untested |
+
+Rules from the owner (the song standing and rotating, real words first, Top Chicken reported) are
+not on this list: they are decisions, not inferences. The owner can still change them.
 

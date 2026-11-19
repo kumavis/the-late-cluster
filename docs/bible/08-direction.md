@@ -1,8 +1,9 @@
 # 8. Direction and visual comedy
 
 A segment's `index.js` is its direction: shots, puppet acting, graphics. The API, shot list, props
-and costumes are in `packages/show/README.md`. This file is the principles. Read a pilot segment's
-`index.js` beside it; the comments say why each choice was made.
+and costumes are in `packages/show/README.md`. This file is the principles, with the pilot quoted
+as evidence. Don't go looking for the pilot's source as a model: earlier episodes' files are available
+only when the plan inherits them.
 
 ## Principles
 
@@ -113,6 +114,10 @@ visible heads, and build heavy geometry (maps, graphs) once in `setup`.
 ## The house visual vocabulary
 
 Use these consistently, so viewers learn them. Most are shared props in `packages/show/src/kit/`.
+**The studio earns its contents:** a new prop, shot or helper lives in the episode that made it, and
+moves into the studio only in the pull request of a second episode that needs it. Several of the
+pilot's props were made for one segment and sit in the studio anyway; that is a known exception to
+tidy later, not precedent.
 
 | device | means | pilot uses |
 |---|---|---|

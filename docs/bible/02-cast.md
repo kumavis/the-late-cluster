@@ -1,5 +1,9 @@
 # 2. The cast
 
+**A current decision, not a law:** Larry Nx, the Formants and the studio are kept for now, by the
+owner's choice, because people liked them. Everything below about them is DNA, open to experiment;
+retiring any of them is the owner's call.
+
 The house cast lives in the studio (`packages/show/src/cast.js` for voices,
 `packages/show/src/looks.js` for looks). Voice numbers below come from there; how to tune or add
 a voice is in `packages/show/tools/README.md` under "Voice design". This file is about who they
@@ -205,5 +209,6 @@ Then:
    weather segment does ("A tribute · weather.samantha.wiki").
 
 One-off guests go in the episode's own `cast.js` and `looks.js`. A guest who appears in three
-episodes and would enjoy being a regular can move into the studio cast, with the reviewer's
+episodes and would enjoy being a regular can move into the studio cast (the studio earns its
+contents: a second episode is the earliest), with the reviewer's
 agreement.

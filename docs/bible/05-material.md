@@ -19,7 +19,7 @@ Expect 15 to 30 candidates. A five-minute episode uses about 5 to 8.
 | test | question | why it matters |
 |---|---|---|
 | **Safe** | Does it pass every [real-people](09-real-people.md) rule? | Decides what is *allowed*. A fail removes the story. No exceptions, no "but it's funny". |
-| **Interesting** | [The interesting test](01-premise.md#the-interesting-test): a turn or a feeling you can name in five words; only this week could contain it; a viewer would retell it. Turns to look for: a gap between what was said and what happened, a thing built from a joke, a rule that defeats itself, an absurd number, a coinage that spread. | Decides what is *worth including*, and overrules everything below. |
+| **Interesting** | [The interesting test](00-constitution.md#the-interesting-test): a turn or a feeling you can name in five words; only this week could contain it; a viewer would retell it. Turns to look for: a gap between what was said and what happened, a thing built from a joke, a rule that defeats itself, an absurd number, a coinage that spread. | Decides what is *worth including*, and overrules everything below. |
 | **Stageable** | Is there something to draw or show? | In this show a joke is not finished until something is built on screen. |
 | **Explicable** | Can a viewer who missed the week get the setup from one line and one card? | See "in-jokes" below. |
 | **Meaningful** | Does it say something about how the people here treat each other, or why they are here? | Candidates for the episode's question and its sincere answer. |

@@ -11,45 +11,11 @@ playing the posting personas of real accounts, and the screen says so.
 It is a weekly show of about five minutes, written and directed by a model from a digest of the
 week's posts and approved by a person before it airs.
 
-## The first rule: only include it if it's interesting
+## The first rule
 
-This is the owner's rule and it overrules everything else in the bible about structure: the
-running order, the formats, the standing segments, the runners and the length. Any slot, any
-standing segment and any runner can be cut in a week where it is not interesting. A four-minute
-episode of interesting things beats a five-minute episode with filler. Nothing is in an episode
-because the structure has a place for it.
-
-**How it relates to [real people](09-real-people.md).** Chapter 9 decides what is *allowed*. This
-rule decides what is *worth including*. Material must pass both, chapter 9 first. The rule only
-ever removes things, so it can never license something chapter 9 forbids ("it's too interesting
-to leave out" is never a reason). Nor does it remove chapter 9's obligations: parody labels,
-disclaimers, the credits' list of personas and tribute credits are not content and are never cut.
-
-### The interesting test
-
-"Interesting" alone won't guide a writer, so use three questions and a cut test. They apply to a
-single joke, a segment, and a whole episode.
-
-1. **Turn or feeling.** Does it surprise (the viewer could not have predicted the punch from the
-   setup), or does it move (it is true and it lands)? Name the turn or the feeling in five words.
-   If you can't, it fails.
-2. **This week.** Could only this week's episode contain it? A joke that would fit any week is
-   filler. Frame elements (the Ask, Sibyl's intro, the song) are exempt as shapes, never as
-   content: the Ask's post, the intro's descriptor and the song's theme must all be this week's.
-3. **Retell.** Would a viewer tell someone about it in one sentence, without first explaining the
-   week?
-
-**The cut test.** Take it out. Does the episode lose something a viewer would miss? If not, it
-goes, however well made.
-
-| level | passes when | if it fails |
-|---|---|---|
-| a joke | all three questions are yes | cut the joke; don't patch it with a bigger laugh sound |
-| a segment | it contains at least one retellable thing, and its jokes pass | trim the failing jokes; if fewer than two survive, cut the segment |
-| an episode | it can be pitched as "the one where…" in a sentence that would make a cluster member want to watch | re-pitch from the digest before writing anything |
-
-The pitch records what was cut and why (see [process](10-process.md#stage-2-pitch)), so a cut is a
-decision the reviewer can see, not an accident.
+"Only include it if it's interesting", with its test, is Article 1 of the
+[constitution](00-constitution.md). It overrules everything in this chapter and every other DNA
+chapter. The pitch records what was cut and why (see [process](10-process.md#stage-2-pitch)).
 
 ## Who it is for
 

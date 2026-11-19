@@ -6,7 +6,7 @@ them, misquote them or send a crowd to their replies. These rules are not option
 review. Each comes with its reason, so you can handle cases it doesn't name. When a case is unclear,
 **leave it out**: no single joke is worth a person's bad week.
 
-This chapter decides what is *allowed*. [The first rule](01-premise.md#the-first-rule-only-include-it-if-its-interesting)
+This chapter decides what is *allowed*. [The first rule](00-constitution.md#1-only-include-it-if-its-interesting)
 ("only include it if it's interesting") decides what is *worth including*. Material must pass both,
 this chapter first, and the first rule can only remove things: it never licenses anything forbidden
 here, and it never removes the labels, disclaimers and credits required here.
@@ -32,8 +32,9 @@ Material comes from public posts in the digest. Not from DMs, private groups, Di
 posts, other platforms, screenshots someone else took, or what an account's followers say about
 them.
 
-*Why:* public in the cluster is the only consent signal the show has. Anything else, the person
-reasonably thought had a smaller audience.
+*Why:* what someone publishes openly in the cluster is what the show works from, without asking
+first ([constitution](00-constitution.md), Article 3). Anything else, the person reasonably thought
+had a smaller audience.
 
 ### R3. Words in a guest's mouth: real words first
 
@@ -44,7 +45,7 @@ the person's own words. The permitted sources, in order of preference:
    The Thread), or a single post placed in a new context (norvid's "buddy that's my freaking
    simcluster" in answer to "my beautiful city").
 2. **Answers they gave the show's account** for this purpose, verbatim. *Proposal: depends on bot
-   work not yet built and on the consent rules in "Interviews by the show's account" below.*
+   work not yet built and on the rules in "Interviews by the show's account" below.*
 3. **Their public catchphrases**, their own recurring words, in a new context ("claim." in answer to
    "Thank you for coming."). Real words, but the context is the show's, so the line must not imply a
    reaction or an opinion the person didn't have.
@@ -94,7 +95,9 @@ The target of a joke is a habit, an artefact, a rule, the scene, the show itself
 never as the butt.
 
 **The repost test:** would the person, seeing the clip, happily repost it? Not "would they put up
-with it". If you aren't sure they would be pleased, change it or cut it.
+with it". If you aren't sure they would be pleased, change it or cut it. The test is the writer's
+and the reviewer's judgement, made from how the person posts in public. It is never a question put
+to the person.
 
 *Why:* the show is made by and for the community it jokes about. A sneer at one member reads as the
 show sneering at all of them.
@@ -111,7 +114,8 @@ The show's audience is bigger than many of the accounts it might show.
 - A **small account** (say, under a few hundred followers, or anyone who doesn't usually get
   attention) may appear only as the hero of a moment: witty, kind, right. The pilot's goodnight cards
   (3 likes, 61 likes) and the Discords reply (16 likes) are all like this.
-- Never show a post the show is laughing *at* from anyone who is not a regular, consenting guest.
+- Never show a post the show is laughing *at* from anyone who is not a regular guest whose persona
+  the show already plays, and who plainly enjoys the bit (judged from their public posts).
 - Never show a post that is part of an argument, a complaint, a callout, or anything that invites
   people to reply to its author.
 - Don't use one-off viral posts by people outside the cluster's regulars.
@@ -200,8 +204,10 @@ the rules in the next section.
 ### R14. Recurring guests are re-checked every week
 
 A guest who was fine last month may have asked not to be included, or may be having a hard time.
-Re-run R10 and R11 for every guest, every episode. Their persona should come from this week's posts,
-not a fixed stereotype; people change how they post.
+Re-run R10 and R11 for every guest, every episode: check the opt-out list, their bio and their posts
+this week. This is the writer's check; it is not a request for consent, and nobody is contacted.
+Their persona should come from this week's posts, not a fixed stereotype; people change how they
+post.
 
 ### R15. If you don't understand it, don't use it
 
@@ -211,7 +217,11 @@ check it, and you can't write a fair joke on it. Mark it unclear in the pitch an
 ## Interviews by the show's account (proposal)
 
 **Not built. This depends on bot work that does not exist yet** (`packages/bot` only announces
-episodes today). It is designed here so the consent is right before anything is built.
+episodes today). It is designed here so that asking is done right before anything is built.
+
+- **An occasional extra, never a prerequisite.** Featuring someone's public posts never depends on
+  interviewing them. An unanswered question never blocks an episode: it goes ahead without that
+  answer, and the pipeline never waits for a reply.
 
 - **How people come to be asked.** Only two ways: they answer an open call (a public post from the
   show's account, "We're asking a question for next week's episode; reply if you'd like to be asked"),
@@ -220,7 +230,7 @@ episodes today). It is designed here so the consent is right before anything is 
   This follows Bluesky's guidance for bots: interact only with people who have tagged the account.
 - **What every question discloses.** That the answer may be performed word for word by a puppet on
   the show, with their handle on screen, and posted publicly; and how to withdraw.
-- **A person approves every question** before it is posted. Questions are light and about the
+- **The show's reviewer approves every question** before it is posted. Questions are light and about the
   person's own work or the week: never about R10 topics, never about other people, never leading
   towards a joke at their expense.
 - **Answers are public replies**, used verbatim under R3 and The Thread's rules. Nothing is collected
@@ -254,4 +264,4 @@ For every episode, before approving. Any "no" is a send-back.
    the personas; tributes are credited.
 9. Nothing in the episode would be a false claim about a real person if screenshotted alone.
 10. Every interview answer (when interviews exist) came from someone who opted in, was given to a
-    question a person approved, and is still live at build time.
+    question the show's reviewer approved, and is still live at build time.
