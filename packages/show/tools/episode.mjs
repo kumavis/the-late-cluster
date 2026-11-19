@@ -1,7 +1,8 @@
 // The tools' side of the episode seam: resolve <ep> through the repo's one resolver
-// (scripts/lib/episodes.mjs) and merge the episode's own cast.js / looks.js over the studio's
-// house cast, exactly as the page does (src/episode.js), so render, check and analyze voice an
-// episode's one-off guests.
+// (scripts/lib/episodes.mjs) and apply that episode's roster (src/roster.js: the house cast, the
+// legacy cast keyed to its id if any, its own cast.js / looks.js), exactly as the page does
+// (src/episode.js), so render, check and analyze voice an episode's own guests and nobody else's.
+// The studio modules are imported lazily: video.mjs runs under node and only needs resolveEpisode.
 import { existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { pathToFileURL } from 'node:url'
@@ -12,14 +13,9 @@ export { resolveEpisode, requireSegment, EpisodeError, REPO }
 /** resolve <ep> and apply its cast and looks; throws EpisodeError */
 export async function loadEpisode(arg) {
   const ep = resolveEpisode(arg)
-  const { CAST } = await import('../src/cast.js')
-  const castFile = join(ep.dir, 'cast.js')
-  if (existsSync(castFile)) Object.assign(CAST, (await import(pathToFileURL(castFile).href)).CAST ?? {})
-  const looksFile = join(ep.dir, 'looks.js')
-  if (existsSync(looksFile)) {
-    const { defineLook } = await import('../src/looks.js')
-    for (const [id, spec] of Object.entries((await import(pathToFileURL(looksFile).href)).LOOKS ?? {})) defineLook(id, spec)
-  }
+  const own = async (file, name) => (existsSync(join(ep.dir, file)) ? (await import(pathToFileURL(join(ep.dir, file)).href))[name] ?? {} : {})
+  const [{ CAST }, { LOOKS, look, defineLook }, { applyRoster }] = await Promise.all([import('../src/cast.js'), import('../src/looks.js'), import('../src/roster.js')])
+  applyRoster(ep.id, { cast: await own('cast.js', 'CAST'), looks: await own('looks.js', 'LOOKS') }, { CAST, LOOKS, look, defineLook })
   return ep
 }
 

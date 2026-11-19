@@ -1,4 +1,4 @@
-// LEGACY: the first episode's guests, kept in the studio only so that episode can still be built.
+// LEGACY: the first episode's cast, kept in the studio only so that episode can still be built.
 //
 // This file is not a list of guests, not a roster of recurring characters, and not material for
 // a new episode. Nobody here is booked, and nothing here is an example to follow. Writers and
@@ -6,20 +6,27 @@
 //
 // Why it is in the studio: episodes/001-pilot/ has no cast.js or looks.js of its own; it voices and
 // dresses these ids from the studio. Its source is frozen (adding a cast.js there would change its
-// sourceHash and fail `npm run verify`), so the definitions stay here, unchanged, and src/cast.js
-// and src/looks.js merge them in exactly as before (same ids, same values, same order, after the
-// house cast). A new episode defines its guests in its own episodes/<ep>/cast.js and looks.js.
-// The reference episode's kit-tour segment (reference/segments/kit-tour/) also still uses these
-// ids for its line-up and panel shots.
+// sourceHash and fail `npm run verify`), so the definitions stay here, unchanged.
 //
-// It also holds two details of the house bot (its chyron title and its look's extras) that were
-// written for that episode; src/cast.js and src/looks.js apply them over the bot's house entry so
-// that nothing renders differently. An episode that uses the bot sets its own entry in its cast.js.
+// Who sees them: only 001-pilot. legacy/index.js keys this file to that episode id, and
+// src/roster.js merges it after the house cast (same ids, same values, same order as before) only
+// when the episode being served, built, rendered, checked or shot is 001-pilot. For every other
+// episode, the reference episode included, the ids below do not exist. That includes `bot`, the
+// website bot: it was that episode's character, not a house one. An episode that wants a bot or
+// any guest defines it in its own episodes/<ep>/cast.js and looks.js.
 //
 // Do not add to this file. Delete an entry only together with whatever still needs it.
 
 /** cast entries (src/cast.js format), merged after the house cast */
 export const PILOT_CAST = {
+  bot: {
+    name: 'A website bot',
+    title: 'Builds it',
+    body: { female: 0.5, child: 0.4 },
+    f0: 275, rate: 1.0, accent: 0.06,
+    source: { tension: 0.7, brightness: 0.6, breathiness: 0.02 },
+    pan: 0.45,
+  },
   norvid: {
     name: 'norvid_studies',
     handle: '@norvid-studies.bsky.social',
@@ -64,14 +71,12 @@ export const PILOT_CAST = {
 
 /** looks, as the arguments src/looks.js's look(color, costume, extra) takes; merged after the house looks */
 export const PILOT_LOOKS = {
+  bot: ['#5effc8', { kind: 'terminal', color: '#5effc8', model: 'WEBSITE-BOT', text: ['> npm create site', '> it builds!', '> deploy: yes', '> PARTY!'], holds: 'popper' }, { scale: 0.85 }],
   norvid: ['#9a6bff', { kind: 'featherCoat', color: '#5a3d9e', trim: '#b98cff', holds: 'clipboard', clipText: 'LIST OF' }],
   abel: ['#3fd17a', { kind: 'cardigan', color: '#3fd17a', shirt: '#b6ff5c', trim: '#eef6f8' }, { prop: 'contraption' }],
   samantha: ['#34e0ff', { kind: 'blazer', color: '#34e0ff', shirt: '#eef6f8', trim: '#ffffff', holds: 'clicker' }],
   borjev: ['#c8956a', { kind: 'terminal', color: '#c8956a', model: 'BORJEV', text: ['> opt-in only', '> consent: y', '> hello'] }, { scale: 0.62 }],
 }
 
-/** the house bot as that episode had it: fields applied over src/cast.js's and src/looks.js's bot */
-export const PILOT_BOT = {
-  cast: { title: 'Builds it' },
-  costume: { text: ['> npm create site', '> it builds!', '> deploy: yes', '> PARTY!'], holds: 'popper' },
-}
+/** ids this cast treats as house (not guests by default, see stage/shots.js HOUSE_IDS) */
+export const PILOT_HOUSE = ['bot']

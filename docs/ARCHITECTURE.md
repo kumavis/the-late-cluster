@@ -66,11 +66,13 @@ episode. It has the same shape as a real episode, its rendered audio is committe
 never built into `dist/`. Its `episode.json` has `number: 0` and `status: "draft"`. It is the
 fixture the tools are tested against and the place to try a new prop or shot.
 
-The studio owns the **house cast** (`src/cast.js`, `src/looks.js`): Larry, Sibyl, the Formants,
-Eppy, the website bot, and recurring guests. An episode can add one-off guests of its own.
-`src/legacy/pilot-guests.js` holds the first episode's guests (and the bot's title and screen text
-from that episode), merged into the cast and looks unchanged, only because `001-pilot` has no
-`cast.js` of its own and its source is frozen; it is not a guest list.
+The studio owns the **house cast** (`src/cast.js`, `src/looks.js`): Larry, Sibyl, Hy Oid and
+the Formants, and Eppy. Anyone else, guests and bots alike, is defined by the episode that uses
+them, in its own `cast.js` and `looks.js`. One resolver, `src/roster.js`, gives the page and every
+tool the cast and looks for an episode id: the house, then any legacy entry keyed to that id, then
+the episode's own files. `src/legacy/` holds the first episode's cast (its four guests and its
+website bot) keyed to `001-pilot`, only because that episode has no `cast.js` of its own and its
+source is frozen; no other episode sees those ids.
 
 The studio must not contain episode content: no rundown, no episode segments, no episode audio.
 

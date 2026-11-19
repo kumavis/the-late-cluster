@@ -13,9 +13,8 @@
 //
 // Read by the offline renderer (tools/render.ts) and by the page. Looks live in src/looks.js.
 //
-// legacy/pilot-guests.js is merged in at the end so the first episode still builds. It is not a
-// guest list; see its header.
-import { PILOT_CAST, PILOT_BOT } from './legacy/pilot-guests.js'
+// The house is Larry, Sibyl, Hy Oid & The Formants, and Eppy. An episode's own cast.js, and for
+// the first episode only its legacy cast (legacy/), are merged over this by src/roster.js.
 
 export const CAST = {
   // ---- the house
@@ -70,7 +69,7 @@ export const CAST = {
     pan: -0.6,
   },
 
-  // ---- correspondents and studio voices (original characters)
+  // ---- the correspondent (an original character)
   eppy: {
     name: 'Eppy Glottis',
     title: 'Sports desk',
@@ -79,17 +78,4 @@ export const CAST = {
     source: { tension: 0.68, brightness: 0.55 },
     pan: 0.25,
   },
-  bot: {
-    name: 'A website bot',
-    title: 'House bot',
-    body: { female: 0.5, child: 0.4 },
-    f0: 275, rate: 1.0, accent: 0.06,
-    source: { tension: 0.7, brightness: 0.6, breathiness: 0.02 },
-    pan: 0.45,
-    // the first episode's chyron title, kept so nothing renders differently (legacy/pilot-guests.js)
-    ...PILOT_BOT.cast,
-  },
-
-  // ---- legacy: the first episode's guests, last, as before (not a guest list)
-  ...PILOT_CAST,
 }

@@ -226,5 +226,5 @@ export const SHOTS = {
   },
 }
 
-/** the house: everyone who isn't a guest */
-export const HOUSE_IDS = ['larry', 'sibyl', 'hy', 'al', 'dee', 'pete', 'eppy', 'bot']
+/** the house: everyone who isn't a guest (src/roster.js appends a legacy cast's own house ids) */
+export const HOUSE_IDS = ['larry', 'sibyl', 'hy', 'al', 'dee', 'pete', 'eppy']

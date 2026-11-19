@@ -19,13 +19,13 @@
 // Segment authors: a guest's look goes in the episode's own looks.js (or pass a look to
 // show.puppet(id).dress({...}) at runtime); this file holds the house cast's.
 //
-// legacy/pilot-guests.js is merged in at the end so the first episode still builds. It is not a
-// guest list; see its header.
+// An episode's own looks.js, and for the first episode only its legacy looks (legacy/), are applied
+// over this by src/roster.js.
 import { headPalette } from './engine/palette.js'
 import { hashSeed } from './kit/ease.js'
-import { PILOT_LOOKS, PILOT_BOT } from './legacy/pilot-guests.js'
 
-const look = (color, costume, extra = {}) => ({ color, head: headPalette(extra.headColor ?? color, extra.headOver), costume, scale: 1, ...extra })
+/** a look from (color, costume, extra): how src/roster.js builds legacy looks too */
+export const look = (color, costume, extra = {}) => ({ color, head: headPalette(extra.headColor ?? color, extra.headOver), costume, scale: 1, ...extra })
 
 export const LOOKS = {
   larry: look('#ffc861', { kind: 'tux', color: '#ffd27a', shirt: '#fff3d6', tie: '#ffb340', square: '#ff73cf' }, {
@@ -38,14 +38,8 @@ export const LOOKS = {
   dee: look('#b6ff5c', { kind: 'band', color: '#ff5fd2', trim: '#ffc861', monogram: 'F' }),
   pete: look('#ff9a5c', { kind: 'band', color: '#ff5fd2', trim: '#ffc861', monogram: 'F' }),
 
-  // ---- the correspondents
+  // ---- the correspondent
   eppy: look('#ff7a2e', { kind: 'blazer', color: '#ff7a2e', trim: '#ffc861', crest: true, holds: 'headset' }),
-  // the bot: a small mint terminal. Its chest-screen text and held prop are the first episode's,
-  // kept so nothing renders differently (legacy/pilot-guests.js)
-  bot: look('#5effc8', { kind: 'terminal', color: '#5effc8', model: 'WEBSITE-BOT', ...PILOT_BOT.costume }, { scale: 0.85 }),
-
-  // ---- legacy: the first episode's guests, last, as before (not a guest list)
-  ...Object.fromEntries(Object.entries(PILOT_LOOKS).map(([id, args]) => [id, look(...args)])),
 }
 
 /** signature hues handed to guests nobody has styled yet */

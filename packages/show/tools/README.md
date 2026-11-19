@@ -303,13 +303,15 @@ sound needs a plausible envelope sparkline with no NaN or DC.
 
 ## Voice design
 
-**Where cast entries live.** `packages/show/src/cast.js` is the house cast. A guest goes in
+**Where cast entries live.** `packages/show/src/cast.js` is the house cast: Larry, Sibyl, Hy Oid
+& The Formants, and Eppy. A guest, or a bot, goes in
 the episode's own `episodes/<ep>/cast.js` (and its look in `episodes/<ep>/looks.js`), and moves
 into the studio only when a second episode needs them. Both files are optional and are merged
-over the studio's entries by the renderer, the checker and the page alike, so an episode can
-also override a house entry (a whole entry: the merge replaces it, it does not patch fields).
-(`src/legacy/pilot-guests.js` holds the first episode's guests only so that episode still
-builds; it is not a guest list.)
+over the studio's entries by one resolver (`src/roster.js`) that the renderer, the checker, the
+analyzer and the page all use, so an episode can also override a house entry (a whole entry: the
+merge replaces it, it does not patch fields). (`src/legacy/` holds the first episode's cast, its
+guests and its website bot, only so that episode still builds; the resolver merges it for
+`001-pilot` and for no other episode.)
 
 ```js
 // episodes/<ep>/cast.js
@@ -360,7 +362,7 @@ f0, its spectral centroid and its three nearest neighbours. Distance combines pi
 ÷ 2) and the long-term average spectrum (rms dB difference ÷ 2.5). Below about 1.5, two voices
 are easy to confuse. Among the house voices every nearest neighbour is at least 1.5 away. The
 house cast as tuned (median f0 is measured, so accent raises it above the set f0; `nearest` is
-among these eight, from `analyze.ts voices larry sibyl hy al dee pete eppy bot`):
+among these seven, from `analyze.ts voices larry sibyl hy al dee pete eppy`):
 
 | id | role | body f/c | f0 (median) | rate | accent | source | nearest |
 |---|---|---|---|---|---|---|---|
@@ -371,7 +373,6 @@ among these eight, from `analyze.ts voices larry sibyl hy al dee pete eppy bot`)
 | dee | alto | 0.9 / 0.1 | 155 (159) | 1.0 | 0.18 | breath 0.18, tension 0.45, bright 0.25 | hy 1.79 |
 | eppy | shouty sports | 0.15 / 0.2 | 165 (189) | 1.16 | 0.36 | tension 0.68, bright 0.55 | sibyl 2.07 |
 | sibyl | announcer | 1 / 0 | 196 (207) | 1.04 | 0.2 | breath 0.2 | eppy 2.07 |
-| bot | chirpy, flat | 0.5 / 0.4 | 275 (274) | 1.0 | 0.06 | tension 0.7, bright 0.6 | eppy 4.21 |
 
 Rate and accent separate voices too: the table's distance doesn't measure them, so two voices
 at nearly the same pitch can still sound very different if one is faster or more animated.
@@ -380,13 +381,14 @@ Whisper (base.en) on the two test sentences: every voice gets "Good evening, and
 to the show." 8/8. The harder "…the feed knows what I had for breakfast?" scores 7–10 of 13
 for every voice, the host included, so that is the G2P and engine rather than any one voice.
 Overall scores are 76–86 % per house voice: al 86, hy 81, eppy 81, larry 76, sibyl 76, dee 76,
-pete 76, bot 76.
+pete 76.
 
 To add a guest, find an open spot. The gaps are in measured median f0 (what `analyze.ts voices`
 prints, the number in brackets above), not the `f0` you set: a typical `accent` (0.15–0.35)
 raises the median about 6–12 Hz above the set `f0`, so set `f0` that much lower than the gap.
-Among the house voices (medians 79, 107, 119, 143, 159, 189, 207, 274 Hz) the widest open
-ranges are roughly 85–100 Hz, 165–180 Hz and 215–265 Hz; an episode's other guests take room
+Among the house voices (medians 79, 107, 119, 143, 159, 189, 207 Hz) the widest open
+ranges are roughly 85–100 Hz, 165–180 Hz and everything above 215 Hz (keep the set `f0` under
+280, where the engine saturates); an episode's other guests take room
 too, so measure them together (`--ep <ep>` and their ids). Then set the attitude: `rate` (0.9
 deliberate, 1.2 hurried), `accent` (0.05 robotic, 0.35 excitable), breathiness 0.3+ (intimate),
 fry or roughness (croaky), and brightness with tension (brassy). Run

@@ -9,8 +9,10 @@
 //   episode   the episode.json fields the page uses (id, number, title, airDate, …, rundown)
 //   modules   { <seg>: () => import(index.js) }     lazy chunks via import.meta.glob
 //   cues      { <seg>: () => import(cues.json) }    lazy chunks via import.meta.glob
-//   cast      the episode's cast.js CAST (or {}): merged over the studio's house cast
-//   looks     the episode's looks.js LOOKS (or {}): applied with defineLook
+//   cast      the episode's cast.js CAST (or {})
+//   looks     the episode's looks.js LOOKS (or {})
+// src/episode.js hands cast and looks, with episode.id, to src/roster.js, which merges them over the
+// house cast (and, for 001-pilot only, its legacy cast); the plugin itself merges nothing.
 //
 // In dev every segment folder is loadable (?seg=<id>); a build bundles the rundown's segments only.
 // The dev server serves audio/ and tele/ from the episode's public/ (a fresh render) and falls

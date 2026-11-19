@@ -52,8 +52,9 @@ rendered by one shared WebGL renderer, the collar) → set front pieces → audi
 plugin that generates the module `virtual:late-cluster/episode` for the episode the dev server
 or build was started for: its `episode.json` fields, the segments' modules and cues as lazy
 chunks (`import.meta.glob`: every segment folder in dev, the rundown's only in a build), and the
-episode's optional `cast.js` / `looks.js`. `src/episode.js` merges those over the house cast and
-re-exports the rest. Two aliases go with it: `@late-cluster/show/<path>` is `src/<path>` (how
+episode's optional `cast.js` / `looks.js`. `src/episode.js` hands those and the episode's id to
+`src/roster.js`, the one resolver the page and the tools share, which merges them over the house
+cast, and re-exports the rest. Two aliases go with it: `@late-cluster/show/<path>` is `src/<path>` (how
 episodes import studio code) and `@late-cluster/episode/<path>` is the episode folder. The dev
 server serves `audio/` and `tele/` from `episodes/<id>/public/` (a fresh render) and falls back
 to the committed build `dist/episodes/<id>/`.
@@ -63,8 +64,9 @@ src/
   app.js            flow: title → segments → end card; keyboard; frame loop; ?freeze mode
   episode.js        the current episode (from vite/episode.js) + its cast/looks merged in
   cast.js           who's who, and how they sound: the house cast
+  roster.js         the one resolver: house cast + an episode's legacy entries (001-pilot only) + its own cast.js/looks.js
   looks.js          how they look: colour, head palette, costume
-  legacy/           pilot-guests.js: the first episode's guests, kept only so it still builds (not a guest list)
+  legacy/           the first episode's cast (its guests and its bot), keyed to 001-pilot and seen by no other episode
   show/show.js      the `show` API (below)          show/puppet.js   one cast member on stage
   show/segments.js  loading + caching               show/builtins.js title, in-production, end cards
   stage/stage.js    the renderer                    stage/shots.js   named camera setups, marks
@@ -107,7 +109,9 @@ module or 30 s), so you can block shots first.
 Two reference segments, in the reference episode (`npm run dev -- ref`, then `?seg=`):
 `reference/segments/demo/` (a real rendered segment: dialogue, captions, music, the `ots` chart, a skeet
 card) and `reference/segments/kit-tour/` (silent: every newer shot, prop, effect and the episode counter,
-four seconds each, plus a line-up of the cast). Read them alongside this section.
+four seconds each, plus a line-up of the cast). The tour is a test card: its guests are invented
+(`reference/cast.js`, `reference/looks.js`, handles under `.example`) and every word on screen names
+the primitive it sits on. Read them alongside this section.
 
 ### The module
 
@@ -288,7 +292,7 @@ Placement can also carry `clip: { x, y, w, h }` (stage units): the puppet is dra
 | `remote` | Larry at the desk screen-right, a big studio monitor screen-left with a remote guest's head inside | `guest`, `label`, `live` (default true) |
 | `remote2` | two monitors side by side for two remote guests, Larry screen-right | `guests: [a, b]`, `labels`, `live` |
 | `podium` | Sibyl (or `who`) at the announcer's lectern, medium shot | `who`, `look`, `zoom` |
-| `deskWith` | Larry at the desk plus one house character at a stand beside it (the stand shows their name) | `with: 'sibyl'\|'eppy'\|'bot'\|…`, `stand: 'stand'\|'lectern'` |
+| `deskWith` | Larry at the desk plus one other character at a stand beside it (the stand shows their name) | `with: 'sibyl'\|'eppy'\|<any cast id>`, `stand: 'stand'\|'lectern'` |
 | `stage` | the musical number: `lead` centre stage in front of the curtain, the band in a row behind, room above for lyrics | `lead`, `band: [...]`, `zoom` |
 | `closeup` | one head, big | `who`, `size` (head px, default 520), `dx`, `look` |
 | `title` | the title card framing | |
@@ -336,10 +340,10 @@ kinds: add `COSTUMES.myKind = { back(ctx, a, c) {}, front(ctx, a, c) {} }` there
 the neck base; see the file's header).
 
 The house cast's looks: **larry** gold tux · **sibyl** silver announcer · **the Formants** magenta
-band jackets, each head its own hue · **eppy** hot-orange sports blazer + headset · **bot** a small
-mint terminal with a chest screen. (`src/legacy/pilot-guests.js` holds the first episode's guests
-and the bot's screen text and held prop from that episode, only so it still builds; it is not a
-guest list, and an episode that uses the bot gives it its own entry in its `cast.js`/`looks.js`.)
+band jackets, each head its own hue · **eppy** hot-orange sports blazer + headset. That is the
+whole house: an episode that wants anyone else, a bot included, defines them in its own
+`cast.js`/`looks.js`. (`src/legacy/` holds the first episode's cast, its guests and its website
+bot, only so it still builds; `src/roster.js` merges it for `001-pilot` and no other episode.)
 
 **Chyrons** read the cast (`src/cast.js` plus the episode's own `cast.js`): a `handle` shows after the title, and `guest: true` adds a
 **PUPPET · PARODY** tag — these are puppets playing real accounts' posting personas, and the show

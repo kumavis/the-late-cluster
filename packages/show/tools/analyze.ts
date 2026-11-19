@@ -288,7 +288,11 @@ if (import.meta.main) {
     const feats: { id: string; f0: number; ltas: number[]; cent: number }[] = [];
     for (const id of ids) {
       const c = (CAST as any)[id];
-      if (!c) throw new Error(`unknown cast id ${id}`);
+      if (!c) {
+        // exit code 2 (bad arguments); the cast is the house plus --ep's own (src/roster.js)
+        console.error(`error: unknown cast id ${JSON.stringify(id)}; cast: ${Object.keys(CAST).join(", ")}`);
+        process.exit(2);
+      }
       const v: VoiceSpec = { body: c.body, f0: c.f0, rate: c.rate, accent: c.accent, source: c.source };
       const f0s: number[] = [];
       const lt = new Float64Array(BANDS.length - 1);
