@@ -1,0 +1,31 @@
+{
+  "format": "late-cluster-plan/1",
+  "id": "001-pilot",
+  "week": "2026-W46",
+  "title": "Pilot",
+  "description": "The first episode: Larry Nx sizes up a week in the simcluster where every joke gets built, with the weather from Samantha, the Top Chicken standings, a round of Built or Bit?, norvid and Abel on the panel, and a song from Hy Oid & The Formants.",
+  "question": "What is the simcluster?",
+  "segments": [
+    { "id": "cold-open", "format": "ask", "seconds": 55, "built": [0, 1] },
+    { "id": "monologue", "format": "monologue", "seconds": 85, "built": [1, 2] },
+    { "id": "weather", "format": "simcluster-channel", "seconds": 70, "built": [2, 3] },
+    { "id": "top-chicken", "format": "top-chicken", "seconds": 69, "built": [3, 4], "topChicken": "full" },
+    { "id": "built-or-bit", "format": "built-or-bit", "seconds": 70, "built": [4, 8] },
+    { "id": "panel", "format": "panel", "seconds": 78, "built": [8, 10] },
+    { "id": "song", "format": "song", "genre": "stomp-clap anthem", "theme": "wanting a place to belong, in a scene that builds every want at once", "seconds": 95, "built": [10, 14] },
+    { "id": "goodnight", "format": "goodnight", "seconds": 69, "built": [14, 15] }
+  ],
+  "guests": [
+    { "cast": "samantha", "handle": "samantha.wiki", "source": "presenter", "segment": "weather", "repeatReason": null },
+    { "cast": "norvid", "handle": "norvid-studies.bsky.social", "source": "panel", "segment": "panel", "repeatReason": null },
+    { "cast": "abel", "handle": "abeliansoup.bsky.social", "source": "panel", "segment": "panel", "repeatReason": null },
+    { "cast": "borjev", "handle": "borjev.bsky.social", "source": "cameo", "segment": "panel", "repeatReason": null }
+  ],
+  "runner": "gm/gn",
+  "builtShapes": ["plain", "pre-empted", "mid-sentence", "interrupting", "protested", "physical", "on the host", "doubled", "the reply", "contradicting", "useless"],
+  "descriptor": "a man who is, technically, a throat",
+  "sincere": { "kind": "belonging", "source": "https://bsky.app/profile/shimmermathlabs.com/post/3mys3uefthc23" },
+  "callbacks": [],
+  "cut": [],
+  "$comment": "Written after the fact by the pipeline's author, from the pilot's segments and the rotation log in docs/bible/lore.md, so the freshness checks have a first episode to compare with. Seconds are the rendered durations, rounded."
+}

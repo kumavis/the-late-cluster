@@ -1,0 +1,177 @@
+name: Weekly episode
+
+# Produces one week's episode and opens a pull request for a person to review: the scraper writes
+# the week's digest, then `npm run produce` drives the episode through pitch, write, render,
+# direct, build and the writer's self-check (packages/writers-room/README.md), with Claude Code
+# running headless as the writer and deterministic gates between the stages.
+#
+# Why it is manual: the show puts words in the mouths of puppets that stand for real people, and
+# the pipeline has not yet produced an episode worth airing. Until a few manual runs have, a person
+# starts each run. This workflow never deploys and never announces: merging the pull request is
+# what publishes (deploy.yml), and announcing is announce.yml, also manual.
+#
+# Needs (Settings → Secrets and variables → Actions):
+#   ANTHROPIC_API_KEY        the writer's model credential (or CLAUDE_CODE_OAUTH_TOKEN from
+#                            `claude setup-token`; the API key wins when both are set)
+#   PR_TOKEN (optional)      a fine-grained token or GitHub App token with contents and pull
+#                            requests write on this repository. Pull requests opened with the
+#                            default GITHUB_TOKEN do not trigger other workflows, so without it
+#                            ci.yml does not run on the episode's pull request until someone pushes
+#                            to it.
+# and Settings → Actions → General → "Allow GitHub Actions to create and approve pull requests".
+
+on:
+  workflow_dispatch:
+    inputs:
+      week:
+        description: ISO week to produce, e.g. 2026-W47 (empty = the last complete week, UTC)
+        required: false
+        type: string
+      model:
+        description: The writer's model
+        required: true
+        type: choice
+        default: claude-fable-5-2
+        options:
+          - claude-fable-5-2
+          - claude-opus-5-5
+      whisper:
+        description: Install Whisper and run the intelligibility pass (adds about 5 minutes)
+        required: false
+        type: boolean
+        default: true
+  # Switch this on only after several manual runs have produced episodes a reviewer approved
+  # without heavy rewrites, and once someone is committed to reviewing every Monday's pull request.
+  # The digest covers Monday 00:00 to Monday 00:00 UTC; this runs on Monday afternoon, UTC.
+  # schedule:
+  #   - cron: '0 14 * * 1'
+
+# Least privilege: push the episode branch and open its pull request. No Pages, no id-token.
+permissions:
+  contents: write
+  pull-requests: write
+
+# Two runs for the same week would race for the same episode folder and branch.
+concurrency:
+  group: weekly-episode-${{ inputs.week || 'last-complete-week' }}
+  cancel-in-progress: false
+
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    env:
+      CLAUDE_CODE_VERSION: '2.1.304'
+      FORCE_COLOR: '0'
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: npm
+
+      # The studio's offline tools (render, check, analyze) run under bun.
+      - uses: oven-sh/setup-bun@v2
+        with:
+          bun-version: 1.4.3
+
+      - name: Install ffmpeg
+        run: sudo apt-get update && sudo apt-get install -y --no-install-recommends ffmpeg
+
+      - name: Install dependencies
+        run: npm ci
+
+      # shoot and thumbnail use Playwright's Chromium.
+      - name: Install Chromium
+        run: npx playwright install --with-deps chromium
+
+      - uses: actions/setup-python@v7
+        if: ${{ inputs.whisper }}
+        with:
+          python-version: '3.12'
+
+      # The intelligibility pass (bible 10, stage 4). CPU-only torch keeps the download small.
+      - name: Install Whisper
+        if: ${{ inputs.whisper }}
+        run: |
+          pip install --quiet torch --index-url https://download.pytorch.org/whl/cpu
+          pip install --quiet openai-whisper
+          whisper --help > /dev/null
+
+      # The claude writer: Claude Code, pinned to the version the pipeline was tested with.
+      - name: Install Claude Code
+        run: |
+          npm install -g "@anthropic-ai/claude-code@${CLAUDE_CODE_VERSION}"
+          claude --version
+
+      - name: Choose the week
+        id: week
+        env:
+          WEEK: ${{ inputs.week }}
+        run: |
+          if [ -z "$WEEK" ]; then
+            # the last complete ISO week: the week of the day seven days ago
+            WEEK="$(node -e 'const d=new Date(Date.now()-7*864e5);const t=new Date(Date.UTC(d.getUTCFullYear(),d.getUTCMonth(),d.getUTCDate()));const n=(t.getUTCDay()+6)%7;t.setUTCDate(t.getUTCDate()-n+3);const y=t.getUTCFullYear();const j=new Date(Date.UTC(y,0,4));const w=1+Math.round(((t-j)/864e5-3+((j.getUTCDay()+6)%7))/7);console.log(`${y}-W${String(w).padStart(2,"0")}`)')"
+          fi
+          # The week reaches later steps through the environment, never by being pasted into a
+          # script, and only if it has the shape of an ISO week.
+          if ! printf '%s' "$WEEK" | grep -Eq '^[0-9]{4}-W[0-9]{2}$'; then
+            echo "error: \"$WEEK\" is not an ISO week like 2026-W47" >&2
+            exit 2
+          fi
+          echo "week=$WEEK" >> "$GITHUB_OUTPUT"
+          echo "Producing $WEEK"
+
+      - name: Scrape the week
+        env:
+          WEEK: ${{ steps.week.outputs.week }}
+        run: npm run scrape -- --week "$WEEK"
+
+      - name: Produce the episode
+        id: produce
+        env:
+          ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          CLAUDE_CODE_OAUTH_TOKEN: ${{ secrets.CLAUDE_CODE_OAUTH_TOKEN }}
+          MODEL: ${{ inputs.model }}
+          WEEK: ${{ steps.week.outputs.week }}
+        run: npm run produce -- --week "$WEEK" --model "$MODEL" --network
+
+      - name: Find the episode
+        id: episode
+        if: ${{ always() }}
+        env:
+          WEEK: ${{ steps.week.outputs.week }}
+        run: |
+          ID="$(npm run --silent produce -- --week "$WEEK" --status | awk 'NR==1 && $1=="status" && NF>=3 {print $3}')"
+          echo "id=$ID" >> "$GITHUB_OUTPUT"
+          if [ -n "$ID" ]; then npm run --silent produce -- --week "$WEEK" --status; fi
+
+      # Review frames, prompts, logs and the writer's cost, whether or not the run finished.
+      - name: Upload the review frames and logs
+        if: ${{ always() && steps.episode.outputs.id != '' }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: review-${{ steps.episode.outputs.id }}
+          path: |
+            shots/${{ steps.episode.outputs.id }}/
+            episodes/${{ steps.episode.outputs.id }}/production/
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Open the pull request
+        if: ${{ success() && steps.episode.outputs.id != '' }}
+        env:
+          ID: ${{ steps.episode.outputs.id }}
+          GH_TOKEN: ${{ secrets.PR_TOKEN || github.token }}
+        run: |
+          BRANCH="episode/$ID"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch -c "$BRANCH"
+          git add "episodes/$ID" "dist/episodes/$ID" docs/bible/lore.md
+          git commit -m "Episode $ID, produced by the weekly pipeline" -m "Model: ${{ inputs.model }}. Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          git push --set-upstream origin "$BRANCH"
+          gh pr create --base "${{ github.event.repository.default_branch }}" --head "$BRANCH" \
+            --title "$(cat "episodes/$ID/production/pr-title.txt")" \
+            --body-file "episodes/$ID/production/pr-body.md"

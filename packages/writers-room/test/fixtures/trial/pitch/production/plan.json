@@ -1,0 +1,20 @@
+{
+  "format": "late-cluster-plan/1",
+  "id": "__ID__",
+  "week": "__WEEK__",
+  "title": "Two Segments",
+  "description": "A pipeline trial: somebody asks for a talk show with two segments, and gets one.",
+  "question": "Is two segments enough?",
+  "segments": [
+    { "id": "cold-open", "format": "ask", "seconds": 11, "built": [0, 1], "ask": "at://did:plc:trialasker/app.bsky.feed.post/t1" },
+    { "id": "chat", "format": "panel", "seconds": 11, "built": [1, 1] }
+  ],
+  "guests": [{ "cast": "zed", "handle": "zed.example", "source": "panel", "segment": "chat", "repeatReason": null }],
+  "runner": "",
+  "builtShapes": ["plain"],
+  "descriptor": "a man who is mostly air",
+  "sincere": { "kind": "", "source": null },
+  "callbacks": [],
+  "cut": [{ "what": "monologue, song and goodnight", "why": "a two-segment pipeline trial" }],
+  "overrides": { "middle-format": "a pipeline trial; the panel is the simplest guest segment to render" }
+}

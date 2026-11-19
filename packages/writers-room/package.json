@@ -1,0 +1,17 @@
+{
+  "name": "@late-cluster/writers-room",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The weekly production pipeline of The Late Cluster: drives one week's digest, stage by stage, to an episode in a pull request for a person to approve.",
+  "engines": {
+    "node": ">=22"
+  },
+  "bin": {
+    "late-cluster-produce": "./bin/produce.mjs"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.mjs\"",
+    "self-test": "node bin/self-test.mjs"
+  }
+}

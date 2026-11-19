@@ -1,0 +1,6 @@
+{
+  "$comment": "Trial limits: a two-segment episode of a few lines.",
+  "runtimeSeconds": { "max": 60 },
+  "words": { "max": 80 },
+  "stories": { "min": 1, "max": 9 }
+}
