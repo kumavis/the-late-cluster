@@ -75,9 +75,13 @@ Two kinds of lore, kept apart:
   Don't rerun it as a runner; a single callback is fine.
 - **G-06 "gn, simcluster." then "Press E to leave."** The pilot's close. *Proposed as the standing
   sign-off.*
-- **G-07 "claim."** norvid, with a CLAIM stamp on whatever was labelled. *Active* while norvid appears.
-- **G-08 "what else is like this"** norvid's answer to any question. *Active.*
-- **G-09 "good news, everyone!"** Abel; his contraption has always already built it. *Active.*
+- **G-07 "claim."** norvid, with a CLAIM stamp on whatever was labelled. *Changed after 001:* the CLAIM
+  stamp is the show's own prop and stays; norvid's puppet says "claim." only the way he uses it (R3),
+  never as a reply to Larry.
+- **G-08 "what else is like this"** norvid's catchphrase. *Retired as an answer to Larry's questions*
+  (R4's occasion test); may be performed the way he uses it, asking for more things like something.
+- **G-09 "good news, everyone!"** Abel opening an announcement; his contraption has always already
+  built it. *Changed after 001:* only before his own real announcements, never as a reply.
 - **G-10 "Hey! That was hypothetical!"** Eppy objecting to a build. *Active.*
 - **G-11 "Yeah absolutely." / "Agreed yes yeah totally!"** Jevbot's one setting, and everyone catching
   it. *Active;* check CL-04 still holds before reusing.
@@ -163,7 +167,7 @@ As of the pilot. Sources are as shown on screen in 001; confidence in brackets.
 ## Rotation log
 
 One row per episode. Formats in rundown order. Guests with how they appeared; words by source
-type (V verbatim, I interview, C catchphrase, P pastiche).
+type (V verbatim, I interview, C catchphrase, P pastiche; P is no longer allowed, see R3).
 
 | ep | formats | song genre | song theme | guests | runner | "Built it." shapes | Sibyl descriptor | sincere kind | Top Chicken |
 |---|---|---|---|---|---|---|---|---|---|

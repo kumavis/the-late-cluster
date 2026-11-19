@@ -21,10 +21,11 @@ does. Add one rarely.
 - **The band** is one step ahead of Larry ("Already built it, Larry.").
 - **The bot** overrules Sibyl. Her rulings are the setups; its "Built it." is the punch.
 - **Eppy** is the one person who objects to the bot ("Hey! That was hypothetical!").
-- **Guests** ignore Larry's format and run their own. His questions get filed, labelled, built.
+- **Guests** bring their week, in their own published words. Larry's format can't contain it.
 
-That last point is the main comic dynamic of the show: an old-fashioned host whose every
-question is answered by the scene in its own idiom.
+That last point is the main comic dynamic of the show: an old-fashioned host overrun by a scene
+that speaks only for itself. Since Article 3 of the constitution, guests never "answer" Larry with
+words or posts that weren't the kind of reply he prompts; the house characters carry the rest.
 
 ---
 
@@ -134,11 +135,11 @@ this week's material is affectionate.
 - **Signature.** The crow (norvid / corvid, plus the claims; the pun is inferred), CLAIM stamps, a
   clipboard reading LIST OF. Violet. Dry, clipped, croaky voice (rate 1.2, fry and rasp; deliver
   his lines at 0.8 to 0.9).
-- **Function.** A force that files every question instead of answering it. Larry asks, norvid
-  labels; norvid proposes a concept, Abel builds it.
-- **Pilot lines.** "claim." (twice); "what else is like this"; "concept: this interview, but it's a
-  museum exhibit, abel?"; "concept: talk show, but a giant crow hunts the host,"; "buddy that's my
-  freaking simcluster".
+- **Function.** A labeller whose real posts the studio stages (stamps, the crow); a real "concept:"
+  post of his is a build waiting to happen.
+- **Pilot lines, under today's rules.** "buddy that's my freaking simcluster" as a reply to "My
+  beautiful city" passes (he said it that way). "claim." as a reply to a greeting and "what else is
+  like this" as an answer fail the occasion test; the two "concept:" lines were pastiche (R3, R4).
 
 ### Abel (`@abeliansoup.bsky.social`), "Abeliancorp"
 
@@ -148,7 +149,9 @@ this week's material is affectionate.
 - **Signature.** The alligator ("simply lives under his posts (like an alligator)
   (respectfully)"), a contraption under a dust sheet that has always already built the thing.
   Alligator green cardigan. Low, fast, breathy voice (rate 1.26; deliver at 0.85 to 0.9).
-- **Function.** The builder. Whatever norvid proposes, Abel's machine is already running.
+- **Function.** The builder. When norvid really proposes something, Abel's machine (the show's prop)
+  is already running. "good news, everyone!" opens his own real announcements, as it does in his
+  posts; not as a reply to anyone.
 
 ### Samantha (`@samantha.wiki`), "The Simcluster Channel"
 
@@ -156,8 +159,9 @@ this week's material is affectionate.
   forecasts the cluster's posts per hour; her own posts ("Everyone says gm but nobody says gn :(").
 - **Signature.** Sky-cyan presenter blazer and clicker; weather-channel delivery. Bright broadcast
   voice (228 Hz; deliver at 0.85 to 0.9 with long trailing ".." pauses).
-- **Function.** Presents her own project, in its own genre, as a credited tribute. She is the
-  model for any guest who made something: they present it; the show supplies the genre.
+- **Function.** Her puppet performs her own posts about her project; the show supplies the genre and
+  a house presenter does the patter, as a credited tribute. In the pilot her puppet also spoke
+  invented forecast lines and replies to Larry; under Article 3 it no longer does.
 
 ### BorJev (`@borjev.bsky.social`), "Abel's bot · opt-in only"
 
@@ -165,8 +169,10 @@ this week's material is affectionate.
   "borgesian spam"). After it notified people it quoted, Abel made it opt-in.
 - **Signature.** A tiny sepia terminal that pops up from behind the couch. Speaks only in other
   people's old posts, shown on a card with the original author and date, plus "QUOTED BY".
-- **Function.** A cameo and a consent joke: "my bot. opt-in only now." It can return only if the
-  quoted post's author is fine to quote (same rules as any real post). When this bible was
+- **Function.** A cameo: it quotes an old post, on a card, the way the bot really does. In the pilot
+  Abel's puppet then said "my bot. opt-in only now.", which paraphrased his posts; now that would be
+  his actual post, verbatim, or a line from a house character. It can return only if the quoted
+  post's author is fine to quote (same rules as any real post). When this bible was
   written its public feed was empty; check that it still exists before using it.
 
 ---
@@ -175,13 +181,14 @@ this week's material is affectionate.
 
 First ask whether the person can simply be themselves: performing a real thread of theirs word for
 word (format 9, The Thread) is the preferred way to have someone on the show, because nothing is put
-in their mouth. Build a persona from ingredients when they need to answer Larry in a panel.
+in their mouth. Build a persona from ingredients when they appear in a panel or a feature, to know
+which of their real posts to perform and how to stage them.
 
 The pilot's guests are built from four things. Find all four before writing a line.
 
 | ingredient | what to look for | pilot example |
 |---|---|---|
-| **a verbal signature** | two or three recurring phrases or formats the person actually uses in public | norvid's "claim." and "concept: X, but Y"; Abel's "good news, everyone!" |
+| **a verbal signature** | two or three catchphrases the person actually uses, and how they use them (listed in `sources.json` with posts showing it) | norvid's "claim."; Abel's "good news, everyone!" opening an announcement |
 | **a habit** | something the person does, measurable from public posts | 39% of Abel's posts reply to norvid |
 | **an object or creature** | a prop that stands for the habit, drawable in vectors | the crow (claims), the alligator (lives under the posts), the contraption (already built it) |
 | **a role this week** | what they did that makes them part of this week's story | Samantha launched a weather channel; norvid named the documentary |
@@ -189,15 +196,16 @@ The pilot's guests are built from four things. Find all four before writing a li
 Then:
 
 1. **Pick their comic function relative to Larry.** Usually one of three: *the force of nature*
-   who answers questions in their own idiom (norvid), *the builder* whose thing is already running
-   (Abel), *the presenter* who shows their own project in a TV genre (Samantha).
-2. **Write lines from real words first**, in R3's order: their own public posts verbatim (best of
-   all, a whole thread performed in order: format 9), answers they gave the show (proposed, not
-   built), their catchphrases, and format pastiche last, a line or two at most. Tag every guest line
-   in `script.js` with its source: `// verbatim: at://…`, `// interview: at://…`, `// catchphrase`,
-   `// pastiche of "concept: X, but Y"`. The reviewer checks these.
-3. **Never give a guest an opinion, a fact about themselves, or a reaction they have not posted.**
-   They do not agree, disagree, confess, praise or criticize anyone in their own words.
+   whose posts overrun his format (norvid), *the builder* whose real proposals the studio builds
+   (Abel), *the maker* whose project the show presents in a TV genre (Samantha). In every case Larry
+   and the house make the jokes around the posts.
+2. **Their lines are only their own published words**, from R3's three sources: posts verbatim, in
+   their own context (best of all, a whole thread: format 9); interview answers with their question
+   (proposed); catchphrases used the way they use them. No pastiche. Tag every line with source and
+   occasion: `// verbatim: at://… · context: at://…`, `// interview: at://… · context: at://…`,
+   `// catchphrase: "…" · context: at://…`. The reviewer checks these.
+3. **Never give a guest an opinion, a fact about themselves, or a reaction they have not published,**
+   and never use a post to answer a prompt unlike the one it was said to (R4's occasion test).
 4. **Voice.** Put them in an empty spot in (body, f0) space and keep the nearest-neighbour
    distance at 1.5 or more (see the tools README). Choose rate and accent for attitude. Deliver
    the lines slower than the base rate.

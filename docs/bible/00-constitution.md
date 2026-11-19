@@ -45,17 +45,19 @@ Three questions and a cut test, for a joke, a segment or a whole episode:
 first. Article 1 only ever removes things: it never licenses what chapter 9 forbids, and it never
 removes what chapter 9 requires.
 
-## 3. Public posts, no prior permission
+## 3. Their words, in their context
 
-The show works from what people publish openly. It does not ask permission first. Asking someone
-and waiting for a reply is only ever an option, used in some cases, such as an interview. Nothing
-in the process may make an episode wait on a reply from a person it depicts: if a question goes
-unanswered, the episode goes ahead without it.
+The show uses what people published, in essentially its original context, and never puts words in
+their mouths. A puppet that stands for a real account says only that account's own published words,
+the way they said them: within the conversation they came from, as the post they were, or in an
+exchange the show stages that recreates the occasion they said them on. A real post is never made to
+answer something it wasn't answering, never stitched together from unrelated conversations, and
+never staged so that it means something its author didn't. The show's own characters may set up,
+react and joke around real posts, but never restate, paraphrase or summarise a real person's view
+in words that person did not use. Chapter 9 (R3, R4) says how.
 
-What protects people is not prior permission but the rules of chapter 9: their own words first,
-nothing invented, nothing private, the out-of-bounds subjects, small accounts only as heroes, the
-parody labels, and an opt-out that is honoured absolutely and promptly. This article removes a
-bottleneck. It does not remove or weaken any protection.
+Asking someone and waiting for a reply is only ever an option, as in an interview; nothing in the
+process waits on a reply.
 
 ## 4. The medium is honest on screen
 

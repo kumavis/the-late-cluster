@@ -53,7 +53,7 @@ week, then the archive.
 | **Hy Oid & The Formants** | house band | Hy, Al, Dee, Pete; a tribute band, one step ahead of Larry |
 | **Eppy Glottis** | sports desk | sportscaster gravity for tiny stakes; objects to hypotheticals being built |
 | **the website bot** | builds it | says "Built it." and almost nothing else |
-| **guests** | real personas | norvid, Abel, Samantha, BorJev so far; answer Larry in their own idiom |
+| **guests** | real personas | norvid, Abel, Samantha, BorJev so far; speak only their own published words, in their own context |
 
 **An episode** (about five minutes or less, about 420 to 520 spoken words; every slot a default,
 not a requirement):
@@ -76,17 +76,19 @@ what it keeps, what it changes, and **one experiment** with a stated measure; ea
 source is available only if the plan inherits it by name. `plan.json` and the logs in [lore](lore.md)
 let the pipeline check it.
 
-**Never break these** ([real people](09-real-people.md)):
+**Never break these** ([constitution](00-constitution.md), [real people](09-real-people.md)):
 
+- Their words, in their context. A puppet of a real account says only that account's published
+  words: posts verbatim (best, a whole thread performed word for word), interview answers with their
+  question (proposed), catchphrases used the way they use them. No pastiche. A line may be performed
+  in a staged exchange only if it recreates the occasion it was said on; never made to answer what it
+  wasn't answering, never stitched from unrelated conversations.
 - Persona, not person. Public posts in the cluster only. Nothing private, offline or personal.
-- Real words first: a guest's own posts (best, a whole thread performed word for word), then
-  answers they gave the show (proposed), then catchphrases; format pastiche last and sparing. Never
-  an opinion they haven't posted.
-- Real posts on screen are verbatim, credited, sourced and in context. Invented ones use `.example`.
+- Real posts on screen are verbatim, credited and sourced. Invented ones use `.example`.
 - The repost test: every real person in a joke would happily repost it. Small accounts only as heroes.
   Winners may be named (Top Chicken); losers and runners-up never.
-- The show works from what people publish openly and doesn't ask first; nothing waits on a reply
-  from someone depicted. The opt-out list is absolute and honoured promptly. Health, grief, identity, politics, jobs, conflict: out of bounds.
+- The opt-out list is absolute and honoured promptly. Nothing waits on a reply from someone
+  depicted. Health, grief, identity, politics, jobs, conflict: out of bounds.
 - PUPPET · PARODY on every guest; a disclaimer at the first guest; personas in the credits.
 
 **Craft in six lines:**

@@ -6,6 +6,11 @@ the premise, the comic engine, a beat template, what the format needs from the d
 staging, the pilot example, and how it goes wrong. Formats 1 to 8 are established by the pilot
 (each from one example: starting points, and the first candidates for experiments). Format 9, The Thread,
 is established by the owner's decision and is the preferred way to put real people on the show.
+Under the constitution's Article 3 (their words, in their context), three pilot formats changed:
+The Simcluster Channel and The Panel were reworked, and Live From the Build was rewritten, because
+they put invented words in real people's mouths or made lines answer what they weren't answering. The Ask, the Monologue, Top Chicken
+Tonight, Built or Bit?, The Number, Goodnight and The Thread survive unchanged: in each, real posts
+appear as the posts they were and the show's own characters do the talking.
 Formats 10 to 14 are **proposals**; 14, The Interview, depends on bot work that does not exist yet.
 
 How a format is used is logged per episode (see [fixed and fresh](03-episode-shape.md#fixed-and-fresh)):
@@ -72,20 +77,23 @@ it.
 
 ## 3. The Simcluster Channel (a guest presents their own project)
 
-- **Premise.** A guest who made something presents it in the TV genre it imitates, as a credited
-  tribute. Larry reacts from a picture-in-picture.
+- **Premise.** A project someone made is presented in the TV genre it imitates, as a credited
+  tribute. The maker's puppet performs only their own posts about it; the show's own presenter
+  (Sibyl, or Larry from the picture-in-picture) does the genre patter. *Reworked under Article 3: in
+  the pilot, Samantha's puppet also spoke the invented forecast lines.*
 - **Engine.** Genre vocabulary applied to community content: "two to three inches of assigned
   reading", "a Claims Advisory in Corvid Woods", "scattered catoids through the weekend".
 - **Beats.**
   1. Larry's throw (two lines naming the project and its absurdity: "Naturally, it only forecasts
      itself.").
   2. Jingle (a 2-bar Formants tag, nothing said over it).
-  3. The guest's real opener, verbatim, on a card as they say it.
-  4. 3 to 5 genre items, each one week story translated into the genre, each drawn on the map.
-  5. One exchange with Larry that triggers a build ("any chance of a website by morning?" /
-     "Hundred percent." / "It shipped during that sentence.." / "Built it.").
-  6. The real fact behind the project ("This forecast runs on a Raspberry Pi.."), "Back to you,
-     Larry", Larry's button.
+  3. The maker's real opener, verbatim, on a card as their puppet says it.
+  4. 3 to 5 genre items read by the house presenter, each one week story translated into the genre,
+     each drawn on the map. Any real numbers come from the project itself.
+  5. A wish from a house character that triggers a build ("Any chance of a website by morning?" /
+     "Built it."). The maker never answers Larry with words they didn't post.
+  6. The real fact behind the project, shown with its source; the maker's real sign-off if there is
+     one; Larry's button.
 - **Needs.** A project from the week with a genre (a forecast, a leaderboard, a radio show, a
   museum, a zine), its real numbers, its maker's opener line, and the week's 3 to 5 stories to map
   onto it. If The Simcluster Channel itself is still running, the digest should carry its numbers
@@ -98,7 +106,7 @@ it.
 - **Pilot.** `weather`, a tribute to weather.samantha.wiki: high 177, low 29 posts per hour (real),
   the Piranesi front, catoids, "Chance of gm: 100%. Gn is still rare."
 - **Pitfalls.** Parodying the project instead of celebrating it. Inventing numbers for it. Forgetting
-  the credit. Giving the guest lines that aren't theirs or obvious genre pastiche.
+  the credit. Giving the maker's puppet any line they didn't post.
 
 ## 4. Top Chicken Tonight (the sports desk)
 
@@ -168,43 +176,43 @@ it. Window statistics ("254/754 people posted; 3003 posts overall") are aggregat
 - **Pitfalls.** The meta ending ("it's this show") was the pilot's; do not repeat it. Cards that
   are not from the week. More than six cards.
 
-## 6. The Panel
+## 6. The Panel (reworked)
 
-- **Premise.** Larry interviews one or two guests with old-school talk-show questions. The guests
-  answer in their own idiom, and their idiom takes over the segment. Build the guests' side from
-  real words first, in the order of R3 in [real people](09-real-people.md#r3-words-in-a-guests-mouth-real-words-first):
-  their own posts and catchphrases, then (when it exists) interview answers, and format pastiche
-  last, for a line or two at most. If a guest's material this week is all pastiche, use The Thread
-  or skip the guest.
-- **Engine.** A collision of formats: the classic interview versus the posting persona. Every
-  question gets filed, labelled, turned into a concept and built.
+*Reworked under Article 3.* The pilot's panel ran partly on pastiche and on lines made to answer
+Larry when they weren't answers; neither is allowed now. The rework keeps its comic engine, an
+old-fashioned host overrun by the scene, and the guests speak only their own published words, the
+way they said them.
+
+- **Premise.** Larry has one or two guests on the couch for "a classic interview". Each beat is
+  something they actually posted, performed by their puppet: as the post it was (card with its
+  date), or as a reply to a Larry line that recreates the occasion it was said on (R4's occasion
+  test). Their real exchanges with each other are performed as threads.
+- **Engine.** Larry keeps trying to run a classic interview; the guests' week runs it instead. His
+  setups, reactions and the studio's builds carry the jokes; the guests carry the material.
 - **Beats.**
   1. Intro at the desk; entrance with applause and each guest's creature call.
-  2. A greeting that gets a catchphrase as its answer ("norvid! Thank you for coming." / "claim.").
-  3. A data fact about a guest, shown as a chart (the habit), answered by their own line.
-  4. The big question ("In your own words, what is the simcluster?"), answered with a catchphrase
-     that dodges it ("what else is like this"). Larry: "That's... another question."
-  5. Two builds: guest A proposes, guest B's machine already made it, the bot confirms. Each build
-     is staged on Larry (in a museum case; hunted by a crow).
-  6. A cameo (a pop-up from behind the couch).
-  7. The money line: a real post that lands perfectly in context ("Ah, look at that skyline. My
-     beautiful city." / "buddy that's my freaking simcluster").
-  8. "norvid and Abel, everybody!" and a final catchphrase.
-- **Needs.** One or two guests who passed the real-people check, each with a verbal signature, a
-  habit with a number, a creature or object, and one real post that can answer a question Larry
-  might ask. Their posts from the week.
-- **Length.** 60 to 80 s.
-- **Staging.** `panel` for two-shots, a seat-framed close-up for each catchphrase, `ots` with
-  `pip` for the data chart, a pulled-back camera so a build and Larry share the frame, stamps
-  slammed on whatever was labelled.
-- **Pilot.** `panel`: "claim." stamped on Larry's chest; the 39% pie with the alligator under the
-  slice; Exhibit 31 (*TALK SHOW HOST, ASKING A QUESTION · c. 1962 · MIXED MEDIA (TUXEDO)*); the
-  crow released from the contraption.
-- **Pitfalls.** Guests who only answer Larry and never interact with each other (the pilot's main
-  weakness: give the guests one exchange of their own, ideally a real one from a thread). Lines
-  longer than ten words in a guest's mouth. Any line a guest has not posted that expresses an
-  opinion. Leaning on pastiche: the pilot's panel uses it for its two builds ("concept: …" and "they
-  don't want you to know this but (it's already running)"). That is the most a panel should carry.
+  2. A data fact about a guest, shown as a chart (the habit), with Larry's joke on it.
+  3. A Larry line that recreates the occasion of a guest's real post, and the post as the reply it
+     was ("Ah, look at that skyline. My beautiful city." / *buddy that's my freaking simcluster*). Or
+     simply: "norvid, this week you posted..." and the post. Larry reacts; the show stages it.
+  4. A real exchange between the guests, performed as a short thread (format 9).
+  5. A build: something one of them actually proposed in a post, built by the bot or Abel's machine,
+     staged on Larry.
+  6. A cameo, on the same terms.
+  7. "norvid and Abel, everybody!"
+- **Needs.** One or two guests who passed the real-people check, their posts and threads from the
+  week, a habit with a number, a creature or object.
+- **Length.** 50 to 75 s.
+- **Staging.** `panel` for two-shots, close-ups for each performed post with its card beside the
+  head, `ots` with `pip` for the chart, a pulled-back camera so a build and Larry share the frame.
+- **Pilot evidence** that still holds: the 39% pie with the alligator under the slice; the crow
+  released from the contraption; Exhibit 31 (*TALK SHOW HOST, ASKING A QUESTION · c. 1962 · MIXED
+  MEDIA (TUXEDO)*), which works as a build of a guest's real proposal; *buddy that's my freaking simcluster* as a reply
+  to "My beautiful city" (the owner's ruling: he said it that way). What doesn't: "claim." as a reply
+  to Larry's greeting, "what else is like this" as an answer to "what is the simcluster?", and the
+  two "concept:" pastiche lines (see R3 and R4).
+- **Pitfalls.** A Larry setup that isn't the kind of prompt the post was answering. Larry
+  paraphrasing what a guest thinks. More than about ten words of a guest's post at a time without its card.
 
 ## 7. The Number (the weekly song)
 
@@ -301,8 +309,9 @@ word, in order.
   3. The caption shows the exact text. `as` is for pronunciation only: word-for-word respelling,
      never substitution. Emoji, links and images are shown on the post card, not spoken; if `as` must
      leave a token out, accept the renderer's even-spread word timing.
-  4. Each line carries its source URI (`// verbatim: at://…`). A gate checks that the caption equals
-     the post's text and that the URIs run in thread order.
+  4. Each line carries its source and context (`// verbatim: at://<post> · context: at://<the post it
+     replied to>`). A gate checks that the caption equals the post's text and that the URIs run in thread
+     order.
   5. House characters may frame and react, between posts, in lines that are clearly theirs. They
      never alter, summarise, paraphrase or add words that change what a post meant.
   6. One reaction sound per beat at most, and never a laugh *at* a participant. Laugh with the
@@ -310,7 +319,7 @@ word, in order.
 - **Which threads qualify.** Public, in the cluster, and one of: funny on its own terms, a good
   example of the week's question, or a small kindness. Short: up to about eight posts or 60 seconds.
   Every participant passes the opt-out rule (R11) and, in the writer's judgement from their public
-  posts, would happily repost the clip (R6; nobody is asked); small
+  posts, would happily repost the clip (R6); small
   accounts only where they come off well (R7). It has a shape: a build-up and a turn.
 - **Which do not.** Arguments, corrections, callouts, dunks, anyone upset; anything touching R10
   topics; a thread where a post has been deleted or edited since the digest; any post under a reply
@@ -326,8 +335,8 @@ word, in order.
   post card for each line slides in as it's spoken (the speaker's colour). A disclaimer footer:
   *Performed verbatim from a public thread, <date>. Puppets play posting personas.* Chyrons carry
   PUPPET · PARODY as for any guest.
-- **Pilot.** Not in the pilot as a format. Its nearest moments are single posts in context: norvid's
-  "buddy that's my freaking simcluster", and the Discords reply card.
+- **Pilot.** Not in the pilot as a format. Its nearest moment is the Discords reply card, shown as the
+  reply it was.
 - **Pitfalls.** Choosing a thread for its fame, not its shape. Performing it straight with nothing
   staged. Larry's reactions turning into commentary on a participant.
 
@@ -352,8 +361,9 @@ word, in order.
   The remote link misbehaves.
 - **Engine.** The guest's project is the location; the remote shot's conventions (delay, signal
   loss) collide with the thing being built around them.
-- **Beats.** Larry: "We go live to..." Monitor up (`remote`, LIVE bug). Two or three questions,
-  answered in the guest's idiom. The project grows behind them. The feed glitches (hologram
+- **Beats.** Larry: "We go live to..." Monitor up (`remote`, LIVE bug). The guest's puppet performs
+  their own posts about the build, in order, each as the post it was; Larry's questions are his own
+  set-ups and never get "answered" with their words. The project grows behind them. The feed glitches (hologram
   flicker) at the punchline. "We seem to have lost..." Button.
 - **Needs.** A guest who shipped something drawable this week, and their posts about it.
 - **Length.** 45 to 60 s.
@@ -404,7 +414,8 @@ word, in order.
   one build, Larry's button. Two or three people answering the same question works well as a montage.
 - **Needs.** The question post, the opted-in replies, verbatim, still live at air time.
 - **Length.** 30 to 60 s.
-- **Rules.** Those of The Thread, plus the interview rules in chapter 9. An unanswered question
+- **Rules.** Those of The Thread, plus the interview rules in chapter 9. Tag each answer
+  `// interview: at://<answer> · context: at://<question>`. An unanswered question
   never holds up the episode. Larry speaks the question as
   it was posted.
 

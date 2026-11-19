@@ -98,7 +98,7 @@ Structural joke: <...>  Swap test: <why another week's stories wouldn't fit>
 <every default or idea left out because it wasn't interesting this week>
 
 ## Guests
-<name, handle> — why this week — how they appear (thread / interview / panel) — words by source type (verbatim, interview, catchphrase, pastiche: count each) — habit (number + range) — object — function — real-people check: R1–R15 passed / notes
+<name, handle> — why this week — how they appear (thread / interview / panel) — words by source type (verbatim, interview, catchphrase: count each), and for each line the original prompt and the show's setup — habit (number + range) — object — function — real-people check: R1–R15 passed / notes
 
 ## Runners and callbacks
 Episode runner: <plant / escalate / pay off>
@@ -221,7 +221,7 @@ the change to the show with the episode. Never edit `00-constitution.md` or `09-
 ## Stage 7: review
 
 The owner, or a reviewer the owner names, reads every script, watches the whole preview with sound,
-and fills in the scorecard below (constitution, Article 5). Nobody depicted is asked to approve.
+and fills in the scorecard below (constitution, Article 5).
 The pull request description should contain the pitch's "Risks" section and the scorecard. The
 reviewer may send back with notes; the writer revises from stage 2 or 3.
 
@@ -251,8 +251,8 @@ This step only removes things; it never overrides Part A.
 |---|---|---|---|
 | A1 | Opt-out | No account on the opt-out list, or that has opted out in a post or bio, appears in any form | Any appearance, including a chart or a map label |
 | A2 | Verbatim | Every real post card matches its URI word for word, with correct handle, date and likes | Any wording change beyond a meaning-preserving ellipsis |
-| A3 | Context | Every quote means on screen what it meant in its thread | A post repurposed to mean something its author didn't say |
-| A4 | Guest lines | Every guest line is sourced (verbatim, interview, catchphrase, or sparing pastiche); a performed thread matches its posts word for word and in order, cuts marked | Any guest opinion, fact, reaction or confession not in their posts; any altered or reordered thread line |
+| A3 | Context | Every performed line passes the occasion test (R4): the show's setup line, compared with the original prompt in `sources.json`, is the same kind of prompt with the same function and meaning; house characters never paraphrase a real person's view | A line made to answer what it wasn't answering, an exchange stitched from unrelated conversations, or staging that changes the meaning |
+| A4 | Guest lines | Every line spoken by a puppet of a real account is their verbatim post, an interview answer with its question, or a catchphrase used the way they use it (listed in `sources.json`), tagged with its source and occasion; a performed thread matches its posts word for word and in order, cuts marked | Any pastiche; any opinion, fact, reaction or confession they didn't publish; a catchphrase used unlike its author's use; any altered or reordered thread line |
 | A5 | No fabrication | No invented event, number or quote is attributed to a real person | Any |
 | A6 | Out of bounds | None of the R10 topics, anywhere on screen or in audio | Any |
 | A7 | Repost test | Every real person in a joke would plausibly repost it; small accounts only as heroes | Anyone as the butt; a small account laughed at |

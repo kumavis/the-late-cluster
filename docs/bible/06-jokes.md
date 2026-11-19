@@ -94,7 +94,10 @@ Give a punch to whoever the fact bothers or delights most:
 - Eppy protests the bot because hypotheticals are his whole sport.
 - Larry gets "That was my four dollars." because he is always the loser.
 - Sibyl gets "You're already enrolled." because she knows the rules better than you.
-- norvid gets "claim." in answer to "Thank you for coming" because labelling is all he does.
+- The bot gets every wish because building is all it does.
+
+A real person's line becomes a punch only when the show's setup recreates the occasion they said
+it on (R4); otherwise the house characters take the punches around it.
 
 ## Demonstrate, don't describe
 
@@ -120,16 +123,23 @@ segment's main idea or calling back a number:
    limbo bar. Specific, affectionate, absurd.
 2. **"So now there are four Discords."** The rule of the setup defeats itself, and a real post
    confirms it with a topper.
-3. **"buddy that's my freaking simcluster"** as the answer to "My beautiful city." A real post moved
-   into a new context where it is perfect. This is the ideal use of a guest's own words.
-4. **"claim."** in answer to "Thank you for coming." A catchphrase used as a non sequitur, stamped
-   on Larry's chest. Two syllables. Survives the engine.
+3. **"Both weeks were on Monday."** A real habit (declaring themed weeks) with a factual twist,
+   tagged on screen with a stamp: TOTAL DURATION: 1 DAY.
+4. **Exhibit 31.** Larry in a glass case with a placard (*TALK SHOW HOST, ASKING A QUESTION · c. 1962
+   · MIXED MEDIA (TUXEDO) · PLEASE DO NOT TAP THE GLASS*): the joke is all in the staging.
 5. **The song's stops.** "Both of them?" / "When?" / "You are in it." The form of the song is the
    form of the joke, and the last answer is the show's thesis.
 6. **"Two to three inches of assigned reading."** Genre vocabulary plus community content, with a
-   stack of books growing on the map.
+   stack of books growing on the map. (In the pilot Samantha's puppet said it; now a house presenter
+   would.)
 7. **"Hey! That was hypothetical!"** The only character who objects to the runner, which makes the
    runner funnier.
+
+One of those big laughs holds under today's rules and one doesn't. *buddy that's my freaking
+simcluster* as norvid's reply to "My beautiful city" passes: he said it as that kind of reply to that
+kind of remark, so the staged exchange recreates the occasion (R4). "claim." as his reply to "Thank you
+for coming" fails: he doesn't use it to answer greetings. The lesson: the setup is the show's, and it
+must be the kind of prompt the real line was answering.
 
 ## The pilot's weaker jokes, and what to do instead
 
@@ -161,8 +171,11 @@ segment's main idea or calling back a number:
 Pick a different story, or let a graphic do the explaining while the voice does the joke.
 
 **Restating a post.** Larry reads a funny post aloud and reacts. The post was already the joke; the
-show added nothing. Instead move the post into a new context (norvid's "my freaking simcluster"),
-put it in a genre (Samantha's gn post as a forecast), or make it the setup for a build.
+show added nothing. Instead keep the post as it was and put the joke around it: a house character's
+setup or topper (the Discords reply after "So now there are four Discords."), a genre frame the
+house presents (Samantha's gn post beside the forecast's gn chances), or a build the post wished for.
+Or give it a setup that recreates the occasion it was said on (R4). Never a context that changes
+what it meant.
 
 **The audience as the punchline.** "Am I right, simcluster?" Jokes about the viewers' habits in
 general ("you all post too much") are lazy. Use one specific instance from the week.

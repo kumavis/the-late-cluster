@@ -92,8 +92,8 @@ argue its own smaller point the same way.
   cannot be the chicken."). Nobody is the butt for being wrong, small, new, or uncool.
 - **Not discourse.** No dunks, no sides in arguments, no platform wars. "Bluesky doesn't even use
   it" is a joke about a name, not about a rival site.
-- **Not insider-only.** A viewer who has never heard of norvid must still get why "claim." in
-  answer to "Thank you for coming" is funny.
+- **Not insider-only.** A viewer who has never heard of the book club must still get why "So now
+  there are four Discords." is funny.
 
 ## What gives an episode a point
 
