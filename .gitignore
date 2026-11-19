@@ -5,11 +5,11 @@ node_modules/
 # fresh renders: audio and telemetry are committed once, in dist/episodes/<id>/
 episodes/*/public/
 
-# scraper output
-data/
+# scraper output (root only: the leading slash keeps this from matching other data/ folders)
+/data/
 
 # draft preview builds (npm run build -- <ep> --preview)
-preview/
+/preview/
 
 # a build's temp and swap folders (dist/episodes/.<id>.new-<pid>, .old-<pid>)
 dist/episodes/.*
@@ -21,8 +21,8 @@ packages/show/dist/
 packages/show/tools/.cache/
 
 # frames from npm run shoot, videos from packages/show/tools/video.mjs
-shots/
-video/
+/shots/
+/video/
 
 # the archive page, generated from the committed manifests (npm run site); see packages/site/src/paths.mjs
 /dist/index.html
