@@ -1,0 +1,23 @@
+{
+  "name": "@late-cluster/site",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Generates the archive index page of The Late Cluster from the committed episode manifests in dist/.",
+  "engines": {
+    "node": ">=22"
+  },
+  "exports": {
+    ".": "./src/build.mjs",
+    "./paths": "./src/paths.mjs"
+  },
+  "bin": {
+    "late-cluster-site": "./bin/build-site.mjs",
+    "late-cluster-serve": "./bin/serve.mjs"
+  },
+  "scripts": {
+    "build": "node bin/build-site.mjs",
+    "serve": "node bin/serve.mjs",
+    "test": "node --test"
+  }
+}

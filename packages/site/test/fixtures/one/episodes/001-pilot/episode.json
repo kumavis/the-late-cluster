@@ -1,0 +1,12 @@
+{
+  "id": "001-pilot",
+  "number": 1,
+  "slug": "pilot",
+  "title": "Pilot",
+  "description": "Larry Nx takes the desk, the Formants tune up, and the cluster finds out it has a talk show.",
+  "airDate": "2026-11-13",
+  "week": "2026-W46",
+  "status": "published",
+  "rundown": ["cold-open", "monologue", "weather", "top-chicken", "built-or-bit", "panel", "song", "goodnight"],
+  "build": { "sourceHash": "0000000000000000000000000000000000000000000000000000000000000000", "studio": "0000000" }
+}

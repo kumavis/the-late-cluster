@@ -1,0 +1,49 @@
+name: CI
+
+# Checks a pull request without building anything: no npm install, no episode build, no
+# browser. Episode builds are committed under dist/episodes/<id>/, so CI only has to prove
+# they still match their sources (npm run verify), that the tests pass, and that generating
+# the archive page works and leaves every tracked file unchanged.
+
+on:
+  pull_request:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      # No npm install: the tests, verify and the site generator use Node builtins only.
+      - name: Test
+        run: npm test
+
+      - name: Verify committed builds match their sources
+        run: npm run verify
+
+      - name: Generate the archive page
+        run: npm run site
+
+      # Generation must only write gitignored files: nothing tracked may change...
+      - name: Tracked files are unchanged
+        run: git diff --exit-code
+
+      # ...and nothing new may appear, which would mean an ignore rule is missing.
+      - name: No untracked files appeared
+        run: |
+          untracked="$(git status --porcelain --untracked-files=all)"
+          if [ -n "$untracked" ]; then
+            echo "Untracked files after generation (missing .gitignore entries?):"
+            echo "$untracked"
+            exit 1
+          fi

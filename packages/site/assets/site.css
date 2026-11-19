@@ -1,0 +1,229 @@
+/* The Late Cluster: the archive page. Same vector-display language as the show's chrome
+   (packages/show/src/style.css): black, thin glowing lines, Hershey capitals, no filled panels. */
+
+@font-face {
+  font-family: 'Hershey';
+  src: url('fonts/AVHersheySimplexLight.otf') format('opentype');
+  font-weight: 100 400;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Hershey';
+  src: url('fonts/AVHersheySimplexMedium.otf') format('opentype');
+  font-weight: 401 900;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Archivo';
+  src: url('fonts/archivo-latin.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+    U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+@font-face {
+  font-family: 'Archivo';
+  src: url('fonts/archivo-latin-ext.woff2') format('woff2');
+  font-weight: 100 900;
+  font-display: swap;
+  unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF,
+    U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+:root {
+  --black: #000;
+  --blue: #4fb6f2;
+  --blue-mid: #3487c4;
+  --blue-dim: #1f5f8c;
+  --frame: #133954;
+  --sky: #7cc4ff;
+  --gold: #ffc861;
+  --white: #eef6f8;
+  --text: #b9c9d2;
+  --glow-blue: 0 0 1.5px rgba(79, 182, 242, 0.9), 0 0 6px rgba(79, 182, 242, 0.4);
+  --glow-gold: 0 0 1.5px rgba(255, 200, 97, 0.95), 0 0 8px rgba(255, 200, 97, 0.45);
+  --vector: 'Hershey', 'Archivo', system-ui, sans-serif;
+  --prose: 'Archivo', system-ui, sans-serif;
+  --gutter: clamp(16px, 4vw, 40px);
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { background: var(--black); -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
+body {
+  margin: 0 auto;
+  max-width: 1180px;
+  padding: 0 var(--gutter);
+  background: var(--black);
+  color: var(--white);
+  font: 16px/1.55 var(--prose);
+}
+img { display: block; max-width: 100%; }
+a { color: var(--sky); text-underline-offset: 0.2em; }
+a:hover { color: var(--white); }
+:focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; }
+.vh {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0;
+  overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap;
+}
+
+/* ------------------------------------------------------------ masthead: the title card, smaller */
+.masthead { padding: clamp(40px, 8vw, 88px) 0 clamp(36px, 6vw, 64px); }
+.wordmark { margin: 0; font-family: var(--vector); font-weight: 400; line-height: 1; text-transform: uppercase; }
+.wordmark > span { display: block; }
+.wm-the {
+  font-size: clamp(15px, 2.4vw, 24px); letter-spacing: 0.9em; color: var(--sky); text-shadow: var(--glow-blue);
+  margin-bottom: 0.7em;
+}
+.wm-cluster {
+  width: fit-content;
+  font-size: clamp(56px, 11vw, 112px); font-weight: 500; letter-spacing: 0.06em; color: var(--gold);
+  text-shadow: var(--glow-gold);
+  position: relative; padding-bottom: 0.06em;
+}
+/* the gold rule under CLUSTER, lit like a beam */
+.wm-cluster::after {
+  content: ''; position: absolute; left: 0; right: 0; bottom: 0; height: 2px;
+  background: var(--gold); box-shadow: var(--glow-gold);
+}
+.wm-with {
+  margin-top: 0.55em; font-size: clamp(20px, 3.2vw, 32px); font-style: italic; letter-spacing: 0.12em;
+  text-transform: none; color: var(--white); text-shadow: 0 0 6px rgba(238, 246, 248, 0.35);
+}
+.premise { max-width: 36em; margin: 28px 0 0; color: var(--text); font-size: clamp(16px, 1.9vw, 18px); }
+
+/* ------------------------------------------------------------ section labels ("TONIGHT") */
+.label {
+  margin: 0 0 24px; padding-bottom: 10px; border-bottom: 1px solid var(--blue-dim);
+  font: 400 14px/1.2 var(--vector); letter-spacing: 0.42em; text-transform: uppercase;
+  color: var(--blue); text-shadow: var(--glow-blue);
+  display: flex; flex-wrap: wrap; justify-content: space-between; align-items: baseline; gap: 4px 16px;
+}
+.label .count { font-size: 12px; letter-spacing: 0.24em; color: var(--sky); opacity: 0.8; text-shadow: none; }
+
+/* ------------------------------------------------------------ thumbnails: a lit frame */
+.thumb {
+  display: block; position: relative; aspect-ratio: 16 / 10; overflow: hidden;
+  background: var(--black); border: 1px solid var(--frame);
+}
+.thumb img { width: 100%; height: 100%; object-fit: cover; }
+.thumb-empty { display: grid; place-items: center; }
+.thumb-empty::before {
+  content: ''; position: absolute; inset: 14%; border: 1px solid var(--frame);
+}
+.thumb-empty span {
+  font: 400 clamp(18px, 3vw, 28px) var(--vector); letter-spacing: 0.3em; color: var(--blue-mid);
+}
+
+/* ------------------------------------------------------------ the latest episode */
+.latest { margin-bottom: clamp(56px, 8vw, 96px); }
+.feature {
+  display: grid; gap: clamp(20px, 4vw, 48px); align-items: center;
+  grid-template-columns: minmax(0, 1.45fr) minmax(0, 1fr);
+}
+.feature-thumb { display: block; }
+.feature-thumb .thumb { border-color: var(--blue-dim); box-shadow: var(--glow-blue); }
+.feature-thumb:hover .thumb { border-color: var(--blue); }
+.epno {
+  margin: 0 0 14px; font: 400 14px/1 var(--vector); letter-spacing: 0.42em; text-transform: uppercase; color: var(--blue);
+}
+.feature-title {
+  margin: 0; font: 500 clamp(32px, 4.6vw, 52px)/1.08 var(--vector); letter-spacing: 0.06em; text-transform: uppercase;
+  color: var(--gold); text-shadow: var(--glow-gold); overflow-wrap: anywhere;
+}
+.airdate {
+  margin: 16px 0 0; font: 400 13px/1.2 var(--vector); letter-spacing: 0.28em; text-transform: uppercase; color: var(--blue);
+}
+.airdate time { color: var(--white); }
+.desc { margin: 20px 0 0; max-width: 34em; color: var(--text); font-size: 17px; }
+.watch-row { margin: 32px 0 0; }
+.watch {
+  --cut: 10px;
+  display: inline-flex; align-items: center; gap: 0.9em;
+  padding: 0.95em 1.7em 0.85em 2em;
+  font: 500 17px/1 var(--vector); letter-spacing: 0.36em; text-transform: uppercase; text-decoration: none;
+  color: var(--gold); text-shadow: var(--glow-gold);
+  border: 1.5px solid var(--gold); background: rgba(0, 0, 0, 0.75);
+  box-shadow: inset 0 0 14px rgba(255, 200, 97, 0.2);
+  clip-path: polygon(var(--cut) 0, 100% 0, 100% calc(100% - var(--cut)), calc(100% - var(--cut)) 100%, 0 100%, 0 var(--cut));
+}
+.watch::after {
+  content: ''; width: 0.5em; height: 0.6em; background: currentColor;
+  clip-path: polygon(0 0, 100% 50%, 0 100%); filter: drop-shadow(0 0 2px rgba(255, 200, 97, 0.8));
+}
+.watch:hover { color: var(--gold); background: rgba(255, 200, 97, 0.14); }
+/* the cut corners clip an outside outline, so the focus ring goes inside */
+.watch:focus-visible { outline: 2px solid var(--white); outline-offset: -6px; background: rgba(255, 200, 97, 0.14); }
+
+/* ------------------------------------------------------------ the archive grid */
+.archive { margin-bottom: clamp(56px, 8vw, 96px); }
+.grid {
+  list-style: none; margin: 0; padding: 0;
+  display: grid; gap: 40px 28px; grid-template-columns: repeat(auto-fill, minmax(min(100%, 250px), 1fr));
+}
+.card { position: relative; }
+.card .thumb { margin-bottom: 14px; }
+.card:hover .thumb { border-color: var(--blue-mid); box-shadow: var(--glow-blue); }
+.card-meta {
+  margin: 0 0 8px; display: flex; flex-wrap: wrap; gap: 4px 14px;
+  font: 400 12px/1.3 var(--vector); letter-spacing: 0.24em; text-transform: uppercase; color: var(--blue);
+}
+.card-no { color: var(--gold); }
+.card-title {
+  margin: 0; font: 500 19px/1.25 var(--vector); letter-spacing: 0.08em; text-transform: uppercase; overflow-wrap: anywhere;
+}
+.card-title a { color: var(--white); text-decoration: none; }
+/* the whole card is the link's hit area */
+.card-title a::after { content: ''; position: absolute; inset: -6px; }
+.card:hover .card-title a { color: var(--gold); }
+.card-title a:focus-visible { outline: none; color: var(--gold); }
+.card-title a:focus-visible::after { outline: 2px solid var(--gold); outline-offset: 2px; }
+.card-desc {
+  margin: 8px 0 0; color: var(--text); font-size: 14.5px; line-height: 1.5;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 3; line-clamp: 3; overflow: hidden;
+}
+
+/* ------------------------------------------------------------ nothing aired yet */
+.empty {
+  margin-bottom: 96px; padding: clamp(40px, 8vw, 80px) 24px; text-align: center;
+  border: 1px solid var(--blue-dim); box-shadow: var(--glow-blue), inset 0 0 24px rgba(79, 182, 242, 0.08);
+}
+.empty-title {
+  margin: 0 0 16px; font: 400 clamp(18px, 3vw, 24px)/1.3 var(--vector); letter-spacing: 0.4em; text-transform: uppercase;
+  color: var(--blue); text-shadow: var(--glow-blue);
+}
+.empty p { margin: 0; color: var(--text); }
+
+/* ------------------------------------------------------------ footer */
+.foot {
+  padding: 20px 0 40px; border-top: 1px solid var(--frame);
+  font: 400 13px/1.9 var(--vector); letter-spacing: 0.18em; text-transform: uppercase; color: var(--blue);
+}
+.foot p { margin: 0; }
+.foot a { color: var(--sky); }
+.foot a:hover { color: var(--white); }
+.credits { color: var(--blue-mid); font-size: 12px; }
+
+/* ------------------------------------------------------------ small screens */
+@media (max-width: 760px) {
+  .feature { grid-template-columns: minmax(0, 1fr); }
+  .wm-the { letter-spacing: 0.6em; }
+  .watch { display: flex; justify-content: center; }
+}
+
+/* on a phone the archive becomes a compact list, so sixty episodes stay a reasonable scroll */
+@media (max-width: 560px) {
+  .grid { gap: 22px; }
+  .card { display: grid; grid-template-columns: 112px minmax(0, 1fr); column-gap: 14px; align-content: start; }
+  .card .thumb { grid-row: 1 / span 3; margin: 0; align-self: start; }
+  .card .thumb-empty span { font-size: 13px; letter-spacing: 0.2em; }
+  .card .thumb-empty::before { inset: 10%; }
+  .card-meta { margin-bottom: 4px; font-size: 11px; letter-spacing: 0.18em; }
+  .card-title { font-size: 16px; }
+  .card-desc { margin-top: 4px; font-size: 14px; -webkit-line-clamp: 2; line-clamp: 2; }
+}
+
+/* ------------------------------------------------------------ motion: only hover fades, and only if wanted */
+@media (prefers-reduced-motion: no-preference) {
+  .thumb, .watch, .card-title a { transition: border-color 0.15s, box-shadow 0.15s, background-color 0.15s, color 0.15s; }
+}

@@ -1,0 +1,62 @@
+name: Deploy to GitHub Pages
+
+# Publishes dist/ as it is committed. Nothing is built here: no npm install, no episode build,
+# no browser. Each episode's build is committed under dist/episodes/<id>/ when it is made
+# (npm run build -- <ep>), so a deploy is a file copy that never re-bundles an old episode
+# with today's studio, and its cost does not grow with the number of episodes.
+#
+# The only generated files are the archive page (index.html, episodes.json, latest/,
+# site-assets/), written by packages/site from the committed manifests with Node builtins.
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+# Allow the workflow to publish to GitHub Pages.
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+# Only one concurrent deploy; don't cancel an in-progress one.
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+
+      # No npm install: verify and the site generator use Node builtins only.
+      - name: Verify committed builds match their sources
+        run: npm run verify
+
+      # Only to learn the site's public URL for absolute Open Graph links.
+      - name: Read the Pages configuration
+        id: pages
+        uses: actions/configure-pages@v6
+
+      - name: Generate the archive page
+        run: npm run site
+        env:
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
+
+      - name: Upload dist/
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
