@@ -108,3 +108,12 @@ test('the response cache can be pruned without touching the outputs', async () =
 test('repeated warnings are collapsed with a count', () => {
   assert.deepEqual(collapse(['a', 'b', 'a', 'a']), ['a (3 times)', 'b'])
 })
+
+test('the CLI accepts --since/--until and defaults a range to data/ranges/<label>', async () => {
+  const { parseCli, defaultOut } = await import('../src/run.js')
+  const a = parseCli(['--since', '2026-11-13', '--until', '2026-11-16T12:00Z', '--out', 'data/weeks/2026-W47'])
+  assert.deepEqual([a.since, a.until, a.out], ['2026-11-13', '2026-11-16T12:00Z', 'data/weeks/2026-W47'])
+  assert.throws(() => parseCli(['--from', '2026-11-13']), /Unknown option/)
+  assert.equal(defaultOut({ kind: 'range', label: '2026-11-13T0000Z_2026-11-19T0831Z' }, '/repo'), '/repo/data/ranges/2026-11-13T0000Z_2026-11-19T0831Z')
+  assert.equal(defaultOut({ kind: 'week', label: '2026-W46' }, '/repo'), '/repo/data/weeks/2026-W46')
+})

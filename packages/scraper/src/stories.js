@@ -311,10 +311,10 @@ function reasons(r, { quoteTarget, byUri, phraseTerms }) {
   if (r.quoteEdges > 0) out.push(`${r.quoteEdges} quote ${r.quoteEdges === 1 ? 'post' : 'posts'}`)
   for (const [k, n] of r.keyCount) {
     if (k.startsWith('L:')) out.push(`${n} posts share the link ${k.slice(2)}`)
-    if (k.startsWith('D:')) out.push(`${n} posts link to ${k.slice(2)}, a domain new this week`)
+    if (k.startsWith('D:')) out.push(`${n} posts link to ${k.slice(2)}, a domain not seen in the baseline`)
     if (k.startsWith('W:')) {
       const ph = phraseTerms.get(k.slice(2))
-      out.push(`${n} separate posts use the phrase "${k.slice(2)}" (${ph?.authors ?? n} people this week, ${ph?.ratio ? ph.ratio + 'x its usual rate' : 'no baseline'})`)
+      out.push(`${n} separate posts use the phrase "${k.slice(2)}" (${ph?.authors ?? n} people in the window, ${ph?.ratio ? ph.ratio + 'x its usual rate' : 'no baseline'})`)
     }
   }
   if (r.members.size >= 2) out.push(`${r.members.size} cluster members took part`)
@@ -366,7 +366,7 @@ function shapeStory(r, { byUri, metrics, quoteTarget, context, memberReposts, cf
     id: 's-' + shortHash(r.anchor, 10),
     rank: 0,
     kind: kindOf(r),
-    headline: firstLine(headlinePost.text || (headlinePost.quoted?.text ?? '') || '(no text)', 120),
+    headline: firstLine(headlinePost.text || (headlinePost.imageAlts?.[0] ? `(image) ${headlinePost.imageAlts[0]}` : '') || (headlinePost.quoted?.text ? `(quoting) ${headlinePost.quoted.text}` : '') || (headlinePost.hasVideo ? '(video)' : headlinePost.hasImages ? '(image)' : '(no text)'), 120),
     anchor: { kind: anchorKind, value: anchorKind === 'thread' ? (r.anchor.slice(2).startsWith('at://') ? r.anchor.slice(2) : 'hidden') : r.anchor.slice(2) },
     reason: reasons(r, { quoteTarget, byUri, phraseTerms }),
     outOfBounds,

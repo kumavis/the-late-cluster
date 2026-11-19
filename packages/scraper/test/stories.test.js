@@ -63,7 +63,7 @@ test('two posts linking to the same new domain become a built story', () => {
   const s = run(posts, base).find((s) => s.posts.some((p) => p.uri === uriOf('foxtrot', 'b1')))
   assert.equal(s.stats.posts, 2)
   assert.equal(s.kind, 'built')
-  assert.ok(s.reason.some((r) => /league\.example\.test, a domain new this week/.test(r)))
+  assert.ok(s.reason.some((r) => /league\.example\.test, a domain not seen in the baseline/.test(r)))
   assert.ok(s.scores.built.raw > 0)
 })
 

@@ -46,6 +46,7 @@
     "seekCursor": true,
     "threadsToExpand": 20,
     "threadDepth": 4,
-    "threadOutsiderMinLikes": 5
+    "threadOutsiderMinLikes": 5,
+    "profileReserve": 250
   }
 }

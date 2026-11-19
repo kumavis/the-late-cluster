@@ -10,15 +10,18 @@ import { XrpcClient, DEFAULT_USER_AGENT, authFromEnv } from './http.js'
 import { collect, completeThreads } from './collect.js'
 import { analyze } from './digest.js'
 import { renderMarkdown } from './render-md.js'
-import { resolveWindow, previousWeekLabels } from './window.js'
+import { resolveWindow, baselineWeekLabels } from './window.js'
 
 export const REPO_ROOT = resolve(PACKAGE_DIR, '..', '..')
 
-export const USAGE = `Usage: npm run scrape -- [--week 2026-W47 | --days 7] [--out <dir>]
+export const USAGE = `Usage: npm run scrape -- [--week 2026-W47 | --days 7 | --since 2026-11-13 [--until <date-time>]] [--out <dir>]
 
   --week <YYYY-Www>   an ISO week in UTC (default: the most recent complete week)
   --days <n>          a rolling window of n days ending now
-  --out <dir>         output directory (default: data/weeks/<week>/ at the repo root)
+  --since <date>      from a date (00:00 UTC) or an ISO date-time, to --until or now
+  --until <date-time> end of a --since window (default: now); needs --since
+  --out <dir>         output directory (default: data/weeks/<week>/ at the repo root;
+                      for --days and --since, data/ranges/<start>_<end>/)
   --config <dir>      config directory (default: packages/scraper/config)
   --max-requests <n>  override the request budget in config/client.json
   --no-cache          ignore and do not write the response cache
@@ -36,6 +39,8 @@ export function parseCli(argv) {
     options: {
       week: { type: 'string' },
       days: { type: 'string' },
+      since: { type: 'string' },
+      until: { type: 'string' },
       out: { type: 'string' },
       config: { type: 'string' },
       'max-requests': { type: 'string' },
@@ -65,6 +70,11 @@ async function readPriorPosts(dir, labels) {
   return { posts: out, weeks: used }
 }
 
+/** Where a run writes when --out is not given. */
+export function defaultOut(window, root = REPO_ROOT) {
+  return window.kind === 'week' ? join(root, 'data', 'weeks', window.label) : join(root, 'data', 'ranges', window.label)
+}
+
 /** Delete a week's response cache (`<out>/.cache`). Outputs are left alone. */
 export async function pruneCache(out) {
   await rm(join(out, '.cache'), { recursive: true, force: true })
@@ -83,9 +93,9 @@ export async function run(argv = process.argv.slice(2), env = process.env) {
   const log = args.quiet ? () => {} : (m) => process.stderr.write(m + '\n')
   const t0 = Date.now()
   const now = args.now ? Date.parse(args.now) : Date.now()
-  const window = resolveWindow({ week: args.week, days: args.days, now })
+  const window = resolveWindow({ week: args.week, days: args.days, since: args.since, until: args.until, now })
   const config = loadConfig(args.config ? resolve(args.config) : DEFAULT_CONFIG_DIR)
-  const out = resolve(args.out ?? join(REPO_ROOT, 'data', 'weeks', window.label))
+  const out = resolve(args.out ?? defaultOut(window))
   await mkdir(out, { recursive: true })
   log(`window ${window.label}: ${new Date(window.start).toISOString()} to ${new Date(window.end).toISOString()}`)
   log(`output ${out}`)
@@ -107,8 +117,11 @@ export async function run(argv = process.argv.slice(2), env = process.env) {
   const consent = new Consent({ optOut: config.optOut.accounts, blockedLabels: config.scoring.blockedLabels, selfDeclaredPatterns: config.safety.selfDeclaredOptOut.patterns })
 
   const c = await collect({ client, config, window, consent, log })
-  const dataDir = args.out ? dirname(out) : join(REPO_ROOT, 'data', 'weeks')
-  const prior = window.kind === 'week' ? await readPriorPosts(dataDir, previousWeekLabels(window, config.cluster.collection.baselineWeeks)) : { posts: [], weeks: [] }
+  // Earlier weekly runs' posts.jsonl that overlap the baseline add to it (analyze keeps only
+  // posts inside the baseline period, so overlapping weeks are safe).
+  const dataDir = window.kind === 'week' && args.out ? dirname(out) : join(REPO_ROOT, 'data', 'weeks')
+  const priorLabels = baselineWeekLabels(window, config.cluster.collection.baselineWeeks).filter((l) => resolve(dataDir, l) !== out)
+  const prior = await readPriorPosts(dataDir, priorLabels)
 
   const analyzeArgs = () => ({
     posts: c.store.posts.values(),

@@ -4,7 +4,7 @@ import { renderMarkdown, renderStory, mdText } from '../src/render-md.js'
 
 const story = {
   id: 's-0123456789', rank: 1, kind: 'built', headline: 'I built the *thing* <script>',
-  reason: ['2 posts link to thing.example.test, a domain new this week', '3 cluster members took part'],
+  reason: ['2 posts link to thing.example.test, a domain not seen in the baseline', '3 cluster members took part'],
   scores: { total: 3.21, engagement: { raw: 4, norm: 1, weight: 1 }, built: { raw: 3, norm: 1, weight: 1.3 }, breadth: { raw: 1, norm: 0.5, weight: 1.6 } },
   stats: { posts: 6, authors: 3, members: 3, engagement: 120, memberReposts: 0, quotePosts: 1, days: ['2026-11-10', '2026-11-12'] },
   links: [{ url: 'https://thing.example.test', title: 'Thing', domain: 'thing.example.test', members: 2, posts: 2, isNewDomain: true }],
@@ -86,6 +86,14 @@ test('the full digest renders overview, stories and every appendix', () => {
   assert.match(md, /## Appendix D: "X week" declarations[\s\S]*\| "thing week" \| 2 \| 3 \| yes \|/)
   assert.match(md, /Requests: 321 made/)
   assert.match(md, /1 porn by content label/)
+
+  // a --since window describes its real ends, not a week
+  const r = renderMarkdown({ ...digest, window: { ...digest.window, kind: 'range', label: '2026-11-13T0000Z_2026-11-19T0831Z', start: '2026-11-13T00:00:00.000Z', end: '2026-11-19T08:31:00.000Z' } })
+  assert.match(r, /^# Cluster digest: Fri 13 Nov 2026 to Thu 19 Nov 2026\n\nFri 13 Nov 00:00Z to Thu 19 Nov 08:31Z \(UTC, 6\.4 days\)\./)
+  assert.match(r, /## The window at a glance/)
+  assert.match(r, /## Built in this window/)
+  assert.match(r, /Busiest day:\*\* Tue 10 Nov 2026 \(100 posts\); the first and last days of the window may be partial/)
+  assert.deepEqual(r.split('\n').filter((l) => /this week/.test(l)), [], 'no "this week" wording in a range digest')
 })
 
 test('an out-of-bounds story renders as a marked headline with no posts', () => {
@@ -112,5 +120,5 @@ test('a performable thread renders as indented dialogue with removal markers', a
   assert.match(md, /3 posts · 3 speakers \(3 in the cluster\) · 2 turns · complete thread · 1 post removed/)
   assert.match(md, /- \*\*A\*\* \(@a\.example\.test\): what if \\\*crows\\\*\n  - \*\*b\.example\.test\*\* \(@b\.example\.test, small account\): line one\n    line two\n    - \*\(a reply here not included\)\*\n  - \*\*C\*\* \(@c\.example\.test\): yes/)
   const g = renderGames([{ name: 'Game', account: 'g.example.test', about: 'daily', writerNote: 'keep winners anonymous', results: [] }])
-  assert.match(g, /### Game \(@g\.example\.test\)\n\n\*daily\*\n\n\*\*For the writer:\*\* keep winners anonymous\n\nNo results posted this week\./)
+  assert.match(g, /### Game \(@g\.example\.test\)\n\n\*daily\*\n\n\*\*For the writer:\*\* keep winners anonymous\n\nNo results posted in the window\./)
 })

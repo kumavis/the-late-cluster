@@ -15,6 +15,8 @@ community talked about, built and laughed at. Stage 1 of the weekly pipeline
 npm run scrape                          # the most recent complete ISO week (UTC)
 npm run scrape -- --week 2026-W46       # a given ISO week, Monday 00:00 to Monday 00:00 UTC
 npm run scrape -- --days 7              # a rolling 7-day window ending now
+npm run scrape -- --since 2026-11-13    # from 00:00 UTC on a date, to now
+npm run scrape -- --since 2026-11-13T18:00Z --until 2026-11-16T12:00Z
 npm run scrape -- --out /tmp/digest     # somewhere other than data/weeks/<week>/
 npm run scrape -- --max-requests 300    # a tighter request budget for this run
 npm run scrape -- --no-cache            # ignore the response cache
@@ -23,6 +25,28 @@ npm test                                # unit and pipeline tests, no network
 ```
 
 From inside the package: `node bin/scrape.mjs ...` and `npm test`.
+
+### Choosing the window
+
+Exactly one of `--week`, `--days` or `--since` (none means the most recent complete ISO
+week). Windows are UTC, start inclusive, end exclusive.
+
+- `--week 2026-W47`: Monday 00:00 to the next Monday 00:00.
+- `--days 7`: the 7 days ending now (to the second).
+- `--since <date or date-time>`: a bare date is 00:00 UTC that day; a date-time without an
+  offset is UTC; `Z` or `±hh:mm` is honoured. `--until` (same formats) ends it and defaults
+  to now; it needs `--since`, must be after it, cannot be in the future, and the window can
+  be at most 60 days long. Its label is its two ends, `2026-11-13T0000Z_2026-11-19T0831Z`.
+
+Default output folder: `data/weeks/<week>/` for a week; `data/ranges/<label>/` for `--days`
+and `--since`, since such a window has no week name. Pass `--out` to put it anywhere else,
+for example where the pipeline expects a week: `--since 2026-11-13 --out data/weeks/2026-W47`.
+The digest's title, window metadata (`window.kind` is `week`, `rolling` or `range`, with
+exact `start` and `end`), headings ("The window at a glance") and "busiest day" describe the
+real window; a partial first or last day is noted. The phrase baseline is the
+`baselineWeeks` weeks before the window's start, whatever its kind, and `posts.jsonl` from
+earlier weekly folders that overlap that baseline are added to it (only posts inside the
+baseline period count).
 
 Environment: `SCRAPER_USER_AGENT` overrides the User-Agent. Keep it generic.
 `SCRAPER_BSKY_SESSION` is reserved for a later authenticated mode; today it only prints a
@@ -48,6 +72,13 @@ author feeds and profiles) and only useful while iterating on scoring or groupin
 week. Drop it with `--prune-cache` (after a successful run; a failed run keeps it so it can
 resume), set `"pruneCacheAfterRun": true` in `config/client.json` to do that on every run,
 or delete `data/weeks/<week>/.cache` by hand. Outputs are never touched.
+
+The cache belongs to its output folder and is never shared between folders. A different
+window asks different questions (author feeds are paged from the window's end), and the
+few that look the same, profiles and follow lists, are deliberately fetched fresh for each
+window: a profile is where an account says not to be quoted, and that must be current.
+Collection keeps `collection.profileReserve` (250) requests back from the baseline sample so
+the profile checks at the end always fit the budget.
 
 A post record holds: `uri`, `url` (bsky.app), `authorDid`, `handle`, `displayName`, `text`,
 `createdAt`, `indexedAt`, `time` (effective time: `createdAt` unless it disagrees with

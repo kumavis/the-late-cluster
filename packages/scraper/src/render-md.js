@@ -103,7 +103,7 @@ export function renderStory(s, { postsPerStory = 4 } = {}) {
   if (built.length) out.push(`*Links:* ${built.map((l) => `[${mdText(l.title || l.domain)}](${l.url})${l.members > 1 ? ` (${l.members} members)` : ''}`).join(' · ')}`)
   out.push('')
   for (const c of s.context ?? []) {
-    out.push(`Started from (before this week): ${whoF(c)}, ${shortTime(c.time)}`)
+    out.push(`Started from (before the window): ${whoF(c)}, ${shortTime(c.time)}`)
     out.push(quoteBlock(clip(c.text || '', 400)))
     out.push(`— [open](${c.url})`)
     out.push('')
@@ -118,13 +118,19 @@ export function renderStory(s, { postsPerStory = 4 } = {}) {
 }
 
 export function renderMarkdown(d) {
+  const thisP = d.window?.kind && d.window.kind !== 'week' ? 'in this window' : 'this week'
+  const unit = d.window?.kind && d.window.kind !== 'week' ? 'window' : 'week'
   const o = d.overview
   const out = []
-  out.push(`# Cluster digest: ${d.window.label}`)
+  const isWeek = !d.window.kind || d.window.kind === 'week'
+  const span = isWeek
+    ? `${fmtDate(d.window.start)} to ${fmtDate(new Date(Date.parse(d.window.end) - 1).toISOString())} (UTC)`
+    : `${dayTime(d.window.start)} to ${dayTime(d.window.end)} (UTC, ${daysLong(d.window)})`
+  out.push(isWeek ? `# Cluster digest: ${d.window.label}` : `# Cluster digest: ${fmtDate(d.window.start)} to ${fmtDate(d.window.end)}`)
   out.push('')
-  out.push(`${fmtDate(d.window.start)} to ${fmtDate(new Date(Date.parse(d.window.end) - 1).toISOString())} (UTC). ${plural(o.memberPosts, 'post')} from ${plural(o.activeMembers, 'active account')} in a cluster of ${n(o.clusterSize)}, plus ${n(o.posts - o.memberPosts)} posts from outside it that they replied to, quoted or reposted. Generated ${d.run?.generatedAt?.slice(0, 16).replace('T', ' ') ?? ''}Z, no language model involved.`)
+  out.push(`${span}. ${plural(o.memberPosts, 'post')} from ${plural(o.activeMembers, 'active account')} in a cluster of ${n(o.clusterSize)}, plus ${n(o.posts - o.memberPosts)} posts from outside it that they replied to, quoted or reposted. Generated ${d.run?.generatedAt?.slice(0, 16).replace('T', ' ') ?? ''}Z, no language model involved.`)
   out.push('')
-  out.push('## The week at a glance')
+  out.push(`## The ${unit} at a glance`)
   out.push('')
   for (const s of d.stories.filter((x) => !x.outOfBounds).slice(0, 5)) out.push(`${s.rank}. **${mdText(s.headline)}** (${KIND[s.kind] ?? s.kind}, ${plural(s.stats.members, 'member')}, ${plural(s.stats.posts, 'post')})`)
   out.push('')
@@ -138,7 +144,7 @@ export function renderMarkdown(d) {
   if (o.biggestPost) out.push(`- **Biggest post:** ${whoF(o.biggestPost)}: "${mdText(o.biggestPost.text)}" (${countsLine(o.biggestPost.counts)}) [open](${o.biggestPost.url})`)
   if (o.breakoutPost) out.push(`- **Breakout (best against the author's own usual):** ${whoF(o.breakoutPost)}: "${mdText(o.breakoutPost.text)}" (${times(o.breakoutPost.metrics.lift)} usual) [open](${o.breakoutPost.url})`)
   const busiest = Object.entries(o.postsByDay).sort((a, b) => b[1] - a[1])[0]
-  if (busiest) out.push(`- **Busiest day:** ${fmtDate(busiest[0] + 'T00:00:00Z')} (${plural(busiest[1], 'post')})`)
+  if (busiest) out.push(`- **Busiest day:** ${fmtDate(busiest[0] + 'T00:00:00Z')} (${plural(busiest[1], 'post')})${isWeek ? '' : '; the first and last days of the window may be partial'}`)
   out.push('')
 
   out.push(renderSections(d))
@@ -183,9 +189,9 @@ export function renderMarkdown(d) {
   out.push('')
   out.push('## Appendix C: phrases that spiked')
   out.push('')
-  if (!d.appendices.phrases.length) out.push('Nothing cleared the bar this week.')
+  if (!d.appendices.phrases.length) out.push(`Nothing cleared the bar ${thisP}.`)
   else {
-    out.push(`People: distinct cluster members using it this week. Rates are uses per 1,000 cluster posts, this week against a sample of the ${d.window.baselineWeeks} weeks before.`)
+    out.push(`People: distinct cluster members using it ${thisP}. Rates are uses per 1,000 cluster posts, ${thisP} against a sample of the ${d.window.baselineWeeks} weeks before.`)
     out.push('')
     out.push('| phrase | people | per 1k now | per 1k before | ratio | days | first used |')
     out.push('|---|---:|---:|---:|---:|---:|---|')
@@ -198,7 +204,7 @@ export function renderMarkdown(d) {
   out.push('## Appendix D: "X week" declarations')
   out.push('')
   const wk = d.appendices.weeks ?? []
-  if (!wk.length) out.push('None this week.')
+  if (!wk.length) out.push(`None ${thisP}.`)
   else {
     out.push('The community names its weeks. "declared" means someone wrote it as a declaration ("it\'s X week", "X week rolls into ..."); otherwise two or more people used it.')
     out.push('')
@@ -248,6 +254,11 @@ function renderBuild(b, i) {
   return out.join('\n')
 }
 
+const daysLong = (w) => {
+  const days = (Date.parse(w.end) - Date.parse(w.start)) / 86_400_000
+  return `${Math.round(days * 10) / 10} days`
+}
+
 const dayTime = (t) => {
   const d = new Date(t)
   return `${DAYS[d.getUTCDay()]} ${d.getUTCDate()} ${MONTHS[d.getUTCMonth()]} ${d.toISOString().slice(11, 16)}Z`
@@ -264,7 +275,7 @@ export function renderGames(games = []) {
     if (g.about) out.push(`*${mdText(g.about)}*`, '')
     if (g.writerNote) out.push(`**For the writer:** ${mdText(g.writerNote)}`, '')
     if (g.accountExcluded) { out.push('The game account is excluded by the consent rules.', ''); continue }
-    if (!g.results.length) { out.push('No results posted this week.', ''); continue }
+    if (!g.results.length) { out.push('No results posted in the window.', ''); continue }
     for (const r of g.results) {
       const parts = []
       if (r.winner?.excluded) parts.push(`a result was posted; the winner is not included (consent rules)${r.likes != null ? `. The winning post got ${n(r.likes)} likes` : ''}`)
@@ -310,14 +321,16 @@ export function renderThread(t, i) {
 }
 
 export function renderSections(d) {
+  const thisP = d.window?.kind && d.window.kind !== 'week' ? 'in this window' : 'this week'
+  const unit = d.window?.kind && d.window.kind !== 'week' ? 'window' : 'week'
   const sec = d.sections ?? {}
   const out = []
   const g = renderGames(sec.games)
   if (g) out.push(g)
   const builds = (sec.built ?? []).filter((b) => !b.outOfBounds)
-  out.push('## Built this week')
+  out.push(`## Built ${thisP}`)
   out.push('')
-  if (!builds.length) out.push('Nothing detected this week.', '')
+  if (!builds.length) out.push(`Nothing detected ${thisP}.`, '')
   else {
     out.push("Someone wished for a thing, and it got built. Links on a member's own domain, on a build host, or on a new domain someone said they built; the wish is the post the build replied to or quoted. Ordered by how good a story it is: a wish by someone else, members sharing it, reactions, then engagement.")
     out.push('')
@@ -335,7 +348,7 @@ export function renderSections(d) {
     for (const r of about.optOutRequests) out.push(`- @${r.handle}: [the post](${r.url})`)
     out.push('')
   }
-  if (!about.posts.length) out.push('No posts mention or link the show this week.', '')
+  if (!about.posts.length) out.push(`No posts mention or link the show ${thisP}.`, '')
   else {
     out.push(`${plural(about.posts.length, 'post')} name or link the show, or reply to or quote one that does. Read for reactions and corrections.`)
     out.push('')
@@ -347,15 +360,15 @@ export function renderSections(d) {
     out.push('')
   }
 
-  out.push('## Recurring guests this week')
+  out.push(`## Recurring guests ${thisP}`)
   out.push('')
-  if (sec.guestsExcluded) out.push(`*${plural(sec.guestsExcluded, 'configured guest')} excluded this week by the consent rules.*`, '')
+  if (sec.guestsExcluded) out.push(`*${plural(sec.guestsExcluded, 'configured guest')} excluded ${thisP} by the consent rules.*`, '')
   const perf = sec.performableThreads
   const guestsEnd = () => {
     if (!perf) return
     out.push('## Threads you could perform')
     out.push('')
-    if (!perf.threads.length) { out.push('No thread passed the checks this week.', ''); return }
+    if (!perf.threads.length) { out.push(`No thread passed the checks ${thisP}.`, ''); return }
     out.push(`Real back-and-forth between cluster members, every post short enough to speak, no sensitivity flags, nobody excluded in the middle. Chosen from ${perf.considered} qualifying threads. **The exact text is in digest.json under \`sections.performableThreads\`**; a performed line must match it character for character. Markdown here is escaped for display only.`)
     out.push('')
     for (const [i, t] of perf.threads.entries()) out.push(renderThread(t, i))
@@ -363,10 +376,10 @@ export function renderSections(d) {
   for (const g of sec.guests ?? []) {
     out.push(`### ${who(g)}${followers({ followers: g.followers, small: g.small })}`)
     out.push('')
-    if (!g.postsThisWeek) { out.push('No posts this week.', ''); continue }
-    out.push(`${plural(g.postsThisWeek, 'post')} this week${g.skippedOutOfBounds ? ` (${g.skippedOutOfBounds} flagged out of bounds and not shown)` : ''}. Strongest:`)
+    if (!g.postsThisWeek) { out.push(`No posts ${thisP}.`, ''); continue }
+    out.push(`${plural(g.postsThisWeek, 'post')} ${thisP}${g.skippedOutOfBounds ? ` (${g.skippedOutOfBounds} flagged out of bounds and not shown)` : ''}. Strongest:`)
     out.push('')
-    if (!g.top.length) out.push('Nothing usable this week.', '')
+    if (!g.top.length) out.push(`Nothing usable ${thisP}.`, '')
     for (const p of g.top) {
       out.push(renderPost(p, { maxChars: 400 }))
       out.push('')

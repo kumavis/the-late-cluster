@@ -70,11 +70,63 @@ export function previousWeekLabels(window, count) {
   return out
 }
 
-export function resolveWindow({ week, days, now = Date.now() } = {}) {
-  if (week && days) throw new Error('use either --week or --days, not both')
+/**
+ * Parse --since / --until. A bare date (2026-11-13) is 00:00 UTC that day. A date-time
+ * without an offset is UTC; with Z or ±hh:mm it is taken as given.
+ */
+export function parseInstant(text, name = '--since') {
+  const t = String(text ?? '').trim()
+  const date = /^(\d{4})-(\d{2})-(\d{2})$/.exec(t)
+  if (date) {
+    const [y, m, d] = date.slice(1).map(Number)
+    const ms = Date.UTC(y, m - 1, d)
+    const back = new Date(ms)
+    if (back.getUTCFullYear() !== y || back.getUTCMonth() !== m - 1 || back.getUTCDate() !== d) throw new Error(`${name}: no such date ${t}`)
+    return ms
+  }
+  const dt = /^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}(:\d{2}(\.\d+)?)?(Z|[+-]\d{2}:\d{2})?$/.exec(t)
+  if (!dt) throw new Error(`${name}: expected a date (2026-11-13) or an ISO date-time (2026-11-13T18:00Z), got ${JSON.stringify(text)}`)
+  const ms = Date.parse(dt[3] ? t : t + 'Z')
+  if (!Number.isFinite(ms)) throw new Error(`${name}: not a valid date-time ${JSON.stringify(text)}`)
+  return ms
+}
+
+const compact = (ms) => new Date(ms).toISOString().slice(0, 16).replace(':', '') + 'Z' // 2026-11-13T0000Z
+
+/** A window from --since to --until (default now), end exclusive, at most 60 days. */
+export function rangeWindow(since, until, now = Date.now()) {
+  const start = parseInstant(since, '--since')
+  const end = until != null ? parseInstant(until, '--until') : Math.floor(now / 1000) * 1000
+  if (end <= start) throw new Error('--until must be after --since')
+  if (end > now + 60_000) throw new Error('--until is in the future')
+  if (end - start > 60 * DAY) throw new Error('a --since window can be at most 60 days long')
+  return { kind: 'range', label: `${compact(start)}_${compact(end)}`, start, end }
+}
+
+export function resolveWindow({ week, days, since, until, now = Date.now() } = {}) {
+  const chosen = [week && '--week', days && '--days', since && '--since'].filter(Boolean)
+  if (chosen.length > 1) throw new Error(`use only one of --week, --days and --since (got ${chosen.join(' and ')})`)
+  if (until && !since) throw new Error('--until needs --since')
   if (week) return isoWeekWindow(week)
   if (days) return rollingWindow(days, now)
+  if (since) return rangeWindow(since, until, now)
   return lastCompleteWeek(now)
+}
+
+/**
+ * ISO week labels whose weeks overlap the baseline before a window, most recent first:
+ * where earlier runs' posts.jsonl may hold baseline posts.
+ */
+export function baselineWeekLabels(window, baselineWeeks) {
+  const out = []
+  const from = window.start - baselineWeeks * WEEK
+  for (let t = window.start - 1; t >= from; t -= WEEK) {
+    const l = weekLabel(isoWeekOf(t))
+    if (!out.includes(l)) out.push(l)
+  }
+  const last = weekLabel(isoWeekOf(from))
+  if (!out.includes(last)) out.push(last)
+  return out
 }
 
 export function inWindow(ms, w) {

@@ -212,7 +212,8 @@ export async function collect({ client, config, window, consent, log = () => {} 
 
   // ---- 9. member feeds: the whole window first, then as much baseline as the budget allows
   const others = sel.members.filter((m) => !m.seed)
-  const reserve = (col.threadsToExpand ?? 0) + 5
+  // Keep enough budget for the profile checks at the end: consent depends on them.
+  const reserve = (col.threadsToExpand ?? 0) + (col.profileReserve ?? 250) + (config.show?.performableThreads?.prefetch ?? 0) + 10
   const pool = async (list, fn) => {
     let done = 0
     await Promise.all(list.map(async (m) => {
