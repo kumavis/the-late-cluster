@@ -1,6 +1,0 @@
-tools/.cache/
-dist/
-shots/
-
-# rendered videos (node tools/video.mjs)
-video/

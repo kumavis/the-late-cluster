@@ -3,13 +3,25 @@
   "version": "0.0.0",
   "private": true,
   "type": "module",
-  "description": "The Late Cluster: a late-night talk show performed by synthesized puppet heads.",
+  "description": "The Late Cluster: a weekly late-night talk show performed by synthesized puppet heads.",
   "workspaces": [
     "packages/*"
   ],
   "scripts": {
-    "dev": "npm run dev -w @vibe-dump/late-cluster",
-    "build": "npm run build -w @vibe-dump/late-cluster"
+    "episode:new": "node scripts/episode-new.mjs",
+    "segment:new": "node scripts/segment-new.mjs",
+    "dev": "node scripts/dev.mjs",
+    "render": "bun packages/show/tools/render.ts",
+    "check": "bun packages/show/tools/check.ts",
+    "shoot": "node packages/show/tools/shoot.mjs",
+    "thumbnail": "node scripts/thumbnail.mjs",
+    "build": "node scripts/build.mjs",
+    "verify": "node scripts/verify.mjs",
+    "site": "node packages/site/bin/build-site.mjs",
+    "preview": "npm run site && node packages/site/bin/serve.mjs dist",
+    "scrape": "node packages/scraper/bin/scrape.mjs",
+    "bot": "node packages/bot/bin/bot.mjs",
+    "test": "node --test \"scripts/test/*.test.mjs\" \"packages/*/test/**/*.test.js\" \"packages/*/test/**/*.test.mjs\""
   },
   "devDependencies": {
     "playwright": "^1.49.1",

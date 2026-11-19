@@ -1,0 +1,9 @@
+{
+  "id": "ref",
+  "number": 0,
+  "slug": "reference",
+  "title": "Reference",
+  "description": "The studio's reference episode: the demo segment exercises every script feature, the kit tour shows every shot and prop. Never built into dist/.",
+  "status": "draft",
+  "rundown": ["demo", "kit-tour"]
+}

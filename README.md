@@ -1,30 +1,42 @@
 # The Late Cluster
 
-A late-night talk show performed by synthesized puppet heads. The voices are rendered offline by
-the CHIMERA physical-model vocal synth, and the browser plays them back on glowing vector-scope 3D
-heads built with Vite and three.js.
+A weekly late-night talk show performed by synthesized puppet heads. The voices are rendered
+offline by the CHIMERA physical-model vocal synth, and the browser plays them back on glowing
+vector-scope 3D heads built with Vite and three.js.
 
-The app lives in `packages/late-cluster`. Its own README covers the architecture, the script
-format and the URL parameters, and `packages/late-cluster/tools/README.md` covers the offline
-audio tools.
+How the repository fits together (the studio, one folder per episode, committed builds, the
+scraper, the bot and the weekly pipeline) is in [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
+
+```
+packages/show/        the studio: page runtime, offline tools, reference episode (packages/show/README.md)
+episodes/<id>/        one folder per episode: episode.json, segments/, thumbnail.jpg
+dist/episodes/<id>/   each published episode's committed build
+scripts/              repo commands (Node builtins only)
+```
 
 ## Quick start
 
-Requires Node 20 or newer (see `.nvmrc`). The audio tools also need `bun` and `ffmpeg`.
+Requires Node 22 (see `.nvmrc`). Rendering audio also needs `bun` and `ffmpeg`; shooting frames
+needs Playwright's Chromium (`npx playwright install chromium`).
 
 ```bash
-npm install          # once, at the repo root
-npm run dev          # dev server at http://localhost:5173/
-npm run build        # production build into packages/late-cluster/dist/
-
-cd packages/late-cluster
-bun tools/render.ts demo           # render a segment's audio, telemetry and cues
-bun tools/check.ts demo            # verify those outputs
-node tools/shoot.mjs demo 3 14.5   # frozen frames into ./shots/demo/
+npm install                                     # once
+npm run dev -- 1                                # the pilot at http://localhost:5173/
+npm run episode:new -- --title "Second Show"    # the next episode, as a draft
+npm run segment:new -- 2 cold-open              # a segment skeleton, added to the rundown
+npm run render -- 2 cold-open                   # its audio, telemetry and cues
+npm run shoot -- 2 cold-open 1 3                # frozen frames into shots/
+npm run build -- 2 --preview                    # a draft's preview build (preview/, gitignored)
+npm run build -- 1                              # a published episode's build into dist/episodes/
+npm run verify                                  # committed builds match their sources
+npm test
 ```
+
+Every command is listed in the Commands table of `docs/ARCHITECTURE.md`. Writing segments is
+covered in `packages/show/README.md` (the module and the `show` API) and
+`packages/show/tools/README.md` (the script format and the audio tools).
 
 ## Provenance
 
-Imported from the `kumavis/vibe-dump` monorepo, path `packages/late-cluster`, at commit
-`2bcd173b`. The root `vite.config.shared.js` is copied from that monorepo so the package's own
-Vite config works unmodified.
+The studio and the pilot were imported from the `kumavis/vibe-dump` monorepo, path
+`packages/late-cluster`, at commit `2bcd173b`.

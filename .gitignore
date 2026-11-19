@@ -1,3 +1,31 @@
 node_modules/
 .DS_Store
 *.log
+
+# fresh renders: audio and telemetry are committed once, in dist/episodes/<id>/
+episodes/*/public/
+
+# scraper output
+data/
+
+# draft preview builds (npm run build -- <ep> --preview)
+preview/
+
+# a build's temp and swap folders (dist/episodes/.<id>.new-<pid>, .old-<pid>)
+dist/episodes/.*
+
+# a Vite build run by hand inside the studio
+packages/show/dist/
+
+# the studio's caches: rendered clips (shared by every episode), locks, Whisper scratch
+packages/show/tools/.cache/
+
+# frames from npm run shoot, videos from packages/show/tools/video.mjs
+shots/
+video/
+
+# the archive page, generated from the committed manifests (npm run site); see packages/site/src/paths.mjs
+/dist/index.html
+/dist/episodes.json
+/dist/latest/
+/dist/site-assets/

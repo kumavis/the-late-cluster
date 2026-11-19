@@ -1,0 +1,24 @@
+{
+  "id": "001-pilot",
+  "number": 1,
+  "slug": "pilot",
+  "title": "Pilot",
+  "description": "The first episode: Larry Nx sizes up a week in the simcluster where every joke gets built, with the weather from Samantha, the Top Chicken standings, a round of Built or Bit?, norvid and Abel on the panel, and a song from Hy Oid & The Formants.",
+  "airDate": "2026-11-13",
+  "week": "2026-W46",
+  "status": "published",
+  "rundown": [
+    "cold-open",
+    "monologue",
+    "weather",
+    "top-chicken",
+    "built-or-bit",
+    "panel",
+    "song",
+    "goodnight"
+  ],
+  "build": {
+    "sourceHash": "42f8057b76c22ff4a7c119ee5864f364b7350e28ab52e7d159b63e9a3fed7080",
+    "studioHash": "361d9a944fbdcbe133e74987d0dde629ef78e980ff5516a224ace3f450ecd5fc"
+  }
+}

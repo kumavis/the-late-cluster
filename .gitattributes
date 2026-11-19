@@ -1,0 +1,11 @@
+# Source hashes (npm run verify) are computed over file bytes, so line endings must be the same
+# on every platform.
+* text=auto eol=lf
+*.mp3 binary
+*.bin binary
+*.wasm binary
+*.jpg binary
+*.png binary
+*.otf binary
+*.woff2 binary
+*.gz binary
