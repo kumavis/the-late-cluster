@@ -1,0 +1,120 @@
+{
+  "id": "002-the-joke-nobody-built",
+  "aired": false,
+  "guests": [
+    {
+      "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+      "handle": "norvid-studies.bsky.social"
+    },
+    {
+      "did": "did:plc:nqu76ue2hgr44emaxyvgbzsq",
+      "handle": "yonderdavid.bsky.social"
+    }
+  ],
+  "featured": [
+    {
+      "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+      "handle": "norvid-studies.bsky.social"
+    },
+    {
+      "did": "did:plc:nqu76ue2hgr44emaxyvgbzsq",
+      "handle": "yonderdavid.bsky.social"
+    },
+    {
+      "did": "did:plc:kbdtfnqrqpwwf62f6eekr7m2",
+      "handle": "abeliansoup.bsky.social"
+    },
+    {
+      "did": "did:plc:sna3qx44beg2mb5fao44gsxh",
+      "handle": "samantha.wiki"
+    },
+    {
+      "did": "did:plc:gttrfs4hfmrclyxvwkwcgpj7",
+      "handle": "aparker.io"
+    },
+    {
+      "did": "did:plc:xb2urvqt5f4zzccjs46hysbf",
+      "handle": "cee.wtf"
+    },
+    {
+      "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+      "handle": "shimmermathlabs.com"
+    },
+    {
+      "did": "did:plc:wlj4p2kazhifag6w4nanjnee",
+      "handle": "buildthis.bisks.net"
+    },
+    {
+      "did": "did:plc:bty3nc67lteylmmb7hvgxeu5",
+      "handle": "topchicken.bsky.social"
+    },
+    {
+      "did": "did:plc:hovt6k22s64dq63jjmoyibk3",
+      "handle": "dave.9000ish.uk"
+    }
+  ],
+  "formats": [
+    "ask",
+    "monologue",
+    "corrections",
+    "top-chicken",
+    "thread",
+    "song",
+    "goodnight"
+  ],
+  "song": {
+    "genre": "round",
+    "theme": "a week where every idea got picked up by the next person; being rolled up, happily, into something enormous"
+  },
+  "runners": [
+    "Built it: the website bot and the BUILT counter again (3 bumps and one refusal)",
+    "Nobody build this one: the host's quest for one bit that stays a bit, built every time until the last wish is refused",
+    "is there anything nobody here would build: asked all night, answered at the close with two real posts",
+    "the cat's chair: a fifth band member with VOICE: NOT INSTALLED, from the thread into the song",
+    "the seal: the announcer's descriptor, paid off when the host greets the studio's seal call",
+    "Larry always loses, broken once: he wins when the counter holds"
+  ],
+  "catchphrases": [
+    "Built it.",
+    "And now... [descriptor]... Larry... Nx!",
+    "a man made of the same synthesizer as a seal",
+    "Nobody build this one.",
+    "We have a great show tonight. Stick around!",
+    "We present it in full.",
+    "We regret the error.",
+    "Well, folks, that is almost our show.",
+    "And the final count: [n] things got built tonight.",
+    "We spent all night looking for [the thing].",
+    "Goodnight, friends.",
+    "So. gn, simcluster.",
+    "Press E to leave."
+  ],
+  "devices": [
+    "BUILT counter, top-left, bumping on every Built it.; pointed at three times and left lit after the power-down",
+    "the website bot popping up from below frame with a party popper",
+    "cold open on a black screen: a real post card types on, a time jump (4 MINUTES LATER), the bot's reply card, lights up",
+    "a browser window showing a website that has just been built, with a joke status line",
+    "announcer's intro with a comic descriptor and the host's name",
+    "a corrections card read by the announcer, with a stamp",
+    "monologue with real post cards over the host's shoulder and a stamp on the punch",
+    "a real post card as the topper after a punchline",
+    "a drawn artist's impression of a real project at work (a pen plotter filling a page)",
+    "a time bracket between two real cards (21 MIN)",
+    "sports desk cut-in: the winning post on a card, a crown dropping on it, split-flap like count and all-time record, a ticker with window statistics",
+    "a wish built mid-sentence, before its punchline",
+    "a real thread performed word for word by two guest puppets, each post's card on screen as it is spoken, a POST n OF 6 ladder",
+    "the studio answering a posted sample with its own creature call, labelled as the show's",
+    "a slow push across the band on a line about a top four",
+    "a time tag between posts (21 HOURS LATER)",
+    "a fifth chair on the bandstand with a silent cat, stamped VOICE: NOT INSTALLED",
+    "a round whose entries each add a vertex to a shape on screen, with a credit for each project named",
+    "a silent entry in a round",
+    "the built thing happening to the host: a sphere rolls up and carries him",
+    "the bot refusing: its chest screen types a request and answers no; the counter does not move",
+    "a see-also tag pointing at the previous episode",
+    "the heart line: the night's quest restated, then two long real posts held on cards in silence as the answer",
+    "the host's own post going viral on screen with climbing counts",
+    "the host presses the E key, the picture collapses like a CRT",
+    "chyron titles as jokes"
+  ]
+}

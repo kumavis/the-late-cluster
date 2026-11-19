@@ -1,0 +1,164 @@
+{
+  "id": "001-pilot",
+  "aired": true,
+  "guests": [
+    {
+      "did": "did:plc:sna3qx44beg2mb5fao44gsxh",
+      "handle": "samantha.wiki"
+    },
+    {
+      "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+      "handle": "norvid-studies.bsky.social"
+    },
+    {
+      "did": "did:plc:kbdtfnqrqpwwf62f6eekr7m2",
+      "handle": "abeliansoup.bsky.social"
+    },
+    {
+      "did": "did:plc:5m2kgmia2wjplfqhk3khe6nt",
+      "handle": "borjev.bsky.social"
+    }
+  ],
+  "featured": [
+    {
+      "did": "did:plc:sna3qx44beg2mb5fao44gsxh",
+      "handle": "samantha.wiki"
+    },
+    {
+      "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+      "handle": "norvid-studies.bsky.social"
+    },
+    {
+      "did": "did:plc:kbdtfnqrqpwwf62f6eekr7m2",
+      "handle": "abeliansoup.bsky.social"
+    },
+    {
+      "did": "did:plc:5m2kgmia2wjplfqhk3khe6nt",
+      "handle": "borjev.bsky.social"
+    },
+    {
+      "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+      "handle": "shimmermathlabs.com"
+    },
+    {
+      "did": "did:plc:3qiky6vqxpfxugopbdhr4vik",
+      "handle": "scythiamarrow.bsky.social"
+    },
+    {
+      "did": "did:plc:wlj4p2kazhifag6w4nanjnee",
+      "handle": "buildthis.bisks.net"
+    },
+    {
+      "did": "did:plc:p572wxnsuoogcrhlfrlizlrb",
+      "handle": "gracekind.net"
+    },
+    {
+      "did": "did:plc:nlqwj5q2hyaezkk2q6jmute5",
+      "handle": "prer.at"
+    },
+    {
+      "did": "did:plc:rivbee6mfjetayu6fvmhqe3m",
+      "handle": "ganweaving.bsky.social"
+    }
+  ],
+  "formats": [
+    "ask",
+    "monologue",
+    "simcluster-channel",
+    "top-chicken",
+    "built-or-bit",
+    "panel",
+    "song",
+    "goodnight"
+  ],
+  "song": {
+    "genre": "stomp-clap anthem",
+    "theme": "wanting a place to belong, in a scene that builds every want at once"
+  },
+  "runners": [
+    "Built it: the website bot builds every wish said aloud, and a BUILT counter goes up (15 bumps)",
+    "what is the simcluster: asked as a joke all night, answered at the close with two real posts",
+    "gm/gn: everyone says gm, nobody says gn, until the host finally does",
+    "the crow: norvid's creature, from a first sighting to circling the skyline to the credits",
+    "the E key: Press E to leave, a giant key that falls on the desk and is pressed to end the show",
+    "Larry always loses: a score of 61, four dollars, a museum case, hunted by a crow",
+    "six minutes: the time from a wish to its being built",
+    "the song recaps the night's builds: weather channel, museum, podcast with no name",
+    "the podcast with no name"
+  ],
+  "catchphrases": [
+    "Built it.",
+    "Already built it, Larry.",
+    "In this town, a joke is a contract.",
+    "You're only here if you want to be.",
+    "And now... [descriptor]... Larry... Nx!",
+    "a man who is, technically, a throat",
+    "We have a great show tonight. Stick around!",
+    "Hey! That was hypothetical!",
+    "Built is real. Bit is a joke.",
+    "No one leaves the simcluster.",
+    "Wait. It's this show.",
+    "Do not say spin-off.",
+    "claim.",
+    "what else is like this",
+    "good news, everyone!",
+    "You are in it.",
+    "Well, folks, that's almost our show.",
+    "And the final count: [n] things built during this episode.",
+    "We spent all night asking [the question].",
+    "Goodnight, friends.",
+    "Everyone says gm. Nobody says gn.",
+    "gn, simcluster.",
+    "Press E to leave.",
+    "Yeah absolutely. / Agreed yes yeah totally!",
+    "That was my four dollars."
+  ],
+  "devices": [
+    "BUILT DURING THIS EPISODE counter, top-left, bumping with confetti on every Built it.",
+    "the website bot popping up from below frame with a party popper, saying its line and ducking down",
+    "cold open on a black screen: a post card types on, a clock or time jump, a reply card, then lights up",
+    "the host's costume drawing itself on while he speaks",
+    "titles over the skyline window, one skyline node lit per guest as the announcer names them",
+    "announcer's intro with a comic descriptor, drumroll, the host's name, walk to the mark",
+    "monologue with the host slid to one third and an artefact building over his shoulder",
+    "a real post card as the topper after a punchline",
+    "stamps as verdicts on the punch word (CLAIM, NOT INSTALLED, NO, FINAL, LOST, BUILT, OPT-IN ONLY, NOT A WORD, BUILT IT)",
+    "split-flap boards for numbers and titles",
+    "a browser window showing a website that has just been built",
+    "a typewriter request terminal",
+    "an impression by the announcer, then the band answering in unison",
+    "a project presented as a TV genre: a weather map of the cluster with districts named after community lore, fronts, advisories, a 5-day outlook",
+    "the host watching from a picture-in-picture",
+    "a guest puppet presenting her own project and speaking invented genre patter",
+    "sports desk with boards (crown, standings, rules desk, the line), a ticker of extra jokes, a telestrator",
+    "a crown dropping on a blank post card",
+    "a limbo bar a stick figure bonks",
+    "real and invented numbers side by side, labelled REAL and FAKE",
+    "a losing bet slip for the host",
+    "game show: idea cards read by the host, ruled by the announcer, each BIT built at once; cards flip to show what got built",
+    "a scoreboard bulb that cracks on each build and shatters on the last",
+    "the built thing arriving as a physical object: a giant E key falling onto the desk",
+    "the last card of a game turning out to be the show itself",
+    "blackout on a single glowing prop",
+    "a pie chart of a guest's reply habit, computed from their posts",
+    "a creature per guest (crow, alligator) with its call as punctuation",
+    "a guest's contraption under a dust sheet that has already built the thing",
+    "the host put inside a museum case with a placard",
+    "a crow released into the studio, circling the host, then living in the skyline window",
+    "a bot guest popping up from behind the couch and speaking an old post shown on a card",
+    "a real post staged as the reply to a host line that recreates its occasion",
+    "song with stop bars in which the bot speaks; each sung wish drawn as a vignette and stamped BUILT IT",
+    "karaoke lyrics with a bouncing ball",
+    "lights down and a spotlight for a near-sincere breakdown, then the punch",
+    "a studio safety board (DAYS SINCE ...) flipping to 0",
+    "the final tally read aloud and made wrong by one more build",
+    "the engine's raw output shown on a panel when it cannot say a word",
+    "a built website that answers its own question NO",
+    "the heart line: the night's question restated, then real posts held on cards as the answer",
+    "an animal call from the audience as the undercut after the sincere beat",
+    "the host's own post going viral on screen with climbing counts",
+    "the host presses the E key, the picture collapses like a CRT, credits roll over the skyline with a lullaby",
+    "credits gags and chyron titles as jokes",
+    "invented handles on real top-level domains (not to be done again: R8)"
+  ]
+}

@@ -1,0 +1,187 @@
+{
+  "did:plc:sna3qx44beg2mb5fao44gsxh": {
+    "handle": "samantha.wiki",
+    "appearances": [
+      {
+        "episode": "001-pilot",
+        "date": "2026-11-13",
+        "role": "spoke"
+      },
+      {
+        "episode": "002-the-joke-nobody-built",
+        "date": "2026-11-19",
+        "role": "shown",
+        "aired": false
+      }
+    ]
+  },
+  "did:plc:mssgex5rqek4wc66wgvzztbc": {
+    "handle": "norvid-studies.bsky.social",
+    "appearances": [
+      {
+        "episode": "001-pilot",
+        "date": "2026-11-13",
+        "role": "spoke"
+      },
+      {
+        "episode": "002-the-joke-nobody-built",
+        "date": "2026-11-19",
+        "role": "spoke",
+        "aired": false
+      }
+    ]
+  },
+  "did:plc:kbdtfnqrqpwwf62f6eekr7m2": {
+    "handle": "abeliansoup.bsky.social",
+    "appearances": [
+      {
+        "episode": "001-pilot",
+        "date": "2026-11-13",
+        "role": "spoke"
+      },
+      {
+        "episode": "002-the-joke-nobody-built",
+        "date": "2026-11-19",
+        "role": "shown",
+        "aired": false
+      }
+    ]
+  },
+  "did:plc:5m2kgmia2wjplfqhk3khe6nt": {
+    "handle": "borjev.bsky.social",
+    "appearances": [
+      {
+        "episode": "001-pilot",
+        "date": "2026-11-13",
+        "role": "spoke"
+      }
+    ]
+  },
+  "did:plc:qwf4izoyeyesijdeyjlity7g": {
+    "handle": "shimmermathlabs.com",
+    "appearances": [
+      {
+        "episode": "001-pilot",
+        "date": "2026-11-13",
+        "role": "shown"
+      },
+      {
+        "episode": "002-the-joke-nobody-built",
+        "date": "2026-11-19",
+        "role": "shown",
+        "aired": false
+      }
+    ]
+  },
+  "did:plc:3qiky6vqxpfxugopbdhr4vik": {
+    "handle": "scythiamarrow.bsky.social",
+    "appearances": [
+      {
+        "episode": "001-pilot",
+        "date": "2026-11-13",
+        "role": "shown"
+      }
+    ]
+  },
+  "did:plc:wlj4p2kazhifag6w4nanjnee": {
+    "handle": "buildthis.bisks.net",
+    "appearances": [
+      {
+        "episode": "001-pilot",
+        "date": "2026-11-13",
+        "role": "shown"
+      },
+      {
+        "episode": "002-the-joke-nobody-built",
+        "date": "2026-11-19",
+        "role": "shown",
+        "aired": false
+      }
+    ]
+  },
+  "did:plc:p572wxnsuoogcrhlfrlizlrb": {
+    "handle": "gracekind.net",
+    "appearances": [
+      {
+        "episode": "001-pilot",
+        "date": "2026-11-13",
+        "role": "shown"
+      }
+    ]
+  },
+  "did:plc:nlqwj5q2hyaezkk2q6jmute5": {
+    "handle": "prer.at",
+    "appearances": [
+      {
+        "episode": "001-pilot",
+        "date": "2026-11-13",
+        "role": "shown"
+      }
+    ]
+  },
+  "did:plc:rivbee6mfjetayu6fvmhqe3m": {
+    "handle": "ganweaving.bsky.social",
+    "appearances": [
+      {
+        "episode": "001-pilot",
+        "date": "2026-11-13",
+        "role": "shown"
+      }
+    ]
+  },
+  "did:plc:nqu76ue2hgr44emaxyvgbzsq": {
+    "handle": "yonderdavid.bsky.social",
+    "appearances": [
+      {
+        "episode": "002-the-joke-nobody-built",
+        "date": "2026-11-19",
+        "role": "spoke",
+        "aired": false
+      }
+    ]
+  },
+  "did:plc:gttrfs4hfmrclyxvwkwcgpj7": {
+    "handle": "aparker.io",
+    "appearances": [
+      {
+        "episode": "002-the-joke-nobody-built",
+        "date": "2026-11-19",
+        "role": "shown",
+        "aired": false
+      }
+    ]
+  },
+  "did:plc:xb2urvqt5f4zzccjs46hysbf": {
+    "handle": "cee.wtf",
+    "appearances": [
+      {
+        "episode": "002-the-joke-nobody-built",
+        "date": "2026-11-19",
+        "role": "shown",
+        "aired": false
+      }
+    ]
+  },
+  "did:plc:bty3nc67lteylmmb7hvgxeu5": {
+    "handle": "topchicken.bsky.social",
+    "appearances": [
+      {
+        "episode": "002-the-joke-nobody-built",
+        "date": "2026-11-19",
+        "role": "shown",
+        "aired": false
+      }
+    ]
+  },
+  "did:plc:hovt6k22s64dq63jjmoyibk3": {
+    "handle": "dave.9000ish.uk",
+    "appearances": [
+      {
+        "episode": "002-the-joke-nobody-built",
+        "date": "2026-11-19",
+        "role": "shown",
+        "aired": false
+      }
+    ]
+  }
+}

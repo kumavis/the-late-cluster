@@ -1,288 +1,183 @@
-# 10. Process and review
+# 10. Good work, and the scorecard
 
-The weekly pipeline's stages are defined in `docs/ARCHITECTURE.md`. Each stage reads the previous
-stage's files and writes its own. This file says what good looks like at each, and ends with the
-scorecard used to approve an episode.
+`docs/WORKFLOW.md` says how an episode is made: the stages, who does each, what each writes and what
+blocks. This chapter does not repeat it. It says what good looks like for each kind of work, and
+ends with the scorecard a reviewer fills in before an episode goes to the owner.
 
-| stage | made by | output |
-|---|---|---|
-| 0. ask *(proposed)* | bot + the reviewer | interview questions posted mid-week to people who opted in to being asked; never blocks later stages; not built |
-| 1. scrape | scraper | `data/weeks/<week>/digest.{json,md}` |
-| 2. pitch | writer (model) | `episodes/<id>/production/pitch.md` and `plan.json` |
-| 3. write | writer (model) | `segments/*/script.js` |
-| 4. render | tools | audio, telemetry, `cues.json`; `check`; the Whisper pass |
-| 5. direct | director (model) | `segments/*/index.js`, reviewed against shot frames |
-| 6. build | tools + writer | `thumbnail.jpg`, `dist/episodes/<id>/`, `verify`; `production/scorecard.md`, `dna-amendments.md`; the lore entries and any DNA edits |
-| 7. review | **a person** | a pull request: merge or send back |
-| 8. publish | deploy + bot | Pages deploy on merge, then the announcement |
+Two rules of the workflow shape everything below. Whoever makes a thing does not judge it. And
+writers, researchers and builders work without seeing what the show has done before; reviewers see
+it, and send back what repeats ([do not repeat the show](03-episode-shape.md#do-not-repeat-the-show)).
 
-## Stage 0: ask (proposed, not built)
+## Research
 
-If the show's account gains interviews ([real people](09-real-people.md#interviews-by-the-shows-account-proposal)),
-a stage runs early in the week, before the scrape: the writer drafts one or two questions from the
-week so far, the show's reviewer approves them, the bot posts them to people who opted in to being
-asked, and the scrape collects whatever public replies exist by then. Nothing waits for a reply: an
-unanswered question is simply not used. Nothing here exists yet; it needs bot work.
+A researcher finds what happened and documents it. A researcher does not propose jokes.
 
-## Stage 1: scrape
+**Good:** a longlist that is wide (many kinds of thing, many people, small and new accounts as well
+as busy ones); cards in neutral words; every post with its address and exact text; images and video
+described; follower counts; what could be shown working; anything sensitive or not understood
+flagged, not dropped silently ([a content card](05-material.md#a-content-card)). For an interview
+candidate, every candidate answer with its occasion. For the games lane, every result in the window.
 
-**Good:** the digest covers the cluster's week, not the platform's; ranks stories by more than
-likes; carries verbatim text, URIs, authors and numbers; applies the opt-out list before anything
-else. See "What the bible assumes the digest provides" in the [README](README.md).
+**Watch for:** the same few accounts across most cards; outside news; one viral post swamping the
+window; a card that already has an angle; a post quoted without the post it replied to.
 
-**Watch for:** stories dominated by outside news; one viral post swamping the week; missing thread
-context for posts the episode might quote.
+## Brainstorming
 
-## Stage 2: pitch
+Several writers work independently over the whole longlist. Independence matters more than
+agreement, and quantity more than polish.
 
-Write `production/pitch.md` and `production/plan.json` before any script. A pitch is cheap to fix;
-a rendered episode is not. The pitch opens with the retro and the DNA notes (keep, change, one
-experiment), then the inheritance list, before any story; see
-[evolving the show](03-episode-shape.md#evolving-the-show). Resolve or answer every freshness warning
-([fixed and fresh](03-episode-shape.md#fixed-and-fresh)) in the pitch.
+**A good idea** is a few lines: the premise; the turn, in five words; what lands on screen and what
+is heard; which shape might carry it; whose real words it would use, and where they come from on the
+card.
 
-```markdown
-# Episode NNN pitch: <title>  (week YYYY-Www)
+**Good:** several ideas per card, unlike each other; ideas that start from what is on the card;
+ideas for the small cards as well as the obvious ones; the picture named every time.
 
-## Retro
-Previous episode: <id> (or "none")
-Worked: <...>   Didn't: <...>
-Reactions: <at:// URIs from the digest's "About the show", one line each on what they said>
-Last experiment's verdict: <worked / didn't / can't tell, and why> (also written to lore's experiment log)
-One-page check: <does the README's "show on one page" still describe the last episode? if not, which is wrong>
+**Watch for:** the first idea only; the same idea in different words; an idea that is really a format
+looking for material; anything that feels like the show's signature; a real person's line used to
+answer something it did not answer.
 
-## Keep
-<what this episode keeps from the previous one, briefly>
+## Drafting a segment
 
-## Change
-<at most two changes, each: what, and why (from the retro or the week)>
+One writer drafts one segment, as a `script.js` in the format given in
+`packages/show/tools/README.md`, with notes. More is drafted than the episode needs, so that
+selection is a real choice. Each standing segment is drafted every week.
 
-## Experiment
-What: <one variable>   Why: <...>
-Success: <how we will know, checkable by someone other than the writer>
-Register: <the pilot-only rule it challenges, if any>
+**Good:**
 
-## Inherit
-<usually "none". Otherwise: from <episode id>, path <segments/<seg>/index.js>, why>
+- setups of two lines or fewer; punches on words the engine can say; a button at the end;
+- a `cue` for every moment the staging will need: each punch's picture, each card, each arrival;
+- every line spoken by a real account's puppet tagged with its source and its occasion (R3), and the
+  line before it is the setup that recreates that occasion;
+- every real post that is shown named in a comment with its address, and either performed or read
+  aloud unless it is a glance;
+- spoken words at about 1.6 to 2.2 per second of the length the draft claims;
+- notes that give the segment's retell in one sentence, its turn or feeling in five words, the people
+  in it, and what a builder needs to know;
+- real lines rendered in the voice that will say them, and the heard text read
+  ([voices](07-voices.md#read-what-was-heard));
+- the episode's experiment, from the brief, built in wherever it touches this segment.
 
-## The episode in one sentence
-"The one where ..." (if this doesn't make a cluster member want to watch, re-pitch)
+**Reviewers score each draft** on four questions: is it funny; is it interesting; does it work as
+television; does it add variety to the episode. A draft is not scored by its writer.
 
-## The week in one sentence
-This week the cluster ...
+## Assembling an episode
 
-## The question
-<the question the episode asks in jokes, and where it is asked>
-Answer at goodnight: <post URI(s), verbatim text, why it answers>
+One writer takes the selected drafts and makes an episode: the order, the open, the close, the
+joins ([building the rundown](03-episode-shape.md#building-the-rundown)).
 
-## Stories (ranked)
-1. <story> — sources: <URIs> — angle: <the turn in five words> — so what: funny because ..., matters because ... — segment: <slot>
-2. ...
-(unused but considered, with the reason: unsafe / no turn / unclear / merely popular)
+**Good:** about eight minutes or less, and no longer than its material; adjacent segments unlike each
+other; an open that reaches the first material within about fifteen seconds; a close that ends on the
+last strong thing and does not review the night; nothing added to tie segments together that the
+segments did not earn; the episode's experiment run as `production/experiment.md` sets it out;
+every script validating and rendering; the heard text of every line read; every real name heard as
+that name.
 
-## Rundown
-| slot | format | length | story | BUILT from → to | runner beat | why it's interesting (turn or feeling, five words) |
+**Watch for:** an order chosen because it feels like the usual order; a new runner threaded through
+finished segments to make them cohere; a summing-up line; segments trimmed evenly instead of the
+weakest cut.
 
-## The song
-Genre: <from the shelf; not in the last eight episodes>
-Theme: This song is about ___, and it feels ___.
-Structural joke: <...>  Swap test: <why another week's stories wouldn't fit>
+## Staging
 
-## Top Chicken
-<the week's result(s) from @topchicken.bsky.social: winner, post URI, likes, record, window stats; hit or full desk; R10/R11 check on the winner and post — or "no result">
+A builder stages one segment from its script and `cues.json`. A builder does not change the script
+or what a real person is shown saying.
 
-## Threads
-<URIs in order, every participant's checks, cuts, what is staged>
+**Good:** every punch with a picture on its word; real things shown working; every card up for
+exactly as long as it is being spoken; no text beyond a glance that is not spoken; real cards exact;
+invented names on `.example`; nothing carried on screen from another segment unless the script asks;
+frames shot at every punch, cue, shot change and overlap, and looked at; the credits shot and read
+([direction](08-direction.md#review-your-frames)).
 
-## Cut, and why
-<every default or idea left out because it wasn't interesting this week>
+## Reviewing
 
-## Guests
-<name, handle> — why this week — how they appear (thread / interview / panel) — words by source type (verbatim, interview, catchphrase: count each), and for each line the original prompt and the show's setup — habit (number + range) — object — function — real-people check: R1–R15 passed / notes
+A reviewer ranks, gates, scores and selects, and never rewrites what they review.
 
-## Runners and callbacks
-Episode runner: <plant / escalate / pay off>
-Callbacks to show lore: <lore ids>
-New lore this episode will create: <...>
+- **Send back with reasons,** naming the stage that can fix it. A send-back is a valid result, not a
+  failure of the review.
+- **Fail what you are not sure passes.** A review that softens to get an episode through has not been
+  done.
+- **Say what you could not check.** A reviewer who cannot hear the audio scores the sound rows from
+  the heard text and the mix settings, says so in the evidence, and lists those rows for the owner's
+  ears.
+- **At the repetition gate,** give each item *fresh*, *turned* or *repeat*, and send a repeat back
+  with the least description that lets the writer avoid it. How to judge, and what may be said, is in
+  the reviewers' own record, which only reviewers and the project manager read.
+- **The experiment.** Once the shortlist exists, a reviewer proposes the episode's one experiment and
+  writes it to `production/experiment.md`: what to try, why, and a measure someone else can check
+  ([episode shape](03-episode-shape.md#one-experiment-per-episode)). It goes into the writers'
+  briefs, so it describes no earlier episode, joke, person or device. The final reviewer judges it
+  in row B12.
+- **Evidence in every row:** a line quoted, a timestamp, an address. Not just a result.
 
-## Sincere beat
-<what, sourced from where, how long, what laugh follows>
-
-## Risks and open questions
-<anything the reviewer should look at first; references marked unclear>
-```
-
-**Good:** everything in the rundown passes the interesting test, and the cuts are recorded; a
-question that the stories genuinely circle; every story with a turn and a source; a rundown under
-ten minutes and no longer than its interesting material; real people mostly in their own words; a
-song genre and a theme that pass the swap test; the BUILT chain agreed; risks named honestly; an
-experiment with one variable and a measure; an inheritance list that is empty or justified file by
-file.
-
-`plan.json` is machine-readable and owned by the pipeline (`packages/writers-room`). The bible relies
-on at least these fields:
-
-```json
-{
-  "id": "002-example",
-  "week": "2026-W47",
-  "retro": { "episode": "001-pilot", "worked": ["…"], "didnt": ["…"], "reactions": ["at://…"] },
-  "dna": {
-    "keep": ["…"],
-    "change": [{ "what": "…", "why": "…" }],
-    "experiment": { "what": "…", "why": "…", "success": "how we will know" }
-  },
-  "inherit": [],
-  "question": "…",
-  "segments": [
-    { "id": "cold-open", "format": "ask", "seconds": 25, "built": [0, 1] },
-    { "id": "monologue", "format": "monologue", "seconds": 60, "built": [1, 2], "topChicken": "hit" },
-    { "id": "middle", "format": "thread", "seconds": 65, "built": [2, 3] },
-    { "id": "song", "format": "song", "genre": "sea shanty", "theme": "…", "seconds": 60, "built": [3, 5] },
-    { "id": "goodnight", "format": "goodnight", "seconds": 40, "built": [5, 6] }
-  ],
-  "guests": [{ "handle": "…", "source": "thread", "segment": "middle", "repeatReason": null }],
-  "runner": "…",
-  "builtShapes": ["plain", "interrupting", "physical"],
-  "descriptor": "…",
-  "sincere": { "kind": "admiration", "source": "at://…" },
-  "callbacks": ["SL-10"],
-  "cut": [{ "what": "Changelog", "why": "only two of the five items had a turn" }]
-}
-```
-
-`retro` is `null` when there is no previous episode. An `inherit` entry is
-`{ "from": "<episode id>", "path": "segments/<seg>/index.js", "why": "…" }`; the pipeline copies each
-to `production/inherited/<from>/<path>`, read-only. Nothing else from earlier episodes is available.
-
-**Send back if:** no retro, or no experiment with a success measure; anything is in because the slot exists; no question or spine; a story without a source URI; a guest without a real-people
-check; anything out of bounds; more than one in three jokes that need the week to understand.
-
-## Stage 3: write
-
-- One `script.js` per segment, in the format in `packages/show/tools/README.md`.
-- Every guest line has a source comment (R3). Every real post quoted on screen is named in a comment
-  with its URI. A performed thread follows the rules of format 9: words exact, order kept, cuts
-  marked, `as` for respelling only.
-- Use `cue`s for every moment the director will need: each punch picture, each card, each build.
-- Run the renderer's validation as you go; read the IPA it prints for every name.
-
-**Good:** setups of two lines or fewer; punches on sayable words; one reaction sound per joke; the
-`from` values of the BUILT chain match the pitch; total spoken words about 1.6 to 2.2 per second of the pitched running time.
-
-## Stage 4: render
-
-`npm run render`, then `npm run check`, then the Whisper pass. Compare lines, not percentages: the
-score moves a few percent run to run on its own.
-
-**Good:** every punchline line scores ✓; no line below ~ (60%) unless it is a name the transcriber
-can't know (judge those by the IPA); "Built it." heard as "built it" or "build it" every time;
-segment lengths within ten percent of the pitch.
-
-**Fix by:** respelling, rephrasing, more `gap` from a loud sound, lower sfx `vol`. Not by slowing
-below rate 0.8.
-
-## Stage 5: direct
-
-Write `index.js` against the rendered `cues.json`, then shoot frames at every punch word, cue, shot
-change and overlap, and look at them.
-
-**Good:** every punch has a picture that lands on its word; every graphic carries a tag the voice
-doesn't say; no text under the captions; cards held long enough to read; set state assigned every
-frame; real cards verbatim; fictional handles on `.example`; no console warnings for unknown cues.
-
-## Stage 6: build
-
-`npm run thumbnail -- <id> <seg> <t>` for a `thumbnail.jpg` that shows a puppet and the episode's
-best picture (not a real person's post card). Then set the episode to `published`, run
-`npm run build -- <id>` and `npm run verify`.
-
-### The self-check
-
-Fill in the scorecard below as `production/scorecard.md`, and append to [lore](lore.md): the
-episode log entry, the rotation log row and the experiment log row (from `plan.json`), new running
-gags, new established facts, the set's end state, and any community lore the episode explained.
-
-Then write `production/dna-amendments.md`:
-
-```markdown
-# DNA amendments: episode NNN
-
-## Experiment
-<what it was; the success measure; the writer's judgement before air: worked / didn't / can't tell yet, and why>
-
-## Edits to the DNA in this pull request
-- <file and section>: <the change, one line> — because <evidence>
-(or "none", with the reason: e.g. "the experiment is judged after air", "a one-off: it depended on this week's story")
-```
-
-Lore, DNA edits and this file go in the same pull request as the episode, so the reviewer approves
-the change to the show with the episode. Never edit `00-constitution.md` or `09-real-people.md`.
-
-## Stage 7: review
-
-The owner, or a reviewer the owner names, reads every script, watches the whole preview with sound,
-and fills in the scorecard below (constitution, Article 5).
-The pull request description should contain the pitch's "Risks" section and the scorecard. The
-reviewer may send back with notes; the writer revises from stage 2 or 3.
-
-## Stage 8: publish, and after
-
-Merge deploys. The bot announces (dry run first). If anyone responds asking to be left out, see
-R11.
+The owner's review comes after all of this and is not replaced by it (constitution, Article 5).
 
 ---
 
 ## The scorecard
 
-Use it for review, and as the writer's self-check before opening the pull request. Step 0 comes
-first. Part A is pass/fail and any fail blocks the episode. Part B is scored 0, 1 or 2.
+Filled in by a reviewer, as `production/scorecard.md`, once the episode has been assembled and
+staged. Writers and builders read it to know what will be asked; they do not fill it in, and rows
+A13 and A14 can only be judged with the record of earlier episodes. Step 0 comes first. Part A is
+pass or fail, and any fail blocks the episode. Part B is scored 0, 1 or 2.
 
 ### Step 0: is everything in it interesting?
 
-Before anything else, list every segment, standing item and runner in the episode. Beside each,
-write its one-sentence retell and the turn or feeling in five words
-([the interesting test](00-constitution.md#the-interesting-test)). Anything without both is cut, or the
-episode goes back, before the rest of the scorecard is filled in. A short episode is not a fault.
-This step only removes things; it never overrides Part A.
+List every segment in the episode, standing segments included, and any runner. Beside each, write
+its one-sentence retell and its turn or feeling in five words
+([the interesting test](00-constitution.md#the-interesting-test)). Anything without both is cut, or
+the episode goes back, before the rest is filled in. A short episode is not a fault. This step only
+removes things; it never overrides Part A.
 
 ### Part A: gates (all must pass)
 
 | # | gate | pass | fail |
 |---|---|---|---|
-| A1 | Opt-out | No account on the opt-out list, or that has opted out in a post or bio, appears in any form | Any appearance, including a chart or a map label |
-| A2 | Verbatim | Every real post card matches its URI word for word, with correct handle, date and likes | Any wording change beyond a meaning-preserving ellipsis |
-| A3 | Context | Every performed line passes the occasion test (R4): the show's setup line, compared with the original prompt in `sources.json`, is the same kind of prompt with the same function and meaning; house characters never paraphrase a real person's view | A line made to answer what it wasn't answering, an exchange stitched from unrelated conversations, or staging that changes the meaning |
-| A4 | Guest lines | Every line spoken by a puppet of a real account is their verbatim post, an interview answer with its question, or a catchphrase used the way they use it (listed in `sources.json`), tagged with its source and occasion; a performed thread matches its posts word for word and in order, cuts marked | Any pastiche; any opinion, fact, reaction or confession they didn't publish; a catchphrase used unlike its author's use; any altered or reordered thread line |
-| A5 | No fabrication | No invented event, number or quote is attributed to a real person | Any |
-| A6 | Out of bounds | None of the R10 topics, anywhere on screen or in audio | Any |
-| A7 | Repost test | Every real person in a joke would plausibly repost it; small accounts only as heroes | Anyone as the butt; a small account laughed at |
-| A8 | Labels | PUPPET · PARODY on every guest chyron; disclaimer at the first guest; personas in the credits; tributes credited | Any missing |
-| A9 | Fictional names | Every invented handle and URL is on `.example` (or display-name only) and fails to resolve | A real TLD or a handle that resolves |
-| A10 | Rankings | Only winners are named; Top Chicken winner and post pass R10 and R11 | Anyone named or shown as a loser or runner-up |
-| A11 | Builds | `npm run check` and `npm run verify` pass; no unknown-cue warnings | Any failure |
+| A1 | Opt-out | No account on the opt-out list, or that has opted out in a post or bio, appears in any form | Any appearance, including a chart, a label or a credit |
+| A2 | Verbatim | Every real post, on a card or read aloud, matches its address word for word, with the right display name, handle, date and like count | Any wording change beyond an ellipsis that keeps the meaning |
+| A3 | Context | Every performed line passes the occasion test (R4): the line spoken just before it, set beside the original prompt in `sources.json`, is the same kind of prompt with the same job and meaning. No exchange implies a conversation that did not happen. House characters never paraphrase a real person's view | A line made to answer what it was not answering; posts from unrelated conversations joined into one; a summary of what a guest thinks |
+| A4 | Guest lines | Every line spoken by a real account's puppet is from a source R3 allows, tagged with its source and occasion; a performed exchange matches its posts word for word and in order, cuts marked | Any pastiche; any opinion, fact or reaction they did not publish; any altered or reordered line |
+| A5 | No fabrication | No invented event, number or quote is attributed to a real person or to the community. Every guess is labelled as a guess in the voice and on screen | Any; a projection that could be clipped as a fact |
+| A6 | Out of bounds | None of the R10 subjects, anywhere in script, screen or audio | Any |
+| A7 | Repost test | Every real person in a joke would plausibly repost it; small accounts appear only as heroes | Anyone as the butt; a small account laughed at |
+| A8 | Labels and credits | PUPPET · PARODY on every guest chyron; a disclaimer at the first guest; the credits, shot and read, name the real accounts whose personas were played and say every voice is synthesized; things people made are credited | Any missing; credits not shot |
+| A9 | Fictional names | Every invented handle and address is on `.example` or is a display name only, and is labelled as the show's | A real top-level domain; a handle that resolves |
+| A10 | Rankings | Only winners are named; the Top Chicken winner and post pass R10 and R11; no guess names anyone who has not won | Anyone named or shown as a loser, a runner-up or a contender |
+| A11 | Builds | `npm run check` passes and the build verifies for this episode; no unknown-cue warnings in this run's logs | Any failure; a check that did not cover this episode |
 | A12 | Constitution | The pull request leaves `00-constitution.md` and `09-real-people.md` untouched | Any change to either |
+| A13 | Repetition | Two reviewers with the record of earlier episodes have given every selected script a verdict; none is *repeat*; at most one item is *turned*; nothing refers to an earlier episode | Any repeat; a second turned item; a callback to the show's past |
+| A14 | People | Nobody whose puppet spoke in the previous episode speaks in this one; most of the accounts featured on screen are new; any warning that someone is on too often has been answered | A speaker from the previous episode; a majority of returning accounts; an unanswered warning |
+| A15 | Unread text | Nothing on screen beyond a glance goes unspoken: every shown post is performed or read aloud, or is glance-sized | Any block of text held for the viewer to read in silence |
+| A16 | Heard text | The transcription's heard text has been read for every line. Nothing heard is offensive or alarming, touches R10, or says something about a real person that the script does not. Every real name is heard as that name in the voice that says it | Any such line; heard text not read; a name heard as another word |
 
-### Part B: quality (0, 1 or 2 each; 24 possible)
+### Part B: quality (0, 1 or 2 each; 26 possible)
 
 | # | criterion | 2 | 1 | 0 |
 |---|---|---|---|---|
-| B1 | **Point** | A clear question asked in at least two segments and answered at goodnight in the community's words | A spine story but no real question, or an answer in the show's own words | Unrelated bits; generic goodnight |
-| B2 | **Funny** | Every segment has at least two jokes that land on a cold watch; the biggest laugh is in the back half (middle segment or song) | Most segments land; one is flat | Two or more segments without a laugh |
-| B3 | **Specific** | Every joke rests on a real artefact or number from the week | A few generic jokes | Mostly generic or invented |
-| B4 | **Built on screen** | Every punch has a picture on its word; graphics carry tags | Some punches unstaged or late | Talking heads with decoration |
-| B5 | **Newcomer test** | Two-thirds or more of jokes work for someone who missed the week | About half | Mostly in-jokes |
-| B6 | **Sincerity** | One short, sourced, quiet beat, followed by a gentle laugh | Present but long, or not sourced | Missing, or a speech, or followed by a cheap joke |
-| B7 | **Runner** | Every "Built it." earns its place, no shape repeated, one segment rests; an episode runner, if any, planted and paid off | Repetitive shapes, or a runner unpaid | "Built it." as a tic, kept to move the count |
-| B8 | **Intelligibility** | Every punchline line ✓ in the Whisper pass; names correct in IPA | One or two weak punchlines | A punchline nobody can hear |
-| B9 | **Sound** | One reaction per joke, sized to it; some dry lines; nothing under "Built it." | Over-sweetened in places | Laugh after every line, or biglaughs on mild jokes |
-| B10 | **Shape** | No filler; adjacent segments differ in texture; every segment ends on a button; under ten minutes and no longer than its material | A slack stretch, or two similar segments adjacent | Padded to reach a length, ten minutes or over, or segments end without buttons |
-| B11 | **Fresh** | Song in a new genre carrying the week's theme (passes the swap test); middle format, guests, runner, descriptor and sincere kind new against the rotation log, or overridden with a good reason | One freshness warning unanswered, or a song theme that would fit any week | Repeats the previous episode's shape; a reused genre, runner or reveal |
-| B12 | **Experiment** | One experiment, stated in `plan.json` with a measure before writing, actually run on screen, result recorded in `dna-amendments.md` | Stated and run, but no measure or no recorded result | No experiment, or one that changes nothing, or changed after the fact |
+| B1 | **Point** | It can be told as "the one where…" in a sentence a cluster member would want to watch; the order is deliberate; nothing announces a theme | Good segments with no shape to the whole | Unrelated bits, or a summing-up speech |
+| B2 | **Funny** | Every segment has at least two jokes that land on a cold watch; the biggest laugh is in the back half | Most segments land; one is flat | Two or more segments without a laugh |
+| B3 | **Material** | Every joke rests on a real thing or number from the window, and most segments are about something a person made or did | A few generic jokes, or mostly talk about talk | Mostly generic, invented or merely popular |
+| B4 | **Staged** | Every punch has a picture on its word | Some punches unstaged or late | Talking heads with decoration |
+| B5 | **Newcomer test** | Two thirds or more of the jokes work for someone who missed the week | About half | Mostly in-jokes |
+| B6 | **Tone** | Affectionate throughout; any sincere moment is earned, short and in the community's own words, spoken | A sincere moment that runs long or is in the show's words; a tease close to the line | A speech, a sneer, or sincerity undercut at someone's expense |
+| B7 | **Television** | Every segment gives the viewer something to watch happen; things people made are shown working | One segment is heads and cards | Two or more segments are heads and cards |
+| B8 | **Intelligibility** | Every punchline is heard as written and every name as itself | One or two soft punchlines, carried by caption and picture | A punchline or a name nobody can hear |
+| B9 | **Sound** | One reaction per joke, sized to it; some lines left dry; nothing loud under a punch | Over-sweetened in places | A laugh after every line, or big laughs on mild jokes |
+| B10 | **Shape** | About eight minutes or less with no filler; adjacent segments differ; every segment ends on a button; the open and the close do their jobs | A slack stretch, two similar segments adjacent, or over nine minutes | Padded to a length, ten minutes or over, or segments with no buttons |
+| B11 | **Standing segments** | The interview, Top Chicken and the music each do what their format asks, or one is cut with a reason under the first rule | One of them is perfunctory | Two are perfunctory, or one is missing with no reason |
+| B12 | **Experiment** | The experiment in `production/experiment.md` was built in and run on screen, and its measure can be checked from the episode | Proposed and run, but only partly built in, or with a weak measure | No experiment, or a cosmetic one, or one dropped or changed after it was proposed |
+| B13 | **Range** | Different people, subjects, textures and kinds of comedy across the episode; no account in more than two segments | One account or one subject dominates | An episode about a handful of people, or one joke told five ways |
 
-**Approve** when Step 0 is clean, every gate passes, and Part B totals **16 or more**, with no 0 in
-B1, B2, B8, B11 or B12.
-**Send back** otherwise, with the lowest-scoring criteria named and one concrete suggestion each.
+What "does what its format asks" means for B11 is in
+[formats](04-formats.md#the-three-standing-segments): an interview of at least three exchanges that
+shows a person; a Top Chicken that is more than a result, with any guess labelled; a song whose form
+is its joke and whose theme is this window's.
 
-A model doing a self-check should fill in the table with one sentence of evidence per row (a line
-quoted, a timestamp, a URI), not just a score.
+### Approval
+
+**Approve** when Step 0 is clean, every gate passes, and Part B totals **18 or more**, with no 0 in
+B1, B2, B7, B8, B11 or B12.
+
+**Send back** otherwise, naming the lowest rows, the stage that can fix each, and one concrete
+suggestion each.
+
+Approval by a reviewer sends the episode to the owner. It is not the owner's review.

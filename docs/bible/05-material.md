@@ -1,144 +1,110 @@
-# 5. Choosing the week's material
+# 5. Choosing material
 
-The writer gets `data/weeks/<week>/digest.md` (and `digest.json`, with post URIs and engagement)
-and this bible. This file is how to turn the first into a pitch. The pitch itself is described in
-[process](10-process.md#stage-2-pitch).
+For researchers, who find and document it, and for writers, who decide what is funny about it. The
+stages and files are in `docs/WORKFLOW.md`; this chapter is about judgement.
 
-## Read the digest twice
+Material is chosen before any format is. Start from what the community did, not from what the show
+needs.
 
-1. **First pass: read everything, decide nothing.** Note anything that made you want to tell
-   someone about it.
-2. **Second pass: make a candidate list**, one line per story: what happened, who, the post URIs,
-   the numbers, and whether there is an artefact (a site, a chart, an image, an object, a post
-   worth showing).
+## What good material looks like
 
-Expect 15 to 30 candidates. An episode uses those that pass the first rule: roughly one to one and a
-half stories per minute of running time (a guess from the pilot, which used about a dozen in ten
-minutes).
+The best material shares three properties. Look for them in this order.
 
-## Score each candidate
+1. **Somebody made it and showed it.** A tool, a toy, a drawing, a machine, a piece of music, a game,
+   an experiment run in public. A thing that exists beats a take, an opinion or a conversation about
+   conversations. The maker is the hero by default, which is where chapter 9 wants every real person
+   to be.
+2. **The viewer can watch it work.** It moves, draws, plays, sounds, counts, responds. The segment
+   can show it doing what it does, redrawn in the studio's lines and credited, instead of telling
+   the viewer it exists. *Test:* could ten seconds with no words show what it is?
+3. **It touches what the show is made of.** The show is synthesized voices, line drawings, puppets
+   and a program in a browser. Material that the studio can try on itself, a sound its own voices
+   can attempt, a picture its own lines can draw, a rule its own program can follow, lets the show
+   take part instead of report.
 
-| test | question | why it matters |
+Two more properties make material easier to turn into a segment.
+
+4. **Other people joined in.** It drew replies that played with it, asked for more, tested its
+   limits. That is where exchanges worth performing, and interview answers, come from.
+5. **It has a true small number in it:** a count, a duration, a size.
+
+Material with none of these can still earn a place by being very funny. Material with the first
+three rarely needs much help.
+
+These are properties to look for in each new window. They are not a list of subjects. The show does
+not return to a thing because it was good material once.
+
+## A content card
+
+A card documents one thing that happened. It says what happened in neutral words; lists the posts
+with their addresses and exact text; describes any image or video; names who was involved, with
+follower counts; carries the tool's reach figures; says what could be shown working; and notes
+anything sensitive or not understood. **A card contains no jokes** and no suggestion of how to use
+it. A researcher who starts writing the segment has stopped doing research.
+
+A good longlist is wide: many kinds of thing, from many people, including people with small
+accounts and people who are new.
+
+## Tests for a piece of material
+
+| test | question | weight |
 |---|---|---|
-| **Safe** | Does it pass every [real-people](09-real-people.md) rule? | Decides what is *allowed*. A fail removes the story. No exceptions, no "but it's funny". |
-| **Interesting** | [The interesting test](00-constitution.md#the-interesting-test): a turn or a feeling you can name in five words; only this week could contain it; a viewer would retell it. Turns to look for: a gap between what was said and what happened, a thing built from a joke, a rule that defeats itself, an absurd number, a coinage that spread. | Decides what is *worth including*, and overrules everything below. |
-| **Stageable** | Is there something to draw or show? | In this show a joke is not finished until something is built on screen. |
-| **Explicable** | Can a viewer who missed the week get the setup from one line and one card? | See "in-jokes" below. |
-| **Meaningful** | Does it say something about how the people here treat each other, or why they are here? | Candidates for the episode's question and its sincere answer. |
-| **Popular** | Was it widely liked or reposted inside the cluster? | A tiebreaker, not a reason. |
+| **Allowed** | Does it pass every [real-people](09-real-people.md) rule? | A fail removes it. No exceptions, no "but it's funny" |
+| **Interesting** | [The interesting test](00-constitution.md#the-interesting-test): a turn or a feeling you can name in five words; only this window could contain it; a viewer would retell it | Decides what is worth including, and overrules everything below |
+| **Watchable** | Is there something to show doing something? | The difference between a segment and a paragraph |
+| **Explicable** | Can a viewer who missed the week get the setup from one spoken line and one picture? | See in-jokes, below |
+| **Meaningful** | Does it say something about how these people treat each other? | The "feeling" half of the interesting test; a candidate for the episode's spine |
+| **Reach** | Did it travel inside the cluster? | A tiebreaker, never a reason |
 
-A story makes the show if it is **Safe** and **Interesting**; **Stageable** and **Explicable** are
-the craft that makes an interesting thing land, so a story that fails them needs a different
-treatment, not a lower bar. **Meaningful** counts as the "feeling" half of the interesting test. The
-episode's spine, and the song's theme, is the best story that is also Meaningful.
+### Merely popular
 
-### "Merely popular"
+High reach and little else. Leave these out, or use only the cluster's reaction when the reaction
+has a turn of its own:
 
-These score high on engagement and low on everything else. Leave them out, or use them only for
-the cluster's reaction if the reaction has its own turn:
-
-- General news, AI lab announcements, platform policy, outside celebrities.
-- Outrage and dunks, including quote-posts piling on someone (pile-on risk, and not the show's tone).
-- A viral post whose joke is complete in itself. The show can't improve it and should not restate it.
-- Arguments, callouts, drama between members. Never take a side; usually skip entirely.
-- Anything popular because it is sad, frightening or personal.
-
-### What the cluster's own habits give you
-
-The pilot found its stories in recurring community behaviours. Look for this week's instances:
-
-| habit | pilot instance | format it suits |
-|---|---|---|
-| someone says "someone should", and someone does | the fantasy league; the membership checker; Simcluster Hamilton | Built or Bit?, The Ask, any "Built it." |
-| "X week" declarations | catoid week rolling into chimera vocal synth week | monologue, Changelog |
-| projects that imitate an institution | the weather channel, Simcluster University, the unnamed podcast | Simcluster Channel, Built or Bit? |
-| games and metrics | Top Chicken, the Grace Limit, a play-money market | Top Chicken Tonight |
-| bots and agents as members | Jevbot, BorJev, the website bot's refusal | monologue, panel cameo |
-| arguments about membership and naming | the checker, the Discords, "my freaking simcluster" | the episode's question |
-| coinages and creatures | catoids, claims, the crow | Field Guide, weather districts |
-| a conversation that is already funny or kind | (none in the pilot; nearest: the Discords reply) | The Thread |
-| a new Top Chicken | (the pilot only had the rules) | the Top Chicken hit, or the full desk |
-
-## How many stories
-
-As many as pass the interesting test. A typical spread:
-
-- **1 spine story** that carries the question. It appears in at least two segments, and is usually
-  the song's theme.
-- **3 to 6 monologue stories**, one joke each (a second joke only for the strongest).
-- **The Top Chicken result**, if there is one, as a quick hit.
-- **1 story per middle segment**: a thread worth performing, a guest, or a feature built from 3 to 5
-  small items.
-- **1 runner** from the week (gm/gn was the pilot's), if one earns it.
-
-Fewer is fine. Recurrence is good: a story that appears in the monologue, the song and goodnight is
-a spine, not a repeat.
+- general news, lab announcements, platform policy, outside celebrities;
+- outrage and dunks, including quote-posts piling on someone;
+- a viral post whose joke is complete in itself: the show cannot improve it and should not restate it;
+- arguments, callouts and drama between members: never take a side, usually skip entirely;
+- anything popular because it is sad, frightening or personal;
+- posts about the show. The show is not its own subject.
 
 ## Finding the angle
 
-For each story you keep, answer these until one produces a line:
+For each piece of material you keep, ask these until one produces a line.
 
-1. **What is the gap?** Between the plan and the result ("The book club said no to a Discord. ...
-   So now there are four Discords."), the label and the thing ("named after a Twitter algorithm.
-   Bluesky doesn't even use it."), the rule and its author ("She founded the chicken. She cannot be
-   the chicken.").
-2. **What is the smallest true number?** Twelve episodes. Four Discords. Twenty-nine posts an hour.
-   Real small numbers are funnier than invented big ones. (The pilot's "humans are down four
-   dollars" is invented, and the board labels it FAKE; an invented number must be labelled.)
-3. **What genre would take this seriously?** Weather, sports, a museum, a game show, a nature
-   documentary, release notes, a courtroom, a safety board ("DAYS SINCE A P(DOOM) SONG TRENDED").
-4. **Who in the cast cares most?** Eppy cares about hypotheticals. Sibyl cares about rulings. Larry
-   cares about having a normal show. Give the story to the character it bothers.
-5. **What would the bot build?** If the story contains a wish, the bot is the punchline.
-6. **What is the reframe?** One word that recasts the fact: "tribute band", "contract", "exhibit".
+1. **What is the gap?** Between the plan and the result, the label and the thing, the rule and what
+   people did with it.
+2. **What is the smallest true number?** Real small numbers are funnier than invented big ones. An
+   invented number must be labelled as invented, and never be about a real person.
+3. **What can be shown working,** and what happens when a house character tries it?
+4. **What genre would take this seriously?** A broadcast, a courtroom, a product launch, a nature film,
+   an awards night.
+5. **Who in the cast cares most?** Give it to the character it bothers or delights
+   ([the cast](02-cast.md)).
+6. **What is the reframe?** One word that recasts the fact.
 
-## The "so what"
-
-Write one sentence per kept story:
+Then write one sentence:
 
 > *This is funny because ___, and it matters because ___.*
 
-If the first blank is empty, cut the story. If the second is empty, the story can still be a
-monologue joke but not the spine. If the second blank is the most interesting thing you wrote,
-that story might be the episode's question.
+If the first blank is empty, it is not material for a joke. If the second is the most interesting
+thing you wrote, it may be the episode's spine.
 
-Pilot examples, reconstructed:
-
-- The membership checker: funny because it tells you not to trust it and everyone posted their
-  score anyway; matters because everyone wants to know if they're in.
-- Top Chicken's Grace Limit: funny because the rule disqualifies its own founder; matters less
-  (a monologue or sports joke, not a spine).
-- The 2023 ingroup post: not funny on its own; matters because it answers the night's question.
-  It goes at goodnight, after the jokes have asked.
+Brainstorm several ideas for each card and expect most of them to lose. The first idea is usually
+the one every writer has.
 
 ## In-jokes and the viewer who missed the week
 
-- **The one-line setup rule.** Every joke's setup is parseable from one spoken line plus what is
-  on screen, within about five seconds. "The simcluster is named after a Twitter algorithm."
-  carries its own context. "Catoid week!" does not.
-- **Two-thirds rule.** At least two-thirds of an episode's jokes work for a newcomer. The rest may
-  be insider, but each must be short and should be visual (the weather map's district names,
-  ticker lines, chyron titles): insiders read the second layer, newcomers see a map.
-- **Never build a punchline on an unexplained reference.** Hy's "And we didn't even play upping my
-  p(doom)." asks the viewer to know a song the episode never mentions; the safety board flipping
-  to 0 rescues it. Don't rely on the rescue.
-- **If you do not understand a reference, do not use it.** You can't check it is harmless, and you
-  can't write a turn on it. The digest may not explain everything; that is fine.
+- **One line, one picture.** Every joke's setup can be understood from one spoken line and what is
+  on screen, within about five seconds.
+- **Two thirds.** At least two thirds of an episode's jokes work for a newcomer. The rest may be
+  insider, but short, and never the punch of a segment.
+- **No punchline on an unexplained reference.**
+- **If you do not understand a reference, do not use it** (R15). Say so on the card and move on.
 
-## Freshness
+## Thin windows
 
-- Check [lore](lore.md) and the last two episodes' `production/sources.json`. Don't re-cover a story
-  unless it developed.
-- The show's own lore is for callbacks. The community's lore is for setups. Neither is a story by
-  itself.
-- A recurring guest needs new material each time, from this week's posts.
-
-## Thin weeks
-
-Some weeks are quiet. Do not invent news, inflate a small story into a scandal, or reach outside
-the cluster. Instead:
-
-- Lean on a recurring format (Changelog, Top Chicken) that turns small items into a list.
-- Make the quiet the question ("Where did everybody go this week?"), answered with a real post.
-- Go shorter. Under the first rule a three-minute episode of interesting things is a good episode;
-  a padded eight is not.
+Some weeks are quiet. Do not invent news, inflate a small thing into a scandal, or reach outside the
+cluster. Go shorter: a five-minute episode of interesting things is a good episode, and a padded
+eight is not. A bulletin ([formats](04-formats.md#other-shapes)) can carry several small items
+that would not each bear a joke.

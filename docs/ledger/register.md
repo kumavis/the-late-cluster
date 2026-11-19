@@ -1,0 +1,113 @@
+# Register: rules that rested on the pilot
+
+For reviewers and the project manager only. Writers, researchers and builders do not read this file.
+
+The first bible (in git up to 19 November 2026) was inferred mostly from one episode. It kept a
+register of the rules that rested only on that episode, as the first candidates for an experiment
+to challenge. It also defined a "frame" that stayed every week. The trial draft (002) followed the
+frame exactly and came out as a remake. This file keeps both, with what became of each rule when
+the writer-facing bible was rewritten without the show's history.
+
+Use it in two ways. When an experiment is judged, record here which rule it tested and what was
+found. When a writer-facing rule is proposed, check here whether it is an old pilot habit returning
+under a new name.
+
+## The register
+
+"Followed in the 002 draft" is not evidence for a rule: the draft never aired.
+
+| rule, as the first bible had it | was in | evidence | what became of it (19 Nov 2026) |
+|---|---|---|---|
+| Five slots in a fixed order (cold open, monologue, middle, song, goodnight); the song before goodnight | 03 | one episode; followed in the 002 draft | **Removed.** No fixed order. Three standing segments, the rest chosen each week |
+| The Ask with "Built it." as the cold open | 04, format 1 | one episode; followed in the 002 draft; the owner: "done to death" | **Removed.** A pilot device |
+| Sibyl's "And now... [descriptor]... Larry... Nx!" and the theme hook | 03 | one episode; followed in the 002 draft | **Removed** from standing structure. The announcer is still a character |
+| At most about 1.5 BUILT bumps a minute; one segment rests; a wish before every bump | 03 | one episode; a guest joked about the weight of fifteen builds | **Removed** with the counter |
+| The last bump after the tally, so the tally is wrong (row added by the 002 draft) | 03; 04, format 8 | "tested" in the 002 draft by refusing the last wish; never aired, no verdict | **Removed** with the counter |
+| Slot lengths (cold open 15–55 s, monologue 50–90 s, middle 50–80 s, song 45–95 s, goodnight 30–70 s) | 03 | one episode | **Replaced** by planning ranges per kind of segment and a target of about eight minutes |
+| 1.6–2.2 spoken words per second of running time | 03 | the pilot ran 1.5; the 002 draft ran 1.81 | **Kept** as a planning figure |
+| About one to one and a half stories per minute | 05 | one episode | **Dropped** |
+| Fact, turn, punch, picture; every graphic carries a tag the voice does not say | 06 | one episode | **Kept** as craft. Tags are now limited to what a glance takes in |
+| Buttons of six words or fewer, mostly Larry's | 03, 06 | one episode | **Kept** as "end on a short button". "Mostly Larry's" dropped |
+| One reaction sound per joke; three or four big laughs | 07 | the pilot itself broke it (a sound after nearly every line, ten big laughs); one viewer found the laughs thin | **Kept** |
+| Setups quick, punches slow (rate 1.0–1.06 / 0.88–0.94) | 07 | one episode | **Kept** |
+| Stamps as the house punctuation, about one per 20 s | 08 | one episode (about fifteen stamps) | **Dropped** as a house style. The stamp is one drawing primitive among several |
+| The sincere beat at goodnight, from real posts on cards, under about 20 s, followed by a gentle laugh | 01 | one episode; copied by the 002 draft; the owner: "a lot of text that wasnt read" | **Changed.** A sincere beat is optional, has no fixed place, and is performed or read aloud |
+| "gn, simcluster." and "Press E to leave." as the close | 04, format 8 | one episode; followed in the 002 draft | **Removed** |
+| A guest built from four ingredients (a verbal signature, a habit, an object or creature, a role this week) | 02 | one episode | **Reduced** to casting: their own words, a voice, a look, a chyron. Creatures and signature props are devices, and done |
+| Larry as the loser; Sibyl overruled only by the bot | 02 | one episode; "Larry wins once" in the 002 draft, no verdict | Larry's bad luck **kept** as character. The Sibyl-and-bot routine **removed** |
+| The monologue's over-the-shoulder artefact framing | 04, 08 | one episode; followed in the 002 draft | **Kept** as one framing among several |
+
+Rules the first bible took from the owner, and so did not list: the song standing and its genre
+rotating; real words first; the Top Chicken result reported. The owner's decisions as of 19 November
+2026 are in the bible's frame and standing segments: an interview every week, Top Chicken with the
+game around it, music in a genre the show has not just used, about eight minutes, do not repeat the
+show, variety in people, television.
+
+## What the first bible called the frame
+
+Quoted for the record. Everything here except the first line was removed from standing structure.
+
+> - The name, the studio, the vector look, Larry hosting, the house cast and their attitudes.
+> - The cold open's shape: an Ask from this week, "Built it.", the theme hook, "And now... [new
+>   descriptor]... Larry... Nx!"
+> - The BUILT counter, starting at 0.
+> - A monologue.
+> - A song, in a new genre.
+> - Goodnight's shape: the tally, the question answered in the community's words, "gn,
+>   simcluster.", "Press E to leave.", the CRT power-down, credits over the skyline with Dee's
+>   lullaby (proposal: the lullaby is the frame's closing music and does not rotate).
+> - The constitution's labels and credits (Article 4: these are not DNA and never rotate).
+
+**What rotated** under it: the middle segment's format; the song's genre and theme; Sibyl's
+descriptor; the cold open's Ask; the episode runner; the sincere beat's source; guests and how they
+appeared; the "Built it." shapes; one new credits gag and new chyron titles.
+
+**What was not to repeat** under it: a joke or a reveal; an episode runner; a thread performed, an Ask
+post, a descriptor; a song genre within eight episodes; the same middle format two weeks running; a
+guest two weeks running "unless the week's story is about them"; the same "Built it." shape twice in
+one episode; the same kind of sincere beat two weeks running; more than two cross-episode callbacks.
+
+**How it was checked:** the pipeline compared the pitch's `plan.json` with a rotation log. Only a
+repeated song genre was refused. Every other repeat was a warning that the writer could answer with a
+reason. In the trial, a guest repeating two weeks running was answered with a reason, and accounts
+shown on cards were not counted at all.
+
+**Why it failed.** The list of things not to repeat sat inside a frame that required the show's most
+recognisable devices every week, and the freedom it left (a new descriptor, a new "shape" for the
+same catchphrase) was variation on those devices. A writer who followed it faithfully remade the
+pilot. The repetition gate replaces the warnings with a block, counts cards, and is run by people
+who can read the earlier scripts.
+
+## The first bible's weekly running order
+
+| slot | length | did |
+|---|---|---|
+| 1. Cold open | 15–55 s with the theme | a real post asks for something; "Built it."; counter 0 → 1; the announcer's intro |
+| 2. Monologue | 50–90 s | three to six stories, one joke each; the Top Chicken result as a quick hit; plant the runner |
+| 3. Middle, one or more | 50–80 s each | a performed thread, a panel, the sports desk, a project in a TV genre, a game show, or a proposal |
+| 4. Song | 45–95 s | a new genre carrying the week's theme |
+| 5. Goodnight | 30–70 s | runner payoff; the tally; the question answered with real posts; the sign-off; the exit |
+
+The trial notes point out that this sums to between three and six and a half minutes with one
+middle slot, and that no format on its shelf was an interview built from a member's posts.
+
+## Format proposals the first bible carried
+
+Never aired unless noted. A writer may arrive at any of them independently from the bible's shelf of
+shapes; that is not a repeat.
+
+- **The Changelog:** the announcer reads the week as release notes.
+- **Live From the Build:** a remote link to a guest at the thing they built; the link misbehaves.
+- **The Field Guide:** a nature documentary about a coinage or creature that spread.
+- **Corrections:** a real correction to the previous episode, plus one comic one. Used once, in the
+  002 draft, with the real correction only.
+- **The Interview by the show's account:** not built; depends on bot work (chapter 9's proposal).
+- **The Thread:** established by the owner as the preferred way to have real people on; performed
+  once, in the 002 draft.
+
+## Experiments and what they tested
+
+| episode | experiment | rule tested | result |
+|---|---|---|---|
+| 001 (aired) | the show itself | none | people wanted another; see [lore.md](lore.md), experiment log |
+| 002 (draft) | the last wish refused; the counter holds; Larry wins once | "the last bump after the tally"; "Larry as the loser" | none: never aired |
