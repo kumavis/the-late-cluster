@@ -32,6 +32,8 @@ the-late-cluster/
   docs/
     ARCHITECTURE.md          this file
     bible/                   the design bible
+  reports/                   research reports that informed decisions here
+  research_notes/            the sourced notes behind each report
   packages/
     show/                    @late-cluster/show: the studio (runtime + offline tools)
     site/                    @late-cluster/site: the archive index page generator
