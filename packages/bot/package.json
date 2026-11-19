@@ -1,0 +1,12 @@
+{
+  "name": "@late-cluster/bot",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "description": "The Late Cluster's Bluesky account: announces published episodes. Dry run by default.",
+  "engines": { "node": ">=22" },
+  "scripts": {
+    "test": "node --test \"test/*.test.mjs\"",
+    "bot": "node bin/bot.mjs"
+  }
+}

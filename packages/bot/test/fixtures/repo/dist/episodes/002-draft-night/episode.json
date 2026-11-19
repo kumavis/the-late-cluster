@@ -1,0 +1,11 @@
+{
+  "id": "002-draft-night",
+  "number": 2,
+  "slug": "draft-night",
+  "title": "Draft Night",
+  "description": "Still in production.",
+  "airDate": "2026-11-20",
+  "status": "draft",
+  "rundown": ["cold-open"],
+  "build": { "sourceHash": "1111111111111111111111111111111111111111111111111111111111111111", "studio": "0000000" }
+}

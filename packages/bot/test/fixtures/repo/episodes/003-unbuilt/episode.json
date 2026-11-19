@@ -1,0 +1,10 @@
+{
+  "id": "003-unbuilt",
+  "number": 3,
+  "slug": "unbuilt",
+  "title": "Unbuilt",
+  "description": "Has a source folder but no build in dist/.",
+  "airDate": "2026-11-27",
+  "status": "published",
+  "rundown": ["cold-open"]
+}

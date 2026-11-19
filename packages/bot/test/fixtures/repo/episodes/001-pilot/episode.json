@@ -1,0 +1,10 @@
+{
+  "id": "001-pilot",
+  "number": 1,
+  "slug": "pilot",
+  "title": "Pilot",
+  "description": "Source manifest for the fixture pilot.",
+  "airDate": "2026-11-13",
+  "status": "published",
+  "rundown": ["cold-open"]
+}
