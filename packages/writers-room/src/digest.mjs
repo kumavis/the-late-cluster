@@ -20,7 +20,7 @@ export function parseAtUri(uri) {
 }
 
 export function emptyDigest() {
-  return { dir: null, posts: new Map(), byRkey: new Map(), accounts: new Map(), links: new Set(), outOfBoundsStories: new Set(), threads: [], optedOut: new Set(), sections: {} }
+  return { dir: null, raw: null, posts: new Map(), byRkey: new Map(), accounts: new Map(), links: new Set(), outOfBoundsStories: new Set(), threads: [], optedOut: new Set(), sections: {} }
 }
 
 /**
@@ -39,12 +39,15 @@ export function loadDigest(dir, { optOutFile } = {}) {
   }
   const d = emptyDigest()
   d.dir = dir
+  // the parsed digest.json, for what the scraper computes itself (coverage, stats, ranked stories):
+  // the scope stage takes those figures from here rather than computing its own
+  d.raw = data
   d.format = data.format ?? null
   d.window = data.window ?? null
   d.sections = data.sections ?? {}
   for (const s of data.overview?.outOfBounds ?? []) if (s?.id) d.outOfBoundsStories.add(s.id)
   for (const [did, a] of Object.entries(data.authors ?? {})) addAccount(d, { did, ...a })
-  for (const m of data.members ?? []) addAccount(d, m)
+  for (const m of data.members ?? []) addAccount(d, { ...m, member: true })
   walkPosts(d, data, null)
   const jsonl = join(dir, 'posts.jsonl')
   if (existsSync(jsonl)) {
@@ -72,7 +75,7 @@ function addAccount(d, a) {
   const h = normHandle(a.handle)
   if (!h) return
   const prev = d.accounts.get(h) ?? {}
-  const acc = { ...prev, handle: h, did: a.did ?? a.authorDid ?? prev.did, displayName: a.displayName ?? prev.displayName, followers: a.followers ?? a.authorFollowers ?? prev.followers, small: a.small ?? a.smallAccount ?? prev.small, guest: a.guest ?? prev.guest, featuredPrevious: a.featuredPrevious ?? prev.featuredPrevious ?? null, featuredEarlier: a.featuredEarlier ?? prev.featuredEarlier ?? null, timesFeatured: a.timesFeatured ?? prev.timesFeatured ?? 0, featuredBefore: Boolean(a.featuredBefore ?? a.featuredPrevious ?? a.featuredEarlier ?? (a.timesFeatured > 0 ? true : null) ?? prev.featuredBefore) }
+  const acc = { ...prev, handle: h, did: a.did ?? a.authorDid ?? prev.did, displayName: a.displayName ?? prev.displayName, followers: a.followers ?? a.authorFollowers ?? prev.followers, small: a.small ?? a.smallAccount ?? prev.small, guest: a.guest ?? prev.guest, member: a.member ?? prev.member ?? null, seed: a.seed ?? prev.seed ?? false, featuredPrevious: a.featuredPrevious ?? prev.featuredPrevious ?? null, featuredEarlier: a.featuredEarlier ?? prev.featuredEarlier ?? null, timesFeatured: a.timesFeatured ?? prev.timesFeatured ?? 0, featuredBefore: Boolean(a.featuredBefore ?? a.featuredPrevious ?? a.featuredEarlier ?? (a.timesFeatured > 0 ? true : null) ?? prev.featuredBefore) }
   d.accounts.set(h, acc)
   // defensive: any opt-out style flag the scraper may add to an account record
   if (a.optedOut || a.optOut || a.selfDeclaredOptOut || a.excluded) {
@@ -95,6 +98,7 @@ function addPost(d, p, story) {
     // the scraper's reach: separate numbers plus a combined score ({ likes, …, participants, score })
     reach: p.reach && typeof p.reach === 'object' ? p.reach : typeof p.reach === 'number' ? { score: p.reach } : prev?.reach ?? null,
     featured: p.featured ?? prev?.featured ?? null,
+    member: typeof p.member === 'boolean' ? p.member : prev?.member ?? null,
     imageOnly: (typeof p.text !== 'string' || !p.text.trim()) && (p.hasImages || (p.imageAlts ?? []).length > 0) ? true : prev?.imageOnly ?? false,
     time: p.time ?? p.createdAt ?? prev?.time ?? null,
     parent: p.reply?.parent ?? p.inReplyTo ?? prev?.parent ?? null,

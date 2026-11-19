@@ -323,7 +323,7 @@ test('seeds: the show account\'s follows plus the bootstrap list, by DID; consen
 })
 
 test('coverage: how members qualified, concentration, change, signals, the cap, worries', async () => {
-  const { coverage: cv, c } = await runFake()
+  const { coverage: cv, c, config } = await runFake()
   const total = Object.values(cv.byRule).reduce((a, b) => a + b, 0)
   assert.equal(total, c.members.length)
   assert.ok(cv.byRule.seed >= 1)
@@ -334,7 +334,7 @@ test('coverage: how members qualified, concentration, change, signals, the cap, 
   const roster = cv.independent.find((x) => x.name === 'roster: game')
   assert.ok(roster, 'the roster is compared')
   assert.equal(typeof roster.overlapOfMembers, 'number')
-  assert.equal(cv.cap.cap, 120)
+  assert.equal(cv.cap.cap, config.cluster.expansion.maxMembers)
   assert.ok(cv.seeds.suggestions.every((x) => !c.members.find((m) => m.did === x.did)?.seed))
   assert.ok(cv.seeds.suggestions.every((x) => /talked with \d+ members/.test(x.reason)))
   assert.ok(Array.isArray(cv.worries))

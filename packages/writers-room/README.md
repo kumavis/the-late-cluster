@@ -51,7 +51,7 @@ Everything lands under `episodes/<id>/production/`. Briefs are `briefs/<stage>/<
 
 | # | stage | tasks (role) | the tool | files | blocks until |
 |---|---|---|---|---|---|
-| 1 | scope | `scope.reviewer` (reviewer) | scrapes if there is no digest (the scraper's default window: since the previous aired episode); writes its own figures | `scope/coverage.md`, `scope/coverage.json`, `scope/review.md` | three answers and `Verdict: proceed` (`rescrape` sends back to scope) |
+| 1 | scope | `scope.reviewer` (reviewer) | scrapes if there is no digest (the scraper's default window: since the previous aired episode); writes the scope figures, taken from the scraper's `coverage` | `scope/coverage.md`, `scope/coverage.json`, `scope/review.md` | three answers and `Verdict: proceed` (`rescrape` sends back to scope) |
 | 2 | research | `research.<lane>` per lane (researcher), then `research.screen` (reviewer) | reach per card from the scraper's figures; the longlist | `research/cards/<lane>/*.json`, `research/screen.json`, `research/screen.md`, `research/longlist.json` | every card sourced with exact text, no jokes, a screening decision for each |
 | 3 | brainstorm | `brainstorm.writer-1..3` (writer) | merges | `brainstorm/writer-<k>.jsonl`, `brainstorm/ideas.jsonl` | every kept card has ideas from 2 writers |
 | 4 | rank | `rank.reviewer-1..2`, then `rank.second-reviewer-1..2`, then `rank.experiment` (reviewer) | first pass, second pass, shortlist | `rank/reviews/`, `rank/second/`, `rank/first.json`, `rank/scores.json`, `rank/shortlist.json`, `rank/shortlist.md`, `experiment.md` | scores from 2 reviewers for every card; the experiment stated with a measure |
@@ -131,12 +131,20 @@ matched by DID; a handle without a DID is resolved through the digest. Scraper s
 ## The digest
 
 The scraper's digest (`packages/scraper/README.md`) is read by `src/digest.mjs`: posts with exact
-text, display names, counts and the scraper's reach; authors with `featuredPrevious`,
-`featuredEarlier`, `timesFeatured`; the sections (games with Top Chicken standings, built, about
+text, display names, counts, `member` and the scraper's reach; authors with `member`, `seed`,
+`featuredPrevious`, `featuredEarlier`, `timesFeatured`; the sections (games with Top Chicken standings, built, about
 the show, new voices, interview question-and-answer pairs, performable threads); opt-outs. Reach has
 one source: each post's `reach.score` from the scraper, its weights in
 `packages/scraper/config/scoring.json` (`config/pipeline.json` `reach.weightsFrom`). Briefs send
 subagents to `npm run lookup` for exact records (digest.json is too big to read whole).
+
+The scope stage's `scope/coverage.md` has one source too: every share it shows (the ten most
+active, the seeds and accounts featured before, of member posts, of the top stories and of the
+builds), the member counts, the worries and the excluded counts come from the scraper's
+`digest.json` `coverage`, so it cannot disagree with the scraper's `coverage.md`. The tool adds only
+what the scraper does not compute: how many active members are neither seeds nor featured before.
+A digest without a coverage block gets the same shares computed by the tool, over members' posts in
+the window, as the scraper measures them.
 
 ## Configuration
 

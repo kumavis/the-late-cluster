@@ -166,7 +166,7 @@
       "feedPosts": 3,
       "rosters": 1
     },
-    "maxMembers": 120,
+    "maxMembers": 250,
     "ruleNames": [
       "followed by 2 seeds and talked with one",
       "followed by 3 seeds",

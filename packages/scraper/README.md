@@ -187,7 +187,7 @@ Shipped: followed by 2 seeds and talked with one; followed by 3 seeds; followed 
 and talked with a seed; on a roster and in the community feed**; search rules; twice in the
 feed and followed by a seed.
 
-**Cap** (`maxMembers`, 120): members are ranked by
+**Cap** (`maxMembers`, 250): members are ranked by
 `3·seedFollows + 1·min(interactions, 12) + 4·roster + 2·min(termPosts, 3) + 1·min(feedPosts, 3) + 10·listed`,
 ties by DID. Seeds are never cut. The coverage report says how many qualified accounts the
 cap cut, who the strongest of them are, and what including them would cost.
@@ -363,7 +363,7 @@ Top Chicken's roster, for the record: its pinned post says contenders are the pe
 maintainer follows plus his followers, under the Grace Limit (fewer than 7k followers). That
 graph is public (`getFollows` and `getFollowers` of the maintainer: 260 + 769, 861 distinct
 accounts, 13 requests); the game account itself publishes no list, feed or starter pack and
-follows only its maintainer. 89 of this package's 120 W46 members are in it, and 772 roster
+follows only its maintainer. 89 of this package's 120 W46 members (under the cap as it then was) are in it, and 772 roster
 accounts are not members. It is **not** used to define the cluster; see the trade-offs in the
 scraper's second-pass report.
 
@@ -631,7 +631,7 @@ Does not work:
 - An account removed by its profile after selection is not replaced from below the cap.
 - Sensitivity and opt-out detection are keyword lists, in English. See their caveats above.
 - The cap is the binding limit once the show's account follows a dozen or more people: on
-  the trial window 913 accounts qualified and the cap of 120 cut 793. The coverage report gives
+  the trial window 913 accounts qualified and the cap, then 120, cut 793. The coverage report gives
   the cost of raising it (about 3.7 author-feed requests per member with a cold cache).
 - Interview candidates are ranked by how many good pairs they have, which favours prolific
   posters who reply to questions all day, often about outside news. Reviewers should weigh
