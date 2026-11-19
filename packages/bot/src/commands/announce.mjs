@@ -1,6 +1,6 @@
 // `announce <ep> [--live] [--force]`: post a published episode with a link card.
 import { readFileSync } from 'node:fs';
-import { relative } from 'node:path';
+import { join, relative } from 'node:path';
 import { createClient } from '../atproto.mjs';
 import { loadSettings } from '../config.mjs';
 import { buildAnnouncement, checkThumbnail, sameUrl, urlsInPost } from '../compose.mjs';
@@ -31,7 +31,7 @@ export default {
 async function run(ctx) {
   const { positionals, values, env, out, root, cwd, now, fetch, configPath } = ctx;
   if (positionals.length !== 1) throw new UsageError('usage: announce <ep> [--live] [--force]');
-  const settings = loadSettings({ env, configPath });
+  const settings = loadSettings({ env, configPath, showConfigPath: join(root, 'show.config.json') });
 
   if (values.live) {
     const missing = ['BSKY_HANDLE', 'BSKY_APP_PASSWORD'].filter((k) => !env[k]);

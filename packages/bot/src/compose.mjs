@@ -40,7 +40,7 @@ export function checkThumbnail(size, mimeType) {
  * @param {object} o.thumb     blob ref returned by uploadBlob (or a placeholder in dry run)
  */
 export function buildAnnouncement({ manifest, siteUrl, langs, now, thumb }) {
-  if (!siteUrl) throw new BotError('no site URL: set SITE_URL or "siteUrl" in packages/bot/bot.config.json');
+  if (!siteUrl) throw new BotError('no site URL: set SITE_URL, "siteUrl" in packages/bot/bot.config.json, or "siteUrl" in show.config.json');
   if (langs.length > POST_MAX_LANGS) throw new BotError(`at most ${POST_MAX_LANGS} langs are allowed`);
   const url = episodeUrl(siteUrl, manifest.id);
   const text = composeText(manifest, url);

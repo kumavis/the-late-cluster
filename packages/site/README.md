@@ -34,9 +34,11 @@ nothing under `episodes/` is ever written.
 | `latest/index.html` | redirects to the newest episode (to the archive when there is none) |
 | `site-assets/` | `site.css` and the fonts with their licences, copied from `assets/` |
 
-Every link is relative, so the site works at any base path and from a local server. Set
-`SITE_URL` (for example `https://user.github.io/the-late-cluster/`) to add a canonical link,
-`og:url`, `og:image` and absolute `url`s in `episodes.json`; without it they are left out.
+Every link is relative, so the site works at any base path and from a local server. A site URL
+(for example `https://user.github.io/the-late-cluster/`) adds a canonical link, `og:url`,
+`og:image` and absolute `url`s in `episodes.json`; without one they are left out. It is
+`SITE_URL` from the environment if set, else `siteUrl` in the repo root's `show.config.json`
+(the show-wide setting the episode builds also use).
 The deploy workflow sets it from the Pages configuration.
 
 The output is deterministic: no timestamps, no locale-dependent formatting, sorted inputs. The

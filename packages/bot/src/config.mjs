@@ -1,6 +1,8 @@
-// Settings come from the environment first, then packages/bot/bot.config.json.
+// Settings come from the environment first, then packages/bot/bot.config.json. The site URL
+// falls back once more, to siteUrl in the repo's show.config.json (the show-wide setting).
 // Credentials come only from the environment and are never read from a file.
 import { readFileSync } from 'node:fs';
+import { join } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { BotError } from './errors.mjs';
 import { DEFAULT_SERVICE, DEFAULT_USER_AGENT } from './atproto.mjs';
@@ -8,6 +10,7 @@ import { DEFAULT_SERVICE, DEFAULT_USER_AGENT } from './atproto.mjs';
 export const PACKAGE_DIR = fileURLToPath(new URL('..', import.meta.url));
 export const REPO_ROOT = fileURLToPath(new URL('../../..', import.meta.url));
 export const CONFIG_PATH = fileURLToPath(new URL('../bot.config.json', import.meta.url));
+export const SHOW_CONFIG_PATH = join(REPO_ROOT, 'show.config.json');
 
 export function readConfigFile(path = CONFIG_PATH) {
   let text;
@@ -20,9 +23,9 @@ export function readConfigFile(path = CONFIG_PATH) {
   }
 }
 
-export function loadSettings({ env = {}, configPath = CONFIG_PATH } = {}) {
+export function loadSettings({ env = {}, configPath = CONFIG_PATH, showConfigPath = SHOW_CONFIG_PATH } = {}) {
   const file = readConfigFile(configPath);
-  const rawSite = env.SITE_URL || file.siteUrl || '';
+  const rawSite = env.SITE_URL || file.siteUrl || readConfigFile(showConfigPath).siteUrl || '';
   return {
     siteUrl: rawSite ? normalizeSiteUrl(rawSite) : null,
     service: env.BSKY_PDS || file.service || DEFAULT_SERVICE,

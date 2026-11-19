@@ -34,7 +34,7 @@ The bot cannot do any of this for you. Do it once, by hand.
 
    | variable | required | meaning |
    |---|---|---|
-   | `SITE_URL` | yes (or `siteUrl` in `bot.config.json`) | the Pages site root, e.g. `https://<owner>.github.io/the-late-cluster/` |
+   | `SITE_URL` | no, if set in a config file | the Pages site root, e.g. `https://<owner>.github.io/the-late-cluster/`; falls back to `siteUrl` in `bot.config.json`, then to `siteUrl` in the repo's `show.config.json` |
    | `BSKY_HANDLE` | for `--live` | the bot account's handle |
    | `BSKY_APP_PASSWORD` | for `--live` | the app password from step 3 |
    | `BSKY_PDS` | no | PDS host, default `https://bsky.social` |
@@ -56,7 +56,9 @@ printed; the session token lives in memory for one run.
 { "siteUrl": "", "service": "https://bsky.social", "langs": ["en"] }
 ```
 
-Environment variables win over the file. `langs` is the post's language tags (at most 3).
+Environment variables win over the file. The site URL is looked up as `SITE_URL`, then this
+file's `siteUrl`, then `siteUrl` in the repo root's `show.config.json` (the show-wide setting
+the episode builds use), so normally it is set once, there. `langs` is the post's language tags (at most 3).
 The file holds no secrets and can be committed.
 
 ## `announce <ep> [--live] [--force]`

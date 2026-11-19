@@ -1,6 +1,7 @@
 // Generate the archive into an output directory (normally the repo's dist/) from the committed
 // manifests in an input directory (normally the same dist/). Writes only GENERATED_PATHS.
 
+import { readFileSync } from 'node:fs'
 import { mkdir, readdir, readFile, rm, writeFile } from 'node:fs/promises'
 import { dirname, isAbsolute, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -12,6 +13,26 @@ const here = dirname(fileURLToPath(import.meta.url))
 export const PACKAGE_DIR = resolve(here, '..')
 export const ASSETS_SRC = join(PACKAGE_DIR, 'assets')
 export const DEFAULT_DIST = resolve(PACKAGE_DIR, '..', '..', 'dist')
+export const SHOW_CONFIG = resolve(PACKAGE_DIR, '..', '..', 'show.config.json')
+
+/** the site URL: SITE_URL in env if non-empty, else siteUrl in the repo's show.config.json (raw; may be '') */
+export function resolveSiteUrl({ env = {}, showConfigPath = SHOW_CONFIG } = {}) {
+  if (env.SITE_URL && String(env.SITE_URL).trim()) return env.SITE_URL
+  let text
+  try {
+    text = readFileSync(showConfigPath, 'utf8')
+  } catch (e) {
+    if (e.code === 'ENOENT') return ''
+    throw e
+  }
+  let cfg
+  try {
+    cfg = JSON.parse(text)
+  } catch (e) {
+    throw new Error(`${showConfigPath} is not valid JSON: ${e.message}`)
+  }
+  return typeof cfg?.siteUrl === 'string' ? cfg.siteUrl : ''
+}
 
 export { GENERATED_PATHS, ASSET_DIR } from './paths.mjs'
 export { readEpisodes } from './manifests.mjs'

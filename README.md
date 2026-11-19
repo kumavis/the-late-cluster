@@ -12,6 +12,7 @@ packages/show/        the studio: page runtime, offline tools, reference episode
 episodes/<id>/        one folder per episode: episode.json, segments/, thumbnail.jpg
 dist/episodes/<id>/   each published episode's committed build
 scripts/              repo commands (Node builtins only)
+show.config.json      show-wide settings: the public site URL (siteUrl)
 ```
 
 ## Quick start

@@ -3,21 +3,21 @@
 //
 //   node packages/site/bin/build-site.mjs [inDir] [outDir]
 //
-// inDir defaults to the repo's dist/, outDir to inDir. Set SITE_URL (for example
-// https://user.github.io/the-late-cluster/) to add absolute Open Graph URLs.
+// inDir defaults to the repo's dist/, outDir to inDir. The site URL for absolute Open Graph URLs
+// is SITE_URL if set, else siteUrl in the repo's show.config.json; empty leaves them out.
 
 import { isAbsolute, relative, resolve } from 'node:path'
-import { buildSite, DEFAULT_DIST } from '../src/build.mjs'
+import { buildSite, DEFAULT_DIST, resolveSiteUrl } from '../src/build.mjs'
 
 const args = process.argv.slice(2)
 if (args.includes('-h') || args.includes('--help')) {
-  console.log('usage: build-site.mjs [inDir] [outDir]   (default: the repo dist/; SITE_URL env for Open Graph URLs)')
+  console.log('usage: build-site.mjs [inDir] [outDir]   (default: the repo dist/; site URL: SITE_URL env, else show.config.json)')
   process.exit(0)
 }
 const [inDir = DEFAULT_DIST, outDir = inDir] = args
 
 try {
-  const { episodes, drafts, warnings, written } = await buildSite({ inDir, outDir, siteUrl: process.env.SITE_URL })
+  const { episodes, drafts, warnings, written } = await buildSite({ inDir, outDir, siteUrl: resolveSiteUrl({ env: process.env }) })
   for (const w of warnings) console.warn(`site: warning: ${w}`)
   const rel = relative(process.cwd(), resolve(outDir))
   const where = rel === '' ? '.' : rel.startsWith('..') || isAbsolute(rel) ? resolve(outDir) : rel

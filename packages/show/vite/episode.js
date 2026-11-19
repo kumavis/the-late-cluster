@@ -19,6 +19,7 @@ import { createReadStream, existsSync } from 'node:fs'
 import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { readEpisodeJson } from '../../../scripts/lib/episodes.mjs'
+import { readShowConfig } from '../../../scripts/lib/showconfig.mjs'
 
 export const STUDIO = fileURLToPath(new URL('..', import.meta.url)).replace(/[\\/]$/, '')
 const VIRTUAL = 'virtual:late-cluster/episode'
@@ -92,7 +93,8 @@ export function episodePlugin(ep) {
       })
     },
     transformIndexHtml(html) {
-      return episodeHtml(html, meta(), ep, process.env.SITE_URL)
+      // the absolute base comes from the committed show.config.json only, never the environment
+      return episodeHtml(html, meta(), ep, readShowConfig(ep.root).siteUrl)
     },
   }
 }
@@ -104,11 +106,11 @@ export function pageTitle(m) {
   return `${m.title} · ${SHOW_NAME}${typeof m.number === 'number' && m.number > 0 ? ` · Episode ${m.number}` : ''}`
 }
 
-/** per-episode <title>, description and Open Graph tags (og:image absolute only with SITE_URL) */
+/** per-episode <title>, description and Open Graph tags (og:image absolute only when show.config.json has a siteUrl) */
 export function episodeHtml(html, m, ep, siteUrl) {
   const title = pageTitle(m)
   const desc = m.description || 'A late-night talk show performed by synthesized puppet heads.'
-  const base = siteUrl ? siteUrl.replace(/\/+$/, '') + `/episodes/${ep.id}/` : null
+  const base = siteUrl ? new URL(`episodes/${ep.id}/`, siteUrl).href : null
   const og = [
     ['og:type', 'video.episode'],
     ['og:site_name', 'The Late Cluster'],

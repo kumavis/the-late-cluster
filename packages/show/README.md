@@ -384,7 +384,11 @@ the authoring loop needs a build: `dev`, `shoot` and `check` read fresh renders 
   telemetry forward when there is no fresh render. Two builds of one episode at once are not
   supported; builds of different episodes are independent.
 - `npm run thumbnail -- <ep>` shoots the title card into `episodes/<ep>/thumbnail.jpg` (needed
-  for a published build).
+  for a published build; `--t <s>` picks the moment). `npm run thumbnail -- <ep> <seg> <t>`
+  shoots that moment of a segment instead, for an episode's best picture; `--out <file>`
+  writes elsewhere to compare candidates.
+- The Open Graph tags in a build are relative until `siteUrl` is set in the repo root's
+  `show.config.json`; then they are absolute. The environment never affects a build.
 
 ### Title, production and end cards
 

@@ -7,10 +7,12 @@
 // folder and swapped in only when complete, carrying the current build's audio and telemetry
 // forward when there is no fresh render in episodes/<id>/public/.
 //
+// Open Graph URLs are absolute only when show.config.json has a siteUrl (never from the environment).
 // Output: one line, `built <id> <dir> segments=<n> public=<n> carried=<n> sourceHash=<hash>`.
 // Exit codes: 0 built, 1 refused or failed, 2 bad arguments or unknown episode.
 import { cli, resolveEpisode, EpisodeError } from './lib/episodes.mjs'
 import { buildEpisode } from './lib/build.mjs'
+import { readShowConfig } from './lib/showconfig.mjs'
 
 cli(async () => {
   const args = process.argv.slice(2)
@@ -18,6 +20,7 @@ cli(async () => {
   const rest = args.filter((a) => a !== '--preview')
   if (rest.length !== 1 || rest[0].startsWith('--')) throw new EpisodeError('usage: npm run build -- <ep> [--preview]')
   const ep = resolveEpisode(rest[0])
+  readShowConfig(ep.root) // an invalid siteUrl stops the build before anything is bundled
   let vite, showConfig
   const bundle = async (outDir) => {
     try {
@@ -32,6 +35,6 @@ cli(async () => {
   const r = await buildEpisode(ep, { preview, bundle })
   for (const w of r.warnings) console.error(`warning: ${w}`)
   const fresh = r.assets.filter((a) => a.from === 'public').length
-  console.log(`built ${ep.id} ${ep.rel(r.finalDir)} segments=${ep.rundown.length} public=${fresh} carried=${r.assets.length - fresh} sourceHash=${r.manifest.build.sourceHash}${process.env.SITE_URL ? ` siteUrl=${process.env.SITE_URL}` : ''}`)
+  console.log(`built ${ep.id} ${ep.rel(r.finalDir)} segments=${ep.rundown.length} public=${fresh} carried=${r.assets.length - fresh} sourceHash=${r.manifest.build.sourceHash}`)
   return 0
 })
