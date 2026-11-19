@@ -29,3 +29,9 @@ video/
 /dist/episodes.json
 /dist/latest/
 /dist/site-assets/
+
+# local secrets (API tokens, app passwords); .env.example is the committed template
+.env
+.env.*
+!.env.example
+.envrc
