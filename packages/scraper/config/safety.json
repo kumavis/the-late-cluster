@@ -1,0 +1,61 @@
+{
+  "$comment": "Safety rules from docs/bible/09-real-people.md (R7, R10, R11, R13). Patterns are case-insensitive JavaScript regexes. When in doubt, a pattern should match too much rather than too little.",
+  "smallAccountFollowers": 300,
+  "selfDeclaredOptOut": {
+    "$comment": "R11: a profile description matching any of these makes the account an opt-out. Errs towards excluding: 'DNI' and 'no AI' match too.",
+    "patterns": [
+      "\\b(do ?n[o']?t|don't|dont|please don't|pls don't|never|no)\\s+(qt|qrt|quote|quote[- ]?post|quote[- ]?tweet|screenshot|screen ?cap|ss|repost|rt|clip|share|archive|scrape|train on)\\w*",
+      "\\b(do ?n[o']?t|don't|dont|never)\\s+use\\s+((my|these|this account'?s?)\\s+(posts|art|work|content|words|images|photos|likeness)|unroll\\w*|thread ?reader\\w*|bots?|ai|llms?)\\b",
+      "\\b(do ?n[o']?t|don't|dont|no)\\s+(unroll|unroller|thread ?reader)\\w*",
+      "\\bno\\s+(qts?|qrts?|quotes?|screenshots?|sses|reposts?|clips?|scraping|archiving)\\b",
+      "\\bno\\s+(ai|a\\.i\\.|llms?|bots?|genai|gen ai|ml)\\b",
+      "\\b(ai|bots?|llms?|scrapers?|genai)\\s*(dni|do not interact|keep out|not welcome|go away|fuck off)",
+      "\\b(do not|don't|not)\\s+consent\\b",
+      "\\bnot consent(ing)? to\\b",
+      "\\b(no|not for|opt(ed)?[- ]?out of)\\s+(ai|llm|model|machine learning)\\s+(training|use|scraping)\\b",
+      "\\bdni\\b",
+      "\\bopt(ed|ing)?[- ]?out\\b",
+      "\\bnoai\\b",
+      "#?\\bno ?ai ?training\\b"
+    ]
+  },
+  "showOptOutPatterns": {
+    "$comment": "In a post about the show (see show.json), any of these reads as a request to be left out. The author is excluded everywhere and listed for the reviewer by handle and link only.",
+    "patterns": [
+      "\\b(leave|keep|take|cut|edit)\\s+me\\s+out\\b",
+      "\\bdon'?t\\s+(put|include|use|quote|clip|feature|show|parody|puppet)\\s+me\\b",
+      "\\b(please|pls)\\s+(don'?t|do not|remove|stop)\\b",
+      "\\bremove\\s+me\\b",
+      "\\bnot\\s+(ok|okay|comfortable|cool)\\s+with\\b",
+      "\\buncomfortable\\b",
+      "\\bwithout\\s+(my\\s+)?(consent|permission)\\b",
+      "\\b(didn'?t|did not|never)\\s+(consent|agree|ask)\\b",
+      "\\bopt(ed|ing)?[- ]?out\\b",
+      "\\bi\\s+(don'?t|do not)\\s+want\\s+to\\s+be\\b"
+    ]
+  },
+  "showCorrectionPatterns": [
+    "\\b(that'?s|that is)\\s+(not|wrong|incorrect)\\b",
+    "\\b(actually|technically|correction|to be clear)\\b",
+    "\\b(i|we)\\s+(didn'?t|never)\\s+(say|said|post|posted|write|wrote|build|built|make|made)\\b",
+    "\\bmisquot\\w*",
+    "\\bnot what i (said|meant)\\b",
+    "\\b(wasn'?t|was not)\\s+me\\b"
+  ],
+  "sensitivity": {
+    "$comment": "R10 topics. Each term is matched as a whole word or phrase (word boundaries are added). A post matching a topic is flagged with it. A story is flagged when its lead or context post matches, when at least minShare of its member posts match, or when at least minPosts of its posts match one topic. Coarse on purpose: a hint for the writer, not a ruling.",
+    "minShare": 0.2,
+    "minPosts": 3,
+    "topics": {
+      "health": ["cancer", "chemo\\w*", "hospital\\w*", "diagnos\\w+", "surgery", "illness", "covid", "long covid", "depress\\w*", "anxiety", "panic attacks?", "adhd", "autis\\w+", "bipolar", "psychosis", "psychotic", "schizo\\w*", "suicid\\w*", "self[- ]harm", "therap(y|ist)", "disabilit\\w+", "disabled", "chronic (pain|illness)", "mental health", "medication", "\\bmeds\\b", "pregnan\\w+", "miscarriage", "eating disorder", "rehab", "overdose"],
+      "grief and disaster": ["died", "dies\\b", "passed away", "funeral", "\\brip\\b", "r\\.i\\.p", "grie(f|ving)", "condolences", "obituar\\w+", "memorial", "plane crash", "car (crash|accident)", "earthquake", "hurricane", "wildfire", "flood(ing|s)?\\b", "mass shooting", "shooting", "tragedy", "tragic", "disaster", "casualt\\w+", "death toll"],
+      "identity": ["trans(?!-)", "transgender", "trans (people|women|men|rights)", "nonbinary", "non-binary", "\\bgay\\b", "lesbian", "queer", "bisexual", "lgbt\\w*", "homophob\\w+", "transphob\\w+", "racis\\w+", "racial", "ethnic\\w*", "religio\\w+", "christian\\w*", "muslim\\w*", "islam\\w*", "jewish", "antisemit\\w+", "\\bpope\\b", "church", "immigra\\w+", "deport\\w*", "nationality", "slur\\w*"],
+      "partisan politics": ["trump\\w*", "biden", "kamala", "harris", "\\bvance\\b", "maga", "republican\\w*", "democrat\\w*", "\\bgop\\b", "congress\\w*", "senate", "senator\\w*", "election\\w*", "ballot\\w*", "campaign\\w*", "partisan", "liberals?\\b", "conservatives?\\b", "fascis\\w+", "left[- ]wing", "right[- ]wing", "white house", "supreme court", "parliament", "prime minister", "\\btory\\b", "labour party", "ice raids?", "\\bice agents?"],
+      "jobs and money trouble": ["laid off", "layoffs?", "got fired", "fired me", "lost my job", "unemploy\\w+", "job (hunt|search|hunting)", "looking for work", "\\bdebt\\b", "\\brent\\b", "evict\\w+", "can'?t afford", "bankrupt\\w*", "paycheck", "gofundme", "mutual aid", "medical bills?"],
+      "legal trouble and harassment": ["lawsuit", "\\bsued\\b", "\\bsuing\\b", "arrest\\w*", "police", "\\bcops?\\b", "court\\b", "indict\\w+", "lawyers?", "harass\\w*", "abus(e|ed|ive)", "stalk\\w*", "dox\\w*", "death threats?", "threatened", "assault\\w*", "restraining order", "misconduct", "affair\\b", "relationship with (an |a )?(employee|subordinate)", "\\bjail\\b", "prison"],
+      "minors": ["my (son|daughter|kid|kids|child|children|baby|toddler|teen|teenager)s?\\b", "teenagers?", "\\bminors?\\b", "underage", "\\b(1[0-7]|[4-9]) ?(yo|y/o|year[- ]old|years old)\\b", "school kids", "grade school", "middle school", "high school(er)?s?"],
+      "people leaving": ["leaving (bluesky|bsky|here|the site|the app|this site)", "deleting my account", "delet(e|ed|ing) (my|this) account", "deactivat\\w+", "logging off for good", "taking a (break|step back)", "on hiatus", "\\bhiatus\\b", "goodbye (everyone|all|bluesky)", "this is my last post", "quit(ting)? (bluesky|bsky|posting)", "moving (back )?to (x|twitter|threads)", "see you (all )?(elsewhere|on the other side)"],
+      "interpersonal conflict": ["blocked me", "block(ed|ing)? (him|her|them)", "call[- ]?out", "drama", "\\bbeef\\b", "feud\\w*", "pile[- ]?on", "dog[- ]?pil\\w+", "subtweet\\w*", "unfollow(ed|ing)?", "creep\\w*", "\\bhate (him|her|them)\\b", "\\bdunk(ing|ed)? on\\b"]
+    }
+  }
+}

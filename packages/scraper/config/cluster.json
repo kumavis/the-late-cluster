@@ -1,0 +1,51 @@
+{
+  "$comment": "Who the cluster is. See README 'Config: cluster.json'. Handles or DIDs everywhere.",
+  "seeds": [
+    "norvid-studies.bsky.social",
+    "abeliansoup.bsky.social",
+    "samantha.wiki",
+    "borjev.bsky.social"
+  ],
+  "lists": [],
+  "starterPacks": [],
+  "feeds": [
+    {
+      "uri": "at://did:plc:yivyyp54vddf7qf2lpsikhe4/app.bsky.feed.generator/simcluster",
+      "maxPages": 2,
+      "$comment": "A community-made 'SimCluster' feed. It is ranked and current, not historical, so it only adds a weak author signal for past weeks."
+    }
+  ],
+  "search": {
+    "enabled": false,
+    "host": "https://api.bsky.app",
+    "terms": ["simcluster"],
+    "maxPagesPerTerm": 3,
+    "$comment": "searchPosts answers 403 on public.api.bsky.app (its CDN blocks it) but works unauthenticated on api.bsky.app, the same AppView without the CDN."
+  },
+  "expansion": {
+    "maxFollowPagesPerSeed": 10,
+    "seedThreadsPerSeed": 5,
+    "rules": [
+      { "seedFollows": 2, "interactions": 1 },
+      { "seedFollows": 3 },
+      { "seedFollows": 1, "interactions": 3 },
+      { "interactions": 6 },
+      { "listed": true },
+      { "termPosts": 1, "seedFollows": 1 },
+      { "termPosts": 2 },
+      { "feedPosts": 2, "seedFollows": 1 }
+    ],
+    "weights": { "seedFollows": 3, "interactions": 1, "termPosts": 2, "feedPosts": 1, "listed": 10 },
+    "caps": { "interactions": 12, "termPosts": 3, "feedPosts": 3 },
+    "maxMembers": 120
+  },
+  "collection": {
+    "baselineWeeks": 3,
+    "maxWindowPagesPerAuthor": 25,
+    "maxBaselinePagesPerAuthor": 3,
+    "seekCursor": true,
+    "threadsToExpand": 20,
+    "threadDepth": 4,
+    "threadOutsiderMinLikes": 5
+  }
+}

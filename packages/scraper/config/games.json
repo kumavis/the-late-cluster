@@ -1,0 +1,30 @@
+{
+  "$comment": "Community games and metrics whose results an account posts publicly. Each game is an account plus patterns; adding a game needs no code. resultPattern decides which posts are results; it and fieldPatterns are case-insensitive regexes whose named groups become fields. Groups named in personFields hold handles and go through the consent rules: an excluded person is left out and the result still reported. numberFields are parsed as numbers. winningPost: 'quote' resolves the winning post from the post the result quotes; 'none' reports the person only.",
+  "games": [
+    {
+      "id": "top-chicken",
+      "name": "Top Chicken",
+      "account": "topchicken.bsky.social",
+      "about": "Daily: the most liked post in a 24-hour window among people the game's maintainer follows or is followed by, for accounts under the Grace Limit (7k followers).",
+      "resultPattern": "New Top Chicken! @(?<winner>[a-z0-9.-]+?)'s post got (?<likes>\\d+) likes",
+      "fieldPatterns": [
+        "All-time top chicken is (?:still |now )?@?(?<recordHolder>[a-z0-9.-]+?) with a score of (?<recordScore>\\d+)",
+        "Window stats: (?<posted>\\d+)/(?<eligible>\\d+) people posted; (?<windowPosts>\\d+) posts overall"
+      ],
+      "personFields": [
+        "winner",
+        "recordHolder"
+      ],
+      "numberFields": [
+        "likes",
+        "recordScore",
+        "posted",
+        "eligible",
+        "windowPosts"
+      ],
+      "winningPost": "quote",
+      "maxPages": 2,
+      "writerNote": "Bible R7: winning is a hero moment, so the winner may be named on air, subject to the opt-out rules. Never name or rank anyone who did not win."
+    }
+  ]
+}

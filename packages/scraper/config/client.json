@@ -1,0 +1,12 @@
+{
+  "$comment": "HTTP behaviour. The User-Agent must stay generic: no project, show or person names, no contact details. SCRAPER_USER_AGENT overrides it. pruneCacheAfterRun deletes <out>/.cache after a successful run (same as --prune-cache); leave it off while iterating on scoring.",
+  "host": "https://public.api.bsky.app",
+  "userAgent": "weekly-digest-scraper/0.1",
+  "concurrency": 4,
+  "minIntervalMs": 150,
+  "maxRequests": 900,
+  "maxRetries": 5,
+  "backoffBaseMs": 1000,
+  "timeoutMs": 20000,
+  "pruneCacheAfterRun": false
+}

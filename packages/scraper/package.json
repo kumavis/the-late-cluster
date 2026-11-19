@@ -1,0 +1,17 @@
+{
+  "name": "@late-cluster/scraper",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Reads public Bluesky through the public AppView and writes a weekly digest of what one community talked about, built and laughed at.",
+  "bin": {
+    "late-cluster-scrape": "bin/scrape.mjs"
+  },
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "test": "node --test \"test/*.test.js\"",
+    "scrape": "node bin/scrape.mjs"
+  }
+}

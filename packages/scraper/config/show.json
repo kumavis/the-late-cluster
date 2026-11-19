@@ -1,0 +1,26 @@
+{
+  "$comment": "The show itself, for 'About the show', and the recurring guests. Phrases and link patterns are case-insensitive regexes matched against post text, link URLs and link titles.",
+  "handles": [],
+  "phrases": ["\\bthe late cluster\\b", "\\blate cluster\\b", "\\blarry nx\\b", "\\blarry nix\\b", "\\bchimera ?tv\\b"],
+  "linkPatterns": ["/the-late-cluster\\b", "vibe-dump/tree/[^/]+/packages/late-cluster"],
+  "guests": [
+    "norvid-studies.bsky.social",
+    "abeliansoup.bsky.social",
+    "samantha.wiki",
+    "borjev.bsky.social"
+  ],
+  "postsPerGuest": 4,
+  "performableThreads": {
+    "$comment": "Threads a writer could stage word for word. All conditions must hold. avoidPatterns are case-insensitive regexes for hostile wording; any match rejects the thread. prefetch: how many candidate threads are fetched in full with getPostThread so they are complete.",
+    "count": 6,
+    "prefetch": 15,
+    "minPosts": 4,
+    "maxPosts": 24,
+    "minSpeakers": 3,
+    "minMemberSpeakers": 3,
+    "minTurns": 4,
+    "maxChars": 280,
+    "requireRootInWindow": true,
+    "avoidPatterns": ["\\bshut up\\b", "\\bidiot\\w*", "\\bstupid\\b", "\\bmoron\\w*", "\\bdumbass\\b", "\\bfuck (you|off)\\b", "\\bkys\\b", "\\bblock(ed|ing)? you\\b", "\\bhow dare\\b", "\\bdisgusting\\b", "\\bpathetic\\b", "\\bclown\\b", "\\bratio\\b", "\\bget lost\\b"]
+  }
+}

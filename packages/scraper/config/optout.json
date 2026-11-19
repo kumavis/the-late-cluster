@@ -1,0 +1,4 @@
+{
+  "$comment": "Accounts that must never be fetched as seeds, appear in the output, or have their posts kept, even when quoted or replied to. Handles or DIDs; prefer DIDs because handles change. Add entries, never ask why.",
+  "accounts": []
+}
