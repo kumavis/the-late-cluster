@@ -14,6 +14,8 @@ Two kinds of lore, kept apart:
 
 ## How to append
 
+- Add one row to the rotation log per episode, copied from its `plan.json`. The pipeline's freshness
+  checks read it (see [fixed and fresh](03-episode-shape.md#fixed-and-fresh)).
 - Add entries at the end of the right section with the next id (`SL-`, `G-`, `CL-`, `E-`). Never
   renumber or delete; to retire something, set its status and say in which episode.
 - Each entry: id, a one-line statement, the episode and segment that established it, and (for
@@ -62,7 +64,7 @@ Two kinds of lore, kept apart:
 ## Running gags and catchphrases
 
 - **G-01 "Built it." and the BUILT counter.** The bot's one line; the counter resets each episode.
-  *Status: permanent.* Rules for its use are in [episode shape](03-episode-shape.md). The bot's only
+  *Status: standing* (part of the frame, but like everything subject to the first rule). Rules for its use are in [episode shape](03-episode-shape.md). The bot's only
   other line so far is "You are in it." (001 song); keep it rare.
 - **G-02 "In this town, a joke is a contract."** Larry's statement of the engine. *Active;* may be
   restated, sparingly, in a cold open.
@@ -124,6 +126,10 @@ As of the pilot. Sources are as shown on screen in 001; confidence in brackets.
 - **CL-06** Top Chicken: the day's most-liked post gets the crown. Founded by @gracekind.net ("gm top
   chickens", 2024). The Grace Limit: contenders must have fewer followers than Grace (about 7K). A
   play-money prediction market exists, where a bot trader was up $19,865.83. [known]
+  `@topchicken.bsky.social` posts each new result publicly ("New Top Chicken! @handle's post got 510
+  likes"), with the all-time record and window statistics ("254/754 people posted; 3003 posts
+  overall"); the show reports results from there. How often a new result is posted is to be
+  confirmed. [known; supplied by the production, after the pilot]
 - **CL-07** Simcluster University exists (since June). A simcluster podcast has twelve episodes and no
   name (as of the pilot). [known]
 - **CL-08** norvid keeps a "terrible ideas file" (#6710: Simcluster Hamilton, 5 Nov 2026) and proposed
@@ -153,6 +159,15 @@ As of the pilot. Sources are as shown on screen in 001; confidence in brackets.
   real song trended); why an elephant trumpets for GanWeaving's gn; whether the hot dog toppings tier
   list came from the cluster; Larry's "run the museum, the archive" intro for norvid and Abel; the
   panel's subtitle "the Mayor and the Alligator" (norvid as mayor is inferred from CL-16). [unclear]
+
+## Rotation log
+
+One row per episode. Formats in rundown order. Guests with how they appeared; words by source
+type (V verbatim, I interview, C catchphrase, P pastiche).
+
+| ep | formats | song genre | song theme | guests | runner | "Built it." shapes | Sibyl descriptor | sincere kind | Top Chicken |
+|---|---|---|---|---|---|---|---|---|---|
+| 001 | ask, monologue, simcluster-channel, top-chicken (full), built-or-bit, panel, song, goodnight | stomp-clap anthem | wanting a place to belong, in a scene that builds every want at once | Samantha (presenter; V, C), norvid (panel; V, C, P), Abel (panel; C, P), BorJev (cameo; V) | gm/gn | all eleven in the joke-craft table | "a man who is, technically, a throat" | belonging | rules only; crown on a blank card |
 
 ## Episode log
 

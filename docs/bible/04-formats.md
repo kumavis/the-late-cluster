@@ -1,9 +1,16 @@
 # 4. Segment formats
 
-A shelf of repeatable segments. Pick one per story. Each card gives the premise, the comic
-engine, a beat template, what the format needs from the digest, its length, staging, the pilot
-example, and how it goes wrong. Formats 1 to 8 are established by the pilot (each from one
-example, so treat the templates as strong defaults, not law). Formats 9 to 12 are **proposals**.
+A shelf of repeatable segments. Pick one per story, and only if the story passes
+[the first rule](01-premise.md#the-first-rule-only-include-it-if-its-interesting). Each card gives
+the premise, the comic engine, a beat template, what the format needs from the digest, its length,
+staging, the pilot example, and how it goes wrong. Formats 1 to 8 are established by the pilot
+(each from one example, so treat the templates as strong defaults, not law). Format 9, The Thread,
+is established by the owner's decision and is the preferred way to put real people on the show.
+Formats 10 to 14 are **proposals**; 14, The Interview, depends on bot work that does not exist yet.
+
+How a format is used is logged per episode (see [fixed and fresh](03-episode-shape.md#fixed-and-fresh)):
+the middle slot's format does not repeat two weeks running, and the song's genre changes every
+episode.
 
 Shot and prop names refer to `packages/show/README.md`. The pilot's segments are in
 `episodes/001-pilot/segments/<id>/`; read the matching one before writing a format for the first
@@ -93,6 +100,20 @@ time.
 
 ## 4. Top Chicken Tonight (the sports desk)
 
+The Top Chicken result is a **standing item whenever there is one**, sized by the first rule: often a
+10 to 20 second hit, sometimes the full segment below.
+
+**The hit.** Inside the monologue, or as an Eppy cut-in from the sports desk: "Top Chicken update!"
+The winning post on a card with a crown dropping on it; the like count on a split-flap; one tag (the
+all-time record, or a window statistic such as how many people posted). "Back to you, Larry." Use
+the full segment only when the week's games have a story: a record broken, a rule change, a streak.
+
+**Naming the winner.** The game's own account (`@topchicken.bsky.social`) names each winner
+publicly ("New Top Chicken! @handle's post got 510 likes"), and winning is a hero moment, so the show
+names the winner and shows the winning post verbatim, subject to R7, R10 and R11 in
+[real people](09-real-people.md). If the winner or the post fails, report the numbers alone or skip
+it. Window statistics ("254/754 people posted; 3003 posts overall") are aggregates and fine.
+
 - **Premise.** Eppy treats the cluster's games and metrics as a sports broadcast.
 - **Engine.** Sports gravitas for tiny stakes, plus Eppy's protest when the bot ruins a
   hypothetical.
@@ -104,16 +125,18 @@ time.
   4. One "Built it." on a hypothetical Eppy floats ("Somebody should start a fantasy league." /
      "Built it." / "Hey! That was hypothetical!").
   5. "That's sports! Back to you, Larry!" Larry's button calls back a number.
-- **Needs.** The week's community games and numbers: Top Chicken results, prediction markets,
-  streaks, records, rule changes. Exact figures and their sources.
+- **Needs.** The week's Top Chicken results as posted by `@topchicken.bsky.social` (winner,
+  post URI, likes, the record, window statistics), and any other community games and numbers:
+  prediction markets, streaks, records, rule changes. Exact figures and their sources.
 - **Length.** 55 to 70 s.
 - **Staging.** `sports` with a ticker (the ticker carries six more jokes for free), `podium3`,
   `limboBar`, split-flap numbers, a telestrator circle and arrow ("NUMBER GO UP"), a stamp FINAL.
 - **Pilot.** `top-chicken`: the Grace Limit ("She founded the chicken. She cannot be the
   chicken." with the founder bonking the limbo bar); bot trader +$19,865.83, humans -$4.00, "All
   play money. Still sad." → "That was my four dollars."
-- **Pitfalls.** Naming an ordinary account as a loser. Using follower counts as status unless it
-  is the game's own published rule. A board with no tag.
+- **Pitfalls.** Naming or ranking anyone who didn't win. Follower counts as status, unless it is the
+  game's own rule. A board with no tag. An invented figure beside a real one, unlabelled (the pilot
+  labels its -$4.00 *FAKE*). The pilot's crown sat on a blank card; show the real winner now.
 
 ## 5. Built or Bit? (the game show)
 
@@ -146,7 +169,11 @@ time.
 ## 6. The Panel
 
 - **Premise.** Larry interviews one or two guests with old-school talk-show questions. The guests
-  answer in their own idiom, and their idiom takes over the segment.
+  answer in their own idiom, and their idiom takes over the segment. Build the guests' side from
+  real words first, in the order of R3 in [real people](09-real-people.md#r3-words-in-a-guests-mouth-real-words-first):
+  their own posts and catchphrases, then (when it exists) interview answers, and format pastiche
+  last, for a line or two at most. If a guest's material this week is all pastiche, use The Thread
+  or skip the guest.
 - **Engine.** A collision of formats: the classic interview versus the posting persona. Every
   question gets filed, labelled, turned into a concept and built.
 - **Beats.**
@@ -172,35 +199,58 @@ time.
   slice; Exhibit 31 (*TALK SHOW HOST, ASKING A QUESTION · c. 1962 · MIXED MEDIA (TUXEDO)*); the
   crow released from the contraption.
 - **Pitfalls.** Guests who only answer Larry and never interact with each other (the pilot's main
-  weakness: give the guests one exchange of their own). Lines longer than ten words in a guest's
-  mouth. Any line a guest has not posted that expresses an opinion.
+  weakness: give the guests one exchange of their own, ideally a real one from a thread). Lines
+  longer than ten words in a guest's mouth. Any line a guest has not posted that expresses an
+  opinion. Leaning on pastiche: the pilot's panel uses it for its two builds ("concept: …" and "they
+  don't want you to know this but (it's already running)"). That is the most a panel should carry.
 
-## 7. The Number (a song)
+## 7. The Number (the weekly song)
 
-- **Premise.** One joke told as a song, in a genre that suits it. The pilot's: an earnest "someday"
-  anthem in a scene where nothing stays hypothetical.
+A standing segment. Two firm rules from the owner: **the genre changes every episode**, and the
+song **carries a meaningful theme from the week**. The genre shelf, with what each genre needs from
+the engine, is in [voices](07-voices.md#the-genre-shelf).
+
+- **Premise.** One joke about the week's theme, told as a song in a genre that fits the theme or
+  pointedly doesn't. The pilot's: an earnest stomp-clap "someday" anthem in a scene where nothing
+  stays hypothetical.
 - **Engine.** The song's form is the joke's form. The pilot splits the music at stop bars so the bot
-  can say "Built it." in the silences; each "someday" dream gets built a bar after it is sung.
-- **Beats.**
+  can say "Built it." in the silences; each "someday" dream gets built a bar after it is sung. Each
+  genre offers its own structural joke: the shanty's call and response, the round's pile-up, the
+  motet's solemn entries, the barbershop tag that won't end.
+- **What "carries a theme" means.**
+  1. The theme is the episode's question or spine, felt rather than asked. Write it in the pitch as
+     one sentence: *This song is about ___, and it feels ___.* The pilot's: about wanting a place to
+     belong, in a scene that builds every want at once; it feels hopeful and slightly overrun.
+  2. The structural joke turns on that theme, not on a side story.
+  3. The verses name this week's specifics (the pilot's recap the night's builds: the weather
+     channel, the museum, the podcast with no name).
+  4. **The swap test:** put another week's stories in the verses. If the song still works unchanged,
+     it isn't carrying this week's theme.
+  5. The song may come close to sincere (the pilot's breakdown) and then turns it into a joke ("Built
+     it." / "When?" / "You are in it."). It never answers the episode's question sincerely in the
+     show's own words; goodnight does that, with the community's.
+  6. Choose the genre for the theme's feeling (a sea shanty for something everyone hauled on
+     together) or for a deliberate mismatch (a requiem motet for a feature that got deprecated).
+- **Beats** (the pilot's anthem; other genres have their own forms, but keep the bones):
   1. Larry's intro: two lines that set the joke ("Folks, in the simcluster, a dream lasts about six
      minutes. / Then somebody ships it.") and a throw ("Better sing it fast.").
-  2. Hook, verse, chorus; a stop; the punch in the silence.
-  3. Second verse, chorus, a doubt from the band (ARE WE?), a stop; a second punch ("Both of them?").
-  4. Breakdown, lights down: the near-sincere turn ("Someday, maybe, someone will write us a song /
-     made out of mouths, and we all sing along").
-  5. The reveal in a stop ("Built it." / "When?" / "You are in it.").
-  6. Last chorus with the lyric changed to the past tense; a solo tag that sets up one last punch.
-  7. Button; band bow under applause.
-- **Needs.** A story that is a list (things people wished for, built, said) or an anthem the
-  cluster is already living. The verses should recap the week's stories and this episode's builds.
-- **Length.** 45 to 70 s in a weekly (the pilot's is 95 s).
+  2. The genre's opening (hook, verse); the first statement of the theme; the first punch.
+  3. A second pass that escalates (a doubt from the band, ARE WE?; a second punch, "Both of them?").
+  4. The turn: lights down, near-sincere.
+  5. The reveal or last punch, then the genre's ending with one word changed.
+  6. Button; band bow under applause.
+- **Needs.** The episode's theme; three or four of the week's specifics for the verses; a genre not
+  used in the last eight episodes (the rotation log in [lore](lore.md)).
+- **Length.** 45 to 70 s (the pilot's is 95 s).
 - **Staging.** `stage` shot, karaoke lyrics with a bouncing ball (caption bar hidden for sung lead
-  lines), each verse's subject drawn as a small vignette and stamped BUILT IT, HEY! bursts on the
-  shouts, stomp rings on Al, clap sparks on Pete, a spotlight for the breakdown.
-- **Pilot.** `song`, "Someday (Built It)".
+  lines), each verse's subject drawn as a small vignette, the genre's look in the set dressing and
+  lights (a spotlight for a torch song, candles for a motet, a deck sway for a shanty). Bursts on the
+  shouts, accents on the beat.
+- **Pilot.** `song`, "Someday (Built It)": genre logged as *stomp-clap anthem*.
 - **Pitfalls.** Lyrics that carry the jokes (sung words are the least intelligible thing the engine
-  makes; put the jokes in the stops and on screen). A song with no structural joke. More than one
-  song in three episodes. See [voices](07-voices.md#songs).
+  makes; put the jokes in the stops and on screen). A song with no structural joke. A genre the
+  engine can't sell. A theme that is a topic ("this week: polyhedra") rather than a feeling. Setting a
+  real person's posts to music without being sure they would be delighted.
 
 ## 8. Goodnight
 
@@ -226,9 +276,61 @@ time.
 - **Pitfalls.** A speech. A new joke in place of the payoff. A sincere card followed by a joke at its
   author's expense. Skipping the credits' persona list.
 
+## 9. The Thread (verbatim reconstruction)
+
+The preferred way to have real people on the show: puppets perform a real public thread, word for
+word, in order.
+
+- **Premise.** "This week, some people had a conversation. We present it in full." The participants'
+  puppets act it out; Larry introduces and reacts; the studio stages what the thread talks about.
+- **Engine.** The words can't change, so the comedy comes from everything else:
+  - **the cut:** where it starts and ends. The last post is the punch; start as late as the thread
+    still makes sense.
+  - **casting:** the persona puppets, their voices and their creatures (the crow arriving on "claim").
+  - **staging:** the studio builds what the thread proposes as it proposes it; the bot says "Built
+    it." after a post that wishes for something; screen tags around the posts.
+  - **delivery:** timing, pauses, rate, a long silence before a one-word reply.
+  - **Larry's reactions:** looks, a slow turn to camera, one framing line before and a button after.
+- **Rules.**
+  1. Every word a guest speaks is from the thread, from that guest's post, in thread order.
+  2. Cuts are whole posts. A post trimmed inside is marked with an ellipsis in the caption and on the
+     card, and only if the meaning is unchanged. Skipped posts are marked on screen ("· 3 POSTS
+     LATER ·").
+  3. The caption shows the exact text. `as` is for pronunciation only: word-for-word respelling,
+     never substitution. Emoji, links and images are shown on the post card, not spoken; if `as` must
+     leave a token out, accept the renderer's even-spread word timing.
+  4. Each line carries its source URI (`// verbatim: at://…`). A gate checks that the caption equals
+     the post's text and that the URIs run in thread order.
+  5. House characters may frame and react, between posts, in lines that are clearly theirs. They
+     never alter, summarise, paraphrase or add words that change what a post meant.
+  6. One reaction sound per beat at most, and never a laugh *at* a participant. Laugh with the
+     thread's own joke.
+- **Which threads qualify.** Public, in the cluster, and one of: funny on its own terms, a good
+  example of the week's question, or a small kindness. Short: up to about eight posts or 60 seconds.
+  Every participant passes the opt-out rule (R11) and would happily repost the clip (R6); small
+  accounts only where they come off well (R7). It has a shape: a build-up and a turn.
+- **Which do not.** Arguments, corrections, callouts, dunks, anyone upset; anything touching R10
+  topics; a thread where a post has been deleted or edited since the digest; any post under a reply
+  restriction or with quoting disabled (treat those as "please don't amplify"); a thread that only
+  makes sense with context the episode can't give.
+- **Beats.** Larry's framing line ("This week, three people discussed the E key. We present it in
+  full."). The posts, each with its post card on screen and the puppet speaking it, house reactions
+  between. The studio builds what is proposed. Larry's button.
+- **Needs.** The whole thread in order from the digest (root to the last post used, with authors,
+  timestamps, text, embeds, reply and quote restrictions), and every participant's checks.
+- **Length.** 30 to 70 s.
+- **Staging.** `panel` or `guest` with the participants seated; or `remote2` for two monitors. The
+  post card for each line slides in as it's spoken (the speaker's colour). A disclaimer footer:
+  *Performed verbatim from a public thread, <date>. Puppets play posting personas.* Chyrons carry
+  PUPPET · PARODY as for any guest.
+- **Pilot.** Not in the pilot as a format. Its nearest moments are single posts in context: norvid's
+  "buddy that's my freaking simcluster", and the Discords reply card.
+- **Pitfalls.** Choosing a thread for its fame, not its shape. Performing it straight with nothing
+  staged. Larry's reactions turning into commentary on a participant.
+
 ---
 
-## 9. Proposal: The Changelog
+## 10. Proposal: The Changelog
 
 - **Premise.** Sibyl reads the week's release notes for the simcluster, as if it were software.
 - **Engine.** Deadpan versioning of social life. Fast, list-shaped, good for small stories that
@@ -241,7 +343,7 @@ time.
 - **Staging.** `podium` or `ots` with Sibyl; a terminal-style panel; split-flap rows.
 - **Risk.** It can become a list of references without jokes. Every row needs a turn in its tag.
 
-## 10. Proposal: Live From the Build
+## 11. Proposal: Live From the Build
 
 - **Premise.** A remote interview with a guest "on location" at something they built this week.
   The remote link misbehaves.
@@ -256,7 +358,7 @@ time.
   signal loss, the project drawn inside the monitor.
 - **Risk.** Monitors shrink heads; keep the guest's lines short and caption-led.
 
-## 11. Proposal: The Field Guide
+## 12. Proposal: The Field Guide
 
 - **Premise.** A nature documentary about a creature or coinage that spread through the cluster
   this week. Sibyl narrates in documentary hush.
@@ -272,7 +374,7 @@ time.
   `trumpet` calls as punctuation.
 - **Risk.** Explaining the meme. The documentary voice should describe behaviour, not meaning.
 
-## 12. Proposal: Corrections
+## 13. Proposal: Corrections
 
 - **Premise.** Ten to fifteen seconds in which Sibyl reads corrections to last week's episode.
 - **Engine.** Pedantry. Also a real safety valve: if someone said the show got something wrong, it
@@ -283,3 +385,22 @@ time.
 - **Needs.** Replies or posts about last week's episode, from the digest; the lore log.
 - **Length.** 10 to 15 s, at the top of the monologue or goodnight.
 - **Risk.** Never re-litigate a complaint on air. A real correction is plain and short.
+
+## 14. Proposal: The Interview (by the show's account)
+
+**Not built.** It depends on bot work that does not exist yet, and on the consent design in
+[real people](09-real-people.md#interviews-by-the-shows-account-proposal).
+
+- **Premise.** During the week the show's account asks people who have opted in a question or two in
+  public. On the show, Larry asks the same question at the desk and the person's puppet answers
+  with their reply, verbatim.
+- **Engine.** A real answer to a classic talk-show question, given in the person's own idiom; the
+  studio stages the answer (and the bot builds whatever they mention wanting).
+- **Beats.** Larry: "Earlier this week we asked ___." The question card (the show's real post). The
+  puppet speaks the answer, its card beside it, with *ANSWERED FOR THE SHOW · <date>*. One reaction,
+  one build, Larry's button. Two or three people answering the same question works well as a montage.
+- **Needs.** The question post, the opted-in replies, verbatim, still live at air time.
+- **Length.** 30 to 60 s.
+- **Rules.** Those of The Thread, plus the consent rules in chapter 9. Larry speaks the question as
+  it was posted.
+

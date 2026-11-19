@@ -91,9 +91,10 @@ named after an algorithm Bluesky doesn't run).
 - **Comic function.** He turns the cluster's games and metrics (Top Chicken, prediction markets,
   most-liked posts) into broadcast sports: crown, standings, rules desk, the line. He is the one
   cast member who protests the bot.
-- **Would never say:** a real person's numbers as a put-down; the name of an ordinary account as
-  a loser. The pilot keeps the day's crown winner a blank card ("the winner is a secret"). Keep
-  doing that unless the winner is a recurring guest who would enjoy it.
+- **Would never say:** a real person's numbers as a put-down; the name of anyone who didn't win.
+  He does name the winner: the Top Chicken result is a standing item whenever there is one, from
+  a 15-second "Top Chicken update!" to the full desk (format 4). The pilot showed the crown on a
+  blank card; the game's own account names its winners, so the show now does too.
 
 ## The website bot
 
@@ -168,6 +169,10 @@ this week's material is affectionate.
 
 ## Making a guest out of a posting persona
 
+First ask whether the person can simply be themselves: performing a real thread of theirs word for
+word (format 9, The Thread) is the preferred way to have someone on the show, because nothing is put
+in their mouth. Build a persona from ingredients when they need to answer Larry in a panel.
+
 The pilot's guests are built from four things. Find all four before writing a line.
 
 | ingredient | what to look for | pilot example |
@@ -182,9 +187,10 @@ Then:
 1. **Pick their comic function relative to Larry.** Usually one of three: *the force of nature*
    who answers questions in their own idiom (norvid), *the builder* whose thing is already running
    (Abel), *the presenter* who shows their own project in a TV genre (Samantha).
-2. **Write lines only from three sources**: their own public posts (short, verbatim), their public
-   catchphrases, or obvious pastiche of a format they use. Tag every guest line in `script.js`
-   with a comment naming its source: `// verbatim: at://…`, `// catchphrase`,
+2. **Write lines from real words first**, in R3's order: their own public posts verbatim (best of
+   all, a whole thread performed in order: format 9), answers they gave the show (proposed, not
+   built), their catchphrases, and format pastiche last, a line or two at most. Tag every guest line
+   in `script.js` with its source: `// verbatim: at://…`, `// interview: at://…`, `// catchphrase`,
    `// pastiche of "concept: X, but Y"`. The reviewer checks these.
 3. **Never give a guest an opinion, a fact about themselves, or a reaction they have not posted.**
    They do not agree, disagree, confess, praise or criticize anyone in their own words.

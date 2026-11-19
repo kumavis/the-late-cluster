@@ -18,41 +18,52 @@ once. A weekly episode does not need to.
 
 ## The weekly running order
 
-Target **4:30 to 5:30**, five segments, about 450 to 550 spoken words.
+Every slot below is subject to [the first rule](01-premise.md#the-first-rule-only-include-it-if-its-interesting):
+only include it if it's interesting. Target **about five minutes; shorter is fine, padding is
+not**. Five segments, about 420 to 520 spoken words.
 
 | slot | length | format shelf ([formats](04-formats.md)) | must do |
 |---|---|---|---|
-| 1. Cold open | 15–30 s, plus an 8 s theme hook | The Ask | a real post from the week asks for something; "Built it."; counter 0 → 1; Sibyl's intro |
-| 2. Monologue | 60–80 s | The Monologue | 4–6 of the week's stories, one joke each; plant the episode runner; one "Built it." at most |
-| 3. Feature | 50–75 s | one of: Simcluster Channel, Top Chicken Tonight, Built or Bit?, Changelog, Field Guide, Live From the Build | the week's second-biggest story in a TV genre; a contrast of texture with the monologue |
-| 4. Guest | 60–80 s | The Panel, or a one-on-one / remote | one or two real personas; their idiom overruns Larry's |
-| 5. Goodnight | 35–50 s | Goodnight | runner payoff; the tally; the question answered with the community's words; "gn, simcluster."; "Press E to leave." |
+| 1. Cold open | 15–25 s, plus the 8 s theme hook | The Ask | a real post from the week asks for something; "Built it."; counter 0 → 1; Sibyl's intro |
+| 2. Monologue | 50–70 s | The Monologue | 3–5 of the week's stories, one joke each; the Top Chicken result as a quick hit when there is one; plant the episode runner |
+| 3. Middle | 50–75 s | the week's best of: The Thread, The Panel, Top Chicken Tonight (full), Simcluster Channel, Built or Bit?, Changelog, Field Guide, Live From the Build, The Interview (proposed) | the week's second-biggest story, ideally with real people in their own words |
+| 4. Song | 45–70 s | The Number | a **new genre every episode**, carrying **the week's theme** |
+| 5. Goodnight | 30–45 s | Goodnight | runner payoff; the tally; the question answered with the community's words; "gn, simcluster."; "Press E to leave." |
 
-A **song** replaces the feature or the guest when the week has a song-shaped story (a dream, a
-list, an anthem, a thing everybody did at once). Budget 45 to 70 seconds. At most one episode in
-three.
+That adds to about 3:30 to 5:00. A second middle segment (a feature and a guest, say) is allowed
+when both pass the interesting test and the episode stays near five minutes; never add one to
+reach a length.
 
-### What is load-bearing, what to cut
+**What gave way to the song.** The earlier order had a feature *and* a guest as standing slots
+and no song. Now they share one middle slot; the monologue lost ten seconds and a story; the song
+is capped at 70 s (the pilot's ran 95); the theme hook can shrink to a 2 s sting in a week when
+the song is long.
 
-Load-bearing every week:
+The song usually sits in slot 4, as the episode's peak before the come-down. If this week's genre
+is quiet (a motet, a lullaby, a torch song), swap it with the middle slot so two quiet segments
+don't sit together before goodnight.
+
+### Defaults, and how they get cut
+
+Under the first rule nothing is load-bearing by right. These are the **defaults**: keep them unless
+they aren't interesting this week, and record a cut with its reason in the pitch and `plan.json`
+so the reviewer sees it.
 
 - **The Ask and the build** in the cold open. It restates the show's engine for a new viewer in
-  ten seconds and starts the counter.
+  ten seconds and starts the counter. Its content must be this week's.
 - **Sibyl's "Larry... Nx!"**, a five-second identity beat. Proposal: keep "And now..." and
   "Larry... Nx!" fixed and change the descriptor between them every week, the way the pilot's
   "a man who is, technically, a throat" did. The descriptor is a free joke slot about the week.
 - **The monologue**, because that is where the week's stories get covered.
-- **One real guest.** Without a persona from the cluster on stage, it is a show about the
-  cluster, not of it.
-- **The question and its answer** at goodnight, then gn and Press E. This is the ritual close.
+- **The song**, standing by the owner's decision. Cut it only when nothing in the week will carry
+  a song, and say why.
+- **Real people in their own words** in the middle slot. Without someone from the cluster on stage,
+  it is a show about the cluster, not of it. But a thin persona is worse than none.
+- **The question and its answer** at goodnight, then gn and Press E: the ritual close.
 
-Cut, in this order, when you are long:
-
-1. The theme's full length and the guest-list announce (keep the 8 s hook, or a 2 s Formants sting).
-2. A second guest. One well-used persona beats two thin ones.
-3. Graphics-only tags you can't read in time.
-4. The feature, if the monologue and guest already carry the week.
-5. Never cut goodnight below the question, the answer card and gn.
+When you are long, cut whatever fails the interesting test first. Then, in this order: the
+theme's full length (keep a sting); a second middle segment; graphics-only tags nobody can read in
+time; the weakest monologue story.
 
 ## Energy across the episode
 
@@ -60,13 +71,13 @@ The pilot's curve is: black silence, a spike (lights, theme, applause), sustaine
 a change of texture (cool weather), loud (sports), building chaos (game, panel), the peak (song),
 then down to warmth (goodnight) and a final small lift (gn post, applause) before the lullaby.
 
-For five segments:
+For the weekly order:
 
 ```
 cold open   ▁▂▇   quiet ask, then the build and the theme spike
 monologue   ▆▇▆▇  quick, steady laughs
-feature     ▅▆▅   a different texture: cool, or loud, or game-show escalation
-guest       ▆▇█   chaos rising to the episode's biggest laugh
+middle      ▅▆█   a different texture: a thread performed, a panel's chaos, a game's escalation
+song        ▆█▅█  the peak, in this week's genre, with a turn in the middle
 goodnight   ▅▃▂▄  payoffs, then quiet for the answer, then gn lifts it, then out
 ```
 
@@ -75,10 +86,10 @@ Rules that follow from it:
 - **Adjacent segments differ in texture.** Never two desk-graphics segments in a row in the same
   register. The pilot goes monologue (stand-up) → weather (smooth, presenter) → sports (loud) →
   game (escalation) → panel (chaos).
-- **The biggest laugh is in the back half,** in the guest segment or the song, not the cold open.
+- **The biggest laugh is in the back half,** in the middle segment or the song, not the cold open.
 - **The quietest moment is the answer at goodnight.** Everything before it should be louder.
 
-## The BUILT counter, the permanent runner
+## The BUILT counter, the standing runner
 
 *BUILT DURING THIS EPISODE · n* sits top-left. Each "Built it." pops it and throws confetti.
 Mechanics are in `packages/show/README.md` ("The BUILT counter"). Each segment's `from` is the
@@ -86,8 +97,9 @@ previous segment's final value; agree the chain in the pitch.
 
 - **It starts at 0 every episode** and its first bump is the cold open's "Built it." The pilot's
   cold open hides the counter until that bump; keep doing that.
-- **Budget 5 to 9 bumps** in a five-minute episode (the pilot ran 15 in ten minutes, the same
-  rate). Put the last one in goodnight, after Larry reads the tally, so the tally is immediately
+- **Up to about 9 bumps** in a five-minute episode (the pilot ran 15 in ten minutes, the same
+  rate), and fewer whenever the week's builds aren't interesting: a bump that exists only to move
+  the count is filler. Put the last one in goodnight, after Larry reads the tally, so the tally is immediately
   wrong ("fourteen things built" → the bot builds the gn checker → 15).
 - **At least one segment has no bump.** The runner needs rests to stay funny. The pilot's song
   stacks four because the song's form is built on them; that is a reason, not a precedent.
@@ -108,8 +120,8 @@ Each episode also has one runner of its own, drawn from the week. The pilot's is
 | escalate | goodnight | Larry: "Now somebody should finally say gn." Sibyl tries it raw; the engine has no vowel (PRONUNCIATION ENGINE · RAW OUTPUT, NOT A WORD). The bot builds a site that checks: *HAS ANYONE SAID GN TONIGHT? NO.* |
 | pay off | goodnight | "Everyone says gm. Nobody says gn." An elephant trumpets; GanWeaving's real *Good night, weirdos!* appears. "See? Somebody always says gn." / "So. gn, simcluster." The gn post goes viral on screen. |
 
-In a five-minute episode: plant in the monologue or the feature, escalate once anywhere, pay off
-in goodnight. A runner that only appears twice is a callback; three times is a runner. Choose
+In a five-minute episode: plant in the monologue or the middle segment, escalate once anywhere
+(the song is a good place), pay off in goodnight. A week with no runner worth running has none. A runner that only appears twice is a callback; three times is a runner. Choose
 something from the week that can be **said or shown in five words** each time.
 
 ## Callbacks
@@ -147,3 +159,90 @@ Segments cut straight into one another. So:
 - Music is expensive: the pilot's song carries 48 spoken words in 95 seconds.
 - An episode is about 12 MB per ten minutes once built (see the architecture document's size
   budget). Five minutes is also the right length for the archive.
+
+## Fixed and fresh
+
+The owner names this as the central challenge of a weekly show: what stays the same so it is
+recognisably the same show, and what changes so it isn't the same episode. What follows is a
+**proposal for the owner to adjust**. The first rule sits above all of it, the frame included.
+
+### The frame (stays, as a default)
+
+The things a viewer should be able to count on. Each is kept unless it isn't interesting this
+week; even then, its *shape* stays and its *content* is new.
+
+- The name, the studio, the vector look, Larry hosting, the house cast and their attitudes.
+- The cold open's shape: an Ask from this week, "Built it.", the theme hook, "And now... [new
+  descriptor]... Larry... Nx!"
+- The BUILT counter, starting at 0.
+- A monologue.
+- A song, in a new genre.
+- Goodnight's shape: the tally, the question answered in the community's words, "gn,
+  simcluster.", "Press E to leave.", the CRT power-down, credits over the skyline with Dee's
+  lullaby (proposal: the lullaby is the frame's closing music and does not rotate).
+- Chapter 9's labels and credits (these are not subject to the first rule at all).
+
+### What rotates (must be new each week)
+
+- The middle segment's format, and any second segment's.
+- The song's genre and theme.
+- Sibyl's descriptor, the cold open's Ask, the episode runner, the sincere beat's source.
+- Guests, and how they appear (a thread, a panel, an interview).
+- The "Built it." shapes (see [joke craft](06-jokes.md#the-runner-built-it)).
+- One new credits gag and new chyron titles.
+
+### What must not repeat
+
+- A joke, or a reveal ("Wait. It's this show." happened once).
+- An episode runner (a retired one may come back once, as a callback).
+- A thread performed, an Ask post, a Sibyl descriptor.
+- A song genre within eight episodes.
+- The same middle format two weeks running.
+- A guest two weeks running, unless the week's story is about them.
+- The same "Built it." shape twice in one episode.
+- The same kind of sincere beat (belonging, admiration, credit, welcome, kindness) two weeks running.
+- More than two cross-episode callbacks in one episode: callbacks are frame-ish, and too many make
+  the show insular.
+
+### The mechanism
+
+1. **The pitch writes `episodes/<id>/production/plan.json`** alongside `pitch.md`. The file is owned by
+   the pipeline (`packages/writers-room`); the bible needs at least these fields:
+
+   ```json
+   {
+     "id": "002-example",
+     "week": "2026-W47",
+     "question": "…",
+     "segments": [
+       { "id": "cold-open", "format": "ask", "seconds": 25, "built": [0, 1] },
+       { "id": "monologue", "format": "monologue", "seconds": 60, "built": [1, 2], "topChicken": "hit" },
+       { "id": "middle", "format": "thread", "seconds": 65, "built": [2, 3] },
+       { "id": "song", "format": "song", "genre": "sea shanty", "theme": "…", "seconds": 60, "built": [3, 5] },
+       { "id": "goodnight", "format": "goodnight", "seconds": 40, "built": [5, 6] }
+     ],
+     "guests": [{ "handle": "…", "source": "thread", "segment": "middle", "repeatReason": null }],
+     "runner": "…",
+     "builtShapes": ["plain", "interrupting", "physical"],
+     "descriptor": "…",
+     "sincere": { "kind": "admiration", "source": "at://…" },
+     "callbacks": ["SL-10"],
+     "cut": [{ "what": "Changelog", "why": "only two of the five items had a turn" }]
+   }
+   ```
+
+2. **`lore.md` keeps a rotation log**: one row per episode with formats, song genre and theme,
+   guests and how they appeared, runner, "Built it." shapes, descriptor and sincere kind. The
+   pilot's row is there.
+3. **The pipeline checks `plan.json` against the log** and prints warnings: a genre used in the last
+   eight episodes; a middle format used last week; a guest booked last week without a
+   `repeatReason`; a reused runner, descriptor or thread; a repeated shape within the episode; the
+   same sincere kind as last week; more than two callbacks. A warning is not a gate. The writer may
+   override it with a reason in the pitch, and the reviewer sees both.
+
+   One check is a gate, because it is the owner's rule and not a rule of thumb: **the song's genre
+   must differ from the previous episode's.** The pipeline stops the pitch until it does.
+
+Numbers such as "eight episodes" are starting points. Adjust them once the shelf and the archive
+are bigger.
+

@@ -12,21 +12,23 @@ and this bible. This file is how to turn the first into a pitch. The pitch itsel
    the numbers, and whether there is an artefact (a site, a chart, an image, an object, a post
    worth showing).
 
-Expect 15 to 30 candidates. A five-minute episode uses 6 to 9.
+Expect 15 to 30 candidates. A five-minute episode uses about 5 to 8.
 
 ## Score each candidate
 
 | test | question | why it matters |
 |---|---|---|
-| **Safe** | Does it pass every [real-people](09-real-people.md) rule? | A fail removes the story. No exceptions, no "but it's funny". |
-| **Interesting** | Does it have a turn? A gap between what was said and what happened, a thing built from a joke, a rule that defeats itself, a number that is absurd, a coinage that spread. | A turn is what a joke is made of. No turn, no joke. |
+| **Safe** | Does it pass every [real-people](09-real-people.md) rule? | Decides what is *allowed*. A fail removes the story. No exceptions, no "but it's funny". |
+| **Interesting** | [The interesting test](01-premise.md#the-interesting-test): a turn or a feeling you can name in five words; only this week could contain it; a viewer would retell it. Turns to look for: a gap between what was said and what happened, a thing built from a joke, a rule that defeats itself, an absurd number, a coinage that spread. | Decides what is *worth including*, and overrules everything below. |
 | **Stageable** | Is there something to draw or show? | In this show a joke is not finished until something is built on screen. |
 | **Explicable** | Can a viewer who missed the week get the setup from one line and one card? | See "in-jokes" below. |
 | **Meaningful** | Does it say something about how the people here treat each other, or why they are here? | Candidates for the episode's question and its sincere answer. |
 | **Popular** | Was it widely liked or reposted inside the cluster? | A tiebreaker, not a reason. |
 
-A story makes the show if it is **Safe, Interesting, Stageable and Explicable**. The episode's spine
-is the best story that is also **Meaningful**.
+A story makes the show if it is **Safe** and **Interesting**; **Stageable** and **Explicable** are
+the craft that makes an interesting thing land, so a story that fails them needs a different
+treatment, not a lower bar. **Meaningful** counts as the "feeling" half of the interesting test. The
+episode's spine, and the song's theme, is the best story that is also Meaningful.
 
 ### "Merely popular"
 
@@ -52,19 +54,23 @@ The pilot found its stories in recurring community behaviours. Look for this wee
 | bots and agents as members | Jevbot, BorJev, the website bot's refusal | monologue, panel cameo |
 | arguments about membership and naming | the checker, the Discords, "my freaking simcluster" | the episode's question |
 | coinages and creatures | catoids, claims, the crow | Field Guide, weather districts |
+| a conversation that is already funny or kind | (none in the pilot; nearest: the Discords reply) | The Thread |
+| a new Top Chicken | (the pilot only had the rules) | the Top Chicken hit, or the full desk |
 
 ## How many stories
 
-For a five-minute episode:
+For a five-minute episode, as many as pass the interesting test, up to about:
 
-- **1 spine story** that carries the question. It appears in at least two segments.
-- **4 to 6 monologue stories**, one joke each (a second joke only for the strongest).
-- **1 feature story** (or the feature is built from 3 to 5 small items).
-- **1 guest**, whose material may overlap the spine.
-- **1 runner** from the week (gm/gn was the pilot's).
+- **1 spine story** that carries the question. It appears in at least two segments, and is usually
+  the song's theme.
+- **3 to 5 monologue stories**, one joke each (a second joke only for the strongest).
+- **The Top Chicken result**, if there is one, as a quick hit.
+- **1 middle-segment story**: a thread worth performing, a guest, or a feature built from 3 to 5
+  small items.
+- **1 runner** from the week (gm/gn was the pilot's), if one earns it.
 
-Recurrence is good. A story that appears in the monologue, the feature and goodnight is a spine,
-not a repeat.
+Fewer is fine. Recurrence is good: a story that appears in the monologue, the song and goodnight is
+a spine, not a repeat.
 
 ## Finding the angle
 
@@ -132,4 +138,5 @@ the cluster. Instead:
 
 - Lean on a recurring format (Changelog, Top Chicken) that turns small items into a list.
 - Make the quiet the question ("Where did everybody go this week?"), answered with a real post.
-- Go shorter. A tight four-minute episode beats a padded five.
+- Go shorter. Under the first rule a three-and-a-half-minute episode of interesting things is a
+  good episode; a padded five is not.

@@ -6,6 +6,11 @@ them, misquote them or send a crowd to their replies. These rules are not option
 review. Each comes with its reason, so you can handle cases it doesn't name. When a case is unclear,
 **leave it out**: no single joke is worth a person's bad week.
 
+This chapter decides what is *allowed*. [The first rule](01-premise.md#the-first-rule-only-include-it-if-its-interesting)
+("only include it if it's interesting") decides what is *worth including*. Material must pass both,
+this chapter first, and the first rule can only remove things: it never licenses anything forbidden
+here, and it never removes the labels, disclaimers and credits required here.
+
 The organising idea is the show's own: *you're only here if you want to be*. Being in the show
 is something people should be glad of, and leaving it is always one key away.
 
@@ -30,20 +35,32 @@ them.
 *Why:* public in the cluster is the only consent signal the show has. Anything else, the person
 reasonably thought had a smaller audience.
 
-### R3. Words in a guest's mouth come from three sources only
+### R3. Words in a guest's mouth: real words first
 
-1. **Their own public posts**, verbatim and short (a phrase or a sentence).
-2. **Their public catchphrases** ("claim.", "good news, everyone!").
-3. **Obvious pastiche of a format they use**, with content that is plainly the show's absurd
-   invention ("concept: talk show, but a giant crow hunts the host,").
+A puppet saying something in a person's voice is heard as the person saying it, so the show prefers
+the person's own words. The permitted sources, in order of preference:
+
+1. **Their own public posts, verbatim.** Best of all as a whole thread performed in order (format 9,
+   The Thread), or a single post placed in a new context (norvid's "buddy that's my freaking
+   simcluster" in answer to "my beautiful city").
+2. **Answers they gave the show's account** for this purpose, verbatim. *Proposal: depends on bot
+   work not yet built and on the consent rules in "Interviews by the show's account" below.*
+3. **Their public catchphrases**, their own recurring words, in a new context ("claim." in answer to
+   "Thank you for coming."). Real words, but the context is the show's, so the line must not imply a
+   reaction or an opinion the person didn't have.
+4. **Format pastiche, last and sparing**: a format they use with content that is plainly the show's
+   absurd invention ("concept: talk show, but a giant crow hunts the host,"). At most a line or two
+   per episode, never on a post card, never an opinion. The reviewer looks at each one.
 
 Never an opinion, belief, preference, confession, agreement or criticism they have not posted. Never
 a reaction to another person. Never a fact about themselves. Tag every guest line in `script.js` with
-its source (`// verbatim: at://…`, `// catchphrase`, `// pastiche of "concept:"`).
+its source (`// verbatim: at://…`, `// interview: at://…`, `// catchphrase`, `// pastiche of
+"concept:"`).
 
-*Why:* a puppet saying something in a person's voice is heard as the person saying it. Pastiche of a
-*format* is safe because nobody thinks norvid really proposed a crow hunting a talk-show host.
-Pastiche of an *opinion* is not, because someone will.
+*Why:* pastiche of a *format* is safe because nobody thinks norvid really proposed a crow hunting a
+talk-show host. Pastiche of an *opinion* is not, because someone will. And even safe pastiche puts
+words in a mouth, so it comes last. When a guest's material this week would be mostly pastiche, use a
+thread instead, or skip the guest.
 
 ### R4. Real quotes are verbatim, sourced and in context
 
@@ -98,8 +115,9 @@ The show's audience is bigger than many of the accounts it might show.
 - Never show a post that is part of an argument, a complaint, a callout, or anything that invites
   people to reply to its author.
 - Don't use one-off viral posts by people outside the cluster's regulars.
-- Keep the day's Top Chicken winner, or any ranked "loser", anonymous unless they are a recurring guest
-  who would enjoy it (the pilot puts a blank card on the podium: "the winner is a secret").
+- **Winners may be named; losers never.** Winning Top Chicken is a hero moment and the game's own
+  account names the winner, so the show may name the winner and show the winning post, subject to
+  R10 and R11. Nobody else in a ranking is named, shown or ranked: no runners-up, no last place.
 
 *Why:* a person with 200 followers who suddenly gets 2,000 strangers in their replies has been harmed
 even if every stranger is nice.
@@ -176,7 +194,8 @@ fine; anything that measures someone's worth, mood, or activity at odd hours is 
 A bot account is run by a person, and the person is who the rules protect. Treat the bot's posts as
 the operator's persona. Ask whether quoting the bot quotes someone else (BorJev quotes other people's
 posts; the quoted author is the one to check). The show's own announcement account should not tag
-guests by default; tag only people who have said they'd like it.
+guests by default; tag only people who have said they'd like it. Interviews by the account follow
+the rules in the next section.
 
 ### R14. Recurring guests are re-checked every week
 
@@ -189,14 +208,42 @@ not a fixed stereotype; people change how they post.
 A reference you can't explain might be a private joke, a sore spot, or about someone's life. You can't
 check it, and you can't write a fair joke on it. Mark it unclear in the pitch and move on.
 
+## Interviews by the show's account (proposal)
+
+**Not built. This depends on bot work that does not exist yet** (`packages/bot` only announces
+episodes today). It is designed here so the consent is right before anything is built.
+
+- **How people come to be asked.** Only two ways: they answer an open call (a public post from the
+  show's account, "We're asking a question for next week's episode; reply if you'd like to be asked"),
+  or they are on a list of people who have said yes, by tagging or replying to the account. Never a
+  cold mention, never a reply to someone who hasn't addressed the account, never a direct message.
+  This follows Bluesky's guidance for bots: interact only with people who have tagged the account.
+- **What every question discloses.** That the answer may be performed word for word by a puppet on
+  the show, with their handle on screen, and posted publicly; and how to withdraw.
+- **A person approves every question** before it is posted. Questions are light and about the
+  person's own work or the week: never about R10 topics, never about other people, never leading
+  towards a joke at their expense.
+- **Answers are public replies**, used verbatim under R3 and The Thread's rules. Nothing is collected
+  privately.
+- **Withdrawal until air.** Deleting the reply, or replying "withdraw", removes it. The pipeline
+  re-fetches every answer before the build; a deleted or edited answer is dropped, and the person is
+  not used that week.
+- **Small accounts** who opt in may appear, still only as heroes (R7).
+- **On screen,** the answer's card carries *ANSWERED FOR THE SHOW · <date>*.
+
+The process would gain a mid-week stage (see [process](10-process.md)): ask early in the week,
+collect replies before the scrape.
+
 ## What the reviewer checks
 
 For every episode, before approving. Any "no" is a send-back.
 
 1. Every real account that appears is listed in `production/sources.json`, and none is on the opt-out
    list or has opted out in a post or bio.
-2. Every guest line has a source comment, and each is verbatim, a catchphrase, or format pastiche with
-   obviously invented content. No guest expresses an opinion, fact or reaction they haven't posted.
+2. Every guest line has a source comment, in R3's order of preference: verbatim, interview answer,
+   catchphrase, or (sparingly) format pastiche with obviously invented content. No guest expresses an
+   opinion, fact or reaction they haven't posted. A performed thread matches its posts word for word
+   and in order, with cuts marked.
 3. Every real post card matches its source URI word for word, with the right handle, date and like
    count, and its framing matches its meaning in its thread.
 4. No invented post, quote, event or number is attributed to a real person.
@@ -206,3 +253,5 @@ For every episode, before approving. Any "no" is a send-back.
 8. Every guest chyron shows PUPPET · PARODY; a disclaimer runs at the first guest; the credits list
    the personas; tributes are credited.
 9. Nothing in the episode would be a false claim about a real person if screenshotted alone.
+10. Every interview answer (when interviews exist) came from someone who opted in, was given to a
+    question a person approved, and is still live at build time.

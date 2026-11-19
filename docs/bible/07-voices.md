@@ -42,6 +42,9 @@ Consequences for the writer:
   get their weak forms. `for-mints` comes out "fer-", `nor-vid` "ner-". Use parts that aren't
   function words.
 - Read the IPA the renderer prints for every line, then run the Whisper check.
+- **In verbatim lines** (a thread, an interview answer, a quoted post) `as` may only respell. Same
+  words, same order. Never reword a real person's post to make it easier to say; if it can't be said,
+  show it on the card instead.
 
 House respellings established by the pilot (keep using them):
 
@@ -168,8 +171,57 @@ How to write one:
 7. **Harmony is cheap**: Hy a diatonic sixth above and Dee an octave up, under the lead at about 0.4
    volume, is the pilot's recipe.
 
-Short musical cues are worth more than songs in a weekly: the 2-bar Formants tag before the weather,
-Pete's logo sting for sports, Dee's 4-bar lullaby under the credits, the 8 s theme hook.
+Short cues still matter around the song: the 2-bar Formants tag before the weather, Pete's logo
+sting for sports, Dee's 4-bar lullaby under the credits, the 8 s theme hook.
+
+### What the engine can render
+
+Everything is a voice. There are no instruments, so every genre has to be made of these
+(`packages/show/tools/README.md`, "Writing a segment script"):
+
+- **Sung tracks** from any cast voice: notes from MIDI 28 to 96 in fractional beats (so triplets and
+  odd metres are possible in melodies), rests, one syllable per note, `vibrato` in cents (0 gives the
+  straight tone of early music), `transpose` for a key change. Tested ranges: Larry 45–59, Al 41–52,
+  Hy 64–71, Dee 67–74. Nobody else has been tested singing; render a test phrase before casting
+  Sibyl, Samantha, Eppy, the bot or a guest.
+- **Beatbox tracks** on a sixteenth-note grid: kick `B`, hat `t`, open hat `tss`, snare `Pf`, rimshot
+  `K`, inward snare `^K`, clap-click `!`, lip pop `P!`, crash `kch`, and pitched hum `m:<midi>`, which
+  is how Al plays a bassline or a drone. `swing` from 0 to 0.5 gives shuffle and a 12/8 feel; the
+  grid has no true triplets.
+- **Shout tracks** (HEY!, ARE WE?) on chosen beats, deliberately harsh.
+- **One tempo per music block.** Change tempo, or stop for a spoken line, by starting a new block,
+  as the pilot's song does at every stop bar. Spoken lines can also lie over a block (the cold open
+  rewinds the cursor and lays a groove under Sibyl).
+- **Harmony** means stacking sung voices: four singers (Larry, Al, Hy, Dee) plus Pete's beat and hums.
+
+### The genre shelf
+
+The song's genre changes every episode and does not come back within eight. Log the choice in
+`plan.json` and the rotation log in [lore](lore.md). Pick for the theme's feeling or a deliberate
+mismatch.
+
+| genre | what it needs from the engine | good for |
+|---|---|---|
+| **stomp-clap anthem** *(pilot, 001)* | Al's kick every beat, Pete's claps, gang shouts, lead with two harmonies, stop bars | a shared hope; a wish everybody has |
+| **doo-wop** | swing about 0.33 for 12/8, Al on "dum" bass, Hy and Dee on "ooh" and "wah", Larry lead, soft hats, the I–vi–IV–V changes | a crush on a tool; devotion to something silly |
+| **barbershop quartet** | four sung voices in close harmony, no percussion, a long tag on the last chord | nostalgia; a toast; something old-fashioned |
+| **Renaissance motet** (Palestrina-style) | `vibrato: 0`, slow, long notes, few syllables, the same line entering in each voice with a `start` offset; no beat | solemnising the trivial; a requiem for something deprecated. The community just had a synth choir sing Palestrina, so the reference will land |
+| **plainchant** | one voice or unison, many syllables on one reciting pitch with a cadence at each line end, `vibrato: 0`, no beat | reading a list, release notes or terms of service as liturgy. Possibly the most intelligible sung genre, since recitation is close to speech; untested |
+| **round** | one melody, three or four voices entering in turn (`start` offsets) | something that spread person to person. The cheapest genre to write |
+| **sea shanty** | Larry calls, the band answers; stomps on the strong beats in 6/8 (twelve sixteenths a bar); a "heave" shout | a collective build; everyone hauling on one project |
+| **gospel** | lead plus answering "oh"s, claps on 2 and 4, shouts, a last chorus transposed up | testimony; praising something someone made; a newcomer's arrival |
+| **boom-bap** | Pete at 85 to 95 bpm (`B . . . Pf . . .`), Al's hummed bass, verses spoken over the block or sung on a near-monotone | a brag: a streak, a Top Chicken champion. The show only ever disses itself. Test the flow's intelligibility |
+| **lounge scat** | swing 0.2, a hummed walking bass, brushes on `t`, Dee scatting, Sibyl spoken over it | a slow week; a mood piece |
+| **torch song** | slow, one lead (Dee or Larry), sustained pads, more vibrato, a spotlight | longing for a feature, a thing that broke; swap the song into the middle slot |
+| **patter song** | fast syllables on repeated notes; the karaoke line carries it | a dense list of the week; risky, test before committing |
+| **disco** | Al's kick every beat, open hats `tss` on the off-beats, octave hum bass, HEY!s | a launch party; everybody joined something |
+| **polka** | Al's "oom" on the beat, Hy and Dee's "pah" off it, fast | a silly milestone |
+| **show tune ("I want" song)** | Larry solo, building, a key change into the last verse | Larry's own wish, usually for a normal segment |
+| **hymn or anthem** | slow four-part chords, everyone looks up | a founding, a milestone episode, a new "X week" |
+| **beatbox showcase** | Pete alone with hums, no lyrics | a week whose story is a sound |
+
+The goodnight lullaby (Dee, 80 bpm) is the frame's closing music. Proposal: it doesn't rotate and
+isn't used as a weekly song genre.
 
 ## Voices for new guests
 

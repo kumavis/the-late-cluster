@@ -11,6 +11,46 @@ playing the posting personas of real accounts, and the screen says so.
 It is a weekly show of about five minutes, written and directed by a model from a digest of the
 week's posts and approved by a person before it airs.
 
+## The first rule: only include it if it's interesting
+
+This is the owner's rule and it overrules everything else in the bible about structure: the
+running order, the formats, the standing segments, the runners and the length. Any slot, any
+standing segment and any runner can be cut in a week where it is not interesting. A four-minute
+episode of interesting things beats a five-minute episode with filler. Nothing is in an episode
+because the structure has a place for it.
+
+**How it relates to [real people](09-real-people.md).** Chapter 9 decides what is *allowed*. This
+rule decides what is *worth including*. Material must pass both, chapter 9 first. The rule only
+ever removes things, so it can never license something chapter 9 forbids ("it's too interesting
+to leave out" is never a reason). Nor does it remove chapter 9's obligations: parody labels,
+disclaimers, the credits' list of personas and tribute credits are not content and are never cut.
+
+### The interesting test
+
+"Interesting" alone won't guide a writer, so use three questions and a cut test. They apply to a
+single joke, a segment, and a whole episode.
+
+1. **Turn or feeling.** Does it surprise (the viewer could not have predicted the punch from the
+   setup), or does it move (it is true and it lands)? Name the turn or the feeling in five words.
+   If you can't, it fails.
+2. **This week.** Could only this week's episode contain it? A joke that would fit any week is
+   filler. Frame elements (the Ask, Sibyl's intro, the song) are exempt as shapes, never as
+   content: the Ask's post, the intro's descriptor and the song's theme must all be this week's.
+3. **Retell.** Would a viewer tell someone about it in one sentence, without first explaining the
+   week?
+
+**The cut test.** Take it out. Does the episode lose something a viewer would miss? If not, it
+goes, however well made.
+
+| level | passes when | if it fails |
+|---|---|---|
+| a joke | all three questions are yes | cut the joke; don't patch it with a bigger laugh sound |
+| a segment | it contains at least one retellable thing, and its jokes pass | trim the failing jokes; if fewer than two survive, cut the segment |
+| an episode | it can be pitched as "the one where…" in a sentence that would make a cluster member want to watch | re-pitch from the digest before writing anything |
+
+The pitch records what was cut and why (see [process](10-process.md#stage-2-pitch)), so a cut is a
+decision the reviewer can see, not an accident.
+
 ## Who it is for
 
 In priority order:
@@ -103,13 +143,15 @@ like this:
 3. **Ask it more than once, in different segments, as a joke each time.** The pilot asks its
    question in the monologue (the checker, the Discords), the panel (Larry to norvid, BorJev, the
    skyline), and the song ("where all of us belong"). A question asked once is a topic. Asked
-   three times, it is a through-line.
+   three times, it is a through-line. The song is now a standing segment and carries the week's
+   theme, so it is usually the question's second asking: felt rather than asked (see
+   [formats](04-formats.md#7-the-number-the-weekly-song)).
 4. **Answer it at goodnight with the community's own words**: a real post, shown verbatim, or a
    real thing someone built, shown and credited. The show frames the answer in one or two lines.
    It never supplies its own answer as a speech.
 
 If no question emerges from the week, the episode can still be good: a strong spine story with
-the monologue and the feature both circling it does the same job. What does not work is five
+the monologue, the middle segment and the song all circling it does the same job. What does not work is five
 unrelated bits and a generic goodnight.
 
 ## Earning the sincere moment
@@ -131,7 +173,9 @@ The pilot's sincere moment works, and it is fragile. These rules say why it work
    elephant trumpets in the audience. The undercut is a callback, not a mockery of the sincere
    post. Never follow a sincere beat with a rimshot or a joke at the quoted person's expense.
 6. **One per episode.** The song's "You are in it." and goodnight's "Goodnight, friends." are two,
-   but the first is a punchline wearing sincerity. Do not stack them.
+   but the first is a punchline wearing sincerity. Do not stack them. With a song every week, this
+   is the standing division of labour: the song may come close to sincere and must turn it into a
+   joke; goodnight carries the one sincere beat, in the community's words.
 
 **Going soft** looks like: Larry explaining why the community matters; a line containing
 "special", "family", "this is what it's all about"; a sung ballad with no joke in its structure;
