@@ -5,10 +5,28 @@ synthesized puppet heads in the browser. Read these before changing anything:
 
 - [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md): the structure, every command, and the
   decisions behind them. It is the contract: change it in the same commit as what it describes.
+- [`docs/WORKFLOW.md`](docs/WORKFLOW.md): how an episode is made, stage by stage, who does
+  each stage, and who may read what.
 - [`docs/bible/README.md`](docs/bible/README.md): what a good episode is. Required reading
   before writing or reviewing any episode content.
 - `packages/show/README.md` and `packages/show/tools/README.md`: how a segment is written,
   rendered and directed.
+
+## Roles and models
+
+Work on this repo is done by subagents driven by one project manager, as set out in
+[`docs/WORKFLOW.md`](docs/WORKFLOW.md). The model follows the role:
+
+| role | model | subagent |
+|---|---|---|
+| Project manager (the top-level agent) | latest Fable | the session itself |
+| Researcher, writer, reviewer | latest Fable | `researcher`, `writer`, `reviewer` |
+| Builder: staging code, tools, the pipeline, the scraper, the studio, infrastructure | latest Opus | `builder` |
+
+The definitions are in `.claude/agents/`. Choose the subagent by role and the model follows;
+do not pass a model by hand. The project manager briefs and checks, and does not write
+episode content. A reviewer never reviews its own work. Writers never read earlier episodes
+or `docs/ledger/`; reviewers do, which is how repetition is caught.
 
 ## The loop
 
