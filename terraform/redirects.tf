@@ -26,7 +26,7 @@ resource "cloudflare_dns_record" "redirect" {
   content = local.redirect_placeholder_ipv4
   proxied = true
   ttl     = 1
-  comment = "${local.comment_prefix}: placeholder for redirect ${each.key}, no origin"
+  comment = substr("${local.comment_prefix}: redirect placeholder for ${each.key}, no origin", 0, local.comment_max)
 }
 
 # The zone's entry-point ruleset for Single Redirects, created only when there is at least

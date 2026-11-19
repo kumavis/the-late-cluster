@@ -254,14 +254,21 @@ writes its own, so a run can stop, be inspected, and resume.
 
 | stage | made by | output |
 |---|---|---|
-| 1. scrape | scraper | `data/weeks/<week>/digest.{json,md}` |
-| 2. pitch | writer (model) | `production/pitch.md`: stories, angles, rundown, guests, the runner |
+| 1. scrape | scraper | `data/weeks/<week>/digest.{json,md}`, then the episode folder is scaffolded as a draft |
+| 2. pitch | writer (model) | `production/pitch.md` and `production/plan.json`: stories, angles, rundown, formats, the song's genre and theme, guests, the runner |
 | 3. write | writer (model) | `segments/*/script.js`, validated by the renderer |
 | 4. render | tools | audio, telemetry, `cues.json`; `check` and the Whisper intelligibility pass |
 | 5. direct | director (model) | `segments/*/index.js`, reviewed against shot frames |
 | 6. build | tools, writer | `thumbnail.jpg`, `dist/episodes/<id>/`, `verify`; then `production/scorecard.md` and the episode's entry in `docs/bible/lore.md` |
 | 7. review | **a person** | a pull request: read the scripts, watch the preview, merge or send back |
 | 8. publish | deploy + bot | Pages deploy on merge, then the announcement |
+
+The pipeline's own stage names are `scrape`, `scaffold`, `pitch`, `write`, `render`, `direct`,
+`build`, `self-check` and `pr`. The last one writes `production/pr-title.txt` and
+`production/pr-body.md` for the workflow to open the pull request with; the pipeline itself
+never commits, pushes, deploys or announces. `plan.json` is the machine-readable plan that
+the freshness checks compare with earlier episodes: the song's genre must differ from the
+previous episode's, and other repeats are warnings a writer can answer with a reason.
 
 The creative stages are done by Claude Code running headless with the playbooks in
 `packages/writers-room/playbooks/` and the design bible. The deterministic stages are plain
@@ -303,7 +310,7 @@ a domain, a zone id and a DID are all public facts and are configuration.
 The show's domain is `simcluster.tv`, with DNS on Cloudflare, managed by the Terraform
 configuration in `terraform/` (see its README). It manages records in an existing zone: the
 site's hostname, GitHub's domain verification record, one verification record per Bluesky
-handle, and any other record through a general variable. The zone's real values are committed
+handle, redirects from a hostname to a URL, and any other record through a general variable. The zone's real values are committed
 in `terraform/terraform.tfvars`.
 
 - Run it with `npm run terraform -- plan` and `npm run terraform -- apply`, which load the

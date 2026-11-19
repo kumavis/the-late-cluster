@@ -74,4 +74,14 @@ run "committed_configuration" {
     condition     = output.site_url == null
     error_message = "No site hostname is chosen yet, so site_url must be null."
   }
+
+  # Cloudflare rejects a DNS record comment over 100 characters (API error 9313). A mocked
+  # provider cannot know that, so the limit is asserted here.
+  assert {
+    condition = alltrue([
+      for r in concat(values(cloudflare_dns_record.bluesky_handle), values(cloudflare_dns_record.redirect)) :
+      length(r.comment) <= 100
+    ])
+    error_message = "Every committed DNS record comment must be 100 characters or fewer."
+  }
 }

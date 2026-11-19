@@ -929,3 +929,47 @@ run "fails_redirect_beside_extra_cname" {
   }
   expect_failures = [var.redirects]
 }
+
+# Cloudflare rejects a DNS record comment over 100 characters (API error 9313); a real apply
+# failed on a 111-character comment that every mocked test had accepted. Long names and a
+# long supplied comment must all come out within the limit.
+run "comments_fit_cloudflares_limit" {
+  command = plan
+
+  variables {
+    zone_id            = "0123456789abcdef0123456789abcdef"
+    zone_name          = "example.com"
+    site_hostname      = "a-rather-long-subdomain-name-for-the-show.example.com"
+    github_pages_owner = "example-owner"
+    bluesky_handles = {
+      "a-long-handle-hostname.that-goes-on-and-on.and-on-for-quite-a-while.example.com" = "did:plc:abcdefghijklmnopqrstuvwx"
+    }
+    redirects = {
+      "a-long-redirect-key-that-goes-on-and-on-and-on-and-on" = {
+        hostname    = "example.com"
+        target_url  = "https://example.org/"
+        status_code = 302
+      }
+    }
+    extra_records = {
+      "spf" = {
+        name    = "example.com"
+        type    = "TXT"
+        content = "v=spf1 -all"
+        comment = "This comment is deliberately much longer than Cloudflare allows, so that the configuration has to cut it down before sending it."
+      }
+    }
+  }
+
+  assert {
+    condition = alltrue([
+      for r in concat(
+        values(cloudflare_dns_record.site),
+        values(cloudflare_dns_record.bluesky_handle),
+        values(cloudflare_dns_record.redirect),
+        values(cloudflare_dns_record.extra),
+      ) : length(r.comment) <= 100
+    ])
+    error_message = "Every DNS record comment must be 100 characters or fewer."
+  }
+}

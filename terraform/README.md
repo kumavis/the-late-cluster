@@ -69,11 +69,11 @@ The rest of this README writes commands as `terraform <args>`; either form runs 
 - Applied and verified: the Bluesky handle `latecluster.simcluster.tv`,
   `cloudflare_dns_record.bluesky_handle["latecluster.simcluster.tv"]`, the TXT record
   `_atproto.latecluster.simcluster.tv`.
-- Configured, not applied yet: `simcluster.tv` redirects with a temporary 302 to
-  `https://bsky.app/profile/latecluster.simcluster.tv`, path and query dropped. Applying it
-  adds `cloudflare_dns_record.redirect["bluesky-profile"]` (proxied A `simcluster.tv`
-  `192.0.2.1`) and `cloudflare_ruleset.redirects[0]` (one rule). The token needs the Single
-  Redirect permission first (step 1 below); until then plan and apply fail on the ruleset.
+- Applied and verified: `simcluster.tv` redirects with a temporary 302 to
+  `https://bsky.app/profile/latecluster.simcluster.tv`, over HTTP and HTTPS, path and query
+  dropped. It is `cloudflare_dns_record.redirect["bluesky-profile"]` (proxied A
+  `simcluster.tv` `192.0.2.1`) and `cloudflare_ruleset.redirects[0]` (one rule). The token
+  needs the Single Redirect permission for this (step 1 below).
 - `tests/committed.tftest.hcl` asserts that the committed configuration plans exactly these
   three resources: the handle record, the placeholder record and the ruleset with its rule.
 - The site's hostname is not chosen yet: the owner is deciding between the apex and a
@@ -115,9 +115,8 @@ You need Terraform 1.11 or later.
    npm run terraform -- init
    ```
 
-4. **Plan**, and read it. On the machine that holds the state it should report only what
-   "Where things stand" lists as not applied yet (today, the redirect's placeholder record
-   and the ruleset); apply that, and the next plan reports no changes. On a machine
+4. **Plan**, and read it. On the machine that holds the state it should report no changes,
+   since everything in "Where things stand" is applied. On a machine
    without the state it also wants to create the handle record, which already exists: do
    not apply, and see "Recovering lost state" (or move the state to R2 first, from the
    machine that has it, and use it from everywhere).
@@ -486,6 +485,12 @@ every run, so `tests/dns.tftest.hcl` resets every variable to its default in a f
 nothing and so tests the committed values. `.github/workflows/terraform.yml` runs the same four commands
 on pull requests that touch `terraform/`. It never plans against Cloudflare or applies; a
 plan-and-apply workflow needs remote state and a token secret first, and is a later step.
+
+A mocked provider accepts things the real API refuses, so limits the API enforces are
+asserted in the tests by hand. The one found so far: Cloudflare rejects a DNS record comment
+longer than 100 characters (error 9313), which a real apply hit while every mocked test
+passed. The configuration now cuts every comment to that length, and the tests check it.
+When a real apply fails on something the tests accepted, add the limit here the same way.
 
 When upgrading the provider within 5.x, refresh the checksums for every platform CI and
 the owner use, and commit the lock file:

@@ -3,7 +3,10 @@
 
 locals {
   # Every record carries a comment so it is recognisable in the Cloudflare dashboard.
-  comment_prefix = "Managed by Terraform (terraform/ in the show's repository)"
+  # Cloudflare rejects a DNS record comment longer than 100 characters on the Free plan
+  # (API error 9313), so the prefix is short and every comment is cut to comment_max.
+  comment_prefix = "Managed by Terraform"
+  comment_max    = 100
 
   site_enabled = var.site_hostname != null
   site_is_apex = local.site_enabled && var.site_hostname == var.zone_name
@@ -65,7 +68,7 @@ resource "cloudflare_dns_record" "site" {
   content = each.value.content
   proxied = var.site_proxied
   ttl     = 1
-  comment = "${local.comment_prefix}: site on ${var.site_target}"
+  comment = substr("${local.comment_prefix}: site on ${var.site_target}", 0, local.comment_max)
 }
 
 # GitHub's domain verification record. It protects the domain from being claimed by another
@@ -78,7 +81,7 @@ resource "cloudflare_dns_record" "github_pages_verification" {
   type    = "TXT"
   content = "\"${var.github_pages_verification_code}\""
   ttl     = 1
-  comment = "${local.comment_prefix}: GitHub Pages domain verification"
+  comment = substr("${local.comment_prefix}: GitHub Pages domain verification", 0, local.comment_max)
 }
 
 # One TXT record per Bluesky handle. https://atproto.com/specs/handle
@@ -90,7 +93,7 @@ resource "cloudflare_dns_record" "bluesky_handle" {
   type    = "TXT"
   content = "\"did=${each.value}\""
   ttl     = 1
-  comment = "${local.comment_prefix}: Bluesky handle ${each.key}"
+  comment = substr("${local.comment_prefix}: Bluesky handle ${each.key}", 0, local.comment_max)
 }
 
 # Anything else, from var.extra_records.
@@ -104,5 +107,5 @@ resource "cloudflare_dns_record" "extra" {
   ttl      = each.value.ttl
   proxied  = each.value.proxied
   priority = each.value.priority
-  comment  = each.value.comment == null ? "${local.comment_prefix}: ${each.key}" : each.value.comment
+  comment  = substr(each.value.comment == null ? "${local.comment_prefix}: ${each.key}" : each.value.comment, 0, local.comment_max)
 }
