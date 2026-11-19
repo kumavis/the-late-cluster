@@ -1,0 +1,66 @@
+# CLAUDE.md: working in this repo
+
+The Late Cluster is a weekly late-night talk show about Bluesky's simcluster, performed by
+synthesized puppet heads in the browser. Read these before changing anything:
+
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md): the structure, every command, and the
+  decisions behind them. It is the contract: change it in the same commit as what it describes.
+- [`docs/bible/README.md`](docs/bible/README.md): what a good episode is. Required reading
+  before writing or reviewing any episode content.
+- `packages/show/README.md` and `packages/show/tools/README.md`: how a segment is written,
+  rendered and directed.
+
+## The loop
+
+```bash
+npm run episode:new -- --title "..."   # the next episode, as a draft
+npm run segment:new -- <ep> <seg>      # a segment skeleton
+npm run render -- <ep> <seg>           # audio, telemetry, cues (bun + ffmpeg)
+npm run check -- <ep>                  # rendered outputs against the contract
+npm run shoot -- <ep> <seg> <t>...     # frames to look at (Playwright)
+npm run build -- <ep> [--preview]      # dist/episodes/<id>/, or preview/<id>/ for a draft
+npm run verify && npm test             # what CI runs; neither needs an install
+npm run produce -- --week 2026-W47     # the whole weekly pipeline, stage by stage
+```
+
+## Rules that are easy to break
+
+**Episodes**
+- The first rule of the show: only include it if it's interesting. It overrules structure.
+- Real people: `docs/bible/09-real-people.md` is not optional. Guests speak their own words
+  first. Nothing about a real person is invented. The opt-out list is absolute.
+- Nothing airs without a person reading it. The pipeline opens a pull request; it never
+  deploys and never announces.
+- Episodes import studio code as `@late-cluster/show/...`, never by relative path. Episode
+  content never goes into `packages/show`.
+
+**Builds**
+- Builds are committed under `dist/episodes/<id>/`, and a published episode's audio lives
+  only there. After re-rendering a segment, rebuild before committing, or the committed cues
+  and audio disagree. `npm run verify` catches it.
+- Do not rebuild an old episode unless that is the task: it re-bundles it with today's studio.
+- Generated site files (`dist/index.html`, `dist/episodes.json`, `dist/latest/`,
+  `dist/site-assets/`) are never committed.
+
+**Configuration and secrets**
+- Configuration is committed: `show.config.json`, each package's `config/`,
+  `terraform/terraform.tfvars`. If a value is not secret, it belongs in one of those.
+- Secrets come only from the environment, locally from the gitignored `.secrets`. Never read
+  it, print it, or copy a value out of it. Commands that need a secret load it themselves.
+
+**Outward-facing actions: ask first**
+- `npm run bot -- announce` is a dry run. Never add `--live` unless the owner says so in that
+  conversation. The bot never mentions or tags anyone.
+- Terraform: `npm run terraform -- plan` freely; `apply` only for a change the owner asked
+  for, after the plan shows exactly that change. Edit `terraform.tfvars` and
+  `terraform/tests/committed.tftest.hcl` together. Never edit or delete `terraform.tfstate`.
+- Never push, open a pull request, or switch on a workflow schedule unless asked.
+
+**Housekeeping**
+- Lockfile changes go in their own commit.
+- Tests use Node builtins only and must pass on a checkout with nothing installed.
+- A root-only `.gitignore` rule starts with a slash. An unanchored `data/` once dropped the
+  pronunciation dictionary from git; `scripts/test/checkout.test.mjs` now guards the files
+  the studio cannot regenerate. Add to that list when you add such a file.
+- A mocked test cannot know a server's limits. When a real run fails on something the tests
+  accepted, add the limit to the tests.
