@@ -30,8 +30,12 @@ video/
 /dist/latest/
 /dist/site-assets/
 
-# local secrets (API tokens, app passwords); .env.example is the committed template
+# Secrets are never committed. Locally they live in .secrets (tokens and app passwords only;
+# configuration goes in show.config.json and the packages' config files). The committed
+# template is .secrets.example.
+.secrets
+.secrets.*
+!.secrets.example
 .env
 .env.*
-!.env.example
 .envrc
