@@ -14,19 +14,26 @@ synthesized puppet heads in the browser. Read these before changing anything:
 
 ## Roles and models
 
-Work on this repo is done by subagents driven by one project manager, as set out in
-[`docs/WORKFLOW.md`](docs/WORKFLOW.md). The model follows the role:
+Work on this repo is done by subagents, as set out in
+[`docs/WORKFLOW.md`](docs/WORKFLOW.md). Fable writes and judges comedy; nothing else. What a
+script can do is done by a tool, and what is checking, documenting or fitting is done on Opus.
 
 | role | model | subagent |
 |---|---|---|
 | Project manager (the top-level agent) | latest Fable | the session itself |
-| Researcher, writer, reviewer | latest Fable | `researcher`, `writer`, `reviewer` |
+| Writer: jokes, scripts, the open, close and joins | latest Fable | `writer` |
+| Reviewer: ranking, the repetition gates, selection, the scorecard | latest Fable | `reviewer` |
+| Researcher: content cards from the scraper's skeletons | latest Opus | `researcher` |
+| Auditor: scope, the constitution screen, consent, staged frames | latest Opus | `auditor` |
+| Sound editor: fitting scripts to the voice engine | latest Opus | `sound-editor` |
 | Builder: staging code, tools, the pipeline, the scraper, the studio, infrastructure | latest Opus | `builder` |
 
 The definitions are in `.claude/agents/`. Choose the subagent by role and the model follows;
-do not pass a model by hand. The project manager briefs and checks, and does not write
-episode content. A reviewer never reviews its own work. Writers never read earlier episodes
-or `docs/ledger/`; reviewers do, which is how repetition is caught.
+do not pass a model by hand. The project manager starts a run and handles failures and
+send-backs; routine waves are driven by the pipeline's runner. It does not write episode
+content. Whoever makes a thing does not judge it. Writers never read earlier episodes,
+`docs/ledger/`, `docs/trials/` or reviewers' files; reviewers and auditors do, which is how
+repetition is caught. Give an agent a short reading list, never "the whole bible".
 
 ## The loop
 
