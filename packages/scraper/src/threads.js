@@ -69,6 +69,7 @@ export function performableThreads({ posts, removed = [], complete = new Set(), 
     const gaps = removedBy.get(root) ?? []
     if (ps.some((p) => p.reply?.hidden)) { reject('an excluded post in the middle'); continue }
     if (ps.some((p) => p.sensitive?.length)) { reject('a sensitivity flag'); continue }
+    if (ps.some((p) => p.consent?.length || p.aboutShow)) { reject('a consent mark or a post about the show'); continue }
     if (ps.some((p) => p._redacted || p.redacted)) { reject('text redacted by the consent rules'); continue }
     if (ps.some((p) => p.quote?.state === 'removed')) { reject('quotes an excluded post'); continue }
     if (ps.some((p) => !String(p.text ?? '').trim())) { reject('a post with no text to speak'); continue }

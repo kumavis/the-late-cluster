@@ -1,0 +1,1 @@
+- quinn (interview): f0 210, breathy, panned left; distinct from Sibyl (196) and the bot (275).

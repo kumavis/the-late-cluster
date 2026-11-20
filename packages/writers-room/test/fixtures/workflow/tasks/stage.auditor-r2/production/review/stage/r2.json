@@ -1,0 +1,12 @@
+{
+  "segments": {
+    "talk-ask": {
+      "verdict": "pass",
+      "changes": []
+    },
+    "interview": {
+      "verdict": "pass",
+      "changes": []
+    }
+  }
+}

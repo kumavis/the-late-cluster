@@ -13,6 +13,7 @@
 import { beam, beamPts, seg, ring, dot, label, labelWidth, occlude, rectPath, roundPath, box, butterfly, P, mix, glowText } from '../kit/draw.js'
 import { rng, noise1, clamp, smoothstep, ease } from '../kit/ease.js'
 import { lectern, crow, keycap } from '../kit/props.js'
+import { STAGE_TEXT } from './text.js'
 
 export const WORLD = { w: 2000, h: 1125, floor: 960 }
 
@@ -22,7 +23,7 @@ export const SET_PIECES = ['truss', 'wall', 'window', 'curtain', 'bandstand', 'd
 const WIN = { x: 1220, y: 140, w: 740, h: 500 }
 const CURTAIN = { x: 760, y: 110, w: 420, h: 850 }
 export const DESK = { x: 1600, top: 728, w: 360 }
-/** the big key cap (set.eKey) on the desk's front-left corner (world; `keycap` centre + scale) */
+/** the big key cap (set.eKey) on the desk's front-left corner (world; `keycap` centre + scale); its letter is the segment's `keyLabel`, else STAGE_TEXT.keyLabel */
 export const EKEY = { x: DESK.x + 34, y: DESK.top - 30, scale: 0.8 }
 export const CHAIR = { x: 1475 }
 export const COUCH = { x0: 1150, x1: 1400 }
@@ -756,7 +757,7 @@ export function drawSetFront(ctx, S, show) {
   if (on.couch !== false) couchFront(ctx)
   if (on.chair !== false) chairFront(ctx)
   if (on.desk !== false) desk(ctx, S, show)
-  if (on.desk !== false && on.eKey) keycap(ctx, EKEY.x, EKEY.y, { label: 'E', scale: EKEY.scale, glow: 0.4 + 0.3 * Math.sin(show.wall * 3), pressed: typeof on.eKey === 'number' ? on.eKey : 0 })
+  if (on.desk !== false && on.eKey) keycap(ctx, EKEY.x, EKEY.y, { label: show.keyLabel ?? STAGE_TEXT.keyLabel, scale: EKEY.scale, glow: 0.4 + 0.3 * Math.sin(show.wall * 3), pressed: typeof on.eKey === 'number' ? on.eKey : 0 })
   if (on.crow === 'perched-desk') setCrow(ctx, on.crow, show)
 }
 

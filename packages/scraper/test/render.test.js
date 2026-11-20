@@ -1,6 +1,6 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { renderMarkdown, renderStory, mdText } from '../src/render-md.js'
+import { renderMarkdown, renderStory, mdText, renderAboutShow } from '../src/render-md.js'
 
 const story = {
   id: 's-0123456789', rank: 1, kind: 'built', headline: 'I built the *thing* <script>',
@@ -77,9 +77,12 @@ test('the full digest renders overview, stories and every appendix', () => {
   assert.match(md, /The wish: @w\.example\.test \(2,000 followers\), Tue 09:00Z[\s\S]*> someone should build a thing/)
   assert.match(md, /Built by \*\*A\*\* @a\.example\.test \(\*\*small account\*\*, 120 followers\)/)
   assert.match(md, /Shared by \[@s\.example\.test\]/)
-  // about the show
-  assert.match(md, /Requests to be left out \(1\)[\s\S]*- @o\.example\.test: \[the post\]\(https:\/\/bsky\.app\/o\)/)
-  assert.match(md, /@r\.example\.test, Wed 10:00Z · names the show · \*\*possible correction\*\*: "loved the crow"/)
+  // about the show: for reviewers only, never in digest.md (trial 002, finding 11)
+  assert.ok(!md.includes('## About the show'))
+  assert.ok(!md.includes('loved the crow'))
+  const about = renderAboutShow(digest.sections.aboutShow, [], digest.window)
+  assert.match(about, /Requests to be left out \(1\)[\s\S]*- @o\.example\.test: \[the post\]\(https:\/\/bsky\.app\/o\)/)
+  assert.match(about, /@r\.example\.test, Wed 10:00Z · names the show · \*\*possible correction\*\*: "loved the crow"/)
   // new voices and interview material
   assert.match(md, /## New voices[\s\S]*### \*\*G\*\* @g\.example\.test \(\*\*small account\*\*, 120 followers\)\n\n7 posts this week\. Strongest:/)
   assert.match(md, /reach 10 \(1 participant\)/)
@@ -101,12 +104,24 @@ test('the full digest renders overview, stories and every appendix', () => {
   assert.deepEqual(r.split('\n').filter((l) => /this week/.test(l)), [], 'no "this week" wording in a range digest')
 })
 
-test('an out-of-bounds story renders as a marked headline with no posts', () => {
-  const md = renderStory({ ...story, outOfBounds: { topics: ['health'], counts: { health: 3 } } })
-  assert.match(md, /^### 1\. \*\*OUT OF BOUNDS \(health\)\*\*: I built the/)
-  assert.match(md, /Not for the show \(bible R10\)\. 6 posts, 3 members; flagged posts by topic: health 3/)
+test('a story left out for consent renders with no headline and no posts', () => {
+  const md = renderStory({ ...story, outOfBounds: { rule: 'R11', reasons: ['the lead post: asks not to be quoted'] } })
+  assert.match(md, /^### 1\. \*\*LEFT OUT \(consent\)\*\*\n/)
+  assert.match(md, /Not for the show \(bible R11\): the lead post: asks not to be quoted\. 6 posts, 3 members\. No headline and no posts\./)
+  assert.ok(!md.includes('I built the'))
   assert.ok(!md.includes('line one'))
   assert.ok(!/^> /m.test(md))
+})
+
+test('a keyword mark stays on its post: the rest of the story is quoted', () => {
+  const posts = [{ ...story.posts[0], sensitive: ['health'] }, ...story.posts.slice(1)]
+  const md = renderStory({ ...story, posts, sensitivity: { topics: ['health'], counts: { health: 1 }, postsMarked: 1, leadMarked: true } }, { postsPerStory: 4 })
+  assert.match(md, /^### 1\. \*\(lead post marked: health\)\*/)
+  assert.match(md, /\*Marked:\* 1 post of 6 \(health 1\): a keyword hint on those posts only; the rest of the story is usable\./)
+  assert.match(md, /> \*\(marked: health; not quoted here\)\*/)
+  assert.ok(!md.includes('I built the'), 'no headline from a marked lead')
+  assert.ok(!md.includes('line one'), 'the marked post is not quoted')
+  assert.match(md, /> reply/, 'the unmarked post is')
 })
 
 test('a performable thread renders as indented dialogue with removal markers', async () => {
@@ -128,8 +143,3 @@ test('a performable thread renders as indented dialogue with removal markers', a
   assert.match(g, /### Game \(@g\.example\.test\)\n\n\*daily\*\n\n\*\*For the writer:\*\* keep winners anonymous\n\nNo results posted in the window\./)
 })
 
-test('a story with a post asking not to be quoted withholds even its headline', () => {
-  const md = renderStory({ ...story, outOfBounds: { topics: ['asked not to be quoted'], counts: { 'asked not to be quoted': 1 } } })
-  assert.match(md, /^### 1\. \*\*OUT OF BOUNDS \(asked not to be quoted\)\*\*: \*\(headline withheld: a post here asks not to be quoted\)\*/)
-  assert.ok(!md.includes('I built the'))
-})

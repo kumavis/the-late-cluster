@@ -1,94 +1,59 @@
 # The project manager's playbook
 
-You are the top-level session. You drive one episode through the eleven stages of
-`docs/WORKFLOW.md`, by spawning subagents from the briefs the tool writes and checking each
-hand-off. You never write episode content, and you never judge work you wrote the brief for
-without a reviewer. The tool (`npm run produce`) is deterministic: it never calls a model, it
-combines what the subagents write, and it runs the gates.
+You are the top-level session. You start the run, decide at each stop, and report to the owner. You
+never write episode content, never edit a subagent's output, and never hand a writer, researcher,
+builder or sound editor anything from `docs/ledger/`, `docs/trials/` or `production/review/`.
 
-## The loop
+## Start the run
 
 ```sh
-npm run produce -- --week 2026-W48            # advance as far as it can; stops when subagents are needed
-npm run produce -- --week 2026-W48 --status   # where it is, and exactly whom to spawn next
+npm run produce -- --week 2026-W48            # headless where claude is signed in, else manual
+npm run produce -- --week 2026-W48 --status   # where it is
 ```
 
-1. Run `produce`. It scrapes if there is no digest (the scraper's default window: since the
-   previous aired episode), scaffolds the episode, and works through the stages until a stage
-   needs subagents. Then it writes one brief per task under
-   `episodes/<id>/production/briefs/<stage>/<task>.md` and stops (exit 1, "waiting").
-2. Run `--status`. Each `spawn` line names the role, the task id, the brief and what it writes.
-3. Spawn one subagent per line, by role (`researcher`, `writer`, `reviewer`, `builder`: the
-   definitions in `.claude/agents/` carry the model and the standing rules; never pass a model by
-   hand). The prompt is the brief: tell the subagent to read its brief file and do exactly that.
-   Tasks listed together are independent: spawn them in parallel, in one message.
-4. When they report back, run `produce` again. It checks each task's files exist, combines them
-   (rankings, verdicts, selections), runs the stage's gates and either moves on or shows what
-   failed.
+With the **headless** runner (the default where `claude auth status` says signed in) the tool briefs
+every task, runs each wave's tasks in parallel as their roles' subagents, combines, gates and moves
+on. You wake only when it stops. Each task's whole result is in
+`shots/<id>/_production/logs/headless/<task>.json`; the console has one line per task.
 
-Never edit a subagent's output yourself, and never hand a writer, a researcher or a builder
-anything from `docs/ledger/` or an earlier episode.
+With the **manual** runner the run stops at every wave. `--status` lists one `spawn` line per task:
+role, task id, brief. Spawn one subagent per line by role (`.claude/agents/` carries the model; never
+pass one by hand), with the prompt "read your brief at <path> and do exactly that". Tasks listed
+together are independent: spawn them in one message. Then run `produce` again.
 
-## Who sees what
+## At a stop
 
-Writers, researchers and builders never see the ledger or earlier episodes; reviewers do. For the
-subagents you spawn, this is enforced by the brief (it points only at what the role may read and
-lists what it must not), by the role definition's standing rules, and by a guard hook
-(`bin/guard.mjs`) that refuses those paths for the three roles. The guard reads paths and command
-text, so it is a tripwire, not a wall. What catches a slip is the repetition gate: two reviewers
-with the ledger judge every shortlisted idea and every selected script, and any repeat blocks.
+The run stops for three reasons, and prints what you must decide.
 
-When you pass a reviewer's verdict back to a writer, pass only the reviewer's `avoid` line (the
-tool puts it in the rework brief): the least the writer needs to avoid or turn the earlier thing,
-never an earlier script, segment title, or what the audience liked.
+- **`decide: <stage> stopped with N failures`.** The failing gates' first lines follow, and the tasks
+  in the failing wave. Choose one:
+  - the output is wrong: `--rework <task id>` sets it aside and briefs the task again with its own
+    failures, then run `produce`;
+  - an idea or draft should go: `--exclude <id>` (at `repetition-ideas` or `select`; recorded);
+  - an earlier stage must change: `--from <stage>`;
+  - a gate is wrong, a rule is unclear, or it needs the owner (a studio change from the stage
+    auditor, a consent question, a scraper configuration): stop and say so.
+- **`decide: <stage> sent the episode back to <route>`.** A reviewer or auditor sent it back. Read
+  their file under `production/review/` yourself; run `produce` to go there. Only the file's
+  `changes` reach the briefs. A `rescrape` means a builder changes the scraper's configuration and
+  rescrapes the same window into the same folder (keep its `.cache`).
+- **A task failed to run** (headless: the CLI exited non-zero or hit its budget). Read its log, then
+  run `produce` again, or `--rework` it.
 
-## When a gate fails
+Repeats at the repetition gates, lines that cannot be said, redrafts, consent outs and staging
+changes are not stops: the tool creates those tasks itself.
 
-- **A task's output fails its gate:** `npm run produce -- --week <w> --rework <task id>` sets the
-  output aside and writes the brief again with the failures under "Sent back to you". Spawn the
-  same role again (a new subagent; it reads the brief).
-- **A repeat at the repetition gate:** the tool generates the rework tasks itself
-  (`repetition-ideas.rework-<idea>`, then fresh verdicts on the replacement; `select.redraft-<slug>`,
-  then verdicts on the new version). Spawn what `--status` lists. Or drop the item:
-  `--exclude <idea id or slug>` (recorded in the run and the pull request).
-- **A reviewer sends back** (`scope` asks for a rescrape; the stage review or the final review
-  says `send-back` with a route): `--status` shows `SEND-BACK <gate> → <stage>`. The tool has
-  already reset that stage and everything after it, and the rejected verdict is set aside. Fix
-  what the reason names (a rescrape means the scraper's configuration, which is a builder's task),
-  then run `produce` again.
-- **A gate you think is wrong:** do not route around it. Say so to the owner.
-
-Useful while checking a hand-off:
+## Useful while deciding
 
 ```sh
-npm run produce -- --week <w> --check <stage>               # a stage's gates on what is there now
-npm run produce -- --week <w> --check stage --segment <seg> # one segment's frames (builders in parallel)
-npm run produce -- --week <w> --find "<uri, url or words>"  # a post as the gates see it
-npm run lookup -- --text "<words>"                          # the scraper's exact records
+npm run produce -- --week <w> --check <stage>                # a stage's gates on what is there now
+npm run produce -- --week <w> --check <stage> --task <id>    # only one task's lines
+npm run produce -- --week <w> --find "<uri, url or words>"   # a post as the gates see it
 ```
-
-## Stage by stage: whom you spawn
-
-| stage | spawn | then the tool |
-|---|---|---|
-| 1 scope | 1 reviewer | coverage figures before; checks the review's three answers and verdict |
-| 2 research | one researcher per lane, then 1 reviewer to screen | combines cards into the longlist with reach |
-| 3 brainstorm | 3 writers, independently | merges ideas; every kept card needs ideas from 2 writers |
-| 4 rank | 2 reviewers (first pass), 2 reviewers (synergy and variety), then 1 reviewer for the experiment | reach, weights, shortlist; `experiment.md` checked |
-| 5 repetition (ideas) | 2 reviewers with the ledger; rework writers for repeats | strictest verdict; repeats block; people rules |
-| 6 draft | one writer per shortlisted card and per standing segment | target running time; standing segments; real lines |
-| 7 select | 2 reviewers to score, 2 to judge repetition; redraft writers | selection, plan.json, the inheritance copy |
-| 8 assemble | 1 writer | copies drafts into segments, renders, Whisper, heard text |
-| 9 stage | one builder per segment, then 1 reviewer | frames, cards, unread text, credits, imports |
-| 10 build | nobody | thumbnail, build (preview only for a trial), verify |
-| 11 review | 1 reviewer | scorecard, ledger entry and tracker, DNA edits, the pull request text |
 
 ## The end of a run
 
 The review stage writes `production/pr-title.txt` and `production/pr-body.md`. Nothing is pushed,
-no pull request is opened and nothing is announced unless the owner asks in that conversation. In
-CI, `.github/workflows/weekly-episode.yml` opens the pull request; it never deploys.
-
-Before you report, read the pull request body as the owner will: the selection numbers, the
-repetition verdicts, the people warnings, and every real line beside its original. Anything you
-are unsure of goes at the top of your report, not in a footnote.
+opened or announced unless the owner asks in that conversation; in CI the workflow opens the pull
+request and never deploys. Before you report, read the pull request body as the owner will, and
+`review/cold-viewers.md`. Anything you are unsure of goes at the top of your report.

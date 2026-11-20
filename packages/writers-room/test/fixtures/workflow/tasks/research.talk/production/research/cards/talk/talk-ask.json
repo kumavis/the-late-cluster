@@ -2,19 +2,12 @@
   "id": "talk-ask",
   "lane": "talk",
   "title": "A two-segment talk show, please",
+  "skeletons": [
+    "s-ask"
+  ],
   "summary": "Someone asked for a talk show with only two segments.",
-  "posts": [
-    {
-      "uri": "at://did:plc:trialasker/app.bsky.feed.post/t1",
-      "text": "somebody should make a talk show with only two segments",
-      "handle": "asker.example"
-    }
-  ],
-  "people": [
-    {
-      "handle": "asker.example",
-      "followers": 400
-    }
-  ],
+  "media": {},
+  "showable": "none",
+  "unknown": "none",
   "sensitive": "none"
 }

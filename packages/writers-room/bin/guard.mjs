@@ -1,8 +1,11 @@
 #!/usr/bin/env node
-// A PreToolUse hook for the researcher, writer and builder subagents (.claude/agents/*.md): it
-// refuses a tool call that would read what the show has already done (docs/WORKFLOW.md, "Who may
-// read what"): the ledger, earlier episodes, their builds, frames and previews, and git history.
-// Reviewers are not guarded. The secrets file is refused for every role.
+// A PreToolUse hook for every subagent role (.claude/agents/*.md). For the researcher, writer,
+// builder, sound-editor and viewer it refuses a tool call that would read what the show has already
+// done or what reviewers wrote (docs/WORKFLOW.md, "Who may read what"): the ledger, docs/trials/,
+// every episode's production/review/, earlier episodes, their builds, frames and previews, and git
+// history. A viewer may read only its own set of frames, and has no shell. The auditor may read all
+// of that, but reaches the network only through npm run sources and npm run media. Reviewers are not
+// fenced. The secrets file is refused for every role.
 //
 //   node packages/writers-room/bin/guard.mjs <role>     (hook input as JSON on stdin)
 //
@@ -16,6 +19,9 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs'
 import { isAbsolute, join, relative, resolve } from 'node:path'
 
 const EP = /^\d{3}-[a-z0-9]+(?:-[a-z0-9]+)*$/
+export const GUARDED = ['writer', 'researcher', 'builder', 'sound-editor', 'viewer']
+const DIGEST_PRIVATE = /(^|\/)data\/(?:[^/]+\/)*private(\/|$)/
+const DIGEST_REVIEWERS = /(^|\/)data\/(?:[^/]+\/)*reviewers(\/|$)/
 
 /** episodes in production: production/state.json with a stage not done (or LATE_CLUSTER_EPISODE) */
 export function currentEpisodes(root, env = process.env) {
@@ -38,8 +44,14 @@ export function currentEpisodes(root, env = process.env) {
 function pathProblem(rel, role, current) {
   const p = rel.replace(/^\.\//, '').replace(/\/+$/, '')
   if (p === '.secrets' || p.startsWith('.secrets/') || /(^|\/)\.env(\.|$)/.test(p)) return 'secrets come only from the environment; never read .secrets'
-  if (role === 'reviewer') return null
-  if (p === 'docs/ledger' || p.startsWith('docs/ledger/')) return 'the ledger is for reviewers and the project manager'
+  // a digest's private/ (bios, the bio review) is for auditors; its reviewers/ (stories about the show) for reviewers and auditors
+  if (DIGEST_PRIVATE.test(p) && role !== 'auditor') return "a digest's private/ (bios) is for auditors only"
+  if (DIGEST_REVIEWERS.test(p) && !['auditor', 'reviewer'].includes(role)) return "a digest's reviewers/ (posts about the show) is for reviewers and auditors"
+  if (!GUARDED.includes(role)) return null
+  if (role === 'viewer' && !current.some((c) => p.startsWith(`shots/${c}/_cold/`))) return 'a viewer sees its frames and nothing else'
+  if (p === 'docs/ledger' || p.startsWith('docs/ledger/')) return 'the ledger is for reviewers, auditors and the project manager'
+  if (p === 'docs/trials' || p.startsWith('docs/trials/')) return 'the trials are for the owner, the project manager and reviewers'
+  if (/^episodes\/[^/]+\/production\/review(\/|$)/.test(p)) return "production/review/ holds reviewers' and auditors' files; only what a brief passes on crosses"
   if (p === 'dist/episodes' || p.startsWith('dist/episodes/') || p === 'video' || p.startsWith('video/')) return 'built episodes are what the show has already done'
   const m = p.match(/^(episodes|shots|preview)\/([^/]+)/)
   if (m && EP.test(m[2]) && !current.includes(m[2])) return `${m[1]}/${m[2]} is an earlier episode; work only in ${current.length ? current.map((c) => `episodes/${c}/`).join(', ') : "this episode's folder"} (files carried forward are copied into production/inherited/)`
@@ -61,7 +73,7 @@ export function check(input, { role, root, current }) {
   if (t === 'Read' || t === 'Edit' || t === 'Write' || t === 'NotebookEdit') paths.push(x.file_path ?? x.notebook_path)
   if (t === 'Glob' || t === 'Grep') {
     const r = rel(x.path ?? '.')
-    if (role !== 'reviewer' && searchRoot(r)) return `start the search inside a folder you may read (this episode, docs/bible, a package), not ${r || 'the repository root'}: a search from here walks into earlier episodes and the ledger`
+    if (GUARDED.includes(role) && searchRoot(r)) return `start the search inside a folder you may read (this episode, docs/bible, a package), not ${r || 'the repository root'}: a search from here walks into earlier episodes and the ledger`
     paths.push(x.path ?? '.')
   }
   for (const p of paths.filter(Boolean)) {
@@ -70,11 +82,18 @@ export function check(input, { role, root, current }) {
     const why = pathProblem(r, role, current)
     if (why) return `${r}: ${why}`
   }
+  if ((t === 'WebFetch' || t === 'WebSearch') && role !== 'reviewer') return role === 'auditor' ? 'the auditor reaches the network only through npm run sources and npm run media' : 'no network for this role'
   if (t === 'Bash') {
     const cmd = String(x.command ?? '')
     if (/(^|[\s'"=/])\.secrets\b/.test(cmd)) return 'secrets come only from the environment; never read .secrets'
-    if (role === 'reviewer') return null
-    if (/docs\/ledger/.test(cmd)) return 'the ledger is for reviewers and the project manager'
+    if (role !== 'auditor' && /(^|[\s'"=/])private\//.test(cmd) && /data\//.test(cmd)) return "a digest's private/ (bios) is for auditors only"
+    if (!['auditor', 'reviewer'].includes(role) && /data\/\S*reviewers\//.test(cmd)) return "a digest's reviewers/ (posts about the show) is for reviewers and auditors"
+    if (role === 'auditor' && /\b(curl|wget|nc|ssh|scp|rsync)\b|https?:\/\//.test(cmd)) return 'the auditor reaches the network only through npm run sources and npm run media'
+    if (!GUARDED.includes(role)) return null
+    if (role === 'viewer') return 'a viewer has no shell: look at the frames and write your answer'
+    if (/docs\/ledger/.test(cmd)) return 'the ledger is for reviewers, auditors and the project manager'
+    if (/docs\/trials/.test(cmd)) return 'the trials are for the owner, the project manager and reviewers'
+    if (/production\/review\b/.test(cmd)) return "production/review/ holds reviewers' and auditors' files"
     if (/dist\/episodes|(^|[\s'"])video\//.test(cmd)) return 'built episodes are what the show has already done'
     for (const m of cmd.matchAll(/(?:^|[\s'"=(/])(?:episodes|shots|preview)\/(\d{3}-[a-z0-9-]+)/g)) if (!current.includes(m[1])) return `${m[1]} is an earlier episode; work only in this episode's folder`
     if (/\bgit\s+(show|log\b[^|;&]*(-p\b|--patch)|grep|blame|diff\b[^|;&]*\b(HEAD|origin|main)\b|checkout|restore|stash)/.test(cmd)) return "git history holds earlier episodes; it is not for this role"

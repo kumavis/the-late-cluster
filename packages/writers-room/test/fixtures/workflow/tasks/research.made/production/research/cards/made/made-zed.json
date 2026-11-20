@@ -2,19 +2,12 @@
   "id": "made-zed",
   "lane": "made",
   "title": "A test account says hello",
+  "skeletons": [
+    "s-zed"
+  ],
   "summary": "A five-follower account posted a greeting.",
-  "posts": [
-    {
-      "uri": "at://did:plc:trialzed/app.bsky.feed.post/z1",
-      "text": "hello. I am a test.",
-      "handle": "zed.example"
-    }
-  ],
-  "people": [
-    {
-      "handle": "zed.example",
-      "followers": 5
-    }
-  ],
+  "media": {},
+  "showable": "none",
+  "unknown": "none",
   "sensitive": "a very small account"
 }

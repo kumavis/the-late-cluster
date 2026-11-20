@@ -113,12 +113,12 @@ own.
 | 5 | **shortlist** | 2 reviewers for best joke, synergy and variety; tool combines; then 1 reviewer proposes the experiment | `rank/scores.json`, `rank/shortlist.md`, `experiment.md` | the shortlist exists and the experiment has a measure |
 | 6 | **repetition gate (ideas)** | 2 reviewers with the ledger | `review/repetition-ideas.json` | no shortlisted idea is a repeat |
 | 7 | **draft** | writers in parallel, one segment each | `drafts/<slug>/script.js`, notes and sources | every standing segment has a draft, and seven or eight drafts exist |
-| 8 | **fit** | the fitting tool, then sound editors; writers only for lines that cannot be said | `drafts/<slug>/fit.json`, respellings in the script | every line in every draft is heard, or is marked for a writer and resolved |
-| 9 | **select** | 2 reviewers score; tool combines and applies the caps; **repetition gate (scripts)** by 2 reviewers; 1 auditor refreshes consent over the network | `select/scores.json`, `review/repetition-scripts.json`, `review/consent.md`, `plan.json` | no selected script repeats, no cap is broken, every selected account and post passes the consent refresh, and the rundown fits |
+| 8 | **fit** | the fitting tool, then sound editors; writers only for lines that cannot be said | `drafts/<slug>/fit.json`, respellings in the script | no line in any draft is flagged or cannot be said; a line that is only weak is a warning the sound editor answers |
+| 9 | **select** | 2 reviewers score; tool combines and applies the caps; **repetition gate (scripts)** by 2 reviewers; 1 auditor refreshes consent over the network | `select/scores.json`, `review/repetition-scripts.json`, `review/consent-r<n>.md`, `plan.json` | no selected script repeats, no cap is broken, every selected account and post passes the consent refresh, and the rundown fits |
 | 10 | **assemble** | 1 writer for the order, open, close and joins; 2 reviewers on the lines the writer added; 1 sound editor; tools | final `segments/*/script.js`, `sources.json`, `assembly.md`, audio | scripts validate and render; the added lines pass the repetition gate; the real-people and heard-text gates pass |
 | 11 | **stage** | builders in parallel, one segment each; then 1 auditor on the frames | `segments/*/index.js`, frames, `review/stage.json` | frames render clean; the cards, unread-text and credits gates pass; the auditor passes every segment |
 | 12 | **build** | tools | thumbnail, preview or published build, `review/sources-live.md` | the build and `verify` pass, and every cited post still exists unchanged |
-| 13 | **review** | tool runs the cold-viewer test; then 1 reviewer | `review/cold-viewers.md`, `scorecard.md`, ledger entries, the pull request text | nothing; a send-back is a valid result and routes to the stage that can fix it |
+| 13 | **review** | tool runs the cold-viewer test; then 1 reviewer | `review/cold-viewers.md` (the viewers' frames and answers stay outside `production/`, under `shots/<id>/_cold/`), `scorecard.md`, ledger entries, the pull request text | nothing; a send-back is a valid result and routes to the stage that can fix it |
 
 Then the owner watches the whole episode with sound. Nothing is published without that.
 
@@ -133,8 +133,9 @@ roster and community feeds, and what was excluded and why, in counts.
 An auditor reads it and answers three questions: is this the community the show is about; is
 it wide enough that the episode will not be about the same few people; is anything obviously
 missing. The review has a place for notes to the owner and to research. If the answer is no,
-it names one change to the scraper's configuration that fits the request budget, and the run
-returns here after a builder makes it.
+it names one change to the scraper's configuration that fits the request budget. The tool stops
+there: the project manager has a builder make the change and scrape again, and the run returns
+here.
 
 **Seeds.** The community is carved out from seed accounts, and the seeds are whoever the
 show's own Bluesky account follows, read fresh on every run, together with a small list kept

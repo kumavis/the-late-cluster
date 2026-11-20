@@ -22,3 +22,25 @@ export function experimentProblems(md, label = 'production/experiment.md') {
   if (hit) out.push(`${label} refers to what the show has done ("${hit[0]}"); it goes to writers, so it states only what to try`)
   return out
 }
+
+/**
+ * The experiment's "## Cold-viewer test" section (optional): one line per stretch,
+ * `- <card id | segment id | every segment>: longest silence` or `- <segment id>: <start>-<end> s`.
+ * → { stretches: [{ target, longest: true } | { target, t0, t1 }], problems }
+ */
+export function coldStretches(md) {
+  const m = /^##\s*Cold-viewer test\s*$([\s\S]*?)(?=^##\s|(?![\s\S]))/im.exec(md ?? '')
+  const stretches = []
+  const problems = []
+  if (!m) return { stretches, problems, absent: true }
+  for (const line of m[1].split('\n').map((l) => l.trim()).filter((l) => l.startsWith('- '))) {
+    const x = /^-\s*`?([a-z0-9-]+(?: segment)?|every segment)`?\s*:\s*(.+)$/i.exec(line)
+    const what = x?.[2]?.trim().replace(/\.$/, '')
+    const span = what && /^(\d+(?:\.\d+)?)\s*(?:-|–|to)\s*(\d+(?:\.\d+)?)\s*s?$/.exec(what)
+    if (x && /^longest silence$/i.test(what)) stretches.push({ target: x[1].toLowerCase(), longest: true })
+    else if (x && span && Number(span[2]) > Number(span[1])) stretches.push({ target: x[1].toLowerCase(), t0: Number(span[1]), t1: Number(span[2]) })
+    else problems.push(`production/experiment.md, "## Cold-viewer test": cannot read "${line}"; write \`- <card or segment id, or every segment>: longest silence\` or \`- <segment id>: 12-24 s\``)
+  }
+  if (!stretches.length && !problems.length) problems.push('production/experiment.md: "## Cold-viewer test" lists no stretch')
+  return { stretches, problems, absent: false }
+}

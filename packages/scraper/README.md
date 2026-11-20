@@ -25,7 +25,9 @@ npm run scrape -- --prune-cache         # delete the week's response cache after
 npm run scrape -- --ledger docs/ledger  # where the ledger is (default docs/ledger)
 npm run scrape -- --seeds did:plc:a,did:plc:b   # these seeds only, for a comparison
 npm run scrape -- --membership-only     # the cluster only: membership.json, no posts
-npm run lookup -- --text "pen plotter"  # find exact records in the newest digest
+npm run lookup -- --text "pen plotter"  # find exact records in the newest digest (compact)
+npm run media -- --dir data/weeks/2026-W47 --uri at://...   # fetch a post's pictures to look at
+npm run sources -- check episodes/<id>/production/sources.json [--json]   # the live source check
 npm test                                # unit and pipeline tests, no network
 ```
 
@@ -66,12 +68,21 @@ Written to `data/weeks/<week>/` at the repo root (gitignored), or to `--out`:
 | `posts.jsonl` | every kept post in the window, one JSON object per line, oldest first |
 | `digest.json` | `format: late-cluster-digest/1`: window (with its `source`), run metadata, stats, overview, `sections` (`games`, `built`, `aboutShow`, `newVoices`, `interview`, `performableThreads`), ranked `stories`, `appendices`, `members`, `authors`, `ledger`, `coverage` |
 | `coverage.md` | the coverage report for the scope review; see "Coverage" |
-| `digest.md` | the same for a writer with ten minutes, in this order: the week at a glance; **Community games** (Top Chicken as a segment); **Built this week**; **About the show**; **New voices**; **Interview material**; **Threads you could perform**; the top 15 stories with their best posts quoted and linked (out-of-bounds stories as marked headlines only); then appendices (A most active accounts, B links that circulated, C phrases that spiked, D "X week" declarations, E how it was made) |
+| `digest.md` | the same for a writer with ten minutes, in this order: the week at a glance; **Community games** (Top Chicken as a segment); **Built this week**; **New voices**; **Interview material**; **Threads you could perform**; the top 15 stories with their best unmarked posts quoted and linked (stories left out for consent without headlines; marked posts listed, not quoted); then appendices (A most active accounts, B links that circulated, C phrases that spiked, D "X week" declarations, E how it was made) |
+| `skeletons/` | a card skeleton per story (`<id>.json`), `index.json`, and `by-post.json` (post address to skeleton id); see "Skeletons and lanes" |
+| `lanes/` | `<lane>.json` and `<lane>.md` for `made`, `talk`, `games`, `voices`, `interview`: the skeleton ids each research lane should look at, ranked |
+| `reviewers/` | `about-show.json` and `.md`: posts and stories about the show itself, for reviewers and auditors only (trial 002, finding 11) |
+| `private/` | `profiles.json` (every kept account's profile description and labels as read) and `bio-review.md`: for the auditor only; see "Bios" |
+| `media/` | pictures and video thumbnails fetched by `npm run media`, on request only |
 | `.cache/http/` | raw API responses keyed by URL; see "The response cache" |
 
-Each author in `authors` carries `followers`, `small`, `member`, and from the ledger
-`featuredPrevious` / `featuredEarlier` (`"spoke"`, `"shown"` or null) and `timesFeatured`;
-posts carry `featured` when either is set, and `reach` (see "Reach").
+Each author in `authors` carries `followers`, `small`, `member`, `bot`, `bioReview` (when set),
+and from the ledger `featuredPrevious` / `featuredEarlier` (`"spoke"`, `"shown"` or null) and
+`timesFeatured`; posts carry `featured` when either is set, and `reach` (see "Reach").
+
+`digest.md` has no "About the show" section, and stories about the show are listed in
+`digest.json` only as `{ id, rank, aboutShow: true, movedTo }`: what people said about the
+show is in `reviewers/` (finding 11). `sections.aboutShow` is a pointer with counts.
 
 ### Looking things up
 
@@ -81,13 +92,31 @@ posts carry `featured` when either is set, and `reach` (see "Reach").
 npm run lookup -- --uri at://did:plc:.../app.bsky.feed.post/...   # or --url https://bsky.app/profile/.../post/...
 npm run lookup -- --text "pen plotter"            # posts containing the words
 npm run lookup -- --author cee.wtf                # an account's posts, oldest first
-npm run lookup -- --story s-4781333501            # a story's header and posts
+npm run lookup -- --story s-4781333501            # a story's header and posts (from its skeleton)
 npm run lookup -- --thread https://bsky.app/...   # a thread from its root, in reply order
 npm run lookup -- --dir data/weeks/2026-W47 ...   # a given digest (default: the newest)
+npm run lookup -- --text plotter --fields uri,text,skeleton   # only these fields
+npm run lookup -- --uri at://... --full           # the whole stored record
 ```
 
-It reads `posts.jsonl` and `digest.json`, writes nothing, and prints one JSON record per line
-with the exact text as stored. A record with `redacted: true` had an excluded account's name
+It reads `posts.jsonl`, `digest.json` and `skeletons/`, writes nothing, and prints one
+**compact** JSON record per line, because a long line is paid for at every later step of the
+agent that read it:
+
+```jsonc
+{"uri":"at://...","handle":"samantha.wiki","time":"2026-11-14T20:02:44.143Z","text":"exact text",
+ "counts":[83,10,88,7],            // likes, reposts, replies, quotes
+ "replyTo":"at://...",             // the parent's address, or "hidden"
+ "quote":"at://...",               // the quoted post's address, or "removed"
+ "media":["image (no alt)"],       // each picture or video, and whether it has alt text
+ "marks":["health"],               // sensitive topics and consent reasons, when any
+ "redacted":true,                  // when the consent rules altered the text
+ "skeleton":"s-4781333501"}        // the story it is in
+```
+
+`--fields a,b,c` prints just those fields of the full record (plus `skeleton`); `--full` prints
+the stored record. Posts about the show are not printed (`--about-show` prints them, for
+reviewers). Text is exact as stored. A record with `redacted: true` had an excluded account's name
 replaced with `[opted-out]` (see "Naming an excluded account"): it is not the post's verbatim
 text and is never quotable. A post withheld for being about an excluded account is in neither
 file, so no query finds it. A thread that is one of the performable threads prints that complete
@@ -114,16 +143,19 @@ A post record holds: `uri`, `url` (bsky.app), `authorDid`, `handle`, `displayNam
 `createdAt`, `indexedAt`, `time` (effective time: `createdAt` unless it disagrees with
 `indexedAt` by more than a day), `langs`, `counts` (likes, reposts, replies, quotes),
 `reply` (`root`, `parent`, `hidden`), `quote` (`uri`, `state`), `links` (`url`, `domain`,
-`title`), `imageAlts`, `hasImages`, `hasVideo`, `embedded` (a feed or list card), `tags`,
+`title`), `imageAlts`, `hasImages`, `hasVideo`, `media` (each picture or video: `kind`
+`image` or `video`, `url` (the full-size picture or the video's playlist on Bluesky's public
+CDN), `thumb`, `alt`, `hasAlt`), `embedded` (a feed or list card), `tags`,
 `labels`, `sources` (how we found it: `author`, `context`, `thread`, `quoted`, `search`,
 `feed`), `member`, `memberReposts` where members reposted it, `authorFollowers` and
 `smallAccount` (under `safety.smallAccountFollowers`, 300), `guest` for a recurring guest,
-`sensitive` (the out-of-bounds topics it matched), and, when the consent rules changed its
-text, `redacted: true` with `outOfBounds: { topics: ["redacted"], rule: "R11" }` (the field the
+`sensitive` (the out-of-bounds topics it matched), `consent` (consent reasons, see "Marks"),
+`aboutShow` (for reviewers only), and, when the consent rules changed its text, `redacted: true` with `outOfBounds: { topics: ["redacted"], rule: "R11" }` (the field the
 writers' room gates refuse as a source). Every summary of such a post elsewhere in the digest
 (a brief, a quoted post, a reply's parent, a winning post) carries the same two fields. Story posts also carry `inReplyTo` (the
 parent: handle, text, URL) and `quoted`. No avatars, images, video, profile descriptions, or
-follower lists; follower *counts* only.
+follower lists; follower *counts* only. Pictures and videos are kept as addresses; the scrape
+never downloads them.
 
 `authors` in `digest.json` maps every author who appears to `{ handle, displayName,
 followers, small, member, guest }`; `members` lists the cluster with the same fields.
@@ -142,11 +174,167 @@ A story in `digest.json`:
   "stats": { "posts": 104, "authors": 31, "members": 28, "engagement": 2300, "memberReposts": 12, "quotePosts": 26, "days": ["2026-11-09", ...] },
   "links": [{ "url": "...", "title": "...", "members": 4, "isNewDomain": false, "buildHost": true, "ownDomain": false, "built": true }],
   "phrases": ["chimera"],
-  "outOfBounds": null,             // or { "topics": ["health"], "counts": { "health": 3 } }
+  "outOfBounds": null,             // consent only: { "rule": "R11", "reasons": [...] }; see "Marks"
+  "sensitivity": { "topics": ["health"], "counts": { "health": 3 }, "postsMarked": 3, "leadMarked": false, "hint": [] },
+  "consentMarked": 0,              // posts in the story with a consent mark
   "context": [],                   // the thread root, when it predates the window
   "posts": [ /* post records plus metrics: engagement, baseline, lift, score; and quoted */ ]
 }
 ```
+
+## Skeletons and lanes
+
+Workflow v3, stage 2: the scraper does the copying (trial 002, findings 7, 8, 10, 11, 12).
+Every story in the window gets a **card skeleton**, and each research lane gets a **slice**: the
+skeleton ids it should look at, ranked, one line each. A researcher chooses skeletons, merges
+those that are one story, and adds prose; nobody retypes a post. A story is written once,
+however many lanes it suits. `src/skeletons.js`; config `config/lanes.json`. These shapes are
+what the pipeline reads; a change to one is a change to this section.
+
+**`skeletons/index.json`** (`late-cluster-skeletons/1`), one skeleton per line:
+
+```jsonc
+{ "format": "late-cluster-skeletons/1", "window": { "label", "start", "end" },
+  "counts": { "stories", "written", "excluded", "noMember", "aboutShowForReviewers", "posts", "postsMarked", "byLane": {} },
+  "lanes": ["lanes/made.json", "..."],
+  "skeletons": [
+    { "id": "s-4781333501", "rank": 1, "kind": "thread", "headline": "first line of the lead post",
+      "posts": 148, "members": 30, "authors": 49, "reach": 1518, "lanes": ["made", "talk"],
+      "postsMarked": 2, "leadMarked": false, "consentMarked": 7, "excluded": false, "media": 11,
+      "file": "skeletons/s-4781333501.json" } ] }
+```
+
+**`skeletons/<id>.json`** (`late-cluster-skeleton/1`), the header indented and one post per line:
+
+```jsonc
+{ "format": "late-cluster-skeleton/1", "id", "rank", "window", "kind",
+  "headline": "...",                         // null when the story is excluded
+  "lanes": [{ "lane": "made", "why": "a video by @someone" }],
+  "makers": [{ "did", "handle", "evidence": ["a video"], "posts": ["at://..."] }],   // made stories only
+  "reason": [], "stats": { "posts", "authors", "members", "days", "quotePosts", "memberReposts" },
+  "reach": { "score", "likes", "reposts", "quotes", "replies", "participants", "formula", "note" },
+  "marks": { "postsMarked", "leadMarked", "topics": { "health": 2 }, "consentMarked", "leadConsent", "hint": [] },
+  "excluded": null,                          // or { "rule": "R11", "reasons": [] }: then posts is []
+  "links": [{ "url", "title", "domain", "members", "built" }], "phrases": [],
+  "omitted": { "aboutShow": 3 },             // when posts about the show were taken out
+  "context": [],                             // the thread root, when it predates the window
+  "posts": [] }                              // oldest first, each as below
+```
+
+A **post** in a skeleton (the same fields `posts.jsonl` uses for marks):
+
+```jsonc
+{ "uri", "url", "handle", "time", "text": "exact", "hasText": true,
+  "author": { "did", "handle", "displayName", "followers", "member", "small", "bot",
+              "featuredPrevious", "featuredEarlier", "timesFeatured", "bioReview": true },
+  "counts": { "likes", "reposts", "replies", "quotes" }, "reach": { "score", "participants" },
+  "replyTo": { "uri", "handle", "inStory": true },           // the parent is in this skeleton
+          // or { "uri", "url", "handle", "displayName", "text", "time", "inStory": false, "author", "media", "sensitive", "consent" }
+          // or { "hidden": true, "note" }, or null
+  "root": "at://...",                                         // when the root is not the parent
+  "quoted": null,                                             // as replyTo with "state": "ok", or { "state": "removed", "note" }
+  "links": [], "media": [{ "kind": "image", "url", "thumb", "alt": null, "hasAlt": false }],
+  "embedded": {}, "redacted": true,
+  "sensitive": ["health"], "consent": ["asks not to be quoted"] }   // only when marked
+```
+
+Optional fields are left out when empty. A post with a picture or video and no text is a valid
+skeleton post (`hasText: false`, finding 10); `npm run media` fetches what it shows.
+`skeletons/by-post.json` maps every post address in a skeleton to its skeleton id, for tools.
+
+**Lane hints.** `made`: a member made something and showed it: their own build in Built this
+week, a link to their own site, a built link they say they made, a video, or a picture or link
+they say they made (`lanes.json` `made.patterns`); sharing someone else's repository is not
+making it. `talk`: at least 4 posts from at least 3 members, or a spiked phrase. `games`: a game
+account's posts, a winning post, or talk of scores, records and bets. Stories the consent rules
+leave out are in no lane.
+
+**`lanes/<lane>.json`** (`late-cluster-lane/1`) and a short `lanes/<lane>.md`:
+
+```jsonc
+{ "format": "late-cluster-lane/1", "lane": "made", "window", "rule": "how this lane is ranked",
+  "skeletons": ["s-..."],                   // every skeleton id the lane points at, ranked, once each
+  "entries": [{ "rank": 1, "id": "s-...", "line": "headline — why; 75 posts, 16 members, reach 801", "score": 3.2 }] }
+```
+
+- `made`, `talk`, `games`: one entry per skeleton.
+- `games` adds `games`: per game the `standings` (each `{ time, likes, winner, mayName, why,
+  winningPost: { uri, url, skeleton, mayQuote, marks }, resultPost }`; an excluded winner is
+  `{ excluded: true }` with no post), the `record` (`mayName`), the `leaderboard` (an entry has
+  `mayName` only for the record holder and the window's winners: R7 names the winner of the
+  moment), history, participation and streaks.
+- `voices`: one entry per person, `{ rank, did, handle, displayName, followers, small,
+  postsInWindow, strength, line, posts: [{ id, uri, score, line }] }`. Members the show has never
+  featured; each unmarked post scores `ln(1 + engagement) + 1.2 × lift − 1.5 × log10(followers +
+  10)`, so a small account's good day can lead. Left out: bots, accounts over 3,000 followers,
+  marked posts, and anything in a story the consent rules leave out.
+- `interview`: one entry per candidate, `{ rank, did, handle, displayName, followers, small,
+  featuredEarlier, timesFeatured, line, made: [{ id, asked, line }], pairs: [{ skeleton,
+  aboutMade, kind, question: { uri, url, handle, displayName, text, time, member, followers,
+  small }, answer: { uri, url, text, time, counts } }] }`. Ranked by having made something and
+  been asked about it in public (finding 8): pairs whose question replies to, quotes or sits
+  under the post that shows the made thing, then how many such pairs, from how many people,
+  about how many things; then members with at least three usable pairs of any kind. Inside a
+  made story, a reply to the maker that the maker answered counts as asking (`kind: "reply to
+  the maker"`). **Every** usable pair is given, oldest first. Nobody who appeared in the
+  previous aired episode; no bots.
+
+## Marks
+
+Findings 7 and 37: a keyword marks the post it is in, not its story.
+
+- **`sensitive`** on a post: the R10 topics its text, alt text, link titles or quoted text
+  matched. The story carries `sensitivity` (topics with counts, `postsMarked`, `leadMarked`, and
+  the old story-level `hint`), and the rest of the story stays usable. A marked post is listed in
+  `digest.md`, never quoted, and a story whose lead is marked is listed by its mark.
+- **`consent`** on a post: `asks not to be quoted` (the `consentTopics` in `safety.json`), `its
+  author asked not to be quoted in this story` (that author's other posts in the story),
+  `redacted` (it names an excluded account), `replies to an excluded account`.
+- **A story is left out whole only for consent** (`outOfBounds: { rule: "R11", reasons }`): its
+  thread starts with an excluded account's post, or its lead post or thread root carries a
+  consent mark (a lead that asks not to be quoted, a redacted lead). Its skeleton keeps the
+  counts and no posts or headline; `digest.md` lists it as **LEFT OUT (consent)**. A request not
+  to be quoted anywhere else in a story covers its author's posts there, not the story.
+- `overview.outOfBounds` lists the consent exclusions in the top 30; `overview.sensitive` the
+  stories with marked posts.
+
+## Media
+
+`npm run media -- --dir <digest folder> --uri <at:// or bsky.app address> [--json]` fetches the
+post's pictures at full size, or its video's thumbnail, from Bluesky's public CDN
+(`cdn.bsky.app`, `video.bsky.app`; no other host) into `<digest folder>/media/` (gitignored,
+under `/data/`), and prints each file's path with its alt text or "no alt text" (finding 9).
+A file already there is not fetched again. It fetches only posts that are in the digest, and
+refuses a redacted post, a post with a consent mark, a post about the show, and a post inside
+a story the consent rules leave out (exit 1). The User-Agent is the scraper's generic one.
+
+## The live source check
+
+`npm run sources -- check <path/to/sources.json> [--dir <digest folder>] [--out <file.md>] [--json]`
+(workflow stages 9 and 12; finding 35). Over the network, with the scraper's generic client
+name and no cache, it reads what an episode's `sources.json` cites: `posts[].uri` with `text`
+and `cuts`, `posts[].replyTo` and `quoted`, `lines[].post` and `context` with `contextText`,
+`numbers[].post`, and `accounts[]` plus the author of every cited post. Then:
+
+- every cited post still exists (`getPosts`), with the same text as stored in `sources.json`
+  and in the digest; a stored text or cut with an ellipsis is a **marked cut** and must match
+  the live text where it overlaps, its parts in order;
+- every account as it is now (`getProfiles`): handle and display name against what was stored,
+  labels (`!no-unauthenticated` is an opt-out), and the bio read for opt-outs, direct and
+  indirect, and for wording an auditor should judge (only the matched words are printed);
+- its pinned post, and its posts since the digest's window ended (two pages of its feed), read
+  for requests not to be quoted, kept or used (`consentTopics` and the indirect opt-out
+  patterns) and for posts about the show (with any request to be left out);
+- an account on the opt-out list is never requested and never named: it is reported by its
+  place in the file.
+
+Exit 0 when clean, 1 when something needs a person, 2 for bad arguments. `--json` prints one
+line, `late-cluster-sources-check/1`: `{ checkedAt, since, clean, counts: { posts, accounts,
+issues, requests }, issues: [{ kind, where, what }], posts: [{ uri, where, status }],
+accounts: [{ did, handle, where, status, checks }], notes }`. Issue kinds: `post gone`, `text
+changed`, `cut does not match`, `opt-out`, `bio review`, `handle changed`, `display name
+changed`, `pinned post asks`, `post asks`, `about the show`, `asks the show`, `account gone`.
+For the trial's `sources.json` (48 posts, 16 accounts) it made 21 requests.
 
 ## Who is "the cluster"
 
@@ -192,6 +380,11 @@ Shipped: followed by 2 seeds and talked with one; followed by 3 seeds; followed 
 3 interactions; 6 interactions; on a list; **on a roster and followed by a seed; on a roster
 and talked with a seed; on a roster and in the community feed**; search rules; twice in the
 feed and followed by a seed.
+
+**The request planner** counts a page the response cache already holds as free (trial 002,
+finding 3): every member's baseline walks as deep as the cache goes, and the budget then buys
+the same extra depth for everyone it can (`api.planPages`). Widening the cluster on a warm
+cache no longer thins every member's history; `run.pagesPerMember` records the plan.
 
 **Cap** (`maxMembers`, 250): members are ranked by
 `3·seedFollows + 1·min(interactions, 12) + 4·roster + 2·min(termPosts, 3) + 1·min(feedPosts, 3) + 10·listed`,
@@ -343,11 +536,11 @@ needs. Where each item is:
 | per author: follower count, featured before | `authors`, `members`, and `authorFollowers` / `smallAccount` / `featured` on posts; `digest.md` writes "(**small account**, 43 followers)" next to every name |
 | thread context for anything quotable | `inReplyTo` on story posts; the thread root as `context`; stories list the strongest replies |
 | opt-outs applied, plus bios and posts asking not to be quoted, and posts to the show's account | see "Consent and safety"; requests to the show are listed in About the show |
-| sensitivity flags | `outOfBounds` on stories, builds and phrases; `sensitive` on posts |
+| sensitivity flags | `sensitive` and `consent` on posts; `sensitivity` (a hint) and `outOfBounds` (consent only) on stories; `outOfBounds` on builds and phrases; see "Marks" |
 | things built this week | `sections.built`, "Built this week" |
 | recurring phrases, "X week" declarations, first posts of anything that spread | `appendices.phrases` (with `first`), `appendices.weeks` |
-| reactions to the show | `sections.aboutShow`, "About the show" |
-| new voices, interview candidates | `sections.newVoices`, `sections.interview` |
+| reactions to the show | `reviewers/about-show.json`, for reviewers only |
+| new voices, interview candidates | `lanes/voices.json`, `lanes/interview.json`; also `sections.newVoices`, `sections.interview` |
 | community games and metrics | `sections.games`, "Community games": Top Chicken is configured; the Simcluster Channel's forecasts and prediction markets have no known public account yet, and are one entry each in `config/games.json` once they do |
 
 ### Community games
@@ -414,9 +607,13 @@ answered counts for more than likes.
 
 ### About the show
 
-Posts that name the show (`show.json` `phrases`: "the late cluster", "Larry Nx", ...), link it
+For reviewers only (trial 002, finding 11): written to `reviewers/about-show.json` and `.md`,
+never to `digest.md`, the skeletons or the lane slices. Posts that name the show (`show.json` `phrases`: "the late cluster", "Larry Nx", ...), link it
 (`linkPatterns`), or mention its account (`handles`, empty until the bot account exists),
-plus replies under and quotes of those posts. Each carries why it matched, a **possible
+plus replies under and quotes of those posts, and replies under those, all the way down. A story
+whose lead or root is about the show, or half of whose posts are, is a story about the show;
+other threads joined to it by quotes or links are still written as a skeleton, without the
+show's posts. Each carries why it matched, a **possible
 correction** flag (`safety.json` `showCorrectionPatterns`: "that's not what I said", "never
 said that", "wasn't me", "misquoted", ... and no longer "actually" or "I didn't write", which
 fired on praise), and **the lines it quotes** (`showQuotePattern`), so a viewer quoting
@@ -488,8 +685,11 @@ Built into the code path, not left to the reader (`src/consent.js`):
   consent", any "DNI", ...), is treated exactly like the opt-out list. The patterns err towards
   excluding: "Minors DNI" or "No AI" in an artist's bio also excludes the account. Members
   are checked before their posts are fetched; every other author and mentioned account is
-  checked before the digest is written. The description itself is read and discarded, never
-  stored. On W46: 47 accounts, 78 posts; none of them was a member.
+  checked before the digest is written. On W46: 47 accounts, 78 posts; none of them was a member.
+- **Indirect opt-outs** (`selfDeclaredOptOut.indirectPatterns`): a bio that says the same
+  another way (posts described as temporary or meant to disappear, "not to be quoted", "ask
+  before you screenshot") excludes the account exactly the same, counted apart
+  (`stats.excluded.selfDeclaredIndirect`). See "Bios".
 - **Requests to the show**: see "About the show".
 - **Naming an excluded account**: see below. Applies to every kind of exclusion above.
 - **Content labels**: posts labelled `porn`, `sexual`, `nudity`, `graphic-media`, `gore`,
@@ -502,15 +702,17 @@ Built into the code path, not left to the reader (`src/consent.js`):
   text. `combinations` catch what no single word gives away: a post that asks for or makes a
   pastiche, stereotype, caricature or accent **and** names a nation, region or people is
   `identity` (the trial missed a request for "a pastiche of clips celebrating the newfie
-  lifestyle"); "Nick Land" and neoreaction terms are `partisan politics`. A winning Top Chicken
-  post inside a flagged story carries the story's flag. A story is flagged when its lead or thread root matches, when at least `minShare`
-  (20%) of its member posts match, or when `minPosts` (3) posts match one topic. Flagged
-  stories are kept and ranked, so the writer knows the week's big story was one the show
-  leaves alone, but `digest.md` shows them as **OUT OF BOUNDS (topic)** headlines with no
-  quoted posts, and never in "The week at a glance". Flagged posts are left out of the guest
-  sections, flagged builds out of Built this week, and flagged phrases show no example. **This
-  is a coarse hint.** It misses things and flags innocent posts ("toxic solar panels" did,
-  before "toxic" was removed); the writer and the reviewer still apply R10 themselves.
+  lifestyle"); "Nick Land" and neoreaction terms are `partisan politics`. A match marks **the
+  post** (`sensitive`), and the mark stays on that post: the rest of its story is usable (see
+  "Marks"). A story carries a `sensitivity` hint when its lead or thread root matches, when at
+  least `minShare` (20%) of its member posts match, or when `minPosts` (3) posts match one topic;
+  the hint never takes the story's other posts with it. `digest.md` lists a marked post without
+  quoting it, lists a story whose lead is marked by its mark, and keeps such stories out of "The
+  week at a glance". Marked posts are left out of the guest sections, the voices and interview
+  slices, and performable threads; marked builds are left out of Built this week, and marked
+  phrases show no example. **This is a coarse hint.** It misses things and flags innocent
+  posts ("toxic solar panels" did, before "toxic" was removed); the auditor still applies R10
+  post by post.
 - **Counts, not content**: `stats.excluded` in `digest.json` and appendix E in `digest.md`
   record how many accounts and posts were excluded and why, and nothing else.
 - **Data minimisation**: see the post record above. Members are listed by DID, handle and
@@ -518,6 +720,21 @@ Built into the code path, not left to the reader (`src/consent.js`):
 - **Privacy of requests**: the default User-Agent is `weekly-digest-scraper/0.1`. No request
   carries the project's name, the show's name, a person's name or contact details. Config
   validation refuses a User-Agent naming the show.
+
+### Bios
+
+Trial 002, findings 9 and 36. Every profile description and set of labels the run reads is kept
+in the run's private data, `private/profiles.json` (`late-cluster-private-profiles/1`: `{ counts,
+accounts: [{ did, handle, displayName, member, description, labels, pinnedPost, bioReview }] }`,
+for members and every author in the output, never for an excluded account). It is for the
+auditor only: no description is copied into a file another role reads. The bio pass reads each
+for opt-outs: a clear one, direct or indirect, excludes the account like any other consent
+exclusion, counted and not named. Wording that might be one (`safety.json` `bioReview.patterns`:
+temporary, delete, consent, permission, "no ... screenshots", "if I detach your quote", ...)
+marks the account `bioReview` in `authors` and on its skeleton posts, with the phrase that
+matched in `private/profiles.json` and `private/bio-review.md`, for an auditor to judge. Counts
+are in `stats.bios`. On the trial window: 6,267 profiles read; 59 accounts excluded by a direct
+opt-out, 2 by an indirect one; 22 accounts in the output marked for review, 3 of them members.
 
 ### Naming an excluded account
 
@@ -630,7 +847,13 @@ makes a parent a wish), `reach.weights`, and `weekDeclarations` (`maxN`, `top`).
 `config/client.json`: `host`, `userAgent`, `concurrency`, `minIntervalMs`, `maxRequests`,
 `maxRetries`, `backoffBaseMs`, `timeoutMs`, `pruneCacheAfterRun`.
 
-`config/safety.json`: `smallAccountFollowers`, `selfDeclaredOptOut.patterns`,
+`config/lanes.json`: `made.patterns` and `limit`; `talk` (`minPosts`, `minMembers`, `limit`);
+`games` (`patterns`, `limit`); `voices` (`maxFollowers`, `audienceWeight`, `minPosts`,
+`postsEach`, `limit`); `interview` (`minPairs`, `limit`); `bots` (`accounts`, `bioPatterns`);
+`lineChars`. See "Skeletons and lanes".
+
+`config/safety.json`: `smallAccountFollowers`, `selfDeclaredOptOut.patterns` and
+`indirectPatterns`, `bioReview.patterns`, `sensitivity.consentTopics`,
 `showOptOutPatterns.patterns`, `showCorrectionPatterns`, `sensitivity` (`minShare`,
 `minPosts`, `topics`, `combinations`), `showQuotePattern`, `excludedMentions` (`minOwnWords`,
 `minNameChars`, `minLooseNameChars`, `commonNameAuthors`, `aboutPatterns`; see "Naming an
@@ -684,7 +907,8 @@ Does not work:
 ## Limits and next steps
 
 - The baseline is a sample: 3 pages per member (about 300 items), so for the most prolific
-  accounts it covers days, not weeks. Phrase rates are per post to compensate, and
+  accounts it covers days, not weeks. Pages already in the cache are free, so only new members
+  cost requests on a re-run. Phrase rates are per post to compensate, and
   `posts.jsonl` from earlier weeks is used when present. Running weekly makes this better on
   its own.
 - Engagement counts are as of the scrape, not the end of the week.
@@ -700,9 +924,9 @@ Does not work:
 - The cap is the binding limit once the show's account follows a dozen or more people: on
   the trial window 913 accounts qualified and the cap, then 120, cut 793. The coverage report gives
   the cost of raising it (about 3.7 author-feed requests per member with a cold cache).
-- Interview candidates are ranked by how many good pairs they have, which favours prolific
-  posters who reply to questions all day, often about outside news. Reviewers should weigh
-  them; the sensitivity flags catch only part of the news talk.
+- The digest's `sections.interview` still ranks by how many good pairs a member has, which
+  favours prolific posters in arguments; the interview lane slice ranks by having made something
+  and been asked about it instead. A video posted inside an argument still counts as made.
 - "Who came close" on a Top Chicken day is not knowable: the game's posts name only the
   winner. The all-time leaderboard is the only list of near-winners.
 - The checker's comparison counts only whether the accounts it names are members; scoring our
@@ -712,6 +936,9 @@ Does not work:
   the whole thread, which cost W46 the golem-grocer thread.
 - A build whose wish was posted before the window is found only if the wish was fetched
   (a member's baseline, or thread context).
+- Skeletons hold what the digest holds: a post the scrape never fetched (an outsider's reply
+  outside the expanded threads, a member who left the cluster since) is in no skeleton.
+- The media command fetches a video's thumbnail only, not frames.
 - Next: an authenticated mode behind `SCRAPER_BSKY_SESSION` (search on the main host,
   bigger pages), opt-out requests read from the show's account (see the bot), and a
   `sources.json` writer so an episode can record which story ids it used.

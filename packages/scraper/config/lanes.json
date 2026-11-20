@@ -1,0 +1,69 @@
+{
+  "$comment": "Card skeletons and lane slices (README 'Skeletons and lanes'). Patterns are case-insensitive JavaScript regexes. A story can suit several lanes; it is written once and listed in each lane's slice.",
+  "made": {
+    "$comment": "A story suits 'made' when a link in it counts as built, it is in Built this week, or a member's post in it has a video, or has a picture or text matching a pattern here. Makers are the members whose posts carry that evidence.",
+    "patterns": [
+      "\\bi (just )?(made|built|wrote|drew|painted|coded|rendered|animated|composed|recorded|printed|sewed|knitted|baked|plotted|vibe[- ]?coded|trained|designed|shipped|launched|released|finished|updated)\\b",
+      "\\b(made|built|wrote|drew|coded|rendered|animated) (a|an|this|it|some|my|the)\\b",
+      "\\bnew (song|track|game|tool|app|site|toy|demo|video|drawing|version|feature|build)\\b",
+      "\\b(demo|prototype|work in progress|wip)\\b",
+      "\\b(play|try) it\\b",
+      "\\b(shipped|launched)\\b",
+      "\\bworking on\\b",
+      "\\bhere'?s (a|the|my) (sample|demo|render|video|version)\\b"
+    ],
+    "limit": 60
+  },
+  "talk": {
+    "$comment": "A conversation or running bit: at least minPosts posts from at least minMembers members, or a spiked phrase.",
+    "minPosts": 4,
+    "minMembers": 3,
+    "limit": 60
+  },
+  "games": {
+    "$comment": "Stories with a game account's posts, a winning post, or words about scores, records and bets.",
+    "patterns": [
+      "\\btop ?chicken\\b",
+      "#topchicken",
+      "\\bhigh ?score\\b",
+      "\\bleaderboard\\b",
+      "\\bspeed ?run\\w*\\b",
+      "\\bpersonal best\\b",
+      "\\bworld record\\b",
+      "\\bnew record\\b",
+      "\\bmy score\\b",
+      "\\bprediction market\\w*\\b",
+      "\\bmanifold\\b",
+      "\\bplay[- ]money\\b",
+      "\\b(wordle|connections|strands|minesweeper|tetris)\\b"
+    ],
+    "limit": 30
+  },
+  "voices": {
+    "$comment": "Members the show has never featured. Each unmarked post scores ln(1 + engagement) + 1.2 x lift over the author's usual - audienceWeight x log10(followers + 10); a voice is the sum of its three best. Bots, accounts over maxFollowers, and posts inside stories the consent rules leave out are not listed.",
+    "maxFollowers": 3000,
+    "minPosts": 1,
+    "postsEach": 3,
+    "limit": 50,
+    "audienceWeight": 1.5
+  },
+  "interview": {
+    "$comment": "Ranked by having made something in the window and been asked about it in public: usable question-and-answer pairs whose question replies to, quotes or sits under the post that shows the made thing; then by how many such pairs, from how many different people, about how many made things. All of a candidate's usable pairs are given. minPairs applies to candidates with none about a made thing.",
+    "minPairs": 3,
+    "limit": 20
+  },
+  "bots": {
+    "$comment": "An account is a bot when it carries the self-label 'bot', is a configured game account, is listed here (DIDs), or its profile description matches a pattern here.",
+    "accounts": [],
+    "bioPatterns": [
+      "\\bi'?m an? (\\w+ )?bot\\b",
+      "\\b(this is|i am) an? (\\w+ )?bot\\b",
+      "^\\s*an? (\\w+ )?bot\\b",
+      "\\bbot (account|run by|operated by|made by|by @)",
+      "\\b(automated|automatic) (account|posts?|poster)\\b",
+      "\\bposts? automatically\\b",
+      "🤖"
+    ]
+  },
+  "lineChars": 90
+}

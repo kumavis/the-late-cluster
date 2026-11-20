@@ -107,6 +107,10 @@ function addPost(d, p, story) {
     small: p.smallAccount ?? prev?.small,
     outOfBounds: prev?.outOfBounds || Boolean(p.outOfBounds) || Boolean(story?.outOfBounds && (Array.isArray(story.outOfBounds) ? story.outOfBounds.length : true)) || (story?.id ? d.outOfBoundsStories.has(story.id) : false),
     story: prev?.story ?? story?.id ?? null,
+    // the scraper's sensitivity mark on this post (a marked post is refused; the rest of its story stays usable)
+    sensitive: p.sensitive ?? p.sensitivity ?? prev?.sensitive ?? null,
+    consent: Array.isArray(p.consent) ? p.consent : prev?.consent ?? null,
+    aboutShow: p.aboutShow === true || prev?.aboutShow === true,
   }
   if (typeof post.parent === 'object' && post.parent) post.parent = post.parent.uri ?? null
   if (typeof post.root === 'object' && post.root) post.root = post.root.uri ?? null

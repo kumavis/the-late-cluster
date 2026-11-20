@@ -3,16 +3,17 @@
 // the repetition verdicts, the people warnings, each real line beside its staged setup and its
 // original occasion, the real accounts used, the reviewer's scorecard and ledger entry, any edit to
 // the craft bible, how to watch, and the reviewer's checklist from chapter 9.
-import { existsSync, readFileSync, writeFileSync } from 'node:fs'
+import { existsSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
 import { reviewerChecklist } from './bible.mjs'
 import { bibleChanges, parseAmendments } from './dna.mjs'
 import { normHandle } from './digest.mjs'
 import { realLines } from './gates/write.mjs'
-import { STAGES } from './stages.mjs'
+import { STAGES } from './stage-names.mjs'
 
 const readIf = (f) => (existsSync(f) ? readFileSync(f, 'utf8') : null)
 const jsonIf = (f) => (existsSync(f) ? JSON.parse(readFileSync(f, 'utf8')) : null)
+const readdirIf = (d) => (existsSync(d) ? readdirSync(d).filter((f) => f.endsWith('.json')).sort() : [])
 const cell = (s) => String(s ?? '').replace(/\|/g, '\\|').replace(/\n/g, ' ')
 
 export const prTitle = ({ meta, week }) => `Episode ${String(meta.number).padStart(3, '0')}: ${meta.title} (${week})`
@@ -34,19 +35,24 @@ export function prBody({ ctx, state, branch }) {
     P('## Why these segments', '', `Each draft scored 0 to 10 by ${ctx.config.parallel.reviewers} reviewers; weights ${Object.entries(sel.weights).map(([k, w]) => `${k} ${w}`).join(', ')}; filled toward ${sel.targetSeconds} s, ceiling ${sel.maxSeconds} s.`, '')
     P('| draft | selected | score | funny | interesting | television | variety | seconds | why |', '|---|---|---|---|---|---|---|---|---|')
     for (const r of sel.drafts) P(`| ${r.slug}${r.standing ? ' (standing)' : ''} | ${r.selected ? '✓' : ''} | ${r.score} | ${r.funny} | ${r.interesting} | ${r.television} | ${r.variety} | ${r.seconds} | ${cell(r.why)} |`)
-    P('', '<details><summary>Reviewers\' reasons</summary>', '', ...sel.drafts.flatMap((r) => r.reviewers.map((x) => `- ${r.slug}, ${x.reviewer}: ${cell(x.reason)}`)), '', '</details>', '')
+    const reasons = readdirIf(join(prod, 'review/select')).map((f) => jsonIf(join(prod, 'review/select', f))).filter(Boolean)
+    P('', '<details><summary>Reviewers\' reasons</summary>', '', ...reasons.flatMap((r) => Object.entries(r.drafts ?? {}).map(([slug, x]) => `- ${slug}, ${r.reviewer}: ${cell(x.reason)}`)), '', '</details>', '')
   }
+  const cards = jsonIf(join(prod, 'rank/cards.json'))
   const rank = jsonIf(join(prod, 'rank/scores.json'))
-  if (rank) {
-    P('## How the material was ranked', '', `Reach stands in for how many people saw it (Bluesky does not publish views). Weights: ${Object.entries(rank.weights).map(([k, w]) => `${k} ${w}`).join(', ')}.`, '')
-    P('| card | reach | interest | best joke | synergy | variety | final | shortlisted |', '|---|---|---|---|---|---|---|---|')
-    for (const r of rank.final) P(`| ${r.card} | ${r.reach} | ${r.interest} | ${r.bestJoke} | ${r.synergy} | ${r.variety} | ${r.final} | ${r.shortlisted ? '✓' : ''} |`)
+  if (cards && rank) {
+    P('## How the material was ranked', '', `Reach stands in for how many people saw it (Bluesky does not publish views). Cards: ${Object.entries(cards.weights).map(([k, w]) => `${k} ${w}`).join(', ')}; shortlist: ${Object.entries(rank.weights).map(([k, w]) => `${k} ${w}`).join(', ')}.`, '')
+    P('| card | reach | interest | rank | best joke | synergy | variety | final | shortlisted |', '|---|---|---|---|---|---|---|---|---|')
+    for (const r of rank.cards) {
+      const c = cards.cards.find((x) => x.card === r.card) ?? {}
+      P(`| ${r.card}${r.interview ? ' (interview)' : ''} | ${c.reach ?? ''} | ${c.interest ?? ''} | ${r.rank} | ${r.bestJoke} | ${r.synergy} | ${r.variety} | ${r.final} | ${r.shortlisted ? '✓' : ''} |`)
+    }
     P('')
   }
 
   // repetition and people
   P('## Repetition and people', '')
-  for (const [label, file] of [['ideas', 'review/repetition-ideas.json'], ['scripts', 'review/repetition-scripts.json']]) {
+  for (const [label, file] of [['ideas', 'review/repetition-ideas.json'], ['scripts', 'review/repetition-scripts.json'], ['lines added at assembly', 'review/repetition-assembly.json']]) {
     const j = jsonIf(join(prod, file))
     if (!j) continue
     const v = Object.values(j.verdicts ?? {})

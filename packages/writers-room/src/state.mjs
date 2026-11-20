@@ -1,10 +1,11 @@
 // production/state.json: where a run is. One entry per stage of docs/WORKFLOW.md with its status,
-// the gate results and the stage's data (exclusions, inherited files, a send-back). It also
+// the gate results and the stage's data (exclusions, inherited files, a send-back's route and the
+// file it came from). It carries no reviewer's or auditor's prose: those stay in production/review/. It also
 // remembers the run's settings (runner, digest, bible, ledger, limits, preview-only) so a resume
 // needs only --week (trial finding 12). No timestamps.
 import { existsSync } from 'node:fs'
 import { readJson, writeJson } from './repo.mjs'
-import { STAGES } from './stages.mjs'
+import { STAGES } from './stage-names.mjs'
 
 export { STAGES }
 /** pending → waiting (subagents have briefs) → done | failed (a gate) | sent-back (a review routed it elsewhere) */
@@ -12,7 +13,7 @@ export const STATUSES = ['pending', 'waiting', 'failed', 'sent-back', 'done']
 
 export function newState({ week, episode, digest, limits, runner = 'manual' }) {
   return {
-    format: 'late-cluster-production/2',
+    format: 'late-cluster-production/3',
     week,
     episode,
     digest,
@@ -26,7 +27,7 @@ export function newState({ week, episode, digest, limits, runner = 'manual' }) {
 export function loadState(file) {
   if (!existsSync(file)) return null
   const s = readJson(file)
-  if (s.format !== 'late-cluster-production/2') return null // a run of the first protocol: start over
+  if (s.format !== 'late-cluster-production/3') return null // a run of an earlier protocol: start over
   for (const name of STAGES) s.stages[name] ??= { status: 'pending' }
   return s
 }

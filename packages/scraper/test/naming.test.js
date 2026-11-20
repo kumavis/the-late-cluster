@@ -257,7 +257,7 @@ test('lookup: no query finds the excluded account, and a redacted record says so
       assert.notEqual(r.code, 0, `${q.join(' ')} found something: ${r.out}`)
       assert.deepEqual(leaks(r.out), [])
     }
-    const tue = ask('--uri', uriOf('chicken', 'lb-tue'))
+    const tue = ask('--uri', uriOf('chicken', 'lb-tue'), '--full')
     assert.equal(tue.code, 0)
     const rec = JSON.parse(tue.out)
     assert.equal(rec.redacted, true)

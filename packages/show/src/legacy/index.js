@@ -3,7 +3,8 @@
 // An entry exists only for an episode whose source is frozen and that has no cast.js / looks.js
 // of its own. A new episode never gets one: it defines its cast in its own folder.
 import { PILOT_CAST, PILOT_LOOKS, PILOT_HOUSE } from './pilot-guests.js'
+import { PILOT_STAGE } from './pilot-stage.js'
 
 export const LEGACY = {
-  '001-pilot': { cast: PILOT_CAST, looks: PILOT_LOOKS, house: PILOT_HOUSE },
+  '001-pilot': { cast: PILOT_CAST, looks: PILOT_LOOKS, house: PILOT_HOUSE, stage: PILOT_STAGE },
 }

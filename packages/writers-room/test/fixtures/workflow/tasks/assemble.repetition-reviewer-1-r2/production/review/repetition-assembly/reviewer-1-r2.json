@@ -1,0 +1,12 @@
+{
+  "reviewer": "reviewer-1",
+  "round": 2,
+  "items": [
+    {
+      "id": "talk-ask:open",
+      "version": "__LINEVERSION:talk-ask:open__",
+      "verdict": "fresh",
+      "reason": "fixture"
+    }
+  ]
+}

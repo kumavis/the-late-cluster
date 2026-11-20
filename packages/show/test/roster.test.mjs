@@ -62,3 +62,19 @@ test('applyRoster mutates the given singletons: legacy looks via look(), own loo
   assert.deepEqual(other.defined, ['zed'])
   assert.deepEqual(other.HOUSE_IDS, HOUSE)
 })
+
+test("the studio's drawn text: neutral by default, the first episode's for 001-pilot only", async () => {
+  const { STAGE_DEFAULTS } = await import('../src/stage/text.js')
+  const { rosterStage } = await import('../src/roster.js')
+  assert.deepEqual(rosterStage('001-pilot', STAGE_DEFAULTS), { counterLabel: 'BUILT DURING THIS EPISODE', keyLabel: 'E' })
+  for (const id of ['ref', '002-anything', '001', 'pilot', '__proto__']) assert.deepEqual(rosterStage(id, STAGE_DEFAULTS), { ...STAGE_DEFAULTS }, id)
+  assert.notEqual(STAGE_DEFAULTS.counterLabel, 'BUILT DURING THIS EPISODE')
+  assert.notEqual(STAGE_DEFAULTS.keyLabel, 'E')
+  const text = { ...STAGE_DEFAULTS }
+  applyRoster('001-pilot', { cast: {}, looks: {} }, { CAST: { ...CAST }, LOOKS: {}, look: () => ({}), defineLook: () => {}, STAGE_TEXT: text })
+  assert.equal(text.counterLabel, 'BUILT DURING THIS EPISODE')
+  assert.equal(text.keyLabel, 'E')
+  const other = { ...STAGE_DEFAULTS }
+  applyRoster('002-x', { cast: {}, looks: {} }, { CAST: { ...CAST }, LOOKS: {}, look: () => ({}), defineLook: () => {}, STAGE_TEXT: other })
+  assert.deepEqual(other, { ...STAGE_DEFAULTS })
+})

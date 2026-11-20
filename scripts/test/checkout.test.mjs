@@ -12,6 +12,7 @@ const REPO = fileURLToPath(new URL('../..', import.meta.url))
 const REQUIRED = [
   'packages/show/tools/data/cmudict.txt.gz', // pronunciation dictionary for the renderer
   'packages/show/tools/data/CMUDICT-LICENSE.txt',
+  'packages/show/tools/data/heard-terms.json', // crude words the fitting tool flags in what was heard
   'packages/show/chimera/wasm/chimera.wasm', // the voice engine
   'packages/show/chimera/LICENSE',
   'packages/show/public/fonts/AVHersheySimplexLight.otf',

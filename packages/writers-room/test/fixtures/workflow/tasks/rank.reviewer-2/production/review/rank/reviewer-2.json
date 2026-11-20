@@ -1,0 +1,21 @@
+{
+  "reviewer": "reviewer-2",
+  "cards": {
+    "talk-ask": {
+      "interest": 7,
+      "reason": "fixture reason talk-ask"
+    },
+    "made-soup": {
+      "interest": 6,
+      "reason": "fixture reason made-soup"
+    },
+    "talk-bit": {
+      "interest": 4,
+      "reason": "fixture reason talk-bit"
+    },
+    "interview-quinn": {
+      "interest": 5,
+      "reason": "fixture reason interview-quinn"
+    }
+  }
+}

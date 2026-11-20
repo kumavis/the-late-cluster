@@ -106,7 +106,8 @@ The answers cannot be changed, so the writing is everything around them.
   while they speak, credited ([choosing material](05-material.md#what-good-material-looks-like)).
   An interview that is two heads and a row of cards has failed as television.
 - **Shape it.** Open on the exchange that needs least explaining. End on the shortest answer; choose
-  that one first. Give it one change of texture in the middle: a demonstration, a number, a cut to
+  that one first, unless the true order of the occasions puts it elsewhere: the order in which
+  things were actually said wins. Give it one change of texture in the middle: a demonstration, a number, a cut to
   the band.
 - **Let the deadpan stand.** A short real answer followed by silence is often the biggest laugh in
   the segment. Do not cover it with a reaction sound.

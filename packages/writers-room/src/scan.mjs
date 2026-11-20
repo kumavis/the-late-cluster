@@ -232,7 +232,8 @@ const ws = (s) => String(s).replace(/\s+/g, ' ').trim()
  * and leading/trailing whitespace is ignored. Nothing else: case, punctuation, quotes, emoji and
  * links must match. A cut is marked with the ellipsis character … (U+2026), and only that: the
  * pieces between cuts must appear in the post in order, a caption that does not start with … must
- * start where the post starts, and one that does not end with … must end where the post ends.
+ * start where the post starts, and one that does not end with … must end where the post ends. An
+ * ellipsis must stand for at least one cut word (trial 002: an ellipsis where nothing was cut).
  * Returns null when it matches, else a short reason.
  */
 export function verbatimMismatch(caption, post) {
@@ -241,6 +242,7 @@ export function verbatimMismatch(caption, post) {
   if (!c) return 'the caption is empty'
   if (!c.includes(ELLIPSIS)) return c === p ? null : firstDifference(c, p)
   const pieces = c.split(ELLIPSIS).map((x) => x.trim())
+  const cutSomething = (from, to) => /[\p{L}\p{N}]/u.test(p.slice(from, to))
   let at = 0
   for (let k = 0; k < pieces.length; k++) {
     const piece = pieces[k]
@@ -248,9 +250,11 @@ export function verbatimMismatch(caption, post) {
     const found = p.indexOf(piece, at)
     if (found < 0) return `"${piece}" is not in the post${k ? ' after the previous piece' : ''}`
     if (k === 0 && found !== 0) return `the caption starts mid-post; mark the cut with … at the start`
+    if (k > 0 && !cutSomething(at, found)) return `an ellipsis before "${piece.slice(0, 20)}" where nothing was cut`
     if (k === pieces.length - 1 && found + piece.length !== p.length) return `the caption stops before the post ends; mark the cut with … at the end`
     at = found + piece.length
   }
+  if (!pieces.at(-1) && !cutSomething(at, p.length)) return 'an ellipsis at the end where nothing was cut'
   return null
 }
 

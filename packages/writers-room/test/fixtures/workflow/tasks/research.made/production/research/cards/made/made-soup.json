@@ -2,19 +2,12 @@
   "id": "made-soup",
   "lane": "made",
   "title": "A website that only says soup",
+  "skeletons": [
+    "s-soup"
+  ],
   "summary": "A member built a website that shows one word.",
-  "posts": [
-    {
-      "uri": "at://did:plc:trialmaker/app.bsky.feed.post/m1",
-      "text": "I built a website that only shows the word soup",
-      "handle": "maker.example"
-    }
-  ],
-  "people": [
-    {
-      "handle": "maker.example",
-      "followers": 800
-    }
-  ],
+  "media": {},
+  "showable": "none",
+  "unknown": "none",
   "sensitive": "none"
 }

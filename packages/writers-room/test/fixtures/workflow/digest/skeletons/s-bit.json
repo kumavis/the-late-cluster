@@ -1,0 +1,51 @@
+{
+  "id": "s-bit",
+  "lane": "talk",
+  "title": "s-bit",
+  "posts": [
+    {
+      "uri": "at://did:plc:trialtalker/app.bsky.feed.post/c1",
+      "url": "https://bsky.app/profile/talker.example/post/c1",
+      "handle": "talker.example",
+      "did": "did:plc:trialtalker",
+      "displayName": "Talker",
+      "text": "is it a bit if nobody laughs",
+      "followers": 300,
+      "counts": {
+        "likes": 12,
+        "reposts": 0,
+        "replies": 3,
+        "quotes": 0
+      },
+      "reach": {
+        "score": 12
+      },
+      "replyTo": null,
+      "alt": [],
+      "media": [],
+      "sensitive": null
+    },
+    {
+      "uri": "at://did:plc:trialtalker2/app.bsky.feed.post/c2",
+      "url": "https://bsky.app/profile/talker2.example/post/c2",
+      "handle": "talker2.example",
+      "did": "did:plc:trialtalker2",
+      "displayName": "Talker Two",
+      "text": "it is now",
+      "followers": 120,
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "reach": {
+        "score": 9
+      },
+      "replyTo": "at://did:plc:trialtalker/app.bsky.feed.post/c1",
+      "alt": [],
+      "media": [],
+      "sensitive": null
+    }
+  ]
+}

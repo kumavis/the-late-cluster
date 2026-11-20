@@ -1,5 +1,6 @@
 // Broadcast chrome drawn on the stage (stage units): the show logo, lower-third chyrons, the
 // caption bar.
+import { STAGE_TEXT } from './text.js'
 import { beam, seg, ring, dot, label, labelWidth, wrapLabel, box, occlude, rectPath, butterfly, glowText, P, mix } from '../kit/draw.js'
 import { clamp, ease, smoothstep, rng } from '../kit/ease.js'
 import { confetti } from '../kit/props.js'
@@ -177,15 +178,16 @@ export function laughCaption(ctx, text, a, lift = 0) {
 // ---------------------------------------------------------------- the episode counter, the disclaimer
 
 /**
- * An episode-long counter, top-left: a fixed label (`head` below; there is no option for it yet)
- * and the number n. b = show.builtNow
- * ({ n, age: seconds since the last bump, seed }); a bump pops the number, flashes, and throws confetti.
+ * An episode-long counter, top-left: a label and the number n. b = show.builtNow
+ * ({ n, age: seconds since the last bump, seed, label? }); a bump pops the number, flashes, and
+ * throws confetti. The label is the segment's (`built: { label }`), else STAGE_TEXT.counterLabel
+ * (stage/text.js: a neutral default, or the legacy entry's for 001-pilot).
  */
 export function builtCounter(ctx, b, t) {
   const x = 26, y = 24
   const pop = b.age >= 0 && b.age < 0.6 ? Math.sin(Math.PI * Math.min(1, b.age / 0.6)) : 0
   const flash = b.age >= 0 && b.age < 0.9 ? 1 - b.age / 0.9 : 0
-  const head = 'BUILT DURING THIS EPISODE'
+  const head = String(b.label ?? STAGE_TEXT.counterLabel)
   const hw = labelWidth(ctx, head, { size: 12, ls: 0.24 })
   const w = hw + 70
   box(ctx, x, y, w, 34, { color: flash > 0 ? mix(P.lime, '#ffffff', flash * 0.5) : P.lime, cut: 6, width: 1.2 + flash * 1.4, alpha: 0.75 + 0.25 * flash, hot: flash > 0.3, fillAlpha: 0.8 })

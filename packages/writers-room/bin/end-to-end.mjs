@@ -1,13 +1,16 @@
 #!/usr/bin/env node
 // node packages/writers-room/bin/end-to-end.mjs [--week 2099-W01] [--keep]
 //
-// The whole pipeline, all eleven stages, with the real tools on this machine (scaffold, render,
-// check, Whisper, shoot, the credits helper, thumbnail, build --preview, verify) and the fixture
-// runner standing in for the subagents (test/fixtures/workflow/tasks/). The fixture is built to be
-// stopped: a repeat at the repetition gate on ideas (reworked, judged again), a turned verdict that
-// passes, a repeat at the repetition gate on scripts (redrafted, judged again), a line Whisper hears
-// as an alarming word (the heard-text gate blocks until the assembler is reworked), and a long
-// unspoken label (the unread-text gate blocks until the builder is reworked). The bible and the
+// The whole pipeline, all thirteen stages, with the real tools on this machine (scaffold, render,
+// check, shoot, the credits helper, thumbnail, build --preview, verify, and the studio's fit and
+// voices and the scraper's sources check once they are in package.json; until then a stand-in of
+// the same shape, said so on the console) and the fixture runner standing in for the subagents
+// (test/fixtures/workflow/tasks/). The fixture is built to be stopped: a repeat at the repetition
+// gate on ideas (reworked, judged again), a turned verdict that passes, a line the fitting tool
+// flags (a sound editor, then its writer), a repeat at the gate on scripts (redrafted, judged
+// again), the consent refresh, a line added at assembly judged a repeat (reworked), a long unspoken
+// label (the unread-text gate blocks until the builder is reworked), a change the stage auditor
+// routes to the builder, and the cold-viewer test. The bible and the
 // ledger it reads and writes are scratch copies; the episode is preview only. Afterwards every
 // trace is removed (the episode, preview, frames, Whisper scratch, render-cache files it created,
 // the scratch copies) unless --keep. Needs bun, ffmpeg, Playwright's Chromium and Whisper.
@@ -18,6 +21,9 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { produce } from '../src/pipeline.mjs'
 import { findEpisodeForWeek, PKG, REPO } from '../src/repo.mjs'
+import { hasScript } from '../src/scraper.mjs'
+import { makeTools } from '../src/tools.mjs'
+import { fakeFit, put } from '../test/helpers.mjs'
 
 const argv = process.argv.slice(2)
 const opt = (k, d) => (argv.includes(`--${k}`) ? argv[argv.indexOf(`--${k}`) + 1] : d)
@@ -50,7 +56,22 @@ const print = (l) => {
   lines.push(l)
   console.log(l)
 }
-const run = (o = {}) => produce({ root: REPO, week, runner: 'fixture', fixture: join(FX, 'tasks'), digest: join(FX, 'digest'), settings: join(FX, 'settings.json'), bible, ledger, previewOnly: true, print, ...o })
+// the real tools, with a stand-in for each command another builder has not landed yet
+const real = makeTools({ root: REPO })
+const STAND_IN = {
+  fit: (args) => fakeFit(REPO, args[0], args),
+  voices: () => ({ code: 0, out: 'voices: stand-in\n', stdout: '' }),
+  sources: (args) => {
+    put(REPO, args[args.indexOf('--out') + 1], '# Sources (stand-in)\n\nNot checked: npm run sources is not in package.json yet.\n')
+    return { code: 0, out: '{}\n', stdout: '{}\n' }
+  },
+}
+// the sources check always uses the stand-in: the fixture's accounts are invented, and the end-to-end
+// run stays off the network
+const missing = Object.keys(STAND_IN).filter((n) => n === 'sources' || !hasScript(REPO, n))
+for (const n of missing) console.log(`end-to-end: npm run ${n}: a stand-in of the same shape is used${n === 'sources' ? ' (no network)' : ' (not in package.json yet)'}`)
+const tools = { ...real, hasScript: () => true, npm: (script, args, o) => (missing.includes(script) ? STAND_IN[script](args) : real.npm(script, args, o)) }
+const run = (o = {}) => produce({ root: REPO, week, runner: 'fixture', fixture: join(FX, 'tasks'), digest: join(FX, 'digest'), settings: join(FX, 'settings.json'), bible, ledger, previewOnly: true, tools, ready: () => false, print, ...o })
 
 const expect = []
 const saw = (label, re) => expect.push({ label, ok: re.test(lines.join('\n')) })
@@ -58,15 +79,18 @@ let code = 1
 try {
   const first = await run()
   saw('repeat blocks at the ideas gate, and the replacement idea is judged again', /fixture repetition-ideas\.rework-writer-1-3[\s\S]*fixture repetition-ideas\.reviewer-1-r2/)
-  saw('a turned verdict passes (with its what and how)', /warn idea writer-2-3 is turned: /)
+  saw('a turned verdict passes', /warn turned: writer-2-3/)
+  saw('every draft is fitted and heard as written (the studio\'s fitting tool)', /stage fit start[\s\S]*gate fit\.heard ok/)
   saw('repeat blocks at the scripts gate, and the redraft is judged again', /fixture select\.redraft-talk-ask[\s\S]*fixture select\.repetition-reviewer-2-r2/)
-  saw('Whisper hears an alarming word and render.heard blocks', /gate render\.heard FAIL\n  FAIL talk-ask calm .*contains "bomb"\. No waiver/)
-  const second = first === 1 ? await run({ rework: ['assemble.writer'] }) : -1
-  saw('after the assembler is reworked, render.heard passes', /gate render\.heard ok/)
+  saw('the consent refresh covers the selection', /fixture select\.consent-r1[\s\S]*gate select\.consent ok/)
+  saw('a line added at assembly is judged a repeat and reworked', /fixture assemble\.rework[\s\S]*gate repetition\.assembly ok/)
+  saw('the real render and the heard-text gate pass', /gate assemble\.render ok[\s\S]*gate render\.heard ok/)
   saw('a long label nobody reads blocks at stage.unread', /gate stage\.unread FAIL\n  FAIL segments\/talk-ask\/index\.js/)
-  code = second === 1 ? await run({ rework: ['stage.talk-ask'] }) : -1
+  code = first === 1 ? await run({ rework: ['stage.talk-ask'] }) : -1
   saw('the credits are shot and checked', /gate stage\.credits ok/)
+  saw('the stage auditor routes a change to the builder', /fixture stage\.fix-talk-ask-r1[\s\S]*gate stage\.audit ok/)
   saw('the preview build verifies', /gate build\.preview-verify ok/)
+  saw('the cold viewer is shown frames', /fixture review\.viewer-1/)
   saw('the review writes the pull request text', /done; pull request text in/)
   const ep = findEpisodeForWeek(REPO, week)
   if (ep && existsSync(join(ledger, `${ep.id}.json`))) console.log(`end-to-end: ledger entry written to the scratch ledger: ${readFileSync(join(ledger, `${ep.id}.json`), 'utf8').slice(0, 200).replace(/\s+/g, ' ')}…`)

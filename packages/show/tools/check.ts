@@ -1,5 +1,6 @@
 /**
  * npm run check -- <ep> [<segment-id>…]      (no ids: every rundown segment; --all: every segment folder)
+ * npm run check -- <ep> --draft <slug>        a draft rendered with npm run render -- <ep> --draft <slug>
  *
  * Re-reads a rendered segment's three outputs and checks them against the contract: the tele bin
  * decodes, every line's block exists and covers [t0, t1], a decoded block matches the cached
@@ -13,7 +14,8 @@ import { pathToFileURL } from "node:url";
 import { decodeTele } from "./telebin.ts";
 import { sayClip, type Clip } from "./clips.ts";
 import { CAST } from "../src/cast.js";
-import { loadEpisode, requireSegment, exitOnEpisodeError } from "./episode.mjs";
+import { loadEpisode, loadDraft, requireSegment, exitOnEpisodeError } from "./episode.mjs";
+import { takeDraftArg } from "./draft.mjs";
 
 async function check(ep: any, id: string): Promise<boolean | null> {
   const results: [boolean, string][] = [];
@@ -159,14 +161,23 @@ async function check(ep: any, id: string): Promise<boolean | null> {
   return pass;
 }
 
-const args = process.argv.slice(2);
+let args = process.argv.slice(2);
+let draftSlug: string | null = null;
+try {
+  ({ slug: draftSlug, rest: args } = takeDraftArg(args));
+} catch (e) {
+  exitOnEpisodeError(e);
+}
 let ids = args.filter((a) => !a.startsWith("--"));
 if (!ids.length) {
-  console.error("usage: npm run check -- <ep> [<segment-id>…] [--all]");
+  console.error("usage: npm run check -- <ep> [<segment-id>…] [--all] | <ep> --draft <slug>");
   process.exit(2);
 }
-const ep = await loadEpisode(ids.shift()).catch(exitOnEpisodeError);
-if (args.includes("--all")) ids = ep.segments();
+let ep = await loadEpisode(ids.shift()).catch(exitOnEpisodeError);
+if (draftSlug) {
+  ep = (await loadDraft(ep, draftSlug).catch(exitOnEpisodeError)).view;
+  ids = [draftSlug];
+} else if (args.includes("--all")) ids = ep.segments();
 else if (!ids.length) ids = ep.rundown;
 try {
   for (const id of ids) requireSegment(ep, id, { needFolder: !ep.rundown.includes(id) });

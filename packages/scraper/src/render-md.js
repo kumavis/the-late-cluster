@@ -34,13 +34,17 @@ function followers(p) {
 }
 
 const whoF = (p) => who(p) + followers(p)
-const oob = (topics) => `**OUT OF BOUNDS (${topics.join(', ')})**`
-const NOQUOTE = 'asked not to be quoted'
+const LEFT_OUT = '**LEFT OUT (consent)**'
 /** A post whose text the consent rules altered: shown to the writer, never quotable. */
 const REDACTED_NOTE = '*(redacted: names an account that is not included; not quotable)*'
 const red = (p) => (p?.redacted ? ' ' + REDACTED_NOTE : '')
-/** A story whose post asks not to be quoted does not show even its first line. */
-const headlineOrWithheld = (s) => (s.outOfBounds?.topics?.includes(NOQUOTE) ? '*(headline withheld: a post here asks not to be quoted)*' : mdText(s.headline))
+/** A headline, unless the lead post is marked: then only the mark. */
+const headlineOf = (s) => (s.sensitivity?.leadMarked ? `*(lead post marked: ${s.sensitivity.topics.join(', ')})*` : mdText(s.headline))
+/** A marked post is listed, never quoted (README "Marks"). */
+const markedNote = (p) => {
+  const m = [...(p.sensitive ?? []), ...(p.consent ?? [])]
+  return m.length ? `*(marked: ${m.join(', ')}; not quoted here)*` : null
+}
 
 function countsLine(c = {}) {
   const parts = [plural(c.likes, 'like'), plural(c.reposts, 'repost'), plural(c.replies, 'reply', 'replies')]
@@ -58,6 +62,8 @@ const clip = (s, max) => (s.length > max ? s.slice(0, max).replace(/\s+\S*$/, ''
 
 function renderPost(p, { maxChars = 600 } = {}) {
   const lines = []
+  const marked = markedNote(p)
+  if (marked) return `> ${marked}\n— ${whoF(p)} · ${shortTime(p.time)} · ${countsLine(p.counts)} · [open](${p.url})`
   let body = clip(p.text || '', maxChars)
   if (!body && p.imageAlts?.length) body = ''
   lines.push(body ? quoteBlock(body) : p.hasImages || p.hasVideo || p.quoted ? '>' : '> *(no text)*')
@@ -73,7 +79,7 @@ function renderPost(p, { maxChars = 600 } = {}) {
   const lift = p.metrics?.lift >= 1 ? ` · ${times(p.metrics.lift)} the author's usual` : ''
   const reach = p.reach ? ` · reach ${n(p.reach.score)} (${plural(p.reach.participants, 'participant')})` : ''
   const rp = p.memberReposts ? ` · reposted by ${plural(p.memberReposts, 'member')}` : ''
-  const flag = p.sensitive?.length ? ` · *flagged: ${p.sensitive.join(', ')}*` : ''
+  const flag = ''
   lines.push(`— ${whoF(p)}${p.guest ? ' · recurring guest' : ''}${p.member === false ? ' (outside the cluster)' : ''}${flag} · ${shortTime(p.time)} · ${countsLine(p.counts)}${reach}${lift}${rp} · [open](${p.url})`)
   return lines.join('\n')
 }
@@ -98,17 +104,18 @@ export function renderStory(s, { postsPerStory = 4 } = {}) {
   const out = []
   const st = s.stats
   if (s.outOfBounds) {
-    out.push(`### ${s.rank}. ${oob(s.outOfBounds.topics)}: ${headlineOrWithheld(s)}`)
+    out.push(`### ${s.rank}. ${LEFT_OUT}`)
     out.push('')
-    out.push(`Not for the show (bible ${s.outOfBounds.topics.includes(NOQUOTE) ? 'R11' : 'R10'}). ${plural(st.posts, 'post')}, ${plural(st.members, 'member')}; flagged posts by topic: ${Object.entries(s.outOfBounds.counts).map(([t, k]) => `${t} ${k}`).join(', ')}. No posts quoted here; the flag is a keyword hint, so check it yourself before using anything near it. id \`${s.id}\``)
+    out.push(`Not for the show (bible R11): ${s.outOfBounds.reasons.map(mdText).join('; ')}. ${plural(st.posts, 'post')}, ${plural(st.members, 'member')}. No headline and no posts. id \`${s.id}\``)
     out.push('')
     return out.join('\n')
   }
-  out.push(`### ${s.rank}. ${mdText(s.headline)}`)
+  out.push(`### ${s.rank}. ${headlineOf(s)}`)
   out.push('')
   out.push(`\`${KIND[s.kind] ?? s.kind}\` · ${plural(st.posts, 'post')} · ${plural(st.members, 'member')} · ${st.days.length > 1 ? `${st.days[0]} → ${st.days.at(-1)}` : st.days[0] ?? ''} · ${s.reach ? `reach ${n(s.reach.score)} (${n(s.reach.interactions)} interactions, ${plural(s.reach.participants, 'participant')}) · ` : ''}score ${s.scores.total.toFixed(2)} (${topComponents(s.scores)}) · id \`${s.id}\``)
   out.push('')
   out.push(`*Why these are together:* ${s.reason.map(mdText).join('; ')}.`)
+  if (s.sensitivity?.postsMarked) out.push(`*Marked:* ${plural(s.sensitivity.postsMarked, 'post')} of ${n(st.posts)} (${Object.entries(s.sensitivity.counts).map(([t, k]) => `${t} ${k}`).join(', ')}): a keyword hint on those posts only; the rest of the story is usable.`)
   if (s.phrases?.length) out.push(`*Spiked phrases here:* ${s.phrases.slice(0, 5).map((t) => '"' + mdText(t) + '"').join(', ')}`)
   const built = s.links.filter((l) => l.isNewDomain || l.buildHost).slice(0, 3)
   if (built.length) out.push(`*Links:* ${built.map((l) => `[${mdText(l.title || l.domain)}](${l.url})${l.members > 1 ? ` (${l.members} members)` : ''}`).join(' · ')}`)
@@ -143,10 +150,12 @@ export function renderMarkdown(d) {
   out.push('')
   out.push(`## The ${unit} at a glance`)
   out.push('')
-  for (const s of d.stories.filter((x) => !x.outOfBounds).slice(0, 5)) out.push(`${s.rank}. **${mdText(s.headline)}** (${KIND[s.kind] ?? s.kind}, ${plural(s.stats.members, 'member')}, ${plural(s.stats.posts, 'post')})`)
+  for (const s of d.stories.filter((x) => !x.outOfBounds && !x.aboutShow && !x.sensitivity?.leadMarked).slice(0, 5)) out.push(`${s.rank}. **${mdText(s.headline)}** (${KIND[s.kind] ?? s.kind}, ${plural(s.stats.members, 'member')}, ${plural(s.stats.posts, 'post')})`)
   out.push('')
   const oobList = o.outOfBounds ?? []
-  if (oobList.length) out.push(`- **Out of bounds:** ${plural(oobList.length, 'story', 'stories')} in the top ${o.outOfBoundsWithin ?? 30} touch subjects the show leaves alone (${[...new Set(oobList.flatMap((x) => x.topics))].join(', ')}); the highest is story ${oobList[0].rank}. Listed under Stories as headlines only.`)
+  if (oobList.length) out.push(`- **Left out (consent):** ${plural(oobList.length, 'story', 'stories')} in the top ${o.outOfBoundsWithin ?? 30}; the highest is story ${oobList[0].rank}. Listed under Stories without headlines.`)
+  const sensList = o.sensitive ?? []
+  if (sensList.length) out.push(`- **Marked posts:** ${plural(sensList.length, 'story', 'stories')} in the top ${o.outOfBoundsWithin ?? 30} hold posts marked for subjects the show leaves alone (${[...new Set(sensList.flatMap((x) => x.topics))].join(', ')}); the marks are on those posts, not their stories.`)
   if (o.spiking.length) out.push(`- **Phrases that spiked:** ${o.spiking.map((t) => '"' + mdText(t) + '"').join(', ')}${d.window.hasBaseline ? '' : ' (no baseline: raw counts)'}`)
   if (o.built.length) out.push(`- **Got built:** ${o.built.map((b) => `[${mdText(clip(b.title || b.url.replace(/^https:\/\//, ''), 60))}](${b.url}) by @${b.builtBy}${b.wishBy && b.wishBy !== b.builtBy ? `, wished for by @${b.wishBy}` : ''}`).join('; ')}`)
   if (o.weeks?.length) out.push(`- **Weeks declared:** ${o.weeks.map((w) => '"' + mdText(w) + '"').join(', ')}`)
@@ -160,7 +169,8 @@ export function renderMarkdown(d) {
 
   out.push(renderSections(d))
 
-  const shown = d.stories.slice(0, d.settings?.storiesInMarkdown ?? 15)
+  const listed = d.stories.filter((x) => !x.aboutShow)
+  const shown = listed.slice(0, d.settings?.storiesInMarkdown ?? 15)
   out.push(`## Stories`)
   out.push('')
   out.push(`Ranked by the score in README "Scoring". Each story is a group of related posts; the lead post comes first, then the strongest replies and quotes.`)
@@ -171,13 +181,13 @@ export function renderMarkdown(d) {
     out.push('---')
     out.push('')
   }
-  const rest = d.stories.slice(shown.length, shown.length + 15)
+  const rest = listed.slice(shown.length, shown.length + 15)
   if (rest.length) {
     out.push('### Also ran')
     out.push('')
     for (const s of rest) {
-      if (s.outOfBounds) out.push(`- ${s.rank}. ${oob(s.outOfBounds.topics)}: ${headlineOrWithheld(s)}`)
-      else out.push(`- ${s.rank}. ${mdText(s.headline)} (${KIND[s.kind] ?? s.kind}, ${plural(s.stats.posts, 'post')}) [open](${s.posts[0]?.url ?? ''})`)
+      if (s.outOfBounds) out.push(`- ${s.rank}. ${LEFT_OUT}`)
+      else out.push(`- ${s.rank}. ${headlineOf(s)} (${KIND[s.kind] ?? s.kind}, ${plural(s.stats.posts, 'post')}) [open](${s.posts[0]?.url ?? ''})`)
     }
     out.push('')
   }
@@ -208,7 +218,7 @@ export function renderMarkdown(d) {
     out.push('| phrase | people | per 1k now | per 1k before | ratio | days | first used |')
     out.push('|---|---:|---:|---:|---:|---:|---|')
     for (const p of d.appendices.phrases) {
-      const first = p.outOfBounds ? `out of bounds (${p.outOfBounds.topics.join(', ')})` : p.first ? `[@${p.first.handle}, ${shortTime(p.first.time)}: ${mdText(clip(p.first.text, 60))}](${p.first.url})${p.first.redacted ? ' (redacted)' : ''}` : ''
+      const first = p.outOfBounds ? `out of bounds (${p.outOfBounds.topics.join(', ')})` : p.first ? `[@${p.first.handle}, ${shortTime(p.first.time)}: ${p.first.sensitive || p.first.consent ? '(marked, not quoted)' : mdText(clip(p.first.text, 60))}](${p.first.url})${p.first.redacted ? ' (redacted)' : ''}` : ''
       out.push(`| "${mdText(p.term)}"${p.isNew ? ' (new)' : ''} | ${p.authors} | ${p.per1k} | ${p.baselinePer1k ?? '–'} | ${p.ratio || '–'} | ${p.days} | ${first} |`)
     }
   }
@@ -223,7 +233,7 @@ export function renderMarkdown(d) {
     out.push('| week | people | posts | declared | first used |')
     out.push('|---|---:|---:|:---:|---|')
     for (const w of wk) {
-      const first = w.outOfBounds ? `out of bounds (${w.outOfBounds.topics.join(', ')})` : w.first ? `[@${w.first.handle}, ${shortTime(w.first.time)}: ${mdText(clip(w.first.text, 70))}](${w.first.url})${w.first.redacted ? ' (redacted)' : ''}` : ''
+      const first = w.outOfBounds ? `out of bounds (${w.outOfBounds.topics.join(', ')})` : w.first ? `[@${w.first.handle}, ${shortTime(w.first.time)}: ${w.first.sensitive || w.first.consent ? '(marked, not quoted)' : mdText(clip(w.first.text, 70))}](${w.first.url})${w.first.redacted ? ' (redacted)' : ''}` : ''
       out.push(`| "${mdText(w.term)}" | ${w.authors} | ${w.posts} | ${w.declared ? 'yes' : ''} | ${first} |`)
     }
   }
@@ -305,7 +315,7 @@ export function renderGames(games = []) {
       let post = ''
       if (r.winner?.excluded) post = '(not included)'
       else if (!r.winningPost) post = 'not resolved'
-      else if (r.winningPost.sensitive) post = `flagged (${r.winningPost.sensitive.join(', ')}${r.winningPost.inFlaggedStory ? ', in a flagged story' : ''}), not quoted: [open](${r.winningPost.url})`
+      else if (r.winningPost.sensitive || r.winningPost.consent) post = `marked (${[...(r.winningPost.sensitive ?? []), ...(r.winningPost.consent ?? [])].join(', ')}), not quoted: [open](${r.winningPost.url})`
       else post = `${r.winningPost.text?.trim() ? '"' + mdText(clip(r.winningPost.text.replace(/\s+/g, ' '), 120)) + '"' : r.winningPost.imageAlts?.length ? '*[image: ' + mdText(clip(r.winningPost.imageAlts[0], 80)) + ']*' : '*(image or video)*'} [open](${r.winningPost.url})${red(r.winningPost)}`
       out.push(`| ${dayTime(r.time)} | ${personMd(r.winner)}${r.winner?.followers != null ? ` (${n(r.winner.followers)} followers)` : ''} | ${n(r.likes)} | ${r.ofRecord != null ? Math.round(r.ofRecord * 100) + '%' : ''} | ${r.rankInHistory ?? ''} of ${r.ofResults} | ${post} |`)
     }
@@ -364,26 +374,8 @@ export function renderSections(d) {
     if (skipped) out.push(`*${plural(skipped, 'build')} left out: flagged out of bounds.*`, '')
   }
 
-  const about = sec.aboutShow ?? { posts: [], optOutRequests: [] }
-  out.push('## About the show')
-  out.push('')
-  if (about.optOutRequests.length) {
-    out.push(`**Requests to be left out (${about.optOutRequests.length}).** These accounts posted something about the show that reads as a request not to be included. They are excluded from everything else in this digest. Read the post, and if it is a request, add the account to \`packages/scraper/config/optout.json\` and tell the reviewer (R11).`)
-    out.push('')
-    for (const r of about.optOutRequests) out.push(`- @${r.handle}: [the post](${r.url})`)
-    out.push('')
-  }
-  if (!about.posts.length) out.push(`No posts mention or link the show ${thisP}.`, '')
-  else {
-    out.push(`${plural(about.posts.length, 'post')} name or link the show, or reply to or quote one that does. Read for reactions and corrections.`)
-    out.push('')
-    for (const p of about.posts.slice(0, d.settings?.aboutShowPosts ?? 20)) {
-      const tags = [p.why.join(', '), p.correction ? '**possible correction**' : null, p.quotesLines?.length ? `**quotes ${p.quotesLines.map((q) => '"' + mdText(clip(q, 60)) + '"').join(', ')}: check against what was posted**` : null, p.sensitive ? `flagged: ${p.sensitive.join(', ')}` : null].filter(Boolean).join(' · ')
-      out.push(`- ${whoF(p)}, ${shortTime(p.time)} · ${tags}: "${mdText(clip((p.text || '').replace(/\s+/g, ' '), 260))}" (${countsLine(p.counts)}) [open](${p.url})${red(p)}`)
-    }
-    if (about.posts.length > (d.settings?.aboutShowPosts ?? 20)) out.push(`- and ${about.posts.length - (d.settings?.aboutShowPosts ?? 20)} more in digest.json`)
-    out.push('')
-  }
+  // Posts about the show are for reviewers only (reviewers/about-show.md); writers who saw
+  // them wrote to them (trial 002, finding 11). Not even a count is printed here.
 
   // Voices the show has never featured
   const nv = sec.newVoices ?? []
@@ -433,6 +425,29 @@ export function renderSections(d) {
       out.push('')
       for (const [i, t] of perf.threads.entries()) out.push(renderThread(t, i))
     }
+  }
+  return out.join('\n')
+}
+
+/** reviewers/about-show.md: posts and stories about the show itself, for reviewers only. */
+export function renderAboutShow(about, stories = [], window = {}) {
+  const out = [`# About the show: ${window.label ?? ''}`, '', 'For reviewers and auditors only. Writers, researchers and builders do not read this file: what people said about the show stays out of the digest, the skeletons and the lane slices (trial 002, finding 11).', '']
+  if (about.optOutRequests?.length) {
+    out.push(`## Requests to be left out (${about.optOutRequests.length})`, '', 'These accounts posted something about the show that reads as a request not to be included. They are excluded from everything else. Read the post, and if it is a request, add the account to `packages/scraper/config/optout.json` (R11).', '')
+    for (const r of about.optOutRequests) out.push(`- @${r.handle}: [the post](${r.url})`)
+    out.push('')
+  }
+  out.push(`## Posts (${about.posts?.length ?? 0})`, '')
+  if (!about.posts?.length) out.push('No posts mention or link the show in this window.', '')
+  for (const p of about.posts ?? []) {
+    const tags = [p.why.join(', '), p.correction ? '**possible correction**' : null, p.quotesLines?.length ? `**quotes ${p.quotesLines.map((q) => '"' + mdText(clip(q, 60)) + '"').join(', ')}: check against what was posted**` : null, p.sensitive ? `marked: ${p.sensitive.join(', ')}` : null].filter(Boolean).join(' · ')
+    out.push(`- ${whoF(p)}, ${shortTime(p.time)} · ${tags}: "${mdText((p.text || '').replace(/\s+/g, ' '))}" (${countsLine(p.counts)}) [open](${p.url})${red(p)}`)
+  }
+  out.push('')
+  if (stories.length) {
+    out.push(`## Stories about the show (${stories.length})`, '')
+    for (const s of stories) out.push(`- ${s.rank}. ${mdText(s.headline)} (${plural(s.stats.posts, 'post')}, ${plural(s.stats.members, 'member')}) id \`${s.id}\``)
+    out.push('')
   }
   return out.join('\n')
 }

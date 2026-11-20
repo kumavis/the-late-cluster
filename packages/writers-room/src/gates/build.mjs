@@ -9,7 +9,7 @@ import { gate, read } from './common.mjs'
 import { scorecardSpec } from '../bible.mjs'
 import { normHandle } from '../digest.mjs'
 import { keyOf, person } from '../ledger.mjs'
-import { STAGES } from '../stages.mjs'
+import { STAGES } from '../stage-names.mjs'
 
 export async function buildThumbnail(ctx) {
   const g = gate('build.thumbnail')
@@ -175,23 +175,25 @@ export async function reviewLedger(ctx) {
 }
 
 /**
- * A review's verdict file: production/review.json (stage 11) or production/stage/review.json
- * (stage 9). "approve"/"pass" passes; "send-back" is a valid end that names the stage that can fix it.
+ * The final review's verdict, production/review.json: "approve" passes; "send-back" is a valid end
+ * that names the stage that can fix it. Only its "changes" reach that stage's briefs; the reasons stay
+ * with the reviewers (state.json records the route and the file, never the reviewer's prose).
  */
 export async function reviewVerdict(ctx, name = 'review.verdict') {
   const g = gate(name)
-  const file = name.startsWith('stage') ? join(ctx.paths.production, 'stage', 'review.json') : verdictFile(ctx)
+  const file = verdictFile(ctx)
   const v = verdictOf(file)
   if (!v) {
     g.fail(`${ctx.paths.rel(file)} is missing`)
     return g.done()
   }
-  if (['approve', 'pass'].includes(v.verdict)) return g.done()
+  if (v.verdict === 'approve') return g.done()
   if (v.verdict !== 'send-back') {
-    g.fail(`${ctx.paths.rel(file)}: "verdict" must be ${name.startsWith('stage') ? '"pass"' : '"approve"'} or "send-back"`)
+    g.fail(`${ctx.paths.rel(file)}: "verdict" must be "approve" or "send-back"`)
     return g.done()
   }
   if (!STAGES.includes(v.route)) g.fail(`${ctx.paths.rel(file)}: a send-back names the stage that can fix it in "route" (${STAGES.join(', ')})`)
-  else g.sendBack(v.route, (v.reasons ?? []).join('; ') || 'no reason given')
+  else if (!(v.changes ?? []).length) g.fail(`${ctx.paths.rel(file)}: a send-back lists in "changes" what the recipient must change`)
+  else g.sendBack(v.route, `the final review sends the episode back (${ctx.paths.rel(file)})`, file)
   return g.done()
 }

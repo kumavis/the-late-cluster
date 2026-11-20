@@ -1,4 +1,4 @@
-// the deterministic combinations: ranking (two passes), the repetition gate (two reviewers, the
+// the deterministic combinations: ranking cards and the shortlist, the repetition gate (two reviewers, the
 // strictest verdict, turned must say what and how, at most one carried forward), selection, and
 // the people rules by DID against a fixture ledger
 import { test } from 'node:test'
@@ -6,7 +6,7 @@ import assert from 'node:assert/strict'
 import { existsSync, mkdtempSync, writeFileSync } from 'node:fs'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
-import { combineRepetition, rankFirstPass, rankSecondPass, repetitionProblems, selectDrafts } from '../src/combine.mjs'
+import { combineRepetition, rankCards, repetitionProblems, selectDrafts, shortlistCards } from '../src/combine.mjs'
 import { keyOf, loadLedger, peopleRules } from '../src/ledger.mjs'
 import { loadConfig } from '../src/pipeline.mjs'
 import { REPO } from '../src/repo.mjs'
@@ -14,29 +14,34 @@ import { cleanup } from './helpers.mjs'
 
 const { config } = loadConfig()
 
-test('rank: reach, interest and best joke weighted from config, then synergy and variety; every number recorded', () => {
-  const cards = [{ id: 'big', title: 'Big' }, { id: 'small', title: 'Small' }, { id: 'odd', title: 'Odd' }]
-  const reach = { big: 1000, small: 10, odd: 0 }
+test('rank cards: reach and interest only; interview candidates ranked apart; numbers recorded, reasons not', () => {
+  const cards = [{ id: 'big', title: 'Big', lane: 'talk', reach: 1000 }, { id: 'small', title: 'Small', lane: 'made', reach: 10 }, { id: 'odd', title: 'Odd', lane: 'talk', reach: 0 }, { id: 'quinn', title: 'Q', lane: 'interview', reach: 5 }, { id: 'rae', title: 'R', lane: 'interview', reach: 50 }]
   const reviews = [
-    { reviewer: 'reviewer-1', cards: { big: { interest: 4, bestJoke: { idea: 'w1-1', score: 3 }, reason: 'loud, thin' }, small: { interest: 9, bestJoke: { idea: 'w2-1', score: 9 }, reason: 'a real joke' }, odd: { interest: 5, bestJoke: { idea: 'w3-1', score: 5 } } } },
-    { reviewer: 'reviewer-2', cards: { big: { interest: 6, bestJoke: { idea: 'w1-2', score: 5 } }, small: { interest: 7, bestJoke: { idea: 'w2-1', score: 9 } } } },
+    { reviewer: 'reviewer-1', cards: { big: { interest: 2, reason: 'loud, thin' }, small: { interest: 10, reason: 'a real turn' }, odd: { interest: 5 }, quinn: { interest: 9 }, rae: { interest: 3 } } },
+    { reviewer: 'reviewer-2', cards: { big: { interest: 4 }, small: { interest: 10 }, quinn: { interest: 9 }, rae: { interest: 3 } } },
   ]
   const w = config.ranking.weights
-  const first = rankFirstPass({ cards, reviews, reach, weights: w })
-  assert.deepEqual(first.map((r) => r.card), ['small', 'big', 'odd'], 'a funny small card beats a loud thin one')
-  const big = first.find((r) => r.card === 'big')
+  const rows = rankCards({ cards, reviews, weights: w, pool: 2, interviewPool: 1 })
+  assert.deepEqual(rows.filter((r) => !r.interview).map((r) => r.card), ['small', 'big', 'odd'], 'interest outweighs reach')
+  const big = rows.find((r) => r.card === 'big')
   assert.equal(big.reachNorm, 1)
-  assert.equal(big.interest, 5)
-  assert.equal(big.bestJoke, 4)
-  assert.equal(big.first, Math.round((w.reach + w.interest * 0.5 + w.bestJoke * 0.4) * 1000) / 1000)
-  assert.deepEqual(first.find((r) => r.card === 'small').bestIdeas, ['w2-1'])
-  assert.equal(first.find((r) => r.card === 'odd').reviewers.length, 1, 'only reviewers who scored it count')
-  const second = rankSecondPass({ first, second: [{ reviewer: 'reviewer-1', cards: { big: { synergy: 2, variety: 2, ideas: ['w1-2'] }, odd: { synergy: 2, variety: 2 } } }], weights: config.ranking.secondPass, pool: 2, shortlist: 1 })
-  assert.deepEqual(second.map((r) => r.card), ['big', 'small'], 'the pool is cut before the second pass (odd is out), and synergy lifts big')
-  assert.equal(second[0].final, Math.round((big.first + config.ranking.secondPass.synergy + config.ranking.secondPass.variety) * 1000) / 1000)
-  assert.deepEqual(second[0].ideas, ['w1-2'])
-  assert.deepEqual(second[1].ideas, ['w2-1'], 'without a second-pass choice, the best-joke ideas carry')
-  assert.deepEqual(second.map((r) => r.shortlisted), [true, false])
+  assert.equal(big.interest, 3)
+  assert.equal(big.score, Math.round((w.reach + w.interest * 0.3) * 1000) / 1000)
+  assert.deepEqual(rows.filter((r) => r.pool).map((r) => r.card).sort(), ['big', 'quinn', 'small'], 'a pool of two, plus the best interview candidate')
+  assert.ok(!JSON.stringify(rows).includes('loud, thin'), 'reasons stay in the reviewers\' files')
+})
+
+test('shortlist: best joke, synergy and variety over the pool; interview candidates never take a place', () => {
+  const pool = [{ card: 'a', score: 0.5, interview: false }, { card: 'b', score: 0.6, interview: false }, { card: 'c', score: 0.4, interview: false }, { card: 'q', score: 0.9, interview: true }]
+  const reviews = [
+    { reviewer: 'reviewer-1', cards: { a: { bestJoke: { idea: 'w1-1', score: 9 }, synergy: 2, variety: 2, ideas: ['w1-1', 'w2-1'] }, b: { bestJoke: { idea: 'w1-2', score: 3 }, synergy: 0, variety: 0 }, c: { bestJoke: { idea: 'w1-3', score: 6 }, synergy: 1, variety: 1 }, q: { bestJoke: { idea: 'w1-4', score: 10 }, synergy: 2, variety: 2 } } },
+    { reviewer: 'reviewer-2', cards: { a: { bestJoke: { idea: 'w2-1', score: 7 }, synergy: 2, variety: 2 }, b: { bestJoke: { idea: 'w1-2', score: 3 } }, c: { bestJoke: { idea: 'w1-3', score: 6 } }, q: { bestJoke: { idea: 'w1-4', score: 10 } } } },
+  ]
+  const rows = shortlistCards({ pool, reviews, weights: config.shortlist.weights, size: 2 })
+  assert.equal(rows[0].card, 'q', 'the candidate scores highest')
+  assert.deepEqual(rows.filter((r) => r.shortlisted).map((r) => r.card), ['a', 'c'], 'but the shortlist is cards that are not interview candidates')
+  assert.deepEqual(rows.find((r) => r.card === 'a').ideas, ['w1-1', 'w2-1'])
+  assert.deepEqual(rows.find((r) => r.card === 'b').ideas, ['w1-2'], 'without a choice, the best-joke ideas carry')
 })
 
 const file = (reviewer, round, items) => ({ reviewer, round, items })
@@ -90,6 +95,10 @@ test('select: weighted scores, filled toward the target, never past the ceiling,
   assert.equal(tight.rows[0].why, 'excluded by the project manager')
   const ceil = selectDrafts({ drafts, reviews, weights: config.selection.weights, targetSeconds: 590, maxSeconds: 500 })
   assert.match(ceil.rows.find((r) => r.slug === 'd').why, /past the 500 s ceiling/)
+  // the caps, applied as the rundown fills: a blocked draft is passed over with the reason, and the next one fills
+  const capped = selectDrafts({ drafts, reviews, weights: config.selection.weights, targetSeconds: 480, maxSeconds: 590, blocked: (slug, chosen) => (slug === 'b' && chosen.includes('a') ? 'an episode has 1 interview' : null) })
+  assert.deepEqual(capped.rows.map((r) => [r.slug, r.selected]), [['a', true], ['b', false], ['d', true], ['c', true]])
+  assert.equal(capped.rows[1].why, 'an episode has 1 interview')
 })
 
 function ledgerDir(entries, tracker = {}) {

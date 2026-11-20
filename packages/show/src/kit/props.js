@@ -292,7 +292,7 @@ export function keycap(ctx, x, y, o = {}) {
     occlude(ctx, top)
     beam(ctx, top, c, w * (1 + g), { hot: g > 0.3 })
     for (const [ax, ay, bx, by] of [[-40, -30, -31, -40 + dy], [40, -30, 31, -40 + dy], [-40, 36, -31, 16 + dy], [40, 36, 31, 16 + dy]]) seg(ctx, ax, ay, bx, by, c, w * 0.8, { alpha: 0.6 })
-    label(ctx, o.label ?? 'E', 0, 0 + dy, { size: 34, align: 'center', color: g > 0.2 ? P.white : c, weight: 'm', ls: 0 })
+    label(ctx, o.label ?? '', 0, 0 + dy, { size: 34, align: 'center', color: g > 0.2 ? P.white : c, weight: 'm', ls: 0 })
   })
 }
 

@@ -4,6 +4,7 @@
 import { spawnSync } from 'node:child_process'
 import { appendFileSync, mkdirSync } from 'node:fs'
 import { join } from 'node:path'
+import { hasScript } from './scraper.mjs'
 
 export function makeTools({ root, logDir = null, env = process.env } = {}) {
   let n = 0
@@ -27,6 +28,8 @@ export function makeTools({ root, logDir = null, env = process.env } = {}) {
     bun: (args, o) => exec(`bun-${args[1] ?? ''}`, 'bun', args, o),
     /** any program, for writers */
     exec,
+    /** a root npm script exists (commands other builders add land separately) */
+    hasScript: (name) => hasScript(root, name),
     has: (program) => spawnSync('sh', ['-c', `command -v ${program}`], { env, encoding: 'utf8' }).status === 0,
     fetch: (url, o) => fetch(url, o),
   }

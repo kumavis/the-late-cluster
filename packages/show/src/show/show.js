@@ -63,6 +63,7 @@ export class Show {
     // per-segment state
     this.set = { ...(module.set ?? {}) }
     this.nameplate = module.nameplate
+    this.keyLabel = module.keyLabel
     this.captions = true
     this.onAir = true
     this.t = 0
@@ -465,7 +466,7 @@ export class Show {
     this._captionState(t)
   }
 
-  /** the episode-long counter (stage/chrome.js builtCounter): from + bumps passed (module.built = { from, bumps: [cue…] }) */
+  /** the episode-long counter (stage/chrome.js builtCounter): from + bumps passed (module.built = { from, bumps: [cue…], label? }) */
   _builtState(t) {
     const b = this.module.built
     if (!b) {
@@ -482,7 +483,7 @@ export class Show {
       }
     }
     this.built = n
-    this.builtNow = { n, age: t - last, seed: Math.floor(last * 1000) }
+    this.builtNow = { n, age: t - last, seed: Math.floor(last * 1000), label: b.label }
   }
 
   /** the disclaimer footer: module.disclaimer = 'text' | { text, from, dur } → { text, alpha } or null */

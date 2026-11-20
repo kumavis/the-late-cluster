@@ -3,7 +3,7 @@ import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { collect } from '../src/collect.js'
 import { analyze } from '../src/digest.js'
-import { renderMarkdown } from '../src/render-md.js'
+import { renderMarkdown, renderAboutShow } from '../src/render-md.js'
 import { Consent } from '../src/consent.js'
 import { XrpcClient } from '../src/http.js'
 import { loadConfig } from '../src/config.js'
@@ -173,11 +173,12 @@ test('members, window and the top story come out as expected', async () => {
 
 test('the markdown has the sections a writer needs', async () => {
   const { md } = await runFake()
-  for (const h of ['# Cluster digest: 2026-W46', '## The week at a glance', '## Built this week', '## About the show', '## New voices', '## Interview material', '## Threads you could perform', '## Stories', '### 1. ', 'Appendix A: most active accounts', 'Appendix B: links that circulated', 'Appendix C: phrases that spiked', 'Appendix D: "X week" declarations', 'Appendix E: how this was made']) {
+  for (const h of ['# Cluster digest: 2026-W46', '## The week at a glance', '## Built this week', '## New voices', '## Interview material', '## Threads you could perform', '## Stories', '### 1. ', 'Appendix A: most active accounts', 'Appendix B: links that circulated', 'Appendix C: phrases that spiked', 'Appendix D: "X week" declarations', 'Appendix E: how this was made']) {
     assert.ok(md.includes(h), h)
   }
   assert.match(md, /\[open\]\(https:\/\/bsky\.app\/profile\/alpha\.example\.test\/post\/root\)/)
   assert.match(md, /Why these are together:/)
+  assert.ok(!md.includes('## About the show'), 'posts about the show are for reviewers only')
 })
 
 test('two runs on the same inputs give the same stories', async () => {
@@ -231,9 +232,10 @@ test('built this week names the builder, the wish and who shared it', async () =
   assert.match(md, /Built by \*\*Builder Bot\*\* @builder\.alpha\.example\.test/)
 })
 
-test('about the show: mentions, reactions, corrections, and a request to be left out', async () => {
+test('about the show: mentions, reactions, corrections, and a request to be left out, for reviewers only', async () => {
   const { d, md, consent } = await runFake()
-  const about = d.sections.aboutShow
+  assert.deepEqual(d.sections.aboutShow, { movedTo: 'reviewers/about-show.json', posts: 2, optOutRequests: 1 })
+  const about = d.reviewers.aboutShow
   const show = about.posts.find((p) => p.uri === uriOf('delta', 'show'))
   assert.deepEqual(show.why, ['names the show'])
   const react = about.posts.find((p) => p.uri === uriOf('bravo', 'react'))
@@ -244,21 +246,32 @@ test('about the show: mentions, reactions, corrections, and a request to be left
   assert.ok(!d.posts.some((p) => p.authorDid === ACCOUNTS.foxtrot.did))
   assert.ok(!JSON.stringify(d.stories).includes('FOXTROT'))
   assert.ok(!md.includes('please leave me out'), 'the request is linked, not quoted')
-  assert.match(md, /Requests to be left out \(1\)[\s\S]*- @foxtrot\.example\.test: \[the post\]/)
+  assert.ok(!md.includes('crow bit') && !md.includes('cold open'), 'nothing about the show in digest.md')
+  const s = d.stories.find((x) => x.posts[0].uri === uriOf('delta', 'show'))
+  assert.equal(s.aboutShow, true)
+  assert.ok(!d.overview.topStories.some((t) => t.id === s.id))
+  const rev = renderAboutShow(d.reviewers.aboutShow, d.reviewers.stories, d.window)
+  assert.match(rev, /Requests to be left out \(1\)[\s\S]*- @foxtrot\.example\.test: \[the post\]/)
+  assert.match(rev, /crow bit/)
 })
 
-test('out-of-bounds stories are flagged, kept as headlines, and kept out of the glance', async () => {
+test('a keyword mark is on the post, not the story; the story is out only for consent', async () => {
   const { d, md } = await runFake()
   const s = d.stories.find((x) => x.posts[0].uri === uriOf('charlie', 'pol'))
-  assert.deepEqual(s.outOfBounds.topics, ['partisan politics'])
-  assert.ok(!d.overview.topStories.some((t) => t.id === s.id))
+  assert.equal(s.outOfBounds, null, 'a keyword is not a consent matter')
+  assert.deepEqual(s.sensitivity.topics, ['partisan politics'])
+  assert.equal(s.sensitivity.postsMarked, 1)
+  assert.equal(s.sensitivity.leadMarked, true)
+  assert.deepEqual(d.posts.find((p) => p.uri === uriOf('charlie', 'pol')).sensitive, ['partisan politics'])
+  assert.ok(!d.overview.topStories.some((t) => t.id === s.id), 'a marked lead stays out of the glance')
   const glance = md.slice(md.indexOf('## The week at a glance'), md.indexOf('## Built this week'))
   assert.ok(!glance.includes('election results'))
-  const section = md.slice(md.indexOf(`### ${s.rank}. **OUT OF BOUNDS (partisan politics)**`))
-  assert.ok(section.length > 0)
-  const block = section.slice(0, section.indexOf('---'))
-  assert.ok(!/^> /m.test(block), 'no quoted posts for an out-of-bounds story')
-  assert.ok(!/— .*\[open\]/.test(block))
+  assert.ok(!md.includes('election results'), 'a marked post is never quoted')
+  assert.ok(md.includes('*(lead post marked: partisan politics)*'), 'listed by its mark, not its text')
+  // the thread whose root is by the opted-out account is left out whole, for consent
+  const ghost = d.stories.find((x) => x.posts.some((p) => p.uri === uriOf('echo', 'e1')))
+  assert.equal(ghost.outOfBounds.rule, 'R11')
+  assert.match(ghost.outOfBounds.reasons.join(' '), /excluded|consent/)
 })
 
 test('new voices: strong members the show has never featured, nobody it has', async () => {
@@ -343,4 +356,97 @@ test('coverage: how members qualified, concentration, change, signals, the cap, 
   const md = renderCoverage(cv, { label: 'W46', start: 'a', end: 'b' })
   for (const h of ['# Coverage: W46', '## Worries', '## Seeds', 'Suggested additional seeds', '## How members qualified', '## Concentration', '## Featured before (the tracker)', '## New and gone', '## Against independent signs of the community', '## The cap', '## Excluded, in counts']) assert.ok(md.includes(h), h)
   assert.ok(!md.includes('ghost'), 'no opted-out account in the report: ' + md.split('\n').filter((l) => l.includes('ghost')).join(' | '))
+})
+
+// ---- card skeletons and lane slices (README "Skeletons and lanes")
+
+async function skeletonsOf(run) {
+  const { c, d, config } = run
+  const { buildSkeletons } = await import('../src/skeletons.js')
+  const { buildPrivate } = await import('../src/bios.js')
+  const priv = buildPrivate({ bios: c.bios, consent: run.consent, members: d.members, authors: d.authors, memberDids: c.memberDids })
+  return { priv, sk: buildSkeletons({ d, window: d.window, profiles: c.profiles, bios: c.bios, memberDids: c.memberDids, bioReview: new Set(priv.review.keys()), featured: featuredLookup(LEDGER, W.end), config }) }
+}
+
+test('skeletons: every story once, posts in order with exact text, authors and marks', async () => {
+  const run = await runFake()
+  const { sk } = await skeletonsOf(run)
+  const ids = sk.index.skeletons.map((x) => x.id)
+  assert.equal(new Set(ids).size, ids.length, 'a story appears once')
+  const byUri = new Map(run.d.posts.map((p) => [p.uri, p]))
+  for (const f of sk.files.values()) {
+    for (const p of f.posts) assert.equal(p.text, byUri.get(p.uri).text, 'exact text, never retyped')
+    const times = f.posts.map((p) => p.time)
+    assert.deepEqual(times, [...times].sort(), 'oldest first')
+  }
+  const root = [...sk.files.values()].find((f) => f.posts.some((p) => p.uri === uriOf('alpha', 'root')))
+  const built = root.posts.find((p) => p.uri === uriOf('charlie', 'c1'))
+  assert.equal(built.author.handle, 'charlie.example.test')
+  assert.equal(built.author.member, true)
+  assert.equal(built.author.followers, 1000)
+  assert.equal(built.author.timesFeatured, 0)
+  assert.deepEqual(built.replyTo, { uri: uriOf('alpha', 'root'), handle: 'alpha.example.test', inStory: true })
+  assert.ok(root.lanes.some((l) => l.lane === 'made'), JSON.stringify(root.lanes))
+  assert.ok(root.makers.some((m) => m.handle === 'charlie.example.test'))
+  for (const f of sk.files.values()) for (const p of f.posts) assert.ok(Array.isArray(p.media) && 'hasText' in p)
+})
+
+test('skeletons: a keyword marks its post; a story is withheld whole only for consent', async () => {
+  const run = await runFake()
+  const { sk } = await skeletonsOf(run)
+  const pol = [...sk.files.values()].find((f) => f.posts.some((p) => p.uri === uriOf('charlie', 'pol')))
+  assert.equal(pol.excluded, null)
+  assert.deepEqual(pol.posts[0].sensitive, ['partisan politics'])
+  assert.equal(pol.posts[0].consent, undefined)
+  assert.equal(pol.marks.postsMarked, 1)
+  assert.equal(pol.marks.leadMarked, true)
+  const ghost = sk.files.get(run.d.stories.find((x) => x.posts.some((p) => p.uri === uriOf('echo', 'e1'))).id)
+  assert.equal(ghost.excluded.rule, 'R11')
+  assert.deepEqual(ghost.posts, [])
+  assert.equal(ghost.headline, null)
+  assert.ok(sk.index.skeletons.find((x) => x.id === ghost.id).excluded)
+  for (const lane of Object.values(sk.lanes)) assert.ok(!JSON.stringify(lane).includes(ghost.id), 'no lane lists an excluded story')
+})
+
+test('skeletons and lanes hold nothing about the show and no excluded account', async () => {
+  const run = await runFake()
+  const { sk } = await skeletonsOf(run)
+  const out = JSON.stringify([...sk.files.values()]) + JSON.stringify(sk.lanes) + JSON.stringify(sk.index)
+  for (const s of ['crow bit', 'cold open', 'please leave me out', 'GHOST TEXT', ACCOUNTS.ghost.did, 'ghost.example.test', 'QUIET TEXT', ACCOUNTS.quiet.did]) assert.ok(!out.includes(s), s)
+  const { renderLane, stringifySkeleton, stringifyIndex } = await import('../src/skeletons.js')
+  for (const l of Object.values(sk.lanes)) assert.ok(!renderLane(l).includes('crow'))
+  for (const f of sk.files.values()) assert.deepEqual(JSON.parse(stringifySkeleton(f)), f)
+  assert.deepEqual(JSON.parse(stringifyIndex(sk.index)), sk.index)
+})
+
+test('lanes: the games slice marks which results may be named; voices leave out bots and the featured', async () => {
+  const run = await runFake()
+  const { sk } = await skeletonsOf(run)
+  const g = sk.lanes.games.games[0]
+  const named = g.standings.filter((r) => r.mayName)
+  const unnamed = g.standings.filter((r) => !r.mayName)
+  assert.deepEqual(named.map((r) => r.winner.handle), ['charlie.example.test'])
+  assert.equal(unnamed.length, 1)
+  assert.deepEqual(unnamed[0].winner, { excluded: true })
+  assert.equal(unnamed[0].winningPost, null)
+  assert.ok(sk.lanes.games.entries.length > 0)
+  const voices = sk.lanes.voices.entries.map((e) => e.handle)
+  assert.ok(!voices.includes('alpha.example.test'), 'spoke in the previous episode')
+  assert.ok(!voices.includes('bravo.example.test'), 'featured earlier')
+  assert.ok(!voices.includes('chicken.example.test'), 'a bot')
+  for (const e of sk.lanes.voices.entries) for (const p of e.posts) assert.ok(!sk.files.get(p.id).excluded)
+  for (const l of ['made', 'talk', 'games']) for (const e of sk.lanes[l].entries) assert.ok(sk.files.has(e.id) && e.line.length > 0)
+  for (const l of Object.values(sk.lanes)) for (const id of l.skeletons) assert.ok(sk.files.has(id) && !sk.files.get(id).excluded)
+  assert.deepEqual(sk.lanes.made.skeletons, sk.lanes.made.entries.map((e) => e.id))
+})
+
+test('the run keeps profile descriptions privately, and reads them for opt-outs', async () => {
+  const run = await runFake()
+  const { priv } = await skeletonsOf(run)
+  const out = JSON.stringify(run.digest) + run.md
+  assert.ok(!out.includes('Please do not quote'))
+  assert.ok(priv.file.accounts.length > 0)
+  assert.ok(!priv.file.accounts.some((a) => a.did === ACCOUNTS.quiet.did || a.did === ACCOUNTS.ghost.did), 'excluded accounts are not kept, even privately')
+  assert.ok(priv.file.accounts.every((a) => typeof a.description === 'string'))
+  assert.equal(priv.counts.excludedDirect, 1)
 })

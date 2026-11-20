@@ -2,7 +2,7 @@
   "$comment": "Safety rules from docs/bible/09-real-people.md (R7, R10, R11, R13). Patterns are case-insensitive JavaScript regexes. When in doubt, a pattern should match too much rather than too little.",
   "smallAccountFollowers": 300,
   "selfDeclaredOptOut": {
-    "$comment": "R11: a profile description matching any of these makes the account an opt-out. Errs towards excluding: 'DNI' and 'no AI' match too.",
+    "$comment": "R11: a profile description matching any of these makes the account an opt-out. Errs towards excluding: 'DNI' and 'no AI' match too. indirectPatterns are opt-outs said another way (trial 002, findings 9 and 36): posts described as temporary or meant to disappear, 'not to be quoted', 'ask before you screenshot'. They exclude the account the same way and are counted separately.",
     "patterns": [
       "\\b(do ?n[o']?t|don't|dont|please don't|pls don't|never|no)\\s+(qt|qrt|quote|quote[- ]?post|quote[- ]?tweet|screenshot|screen ?cap|ss|repost|rt|clip|share|archive|scrape|train on)\\w*",
       "\\b(do ?n[o']?t|don't|dont|never)\\s+use\\s+((my|these|this account'?s?)\\s+(posts|art|work|content|words|images|photos|likeness)|unroll\\w*|thread ?reader\\w*|bots?|ai|llms?)\\b",
@@ -17,6 +17,18 @@
       "\\bopt(ed|ing)?[- ]?out\\b",
       "\\bnoai\\b",
       "#?\\bno ?ai ?training\\b"
+    ],
+    "indirectPatterns": [
+      "\\b(my |these |all |the )?(posts?|skeets?|tweets?|words|content|account)\\s+(are|is|will be|get|gets)\\s+(\\w+\\s+)?(temporary|ephemeral|impermanent|transient|deleted|auto[- ]?deleted|wiped|purged)\\b",
+      "\\b(posts?|skeets?|tweets?|content)\\s+(are |is )?(meant|supposed|designed|intended)\\s+to\\s+(disappear|vanish|be (temporary|ephemeral|deleted|forgotten))\\b",
+      "\\b(posts?|skeets?|tweets?)\\s+(disappear|vanish|self[- ]?destruct)\\w*\\b",
+      "\\bi\\s+(regularly\\s+|routinely\\s+|periodically\\s+|auto[- ]?)?(delete|wipe|purge)\\s+(my|all|old)\\s+(\\w+\\s+)?(posts?|skeets?|tweets?)\\b",
+      "\\b(auto[- ]?deleting|auto[- ]?delete[sd]?|self[- ]?deleting)\\b",
+      "\\beverything (here )?(is|gets) (temporary|ephemeral|deleted)\\b",
+      "\\bnot (to be|for being|meant to be)\\s+(quoted|screenshotted|screenshot|archived|reposted|kept|saved|scraped|used)\\b",
+      "\\b(screenshots?|quotes?|qts?|quote posts?|reposts?)\\s+(are\\s+)?(not (ok|okay|allowed|welcome|cool)|forbidden|banned)\\b",
+      "\\bask\\s+(me\\s+)?(before|first)(\\s+you)?\\s+(quote|qt|screenshot|share|repost|use|archive)\\w*\\b",
+      "\\b(my\\s+)?(posts|words|art|work|content)\\s+(are|is)\\s+not\\s+(for|to be used (for|by))\\s+(ai|bots?|llms?|training|scraping)\\b"
     ]
   },
   "showOptOutPatterns": {
@@ -45,7 +57,7 @@
     "\\bput words in\\b"
   ],
   "sensitivity": {
-    "$comment": "R10 topics. Each term is matched as a whole word or phrase (word boundaries are added). A post matching a topic is flagged with it. A story is flagged when its lead or context post matches, when at least minShare of its member posts match, or when at least minPosts of its posts match one topic. Coarse on purpose: a hint for the writer, not a ruling. combinations: a post matching at least one term from every list in 'all' gets that topic. 'asked not to be quoted' (R11): a post asking not to be quoted makes its story out of bounds, and digest.md withholds even the headline.",
+    "$comment": "R10 topics. Each term is matched as a whole word or phrase (word boundaries are added). A post matching a topic is marked with it, and the mark stays on that post. A story carries a hint (sensitivity.hint) when its lead or context post matches, when at least minShare of its member posts match, or when at least minPosts of its posts match one topic; the hint never takes the rest of the story with it. Coarse on purpose: a hint for the researcher and the auditor, not a ruling. combinations: a post matching at least one term from every list in 'all' gets that topic. consentTopics are matters of consent, not subject (R11): a post matching one is marked consent ('asks not to be quoted'), and so are its author's other posts in the same story; the story is left out whole when the lead post or thread root is so marked. Every other topic marks only the post it is in (trial 002, findings 7 and 37).",
     "minShare": 0.2,
     "minPosts": 3,
     "topics": {
@@ -368,6 +380,9 @@
           ]
         ]
       }
+    ],
+    "consentTopics": [
+      "asked not to be quoted"
     ]
   },
   "excludedMentions": {
@@ -393,5 +408,18 @@
     ]
   },
   "showQuotePattern": "[\"“”]([^\"“”\\n]{3,200})[\"“”]",
-  "$commentShowQuote": "showQuotePattern finds a line a viewer quotes in a post about the show ('it sounds exactly like me \"built it\"'). Each quoted line is listed so the writer can check whether the show put it in a real person's mouth."
+  "$commentShowQuote": "showQuotePattern finds a line a viewer quotes in a post about the show ('it sounds exactly like me \"built it\"'). Each quoted line is listed so the writer can check whether the show put it in a real person's mouth.",
+  "bioReview": {
+    "$comment": "A profile description that matches one of these, and no opt-out pattern, might be an opt-out: the account is marked bioReview, with the phrase that matched, for an auditor to judge (private/bio-review.md). It is not excluded by the tool. Broad on purpose.",
+    "patterns": [
+      "\\b(ephemeral|temporary|impermanent|transient)\\b",
+      "\\b(delet(e|es|ed|ing)|disappear\\w*|vanish\\w*|wipe[sd]?|purge[sd]?)\\b",
+      "\\bconsent\\b",
+      "\\bpermission\\b",
+      "\\b(no|not|don'?t|do not|never|without|ask|please)\\b[^.\\n]{0,25}\\b(archiv\\w*|screen ?(shot|cap)\\w*|quot\\w*|qts?|qrts?|repost\\w*|clip\\w*|scrap\\w*|unroll\\w*|train\\w*|bots?|ai|llms?)\\b",
+      "\\b(detach\\w*|remov\\w*)\\s+(your\\s+|the\\s+|any\\s+)?(quote|qt)\\w*\\b",
+      "\\b(train(ing)? on|training data)\\b",
+      "\\b(leave me (alone|out)|don'?t @ me)\\b"
+    ]
+  }
 }

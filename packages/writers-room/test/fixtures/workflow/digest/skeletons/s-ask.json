@@ -1,0 +1,29 @@
+{
+  "id": "s-ask",
+  "lane": "talk",
+  "title": "s-ask",
+  "posts": [
+    {
+      "uri": "at://did:plc:trialasker/app.bsky.feed.post/t1",
+      "url": "https://bsky.app/profile/asker.example/post/t1",
+      "handle": "asker.example",
+      "did": "did:plc:trialasker",
+      "displayName": "Asker",
+      "text": "somebody should make a talk show with only two segments",
+      "followers": 400,
+      "counts": {
+        "likes": 40,
+        "reposts": 6,
+        "replies": 4,
+        "quotes": 2
+      },
+      "reach": {
+        "score": 52
+      },
+      "replyTo": null,
+      "alt": [],
+      "media": [],
+      "sensitive": null
+    }
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "selection": "__SELECTION__",
+  "verdict": "pass",
+  "out": [],
+  "reason": "every selected account is invented (.example) and every cited post is in the digest"
+}

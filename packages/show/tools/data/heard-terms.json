@@ -1,0 +1,5 @@
+{
+  "$comment": "The fitting tool's own word lists for what the transcription heard, beside the pipeline's (packages/writers-room/config/pipeline.json `heard`: alarming and out of bounds), which it reads as they are. `crude`: heard anywhere and not in the caption, the line is flagged. `loaded`: on a real person's line (a real guest's puppet, a real post read aloud, or a line naming a real person), heard and not in the caption, the line is flagged as a changed statement. Whole words, with plural and -ed/-ing forms.",
+  "crude": ["bitch", "bastard", "shit", "fuck", "fucking", "cunt", "whore", "slut", "dick", "cock", "piss", "asshole", "porn", "nigger", "nigga", "faggot", "fag", "retard", "retarded", "spic", "chink", "kike", "tranny", "dyke"],
+  "loaded": ["report", "hate", "steal", "stole", "stolen", "lie", "lied", "liar", "cheat", "fake", "scam", "fraud", "stupid", "idiot", "dumb", "ugly", "fat", "drunk", "broke", "blocked", "banned", "quit", "stalker", "creep"]
+}

@@ -9,7 +9,9 @@ import { Consent } from './consent.js'
 import { XrpcClient, DEFAULT_USER_AGENT, authFromEnv } from './http.js'
 import { collect, completeThreads } from './collect.js'
 import { analyze } from './digest.js'
-import { renderMarkdown } from './render-md.js'
+import { renderMarkdown, renderAboutShow } from './render-md.js'
+import { buildSkeletons, renderLane, LANES, stringifySkeleton, stringifyIndex } from './skeletons.js'
+import { buildPrivate, renderBioReview } from './bios.js'
 import { resolveWindow, baselineWeekLabels, rangeWindow } from './window.js'
 import { loadLedger, previousEpisode, featuredLookup, frequentlyFeatured } from './ledger.js'
 import { findPreviousRun, readRun, chooseSeeds } from './seeds.js'
@@ -107,10 +109,25 @@ export async function pruneCache(out) {
  * Write every output beside its final name first, then rename them all, so a reader of the
  * folder sees the old files or the new ones and never a run half written.
  */
-export async function writeOutputs(out, files) {
+export async function writeOutputs(out, files, dirs = {}) {
   const tmp = Object.keys(files).map((name) => [join(out, `.${name}.tmp`), join(out, name)])
   for (const [i, [t]] of tmp.entries()) await writeFile(t, Object.values(files)[i])
+  // Folders (skeletons/, lanes/, ...) are written whole beside their final names, then swapped.
+  const swaps = []
+  for (const [name, entries] of Object.entries(dirs)) {
+    const next = join(out, `.${name}.next`)
+    await rm(next, { recursive: true, force: true })
+    await mkdir(next, { recursive: true })
+    for (const [rel, content] of entries) await writeFile(join(next, rel), content)
+    swaps.push([next, join(out, name), join(out, `.${name}.old`)])
+  }
   for (const [t, f] of tmp) await rename(t, f)
+  for (const [next, final, old] of swaps) {
+    await rm(old, { recursive: true, force: true })
+    if (existsSync(final)) await rename(final, old)
+    await rename(next, final)
+    await rm(old, { recursive: true, force: true })
+  }
 }
 
 /** Identical warnings once each, with a count. */
@@ -182,7 +199,7 @@ export async function run(argv = process.argv.slice(2), env = process.env) {
     auth: authFromEnv(env, log),
     log,
   })
-  const consent = new Consent({ optOut: config.optOut.accounts, blockedLabels: config.scoring.blockedLabels, selfDeclaredPatterns: config.safety.selfDeclaredOptOut.patterns, naming: config.safety.excludedMentions })
+  const consent = new Consent({ optOut: config.optOut.accounts, blockedLabels: config.scoring.blockedLabels, selfDeclaredPatterns: config.safety.selfDeclaredOptOut.patterns, indirectPatterns: config.safety.selfDeclaredOptOut.indirectPatterns ?? [], reviewPatterns: config.safety.bioReview?.patterns ?? [], naming: config.safety.excludedMentions })
 
   const c = await collect({ client, config, window, consent, log, membershipOnly: args['membership-only'] })
   if (c.membershipOnly) {
@@ -231,7 +248,7 @@ export async function run(argv = process.argv.slice(2), env = process.env) {
   let d = analyze(analyzeArgs())
   const roots = d.sections.performableThreads.candidates ?? []
   if (roots.length) {
-    await completeThreads({ client, store: c.store, consent, roots, complete: c.completeThreads, warnings: c.warnings, profiles: c.profiles })
+    await completeThreads({ client, store: c.store, consent, roots, complete: c.completeThreads, warnings: c.warnings, profiles: c.profiles, bios: c.bios })
     consent.stats = structuredClone(counters)
     d = analyze(analyzeArgs())
   }
@@ -280,9 +297,22 @@ export async function run(argv = process.argv.slice(2), env = process.env) {
   }
   digest.coverage = buildCoverage({ collected: c, digest: { ...d, sections: d.sections }, config, seedPlan, previous, run: digest.run, consentStats: consent.stats, ledger, frequent: frequentlyFeatured(ledger, { min: 1, atMs: window.end }).slice(0, 15) })
 
+  // Card skeletons and lane slices (README "Skeletons and lanes"), the run's private data
+  // (bios, for the auditor only) and the reviewers' file about the show.
+  const featuredFn = featuredLookup(ledger, window.end)
+  const priv = buildPrivate({ bios: c.bios, consent, members: d.members, authors: d.authors, memberDids: c.memberDids })
+  const sk = buildSkeletons({ d, window: digest.window, profiles: c.profiles, bios: c.bios, memberDids: c.memberDids, bioReview: new Set(priv.review.keys()), featured: featuredFn, config })
+  for (const [did, a] of Object.entries(digest.authors)) { a.bot = sk.isBot(did); if (priv.review.has(did)) a.bioReview = true }
+  digest.stats.bios = priv.counts
+  digest.stats.skeletons = sk.index.counts
+  digest.stories = digest.stories.map((s) => (s.aboutShow ? { id: s.id, rank: s.rank, aboutShow: true, movedTo: 'reviewers/about-show.json' } : s))
+  const reviewers = { format: 'late-cluster-about-show/1', window: digest.window, note: 'for reviewers and auditors only', ...d.reviewers.aboutShow, stories: d.reviewers.stories }
+
   // The last line of defence: nothing written may still hold an excluded account's DID,
   // handle or profile link, whichever section it reached (README "Naming an excluded account").
-  const scrubbed = consent.scrub(digest) + consent.scrub(d.posts)
+  const scrubbed = consent.scrub(digest) + consent.scrub(d.posts) + consent.scrub([...sk.files.values()]) + consent.scrub(sk.lanes) + consent.scrub(reviewers)
+  // A description may name an excluded account; that is expected, and redacted all the same.
+  consent.scrub(priv.file)
   if (scrubbed) digest.run.warnings.push(`consent: ${scrubbed} strings still named an excluded account after filtering and were redacted at the end; a rule missed them, so report it`)
 
   await writeOutputs(out, {
@@ -290,6 +320,22 @@ export async function run(argv = process.argv.slice(2), env = process.env) {
     'digest.json': JSON.stringify(digest, null, 2) + '\n',
     'digest.md': renderMarkdown(digest),
     'coverage.md': renderCoverage(digest.coverage, digest.window),
+  }, {
+    skeletons: [
+      ['index.json', stringifyIndex(sk.index)],
+      ['by-post.json', JSON.stringify(Object.fromEntries(sk.storyOfPost)) + '\n'],
+      ...[...sk.files].map(([id, f]) => [`${id}.json`, stringifySkeleton(f)]),
+    ],
+    lanes: LANES.flatMap((l) => [[`${l}.json`, JSON.stringify(sk.lanes[l], null, 1) + '\n'], [`${l}.md`, renderLane(sk.lanes[l])]]),
+    private: [
+      ['README.md', '# Private\n\nThe run\'s private data: profile descriptions and labels as read, and the accounts whose description might be an opt-out. For the auditor only. Never copied into a file another role reads.\n'],
+      ['profiles.json', JSON.stringify(priv.file, null, 1) + '\n'],
+      ['bio-review.md', renderBioReview(priv)],
+    ],
+    reviewers: [
+      ['about-show.json', JSON.stringify(reviewers, null, 1) + '\n'],
+      ['about-show.md', renderAboutShow(reviewers, d.reviewers.stories, digest.window)],
+    ],
   })
 
   // The cache is only removed once every output is written.
@@ -299,7 +345,7 @@ export async function run(argv = process.argv.slice(2), env = process.env) {
     pruned = true
   }
 
-  const summary = `${window.label}: ${digest.stats.cluster.members} accounts, ${d.counts.windowPosts} posts, ${d.stories.length} stories; ${client.stats.requests} requests (${client.stats.cacheHits} cached) in ${digest.run.runtimeSeconds}s -> ${out}${pruned ? ' (cache pruned)' : ''}`
+  const summary = `${window.label}: ${digest.stats.cluster.members} accounts, ${d.counts.windowPosts} posts, ${d.stories.length} stories, ${sk.index.counts.written} skeletons; ${client.stats.requests} requests (${client.stats.cacheHits} cached) in ${digest.run.runtimeSeconds}s -> ${out}${pruned ? ' (cache pruned)' : ''}`
   process.stdout.write(summary + '\n')
   return { digest, out }
 }

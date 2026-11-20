@@ -2,10 +2,11 @@ name: Weekly episode
 
 # Produces one episode and opens a pull request for a person to review: the scraper writes the
 # digest (its default window: since the previous aired episode), then `npm run produce` drives the
-# episode through the eleven stages of docs/WORKFLOW.md with the headless runner: each task's brief
-# goes to Claude Code as the role's subagent (`claude -p --agent researcher|writer|reviewer|builder`,
-# .claude/agents/, which carry the model for each role), with deterministic gates between them.
-# Locally the project manager spawns the same subagents by hand (the manual runner); see
+# episode through the thirteen stages of docs/WORKFLOW.md with the headless runner: each task's brief
+# goes to Claude Code as the role's subagent (`claude -p --agent <role>` for researcher, auditor,
+# writer, reviewer, sound-editor, builder and viewer; .claude/agents/ carries the model for each),
+# a wave's tasks in parallel, with deterministic gates between them. The run stops only at a failure
+# or a send-back. Locally the same runner is the default wherever claude is signed in; see
 # packages/writers-room/playbooks/project-manager.md.
 #
 # Why it is manual: the show puts words in the mouths of puppets that stand for real people, and
@@ -36,7 +37,7 @@ on:
         type: boolean
         default: true
       whisper:
-        description: Install Whisper and run the intelligibility pass (adds about 5 minutes)
+        description: Install Whisper, which the fitting tool (npm run fit) and the heard-text gate need (adds about 5 minutes)
         required: false
         type: boolean
         default: true
@@ -91,7 +92,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      # The intelligibility pass (bible 10, stage 4). CPU-only torch keeps the download small.
+      # The fitting tool transcribes every line (stages 8 and 10). CPU-only torch keeps the download small.
       - name: Install Whisper
         if: ${{ inputs.whisper }}
         run: |

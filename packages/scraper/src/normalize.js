@@ -1,8 +1,9 @@
 // Turn AppView post views into the small record the digest keeps.
 //
 // Kept: URI, a bsky.app URL, author DID / handle / display name, text, timestamps, engagement
-// counts, reply and quote relations, external link URLs and titles, image alt text.
-// Not kept: avatars, images, video, follower lists, anything else.
+// counts, reply and quote relations, external link URLs and titles, image alt text, and the
+// public CDN address of each picture and video (`media`), so `npm run media` can fetch one on
+// request. Not kept: avatars, the pictures and videos themselves, follower lists, anything else.
 //
 // Fields starting with `_` are internal (used by the consent filter and grouping) and are
 // stripped by `publicPost` before anything is written.
@@ -90,6 +91,27 @@ function collectAlts(node, out, depth = 0) {
     if (k === 'record' || k === 'alt') continue
     if (v && typeof v === 'object') collectAlts(v, out, depth + 1)
   }
+}
+
+/**
+ * Every picture and video in the media views, in order: its public CDN address, the
+ * thumbnail's, and its alt text. `hasAlt` is false when the author wrote none.
+ */
+export function mediaOf(views) {
+  const out = []
+  for (const m of views ?? []) {
+    const t = m?.$type ?? ''
+    if (/images/.test(t)) {
+      for (const im of m.images ?? []) {
+        const alt = typeof im.alt === 'string' && im.alt.trim() ? im.alt.trim() : null
+        out.push({ kind: 'image', url: im.fullsize ?? im.thumb ?? null, thumb: im.thumb ?? null, alt, hasAlt: !!alt, ...(im.aspectRatio ? { aspectRatio: im.aspectRatio } : {}) })
+      }
+    } else if (/video/.test(t)) {
+      const alt = typeof m.alt === 'string' && m.alt.trim() ? m.alt.trim() : null
+      out.push({ kind: 'video', url: m.playlist ?? null, thumb: m.thumbnail ?? null, alt, hasAlt: !!alt, ...(m.aspectRatio ? { aspectRatio: m.aspectRatio } : {}) })
+    }
+  }
+  return out
 }
 
 /** Split an embed view into { media, external, quote } parts. */
@@ -214,6 +236,7 @@ export function normalizePost(view, { source } = {}) {
     imageAlts: alts,
     hasImages: parts.mediaViews.some((m) => /images|gallery/.test(m.$type ?? '')),
     hasVideo: parts.video,
+    media: mediaOf(parts.mediaViews),
     embedded: parts.embedded,
     tags: [...new Set(facets.tags)].sort(),
     labels: [...new Set([...labelVals(view.labels), ...(record.labels?.values ?? []).map((v) => v.val)])].sort(),

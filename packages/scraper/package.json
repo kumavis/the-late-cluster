@@ -6,7 +6,9 @@
   "description": "Reads public Bluesky through the public AppView and writes a weekly digest of what one community talked about, built and laughed at.",
   "bin": {
     "late-cluster-scrape": "bin/scrape.mjs",
-    "late-cluster-lookup": "bin/lookup.mjs"
+    "late-cluster-lookup": "bin/lookup.mjs",
+    "late-cluster-media": "bin/media.mjs",
+    "late-cluster-sources": "bin/sources.mjs"
   },
   "engines": {
     "node": ">=22"
@@ -14,6 +16,8 @@
   "scripts": {
     "test": "node --test \"test/*.test.js\"",
     "scrape": "node bin/scrape.mjs",
-    "lookup": "node bin/lookup.mjs"
+    "lookup": "node bin/lookup.mjs",
+    "media": "node bin/media.mjs",
+    "sources": "node bin/sources.mjs"
   }
 }

@@ -1,26 +1,51 @@
 {
-  "$comment": "Settings for npm run produce, the deterministic backbone of docs/WORKFLOW.md. Numbers that come from the contract or the bible say so; change them there first. A run records the limits it used in production/state.json, and the pull request says when they were not these defaults.",
-  "constitution": ["00-constitution.md", "09-real-people.md"],
+  "$comment": "Settings for npm run produce, the deterministic backbone of docs/WORKFLOW.md (workflow v3, thirteen stages). Numbers that come from the contract or the bible say so; change them there first. A run records the limits it used in production/state.json, and the pull request says when they were not these defaults.",
+  "constitution": [
+    "00-constitution.md",
+    "09-real-people.md"
+  ],
   "ledger": {
     "$comment": "The record of what the show has done (docs/ledger/<episode-id>.json), read by reviewers and by the people rules, never by writers, researchers or builders.",
     "dir": "docs/ledger"
   },
   "limits": {
     "$comment": "Ceilings only, never a target for the gate: there is no minimum length, and the first rule (only include it if it's interesting) decides how long an episode actually is. runtimeSeconds.max is the owner's ceiling ('aim for less than 10 minutes'): 590 s. targetSeconds is the contract's 'about eight minutes', used by selection and by the draft stage's 'more drafted running time than the target'. words.max scales 520 words per 300 s to 590 s. wordsPerSecond: running-time arithmetic (spoken words per second of running time, laughs and music included).",
-    "runtimeSeconds": { "max": 590 },
+    "runtimeSeconds": {
+      "max": 590
+    },
     "targetSeconds": 480,
-    "words": { "max": 1020 },
-    "wordsPerSecond": { "min": 1.6, "max": 2.2 },
+    "words": {
+      "max": 1020
+    },
+    "wordsPerSecond": {
+      "min": 1.6,
+      "max": 2.2
+    },
     "segmentTolerance": 0.15
   },
   "parallel": {
-    "$comment": "How many subagents work independently on a task (docs/WORKFLOW.md, stages). researchLanes are the lanes of stage 2, one researcher each.",
+    "$comment": "How many subagents work independently on a task (docs/WORKFLOW.md, stages). researchLanes are the lanes of stage 2, one researcher each; each lane's slice of the digest is the scraper's data/weeks/<week>/lanes/<lane>.json and .md.",
     "researchLanes": [
-      { "id": "made", "title": "things that got made and shown" },
-      { "id": "talk", "title": "conversations and running bits" },
-      { "id": "games", "title": "the community's games and numbers (Top Chicken, forecasts, markets)" },
-      { "id": "voices", "title": "new and smaller voices" },
-      { "id": "interview", "title": "interview candidates: one member whose public posts answer real prompts" }
+      {
+        "id": "made",
+        "title": "things that got made and shown"
+      },
+      {
+        "id": "talk",
+        "title": "conversations and running bits"
+      },
+      {
+        "id": "games",
+        "title": "the community's games and numbers (Top Chicken, forecasts, markets)"
+      },
+      {
+        "id": "voices",
+        "title": "new and smaller voices"
+      },
+      {
+        "id": "interview",
+        "title": "interview candidates: one member whose public posts answer real prompts"
+      }
     ],
     "brainstormWriters": 3,
     "reviewers": 2,
@@ -31,23 +56,60 @@
     "weightsFrom": "packages/scraper/config/scoring.json"
   },
   "ranking": {
-    "$comment": "Stage 4. First pass: reach (tool), interest and best joke (reviewers, 0-10). The top `pool` cards go to a second pass for synergy and variety (reviewers, 0-2). The top `shortlist` cards by the final score are shortlisted.",
-    "weights": { "reach": 0.25, "interest": 0.35, "bestJoke": 0.4 },
-    "secondPass": { "synergy": 0.1, "variety": 0.1 },
-    "pool": 12,
-    "shortlist": 6
+    "$comment": "Stage 3, rank cards: two reviewers score each kept card for interest only (0-10); the tool adds reach (log-normalised against the window's largest card) and lists the pool. Interview candidates (the interview lane) are ranked among themselves: the best interviewPool of them join the pool for the standing interview and never take a shortlist place.",
+    "weights": {
+      "reach": 0.3,
+      "interest": 0.7
+    },
+    "pool": 15,
+    "interviewPool": 3
+  },
+  "shortlist": {
+    "$comment": "Stage 5: two reviewers score each pool card for its best joke (0-10, naming the idea), synergy (0-2) and variety (0-2). final = card * rank + bestJoke/10 * bestJoke + synergy/2 * synergy + variety/2 * variety. The top `size` non-interview cards are shortlisted (the contract: four or five); interview candidates are ranked apart.",
+    "weights": {
+      "rank": 0.35,
+      "bestJoke": 0.45,
+      "synergy": 0.1,
+      "variety": 0.1
+    },
+    "size": 5
   },
   "selection": {
-    "$comment": "Stage 7. Each draft is scored 0-10 by two or more reviewers on four criteria; the tool combines with these weights and fills the rundown greedily by score toward targetSeconds, never past the ceiling.",
-    "weights": { "funny": 0.35, "interesting": 0.25, "television": 0.25, "variety": 0.15 }
+    "$comment": "Stage 9. Each fitted draft is scored 0-10 by two or more reviewers on four criteria; the tool combines with these weights and fills the rundown greedily by score toward targetSeconds, never past the ceiling, applying the caps as it goes: at most `interviews` interview, nobody in more than `segmentsPerPerson` segments, nobody who spoke in the previous aired episode speaking, and the people rules' share of accounts featured before.",
+    "weights": {
+      "funny": 0.35,
+      "interesting": 0.25,
+      "television": 0.25,
+      "variety": 0.15
+    },
+    "caps": {
+      "interviews": 1,
+      "segmentsPerPerson": 2
+    }
   },
   "standing": {
-    "$comment": "Drafted every week, selected on merit (docs/WORKFLOW.md, stage 6). topChickenMinResults: how many of the window's results the Top Chicken draft must draw on, when the digest has that many.",
-    "segments": ["interview", "top-chicken", "music"],
+    "$comment": "Drafted every week, selected on merit (docs/WORKFLOW.md, stage 7). Each standing draft is given a card and the ideas ranked for it: the interview the best-ranked interview candidate; Top Chicken the best-ranked kept card in `lane` whose id or title matches `match`; music the pool ideas whose format matches `formats`. topChickenMinResults: how many of the window's results the Top Chicken draft must draw on, when the digest has that many.",
+    "segments": [
+      "interview",
+      "top-chicken",
+      "music"
+    ],
+    "cards": {
+      "interview": {
+        "lane": "interview"
+      },
+      "top-chicken": {
+        "lane": "games",
+        "match": "top.?chicken"
+      },
+      "music": {
+        "formats": "song|music|sing"
+      }
+    },
     "topChickenMinResults": 3
   },
   "repetition": {
-    "$comment": "The repetition gate (stages 5 and 7): verdicts fresh, turned or repeat from at least `reviewers` reviewers; the stricter stands; any repeat blocks; at most `maxTurnedFromPrevious` turned items per episode carry something forward from the previous episode.",
+    "$comment": "The repetition gate (stages 6, 9 and 10): verdicts fresh, turned or repeat from at least `reviewers` reviewers, each in the fixed field \"verdict\"; the stricter stands; any repeat blocks; at most `maxTurnedFromPrevious` turned items per episode carry something forward from the previous aired episode. A verdict may be on a pair of scripts.",
     "reviewers": 2,
     "maxTurnedFromPrevious": 1
   },
@@ -58,13 +120,114 @@
     "frequentShare": 0.5
   },
   "music": {
-    "$comment": "The music draft's genre must differ from the previous episode's (ledger song.genre); a genre used within genreWarnWindow episodes is a warning.",
+    "$comment": "The music draft's genre must differ from the previous aired episode's (ledger song.genre); the song's writer is told that genre as an avoid line before drafting. A genre used within genreWarnWindow aired episodes is a warning.",
     "genreWarnWindow": 8
   },
   "guestLines": {
     "$comment": "The source comments a real account's line may carry (bible 09, R3): verbatim, interview, catchphrase, each with `· context: at://…`. Invented guests on .example may use `// invented`. Pastiche of a real account fails. The gate warns when realAccount differs from the kinds R3 names (ignoring `invented`, which R3 reserves for fiction).",
-    "realAccount": ["verbatim", "interview", "catchphrase"],
-    "invented": ["invented", "verbatim", "interview", "catchphrase", "pastiche"]
+    "realAccount": [
+      "verbatim",
+      "interview",
+      "catchphrase"
+    ],
+    "invented": [
+      "invented",
+      "verbatim",
+      "interview",
+      "catchphrase",
+      "pastiche"
+    ]
+  },
+  "reading": {
+    "$comment": "The reading list of each kind of task (docs/WORKFLOW.md, briefs): the constitution always, then these chapters of docs/bible/, then the files the task works from (the tool adds those). Never the whole bible. A chapter missing from the bible is left out of the brief. Tune here.",
+    "always": [
+      "00-constitution.md",
+      "09-real-people.md"
+    ],
+    "kinds": {
+      "scope": [],
+      "research": [
+        "05-material.md"
+      ],
+      "screen": [
+        "05-material.md"
+      ],
+      "rank": [
+        "05-material.md"
+      ],
+      "brainstorm": [
+        "06-jokes.md",
+        "04-formats.md"
+      ],
+      "shortlist": [
+        "06-jokes.md",
+        "04-formats.md"
+      ],
+      "experiment": [
+        "03-episode-shape.md"
+      ],
+      "repetition": [
+        "03-episode-shape.md"
+      ],
+      "draft": [
+        "06-jokes.md",
+        "04-formats.md"
+      ],
+      "draft-interview": [
+        "04-formats.md",
+        "06-jokes.md"
+      ],
+      "draft-top-chicken": [
+        "04-formats.md",
+        "06-jokes.md"
+      ],
+      "draft-music": [
+        "04-formats.md",
+        "07-voices.md"
+      ],
+      "rewrite": [
+        "07-voices.md"
+      ],
+      "redraft": [
+        "06-jokes.md",
+        "04-formats.md"
+      ],
+      "voices": [
+        "07-voices.md",
+        "02-cast.md"
+      ],
+      "fit": [
+        "07-voices.md"
+      ],
+      "select": [
+        "03-episode-shape.md",
+        "06-jokes.md"
+      ],
+      "consent": [],
+      "assemble": [
+        "03-episode-shape.md",
+        "02-cast.md"
+      ],
+      "stage": [
+        "08-direction.md"
+      ],
+      "stage-audit": [
+        "08-direction.md"
+      ],
+      "viewer": null,
+      "review": [
+        "10-process.md",
+        "03-episode-shape.md"
+      ]
+    }
+  },
+  "fit": {
+    "$comment": "Stage 8 and assembly: the studio's fitting tool (packages/show: npm run fit) renders each line in its voice, transcribes it, tries respellings and writes fit.json beside the script. Lines it marks flagged or unsayable block; weak lines are warnings for the sound editor.",
+    "blocking": [
+      "flagged",
+      "unsayable"
+    ],
+    "rounds": 3
   },
   "screen": {
     "$comment": "Television: nothing is put on screen for the viewer to read in silence. glanceWords is the most on-screen text that may appear without being spoken; a longer string drawn in a segment must be spoken in that segment (docs/WORKFLOW.md, 'Television').",
@@ -73,20 +236,113 @@
   },
   "heard": {
     "$comment": "The heard-text gate scans what the transcription heard, line by line. Any of these terms (whole words, case-insensitive) fails the line regardless of its score, and so do the out-of-bounds subjects. A real person's name in a caption that was heard as something else fails until a writer records in production/heard-waivers.json, quoting the heard text exactly, that it is harmless.",
-    "alarming": ["auschwitz", "holocaust", "nazi", "nazis", "hitler", "genocide", "gestapo", "kkk", "rape", "raped", "rapist", "molest", "pedophile", "paedophile", "murder", "murdered", "killed", "kill yourself", "suicide", "terrorist", "terrorism", "bomb", "shooting", "massacre", "slave", "slavery", "lynch", "isis", "jihad"],
-    "outOfBounds": ["cancer", "tumor", "died", "dead", "death", "funeral", "dying", "overdose", "depression", "psychosis", "schizophrenic", "autistic", "disabled", "abortion", "pregnant", "gay", "lesbian", "trans", "transgender", "muslim", "jewish", "christian", "israel", "palestine", "gaza", "ukraine", "russia", "trump", "biden", "election", "democrat", "republican", "layoff", "laid off", "fired", "bankrupt", "evicted", "arrested", "lawsuit", "sued", "harassment", "abuse"]
+    "alarming": [
+      "auschwitz",
+      "holocaust",
+      "nazi",
+      "nazis",
+      "hitler",
+      "genocide",
+      "gestapo",
+      "kkk",
+      "rape",
+      "raped",
+      "rapist",
+      "molest",
+      "pedophile",
+      "paedophile",
+      "murder",
+      "murdered",
+      "killed",
+      "kill yourself",
+      "suicide",
+      "terrorist",
+      "terrorism",
+      "bomb",
+      "shooting",
+      "massacre",
+      "slave",
+      "slavery",
+      "lynch",
+      "isis",
+      "jihad"
+    ],
+    "outOfBounds": [
+      "cancer",
+      "tumor",
+      "died",
+      "dead",
+      "death",
+      "funeral",
+      "dying",
+      "overdose",
+      "depression",
+      "psychosis",
+      "schizophrenic",
+      "autistic",
+      "disabled",
+      "abortion",
+      "pregnant",
+      "gay",
+      "lesbian",
+      "trans",
+      "transgender",
+      "muslim",
+      "jewish",
+      "christian",
+      "israel",
+      "palestine",
+      "gaza",
+      "ukraine",
+      "russia",
+      "trump",
+      "biden",
+      "election",
+      "democrat",
+      "republican",
+      "layoff",
+      "laid off",
+      "fired",
+      "bankrupt",
+      "evicted",
+      "arrested",
+      "lawsuit",
+      "sued",
+      "harassment",
+      "abuse"
+    ]
   },
   "frames": {
-    "$comment": "Stage 9: frames are shot at every cue plus this many evenly spaced moments across each segment, at most maxPerSegment in all. The end card is shot at endTimes for the credits gate.",
+    "$comment": "Stage 11: frames are shot at every cue plus this many evenly spaced moments across each segment, at most maxPerSegment in all, and only again for a segment whose files changed (stage/frames.json). The end card is shot at endTimes for the credits gate; the title card at titleTimes for the final review.",
     "across": 6,
     "maxPerSegment": 40,
-    "endTimes": [2, 8, 14]
+    "endTimes": [
+      2,
+      8,
+      14
+    ],
+    "titleTimes": [
+      1,
+      3
+    ]
+  },
+  "cold": {
+    "$comment": "Stage 13: the cold-viewer test. For each stretch the experiment names (or the longest interval with no spoken line and no audience sound, found from the rendered cues), one frame every `every` seconds, at most `maxFrames`, copied under neutral names into shots/<id>/_cold/set-<k>/ for a viewer who sees nothing else. Audience sounds are cue sfx whose name matches `audience`.",
+    "every": 1,
+    "maxFrames": 20,
+    "minSeconds": 4,
+    "audience": "laugh|applause|audience|cheer|groan|aww|ooh"
   },
   "headless": {
-    "$comment": "Optional: --runner headless runs each pending brief through Claude Code (claude -p --agent <role>) with the role's deny rules. The default runner is manual: the project manager spawns the subagents from the briefs. The tool itself never calls a model.",
+    "$comment": "The headless runner (the default wherever the claude command is signed in): each pending brief goes to Claude Code (claude -p --agent <role>) with the role's permission rules, up to `parallel` at a time. The tool itself never calls a model.",
     "command": "claude",
+    "parallel": 4,
     "timeoutMinutes": 60,
-    "maxTurns": 200,
+    "maxTurns": 120,
     "maxBudgetUsd": 20
+  },
+  "scratch": {
+    "$comment": "Each task's own scratch folder (trial finding 5), outside the episode so nothing in it is committed: shots/ is gitignored.",
+    "dir": "shots/{id}/_production/scratch"
   }
 }

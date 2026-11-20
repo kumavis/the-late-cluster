@@ -129,51 +129,52 @@ export function ideaProblems(idea, cardIds) {
   return out
 }
 
-// ---------------------------------------------------------------- rank: two passes, combined
+// ---------------------------------------------------------------- rank cards, then the shortlist
 
 const avg = (xs) => (xs.length ? xs.reduce((a, b) => a + b, 0) / xs.length : 0)
 const round3 = (x) => Math.round(x * 1000) / 1000
 
 /**
- * Combine the first pass: reach (tool) and each reviewer's interest and best-joke scores (0-10).
- * reviews: [{ reviewer, cards: { <id>: { interest, bestJoke: { idea, score }, reason } } }]
+ * Stage 3: reach (the tool) and interest (each reviewer, 0-10), weighted. Interview candidates are
+ * ranked among themselves. The pool is the top `pool` other cards and the top `interviewPool`
+ * candidates. reviews: [{ reviewer, cards: { <id>: { interest, reason } } }]. Reasons stay with the
+ * reviewers' files; the rows carry numbers only.
  */
-export function rankFirstPass({ cards, reviews, reach, weights }) {
-  const maxReach = Math.max(1, ...cards.map((c) => reach[c.id] ?? 0))
+export function rankCards({ cards, reviews, weights, pool, interviewPool = 0, interviewLane = 'interview' }) {
+  const maxReach = Math.max(1, ...cards.map((c) => c.reach ?? 0))
   const rows = cards.map((c) => {
-    const per = reviews.map((r) => ({ reviewer: r.reviewer, ...(r.cards?.[c.id] ?? {}) })).filter((x) => typeof x.interest === 'number')
-    const reachNorm = Math.log1p(reach[c.id] ?? 0) / Math.log1p(maxReach)
+    const per = reviews.map((r) => ({ reviewer: r.reviewer, interest: r.cards?.[c.id]?.interest })).filter((x) => typeof x.interest === 'number')
+    const reachNorm = Math.log1p(c.reach ?? 0) / Math.log1p(maxReach)
     const interest = avg(per.map((x) => x.interest))
-    const bestJoke = avg(per.map((x) => x.bestJoke?.score ?? 0))
-    const score = weights.reach * reachNorm + weights.interest * (interest / 10) + weights.bestJoke * (bestJoke / 10)
-    return {
-      card: c.id,
-      title: c.title,
-      reach: reach[c.id] ?? 0,
-      reachNorm: round3(reachNorm),
-      interest: round3(interest),
-      bestJoke: round3(bestJoke),
-      bestIdeas: [...new Set(per.map((x) => x.bestJoke?.idea).filter(Boolean))],
-      reviewers: per.map((x) => ({ reviewer: x.reviewer, interest: x.interest, bestJoke: x.bestJoke ?? null, reason: x.reason ?? '' })),
-      first: round3(score),
-    }
+    return { card: c.id, title: c.title, lane: c.lane, interview: c.lane === interviewLane, reach: c.reach ?? 0, reachNorm: round3(reachNorm), interest: round3(interest), scores: per.map((x) => ({ reviewer: x.reviewer, interest: x.interest })), score: round3(weights.reach * reachNorm + weights.interest * (interest / 10)) }
   })
-  return rows.sort((a, b) => b.first - a.first || a.card.localeCompare(b.card))
+  rows.sort((a, b) => b.score - a.score || a.card.localeCompare(b.card))
+  let n = 0
+  let k = 0
+  for (const r of rows) r.pool = r.interview ? k++ < interviewPool : n++ < pool
+  return rows
 }
 
-/** the second pass: synergy and variety (0-2 each) for the pool, and the ideas each reviewer chose */
-export function rankSecondPass({ first, second, weights, pool, shortlist }) {
-  const top = first.slice(0, pool)
-  const rows = top.map((row) => {
-    const per = second.map((r) => ({ reviewer: r.reviewer, ...(r.cards?.[row.card] ?? {}) })).filter((x) => typeof x.synergy === 'number')
-    const synergy = avg(per.map((x) => x.synergy))
-    const variety = avg(per.map((x) => x.variety ?? 0))
-    const final = row.first + weights.synergy * (synergy / 2) + weights.variety * (variety / 2)
-    const ideas = [...new Set(per.flatMap((x) => (Array.isArray(x.ideas) ? x.ideas : [])))]
-    return { ...row, synergy: round3(synergy), variety: round3(variety), secondPass: per.map((x) => ({ reviewer: x.reviewer, synergy: x.synergy, variety: x.variety ?? 0, ideas: x.ideas ?? [], with: x.with ?? [], reason: x.reason ?? '' })), final: round3(final), ideas: ideas.length ? ideas : row.bestIdeas }
+/**
+ * Stage 5: each pool card's best joke (0-10, naming the idea), synergy and variety (0-2), with the
+ * card's rank score. The top `size` cards that are not interview candidates are shortlisted; the
+ * candidates are ranked apart for the standing interview.
+ * reviews: [{ reviewer, cards: { <id>: { bestJoke: { idea, score }, synergy, variety, ideas, with, reason } } }]
+ */
+export function shortlistCards({ pool, reviews, weights, size }) {
+  const rows = pool.map((row) => {
+    const per = reviews.map((r) => ({ reviewer: r.reviewer, ...(r.cards?.[row.card] ?? {}) })).filter((x) => typeof x.bestJoke?.score === 'number')
+    const bestJoke = avg(per.map((x) => x.bestJoke.score))
+    const synergy = avg(per.map((x) => Number(x.synergy) || 0))
+    const variety = avg(per.map((x) => Number(x.variety) || 0))
+    const final = weights.rank * row.score + weights.bestJoke * (bestJoke / 10) + weights.synergy * (synergy / 2) + weights.variety * (variety / 2)
+    const chosen = [...new Set(per.flatMap((x) => (Array.isArray(x.ideas) ? x.ideas : [])))]
+    const best = [...new Set(per.map((x) => x.bestJoke?.idea).filter(Boolean))]
+    return { card: row.card, title: row.title, lane: row.lane, interview: row.interview, rank: row.score, bestJoke: round3(bestJoke), synergy: round3(synergy), variety: round3(variety), final: round3(final), ideas: chosen.length ? chosen : best, best, with: [...new Set(per.flatMap((x) => x.with ?? []))], scores: per.map((x) => ({ reviewer: x.reviewer, bestJoke: x.bestJoke.score, synergy: x.synergy ?? 0, variety: x.variety ?? 0 })) }
   })
   rows.sort((a, b) => b.final - a.final || a.card.localeCompare(b.card))
-  rows.forEach((r, k) => (r.shortlisted = k < shortlist))
+  let n = 0
+  for (const r of rows) r.shortlisted = !r.interview && n++ < size
   return rows
 }
 
@@ -228,9 +229,10 @@ export function repetitionProblems(combined, { reviewers, maxTurnedFromPrevious,
 
 /**
  * reviews: [{ reviewer, drafts: { <slug>: { funny, interesting, television, variety, reason } } }]
- * drafts: [{ slug, seconds, standing }]. Fills toward targetSeconds by score, never past the ceiling.
+ * drafts: [{ slug, seconds, standing }]. Fills toward targetSeconds by score, never past the ceiling;
+ * `blocked(slug, chosenSoFar)` returns why a draft cannot join (the caps), or null.
  */
-export function selectDrafts({ drafts, reviews, weights, targetSeconds, maxSeconds, excluded = [] }) {
+export function selectDrafts({ drafts, reviews, weights, targetSeconds, maxSeconds, excluded = [], blocked = () => null }) {
   const rows = drafts.map((dr) => {
     const per = reviews.map((r) => ({ reviewer: r.reviewer, ...(r.drafts?.[dr.slug] ?? {}) })).filter((x) => typeof x.funny === 'number')
     const crit = Object.fromEntries(Object.keys(weights).map((k) => [k, round3(avg(per.map((x) => Number(x[k]) || 0)))]))
@@ -245,9 +247,14 @@ export function selectDrafts({ drafts, reviews, weights, targetSeconds, maxSecon
       r.why = 'excluded by the project manager'
       continue
     }
+    const chosen = rows.filter((x) => x.selected).map((x) => x.slug)
+    const cap = total < targetSeconds ? blocked(r.slug, chosen) : null
     if (total >= targetSeconds) {
       r.selected = false
       r.why = `the rundown already reached the ${targetSeconds} s target`
+    } else if (cap) {
+      r.selected = false
+      r.why = cap
     } else if (total + r.seconds > maxSeconds) {
       r.selected = false
       r.why = `would take the episode past the ${maxSeconds} s ceiling`

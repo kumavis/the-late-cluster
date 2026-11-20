@@ -14,6 +14,10 @@ npm run render -- ref demo            # render one segment (or several ids, or -
 npm run render -- --warm              # once per checkout: pre-render every sfx and creature call (about 80 s cold)
 npm run render -- ref demo --whisper  # render, then check every captioned line is intelligible
 npm run check -- ref demo             # verify the three outputs against the contract (no ids: the whole rundown)
+npm run fit -- <ep> <seg> [--json] [--apply]          # fit a segment's lines to the engine (below: "Fitting a script")
+npm run fit -- <ep> --draft <slug> [--json] [--apply] # the same for a draft in production/drafts/
+npm run render -- <ep> --draft <slug>  # render a draft into the studio's scratch (check and analyze whisper take --draft too)
+npm run voices -- <ep> [--drafts]      # give every guest a voice distinct from the house and each other
 bun packages/show/tools/analyze.ts whisper ref demo   # just the intelligibility check on the last render
 bun packages/show/tools/analyze.ts mp3 ref demo       # loudness/brightness per 5 s of a rendered segment
 bun packages/show/tools/analyze.ts sfx [names]        # stats for the audience/band library
@@ -62,7 +66,12 @@ second `demo` render was refused.
 | `sfx.ts` | the audience and band library (below) |
 | `render.ts` | script → timeline → mix → `public/audio/<id>.mp3`, `public/tele/<id>.bin`, `segments/<id>/cues.json` (in the episode) |
 | `telebin.ts` | the tele bin encoder/decoder |
-| `check.ts`, `analyze.ts` | verification |
+| `check.ts`, `analyze.ts` | verification (`analyze.ts` also measures voices: `measureVoice`) |
+| `fit.ts` | the fitting tool (`npm run fit`): render, transcribe, search for respellings, report, `--apply` |
+| `voices.ts` | guest voices (`npm run voices`): measure, assign, write the cast entries |
+| `heard.mjs`, `respell.mjs`, `source-edit.mjs`, `voices-lib.mjs`, `draft.mjs`, `tuning.mjs` | the pure parts, tested with Node builtins (`packages/show/test/`): scoring, flags and statuses; candidate respellings; exact edits to a script or cast file; voice distance and assignment; a draft's paths; sung pitch with fry |
+| `whisper-worker.py` | a Whisper that stays loaded, for `fit` (run with the Python of the `whisper` command) |
+| `data/heard-terms.json` | the fitting tool's own word lists for what was heard (crude words; words that change a statement about a real person), beside the pipeline's |
 | `episode.mjs` | `<ep>` → paths (through `scripts/lib/episodes.mjs`), and the episode's own `cast.js` / `looks.js` merged over the house cast |
 | `shoot.mjs`, `video.mjs` | frozen frames and mp4s, through a Vite dev server for the episode |
 
@@ -149,8 +158,9 @@ The line starts at `cursor + gap − overlap`. The cursor then moves to where th
 
 **`sing`**: a sung phrase by one voice. Keys: `sing` (cast id), `bpm`, `lyrics`, `notes`
 (`[[midi, beats], …]`; `midi <= 0` is a rest), plus optional `id`, `gap`, `overlap`, `vibrato`
-(cents, default 30), `transpose` (semitones), `vol`, `pan`, `caption`, and `text` (a caption
-that differs from the lyrics). It is laid out like `say`. The line ends with the last sung note.
+(cents, default 30), `transpose` (semitones), `vol`, `pan`, `caption`, `text` (a caption
+that differs from the lyrics) and `as` (what is sung, when the lyrics need a respelling: it must
+split into as many syllables as there are sounding notes; the caption stays `text` or `lyrics`). It is laid out like `say`. The line ends with the last sung note.
 
 **`sfx`**: an audience or band sound from the library below. `{ sfx: 'laugh' }` picks the next
 variant round-robin. `{ sfx: 'laugh-2' }` picks variant 2. The sound starts at `cursor + at`, and
@@ -192,7 +202,7 @@ longest track. Each track has exactly one of:
 
 | track kind | keys |
 |---|---|
-| sung melody | `who`, `lyrics`, `notes`, optional `caption` (default **false** in music; set `true` for the lead), `vibrato`, `transpose`, `id` |
+| sung melody | `who`, `lyrics`, `notes`, optional `caption` (default **false** in music; set `true` for the lead), `vibrato`, `transpose`, `id`, `as` (a respelling of the lyrics, as on `sing`) |
 | beatbox | `who`, `beat` (CHIMERA beat text, below), `loops` (default 1), `swing` (0..0.5) |
 | shouts | `who`, `shout` (text), `beats: [3, 7, 11, 15]` (the shout's first vowel lands on each beat), optional `as`, `f0` (default 1.3 × the cast f0; shouted with the shout patch, below) |
 
@@ -488,9 +498,160 @@ split. Unknown words can become several syllables or a melisma (`~`), so prefer 
 spellings (scat: `bah`, `dah`, `doo`, `wah`). Tested so far: Larry
 (male) MIDI 45–59, Al 41–52, Hy 64–71, Dee 67–74.
 
+**A written note sounds at its pitch, fry or not.** The engine's `fry` pulls the sounding pitch
+toward a creak floor of 48 Hz: with fry *f*, a commanded f0 *F* sounds at (1 − *f*)·*F* + *f*·48
+(measured for every body, MIDI 40–64, fry 0.05–0.4). Al's fry of 0.2 made a written MIDI 45 sound at
+97.6 Hz, not 110, about two semitones flat, and the first song written for him compensated with
+fractional note numbers. Since November 2026 `singClip` commands each note of a voice with fry at
+the pitch that sounds as written (`tuning.mjs`), so write the notes you mean and never compensate.
+Only sung notes of voices with fry change: speech keeps the pull (the house voices were tuned by
+their measured pitch), and every other voice renders exactly as before, from the same cache
+entries. The Formants' `sting` and `tada` change with it, because Al sings in them: their bass
+notes are now in tune. The first episode's audio lives only in its build and is never re-rendered;
+the reference episode's committed render is unchanged until someone re-renders it.
+
 **Intelligibility check** (optional): `bun packages/show/tools/analyze.ts voices --wav /tmp/v --whisper` runs
 a local `whisper` if one is installed. In the full demo mix, Whisper base.en recovers nearly
 every line, including the sung ones under the band, and the closing line under applause.
+
+---
+
+## Fitting a script (`npm run fit`)
+
+The fitting tool does the render-and-listen loop so nobody does it by hand. It never changes a
+line's words, only how they are said: a respelling in `as`, a comma in `as`, and (as a suggestion
+it never writes) a slower `rate`.
+
+```sh
+npm run fit -- <ep> --draft <slug>            # a draft: production/drafts/<slug>/script.js, its cast.js over the episode's
+npm run fit -- <ep> <seg>                     # an assembled segment
+npm run fit -- <ep> --draft <slug> --json     # also write fit.json beside the script
+npm run fit -- <ep> --draft <slug> --apply    # write the chosen respellings into the script's `as` fields
+npm run fit -- <ep> <seg> --lines bee,queue   # only these line ids; --takes 2 for a quicker pass; --no-search to only listen
+```
+
+What it does, per line (every `say` and every captioned sung line):
+
+1. Lays the script out exactly as `render` does and renders the line in its voice.
+2. Cuts it out of the segment's mix, with whatever is under it, four times: as mixed, with the
+   bed 3 dB louder and a looser cut, quieter and tighter, and the line alone. These are the
+   *takes*. Each is padded with silence and transcribed by Whisper (base.en, beam 5, temperature 0,
+   so the same audio always gives the same text).
+3. Scores each take as the hearing gate does (words heard of words; digits spelled out; compounds
+   count) and flags what was heard: an alarming or out-of-bounds word (the pipeline's lists in
+   `packages/writers-room/config/pipeline.json`), a crude word (`data/heard-terms.json`), a real
+   person's name in the caption that was not heard (names from the real guests in the cast and the
+   accounts in `sources.json`), and, on a real person's line, a negation gained or lost or a loaded
+   word heard that is not in the caption ("repost" heard as "report").
+4. If any take is under 60 % or anything was flagged, it searches: for the most-missed words,
+   respellings from the pronunciation dictionary (one hyphenated part per syllable, function-word
+   parts given strong spellings), the tested table and weak sounds above, what fixed that word
+   before (remembered in `.cache/fit/learned.json`), and commas that set a word apart or let it
+   run on. A respelling must still sound like the dictionary's word (the engine's IPA within a
+   couple of sounds). Each candidate is screened on two takes; the best three are heard on all four,
+   with the best two put together; if nothing passes, the best is tried slower.
+5. Keeps the best candidate, in this order: nothing flagged, every take over the gate, the
+   median take, the worst take, fewest changes. The line as written wins a tie.
+
+The report is one screen per segment:
+
+```
+fit 002-2026-w47 --draft made-pen-plotter-replies: 17 lines × 4 takes · ok 16 · weak 0 · flagged 0 · unsayable 1 · 43 s (170 heard, 0 cached)
+open          larry    11/12     ok        fix: Samantha → Suh-man-thuh (was 10/12)
+eighty-eight  larry    9/10 (7)  ok
+meow          sibyl    0/2       unsayable "Malalalalalala Malalalalalala"×2 "Malalalalalalalalalalalalalalalala"×2
+bee           larry    17/18     ok        fix: comma before known + should → shood (was 16/18)
+voices: larry 107 Hz ~pete 1.54 · sibyl 207 Hz ~mokkenstorm 1.9 · verooo 242 Hz ~mokkenstorm 1.34
+```
+
+The score is the median take's words heard, with the worst take in brackets when it differs. The
+statuses:
+
+| status | meaning | what the sound editor does |
+|---|---|---|
+| `ok` | every take at 60 % or more, nothing flagged | nothing (`--apply` writes the fix, if there is one) |
+| `weak` | the median take passes but one does not: unstable | try the suggestion, more `gap` from a loud sound, a lower sfx `vol`; or accept it and say so |
+| `flagged` | something heard is alarming, out of bounds, crude, changes a statement about a real person, or a real name was not heard | never accept an alarming one. A name Whisper cannot spell, or a harmless mishearing, needs a writer's waiver quoting the heard text (`production/heard-waivers.json`); otherwise back to the writer |
+| `unsayable` | no candidate got the line over the gate | back to the writer with what was heard. For a real person's line the choices are a marked cut that keeps its meaning, a reading by a house character from the card, or the card alone |
+
+`fit.json` (with `--json`) is written beside the script, for a draft in its draft folder (never
+into the episode's `public/` or `segments/`). For a published episode's segment it goes into
+`.cache/fit/<ep>/<seg>/` instead, so the committed build's `sourceHash` is not disturbed.
+
+```json
+{ "segment": "made-pen-plotter-replies", "draft": "made-pen-plotter-replies", "episode": "002-2026-w47", "takes": 4, "gate": 0.6,
+  "lines": [{ "id": "open", "who": "larry", "kind": "say", "text": "… They belong to Samantha.", "as": "… They belong to Suh-man-thuh.",
+              "was": null, "fix": "Samantha → Suh-man-thuh",
+              "heard": [{ "text": "Saturday, one pen plotter, …, they belong to Samantha.", "count": 3 }, { "text": "…", "count": 1 }],
+              "score": { "heard": 11, "of": 12, "min": 10 }, "status": "ok", "flags": [],
+              "suggest": { "rate": 0.9, "as": "…", "score": {} },
+              "tried": [{ "as": "…", "score": { "heard": 10, "of": 12, "min": 9 } }, { "as": "…", "score": {}, "takes": 2, "flags": ["name: Samantha"] }] }],
+  "voices": { "larry": { "f0": 107, "nearest": "pete", "distance": 1.54 } } }
+```
+
+`as` is the respelling the tool chose (null when the caption is said as written); `was` and `fix`
+appear only when it proposes a change; `suggest` only when a slower rate did better (never applied);
+`tried` lists every candidate heard, `takes: 2` marking those only screened. `voices` gives each
+speaker's measured pitch and nearest voice in the whole cast (house, episode and draft).
+
+**The sound editor's pass, step by step:**
+
+1. `npm run voices -- <ep> --drafts` first, so every guest's voice is final before fitting (a
+   respelling is chosen for one voice).
+2. `npm run fit -- <ep> --draft <slug> --json` for each draft. Read the one-screen table.
+3. Read every heard text the table shows for a line that is not `ok`, and the flags. A crude or
+   alarming word is never accepted.
+4. `npm run fit -- <ep> --draft <slug> --apply --json` to write the respellings (only `as`
+   changes; the diff is the review).
+5. For a `weak` line, try what the table suggests by hand (`rate`, `gap`, an sfx's `vol` or
+   `at`), then fit again. For a `flagged` name, record a waiver or send it to the writer; for an
+   `unsayable` line, send it to the writer with the heard texts from `fit.json`.
+6. Fit again until the exit code is 0 (no line flagged or unsayable). A re-run of an unchanged
+   script takes seconds: every render and every transcription is cached.
+
+It takes about 40 to 90 s per segment the first time on an M-series Mac (four loaded Whisper
+workers), a few seconds after that. It needs `whisper` (openai-whisper) on the PATH; if the
+command's Python cannot be found it falls back to running the command, which is slower.
+
+**What it cannot do.** It cannot judge a mishearing's meaning beyond its word lists, so read the
+heard texts of every flagged and weak line yourself. Whisper does not know invented names: a name
+it cannot spell is flagged until a waiver quotes what it heard. It does not change words, cut
+lines or re-place sfx; those are the writer's and the builder's.
+
+## Rendering a draft (`--draft`)
+
+`npm run render -- <ep> --draft <slug>` renders `episodes/<ep>/production/drafts/<slug>/script.js`
+with the draft's own `cast.js` merged over the episode's, into
+`packages/show/tools/.cache/drafts/<ep-id>/<slug>/` (gitignored: `audio/<slug>.mp3`,
+`tele/<slug>.bin`, `cues.json`). Nothing is written into the episode. `npm run check -- <ep> --draft
+<slug>` and `bun packages/show/tools/analyze.ts whisper <ep> --draft <slug>` read that render. The
+draft's `script.js` must have `id` equal to its folder name. Every command that takes `<ep>` also
+takes the path of an episode folder (`…/episodes/<id>`), so a copy extracted from a branch can be
+rendered and fitted without checking it out.
+
+## Giving guests voices (`npm run voices`)
+
+```sh
+npm run voices -- <ep>                         # the episode's own cast.js
+npm run voices -- <ep> --drafts                # and every draft's cast.js, placed together
+npm run voices -- <ep> --drafts --rule amber:not-lowest --rule dave:below:120 --dry-run
+```
+
+Each voice is measured as `analyze.ts voices` measures it (median f0 and long-term spectrum of the
+two test sentences; distance = semitones ÷ 2 and spectrum dB ÷ 2.5). Guests are placed one by one
+against the house and everyone placed before them. A guest whose voice is already 1.5 or more from
+all of them keeps it, so its respellings stay good. Any other guest gets a slot (a body, a pitch in
+the engine's safe range and a timbre: plain, bright, soft, dark, pressed) that clears 1.5, the one
+nearest its old pitch; if none clears it, the most distant. The same cast id in several drafts is
+one guest with one voice, written into every file that defines it; if those files disagreed, it
+gets a new one. Only `body`, `f0` and `source` are written: `rate`, `accent` and `pan` stay.
+
+Rules per guest: `not-lowest`, `not-highest`, `below:<Hz>`, `above:<Hz>` (on the measured median),
+`keep` (keep its voice even if too close), `new` (move it even if distinct). `--dry-run` writes
+nothing; `--json` also writes `production/voices.json`. It prints one row per guest: measured pitch,
+nearest voice and distance, kept or the new voice, and the files it is in, then which drafts to fit
+again. Exit 1 if a voice is still under 1.5 from its nearest neighbour. The first run measures
+a hundred slots (two or three minutes); after that every measurement comes from the cache.
 
 ---
 

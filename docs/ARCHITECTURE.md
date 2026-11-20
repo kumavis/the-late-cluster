@@ -61,7 +61,7 @@ the-late-cluster/
 Everything reusable across episodes: the CHIMERA engine and heads, the stage and set, shots,
 costumes, the drawing kit and shared props, the `show` API, the transport bar, the title and
 end cards, the vendored `chimera/` modules, the fonts, and the offline tools (`tools/render.ts`,
-`check.ts`, `analyze.ts`, `shoot.mjs`, `video.mjs`).
+`check.ts`, `analyze.ts`, `fit.ts`, `voices.ts`, `shoot.mjs`, `video.mjs`).
 
 It also keeps the two reference segments, `demo` and `kit-tour`, as a small **reference
 episode** at `packages/show/reference/`, addressed as `ref` wherever a command takes an
@@ -74,7 +74,8 @@ the Formants, and Eppy. Anyone else, guests and bots alike, is defined by the ep
 them, in its own `cast.js` and `looks.js`. One resolver, `src/roster.js`, gives the page and every
 tool the cast and looks for an episode id: the house, then any legacy entry keyed to that id, then
 the episode's own files. `src/legacy/` holds the first episode's cast (its four guests and its
-website bot) keyed to `001-pilot`, only because that episode has no `cast.js` of its own and its
+website bot) and the two pieces of its text the drawing code once hard-coded (the counter's label,
+the key cap's letter; neutral by default in `src/stage/text.js`) keyed to `001-pilot`, only because that episode has no `cast.js` of its own and its
 source is frozen; no other episode sees those ids.
 
 The studio must not contain episode content: no rundown, no episode segments, no episode audio.
@@ -203,7 +204,10 @@ episode. `<seg>` is a segment id.
 | `npm run segment:new -- <ep> <seg>` | add a segment skeleton to an episode and its rundown |
 | `npm run dev -- <ep>` | dev server for one episode |
 | `npm run render -- <ep> <seg>...` | render audio, telemetry and cues (bun + ffmpeg) |
+| `npm run render -- <ep> --draft <slug>` | render a draft (`production/drafts/<slug>/`, its `cast.js` over the episode's) into `packages/show/tools/.cache/drafts/` (gitignored), never into the episode; `check` and `analyze.ts whisper` take `--draft` too |
 | `npm run check -- <ep> [<seg>...]` | verify rendered outputs against the contract |
+| `npm run fit -- <ep> <seg> \| --draft <slug> [--json] [--apply]` | the fitting tool: render and transcribe every line several times, search respellings without changing words, report per line (`ok`, `weak`, `flagged`, `unsayable`); `--json` writes `fit.json` beside the script, `--apply` writes only `as` fields; exit 1 if a line is flagged or unsayable |
+| `npm run voices -- <ep> [--drafts] [--rule <id>:<rule>] [--dry-run] [--json]` | give every guest (of the episode, and with `--drafts` of every draft together) a voice at least 1.5 from the house and each other, and write the cast entries |
 | `npm run shoot -- <ep> <seg> <t>...` | frozen frames to PNG for review (Playwright) |
 | `npm run thumbnail -- <ep> [<seg> <t>]` | shoot a frame into `thumbnail.jpg`: the title card, or a moment of a segment |
 | `npm run avatar [-- --variant a\|b\|c] [--out file] [--candidates]` | render `brand/avatar.png`, the show's Bluesky profile picture, from the host puppet (Playwright); `--candidates` writes all three to `preview/_avatar/` with a contact sheet |
@@ -212,13 +216,15 @@ episode. `<seg>` is a segment id.
 | `npm run site` | generate the archive index into `dist/` (ignored, never committed) |
 | `npm run preview` | generate the index, then serve `dist/` locally |
 | `npm run scrape -- [--week 2026-W47 \| --days 7 \| --since <date> [--until <date>]] [--out <dir>]` | write the Bluesky digest into `data/`; no window flag means since the previous aired episode |
-| `npm run lookup -- --uri\|--url\|--text\|--author\|--story\|--thread <value> [--dir <digest>]` | print exact post records from the newest (or a given) digest |
+| `npm run lookup -- --uri\|--url\|--text\|--author\|--story\|--thread <value> [--dir <digest>] [--fields a,b \| --full]` | print compact exact post records from the newest (or a given) digest |
+| `npm run media -- --dir <digest> --uri <at://…>` | fetch a post's pictures, or a video's thumbnail, from Bluesky's public CDN into `<digest>/media/` and print paths and alt text |
+| `npm run sources -- check <sources.json> [--dir <digest>] [--out <file.md>] [--json]` | the live source check: cited posts unchanged, accounts' bios, labels, pinned and recent posts; exit 1 when something needs a person |
 | `npm run bot -- announce <ep> [--live]` | compose the announcement post; dry run unless `--live` |
 | `npm run bot -- profile [--avatar <file>] [--live] [--no-backup]` | set the account's profile picture (`avatar` in `bot.config.json`); dry run unless `--live` |
 | `npm run bot -- dm send <handle-or-did> --file <path> [--live]` | send interview questions by direct message; dry run unless `--live` |
 | `npm run bot -- dm read <handle-or-did> [--limit 50] [--json]` | read that conversation; logs in, changes nothing |
-| `npm run produce -- --week 2026-W47 [--status \| --check <stage> [--segment <seg>] \| --find "…" \| --from <stage> \| --rework <task> \| --exclude <id>] [--runner manual\|headless\|fixture] [--preview-only]` | drive one episode through the eleven stages; `--status` lists the subagents to spawn; `--preview-only` never publishes |
-| `node packages/writers-room/bin/end-to-end.mjs` | all eleven stages with the real tools and prepared subagent outputs, then remove every trace |
+| `npm run produce -- --week 2026-W47 [--status \| --check <stage> [--task <id> \| --segment <seg>] \| --find "…" \| --from <stage> \| --rework <task> \| --exclude <id>] [--runner headless\|manual\|fixture] [--preview-only]` | drive one episode through the thirteen stages; headless (the default where `claude` is signed in) stops only at a failure or a send-back; `--check … --task` prints one task's lines; `--preview-only` never publishes |
+| `node packages/writers-room/bin/end-to-end.mjs` | all thirteen stages with the real tools and prepared subagent outputs, then remove every trace |
 | `npm run terraform -- <args>` | run Terraform in `terraform/` with the token loaded from `.secrets` |
 | `npm test` | every package's tests (Node builtins only: no install, no browser) |
 
@@ -231,6 +237,13 @@ print as `error: ...`. `build` prints one line,
 Two studio tools have no root command and are run directly: `bun packages/show/tools/analyze.ts`
 (loudness, voices, the Whisper intelligibility pass) and `node packages/show/tools/video.mjs`
 (video exports into `video/<id>/`). Review frames from `shoot` go to `shots/<id>/<seg>/`.
+The sound editor's two tools are `fit` and `voices` (`packages/show/tools/README.md`, "Fitting a
+script" and "Giving guests voices"). `fit` caches every render and every transcription in
+`packages/show/tools/.cache/`, so a re-run of an unchanged script takes seconds; it writes nothing
+outside the script's own folder (`fit.json`, and `as` fields with `--apply`), and for a published
+episode keeps `fit.json` in the cache. A studio tool given the path of an episode folder
+(`…/episodes/<id>`) in place of `<ep>` works on that copy, so an episode on another branch can be
+fitted from an extracted copy.
 
 ## The site and deployment
 
@@ -262,21 +275,34 @@ and no credentials by default. `packages/scraper/README.md` has the detail.
   interactions, a community's public roster (Top Chicken's), the community feed, lists. The
   show's history plays no part in who is a seed.
 - **Consent.** The opt-out list (`config/optout.json`, prefer DIDs), the `!no-unauthenticated`
-  label and self-declared opt-outs are applied in the code path: such accounts never reach an
-  output file.
+  label and self-declared opt-outs, direct or indirect (posts meant to disappear, "not to be
+  quoted"), are applied in the code path: such accounts never reach an output file. Bios are
+  kept only in the run's private data (`private/`, for the auditor), and wording that might be
+  an opt-out marks the account `bioReview`.
+- **Marks** are post by post: a keyword marks the post it is in (`sensitive`), and a consent
+  matter marks it `consent`. A story is left out whole only for consent: an excluded account's
+  thread, or a lead post that asks not to be quoted or is redacted.
 - **Output** in `data/weeks/<week>/` (gitignored) or `--out`: `posts.jsonl`; `digest.json`
   (ranked stories, sections, members, authors, the ledger it read, coverage); `digest.md` for a
   writer with ten minutes; `coverage.md` for the scope review (worries against thresholds,
   how members qualified, concentration, new and gone, the cluster against the roster, the feed
-  and the community's own checker, suggested seeds).
+  and the community's own checker, suggested seeds); `skeletons/`, a card skeleton per story
+  with every post's exact text, author, counts, reply and quote, alt text, media addresses and
+  marks; `lanes/`, the skeleton ids for each research lane (`made`, `talk`, `games`, `voices`,
+  `interview`), ranked; `reviewers/`, what was said about the show, for reviewers only. The
+  shapes are in the package README, "Skeletons and lanes".
 - **Reach** stands in for views: per post and story, the separate counts, participants, and
   a score with weights in `config/scoring.json`. The pipeline uses the same score.
 - **Sections:** community games (Top Chicken standings with streaks, the record and history),
-  built this week, about the show, new voices (never featured), interview material
+  built this week, about the show (moved to `reviewers/`), new voices (never featured), interview material
   (question-and-answer pairs, each answer a member's real reply), performable threads.
 - **The ledger** (`docs/ledger/`) marks each author `featuredPrevious`, `featuredEarlier` and
   `timesFeatured`, by DID, counting aired episodes only. It never ranks anyone up.
-- **Lookup:** `npm run lookup` prints exact records (by URI, URL, text, author, story or
+- **Media:** `npm run media` fetches one digest post's pictures or video thumbnail from the
+  public CDN for a researcher to look at; never a redacted, consent-marked or about-the-show post.
+- **The live source check:** `npm run sources -- check` re-reads every post and account an
+  episode's `sources.json` cites, over the network, and exits 1 when something needs a person.
+- **Lookup:** `npm run lookup` prints compact exact records (by URI, URL, text, author, story or
   thread), so agents never read `digest.json` whole.
 - What an episode actually used is recorded in `episodes/<id>/production/sources.json`.
 
@@ -299,60 +325,63 @@ session's DID is `bluesky.did` in `show.config.json`.
 
 ## The weekly pipeline: `packages/writers-room`
 
-`docs/WORKFLOW.md` is the contract for how an episode is made; this package implements it.
-The work is done by subagents driven by one project manager. The tool is the deterministic
-backbone between them and **never calls a model**: it writes one brief per subagent task,
-waits for the task's files, combines what several subagents wrote independently with recorded
-arithmetic, and runs the gates.
+`docs/WORKFLOW.md` (v3) is the contract for how an episode is made; this package implements it.
+Subagents in seven roles do the work; the tool is the deterministic backbone between them and
+**never calls a model**: it writes one brief per task, has the runner do the tasks, combines what
+several subagents wrote independently with recorded arithmetic, applies the caps, and runs the gates.
 
 | # | stage | subagents (role), in waves | the tool |
 |---|---|---|---|
-| 1 | scope | 1 reviewer | scrapes if there is no digest; coverage figures |
-| 2 | research | 1 researcher per lane; then 1 reviewer screens | reach per card; the longlist |
-| 3 | brainstorm | 3 writers, independently | merges the ideas |
-| 4 | rank | 2 reviewers; 2 reviewers for synergy and variety; 1 reviewer proposes the experiment | weighted scores; the shortlist |
-| 5 | repetition (ideas) | 2 reviewers with the ledger; a writer per repeat | strictest verdict; people rules |
-| 6 | draft | 1 writer per shortlisted card and per standing segment (interview, Top Chicken, music) | |
-| 7 | select | 2 reviewers score; 2 judge repetition; a writer per repeat | the selection, `plan.json`, the inheritance copy |
-| 8 | assemble | 1 writer | copies the drafts in; render, `check`, Whisper |
-| 9 | stage | 1 builder per segment; then 1 reviewer on the frames | |
-| 10 | build | none | thumbnail, build (`--preview` for a trial), `verify` |
-| 11 | review | 1 reviewer | the pull request text |
+| 1 | scope | 1 auditor | scrapes if there is no digest; coverage figures |
+| 2 | research | 1 researcher per lane, from the scraper's skeletons and lane slices; then 1 auditor screens | exact posts from the skeletons; the longlist, one file per kept card, `research/terms.md` |
+| 3 | rank | 2 reviewers, interest only | reach and interest weighted; a pool of about fifteen, interview candidates ranked apart |
+| 4 | brainstorm | 2 or 3 writers, on the pool only | merges the ideas |
+| 5 | shortlist | 2 reviewers (best joke, synergy, variety); 1 reviewer proposes the experiment | the shortlist of four or five; the interview candidates in order |
+| 6 | repetition (ideas) | 2 reviewers with the ledger; a writer per repeat | strictest verdict; people rules |
+| 7 | draft | 1 writer per shortlisted card and per standing segment, each given its card and ideas | the previous aired genre as an `avoid` line |
+| 8 | fit | sound editors (voices, then each draft with lines to settle); a writer per line that cannot be said | `npm run fit` on every changed draft |
+| 9 | select | 2 reviewers score; 2 judge repetition on the selection (verdicts may be on a pair); a writer per repeat; 1 auditor refreshes consent | the selection with the caps; `plan.json` |
+| 10 | assemble | 1 writer; 2 reviewers on the lines it added; 1 sound editor | copies drafts in, merges sources and casts; fits; renders |
+| 11 | stage | 1 builder per segment; then 1 auditor, a verdict per segment and a route per change | re-shoots only changed segments |
+| 12 | build | none | thumbnail, build (`--preview` for a trial), `verify`, every cited post checked live |
+| 13 | review | a `viewer` per cold-viewer stretch; then 1 reviewer | title and credits frames; `review/cold-viewers.md`; the pull request text |
 
-Everything an episode's production writes is under `episodes/<id>/production/`, so a run can
-stop, be inspected and resume; `state.json` records statuses and gate results, never
-timestamps. Briefs are `production/briefs/<stage>/<task>.md`: the role, the task, the one
-place to write, what to read and not to read, and the command that checks it. A repeat at the
-repetition gate creates a rework task and then fresh verdicts on the new version. A
-reviewer's send-back is a valid end of a stage: it names the stage that can fix it, and the
-run returns there.
+Everything a production writes is under `episodes/<id>/production/`, reviewers' and auditors'
+files under `production/review/`, so a run can stop, be inspected and resume; `state.json` records
+statuses and gate results, never timestamps and never a reviewer's prose. Briefs are
+`production/briefs/<stage>/<task>.md`: the role, the one place to write, a scratch folder, the check
+for that task alone (`--check <stage> --task <id>`), a short reading list (the constitution, the
+chapters `config/pipeline.json` `reading` names for that kind of task, the files it works from), the
+gate's rules, the card's terms of use and, on a later round, what the earlier round asked. A
+send-back names the stage that can fix it; only its `changes` reach that stage's briefs. The
+pipeline reaches the scraper and the studio through one module each (`src/scraper.mjs`,
+`src/studio.mjs`).
 
-**Runners.** `manual` (the default): the run stops and `produce --status` lists the subagents
-to spawn, each from its brief (`playbooks/project-manager.md`). `headless`: each brief goes to
-`claude -p --agent <role>` with that role's permission rules; the weekly workflow uses it.
-`fixture`: prepared outputs, for tests and `bin/end-to-end.mjs`, which runs all eleven stages
-with the real tools. The runner is remembered per run.
+**Runners.** `headless` (the default where `claude auth status` says signed in, and in CI): each
+brief goes to `claude -p --agent <role>` with that role's permission rules, a wave in parallel, and
+the run stops only at a failure or a send-back, printing what the project manager must decide.
+`manual`: the run stops at each wave and `--status` lists the subagents to spawn
+(`playbooks/project-manager.md`). `fixture`: prepared outputs, for tests and `bin/end-to-end.mjs`.
+The runner is remembered per run.
 
-**Roles.** `.claude/agents/` defines `researcher`, `writer` and `reviewer` on the latest Fable
-and `builder` on the latest Opus, with the standing rules of WORKFLOW's role and visibility
-tables. Writers, researchers and builders never see the ledger or earlier episodes; reviewers
-do. That is enforced by the briefs, by a guard hook on the three roles
-(`packages/writers-room/bin/guard.mjs`, a tripwire, not a wall), and by the repetition gate,
-which catches what slips through.
+**Roles.** `.claude/agents/`: `writer` and `reviewer` on the latest Fable; `researcher`, `auditor`,
+`sound-editor` and `builder` on the latest Opus; `viewer` on the cheapest current model, given
+frames and nothing else. A guard hook on every role (`packages/writers-room/bin/guard.mjs`, a
+tripwire, not a wall) fences the ledger, `docs/trials/`, `production/review/` and earlier episodes
+from writers, researchers, builders, sound editors and viewers, a digest's `private/` from all but
+auditors and its `reviewers/` from all but reviewers and auditors, and keeps the auditor's network
+to `npm run sources` and `npm run media`. The repetition gate catches what slips through.
 
-**Gates** do not depend on a model's judgement. Among them: cards quote posts exactly and carry
-no jokes; every card has ideas from two writers; every judgement has two reviewers; the
-**repetition gate** (fresh, turned or repeat; any repeat blocks; at most one turned item from
-the previous episode); the **people rules**, by DID against aired episodes only (nobody who
-spoke in the previous aired episode speaks; the accounts on screen are mostly new over the
-last few aired episodes; a warning, not a block, for anyone featured too often); the standing
-segments; every real line verbatim, in its own context, after a staged setup that recreates
-it; **heard text** (an alarming word in Whisper's transcript fails whatever the score; an
-out-of-bounds word or a misheard real name fails until a waiver quotes it); **unread text**
-(nothing longer than a glance on screen unless it is spoken); **credits** (the end card names
-the real accounts whose personas were played and says every voice is synthesized); studio
-imports only; the constitution unchanged; the scorecard complete and the verdict following
-it; the ledger entry and the tracker agreeing with who is on screen.
+**Gates** do not depend on a model's judgement. Among them: cards built from the scraper's skeletons,
+with every picture described and no marked post; every judgement from two reviewers; the
+**repetition gate** on ideas, selected scripts (including pairs) and lines added at assembly; the
+**caps**, applied by the tool as it selects (one interview, nobody in more than two segments, nobody
+who spoke in the previous aired episode, the accounts on screen mostly new); every line **heard as
+written** (`fit.json`: nothing flagged or unsayable), with sound editors never changing a word; every
+real line verbatim, in its own context; **consent** refreshed over the network for the selection and
+every cited post checked live at the build; every post shown or performed **exact** on screen;
+**unread text**; **credits**; studio imports only; the constitution unchanged; the scorecard complete
+and the verdict following it; the ledger agreeing with who is on screen.
 
 The review stage writes `production/pr-title.txt` and `production/pr-body.md`. The pipeline
 never commits, pushes, deploys or announces. `weekly-episode.yml` runs it with the headless

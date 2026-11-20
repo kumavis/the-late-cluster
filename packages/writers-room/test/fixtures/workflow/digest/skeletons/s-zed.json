@@ -1,0 +1,29 @@
+{
+  "id": "s-zed",
+  "lane": "made",
+  "title": "s-zed",
+  "posts": [
+    {
+      "uri": "at://did:plc:trialzed/app.bsky.feed.post/z1",
+      "url": "https://bsky.app/profile/zed.example/post/z1",
+      "handle": "zed.example",
+      "did": "did:plc:trialzed",
+      "displayName": "Zed",
+      "text": "hello. I am a test.",
+      "followers": 5,
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "reach": {
+        "score": 1
+      },
+      "replyTo": null,
+      "alt": [],
+      "media": [],
+      "sensitive": null
+    }
+  ]
+}

@@ -8,7 +8,7 @@ export default {
     { say: 'larry', id: 'ask', text: 'Somebody asked for a show with only two segments.' },
     { say: 'sibyl', id: 'agree', text: 'So this is segment one of two.' },
     { sfx: 'laugh', at: 0.05 },
-    { say: 'larry', id: 'calm', text: 'Relax. This show is not a bomb.' },
+    { say: 'larry', id: 'calm', text: 'Relax. This show is not a bum.' },
     { say: 'sibyl', id: 'intro', text: 'And now... Larry Nx!', as: 'And now... Larry En-Ex!' },
     { sfx: 'applause', at: 0.1, hold: 0.5 },
   ],

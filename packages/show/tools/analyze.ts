@@ -6,6 +6,8 @@
  *                                                                 (--ep adds that episode's own cast.js)
  *   bun packages/show/tools/analyze.ts mp3 <ep> <segment-id>      a rendered segment, second by second
  *   bun packages/show/tools/analyze.ts whisper <ep> <segment-id>  what Whisper hears in each line
+ *   bun packages/show/tools/analyze.ts whisper <ep> --draft <slug>  the same, for a draft rendered with
+ *                                                                 npm run render -- <ep> --draft <slug>
  *   (the rendered mp3 is read from episodes/<ep>/public/, else from dist/episodes/<ep>/)
  *   add --wav <dir> to also write WAVs (for `bun tools/spectrogram.ts in.wav out.png` in the
  *   chimera repo, or for listening); --whisper to transcribe the voice renders if `whisper` is on PATH.
@@ -19,7 +21,9 @@ import { FS } from "./engine.ts";
 import { sayClip, type VoiceSpec } from "./clips.ts";
 import { SFX, sfxClip } from "./sfx.ts";
 import { CAST } from "../src/cast.js";
-import { loadEpisode, requireSegment, exitOnEpisodeError } from "./episode.mjs";
+import { loadEpisode, loadDraft, requireSegment, exitOnEpisodeError } from "./episode.mjs";
+import { takeDraftArg } from "./draft.mjs";
+import { wordScore } from "./heard.mjs";
 
 const ROOT = new URL("../", import.meta.url).pathname;
 
@@ -161,33 +165,9 @@ export function transcribe(file: string, outDir: string, extra: string[] = []): 
   return existsSync(txt) ? readFileSync(txt, "utf8").trim().replace(/\s+/g, " ") : "";
 }
 
-const ONES = ["zero", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten", "eleven", "twelve", "thirteen", "fourteen", "fifteen", "sixteen", "seventeen", "eighteen", "nineteen"];
-const TENS = ["", "", "twenty", "thirty", "forty", "fifty", "sixty", "seventy", "eighty", "ninety"];
-function numWords(n: number): string {
-  if (n < 20) return ONES[n];
-  if (n < 100) return TENS[Math.floor(n / 10)] + (n % 10 ? " " + ONES[n % 10] : "");
-  if (n < 1000) return ONES[Math.floor(n / 100)] + " hundred" + (n % 100 ? " " + numWords(n % 100) : "");
-  if (n < 10000) return numWords(Math.floor(n / 1000)) + " thousand" + (n % 1000 ? " " + numWords(n % 1000) : "");
-  return String(n);
-}
-/** words for scoring: lower case, no punctuation, digits and % spelled out (Whisper writes "90 %") */
-const norm = (s: string) =>
-  s.toLowerCase().replace(/%/g, " percent ").replace(/\d+/g, (d) => " " + numWords(+d) + " ").replace(/[^a-z' ]/g, " ").split(/\s+/).filter(Boolean);
-/** how many reference words Whisper heard (bag of words, each heard word used once) */
-export function wordScore(ref: string, heard: string): [number, number] {
-  // "built" and "build" sound the same before a vowel (the t flaps): count either
-  const SAME: Record<string, string> = { build: "built", builds: "built" };
-  const r = norm(ref).map((w) => SAME[w] ?? w), h = norm(heard).map((w) => SAME[w] ?? w);
-  // compounds count ("simcluster" covers "sim" and "cluster")
-  const joined = h.join("");
-  let ok = 0;
-  for (const w of r) {
-    const i = h.indexOf(w);
-    if (i >= 0) ok++, h.splice(i, 1);
-    else if (w.length >= 3 && joined.includes(w)) ok++;
-  }
-  return [ok, r.length];
-}
+// scoring lives in heard.mjs (shared with fit.ts): digits and % spelled out, compounds count,
+// "build" and "built" are one word
+export { wordScore };
 
 /**
  * Intelligibility check for a rendered segment: cut each captioned line (say, captioned sing) out
@@ -203,7 +183,7 @@ export async function whisperSegment(ep: any, id: string): Promise<boolean> {
   const mp3 = ep.asset(`audio/${id}.mp3`);
   if (!mp3) throw new Error(`${ep.id} ${id}: not rendered (no audio/${id}.mp3)`);
   const cues = JSON.parse(readFileSync(ep.segFile(id, "cues.json"), "utf8"));
-  const dir = `${ROOT}tools/.cache/whisper/${ep.id}/${id}`;
+  const dir = `${ROOT}tools/.cache/whisper/${ep.cacheId ?? ep.id}/${id}`;
   rmSync(dir, { recursive: true, force: true });
   mkdirSync(dir, { recursive: true });
   const t = performance.now();
@@ -235,13 +215,41 @@ export async function whisperSegment(ep: any, id: string): Promise<boolean> {
   return true;
 }
 
+/**
+ * A voice's features, as `voices` measures them: the median f0 of the two test sentences (voiced
+ * frames of the telemetry), their long-term average spectrum (band dB, mean removed) and spectral
+ * centroid. Clips come from the shared cache, so a voice measured once is measured for free.
+ */
+export async function measureVoice(v: VoiceSpec): Promise<{ f0: number; ltas: number[]; cent: number }> {
+  const f0s: number[] = [];
+  const lt = new Float64Array(BANDS.length - 1);
+  let cent = 0;
+  for (const sent of TEST_SENTENCES) {
+    const clip = await sayClip(v, sent);
+    cent += stats(clip.audio).centroid / TEST_SENTENCES.length;
+    const t = clip.tele!;
+    for (let f = 0; f < t.frames; f++) if (t.data[f * t.channels + 4] > 0.5) f0s.push(t.data[f * t.channels + 3]);
+    ltasInto(clip.audio, lt);
+  }
+  f0s.sort((a, b) => a - b);
+  const ltas = Array.from(lt, (x) => 10 * Math.log10(x + 1e-20));
+  const mean = ltas.reduce((a, b) => a + b, 0) / ltas.length;
+  return { f0: f0s[Math.floor(f0s.length / 2)] ?? 0, ltas: ltas.map((x) => x - mean), cent };
+}
+
 export const TEST_SENTENCES = [
   "Good evening, and welcome back to the show.",
   "Wait, are you telling me the feed knows what I had for breakfast?",
 ];
 
 if (import.meta.main) {
-  const args = process.argv.slice(2);
+  let args = process.argv.slice(2);
+  let draftSlug: string | null = null;
+  try {
+    ({ slug: draftSlug, rest: args } = takeDraftArg(args));
+  } catch (e) {
+    exitOnEpisodeError(e);
+  }
   const wi = args.indexOf("--wav");
   const wavDir = wi >= 0 ? args[wi + 1] : null;
   const whisper = args.includes("--whisper");
@@ -250,6 +258,10 @@ if (import.meta.main) {
   const [mode, ...names] = rest;
   // mp3 and whisper take <ep> <segment-id>; voices takes --ep <ep> to add an episode's own cast
   const segArgs = async () => {
+    if (draftSlug && names.length === 1) {
+      const ep0 = await loadEpisode(names[0]).catch(exitOnEpisodeError);
+      return { ep: (await loadDraft(ep0, draftSlug).catch(exitOnEpisodeError)).view, id: draftSlug };
+    }
     if (names.length !== 2) {
       console.error(`usage: bun packages/show/tools/analyze.ts ${mode} <ep> <segment-id>`);
       process.exit(2);

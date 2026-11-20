@@ -6,8 +6,9 @@ import { episode, modules, cues, cast, looks } from 'virtual:late-cluster/episod
 import { CAST } from './cast.js'
 import { LOOKS, look, defineLook } from './looks.js'
 import { HOUSE_IDS } from './stage/shots.js'
+import { STAGE_TEXT } from './stage/text.js'
 import { applyRoster } from './roster.js'
 
-applyRoster(episode.id, { cast, looks }, { CAST, LOOKS, look, defineLook, HOUSE_IDS })
+applyRoster(episode.id, { cast, looks }, { CAST, LOOKS, look, defineLook, HOUSE_IDS, STAGE_TEXT })
 
 export { episode, modules, cues }

@@ -1,0 +1,95 @@
+{
+  "id": "s-quinn",
+  "lane": "interview",
+  "title": "s-quinn",
+  "posts": [
+    {
+      "uri": "at://did:plc:trialhost/app.bsky.feed.post/q0",
+      "url": "https://bsky.app/profile/host.example/post/q0",
+      "handle": "host.example",
+      "did": "did:plc:trialhost",
+      "displayName": "Host",
+      "text": "what is your favourite tool?",
+      "followers": 600,
+      "counts": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "reach": {
+        "score": 4
+      },
+      "replyTo": null,
+      "alt": [],
+      "media": [],
+      "sensitive": null
+    },
+    {
+      "uri": "at://did:plc:trialquinn/app.bsky.feed.post/q1",
+      "url": "https://bsky.app/profile/quinn.example/post/q1",
+      "handle": "quinn.example",
+      "did": "did:plc:trialquinn",
+      "displayName": "Quinn",
+      "text": "a spoon, honestly",
+      "followers": 700,
+      "counts": {
+        "likes": 30,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "reach": {
+        "score": 30
+      },
+      "replyTo": "at://did:plc:trialhost/app.bsky.feed.post/q0",
+      "alt": [],
+      "media": [],
+      "sensitive": null
+    },
+    {
+      "uri": "at://did:plc:trialfan2/app.bsky.feed.post/q2",
+      "url": "https://bsky.app/profile/fan2.example/post/q2",
+      "handle": "fan2.example",
+      "did": "did:plc:trialfan2",
+      "displayName": "Fan Two",
+      "text": "do you ever sleep?",
+      "followers": 90,
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "reach": {
+        "score": 2
+      },
+      "replyTo": null,
+      "alt": [],
+      "media": [],
+      "sensitive": null
+    },
+    {
+      "uri": "at://did:plc:trialquinn/app.bsky.feed.post/q3",
+      "url": "https://bsky.app/profile/quinn.example/post/q3",
+      "handle": "quinn.example",
+      "did": "did:plc:trialquinn",
+      "displayName": "Quinn",
+      "text": "no, never",
+      "followers": 700,
+      "counts": {
+        "likes": 22,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "reach": {
+        "score": 22
+      },
+      "replyTo": "at://did:plc:trialfan2/app.bsky.feed.post/q2",
+      "alt": [],
+      "media": [],
+      "sensitive": null
+    }
+  ]
+}

@@ -17,8 +17,9 @@ export function gate(name) {
     r.skipped = why
   }
   // a review's send-back: a valid end to a stage, routed to the stage that can fix it (trial finding 55)
-  r.sendBack = (route, reason) => {
-    r.sentBack = { route, reason }
+  // `file` is the reviewer's or auditor's verdict file; its changes are read from it into the briefs
+  r.sendBack = (route, reason, file = null) => {
+    r.sentBack = { route, reason, ...(file ? { file } : {}) }
   }
   r.done = () => ({ name: r.name, ok: r.ok, failures: r.failures, warnings: r.warnings, ...(r.skipped ? { skipped: r.skipped } : {}), ...(r.sentBack ? { sentBack: r.sentBack } : {}) })
   return r

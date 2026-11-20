@@ -1,6 +1,6 @@
 // Loads config/*.json. The files are the documentation of record; see README "Config".
 
-import { readFileSync } from 'node:fs'
+import { readFileSync, existsSync } from 'node:fs'
 import { join, dirname } from 'node:path'
 import { fileURLToPath } from 'node:url'
 
@@ -18,6 +18,7 @@ export function loadConfig(dir = DEFAULT_CONFIG_DIR) {
     safety: read(dir, 'safety.json'),
     show: read(dir, 'show.json'),
     games: read(dir, 'games.json'),
+    lanes: existsSync(join(dir, 'lanes.json')) ? read(dir, 'lanes.json') : {},
   }
   validate(config)
   return config
@@ -54,6 +55,11 @@ export function validate(c) {
   for (const re of c.show.performableThreads?.avoidPatterns ?? []) new RegExp(re, 'iu')
   for (const re of c.safety.excludedMentions?.aboutPatterns ?? []) {
     try { new RegExp(re, 'iu') } catch (e) { throw new Error(`config: bad pattern in safety.excludedMentions: ${e.message}`) }
+  }
+  for (const list of [c.lanes?.made?.patterns ?? [], c.lanes?.games?.patterns ?? [], c.lanes?.bots?.bioPatterns ?? [], c.safety.selfDeclaredOptOut.indirectPatterns ?? [], c.safety.bioReview?.patterns ?? []]) {
+    for (const re of list) {
+      try { new RegExp(re, 'iu') } catch (e) { throw new Error(`config: bad pattern ${JSON.stringify(re)}: ${e.message}`) }
+    }
   }
   need(!/the-late-cluster|late cluster|larry/i.test(c.client.userAgent ?? ''), 'client.userAgent must stay generic')
 }

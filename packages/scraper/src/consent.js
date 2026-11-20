@@ -94,7 +94,7 @@ export class Consent {
    * @param {Array} o.selfDeclaredPatterns
    * @param {object} o.naming safety.json excludedMentions: { minOwnWords, aboutPatterns, minNameChars }
    */
-  constructor({ optOut = [], blockedLabels = [], selfDeclaredPatterns = [], naming = {} } = {}) {
+  constructor({ optOut = [], blockedLabels = [], selfDeclaredPatterns = [], indirectPatterns = [], reviewPatterns = [], naming = {} } = {}) {
     this.dids = new Set()
     this.handles = new Set()
     for (const entry of optOut) {
@@ -108,6 +108,11 @@ export class Consent {
     this.showRequests = new Set()
     this.excludedHandles = new Set()
     this.selfDeclaredRes = selfDeclaredPatterns.map((x) => new RegExp(x, 'iu'))
+    // Opt-outs said another way (posts meant to disappear, "not to be quoted"): the same
+    // exclusion, counted apart. Review patterns only mark the account for an auditor.
+    this.indirectRes = indirectPatterns.map((x) => new RegExp(x, 'iu'))
+    this.reviewRes = reviewPatterns.map((x) => new RegExp(x, 'iu'))
+    this.indirect = new Set()
     this.blockedLabels = new Set(blockedLabels)
     this.naming = {
       minOwnWords: naming.minOwnWords ?? 4,
@@ -128,6 +133,7 @@ export class Consent {
       postsDroppedOptOut: 0,
       postsDroppedNoUnauthenticated: 0,
       selfDeclaredAccounts: 0,
+      selfDeclaredIndirect: 0,
       postsDroppedSelfDeclared: 0,
       showOptOutRequests: 0,
       postsDroppedShowRequest: 0,
@@ -225,8 +231,35 @@ export class Consent {
 
   /** Does a profile description ask not to be quoted, clipped, reposted or used by AI? */
   descriptionOptsOut(description) {
+    return !!this.optOutKind(description)
+  }
+
+  /** 'direct', 'indirect' (an opt-out said another way) or null. */
+  optOutKind(description) {
     const d = String(description ?? '')
-    return !!d && this.selfDeclaredRes.some((re) => re.test(d))
+    if (!d) return null
+    if (this.selfDeclaredRes.some((re) => re.test(d))) return 'direct'
+    if (this.indirectRes.some((re) => re.test(d))) return 'indirect'
+    return null
+  }
+
+  /**
+   * Wording in a description that might be an opt-out, for an auditor to judge: the first
+   * matching phrase and its pattern, or null. Accounts that already opt out are not asked.
+   */
+  bioReview(description) {
+    const d = String(description ?? '')
+    if (!d || this.optOutKind(d)) return null
+    for (const re of this.reviewRes) {
+      const m = re.exec(d)
+      if (m) {
+        // the matched words with a little of the sentence around them
+        const a = Math.max(0, d.lastIndexOf(' ', Math.max(0, m.index - 25)))
+        const b = d.indexOf(' ', Math.min(d.length, m.index + m[0].length + 25))
+        return { phrase: d.slice(a, b < 0 ? d.length : b).trim(), matched: m[0], pattern: re.source }
+      }
+    }
+    return null
   }
 
   /**
@@ -236,8 +269,12 @@ export class Consent {
   checkProfile(profile) {
     if (!profile?.did) return false
     if (this.check(profile)) return true
-    if (this.descriptionOptsOut(profile.description)) {
-      if (!this.selfDeclared.has(profile.did)) this.stats.selfDeclaredAccounts++
+    const kind = this.optOutKind(profile.description)
+    if (kind) {
+      if (!this.selfDeclared.has(profile.did)) {
+        this.stats.selfDeclaredAccounts++
+        if (kind === 'indirect') { this.stats.selfDeclaredIndirect++; this.indirect.add(profile.did) }
+      }
       this._exclude(this.selfDeclared, profile.did)
       if (profile.handle) this.excludedHandles.add(normHandle(profile.handle))
       return true
@@ -560,6 +597,12 @@ export class Consent {
       if (sp.length) { changed = true; altNamed = true; refs('altText') }
       return sp.length ? applySpans(a, sp) : a
     })
+    const media = (post.media ?? []).map((m) => {
+      if (!m.alt) return m
+      const sp = mergeSpans(this.refsIn(m.alt, { contact }))
+      if (sp.length) { changed = true; altNamed = true }
+      return sp.length ? { ...m, alt: applySpans(m.alt, sp) } : m
+    })
     const linksBefore = post.links ?? []
     const links = linksBefore.filter((l) => !this.uriExcluded(l.url)).map((l) => {
       const sp = l.title ? mergeSpans(this.refsIn(l.title, { contact })) : []
@@ -596,6 +639,7 @@ export class Consent {
       ...post,
       text: applySpans(text, textSpans),
       imageAlts: alts,
+      ...(post.media ? { media } : {}),
       links,
       embedded,
       displayName,

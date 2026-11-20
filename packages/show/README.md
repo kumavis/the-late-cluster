@@ -124,7 +124,8 @@ export default {
   defaultShot: 'desk',           // when nothing else picks one
   drift: true,                   // the subtle idle camera drift
   autoPanel: true,               // draw the empty frame of the `ots` graphics panel for you
-  built: { from: 0, bumps: ['tally-1', 'tally-2'] },   // optional: the episode counter (below)
+  built: { from: 0, bumps: ['tally-1', 'tally-2'], label: 'REPLIES READ' },   // optional: the episode counter (below)
+  keyLabel: 'K',                 // optional: the letter on the desk's key cap (set.eKey); blank by default
   disclaimer: 'Guests are puppets playing posting personas.',  // or { text, from, dur }: a footer for a few seconds
   shots: [                       // declarative shots (below)
     { at: 0, shot: 'mono' },
@@ -237,7 +238,7 @@ them only through their parameters (computed from `t`).
 | `confetti(ctx, x, y, age, { seed, count, colors, spread })` | a burst of vector sparkles, `age` s after it fired (gone by ~1.4 s) |
 | `crow(ctx, x, y, { scale, flap, facing, perched, color })` | a crow (scale 1 ≈ 60 long); `flap` = wing phase (e.g. `(t*2)%1`). On the set: `set: { crow: true \| 'circling' \| 'perched-desk' }` |
 | `chicken(ctx, x, y, { scale, crown, bob, facing })`, `crown(ctx, x, y, scale)` | a chicken (≈ 90 tall; `crown: true` puts a crown on it) and the crown on its own |
-| `keycap(ctx, x, y, { label: 'E', scale, pressed, glow })` | a big key cap showing `label` (≈ 80 wide). On the desk: `set: { eKey: true }` (or a number = how pressed) puts one labelled E on the desk; it sits on the desk's front-left corner at `EKEY` (`import { EKEY } from '@late-cluster/show/stage/set.js'`: world `{ x, y, scale }`) — use that to draw at/over it |
+| `keycap(ctx, x, y, { label, scale, pressed, glow })` | a big key cap showing `label` (≈ 80 wide; blank without one). On the desk: `set: { eKey: true }` (or a number = how pressed) puts one on the desk, showing the segment's `keyLabel` (blank by default); it sits on the desk's front-left corner at `EKEY` (`import { EKEY } from '@late-cluster/show/stage/set.js'`: world `{ x, y, scale }`) — use that to draw at/over it |
 | `seal(ctx, x, y, { scale, ball, t, facing })`, `gator(ctx, x, y, { scale, jaw, facing })`, `elephant(ctx, x, y, { scale, trunk, facing })` | simple animal glyphs |
 | `book(ctx, x, y, { scale, open, title, color })` | closed (with a title) or opening |
 | `stamp(ctx, x, y, 'APPROVED', { age, rot, size, color })` | a rubber-stamp slam: drops in over the 0.15 s before `age` 0, ink spatter after |
@@ -258,9 +259,10 @@ An optional tally that can run across an episode. Export `built: { from: <n>, bu
 `n = from + bumps already passed` at time `t`. Each bump pops the number, flashes the box and
 throws a little confetti. It's a pure function of `t` (seek-safe); segments without `built` don't
 show it. To carry a total across segments, each segment's `from` is the previous segment's final
-`n` (agree the numbers in the plan). `show.built` is the current value. The label text is fixed in
-`stage/chrome.js` (`builtCounter`) and the module field keeps its old name, `built`: a counter that
-says something else needs a label option added there first (a studio change).
+`n` (agree the numbers in the plan). `show.built` is the current value. The label is
+`built.label`; without one it is a neutral `COUNT` (`src/stage/text.js`). The module field keeps
+its old name, `built`, whatever the counter counts. (The first episode's label comes from its
+legacy entry in `src/legacy/`, so that episode draws as it was built.)
 
 ### Puppet effects
 
@@ -358,7 +360,7 @@ Back: `wall truss floor window` (the simcluster skyline) `curtain onair sign` (A
 lit by `cues.sfx` named `applause* laugh* biglaugh chuckle cheer`) `bandstand couch chair`.
 Front: `desk` (mug, desk mic, name plate) and the chair/couch arms. Extras, off by default:
 `crow: true | 'circling' | 'perched-desk'` (a crow on the window sill, circling the
-skyline, or on the desk) and `eKey: true` (a big key cap labelled E on the desk's front-left corner; the mug
+skyline, or on the desk) and `eKey: true` (a big key cap on the desk's front-left corner, showing the module's `keyLabel`, blank by default; the mug
 sits right of it). `'circling'` flies in whatever part of the window the current camera sees (a
 desk shot only sees its lower half), below the episode counter, and hides in head close-ups
 (zoom > 2.2). Set flags are module state: if `direct` changes `show.set.*`, assign it on every

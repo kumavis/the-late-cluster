@@ -32,13 +32,17 @@ export function findShowPosts(rawWindowPosts, show, safety) {
     const r = match(p)
     if (r.length) about.set(p.uri, r)
   }
-  // reactions: replies under, and quotes of, a post about the show
-  const anchors = new Set(about.keys())
-  for (const p of rawWindowPosts) {
-    if (about.has(p.uri)) continue
-    if (p.reply?.parent && anchors.has(p.reply.parent)) about.set(p.uri, ['replies to a post about the show'])
-    else if (p.reply?.root && anchors.has(p.reply.root)) about.set(p.uri, ['in a thread about the show'])
-    else if (p.quote?.uri && anchors.has(p.quote.uri)) about.set(p.uri, ['quotes a post about the show'])
+  // reactions: replies under, and quotes of, a post about the show, and so on down: a reply
+  // under a quote of the show's post is about the show too (trial 002, finding 11)
+  for (let changed = true; changed;) {
+    changed = false
+    for (const p of rawWindowPosts) {
+      if (about.has(p.uri)) continue
+      const why = p.reply?.parent && about.has(p.reply.parent) ? 'replies to a post about the show'
+        : p.reply?.root && about.has(p.reply.root) ? 'in a thread about the show'
+          : p.quote?.uri && about.has(p.quote.uri) ? 'quotes a post about the show' : null
+      if (why) { about.set(p.uri, [why]); changed = true }
+    }
   }
   const optOut = (safety?.showOptOutPatterns?.patterns ?? []).map((x) => new RegExp(x, 'iu'))
   const requests = []

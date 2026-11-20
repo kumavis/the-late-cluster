@@ -28,12 +28,25 @@ export function parseWhisper(out) {
   return { lines, weak, heard: total ? Number(total[1]) : null, words: total ? Number(total[2]) : null }
 }
 
-/** the transcription of every rendered segment, each row tied to its cues.json line (id, who) */
+/**
+ * What was heard in every rendered segment, each row tied to its cues.json line (id, who): from the
+ * fitting tool's segments/<seg>/fit.json when there is one (the sound editor's last fit), else from
+ * the Whisper pass. ok → ✓, weak → ~, flagged or unsayable → ✗.
+ */
 function transcripts(ctx) {
   if (ctx._transcripts) return ctx._transcripts
   const out = {}
+  const FLAG = { ok: '✓', weak: '~', flagged: '✗', unsayable: '✗' }
   for (const seg of rundown(ctx)) {
     if (!existsSync(ctx.paths.segFile(seg, 'cues.json'))) continue
+    const fitFile = ctx.paths.segFile(seg, 'fit.json')
+    if (existsSync(fitFile)) {
+      const fit = JSON.parse(readFileSync(fitFile, 'utf8'))
+      const lines = (fit.lines ?? []).map((l) => ({ flag: FLAG[l.status] ?? '~', t0: l.t0 ?? 0, who: l.who, ok: l.score?.heard ?? 0, all: l.score?.of ?? 0, text: l.text, heard: l.heard?.[0]?.text ?? '', id: l.id }))
+      out[seg] = { code: 0, source: 'fit', lines, weak: lines.filter((l) => l.flag !== '✓').map((l) => l.id), heard: null, words: null }
+      continue
+    }
+    if (!ctx.tools.has('whisper')) continue
     const r = ctx.tools.bun(['packages/show/tools/analyze.ts', 'whisper', ctx.id, seg])
     const w = parseWhisper(r.out)
     // the analyzer transcribes the say lines and the captioned sung lines, in cues order
@@ -42,10 +55,12 @@ function transcripts(ctx) {
       lines = JSON.parse(readFileSync(ctx.paths.segFile(seg, 'cues.json'), 'utf8')).lines.filter((l) => l.kind === 'say' || (l.kind === 'sing' && l.caption))
     } catch {}
     w.lines.forEach((row, k) => (row.id = lines[k]?.id ?? `#${lines[k]?.i ?? k}`))
-    out[seg] = { code: r.code, ...w }
+    out[seg] = { code: r.code, source: 'whisper', ...w }
   }
   return (ctx._transcripts = out)
 }
+
+const anyFit = (ctx) => rundown(ctx).some((seg) => existsSync(ctx.paths.segFile(seg, 'fit.json')))
 
 /** the names Whisper cannot be expected to know: the cast's names and handles, sources.json's accounts */
 function knownNames(ctx) {
@@ -80,7 +95,7 @@ const hasPhrase = (text, phrase) => ` ${words(text).join(' ')} `.includes(` ${wo
  */
 export async function renderWhisper(ctx) {
   const g = gate('render.whisper')
-  if (!ctx.tools.has('whisper')) {
+  if (!ctx.tools.has('whisper') && !anyFit(ctx)) {
     g.skip('whisper is not installed: neither the intelligibility pass nor the heard-text gate ran (the reviewer must listen for both)')
     return g.done()
   }
@@ -115,7 +130,7 @@ export async function renderWhisper(ctx) {
  */
 export async function renderHeard(ctx) {
   const g = gate('render.heard')
-  if (!ctx.tools.has('whisper')) {
+  if (!ctx.tools.has('whisper') && !anyFit(ctx)) {
     g.skip('whisper is not installed: what an audience would hear was not checked')
     return g.done()
   }

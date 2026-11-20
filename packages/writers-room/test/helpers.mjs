@@ -156,6 +156,8 @@ export const PILOT_LEDGER = { id: '001-pilot', aired: true, guests: [{ did: 'did
 export function fakeRepo({ optOut = ['nope.test'], pilotPlan = true, fullScorecard = false, ledger = true } = {}) {
   const root = mkdtempSync(join(tmpdir(), 'writers-room-test-'))
   put(root, 'packages/show/src/cast.js', STUDIO_CAST)
+  // the files briefs point at (a brief may only name files that exist)
+  for (const f of ['packages/show/README.md', 'packages/show/tools/README.md', 'packages/writers-room/playbooks/sources.md']) put(root, f, `# ${f}\n`)
   put(root, 'packages/scraper/config/optout.json', { accounts: optOut })
   put(root, 'docs/bible/10-process.md', fullScorecard ? FULL_CARD(BIBLE_10) : BIBLE_10)
   put(root, 'docs/bible/09-real-people.md', BIBLE_09)
@@ -284,12 +286,35 @@ export function whisperReport(root, id, seg, heard = {}) {
   return `\n${seg}: what Whisper (base.en) hears in each line, cut from the final mix  (1 s)\n${rows.join('\n')}\n\n1/1 caption words heard (100%)\n`
 }
 
-export function fakeTools(root, { whisper = false, whisperOut = {}, heard = {}, renderFail = false, shootWarn = null } = {}) {
+/**
+ * The fitting tool, approximately (packages/show: npm run fit): every line heard as written, unless
+ * `heard` maps its caption to what is heard instead. As the real tool does, a line is flagged when
+ * what is heard has an alarming word the caption does not; UNSAYABLE in a caption makes it
+ * unsayable and WEAK with no `as` weak. Writes fit.json beside the script; exits 0 only when nothing blocks.
+ */
+export function fakeFit(root, id, args, heard = {}) {
+  const draft = args.includes('--draft') ? args[args.indexOf('--draft') + 1] : null
+  const dir = draft ? join(root, 'episodes', id, 'production', 'drafts', draft) : join(root, 'episodes', id, 'segments', args[1])
+  const src = readFileSync(join(dir, 'script.js'), 'utf8')
+  const alarming = /\b(bomb|murder|nazi)\b/i
+  const lines = scriptLines(src).map((l, k) => {
+    const h = heard[l.text] ?? l.text
+    const status = alarming.test(h) && !alarming.test(l.text ?? '') ? 'flagged' : /UNSAYABLE/.test(l.text ?? '') ? 'unsayable' : /WEAK/.test(l.text ?? '') && !l.as ? 'weak' : 'ok'
+    const n = String(l.text ?? '').split(/\s+/).length
+    return { id: l.id ?? `#${k}`, who: l.who[0], kind: l.kind, text: l.text, as: l.as ?? null, t0: k, heard: [{ text: h, count: 3 }], score: { heard: status === 'ok' ? n : 0, of: n }, status, flags: status === 'flagged' ? ['alarming'] : [], tried: [] }
+  })
+  writeFileSync(join(dir, 'fit.json'), JSON.stringify({ segment: draft ?? args[1], lines, voices: {} }, null, 2) + '\n')
+  const bad = lines.filter((l) => ['flagged', 'unsayable'].includes(l.status)).length
+  return { code: bad ? 1 : 0, out: JSON.stringify({ lines: lines.length, blocking: bad }) + '\n', stdout: JSON.stringify({ lines: lines.length, blocking: bad }) + '\n' }
+}
+
+export function fakeTools(root, { whisper = false, whisperOut = {}, heard = {}, fitHeard = {}, renderFail = false, shootWarn = null, scripts = null, sourcesExit = 0 } = {}) {
   const calls = []
   const ok = (out = '') => ({ code: 0, out, stdout: out })
   return {
     calls,
-    has: (p) => (p === 'whisper' ? whisper : true),
+    hasScript: (name) => (scripts ? scripts.includes(name) : true),
+    has: (p) => (p === 'whisper' ? whisper : p === 'claude' ? false : true),
     fetch: async () => ({ ok: false, status: 400 }),
     exec: (label, cmd, args) => {
       calls.push([label, cmd, ...args])
@@ -339,9 +364,19 @@ export function fakeTools(root, { whisper = false, whisperOut = {}, heard = {}, 
         }
         case 'check':
           return ok('check: all passed\n')
+        case 'fit':
+          return fakeFit(root, id, args, fitHeard)
+        case 'voices':
+          return ok('voices: house larry, sibyl, bot\n')
+        case 'sources': {
+          const out = args[args.indexOf('--out') + 1]
+          put(root, out, '# Sources\n\nNothing needs a person.\n')
+          return { code: sourcesExit, out: '{"needsPerson":[]}\n', stdout: '{"needsPerson":[]}\n' }
+        }
         case 'shoot': {
           const [, seg, ...times] = args
           const warn = shootWarn ?? (existsSync(ep(`segments/${seg}/index.js`)) && readFileSync(ep(`segments/${seg}/index.js`), 'utf8').includes('UNKNOWN_CUE') ? 'warning: unknown cue "UNKNOWN_CUE"' : null)
+          for (const t of times) put(root, `shots/${id}/${seg}/${seg}@${t}.png`, Buffer.from([0x89, 0x50, 0x4e, 0x47]))
           return ok(times.map((t) => `${root}/shots/${id}/${seg}/${seg}@${t}.png  (0.1 s)\n   warning: [.WebGL-0x1]GL Driver Message (OpenGL, Performance): GPU stall due to ReadPixels${warn ? `\n   ${warn}` : ''}`).join('\n') + '\n')
         }
         case 'thumbnail':

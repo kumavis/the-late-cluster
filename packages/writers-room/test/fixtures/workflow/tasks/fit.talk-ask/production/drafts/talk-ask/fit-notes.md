@@ -1,0 +1,1 @@
+- calm: cannot be said: "bum" is heard as an alarming word in every take and every respelling tried.

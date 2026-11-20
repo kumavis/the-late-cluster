@@ -1,7 +1,7 @@
 // Thin wrappers over the AppView methods this package reads, with pagination and caps.
 // Every function takes the client first and returns plain JSON from the API.
 
-import { BudgetExhausted, XrpcError } from './http.js'
+import { BudgetExhausted, XrpcError, buildUrl } from './http.js'
 
 /**
  * Profiles, 25 per request, in parallel through the client's concurrency limit. A batch that
@@ -115,6 +115,44 @@ export async function getAuthorFeedRange(client, actor, { since, until, maxPages
     return Number.isFinite(t) && t >= since && t < until
   })
   return { items, pages: res.pages, reachedSince: res.complete }
+}
+
+/**
+ * How much of an author-feed walk the response cache already holds, without a request:
+ * follows the cursor chain through cached pages. Returns { cached, complete }: `cached`
+ * pages are free, and when `complete` the walk ends inside them, so more pages cost nothing.
+ */
+export async function cachedFeedPages(client, actor, { since, until, maxPages = 6, seek = true }) {
+  if (!client.cacheDir) return { cached: 0, complete: false }
+  const params = { actor, limit: 100, filter: 'posts_with_replies' }
+  let cursor = seek && until ? new Date(until).toISOString() : undefined
+  for (let i = 0; i < maxPages; i++) {
+    const hit = await client.readCache(buildUrl(client.host, 'app.bsky.feed.getAuthorFeed', { ...params, cursor }))
+    if (!hit) return { cached: i, complete: false }
+    if (hit.status !== 200) return { cached: i + 1, complete: true }
+    const batch = hit.body?.feed ?? []
+    cursor = hit.body?.cursor
+    const c = Date.parse(cursor)
+    const edge = Number.isFinite(c) ? c : feedItemTime(batch.at(-1))
+    if (!cursor || batch.length === 0 || (Number.isFinite(edge) && edge < since)) return { cached: i + 1, complete: true }
+  }
+  return { cached: maxPages, complete: false }
+}
+
+/**
+ * How many pages of each actor's feed to walk, up to `max`, within `budget` requests,
+ * counting a page the cache already holds as free (trial 002, finding 3). Every actor gets
+ * its cached pages; the budget then buys the same depth `pages` for everyone it can.
+ * Returns { pages, perActor: Map actor -> pages, cost }.
+ */
+export async function planPages(client, actors, { since, until, max, budget, seek = true }) {
+  const held = await Promise.all(actors.map((a) => cachedFeedPages(client, a, { since, until, maxPages: max, seek })))
+  const cost = (k) => held.reduce((s, h) => s + (h.complete ? 0 : Math.max(0, k - h.cached)), 0)
+  let pages = 0
+  for (let k = max; k > 0; k--) if (cost(k) <= budget) { pages = k; break }
+  const perActor = new Map(actors.map((a, i) => [a, Math.min(max, held[i].complete ? held[i].cached : Math.max(pages, held[i].cached))]))
+  const short = held.filter((h, i) => !h.complete && perActor.get(actors[i]) < max).length
+  return { pages, perActor, cost: cost(pages), short }
 }
 
 /** searchPosts with a time range; returns posts, following cursors up to maxPages. */

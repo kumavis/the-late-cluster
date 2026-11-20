@@ -2,24 +2,16 @@
   "id": "interview-quinn",
   "lane": "interview",
   "title": "Quinn answers questions",
-  "summary": "Quinn replied to two questions this window; each reply answers a real prompt.",
+  "skeletons": [
+    "s-quinn"
+  ],
   "posts": [
-    {
-      "uri": "at://did:plc:trialquinn/app.bsky.feed.post/q1",
-      "text": "a spoon, honestly",
-      "handle": "quinn.example"
-    },
-    {
-      "uri": "at://did:plc:trialquinn/app.bsky.feed.post/q3",
-      "text": "no, never",
-      "handle": "quinn.example"
-    }
+    "at://did:plc:trialquinn/app.bsky.feed.post/q1",
+    "at://did:plc:trialquinn/app.bsky.feed.post/q3"
   ],
-  "people": [
-    {
-      "handle": "quinn.example",
-      "followers": 700
-    }
-  ],
+  "summary": "Quinn replied to two questions this window; each reply answers a real prompt.",
+  "media": {},
+  "showable": "none",
+  "unknown": "none",
   "sensitive": "none"
 }

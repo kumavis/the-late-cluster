@@ -10,8 +10,11 @@ const root = '/repo'
 const cur = ['002-two']
 const c = (tool_name, tool_input, role = 'writer') => check({ tool_name, tool_input }, { role, root, current: cur })
 
-test('guard: the ledger, earlier episodes and builds are refused for writers, researchers and builders', () => {
-  for (const role of ['writer', 'researcher', 'builder']) {
+test('guard: the ledger, the trials, reviewers\' files, earlier episodes and builds are refused for the fenced roles', () => {
+  for (const role of ['writer', 'researcher', 'builder', 'sound-editor']) {
+    assert.match(c('Read', { file_path: '/repo/docs/trials/002-x.md' }, role), /trials are for/)
+    assert.match(c('Read', { file_path: '/repo/episodes/002-two/production/review/screen.json' }, role), /production\/review\/ holds/)
+    assert.match(c('Bash', { command: 'ls episodes/002-two/production/review' }, role), /production\/review\/ holds/)
     assert.match(c('Read', { file_path: '/repo/docs/ledger/001-pilot.json' }, role), /the ledger is for reviewers/)
     assert.match(c('Read', { file_path: 'episodes/001-pilot/segments/ask/script.js' }, role), /earlier episode/)
     assert.match(c('Read', { file_path: '/repo/dist/episodes/001-pilot/cues.json' }, role), /already done/)
@@ -34,6 +37,24 @@ test('guard: this episode, the bible, packages and the inherited copies stay ope
   assert.equal(c('Read', { file_path: '/repo/docs/ledger/001-pilot.json' }, 'reviewer'), null)
   assert.equal(c('Bash', { command: 'git show HEAD:episodes/001-pilot/segments/ask/script.js' }, 'reviewer'), null)
   assert.match(c('Read', { file_path: '/repo/.secrets' }, 'reviewer'), /secrets/)
+  // the auditor reads the ledger, and reaches the network only through the scraper's commands
+  assert.equal(c('Read', { file_path: '/repo/docs/ledger/001-pilot.json' }, 'auditor'), null)
+  assert.equal(c('Bash', { command: 'npm run sources -- check x.json --json' }, 'auditor'), null)
+  assert.match(c('Bash', { command: 'curl -s https://bsky.social' }, 'auditor'), /only through npm run sources/)
+  assert.match(c('WebFetch', { url: 'https://bsky.app' }, 'auditor'), /only through npm run sources/)
+  // a viewer sees its frames and nothing else
+  assert.equal(c('Read', { file_path: '/repo/shots/002-two/_cold/set-1/01.png' }, 'viewer'), null)
+  assert.match(c('Read', { file_path: '/repo/episodes/002-two/production/plan.json' }, 'viewer'), /frames and nothing else/)
+  assert.match(c('Bash', { command: 'ls' }, 'viewer'), /no shell/)
+})
+
+test("guard: a digest's private/ is for auditors, its reviewers/ for reviewers and auditors", () => {
+  for (const role of ['writer', 'researcher', 'builder', 'sound-editor', 'reviewer']) assert.match(c('Read', { file_path: '/repo/data/weeks/2026-W47/private/bio-review.md' }, role), /for auditors only/)
+  assert.match(c('Bash', { command: 'cat data/weeks/2026-W47/private/profiles.json' }, 'reviewer'), /for auditors only/)
+  assert.equal(c('Read', { file_path: '/repo/data/weeks/2026-W47/private/bio-review.md' }, 'auditor'), null)
+  for (const role of ['writer', 'researcher', 'builder', 'sound-editor']) assert.match(c('Read', { file_path: '/repo/data/weeks/2026-W47/reviewers/about-show.json' }, role), /for reviewers and auditors/)
+  for (const role of ['reviewer', 'auditor']) assert.equal(c('Read', { file_path: '/repo/data/weeks/2026-W47/reviewers/about-show.json' }, role), null)
+  assert.equal(c('Read', { file_path: '/repo/data/weeks/2026-W47/lanes/made.json' }, 'researcher'), null)
 })
 
 test('guard: the current episode is the one in production; the hook exits 2 with a reason', () => {

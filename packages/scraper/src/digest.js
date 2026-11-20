@@ -13,6 +13,8 @@ import { makeReach } from './reach.js'
 import { interviewCandidates } from './interview.js'
 import { firstLine } from './text.js'
 import { consentFlags } from './consent.js'
+
+export const ASKS_NOT_QUOTED = 'asks not to be quoted'
 import { iso, utcDay } from './window.js'
 
 const byTime = (a, b) => (a.time < b.time ? -1 : a.time > b.time ? 1 : a.uri < b.uri ? -1 : 1)
@@ -57,6 +59,9 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
 
   const small = safety.smallAccountFollowers ?? 300
   const topics = compileTopics(safety.sensitivity?.topics, safety.sensitivity?.combinations)
+  // Topics that are a matter of consent (a post asking not to be quoted), not of subject:
+  // they mark the post `consent`, never `sensitive` (README "Marks").
+  const consentTopics = new Set(safety.sensitivity?.consentTopics ?? ['asked not to be quoted'])
   const annotate = (p) => {
     const f = profiles.get(p.authorDid)?.followersCount
     p.authorFollowers = Number.isFinite(f) ? f : null
@@ -64,7 +69,14 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
     const fe = featured(p.authorDid, p.handle)
     if (fe.previous || fe.earlier) p.featured = { previous: fe.previous, earlier: fe.earlier }
     const t = topicsOf(postText(p), topics)
-    if (t.length) p.sensitive = t
+    const sens = t.filter((x) => !consentTopics.has(x))
+    if (sens.length) p.sensitive = sens
+    else delete p.sensitive
+    const cons = []
+    if (t.some((x) => consentTopics.has(x))) cons.push(ASKS_NOT_QUOTED)
+    if (p.redacted) cons.push('redacted')
+    if (p.reply?.hidden) cons.push('replies to an excluded account')
+    if (cons.length) p.consent = cons
     if (p._quoted) {
       const qf = profiles.get(p._quoted.authorDid)?.followersCount
       p._quoted = { ...p._quoted, authorFollowers: Number.isFinite(qf) ? qf : null, smallAccount: Number.isFinite(qf) && qf < small }
@@ -115,6 +127,7 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
     if (n) memberReposts.set(uri, n)
   }
 
+  const byUriWindow = new Map(windowPosts.map((p) => [p.uri, p]))
   const memberWindow = windowPosts.filter((p) => p.member)
   const memberBase = baselinePosts.filter((p) => p.member)
   const baselines = authorBaselines([...windowPosts, ...baselinePosts], scoring.engagementWeights, { minPosts: scoring.baselineMinPosts ?? 5 })
@@ -127,8 +140,20 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   for (const [uri, set] of reposts) memberReposters.set(uri, new Set([...set].filter((d) => memberDids.has(d) && !consent.excludedDid(d))))
   const reach = makeReach([...windowPosts, ...context.values()], memberReposters, (did) => profiles.get(did)?.followersCount ?? null, scoring.reach?.weights)
   const reachOf = (p) => reach.post(p)
+  // Posts about the show itself go to reviewers only (trial 002, finding 11).
+  const aboutShowUris = new Set([...showFound.about.keys()].filter((u) => byUriWindow.has(u)))
+  for (const u of aboutShowUris) byUriWindow.get(u).aboutShow = true
   const stories = buildStories({ posts: windowPosts, baselines, phrases, baselineDomains, context, memberReposts, memberHandles, sensitivity: safety.sensitivity, reach, cfg: scoring })
-  const inBounds = stories.filter((s) => !s.outOfBounds)
+  // A story is about the show when its lead or root is, or most of its posts are.
+  for (const st of stories) {
+    const all = st._posts ?? []
+    const lead = st.posts[0]?.uri
+    const root = st.context?.[0]?.uri
+    const n = all.filter((p) => aboutShowUris.has(p.uri)).length
+    if (aboutShowUris.has(lead) || showFound.about.has(root) || (all.length && n / all.length >= 0.5)) st.aboutShow = true
+    else if (n) st.postsAboutShow = n
+  }
+  const inBounds = stories.filter((s) => !s.outOfBounds && !s.aboutShow && !s.sensitivity?.leadMarked)
   const byUriAll = new Map(windowPosts.map((p) => [p.uri, p]))
   const lookup = (uri) => byUriAll.get(uri) ?? context.get(uri) ?? null
 
@@ -145,6 +170,8 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
       if (parentDid && parentDid !== p.authorDid && memberDids.has(parentDid)) a.repliesToMembers++
       a.engagement += engagement(p.counts, scoring.engagementWeights)
       const m = metric(p)
+      // A marked post is listed, never quoted (README "Marks").
+      if (p.sensitive || p.consent || p.redacted || p.aboutShow) continue
       if (m.score > a.bestScore) { a.bestScore = m.score; a.best = { uri: p.uri, url: p.url, text: firstLine(p.text, 100), counts: p.counts, ...consentFlags(p) } }
     }
     return [...by.values()]
@@ -177,7 +204,7 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
 
   const brief = (p, n = 280) => p && {
     uri: p.uri, url: p.url, handle: p.handle, displayName: p.displayName, text: firstLine(p.text, n), time: p.time, counts: p.counts, reach: reachOf(p),
-    member: !!p.member, authorFollowers: p.authorFollowers ?? null, smallAccount: !!p.smallAccount, ...(p.sensitive ? { sensitive: p.sensitive } : {}), ...consentFlags(p),
+    member: !!p.member, authorFollowers: p.authorFollowers ?? null, smallAccount: !!p.smallAccount, ...(p.sensitive ? { sensitive: p.sensitive } : {}), ...(p.consent ? { consent: p.consent } : {}), ...consentFlags(p),
   }
   const earliest = (ps) => [...ps].sort(byTime)[0]
   const share = (ps, f) => (ps.length ? ps.filter(f).length / ps.length : 0)
@@ -202,13 +229,14 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   // ---- sections the bible asks for
   const storyOfUrl = new Map()
   for (const s of stories) for (const l of s.links) if (!storyOfUrl.has(l.url)) storyOfUrl.set(l.url, s.rank)
-  // A post inside an out-of-bounds story carries the story's flag wherever it appears.
+  // A post inside a story the consent rules leave out carries that wherever it appears.
+  // Keyword marks stay on the post they are in (trial 002, findings 7 and 37).
   const storyFlag = new Map()
-  for (const st of stories) if (st.outOfBounds) for (const p of st.posts) storyFlag.set(p.uri, st.outOfBounds.topics)
+  for (const st of stories) if (st.outOfBounds) for (const p of st._posts ?? st.posts) storyFlag.set(p.uri, ['consent'])
   const builds = buildsThisWeek({ posts: windowPosts, lookup, memberHandles, baselineDomains, cfg: scoring, storyOfUrl, reachOf })
   for (const b of builds) {
     const inherited = [...new Set([b.builtBy?.uri, b.wish?.uri].flatMap((u) => storyFlag.get(u) ?? []))]
-    if (inherited.length) b.outOfBounds = { topics: [...new Set([...(b.outOfBounds?.topics ?? []), ...inherited])].sort(), inFlaggedStory: true }
+    if (inherited.length) b.outOfBounds = { topics: [...new Set([...(b.outOfBounds?.topics ?? []), ...inherited])].sort(), inExcludedStory: true }
   }
 
   const aboutShow = {
@@ -224,7 +252,7 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   // ---- headline numbers
   const days = {}
   for (const p of windowPosts) { const d = utcDay(Date.parse(p.time)); days[d] = (days[d] ?? 0) + 1 }
-  const top = memberWindow.filter((p) => !p.sensitive && !p.redacted).map((p) => ({ p, m: metric(p) }))
+  const top = memberWindow.filter((p) => !p.sensitive && !p.consent && !p.redacted && !p.aboutShow).map((p) => ({ p, m: metric(p) }))
   const biggest = [...top].sort((a, b) => b.m.engagement - a.m.engagement || (a.p.uri < b.p.uri ? -1 : 1))[0]
   const breakout = [...top].filter((x) => x.p.member && x.m.engagement >= (scoring.breakoutMinEngagement ?? 10))
     .sort((a, b) => b.m.lift - a.m.lift || (a.p.uri < b.p.uri ? -1 : 1))[0]
@@ -236,7 +264,7 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   const nv = show.newVoices ?? {}
   const memberPostsBy = new Map()
   for (const p of memberWindow) {
-    if (p.sensitive || p.redacted) continue
+    if (p.sensitive || p.consent || p.redacted || p.aboutShow) continue
     if (!memberPostsBy.has(p.authorDid)) memberPostsBy.set(p.authorDid, [])
     memberPostsBy.get(p.authorDid).push(p)
   }
@@ -264,10 +292,12 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
     for (const r of all) {
       if (!r.winningPost) continue
       const t = topicsOf(r.winningPost.text, topics)
-      const inStory = storyFlag.get(r.winningPost.uri)
-      const merged = [...new Set([...t, ...(inStory ?? [])])]
+      const own = byUriAll.get(r.winningPost.uri)
+      const merged = [...new Set(t.filter((x) => !consentTopics.has(x)))]
       if (merged.length) r.winningPost.sensitive = merged
-      if (inStory) r.winningPost.inFlaggedStory = true
+      else r.winningPost.sensitive = null
+      const cons = [...new Set([...(own?.consent ?? []), ...(t.some((x) => consentTopics.has(x)) ? [ASKS_NOT_QUOTED] : []), ...(storyFlag.has(r.winningPost.uri) ? ['in a story the consent rules leave out'] : [])])]
+      if (cons.length) r.winningPost.consent = cons
     }
     const results = all.filter((r) => { const t = Date.parse(r.time); return t >= window.start && t < window.end })
     const personView = (h) => {
@@ -280,7 +310,7 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   })
 
   // Interview material: real answers to real questions, both sides checked.
-  const interview = interviewCandidates({ posts: windowPosts, lookup, featuredOf: featured, reachOf, profiles, small, cfg: show.interview })
+  const interview = interviewCandidates({ posts: windowPosts.filter((p) => !p.aboutShow), lookup, featuredOf: featured, reachOf, profiles, small, cfg: show.interview })
 
   // Threads a writer could stage word for word.
   const performable = show.performableThreads?.count
@@ -314,7 +344,10 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
       reachFormula: reach.formula,
       topStories: inBounds.slice(0, 5).map((s) => ({ id: s.id, rank: s.rank, kind: s.kind, headline: s.headline })),
       outOfBoundsWithin: 30,
-      outOfBounds: stories.slice(0, 30).filter((s) => s.outOfBounds).map((s) => ({ id: s.id, rank: s.rank, headline: s.headline, topics: s.outOfBounds.topics })),
+      // Left out whole, for consent only; no headline (README "Marks").
+      outOfBounds: stories.slice(0, 30).filter((s) => s.outOfBounds).map((s) => ({ id: s.id, rank: s.rank, reasons: s.outOfBounds.reasons })),
+      // Keyword marks: a hint, post by post; the rest of each story is usable.
+      sensitive: stories.slice(0, 30).filter((s) => !s.outOfBounds && !s.aboutShow && s.sensitivity?.postsMarked).map((s) => ({ id: s.id, rank: s.rank, topics: s.sensitivity.topics, postsMarked: s.sensitivity.postsMarked, posts: s.stats.posts, leadMarked: s.sensitivity.leadMarked })),
       spiking: phraseList.filter((p) => !p.outOfBounds).slice(0, 8).map((p) => p.term),
       built: builds.filter((b) => !b.outOfBounds).slice(0, 6).map((b) => ({ title: b.title, url: b.links[0].url, builtBy: b.builtBy.handle, wishBy: b.wish?.handle ?? null })),
       weeks: weeks.filter((w) => !w.outOfBounds).slice(0, 5).map((w) => w.term),
@@ -322,7 +355,14 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
       breakoutPost: headlineBrief(breakout),
     },
     stories,
-    sections: { games: gameSections, built: builds, aboutShow, newVoices, interview, performableThreads: performable },
+    sections: { games: gameSections, built: builds.filter((b) => !aboutShowUris.has(b.builtBy?.uri)), aboutShow: { movedTo: 'reviewers/about-show.json', posts: aboutShow.posts.length, optOutRequests: aboutShow.optOutRequests.length }, newVoices, interview, performableThreads: performable },
+    // For reviewers only (trial 002, finding 11): written to reviewers/, never to digest.md,
+    // the skeletons or the lane slices.
+    reviewers: { aboutShow, stories: stories.filter((s) => s.aboutShow) },
+    postsByUri: byUriAll,
+    context,
+    reachOf,
+    metricOf: metric,
     authors,
     appendices: { activeAccounts, links, phrases: phraseList, weeks, runningBits: phraseList.filter((p) => p.days >= 3).map((p) => ({ term: p.term, days: p.days, authors: p.authors })) },
     members,

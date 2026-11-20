@@ -1,0 +1,58 @@
+{
+  "reviewer": "reviewer-2",
+  "cards": {
+    "talk-ask": {
+      "bestJoke": {
+        "idea": "writer-1-3",
+        "score": 8
+      },
+      "synergy": 2,
+      "variety": 1,
+      "ideas": [
+        "writer-1-3",
+        "writer-2-3"
+      ],
+      "with": [],
+      "reason": "the episode's through-line"
+    },
+    "made-soup": {
+      "bestJoke": {
+        "idea": "writer-2-1",
+        "score": 7
+      },
+      "synergy": 1,
+      "variety": 2,
+      "ideas": [
+        "writer-2-1"
+      ],
+      "with": [],
+      "reason": "a different kind of comedy"
+    },
+    "talk-bit": {
+      "bestJoke": {
+        "idea": "writer-3-2",
+        "score": 4
+      },
+      "synergy": 0,
+      "variety": 1,
+      "ideas": [
+        "writer-3-2"
+      ],
+      "with": [],
+      "reason": "thin"
+    },
+    "interview-quinn": {
+      "bestJoke": {
+        "idea": "writer-1-4",
+        "score": 5
+      },
+      "synergy": 1,
+      "variety": 1,
+      "ideas": [
+        "writer-1-4"
+      ],
+      "with": [],
+      "reason": "the interview is drafted anyway"
+    }
+  }
+}

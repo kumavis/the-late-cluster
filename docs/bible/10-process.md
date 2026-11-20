@@ -5,16 +5,18 @@ blocks. This chapter does not repeat it. It says what good looks like for each k
 ends with the scorecard a reviewer fills in before an episode goes to the owner.
 
 Two rules of the workflow shape everything below. Whoever makes a thing does not judge it. And
-writers, researchers and builders work without seeing what the show has done before; reviewers see
-it, and send back what repeats ([do not repeat the show](03-episode-shape.md#do-not-repeat-the-show)).
+writers, researchers, sound editors and builders work without seeing what the show has done before;
+reviewers see it, and send back what repeats ([do not repeat the show](03-episode-shape.md#do-not-repeat-the-show)).
 
 ## Research
 
-A researcher finds what happened and documents it. A researcher does not propose jokes.
+A researcher chooses and annotates cards from the scraper's skeletons, which already hold each post's
+address and exact text. A researcher does not propose jokes or retype a post. An auditor then screens
+the longlist against the constitution.
 
 **Good:** a longlist that is wide (many kinds of thing, many people, small and new accounts as well
-as busy ones); cards in neutral words; every post with its address and exact text; images and video
-described; follower counts; what could be shown working; anything sensitive or not understood
+as busy ones); cards in neutral words; every post named by its address; images and video looked at
+and described; follower counts; what could be shown working; anything sensitive or not understood
 flagged, not dropped silently ([a content card](05-material.md#a-content-card)). For an interview
 candidate, every candidate answer with its occasion. For the games lane, every result in the window.
 
@@ -23,8 +25,8 @@ window; a card that already has an angle; a post quoted without the post it repl
 
 ## Brainstorming
 
-Several writers work independently over the whole longlist. Independence matters more than
-agreement, and quantity more than polish.
+Several writers work independently over the pool, the cards reviewers ranked highest for interest.
+Independence matters more than agreement, and quantity more than polish.
 
 **A good idea** is a few lines: the premise; the turn, in five words; what lands on screen and what
 is heard; which shape might carry it; whose real words it would use, and where they come from on the
@@ -54,8 +56,8 @@ selection is a real choice. Each standing segment is drafted every week.
 - spoken words at about 1.6 to 2.2 per second of the length the draft claims;
 - notes that give the segment's retell in one sentence, its turn or feeling in five words, the people
   in it, and what a builder needs to know;
-- real lines rendered in the voice that will say them, and the heard text read
-  ([voices](07-voices.md#read-what-was-heard));
+- lines written so they can be said; the sound editor fits them to the engine and hands back only a
+  line that cannot be heard as written ([voices](07-voices.md#read-what-was-heard));
 - the episode's experiment, from the brief, built in wherever it touches this segment.
 
 **Reviewers score each draft** on four questions: is it funny; is it interesting; does it work as
@@ -70,7 +72,8 @@ joins ([building the rundown](03-episode-shape.md#building-the-rundown)).
 other; an open that reaches the first material within about fifteen seconds; a close that ends on the
 last strong thing and does not review the night; nothing added to tie segments together that the
 segments did not earn; the episode's experiment run as `production/experiment.md` sets it out;
-every script validating and rendering; the heard text of every line read; every real name heard as
+every script validating and rendering; every line the assembler adds or changes passed by the
+repetition gate, and heard as written once the sound editor has fitted it; every real name heard as
 that name.
 
 **Watch for:** an order chosen because it feels like the usual order; a new runner threaded through
@@ -86,11 +89,14 @@ or what a real person is shown saying.
 exactly as long as it is being spoken; no text beyond a glance that is not spoken; real cards exact;
 invented names on `.example`; nothing carried on screen from another segment unless the script asks;
 frames shot at every punch, cue, shot change and overlap, and looked at; the credits shot and read
-([direction](08-direction.md#review-your-frames)).
+([direction](08-direction.md#review-your-frames)). An auditor then looks at every frame and routes
+each change to whoever owns the file.
 
 ## Reviewing
 
-A reviewer ranks, gates, scores and selects, and never rewrites what they review.
+A reviewer ranks, gates, scores and selects, and never rewrites what they review. Checks of fact and
+rule (scope, the constitution screen, consent, the staged frames) are an auditor's, by the same
+rules.
 
 - **Send back with reasons,** naming the stage that can fix it. A send-back is a valid result, not a
   failure of the review.
@@ -106,7 +112,7 @@ A reviewer ranks, gates, scores and selects, and never rewrites what they review
   writes it to `production/experiment.md`: what to try, why, and a measure someone else can check
   ([episode shape](03-episode-shape.md#one-experiment-per-episode)). It goes into the writers'
   briefs, so it describes no earlier episode, joke, person or device. The final reviewer judges it
-  in row B12.
+  in row B12, with the cold viewers' answers (`production/review/cold-viewers.md`) in hand.
 - **Evidence in every row:** a line quoted, a timestamp, an address. Not just a result.
 
 The owner's review comes after all of this and is not replaced by it (constitution, Article 5).

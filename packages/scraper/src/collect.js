@@ -65,7 +65,13 @@ function threadAuthors(node, out = [], depth = 0) {
 }
 
 /** The few profile fields kept: follower count is for the small-account rule (R7). */
-const slimProfile = (p) => ({ did: p.did, handle: p.handle, displayName: p.displayName?.trim() || null, followersCount: p.followersCount ?? null })
+const labelVals = (p) => [...new Set((p.labels ?? []).map((l) => l?.val ?? l).filter((v) => typeof v === 'string'))].sort()
+const slimProfile = (p) => ({ did: p.did, handle: p.handle, displayName: p.displayName?.trim() || null, followersCount: p.followersCount ?? null, labels: labelVals(p) })
+/**
+ * What the run keeps privately about an account, for the bio pass and the auditor
+ * (`private/profiles.json`, never read by other roles): the description and labels as read.
+ */
+const privateProfile = (p) => ({ did: p.did, handle: p.handle, displayName: p.displayName?.trim() || null, description: typeof p.description === 'string' ? p.description : '', labels: labelVals(p), pinnedPost: p.pinnedPost?.uri ?? null })
 
 export async function collect({ client, config, window, consent, log = () => {}, membershipOnly = false }) {
   const { cluster } = config
@@ -94,10 +100,12 @@ export async function collect({ client, config, window, consent, log = () => {},
   const skippedSeeds = seedList.length - seedInputs.length
   const profiles = (await api.soft(warnings, 'seed profiles', () => api.getProfiles(client, seedInputs))) ?? []
   const profileMap = new Map()
+  const bios = new Map()
   const learnProfiles = (list) => {
     for (const p of list ?? []) {
-      consent.checkProfile(p) // description is read here and then dropped
+      consent.checkProfile(p) // the description is read here, and kept only in private/
       profileMap.set(p.did, slimProfile(p))
+      bios.set(p.did, privateProfile(p))
     }
   }
   learnProfiles(profiles)
@@ -253,7 +261,7 @@ export async function collect({ client, config, window, consent, log = () => {},
   log(`cluster: ${sel.members.length} members (${sel.qualified} qualified of ${sel.considered} candidates, ${sel.cut} cut by the cap${bioExcluded ? `, ${bioExcluded} excluded by their profile` : ''})`)
 
   if (membershipOnly) {
-    return { membershipOnly: true, seeds, members: sel.members, memberDids, warnings, selection: { considered: sel.considered, qualified: sel.qualified, cut: sel.cut, cutRows: sel.cutRows, skippedSeeds }, rosterSets, feedAuthors, profiles: profileMap }
+    return { membershipOnly: true, seeds, members: sel.members, memberDids, warnings, selection: { considered: sel.considered, qualified: sel.qualified, cut: sel.cut, cutRows: sel.cutRows, skippedSeeds }, rosterSets, feedAuthors, profiles: profileMap, bios }
   }
 
   // ---- 9. member feeds: the whole window first, then as much baseline as the budget allows
@@ -272,14 +280,20 @@ export async function collect({ client, config, window, consent, log = () => {},
     const items = await fetchAuthor(m.did, 'a member', { windowPages: col.maxWindowPagesPerAuthor, baselinePages: 0 })
     for (const it of items) store.addFeedItem(it, 'author')
   })
-  const perAuthor = Math.floor((client.remaining() - reserve) / Math.max(1, others.length))
-  const baselinePages = Math.max(0, Math.min(col.maxBaselinePagesPerAuthor, perAuthor))
-  if (baselinePages < col.maxBaselinePagesPerAuthor) warnings.push(`budget: baseline limited to ${baselinePages} pages per member`)
+  // A page already in the response cache costs nothing, so a warm cache keeps every
+  // member's baseline as deep as configured however wide the cluster grows.
+  const plan = col.baselineWeeks > 0
+    ? await api.planPages(client, others.map((m) => m.did), { since: baselineStart, until: window.start, max: col.maxBaselinePagesPerAuthor, budget: Math.max(0, client.remaining() - reserve), seek: col.seekCursor })
+    : { pages: 0, perActor: new Map(), cost: 0, short: 0 }
+  const baselinePages = Math.max(plan.pages, ...[...plan.perActor.values()], 0)
+  if (plan.short) warnings.push(`budget: baseline cut short for ${plan.short} of ${others.length} members (${plan.pages} pages each beyond what the cache holds)`)
   if (baselinePages > 0 && col.baselineWeeks > 0) {
-    log(`member feeds: baseline (${baselinePages} pages each)`)
+    log(`member feeds: baseline (up to ${baselinePages} pages each, ${plan.cost} planned requests)`)
     await pool(others, async (m) => {
+      const pages = plan.perActor.get(m.did) ?? plan.pages
+      if (!pages) return
       const b = await api.soft(warnings, 'a member baseline feed', () =>
-        api.getAuthorFeedRange(client, m.did, { since: baselineStart, until: window.start, maxPages: baselinePages, seek: col.seekCursor }))
+        api.getAuthorFeedRange(client, m.did, { since: baselineStart, until: window.start, maxPages: pages, seek: col.seekCursor }))
       if (!b) return
       if (!b.reachedSince) coverage.baselineTruncated++
       for (const it of b.items) store.addFeedItem(it, 'author')
@@ -347,11 +361,11 @@ export async function collect({ client, config, window, consent, log = () => {},
   if (namedOnly.length) learnProfiles(await api.getProfiles(client, namedOnly, { onError: (e) => warnings.push(`game people profiles: ${e.message}`) }))
 
   return {
-    profiles: profileMap, completeThreads, gaps: store.gaps, rosterSets, feedAuthors,
+    profiles: profileMap, bios, completeThreads, gaps: store.gaps, rosterSets, feedAuthors,
     seeds, members: sel.members, memberDids, store, warnings, coverage, baselineStart,
     selection: { considered: sel.considered, qualified: sel.qualified, cut: sel.cut, cutRows: sel.cutRows, skippedSeeds },
     searchWorked,
-    pagesPerMember: { window: windowPages, baseline: baselinePages },
+    pagesPerMember: { window: windowPages, baseline: plan.pages, baselineMax: baselinePages, baselineRequestsPlanned: plan.cost },
     threadsExpanded: toExpand.length,
   }
 }
@@ -360,7 +374,7 @@ export async function collect({ client, config, window, consent, log = () => {},
  * Fetch candidate threads whole (getPostThread), so a thread offered for performance is
  * complete. Called after a first analysis has picked the candidates.
  */
-export async function completeThreads({ client, store, consent, roots, complete, warnings, profiles }) {
+export async function completeThreads({ client, store, consent, roots, complete, warnings, profiles, bios = null }) {
   const before = new Set(store.posts.keys())
   for (const r of roots) {
     if (complete.has(r) || consent.excludedDid(didOfUri(r))) continue
@@ -378,5 +392,6 @@ export async function completeThreads({ client, store, consent, roots, complete,
   for (const p of await api.getProfiles(client, todo, { onError: (e) => warnings.push(`thread profiles: ${e.message}`) })) {
     consent.checkProfile(p)
     profiles.set(p.did, slimProfile(p))
+    if (bios) bios.set(p.did, privateProfile(p))
   }
 }

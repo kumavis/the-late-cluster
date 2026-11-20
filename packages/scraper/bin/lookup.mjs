@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// npm run lookup -- --uri <address> | --text <words> | --author <handle> | --story <id> | --thread <address>
+// npm run lookup -- --uri <address> | --text <words> | --author <handle> | --story <id> | --thread <address> [--fields a,b | --full]
 import { join } from 'node:path'
 import { lookup } from '../src/lookup.js'
 import { REPO_ROOT } from '../src/run.js'
 
+process.stdout.on('error', (err) => { if (err.code === 'EPIPE') process.exit(0); throw err })
 try {
   process.exitCode = lookup(process.argv.slice(2), { roots: [join(REPO_ROOT, 'data', 'weeks'), join(REPO_ROOT, 'data', 'ranges')] })
 } catch (err) {

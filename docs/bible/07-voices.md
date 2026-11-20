@@ -34,8 +34,9 @@ So:
 
 ## Read what was heard
 
-The transcription check prints, for every line, the text it heard. **Read all of it, every line,
-every time.** The score only counts how many words matched. A line can score well while the words
+The fitting tool (`npm run fit`) renders every line in its voice, transcribes it several times and
+prints, for every line, each text it heard. The sound editor reads all of it, every line, every time,
+and so does a reviewer at the final review. The score only counts how many words matched. A line can score well while the words
 that did not match say something offensive, alarming or untrue. Only reading finds that.
 
 A line fails, whatever its score, if what was heard:
@@ -45,9 +46,12 @@ A line fails, whatever its score, if what was heard:
 - says something about a real person that the script does not say, including by turning their name
   into another word.
 
-Fix it by rewriting or moving words (below), render again, and read again. A mishearing may stand
-only when you have read it, it is plainly harmless nonsense, and you have said so in writing,
-quoting exactly what was heard. An alarming one never stands.
+The sound editor fixes what can be fixed without changing a word (a respelling, a pause, another
+voice, below), fits again and reads again. A line that still fails goes back to its writer with what
+was heard, to be reworded or moved; for a real person's words, a marked cut, a reading by a house
+character, or the card alone. A mishearing may stand only when it has been read, it is plainly
+harmless nonsense, and that is said in writing, quoting exactly what was heard. An alarming one never
+stands.
 
 ## Names
 

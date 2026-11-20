@@ -1,5 +1,5 @@
 {
-  "$comment": "Trial settings for the workflow fixture: three research lanes, a two-card shortlist, an episode of about twenty seconds.",
+  "$comment": "Trial settings for the workflow fixture: three research lanes, a pool of three cards and one interview candidate, a two-card shortlist, an episode of about twenty seconds.",
   "limits": {
     "runtimeSeconds": {
       "max": 60
@@ -26,6 +26,13 @@
     ]
   },
   "ranking": {
-    "shortlist": 2
+    "pool": 3,
+    "interviewPool": 1
+  },
+  "shortlist": {
+    "size": 2
+  },
+  "cold": {
+    "minSeconds": 0.5
   }
 }

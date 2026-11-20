@@ -4,7 +4,10 @@
 // segment with a guest carries the parody disclaimer; every real post shown on screen is verbatim;
 // nothing longer than a glance is on screen without being spoken; the end card credits the real
 // accounts whose personas were played and says every voice is synthesized.
-import { existsSync, readFileSync } from 'node:fs'
+import { createHash } from 'node:crypto'
+import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
+import { dirname, join } from 'node:path'
+import { walk } from '../repo.mjs'
 import { findPost, normHandle } from '../digest.mjs'
 import { castHandle, isInvented } from '../context.mjs'
 import { lex, scriptLines, verbatimMismatch, ELLIPSIS } from '../scan.mjs'
@@ -52,19 +55,47 @@ export function parseShoot(out) {
   return { frames, problems }
 }
 
-export async function directFrames(ctx) {
-  const g = gate('stage.frames')
+/** what a segment's frames depend on: its folder (but not fit.json), the episode's cast and looks */
+function framesHash(ctx, seg) {
+  const h = createHash('sha256')
+  const dir = ctx.paths.segDir(seg)
+  for (const f of walk(dir).filter((f) => f !== 'fit.json')) h.update(f).update(readFileSync(join(dir, f)))
+  for (const f of [ctx.paths.castJs, ctx.paths.looksJs]) h.update(existsSync(f) ? readFileSync(f) : 'none')
+  return h.digest('hex').slice(0, 12)
+}
+
+/**
+ * Shoot the frames of every segment whose files changed since they were last shot (trial finding 30),
+ * recording each segment's result in production/stage/frames.json. → { <seg>: { hash, times, frames, problems, code, log } }
+ */
+export function shootChanged(ctx) {
+  const file = join(ctx.paths.production, 'stage', 'frames.json')
+  const cache = existsSync(file) ? JSON.parse(readFileSync(file, 'utf8')) : {}
   for (const seg of segmentsOf(ctx)) {
     const cuesFile = ctx.paths.segFile(seg, 'cues.json')
     if (!existsSync(cuesFile) || !existsSync(ctx.paths.segFile(seg, 'index.js'))) continue
+    const hash = framesHash(ctx, seg)
+    if (cache[seg]?.hash === hash) continue
     const times = frameTimes(JSON.parse(readFileSync(cuesFile, 'utf8')), ctx.config.frames)
     const r = ctx.tools.npm('shoot', [ctx.id, seg, ...times.map(String)])
     const { frames, problems } = parseShoot(r.out)
-    for (const p of problems.slice(0, 12)) g.fail(`${seg} @ ${p.t} s: ${p.kind}: ${p.msg.slice(0, 200)}`)
-    if (problems.length > 12) g.fail(`${seg}: ${problems.length - 12} more problems (see the log)`)
-    if (r.code !== 0 && !problems.length) g.fail(`npm run shoot -- ${ctx.id} ${seg} exited ${r.code}`)
-    if (frames.length < times.length && !problems.some((p) => p.kind === 'failed')) g.fail(`${seg}: ${times.length - frames.length} of ${times.length} frames were not saved`)
-    g.warn(`${seg}: ${frames.length} frames in shots/${ctx.id}/${seg}/ (every cue and line id, plus ${ctx.config.frames.across} spread across ${times.length ? `0–${times.at(-1)} s` : 'the segment'})${r.log ? `; log ${ctx.paths.rel(r.log)}` : ''}`)
+    cache[seg] = { hash, times: times.length, last: times.at(-1) ?? null, frames: frames.length, problems, code: r.code, log: r.log ? ctx.paths.rel(r.log) : null }
+  }
+  mkdirSync(dirname(file), { recursive: true })
+  writeFileSync(file, JSON.stringify(cache, null, 2) + '\n')
+  return cache
+}
+
+export async function directFrames(ctx) {
+  const g = gate('stage.frames')
+  const cache = shootChanged(ctx)
+  for (const seg of segmentsOf(ctx)) {
+    const c = cache[seg]
+    if (!c) continue
+    for (const p of c.problems.slice(0, 12)) g.fail(`${seg} @ ${p.t} s: ${p.kind}: ${p.msg.slice(0, 200)}`)
+    if (c.problems.length > 12) g.fail(`${seg}: ${c.problems.length - 12} more problems (see the log)`)
+    if (c.code !== 0 && !c.problems.length) g.fail(`npm run shoot -- ${ctx.id} ${seg} exited ${c.code}`)
+    if (c.frames < c.times && !c.problems.some((p) => p.kind === 'failed')) g.fail(`${seg}: ${c.times - c.frames} of ${c.times} frames were not saved`)
   }
   return g.done()
 }
@@ -87,24 +118,55 @@ export async function directDisclaimer(ctx) {
   return g.done()
 }
 
-/** every post sources.json shows (card, quote or thread) appears verbatim in a string of its segment */
+/** the uses of a post that put its words in front of the viewer: shown on a card or performed */
+export const SHOWN_USES = ['card', 'quote', 'thread', 'line', 'performed', 'shown', 'interview']
+
+/**
+ * Every post the episode shows or performs (sources.json posts with a shown use, and every post a
+ * real line performs) appears verbatim in a string of its segment, or in consecutive lines of one
+ * speaker when a long post is split across beats (trial finding 27: a performed post was never compared).
+ */
 export async function directCards(ctx) {
   const g = gate('stage.cards')
-  const cards = (ctx.sources?.posts ?? []).filter((p) => ['card', 'quote', 'thread'].includes(p?.use) && (!ctx.onlySegment || !p.segment || p.segment === ctx.onlySegment))
-  if (!cards.length) {
-    g.skip('no post shown on screen in sources.json')
+  const s = ctx.sources ?? {}
+  const shown = new Map()
+  for (const p of s.posts ?? []) if (SHOWN_USES.includes(p?.use)) shown.set(`${p.uri} ${p.segment ?? ''}`, { uri: p.uri, segment: p.segment ?? null, use: p.use })
+  for (const l of s.lines ?? []) if (l?.post && !shown.has(`${l.post} ${l.segment ?? ''}`)) shown.set(`${l.post} ${l.segment ?? ''}`, { uri: l.post, segment: l.segment ?? null, use: 'performed' })
+  const posts = [...shown.values()].filter((p) => !ctx.onlySegment || !p.segment || p.segment === ctx.onlySegment)
+  if (!posts.length) {
+    g.skip('no post shown or performed in sources.json')
     return g.done()
   }
   const strings = []
-  for (const seg of rundown(ctx)) for (const f of ['index.js', 'script.js']) {
-    const src = read(ctx.paths.segFile(seg, f))
-    if (src) for (const t of lex(src).tokens) if (t.kind !== 'comment') strings.push({ seg, value: t.value })
+  for (const seg of rundown(ctx)) {
+    for (const f of ['index.js', 'script.js']) {
+      const src = read(ctx.paths.segFile(seg, f))
+      if (src) for (const t of lex(src).tokens) if (t.kind !== 'comment') strings.push({ seg, value: t.value })
+    }
+    const lines = scriptLines(read(ctx.paths.segFile(seg, 'script.js')) ?? '')
+    for (let i = 0; i < lines.length; i++) {
+      let joined = lines[i].text ?? ''
+      for (let j = i + 1; j < Math.min(lines.length, i + 8) && lines[j].who.join() === lines[i].who.join(); j++) {
+        joined += ` ${lines[j].text ?? ''}`
+        strings.push({ seg, value: joined })
+      }
+    }
   }
-  for (const c of cards) {
+  // a string on screen that is a version of the post must be the post, exactly
+  const staged = []
+  for (const seg of rundown(ctx)) {
+    const src = read(ctx.paths.segFile(seg, 'index.js'))
+    if (src) for (const t of lex(src).tokens) if (t.kind === 'string' && !t.value.includes('${') && wordsOf(t.value).length >= 4) staged.push({ seg, value: t.value, line: src.slice(0, t.start).split('\n').length })
+  }
+  for (const c of posts) {
     const post = findPost(ctx.digest, c.uri)
     if (!post?.text) continue
-    const where = c.segment ? strings.filter((s) => s.seg === c.segment) : strings
-    if (!where.some((s) => s.value.trim() && !verbatimMismatch(s.value, post.text))) g.fail(`the ${c.use} for ${c.uri}${c.segment ? ` in ${c.segment}` : ''} does not show the post's text verbatim in any string of segments/${c.segment ?? '*'}/index.js or script.js (cut only with ${ELLIPSIS}, including a cut at the start)`)
+    for (const x of staged.filter((y) => !c.segment || y.seg === c.segment)) {
+      const why = verbatimMismatch(x.value, post.text)
+      if (why && spokenShare(x.value, post.text) >= 0.6 && wordsOf(x.value).length >= wordsOf(post.text).length * 0.3) g.fail(`segments/${x.seg}/index.js:${x.line}: "${x.value.slice(0, 60)}${x.value.length > 60 ? '…' : ''}" shows ${c.uri} but not exactly: ${why}`)
+    }
+    const where = c.segment ? strings.filter((x) => x.seg === c.segment) : strings
+    if (!where.some((x) => x.value.trim() && !verbatimMismatch(x.value, post.text))) g.fail(`the ${c.use} post ${c.uri}${c.segment ? ` in ${c.segment}` : ''} is not shown with its exact text in segments/${c.segment ?? '*'}/index.js or script.js (cut only with ${ELLIPSIS}, including a cut at the start)`)
   }
   return g.done()
 }
@@ -152,7 +214,7 @@ export async function directUnread(ctx) {
       if (wordsOf(t.value).length > glanceWords) shown.push({ text: t.value, line: mod.slice(0, t.start).split('\n').length })
     }
     for (const p of ctx.sources?.posts ?? []) {
-      if (p?.segment !== seg || !['card', 'quote', 'thread'].includes(p.use)) continue
+      if (p?.segment !== seg || !['card', 'quote', 'thread', 'shown'].includes(p.use)) continue
       const post = findPost(ctx.digest, p.uri)
       if (post?.text && wordsOf(post.text).length > glanceWords && !shown.some((x) => !verbatimMismatch(x.text, post.text))) shown.push({ text: post.text, line: null, uri: post.uri })
     }

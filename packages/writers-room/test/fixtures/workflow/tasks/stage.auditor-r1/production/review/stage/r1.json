@@ -1,0 +1,18 @@
+{
+  "segments": {
+    "talk-ask": {
+      "verdict": "change",
+      "changes": [
+        {
+          "owner": "segment",
+          "file": "segments/talk-ask/index.js",
+          "change": "hold the rundown card 0.5 s longer so it can be read"
+        }
+      ]
+    },
+    "interview": {
+      "verdict": "pass",
+      "changes": []
+    }
+  }
+}

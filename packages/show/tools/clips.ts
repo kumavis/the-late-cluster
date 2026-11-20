@@ -7,6 +7,7 @@ import { createHash, randomBytes } from "node:crypto";
 import { existsSync, mkdirSync, readFileSync, renameSync, unlinkSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import { FS, Voice, loadEngine, midiToHz, type Tele } from "./engine.ts";
+import { FRY_FLOOR, frySung } from "./tuning.mjs";
 import type { BodyMix } from "../chimera/wasm/types.ts";
 
 const CACHE = fileURLToPath(new URL("./.cache/", import.meta.url));
@@ -180,8 +181,14 @@ export async function vocalClip(v: VoiceSpec, segs: { ipa: string; dur?: number;
  */
 export async function singClip(v: VoiceSpec, m: { bpm: number; lyrics: string; notes: [number, number][]; vibrato?: number; transpose?: number }, lead = 0.3): Promise<Clip> {
   const { E } = await loadEngine();
-  return cached(["sing", v.body, v.source, m, lead], () => {
+  const fry = v.source?.fry ?? 0;
+  // a voice with fry gets a key of its own: its notes are now tuned (frySung below), and its old
+  // flat renders must not be served from the cache; every other voice keeps its cached renders
+  const key: unknown[] = ["sing", v.body, v.source, m, lead];
+  if (fry > 0) key.push({ tuned: FRY_FLOOR });
+  return cached(key, () => {
     const tr = m.transpose ?? 0;
+    const at = (midi: number) => frySung(midi + tr, fry);
     const syl = E.lyricsToSyllables(m.lyrics);
     const sounding = m.notes.filter((n) => n[0] > 0).length;
     if (syl.length !== sounding) throw new Error(`${syl.length} syllables for ${sounding} notes: ${syl.map((s) => s.text).join(" ")}`);
@@ -189,7 +196,7 @@ export async function singClip(v: VoiceSpec, m: { bpm: number; lyrics: string; n
     const voice = new Voice(v.body);
     const first = m.notes.find((n) => n[0] > 0);
     if (!first) throw new Error("no notes");
-    voice.setSource({ pressure: 9, tension: 0.55, ...v.source, f0: midiToHz(first[0] + tr), voiced: true });
+    voice.setSource({ pressure: 9, tension: 0.55, ...v.source, f0: midiToHz(at(first[0])), voiced: true });
     let t = lead, k = 0, end = 0, start = t;
     let phrase: { midi: number; beats: number; syl: (typeof syl)[number] }[] = [];
     const words: [number, number, string][] = [];
@@ -204,7 +211,7 @@ export async function singClip(v: VoiceSpec, m: { bpm: number; lyrics: string; n
       if (midi > 0) {
         if (!phrase.length) start = t;
         const s = syl[k++];
-        phrase.push({ midi: midi + tr, beats, syl: s });
+        phrase.push({ midi: at(midi), beats, syl: s });
         words.push([t, t + beats * beat, s.text + (s.wordEnd ? "" : "-")]);
       } else flush();
       t += beats * beat;

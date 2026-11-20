@@ -2,28 +2,12 @@
   "id": "talk-bit",
   "lane": "talk",
   "title": "Is it a bit if nobody laughs",
+  "skeletons": [
+    "s-bit"
+  ],
   "summary": "A short exchange about what makes a bit.",
-  "posts": [
-    {
-      "uri": "at://did:plc:trialtalker/app.bsky.feed.post/c1",
-      "text": "is it a bit if nobody laughs",
-      "handle": "talker.example"
-    },
-    {
-      "uri": "at://did:plc:trialtalker2/app.bsky.feed.post/c2",
-      "text": "it is now",
-      "handle": "talker2.example"
-    }
-  ],
-  "people": [
-    {
-      "handle": "talker.example",
-      "followers": 300
-    },
-    {
-      "handle": "talker2.example",
-      "followers": 120
-    }
-  ],
+  "media": {},
+  "showable": "none",
+  "unknown": "none",
   "sensitive": "none"
 }

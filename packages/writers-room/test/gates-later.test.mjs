@@ -133,10 +133,12 @@ test('stage.modules and stage.disclaimer', async () => {
   fails(await run(directDisclaimer, { 'segments/chat/index.js': "export default { guests: ['ana'] }\n" }), /first segment with a guest needs a disclaimer/)
 })
 
-test('stage.cards: cards, quotes and thread posts are shown verbatim (finding 40)', async () => {
+test('stage.cards: every post shown or performed is exact, on a card or in a puppet\'s mouth (findings 40 and 27)', async () => {
   ok(await run(directCards))
-  fails(await run(directCards, { 'segments/cold-open/index.js': "export default { f() { return 'Built it: https://golem.cy.test' } }\n" }), /card for .*c1 in cold-open does not show the post's text verbatim/)
-  fails(await run(directCards, { 'segments/chat/index.js': `export default { guests: ['ana'], disclaimer: 'x' }\n`, 'segments/chat/script.js': SCRIPT_CHAT.replaceAll('the host is a throat', 'the host is a neck') }), /the thread for .* in chat does not show the post's text verbatim/)
+  fails(await run(directCards, { 'segments/cold-open/index.js': "export default { f() { return 'Built it: https://golem.cy.test' } }\n" }), /the card post .*c1 in cold-open is not shown with its exact text/)
+  fails(await run(directCards, { 'segments/chat/index.js': `export default { guests: ['ana'], disclaimer: 'x' }\n`, 'segments/chat/script.js': SCRIPT_CHAT.replaceAll('the host is a throat', 'the host is a neck') }), /the thread post .* in chat is not shown with its exact text/)
+  // a performed post whose card on screen is not exact fails, though the puppet says it exactly
+  fails(await run(directCards, { 'segments/chat/index.js': "export default { guests: ['ana'], disclaimer: 'x', card: 'concept: a talk show … but the host is a throat' }\n" }), /segments\/chat\/index\.js:1: "concept: a talk show … but the host is a throat" shows .*a1 but not exactly/)
 })
 
 test('stage.unread: on-screen text longer than a glance must be spoken; the disclaimer is exempt', async () => {
@@ -186,10 +188,12 @@ test('review.scorecard: complete, and the verdict follows the card; a send-back 
 
 test('review.verdict: approve passes; send-back routes; an unknown route fails', async () => {
   ok(await run((c) => reviewVerdict(c), { 'production/review.json': { verdict: 'approve' } }))
-  const r = await run((c) => reviewVerdict(c), { 'production/review.json': { verdict: 'send-back', route: 'assemble', reasons: ['a line is heard wrongly'] } })
-  assert.deepEqual(r.sentBack, { route: 'assemble', reason: 'a line is heard wrongly' })
-  fails(await run((c) => reviewVerdict(c), { 'production/review.json': { verdict: 'send-back', route: 'pitch' } }), /names the stage that can fix it/)
-  ok(await run((c) => reviewVerdict(c, 'stage.review'), { 'production/stage/review.json': { verdict: 'pass' } }))
+  const r = await run((c) => reviewVerdict(c), { 'production/review.json': { verdict: 'send-back', route: 'assemble', reasons: ['a reviewer\'s reason'], changes: ['talk-ask calm: say it so "repost" cannot be heard as "report"'] } })
+  assert.equal(r.sentBack.route, 'assemble')
+  assert.match(r.sentBack.file, /production\/review\.json$/)
+  assert.ok(!r.sentBack.reason.includes("a reviewer's reason"), 'state.json carries no reviewer prose')
+  fails(await run((c) => reviewVerdict(c), { 'production/review.json': { verdict: 'send-back', route: 'pitch', changes: ['x'] } }), /names the stage that can fix it/)
+  fails(await run((c) => reviewVerdict(c), { 'production/review.json': { verdict: 'send-back', route: 'assemble' } }), /lists in "changes"/)
 })
 
 const LEDGER = { id: ID, aired: false, guests: [{ did: 'did:plc:ana', handle: 'ana.test' }, { did: 'did:plc:bo', handle: 'bo.test' }], featured: [{ did: 'did:plc:ana', handle: 'ana.test' }, { did: 'did:plc:bo', handle: 'bo.test' }, { did: 'did:plc:cy', handle: 'cy.test' }], formats: ['thread'], song: null, runners: [], catchphrases: [], devices: [] }

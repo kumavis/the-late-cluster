@@ -1,0 +1,28 @@
+{
+  "cards": {
+    "made-soup": {
+      "keep": true,
+      "reason": "a harmless build, shown by its maker",
+      "terms": "none"
+    },
+    "made-zed": {
+      "keep": false,
+      "reason": "a five-follower account who would not come off well"
+    },
+    "talk-ask": {
+      "keep": true,
+      "reason": "a public wish, plainly meant for anyone",
+      "terms": "none"
+    },
+    "talk-bit": {
+      "keep": true,
+      "reason": "a friendly exchange",
+      "terms": "none"
+    },
+    "interview-quinn": {
+      "keep": true,
+      "reason": "public replies to real questions",
+      "terms": "Quinn is invented: any reply may be performed, each in its own context."
+    }
+  }
+}

@@ -39,6 +39,17 @@ const speakable = (t, max) => !!String(t ?? '').trim() && tokenize(t).length > 0
  */
 export function interviewCandidates({ posts, lookup, featuredOf, reachOf = () => null, profiles = new Map(), small = 300, cfg = {} }) {
   const C = { candidates: 5, pairsEach: 8, minPairs: 3, maxChars: 280, maxQuestionChars: 400, ...cfg }
+  const by = answerPairs({ posts, lookup, reachOf, cfg: C })
+  return rankByPairs({ by, featuredOf, profiles, small, C })
+}
+
+/**
+ * Every usable question-and-answer pair in the window, by the answering member's DID:
+ * Map did -> [{ kind, score, question, answer }], best first. Both sides pass every consent
+ * and sensitivity mark; the answer is speakable.
+ */
+export function answerPairs({ posts, lookup, reachOf = () => null, cfg = {} }) {
+  const C = { maxChars: 280, maxQuestionChars: 400, ...cfg }
   const exact = (p) => ({
     uri: p.uri, url: p.url, authorDid: p.authorDid, handle: p.handle, displayName: p.displayName, text: p.text, time: p.time,
     counts: p.counts, member: !!p.member, authorFollowers: p.authorFollowers ?? null, smallAccount: !!p.smallAccount,
@@ -47,11 +58,11 @@ export function interviewCandidates({ posts, lookup, featuredOf, reachOf = () =>
   const by = new Map()
   for (const a of posts) {
     if (!a.member || !a.reply?.parent || a.reply.hidden) continue
-    if (a.sensitive?.length || a._redacted || a.redacted || a.quote?.state === 'removed') continue
+    if (a.sensitive?.length || a.consent?.length || a._redacted || a.redacted || a.quote?.state === 'removed') continue
     if (!speakable(a.text, C.maxChars)) continue
     const q = lookup(a.reply.parent)
     if (!q || q.authorDid === a.authorDid) continue
-    if (q.sensitive?.length || q._redacted || q.redacted || q.reply?.hidden) continue
+    if (q.sensitive?.length || q.consent?.length || q._redacted || q.redacted || q.reply?.hidden || q.aboutShow) continue
     if (!String(q.text ?? '').trim() || [...q.text].length > C.maxQuestionChars) continue
     const kind = askKind(q.text, C)
     if (!kind) continue
@@ -59,11 +70,15 @@ export function interviewCandidates({ posts, lookup, featuredOf, reachOf = () =>
     if (!by.has(a.authorDid)) by.set(a.authorDid, [])
     by.get(a.authorDid).push({ kind, score: Math.round(score * 1000) / 1000, question: { ...exact(q), kind }, answer: { ...exact(a), reach: reachOf(a) } })
   }
+  for (const pairs of by.values()) pairs.sort((x, y) => y.score - x.score || (x.answer.uri < y.answer.uri ? -1 : 1))
+  return by
+}
+
+function rankByPairs({ by, featuredOf, profiles, small, C }) {
   const rows = []
   for (const [did, pairs] of by) {
     const f = featuredOf(did, pairs[0].answer.handle)
     if (f.previous) continue // not someone who appeared in the previous episode
-    pairs.sort((x, y) => y.score - x.score || (x.answer.uri < y.answer.uri ? -1 : 1))
     if (pairs.length < C.minPairs) continue
     const prof = profiles.get(did)
     rows.push({

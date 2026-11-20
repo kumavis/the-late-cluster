@@ -1,11 +1,13 @@
 /**
- * npm run render -- <ep> <segment-id> [more ids…] | <ep> --all | --warm
+ * npm run render -- <ep> <segment-id> [more ids…] | <ep> --all | <ep> --draft <slug> | --warm
  *
  * Reads episodes/<ep>/segments/<id>/script.js, lays its beats out on one timeline, renders every
  * voice through CHIMERA (clips are cached in packages/show/tools/.cache, shared by every episode,
  * so only changed lines re-render), mixes to stereo and writes episodes/<ep>/public/audio/<id>.mp3,
  * episodes/<ep>/public/tele/<id>.bin and episodes/<ep>/segments/<id>/cues.json. <ep> is 1, 001,
  * 001-pilot or ref. The script format is documented in packages/show/tools/README.md.
+ * --draft <slug> renders episodes/<ep>/production/drafts/<slug>/script.js (its cast.js merged over
+ * the episode's) into packages/show/tools/.cache/drafts/<ep-id>/<slug>/ and nowhere else.
  */
 import { createHash } from "node:crypto";
 import { closeSync, existsSync, mkdirSync, openSync, readFileSync, readdirSync, renameSync, unlinkSync, writeFileSync } from "node:fs";
@@ -17,7 +19,8 @@ import { resolveSfx, resetSfxCounters, sfxClip, callSfx, SHOUT_SOURCE, type Ster
 import { encodeTele } from "./telebin.ts";
 import { decodeStereo, lufs, truePeakTrack } from "./loudness.ts";
 import { CAST } from "../src/cast.js";
-import { loadEpisode, requireSegment, exitOnEpisodeError } from "./episode.mjs";
+import { loadEpisode, loadDraft, requireSegment, exitOnEpisodeError } from "./episode.mjs";
+import { takeDraftArg } from "./draft.mjs";
 import type { BodyMix } from "../chimera/wasm/types.ts";
 
 const ROOT = fileURLToPath(new URL("../", import.meta.url));
@@ -61,17 +64,24 @@ export interface Line {
   pan: number;
   body: BodyMix;
   ipa?: string;
+  /** where it came from: the beat's index, and the track's in a music block */
+  beat?: number;
+  track?: number;
+  /** what was pronounced (`as`, else the caption; for a sung line, the lyrics sung) */
+  spoken?: string;
+  /** render this line again with another `as` (and a rate multiplier on a spoken line) */
+  remake?: (as: string, rate?: number) => Promise<Clip>;
 }
 
 // ------------------------------------------------------------------ validation helpers
 
-class ScriptError extends Error {}
+export class ScriptError extends Error {}
 const fail = (where: string, msg: string): never => {
   throw new ScriptError(`${where}: ${msg}`);
 };
 const KNOWN: Record<string, string[]> = {
   say: ["say", "text", "as", "id", "gap", "overlap", "rate", "f0", "accent", "intonation", "vol", "pan", "caption"],
-  sing: ["sing", "bpm", "lyrics", "notes", "id", "gap", "overlap", "vibrato", "transpose", "vol", "pan", "caption", "text"],
+  sing: ["sing", "bpm", "lyrics", "as", "notes", "id", "gap", "overlap", "vibrato", "transpose", "vol", "pan", "caption", "text"],
   sfx: ["sfx", "at", "hold", "vol", "pan", "duck"],
   call: ["call", "name", "pitch", "at", "hold", "vol", "pan", "duck"],
   wait: ["wait"],
@@ -80,7 +90,7 @@ const KNOWN: Record<string, string[]> = {
 };
 const TRACK_KEYS = ["who", "lyrics", "notes", "caption", "vol", "pan", "beat", "loops", "swing", "shout", "beats", "start", "vibrato", "transpose", "id", "as", "f0"];
 
-function castSpec(who: string, where: string): VoiceSpec & { pan: number } {
+export function castSpec(who: string, where: string): VoiceSpec & { pan: number } {
   const c = (CAST as Record<string, any>)[who];
   if (!c) fail(where, `unknown cast id ${JSON.stringify(who)}; cast: ${Object.keys(CAST).join(", ")}`);
   return { body: c.body, f0: c.f0, rate: c.rate, accent: c.accent, source: c.source, pan: c.pan ?? 0 };
@@ -185,7 +195,7 @@ function sungWords(clip: Clip, at: number, lyrics: string): [number, number, str
 
 // ------------------------------------------------------------------ layout
 
-interface Layout {
+export interface Layout {
   lines: Line[];
   cues: Record<string, number>;
   sfx: { name: string; t0: number; t1: number; at: number; L: Float32Array; R: Float32Array; gain: number; duck: number }[];
@@ -193,7 +203,7 @@ interface Layout {
   end: number;
 }
 
-async function layout(script: any): Promise<Layout> {
+export async function layout(script: any): Promise<Layout> {
   const where0 = `script ${script.id}`;
   if (!Array.isArray(script.beats)) fail(where0, "beats must be an array");
   const defGap = num(script.gap, where0, "gap", 0, 5) ?? 0.28;
@@ -231,8 +241,10 @@ async function layout(script: any): Promise<Layout> {
       const gap = first && b.gap === undefined ? 0 : (num(b.gap, where, "gap", 0, 10) ?? defGap);
       const overlap = num(b.overlap, where, "overlap", 0, 10) ?? 0;
       let clip: Clip;
+      const sayOpts = { rate: num(b.rate, where, "rate", 0.5, 2), f0: num(b.f0, where, "f0", 50, 500), accent: num(b.accent, where, "accent", 0, 1), intonation: b.intonation };
+      const remake = (as: string, rate = 1) => sayClip(v, as, { ...sayOpts, rate: (sayOpts.rate ?? 1) * rate });
       try {
-        clip = await sayClip(v, b.as ?? b.text, { rate: num(b.rate, where, "rate", 0.5, 2), f0: num(b.f0, where, "f0", 50, 500), accent: num(b.accent, where, "accent", 0, 1), intonation: b.intonation });
+        clip = await sayClip(v, b.as ?? b.text, sayOpts);
       } catch (e) {
         fail(where, (e as Error).message);
       }
@@ -240,21 +252,24 @@ async function layout(script: any): Promise<Layout> {
       const at = start - clip!.t0;
       const t1 = at + clip!.t1;
       const caption = b.caption ?? true;
-      addLine({ id: b.id, who: b.say, kind: "say", text: b.text, caption, t0: r3(start), t1: r3(t1), words: await captionWords(b.text, b.as, clip!, at, start, t1), clip: clip!, at, gain: KIND_GAIN.say * (num(b.vol, where, "vol", 0, 4) ?? 1), pan: num(b.pan, where, "pan", -1, 1) ?? v.pan, body: v.body, ipa: clip!.ipa });
+      addLine({ id: b.id, who: b.say, kind: "say", text: b.text, caption, t0: r3(start), t1: r3(t1), words: await captionWords(b.text, b.as, clip!, at, start, t1), clip: clip!, at, gain: KIND_GAIN.say * (num(b.vol, where, "vol", 0, 4) ?? 1), pan: num(b.pan, where, "pan", -1, 1) ?? v.pan, body: v.body, ipa: clip!.ipa, beat: bi, spoken: b.as ?? b.text, remake });
       cursor = Math.max(cursor, t1);
       first = false;
     } else if (kind === "sing") {
       const v = castSpec(b.sing, where);
       const bpm = num(b.bpm, where, "bpm", 30, 300) ?? fail(where, "bpm is required");
       const notes = checkNotes(b.notes, where);
-      await checkLyrics(b.lyrics, notes, where);
+      if (b.as !== undefined && (typeof b.as !== "string" || !b.as.trim())) fail(where, "as must be a non-empty string");
+      await checkLyrics(b.as ?? b.lyrics, notes, where);
       const gap = first && b.gap === undefined ? 0 : (num(b.gap, where, "gap", 0, 10) ?? defGap);
       const overlap = num(b.overlap, where, "overlap", 0, 10) ?? 0;
-      const clip = await singClip(v, { bpm: bpm as number, lyrics: b.lyrics, notes, vibrato: num(b.vibrato, where, "vibrato", 0, 100), transpose: num(b.transpose, where, "transpose", -24, 24) });
+      const song = { bpm: bpm as number, notes, vibrato: num(b.vibrato, where, "vibrato", 0, 100), transpose: num(b.transpose, where, "transpose", -24, 24) };
+      const clip = await singClip(v, { ...song, lyrics: b.as ?? b.lyrics });
+      const remake = (as: string) => singClip(v, { ...song, lyrics: as });
       const start = Math.max(0.05, cursor + gap - overlap);
       const at = start - clip.t0;
       const t1 = at + clip.t1 - (trailingRest(notes) * 60) / (bpm as number);
-      addLine({ id: b.id, who: b.sing, kind: "sing", text: b.text ?? b.lyrics, caption: b.caption ?? true, t0: r3(start), t1: r3(t1), words: sungWords(clip, at, b.text ?? b.lyrics), clip, at, gain: KIND_GAIN.sing * (num(b.vol, where, "vol", 0, 4) ?? 1), pan: num(b.pan, where, "pan", -1, 1) ?? v.pan, body: v.body });
+      addLine({ id: b.id, who: b.sing, kind: "sing", text: b.text ?? b.lyrics, caption: b.caption ?? true, t0: r3(start), t1: r3(t1), words: sungWords(clip, at, b.text ?? b.lyrics), clip, at, gain: KIND_GAIN.sing * (num(b.vol, where, "vol", 0, 4) ?? 1), pan: num(b.pan, where, "pan", -1, 1) ?? v.pan, body: v.body, beat: bi, spoken: b.as ?? b.lyrics, remake });
       cursor = Math.max(cursor, t1);
       first = false;
     } else if (kind === "sfx" || kind === "call") {
@@ -324,8 +339,11 @@ async function layout(script: any): Promise<Layout> {
           const pan = num(tr.pan, tw, "pan", -1, 1) ?? v.pan;
           if ("lyrics" in tr) {
             const notes = checkNotes(tr.notes, tw);
-            await checkLyrics(tr.lyrics, notes, tw);
-            const clip = await singClip(v, { bpm: bpm as number, lyrics: tr.lyrics, notes, vibrato: num(tr.vibrato, tw, "vibrato", 0, 100), transpose: num(tr.transpose, tw, "transpose", -24, 24) });
+            if (tr.as !== undefined && (typeof tr.as !== "string" || !tr.as.trim())) fail(tw, "as must be a non-empty string");
+            await checkLyrics(tr.as ?? tr.lyrics, notes, tw);
+            const song = { bpm: bpm as number, notes, vibrato: num(tr.vibrato, tw, "vibrato", 0, 100), transpose: num(tr.transpose, tw, "transpose", -24, 24) };
+            const clip = await singClip(v, { ...song, lyrics: tr.as ?? tr.lyrics });
+            const remake = (as: string) => singClip(v, { ...song, lyrics: as });
             const s = t0 + startBeat * spb;
             const at = s - clip.t0;
             // the line sounds from its first sung note to the end of its last
@@ -333,7 +351,7 @@ async function layout(script: any): Promise<Layout> {
             const restBeats = notes.slice(0, lead).reduce((a, n) => a + n[1], 0);
             const nb = notes.reduce((a, n) => a + n[1], 0);
             beats = Math.max(beats, startBeat + nb);
-            addLine({ id: tr.id ? (whos.length > 1 ? `${tr.id}-${who}` : tr.id) : undefined, who, kind: "sing", text: tr.lyrics, caption: tr.caption ?? false, t0: r3(s + restBeats * spb), t1: r3(at + clip.t1 - trailingRest(notes) * spb), words: sungWords(clip, at, tr.lyrics), clip, at, gain: KIND_GAIN.sing * vol, pan, body: v.body });
+            addLine({ id: tr.id ? (whos.length > 1 ? `${tr.id}-${who}` : tr.id) : undefined, who, kind: "sing", text: tr.lyrics, caption: tr.caption ?? false, t0: r3(s + restBeats * spb), t1: r3(at + clip.t1 - trailingRest(notes) * spb), words: sungWords(clip, at, tr.lyrics), clip, at, gain: KIND_GAIN.sing * vol, pan, body: v.body, beat: bi, track: ti, spoken: tr.as ?? tr.lyrics, remake });
             blockEnd = Math.max(blockEnd, at + clip.t1);
           } else if ("beat" in tr) {
             const { E } = await loadEngine();
@@ -420,7 +438,7 @@ function limit(L: Float32Array, R: Float32Array): { gr: number } {
   return { gr: most };
 }
 
-function mix(lay: Layout, dur: number): { L: Float32Array; R: Float32Array; peak: number; gr: number; gain: number } {
+export function mix(lay: Layout, dur: number): { L: Float32Array; R: Float32Array; peak: number; gr: number; gain: number } {
   const n = Math.ceil(dur * FS);
   const L = new Float32Array(n), R = new Float32Array(n);
   const put = (x: Float32Array, at: number, gl: number, gr: number) => {
@@ -519,7 +537,7 @@ function writeAtomic(file: string, data: Buffer | string): void {
 function lockSegment(ep: any, id: string): () => void {
   const dir = `${ROOT}tools/.cache/locks`;
   mkdirSync(dir, { recursive: true });
-  const f = `${dir}/${ep.id}--${id}.lock`;
+  const f = `${dir}/${ep.lockId ?? ep.id}--${id}.lock`;
   for (let attempt = 0; attempt < 2; attempt++) {
     try {
       const fd = openSync(f, "wx");
@@ -640,14 +658,27 @@ async function renderLocked(ep: any, id: string, script: any, tStart: number, op
 }
 
 if (import.meta.main) {
-  const args = process.argv.slice(2);
+  let args = process.argv.slice(2);
+  let draftSlug: string | null = null;
+  try {
+    ({ slug: draftSlug, rest: args } = takeDraftArg(args));
+  } catch (e) {
+    exitOnEpisodeError(e);
+  }
   let ids = args.filter((a) => !a.startsWith("--"));
   const usage = () => {
-    console.error("usage: npm run render -- <ep> <segment-id> [more ids…] | <ep> --all | --warm  [--whisper]");
+    console.error("usage: npm run render -- <ep> <segment-id> [more ids…] | <ep> --all | <ep> --draft <slug> | --warm  [--whisper]");
     process.exit(2);
   };
   if (!ids.length && !args.includes("--warm")) usage();
-  const ep = ids.length ? await loadEpisode(ids.shift()).catch(exitOnEpisodeError) : null;
+  let ep = ids.length ? await loadEpisode(ids.shift()).catch(exitOnEpisodeError) : null;
+  if (draftSlug) {
+    if (!ep || ids.length || args.includes("--all")) usage();
+    ep = (await loadDraft(ep, draftSlug).catch(exitOnEpisodeError)).view;
+    ids = [draftSlug];
+    const out = ep.rel(ep.renderPath("."));
+    console.log(`draft ${draftSlug}: rendering into ${out.startsWith("..") ? ep.renderPath(".") : out}/`);
+  }
   if (args.includes("--warm")) {
     // pre-render every sfx variant and every creature call into the shared cache, so authors
     // don't each render the crowd from scratch
@@ -663,9 +694,10 @@ if (import.meta.main) {
   }
   if (!ep) usage();
   if (args.includes("--all")) ids = ep.segments().filter((d: string) => existsSync(ep.segFile(d, "script.js")));
+  if (draftSlug) mkdirSync(ep.renderPath("."), { recursive: true });
   if (!ids.length) usage();
   try {
-    for (const id of ids) requireSegment(ep, id);
+    if (!draftSlug) for (const id of ids) requireSegment(ep, id);
   } catch (e) {
     exitOnEpisodeError(e);
   }

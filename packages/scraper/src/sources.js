@@ -1,0 +1,282 @@
+// npm run sources -- check <sources.json>: the live source check (workflow v3, stages 9 and
+// 12). Over the network, with the scraper's generic client name, it confirms that every cited
+// post still exists with the same text (a stored marked cut must match the live text where
+// it overlaps), and reads every account as it is now: handle, display name, labels and bio,
+// its pinned post, and its posts since the digest's window ended. It reports anything that
+// asks not to be quoted, kept or used, any post about the show, and anything that changed.
+// Exit 0 when clean, 1 when something needs a person, 2 for bad arguments.
+//
+// A description is never printed: only the phrase that matched. An account on the opt-out
+// list is never requested and never named; it is reported by its place in the file.
+
+import { readFileSync, existsSync } from 'node:fs'
+import { writeFile } from 'node:fs/promises'
+import { join, resolve } from 'node:path'
+import { parseArgs } from 'node:util'
+import { XrpcClient, DEFAULT_USER_AGENT } from './http.js'
+import { loadConfig, DEFAULT_CONFIG_DIR } from './config.js'
+import { Consent, NO_UNAUTH } from './consent.js'
+import { normalizePost, didOfUri } from './normalize.js'
+import { showMatcher } from './show.js'
+import { compileTopics, topicsOf } from './sensitivity.js'
+import { feedItemTime } from './api.js'
+
+export const SOURCES_USAGE = `Usage: npm run sources -- check <path/to/sources.json> [--dir <digest folder>] [--out <file.md>] [--json]
+
+Checks every post and account sources.json cites against the network, now:
+  posts      still there, with the same text; a marked cut (… for what is left out) must
+             match the live text where it overlaps
+  accounts   handle, display name and labels as now; the bio read for opt-outs (direct,
+             indirect, or wording an auditor should judge); the pinned post; posts since the
+             digest's window ended, read for requests not to be quoted and posts about the show
+--dir      the digest folder (default: data/weeks/<sources.week>); its window end is where
+           "posts since" starts
+--out      also write the report as Markdown
+--json     print the result as JSON instead of the report
+Exit: 0 clean, 1 something needs a person, 2 bad arguments.
+`
+
+const ELLIPSIS = /…|\.\.\./
+
+/** The parts of a marked cut that must appear in the live text, in order. */
+export function cutFragments(cut) {
+  return String(cut ?? '').split(ELLIPSIS).map((f) => f.trim().replace(/^["“”']+|["“”']+$/g, '').trim()).filter((f) => f.length >= 3)
+}
+
+/** Does every fragment of a cut appear in the text, in order? Returns the first that does not, or null. */
+export function cutMismatch(cut, text) {
+  let at = 0
+  const t = String(text ?? '')
+  for (const f of cutFragments(cut)) {
+    const i = t.indexOf(f, at)
+    if (i < 0) return f
+    at = i + f.length
+  }
+  return null
+}
+
+/** Every post and account sources.json cites, with where each is cited and what was stored. */
+export function citations(src) {
+  const posts = new Map()
+  const add = (uri, where, stored = {}) => {
+    if (typeof uri !== 'string' || !uri.startsWith('at://')) return
+    if (!posts.has(uri)) posts.set(uri, { uri, where: [], texts: [], cuts: [] })
+    const e = posts.get(uri)
+    e.where.push(where)
+    if (typeof stored.text === 'string') e.texts.push({ where, text: stored.text })
+    for (const c of stored.cuts ?? []) e.cuts.push({ where, cut: c })
+  }
+  for (const [i, p] of (src.posts ?? []).entries()) {
+    const cuts = [...(p.cuts && typeof p.cuts === 'object' ? Object.values(p.cuts) : [])].filter((x) => typeof x === 'string')
+    add(p.uri, `posts[${i}]`, { text: p.text, cuts })
+    if (p.replyTo?.uri) add(p.replyTo.uri, `posts[${i}].replyTo`, { text: p.replyTo.text })
+    if (p.quoted?.uri) add(p.quoted.uri, `posts[${i}].quoted`, { text: p.quoted.text })
+  }
+  for (const [i, l] of (src.lines ?? []).entries()) {
+    add(l.post, `lines[${i}].post`, { cuts: typeof l.cut === 'string' && ELLIPSIS.test(l.cut) ? [l.cut] : [] })
+    add(l.context, `lines[${i}].context`, { text: l.contextText })
+  }
+  for (const [i, n] of (src.numbers ?? []).entries()) add(n.post, `numbers[${i}].post`)
+  const accounts = new Map()
+  const addAccount = (did, handle, where, stored = {}) => {
+    const key = did ?? (handle ? String(handle).toLowerCase() : null)
+    if (!key) return
+    if (!accounts.has(key)) accounts.set(key, { did: did ?? null, handle: handle ?? null, where: [], stored: {} })
+    const e = accounts.get(key)
+    e.where.push(where)
+    if (!e.did && did) e.did = did
+    if (!e.handle && handle) e.handle = handle
+    Object.assign(e.stored, Object.fromEntries(Object.entries(stored).filter(([, v]) => v != null)))
+  }
+  for (const [i, a] of (src.accounts ?? []).entries()) addAccount(a.did ?? null, a.handle ?? null, `accounts[${i}]`, { handle: a.handle, displayName: a.displayName })
+  for (const p of posts.values()) {
+    const did = didOfUri(p.uri)
+    if (did && ![...accounts.values()].some((a) => a.did === did)) addAccount(did, null, `the author of ${p.where[0]}`)
+  }
+  return { posts: [...posts.values()], accounts: [...accounts.values()] }
+}
+
+/**
+ * @param {object} o
+ * @param {object} o.sources the parsed sources.json
+ * @param {object|null} o.digest the parsed digest.json (window end, stored texts, handles)
+ * @param {XrpcClient} o.client
+ * @param {object} o.config
+ * @param {number} [o.now]
+ */
+export async function checkSources({ sources, digest = null, digestPosts = new Map(), client, config, now = Date.now(), feedPages = 2 }) {
+  const consent = new Consent({ optOut: config.optOut.accounts, selfDeclaredPatterns: config.safety.selfDeclaredOptOut.patterns, indirectPatterns: config.safety.selfDeclaredOptOut.indirectPatterns ?? [], reviewPatterns: config.safety.bioReview?.patterns ?? [] })
+  const { posts, accounts } = citations(sources)
+  const issues = []
+  const notes = []
+  const need = (kind, where, what) => issues.push({ kind, where, what })
+  const windowEnd = digest?.window?.end ? Date.parse(digest.window.end) : null
+  const since = windowEnd ?? now - 7 * 86_400_000
+  if (!windowEnd) notes.push('no digest window: posts since are read from seven days ago')
+
+  // Accounts on the opt-out list are never requested and never named.
+  const optedOut = (a) => (a.did && consent.dids.has(a.did)) || (a.handle && consent.skipHandle(a.handle))
+  for (const a of accounts) if (optedOut(a)) need('opt-out', a.where.join(', '), 'an account on the opt-out list is cited; remove it')
+  const live = accounts.filter((a) => !optedOut(a))
+  const optedOutDids = new Set(accounts.filter(optedOut).map((a) => a.did).filter(Boolean))
+
+  // ---- posts: getPosts, 25 at a time
+  const liveCited = posts.filter((p) => !optedOutDids.has(didOfUri(p.uri)))
+  const views = new Map()
+  for (let i = 0; i < liveCited.length; i += 25) {
+    const batch = liveCited.slice(i, i + 25).map((p) => p.uri)
+    const res = await client.get('app.bsky.feed.getPosts', { uris: batch })
+    for (const v of res.posts ?? []) views.set(v.uri, v)
+  }
+  const postRows = []
+  for (const p of liveCited) {
+    const v = views.get(p.uri)
+    const row = { uri: p.uri, where: p.where, status: 'ok' }
+    if (!v) {
+      row.status = 'gone'
+      need('post gone', p.where.join(', '), `${p.uri} no longer exists, or is hidden from logged-out readers`)
+      postRows.push(row)
+      continue
+    }
+    const text = v.record?.text ?? ''
+    const stored = [...p.texts, ...(digestPosts.has(p.uri) ? [{ where: 'the digest', text: digestPosts.get(p.uri).text }] : [])]
+    for (const s of stored) {
+      if (digestPosts.get(p.uri)?.redacted && s.where === 'the digest') continue
+      if (s.text === text) continue
+      // A stored text with an ellipsis is a marked cut: it must match where it overlaps.
+      if (s.where !== 'the digest' && ELLIPSIS.test(s.text)) {
+        const miss = cutMismatch(s.text, text)
+        if (miss) { row.status = 'changed'; need('cut does not match', `${s.where} (${p.uri})`, `the marked cut's part "${miss.slice(0, 60)}" is not in the live text`) }
+        continue
+      }
+      row.status = 'changed'
+      need('text changed', `${s.where} (${p.uri})`, 'stored text no longer matches the live post')
+    }
+    for (const c of p.cuts) {
+      const miss = cutMismatch(c.cut, text)
+      if (miss) { row.status = 'changed'; need('cut does not match', `${c.where} (${p.uri})`, `the marked cut's part "${miss.slice(0, 60)}" is not in the live text`) }
+    }
+    const authorLabels = (v.author?.labels ?? []).map((l) => l.val)
+    if (authorLabels.includes(NO_UNAUTH)) need('opt-out', p.where.join(', '), "the post's author now hides from logged-out readers")
+    postRows.push(row)
+  }
+
+  // ---- accounts: profiles, then pinned posts and recent posts
+  const profiles = new Map()
+  const actors = live.map((a) => a.did ?? a.handle)
+  for (let i = 0; i < actors.length; i += 25) {
+    const res = await client.get('app.bsky.actor.getProfiles', { actors: actors.slice(i, i + 25) })
+    for (const pr of res.profiles ?? []) { profiles.set(pr.did, pr); if (pr.handle) profiles.set(String(pr.handle).toLowerCase(), pr) }
+  }
+  const pinned = new Map()
+  const pinUris = [...new Set(live.map((a) => profiles.get(a.did ?? String(a.handle).toLowerCase())?.pinnedPost?.uri).filter(Boolean))]
+  for (let i = 0; i < pinUris.length; i += 25) {
+    const res = await client.get('app.bsky.feed.getPosts', { uris: pinUris.slice(i, i + 25) })
+    for (const v of res.posts ?? []) pinned.set(v.uri, v)
+  }
+  const topics = compileTopics(config.safety.sensitivity.topics, config.safety.sensitivity.combinations)
+  const consentTopics = new Set(config.safety.sensitivity.consentTopics ?? ['asked not to be quoted'])
+  const showOptOut = (config.safety.showOptOutPatterns?.patterns ?? []).map((x) => new RegExp(x, 'iu'))
+  const aboutShow = showMatcher(config.show)
+  // A post asks when it says not to quote it ("don't quote this") or describes posts as
+  // temporary or not to be kept; a bio's direct patterns ("no AI") are for bios, where they
+  // are about the account, not for posts, where they are usually about something else.
+  const indirect = (config.safety.selfDeclaredOptOut.indirectPatterns ?? []).map((x) => new RegExp(x, 'iu'))
+  const asksNot = (text) => topicsOf(text, topics).some((t) => consentTopics.has(t)) || indirect.some((re) => re.test(text))
+  const digestAuthors = digest?.authors ?? {}
+  const accountRows = []
+  for (const a of live) {
+    const pr = profiles.get(a.did ?? String(a.handle).toLowerCase())
+    const where = a.where.join(', ')
+    const row = { did: a.did ?? pr?.did ?? null, handle: pr?.handle ?? a.handle, where: a.where, status: 'ok', checks: [] }
+    if (!pr) { row.status = 'gone'; need('account gone', where, `${a.handle ?? a.did} could not be read: deleted, suspended, or hidden from logged-out readers`); accountRows.push(row); continue }
+    const labels = (pr.labels ?? []).map((l) => l.val)
+    if (labels.includes(NO_UNAUTH)) { row.status = 'opt-out'; need('opt-out', where, `@${pr.handle} now hides from logged-out readers (${NO_UNAUTH})`) }
+    const kind = consent.optOutKind(pr.description)
+    if (kind) { row.status = 'opt-out'; need('opt-out', where, `@${pr.handle}'s bio opts out (${kind})`) }
+    else {
+      const r = consent.bioReview(pr.description)
+      if (r) { row.status = 'review'; need('bio review', where, `@${pr.handle}'s bio might opt out: matched "${r.matched}"`) }
+    }
+    const storedHandle = a.stored.handle ?? digestAuthors[pr.did]?.handle
+    if (storedHandle && String(storedHandle).toLowerCase() !== String(pr.handle).toLowerCase()) need('handle changed', where, `was @${storedHandle}, now @${pr.handle}`)
+    const storedName = a.stored.displayName ?? digestAuthors[pr.did]?.displayName
+    if (storedName != null && (pr.displayName ?? '').trim() !== String(storedName).trim()) need('display name changed', where, `@${pr.handle}: was ${JSON.stringify(storedName)}, now ${JSON.stringify(pr.displayName ?? '')}`)
+    row.checks.push('profile')
+    const pin = pr.pinnedPost?.uri ? pinned.get(pr.pinnedPost.uri) : null
+    if (pin) {
+      row.checks.push('pinned post')
+      const t = pin.record?.text ?? ''
+      if (asksNot(t)) need('pinned post asks', where, `@${pr.handle}'s pinned post asks not to be quoted, kept or used: ${pin.uri}`)
+      if (aboutShow(normalizePost(pin) ?? {}).length) need('about the show', where, `@${pr.handle}'s pinned post is about the show: ${pin.uri}`)
+    }
+    // posts since the window ended
+    let cursor
+    let seen = 0
+    for (let page = 0; page < feedPages; page++) {
+      const res = await client.get('app.bsky.feed.getAuthorFeed', { actor: pr.did, limit: 100, filter: 'posts_with_replies', cursor })
+      let older = false
+      for (const it of res.feed ?? []) {
+        if (it.reason || it.post?.author?.did !== pr.did) continue
+        const tm = feedItemTime(it)
+        if (!(tm >= since)) { older = true; continue }
+        seen++
+        const np = normalizePost(it.post)
+        const t = np?.text ?? ''
+        const about = np ? aboutShow(np) : []
+        if (about.length) {
+          const req = showOptOut.some((re) => re.test(t))
+          need(req ? 'asks the show' : 'about the show', where, `@${pr.handle} posted about the show${req ? ' and it reads as a request to be left out' : ''}: ${it.post.uri}`)
+        } else if (asksNot(t)) need('post asks', where, `@${pr.handle} posted something that asks not to be quoted, kept or used: ${it.post.uri}`)
+      }
+      cursor = res.cursor
+      if (older || !cursor || !(res.feed ?? []).length) break
+    }
+    row.checks.push(`${seen} posts since ${new Date(since).toISOString().slice(0, 16)}Z`)
+    accountRows.push(row)
+  }
+  return { format: 'late-cluster-sources-check/1', checkedAt: new Date(now).toISOString(), since: new Date(since).toISOString(), clean: issues.length === 0, counts: { posts: posts.length, accounts: accounts.length, issues: issues.length, requests: client.stats.requests }, issues, posts: postRows, accounts: accountRows, notes }
+}
+
+export function renderSourcesCheck(r, { file = '' } = {}) {
+  const out = [`# Live source check${file ? `: ${file}` : ''}`, '', `Checked ${r.checkedAt.slice(0, 16)}Z over the network: ${r.counts.posts} posts and ${r.counts.accounts} accounts, posts since ${r.since.slice(0, 16)}Z, ${r.counts.requests} requests.`, '']
+  out.push(r.clean ? '**Clean.** Every cited post exists with the same text; no account asks not to be quoted, kept or used; nothing new about the show.' : `**Needs a person: ${r.issues.length}.**`, '')
+  if (r.issues.length) {
+    out.push('| what | where | detail |', '|---|---|---|')
+    for (const i of r.issues) out.push(`| ${i.kind} | ${i.where.replace(/\|/g, '\\|')} | ${i.what.replace(/\|/g, '\\|')} |`)
+    out.push('')
+  }
+  out.push('## Posts', '')
+  for (const p of r.posts) out.push(`- ${p.status}: ${p.uri} (${p.where.join(', ')})`)
+  out.push('', '## Accounts', '')
+  for (const a of r.accounts) out.push(`- ${a.status}: @${a.handle ?? a.did} (${a.checks.join('; ') || 'not read'})`)
+  for (const n of r.notes) out.push('', `*${n}*`)
+  return out.join('\n') + '\n'
+}
+
+export async function sources(argv, { repoRoot, env = process.env, fetchImpl = globalThis.fetch, write = (s) => process.stdout.write(s), now = Date.now(), sleep } = {}) {
+  const { values: a, positionals } = parseArgs({ args: argv, allowPositionals: true, options: { dir: { type: 'string' }, out: { type: 'string' }, json: { type: 'boolean' }, config: { type: 'string' }, 'max-requests': { type: 'string' }, help: { type: 'boolean', short: 'h' } }, strict: true })
+  const [cmd, file] = positionals
+  if (a.help) { write(SOURCES_USAGE); return 0 }
+  if (cmd !== 'check' || !file) { write(SOURCES_USAGE); return 2 }
+  if (!existsSync(file)) { write(`error: no such file ${file}\n`); return 2 }
+  let src
+  try { src = JSON.parse(readFileSync(file, 'utf8')) } catch (e) { write(`error: ${file} is not JSON: ${e.message}\n`); return 2 }
+  const config = loadConfig(a.config ? resolve(a.config) : DEFAULT_CONFIG_DIR)
+  const dir = a.dir ? resolve(a.dir) : src.week && repoRoot ? join(repoRoot, 'data', 'weeks', src.week) : null
+  let digest = null
+  const digestPosts = new Map()
+  if (dir && existsSync(join(dir, 'digest.json'))) {
+    digest = JSON.parse(readFileSync(join(dir, 'digest.json'), 'utf8'))
+    const f = join(dir, 'posts.jsonl')
+    if (existsSync(f)) for (const l of readFileSync(f, 'utf8').split('\n')) { if (!l) continue; try { const p = JSON.parse(l); digestPosts.set(p.uri, { text: p.text, redacted: !!p.redacted }) } catch { /* skip */ } }
+  }
+  const cc = config.client
+  const client = new XrpcClient({ host: cc.host, userAgent: env.SCRAPER_USER_AGENT || cc.userAgent || DEFAULT_USER_AGENT, concurrency: cc.concurrency, minIntervalMs: cc.minIntervalMs, maxRequests: a['max-requests'] ? Number(a['max-requests']) : 400, maxRetries: cc.maxRetries, backoffBaseMs: cc.backoffBaseMs, timeoutMs: cc.timeoutMs, cacheDir: null, fetchImpl, ...(sleep ? { sleep } : {}) })
+  const r = await checkSources({ sources: src, digest, digestPosts, client, config, now })
+  const md = renderSourcesCheck(r, { file })
+  if (a.out) await writeFile(a.out, md)
+  // --json is one line, so a caller can take the last line of the output
+  write(a.json ? JSON.stringify(r) + '\n' : md)
+  return r.clean ? 0 : 1
+}

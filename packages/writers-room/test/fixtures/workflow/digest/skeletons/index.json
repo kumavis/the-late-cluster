@@ -1,0 +1,29 @@
+{
+  "skeletons": [
+    {
+      "id": "s-ask",
+      "lane": "talk",
+      "posts": 1
+    },
+    {
+      "id": "s-soup",
+      "lane": "made",
+      "posts": 1
+    },
+    {
+      "id": "s-bit",
+      "lane": "talk",
+      "posts": 2
+    },
+    {
+      "id": "s-quinn",
+      "lane": "interview",
+      "posts": 4
+    },
+    {
+      "id": "s-zed",
+      "lane": "made",
+      "posts": 1
+    }
+  ]
+}

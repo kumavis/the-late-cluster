@@ -12,5 +12,6 @@
     "at://did:plc:trialchicken/app.bsky.feed.post/tc1",
     "at://did:plc:trialchicken/app.bsky.feed.post/tc2",
     "at://did:plc:trialchicken/app.bsky.feed.post/tc3"
-  ]
+  ],
+  "turn": "the record stays the record"
 }

@@ -1,0 +1,13 @@
+{
+  "reviewer": "reviewer-1",
+  "round": 1,
+  "items": [
+    {
+      "id": "talk-ask:open",
+      "version": "__LINEVERSION:talk-ask:open__",
+      "verdict": "repeat",
+      "reason": "fixture",
+      "avoid": "a generic welcome as the first line"
+    }
+  ]
+}

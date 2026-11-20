@@ -17,6 +17,9 @@ import { utcDay } from './window.js'
 import { storySensitivity } from './sensitivity.js'
 import { consentFlags } from './consent.js'
 
+const ASKS = 'asks not to be quoted'
+const AUTHOR_ASKED = 'its author asked not to be quoted in this story'
+
 class DSU {
   constructor() { this.p = new Map(); this.size = new Map() }
   find(x) {
@@ -349,6 +352,9 @@ function shapeStory(r, { byUri, metrics, quoteTarget, context, memberReposts, cf
   if (anchorUri && !r.inStory.has(anchorUri) && context.has(anchorUri)) ctx.push(summarizeContext(context.get(anchorUri)))
 
   const lookup = (uri) => byUri.get(uri) ?? context.get(uri) ?? null
+  // A post asking not to be quoted covers its author's other posts in the same story.
+  const askers = new Set(r.ps.filter((p) => p.consent?.includes(ASKS)).map((p) => p.authorDid))
+  for (const p of r.ps) if (askers.has(p.authorDid) && !p.consent?.includes(ASKS)) p.consent = [...new Set([...(p.consent ?? []), AUTHOR_ASKED])]
   const posts = ordered.slice(0, maxPosts).map(({ p, m }) => {
     const out = publicPost(p)
     out.metrics = m
@@ -363,9 +369,26 @@ function shapeStory(r, { byUri, metrics, quoteTarget, context, memberReposts, cf
   const headlinePost = ctx[0] ?? posts[0]
   const leadPost = byUri.get(lead)
   const ctxPost = anchorUri && !r.inStory.has(anchorUri) ? context.get(anchorUri) : null
-  const outOfBounds = storySensitivity(r.ps, [leadPost, ctxPost].filter(Boolean), sensitivity)
   const anchorKind = { T: 'thread', L: 'link', D: 'domain', W: 'phrase' }[r.anchor[0]]
-  return {
+  // Keyword marks are post by post; the story-level figure is only a hint (trial 002,
+  // findings 7 and 37). A story is left out whole only for consent.
+  const hint = storySensitivity(r.ps, [leadPost, ctxPost].filter(Boolean), sensitivity)
+  const markedPosts = r.ps.filter((p) => p.sensitive?.length)
+  const topicCounts = {}
+  for (const p of markedPosts) for (const t of p.sensitive) topicCounts[t] = (topicCounts[t] ?? 0) + 1
+  const storySens = {
+    topics: Object.keys(topicCounts).sort((a, b) => topicCounts[b] - topicCounts[a] || (a < b ? -1 : 1)),
+    counts: topicCounts,
+    postsMarked: markedPosts.length,
+    leadMarked: !!leadPost?.sensitive?.length,
+    hint: hint ? hint.topics : [],
+  }
+  const reasonsOut = []
+  if (anchorKind === 'thread' && !r.anchor.slice(2).startsWith('at://')) reasonsOut.push('the thread starts with a post by an account the consent rules exclude')
+  if (leadPost?.consent?.length) reasonsOut.push(`the lead post: ${leadPost.consent.join(', ')}`)
+  if (ctxPost?.consent?.length) reasonsOut.push(`the thread root: ${ctxPost.consent.join(', ')}`)
+  const outOfBounds = reasonsOut.length ? { rule: 'R11', reasons: reasonsOut } : null
+  const story = {
     id: 's-' + shortHash(r.anchor, 10),
     rank: 0,
     kind: kindOf(r),
@@ -373,6 +396,8 @@ function shapeStory(r, { byUri, metrics, quoteTarget, context, memberReposts, cf
     anchor: { kind: anchorKind, value: anchorKind === 'thread' ? (r.anchor.slice(2).startsWith('at://') ? r.anchor.slice(2) : 'hidden') : r.anchor.slice(2) },
     reason: reasons(r, { quoteTarget, byUri, phraseTerms }),
     outOfBounds,
+    sensitivity: storySens,
+    consentMarked: r.ps.filter((p) => p.consent?.length).length,
     ...(reach ? { reach: reach.story(r.ps) } : {}),
     scores: { total: r.total, ...r.scores },
     stats: {
@@ -389,6 +414,9 @@ function shapeStory(r, { byUri, metrics, quoteTarget, context, memberReposts, cf
     context: ctx,
     posts,
   }
+  // Every post, for the skeletons; not written into digest.json (not enumerable).
+  Object.defineProperty(story, '_posts', { value: r.ps, enumerable: false })
+  return story
 }
 
 const round = (x) => Math.round(x * 1000) / 1000

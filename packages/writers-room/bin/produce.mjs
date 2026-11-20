@@ -1,19 +1,21 @@
 #!/usr/bin/env node
 // npm run produce -- --week 2026-W47 [options]
 //
-// Drives one episode through the eleven stages of docs/WORKFLOW.md, resuming from
+// Drives one episode through the thirteen stages of docs/WORKFLOW.md, resuming from
 // episodes/<id>/production/state.json. The tool never calls a model: it writes a brief per subagent
-// task and stops until their files exist (see playbooks/project-manager.md).
+// task, and the runner does the tasks (see playbooks/project-manager.md).
 //
 //   --status                 where the run is, and exactly which subagents to spawn next
-//   --check <stage>          run a stage's gates only (what a subagent runs before it stops)
+//   --check <stage>          run a stage's gates only
+//   --task <id>              with --check: that task's lines only (what a subagent runs before it stops)
 //   --segment <seg>          with --check stage: one segment's frames and checks (builders in parallel)
 //   --find "<uri|url|text>"  look a post up in the digest (exact text, counts, what it replied to)
 //   --stage <name>           run one stage (earlier stages must be done)
 //   --from <name>            re-run from a stage (it and everything after are reset)
 //   --rework <task id,…>     set a task's output aside and brief it again with the failures
 //   --exclude <id,…>         drop an idea (repetition gate) or a draft (select), recorded with the run
-//   --runner manual|fixture|headless   who does the tasks (default manual; remembered)
+//   --runner headless|manual|fixture   who does the tasks (default headless where claude is signed in,
+//                            else manual; remembered)
 //   --fixture <dir>          the fixture runner's prepared outputs
 //   --digest <dir>           the digest folder (default data/weeks/<week>/)
 //   --bible <dir> --ledger <dir>   copies to read and write (trial runs)
@@ -22,15 +24,15 @@
 //   --preview-only           build a draft into preview/<id>/ and never publish (remembered)
 //   --network                check invented handles against the public Bluesky API
 //
-// Stages: scope research brainstorm rank repetition-ideas draft select assemble stage build review.
+// Stages: scope research rank brainstorm shortlist repetition-ideas draft fit select assemble stage build review.
 // Exit codes: 0 done, 1 waiting for subagents, failed or sent back, 2 bad arguments.
 import { produce } from '../src/pipeline.mjs'
 import { ProduceError, REPO } from '../src/repo.mjs'
 import { STAGES } from '../src/state.mjs'
 import { RUNNERS } from '../src/runners.mjs'
 
-const USAGE = 'usage: npm run produce -- --week 2026-W47 [--status | --check <stage> [--segment s] | --find "…" | --stage <s> | --from <s> | --rework <task> | --exclude <id>] [--runner manual|fixture|headless] [--fixture dir] [--digest dir] [--bible dir] [--ledger dir] [--limits file] [--preview-only] [--network]'
-const VALUE = new Set(['week', 'stage', 'from', 'check', 'segment', 'find', 'rework', 'exclude', 'runner', 'fixture', 'digest', 'limits', 'settings', 'bible', 'ledger', 'root'])
+const USAGE = 'usage: npm run produce -- --week 2026-W47 [--status | --check <stage> [--task id | --segment s] | --find "…" | --stage <s> | --from <s> | --rework <task> | --exclude <id>] [--runner headless|manual|fixture] [--fixture dir] [--digest dir] [--bible dir] [--ledger dir] [--limits file] [--preview-only] [--network]'
+const VALUE = new Set(['week', 'stage', 'from', 'check', 'task', 'segment', 'find', 'rework', 'exclude', 'runner', 'fixture', 'digest', 'limits', 'settings', 'bible', 'ledger', 'root'])
 const FLAG = new Set(['status', 'network', 'help', 'preview-only'])
 
 export function parseArgs(argv) {
@@ -53,6 +55,7 @@ export function parseArgs(argv) {
   if (o.runner && !RUNNERS.includes(o.runner)) throw new ProduceError(`--runner must be one of ${RUNNERS.join(', ')}`, 2)
   if (o.runner === 'fixture' && !o.fixture) throw new ProduceError('--runner fixture needs --fixture <dir>', 2)
   if (o.segment && o.check !== 'stage') throw new ProduceError('--segment goes with --check stage', 2)
+  if (o.task && !o.check) throw new ProduceError('--task goes with --check <stage>', 2)
   for (const k of ['rework', 'exclude']) if (o[k]) o[k] = o[k].split(',').map((x) => x.trim()).filter(Boolean)
   return o
 }
