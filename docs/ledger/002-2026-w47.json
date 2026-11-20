@@ -1,0 +1,178 @@
+{
+  "id": "002-2026-w47",
+  "aired": false,
+  "guests": [
+    {
+      "did": "did:plc:kpxj7utcy6mjv4rmzitnnrmv",
+      "handle": "ver.ooo"
+    },
+    {
+      "did": "did:plc:nqu76ue2hgr44emaxyvgbzsq",
+      "handle": "yonderdavid.bsky.social"
+    },
+    {
+      "did": "did:plc:hovt6k22s64dq63jjmoyibk3",
+      "handle": "dave.9000ish.uk"
+    },
+    {
+      "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+      "handle": "shimmermathlabs.com"
+    },
+    {
+      "did": "did:plc:r5bee2hexwjtmhkfmfu2tphx",
+      "handle": "mokkenstorm.dev"
+    },
+    {
+      "did": "did:plc:7zre4plmd5jllccww575j6sb",
+      "handle": "minormobius.bsky.social"
+    }
+  ],
+  "featured": [
+    {
+      "did": "did:plc:kpxj7utcy6mjv4rmzitnnrmv",
+      "handle": "ver.ooo"
+    },
+    {
+      "did": "did:plc:nqu76ue2hgr44emaxyvgbzsq",
+      "handle": "yonderdavid.bsky.social"
+    },
+    {
+      "did": "did:plc:hovt6k22s64dq63jjmoyibk3",
+      "handle": "dave.9000ish.uk"
+    },
+    {
+      "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+      "handle": "shimmermathlabs.com"
+    },
+    {
+      "did": "did:plc:r5bee2hexwjtmhkfmfu2tphx",
+      "handle": "mokkenstorm.dev"
+    },
+    {
+      "did": "did:plc:7zre4plmd5jllccww575j6sb",
+      "handle": "minormobius.bsky.social"
+    },
+    {
+      "did": "did:plc:sna3qx44beg2mb5fao44gsxh",
+      "handle": "samantha.wiki"
+    },
+    {
+      "did": "did:plc:ggggkstdfqtryrmermsho2pb",
+      "handle": "sophie.engineering"
+    },
+    {
+      "did": "did:plc:gttrfs4hfmrclyxvwkwcgpj7",
+      "handle": "aparker.io"
+    },
+    {
+      "did": "did:plc:xb2urvqt5f4zzccjs46hysbf",
+      "handle": "cee.wtf"
+    },
+    {
+      "did": "did:plc:bty3nc67lteylmmb7hvgxeu5",
+      "handle": "topchicken.bsky.social"
+    },
+    {
+      "did": "did:plc:cwa5qtro5bhfz25opigbe6qi",
+      "handle": "catblanketflower.yuwakisa.com"
+    },
+    {
+      "did": "did:plc:jg6o3bgflm3q4y7jpmpvenj3",
+      "handle": "7778777.online"
+    },
+    {
+      "did": "did:plc:gnwxm4rvtrjc33icqmyvzhst",
+      "handle": "oszillate.bsky.social"
+    }
+  ],
+  "formats": [
+    "demonstration",
+    "interview",
+    "top-chicken",
+    "demonstration-and-thread",
+    "music",
+    "performed-exchange-and-demonstration"
+  ],
+  "song": {
+    "genre": "folk lament",
+    "theme": "having an angry last verse ready for the newcomer who is wrecking your sad song, and the anger having nowhere to go once the newcomer sings the part you were missing"
+  },
+  "runners": [
+    "the wordless stretch (the episode's experiment): three made-thing segments each hold eleven to thirteen seconds with no word and no crowd sound, in which the thing itself delivers the turn (the pen stops one letter short; the emptied mug is refilled; the host's side of the board turns out to be every side)",
+    "the cat: a typed meow intoned by the announcer while the pen writes it (segment 1), the cat missing from the synth's four animals in the interview (2), the percussionist cast as the cat in the song (5); a motif, never pointed at",
+    "four animals, then five: stated once in the interview, counted to five as the song's button three segments later (a callback inside the episode)",
+    "a member asked: the host asks unnamed members' questions as the setups of real answers (five in the interview, one in chess), and in the coffee segment makes a member's remark as his own",
+    "Larry loses to the thing: he plays a coffee simulator to win and is offered a refill; he claims one side of a one-sided board and resigns; the announcer then takes his sign-off (character, with new defeats)",
+    "a guest's phrase returned by the host as the button of the same segment: best i can do / The best we can do; I like! I repost! / I like. I repost. I resign.",
+    "the maker read, not voiced: four posts by an account that spoke in the aired episode, three read aloud by house voices with the name said each time",
+    "something said, then somebody made it: the opening beat of the interview and of the coffee segment and the backstory of the song; never named as the night's engine, never counted, no time given"
+  ],
+  "catchphrases": [
+    "This is The Late Cluster, with Larry Nx. (the announcer's plain title line over the first picture; no descriptor)",
+    "And now, the sports. Eppy?",
+    "Sports desk. The game is Top Chicken.",
+    "The score is kept by a bot.",
+    "The winner trails the winner.",
+    "The smallest win of the week. Same title.",
+    "Fundamentals.",
+    "This next part is my guess.",
+    "So, the next result post, in one word: / Still. / I hope I'm wrong.",
+    "A member asked:",
+    "Me, I just say, good question.",
+    "Finally, something to plug. / Out now, wherever code is pasted.",
+    "My first thought: it should be a game.",
+    "A game! Stand back. I play to win.",
+    "Somebody wrote back. Every word: / Different strategy.",
+    "The best we can do.",
+    "Sibyl, you take this one.",
+    "Eighty-eight replies. All of them under one post. There was one pen.",
+    "The limit is three hundred characters. / How long is this one? / Three hundred.",
+    "Pete. You are the cat.",
+    "Last verse. Now I get angry at the cat. / Never mind.",
+    "Now it can sing like five animals.",
+    "One more game before we go.",
+    "A member of the cluster built it. It took about a day. (judged a repeat at the final review: the aired stock phrase Built it. as a sentence ending, with the time taken after it)",
+    "Pick a side. / I'll take this side. In gold.",
+    "Larry. Your move. / I like. I repost. / I resign.",
+    "The resignation is accepted. / I will say good night. / I meant the game. / Good night. (the close; judged turned)",
+    "Good night, Bluesky (the heading that ends the studio's built-in credits roll)"
+  ],
+  "devices": [
+    "no cold open and no close segment: the open is the first five seconds of the first segment and the close is four lines after the last segment's button",
+    "the open: the thing made (a pen over a blank sheet) fills the first frame with its motor's hum; the show's name is lettered on the sheet while the announcer says the title and the host; short applause; the host's first word is the material",
+    "a studio sketch of a real machine at work, labelled STUDIO SKETCH with the maker's credit and address on every frame: a pen plotter writing real replies letter by letter, everything else on the page an unreadable scribble",
+    "the percussionist as a machine's motor: a hummed note per letter written, stopping when the pen stops",
+    "every head following a pen as it travels back to the left margin, during a guest's real line about exactly that",
+    "the announcer intoning a real post that is not a word (a typed meow) on one note inside a music block, in time with the pen writing it, caption bar off, a tally tag counting syllables (OW × 10)",
+    "a real card arriving before it is read, a house line naming its author first, and the reader looking at the card (readings made plain so that a rested account is not heard as speaking)",
+    "the wordless stretch: the thing fills the frame, house heads at the edges watching, no caption, a beat or hum but no crowd sound until it is over",
+    "a pen that stops mid-word because the reply ran out of characters, lifts, moves one letter's width and holds; then a counter that lands on the announcer's number (300 OF 300) and the maker's one-word reply card as the last laugh",
+    "an interview constructed from posts: five answers, each with its card up and words lighting, the questions asked by the host as an unnamed member's; date tags mark each change of occasion",
+    "a small drawn object on the punch word beside the card (a kazoo, labelled ARTIST'S IMPRESSION)",
+    "the push-in on the guest's own PUPPET · PARODY chyron label, held in silence after his real line about parody (the episode's one joke about the show itself)",
+    "a real answer left dry: no reaction sound after a five-word post",
+    "a plug card for a pastebin link as the host's long-wanted plug",
+    "sports desk with one board: a counter rolling from the day's post count down to 1, a flip to the winner's name, two bars to one scale with the gap bracketed, the record holder's bar labelled with a question mark that flips to the same name",
+    "a row of three identical crowns, one gold with the winner's name and score, two with a score and no name or day",
+    "the announcer in a small monitor inset on the sports board whenever she reads a post aloud",
+    "a market board labelled as the studio's sketch (CHICKEN BUCKS · NO REAL MONEY) whose line drops out of the bottom on a loss and comes back in through the top; a price tag reading CHEAP",
+    "a bracket between two cards giving the days between them (3 DAYS)",
+    "a labelled guess: the board header EPPY'S GUESS · NOT A RESULT with the arithmetic under it and a split-flap row flipping to one word (STILL) as the announcer says it",
+    "tags on a bot's figures and card: SCORED BY A BOT · UNOFFICIAL; BOT · UNOFFICIAL RANKINGS",
+    "the host plays the thing a member made: a studio sketch of a coffee simulator on the panel, sips as lip pops getting faster, the host looking round for an opponent, the mug emptied, the simulator's own refill prompt as plain legend text (a letter, a dot and an instruction; never a key cap, nobody presses a key), the kettle pouring",
+    "a real thread of four posts in order with mixed treatment: two performed by their author's puppet, one two-word post shown at a glance with a scan line redrawing the picture, one read aloud by the announcer from a large card because its author is a small account with no puppet",
+    "a member's correction drawn as that member's annotation (dashed squares in the card's colour on the sketched mug) and two reference solids drawn on with name and face-count labels that stay up",
+    "the button as a picture: the kettle from the sketched simulator tips over the sketched real mug and fills it",
+    "the song framed by two real posts read aloud: the plan before it, the maker's next post after it; nothing of the maker's own music is sung, quoted or named",
+    "a board of four animal tiles and an empty fifth frame that is simply there, flinches red on sour notes, goes steady gold when the cat is in tune, and fills only on the button (CAT · by David)",
+    "paper cat ears landing on the percussionist on the word cat; a pitch trace above him that is jagged and drooping, then falls smoothly onto a ruled line",
+    "a lament with no percussion; the band stops and leaves the cat alone; an angry verse announced, begun on one stern note and abandoned; the first major chord of the song under an in-tune meow; the refrain back with one word changed",
+    "lyrics drawn as they are sung, with a label saying the tune is the band's own (THE PLAN · THE BAND'S OWN TUNE)",
+    "a performed exchange of three real posts by two puppets, then the house sitting down to play: three seats with name flags round a sketched Möbius board",
+    "three lamps under a guest labelled with that guest's own three verbs, lighting on the words (LIKE, REPOST, and LOVE staying dark); the host's own lamps later reading LIKE, REPOST, RESIGN",
+    "a gold flag (LARRY'S SIDE) that laps a one-sided strip: every square it crosses turns gold, the board opens into two rings to show the underside, the flag hangs upside down with its letters mirrored, and both faces end gold",
+    "guest costumes carrying a two-character print for what the account makes (1D, 4D)",
+    "the close: the announcer turns from the board to the camera and takes the host's sign-off; sting, long applause, the studio's built-in credits",
+    "plain chyron titles for guests that say why they are on (In line for the pen; Supplied the missing cat; Made the coffee simulator; Owner, one pink mug; Made ringmate; Asked for a link); house chyrons carry no joke titles"
+  ]
+}

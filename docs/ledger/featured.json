@@ -12,6 +12,12 @@
         "date": "2026-11-19",
         "role": "shown",
         "aired": false
+      },
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-20",
+        "role": "shown",
+        "aired": false
       }
     ]
   },
@@ -69,6 +75,12 @@
         "episode": "002-the-joke-nobody-built",
         "date": "2026-11-19",
         "role": "shown",
+        "aired": false
+      },
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-20",
+        "role": "spoke",
         "aired": false
       }
     ]
@@ -137,6 +149,12 @@
         "date": "2026-11-19",
         "role": "spoke",
         "aired": false
+      },
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-20",
+        "role": "spoke",
+        "aired": false
       }
     ]
   },
@@ -146,6 +164,12 @@
       {
         "episode": "002-the-joke-nobody-built",
         "date": "2026-11-19",
+        "role": "shown",
+        "aired": false
+      },
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-20",
         "role": "shown",
         "aired": false
       }
@@ -159,6 +183,12 @@
         "date": "2026-11-19",
         "role": "shown",
         "aired": false
+      },
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-20",
+        "role": "shown",
+        "aired": false
       }
     ]
   },
@@ -170,6 +200,12 @@
         "date": "2026-11-19",
         "role": "shown",
         "aired": false
+      },
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-20",
+        "role": "shown",
+        "aired": false
       }
     ]
   },
@@ -179,6 +215,89 @@
       {
         "episode": "002-the-joke-nobody-built",
         "date": "2026-11-19",
+        "role": "shown",
+        "aired": false
+      },
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-20",
+        "role": "spoke",
+        "aired": false
+      }
+    ]
+  },
+  "did:plc:kpxj7utcy6mjv4rmzitnnrmv": {
+    "handle": "ver.ooo",
+    "appearances": [
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-20",
+        "role": "spoke",
+        "aired": false
+      }
+    ]
+  },
+  "did:plc:r5bee2hexwjtmhkfmfu2tphx": {
+    "handle": "mokkenstorm.dev",
+    "appearances": [
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-20",
+        "role": "spoke",
+        "aired": false
+      }
+    ]
+  },
+  "did:plc:7zre4plmd5jllccww575j6sb": {
+    "handle": "minormobius.bsky.social",
+    "appearances": [
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-20",
+        "role": "spoke",
+        "aired": false
+      }
+    ]
+  },
+  "did:plc:ggggkstdfqtryrmermsho2pb": {
+    "handle": "sophie.engineering",
+    "appearances": [
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-20",
+        "role": "shown",
+        "aired": false
+      }
+    ]
+  },
+  "did:plc:cwa5qtro5bhfz25opigbe6qi": {
+    "handle": "catblanketflower.yuwakisa.com",
+    "appearances": [
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-20",
+        "role": "shown",
+        "aired": false
+      }
+    ]
+  },
+  "did:plc:jg6o3bgflm3q4y7jpmpvenj3": {
+    "handle": "7778777.online",
+    "appearances": [
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-20",
+        "role": "shown",
+        "aired": false
+      }
+    ]
+  },
+  "did:plc:gnwxm4rvtrjc33icqmyvzhst": {
+    "handle": "oszillate.bsky.social",
+    "appearances": [
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-20",
         "role": "shown",
         "aired": false
       }
