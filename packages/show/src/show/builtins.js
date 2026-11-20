@@ -2,7 +2,7 @@
 // "in production" card for rundown entries that don't exist yet, and the end card with credits.
 // They run through the same Show/Stage machinery as real segments.
 import { logo } from '../stage/chrome.js'
-import { label, seg, box, P, creditsRoll, crow } from '../kit/draw.js'
+import { label, labelWidth, seg, box, P, creditsRoll, crow } from '../kit/draw.js'
 import { noise1, clamp, unlerp, ease } from '../kit/ease.js'
 import { CAST } from '../cast.js'
 
@@ -17,6 +17,32 @@ export function episodeLine(ep) {
     ep.title ? String(ep.title).toUpperCase() : '',
     d ? `${Number(d[3])} ${MONTHS[Number(d[2]) - 1]} ${d[1]}` : '',
   ].filter(Boolean).join(' · ')
+}
+
+// the episode line sits at x 388 and must end before the mug on Larry's desk (the title shot is fixed)
+const EP_X = 388, EP_Y = 478, EP_MAX_W = 352
+
+/**
+ * Draw the episode line. A line that fits is drawn exactly as it always was; a longer one (a long
+ * title) is set smaller and tighter, and if it still does not fit it breaks at its ' · ' separators
+ * into lines stacked upwards from the TONIGHT row, so it never runs under the desk.
+ */
+export function episodeLineLabel(ctx, ep, epLine) {
+  const base = { size: 13, color: P.gold, ls: 0.3, alpha: 0.85 }
+  if (labelWidth(ctx, epLine, base) <= EP_MAX_W) return label(ctx, epLine, EP_X, EP_Y, base)
+  for (const [size, ls] of [[12, 0.22], [11, 0.16]]) {
+    const o = { ...base, size, ls }
+    if (labelWidth(ctx, epLine, o) <= EP_MAX_W) return label(ctx, epLine, EP_X, EP_Y, o)
+  }
+  const o = { ...base, size: 12, ls: 0.2 }
+  const parts = epLine.split(' · ')
+  const lines = []
+  for (const part of parts) {
+    const last = lines[lines.length - 1]
+    if (last !== undefined && labelWidth(ctx, `${last} · ${part}`, o) <= EP_MAX_W) lines[lines.length - 1] = `${last} · ${part}`
+    else lines.push(part)
+  }
+  lines.forEach((ln, i) => label(ctx, ln, EP_X, EP_Y - (lines.length - 1 - i) * 18, o))
 }
 
 export function titleModule(titles = [], ep = null) {
@@ -39,7 +65,7 @@ export function titleModule(titles = [], ep = null) {
     drawFront(ctx, t, show) {
       logo(ctx, 92, 262, 0.98, { t })
       // which episode this is, in the TONIGHT header's row, over the second column
-      if (epLine) label(ctx, epLine, 388, 478, { size: 13, color: P.gold, ls: 0.3, alpha: 0.85 })
+      if (epLine) episodeLineLabel(ctx, ep, epLine)
       if (titles.length) {
         label(ctx, 'TONIGHT', 98, 478, { size: 17, color: P.sky, ls: 0.5, weight: 'm' })
         seg(ctx, 98, 490, 330, 490, P.sky, 1.2, { alpha: 0.6 })
@@ -106,7 +132,7 @@ export function credits(who = null) {
   }
   out.push('', { head: 'Voices & faces' }, 'Every voice in this programme', 'is synthesized by CHIMERA.', '')
   out.push(['physical models', 'CHIMERA vocal synth'], ['by', 'jamesondh · MIT'], ['github.com', 'jamesondh/chimera-vocal-synth'], '')
-  out.push('Guests are puppets', 'playing posting personas.', 'No accounts were simclustered', 'in the making of this programme.', '', { head: 'Good night, Bluesky' })
+  out.push('Guests are puppets', 'playing posting personas.', '', { head: 'Good night, Bluesky' })
   return out
 }
 

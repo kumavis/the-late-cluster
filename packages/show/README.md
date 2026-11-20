@@ -412,7 +412,8 @@ the authoring loop needs a build: `dev`, `shoot` and `check` read fresh renders 
 `src/show/builtins.js`. The title card's TONIGHT list reads the titles of the rundown segments
 that exist (two numbered columns, each title cut at its first ':'; empty while none do), and a
 line in the TONIGHT row names the episode, e.g. `NO. 012 · <TITLE> · 4 DEC 2026` (number, title and air
-date from `episode.json`). After the last segment the end card plays the band out under the logo
+date from `episode.json`). A line too long for its place is set smaller, then broken at its ` · `
+separators into stacked lines, so it stays clear of the host. After the last segment the end card plays the band out under the logo
 with rolling credits built from the cast, listing only who appears in this episode (everyone
 with a line, plus each segment's `cast` and `guests`), and a WATCH AGAIN button. As the
 constitution (Article 4) and R9 require, the credits list the house cast under STARRING, then
