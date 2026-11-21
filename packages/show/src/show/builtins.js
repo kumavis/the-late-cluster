@@ -5,6 +5,7 @@ import { logo } from '../stage/chrome.js'
 import { label, labelWidth, seg, box, P, creditsRoll, crow } from '../kit/draw.js'
 import { noise1, clamp, unlerp, ease } from '../kit/ease.js'
 import { CAST } from '../cast.js'
+import { creditLines } from './credits.js'
 
 const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
@@ -120,20 +121,10 @@ export function productionModule(title, n) {
  * if null). Lines are kept short enough for the roll's column (see endModule).
  */
 export function credits(who = null) {
-  const appears = ([id]) => !who || who.has(id)
-  const cast = Object.entries(CAST).filter(appears)
-  const out = [{ head: 'The Late Cluster' }, ['with', 'Larry Nx'], '']
-  out.push({ head: 'Starring' })
-  for (const [, c] of cast) if (!c.guest) out.push([c.title ?? '', c.name])
-  const guests = cast.filter(([, c]) => c.guest)
-  if (guests.length) {
-    out.push('', { head: 'Puppets played the' }, { head: 'posting personas of' })
-    for (const [, c] of guests) out.push(c.handle ? [c.name, c.handle] : ['', c.name])
-  }
-  out.push('', { head: 'Voices & faces' }, 'Every voice in this programme', 'is synthesized by CHIMERA.', '')
-  out.push(['physical models', 'CHIMERA vocal synth'], ['by', 'jamesondh · MIT'], ['github.com', 'jamesondh/chimera-vocal-synth'], '')
-  out.push('Guests are puppets', 'playing posting personas.', '', { head: 'Good night, Bluesky' })
-  return out
+  // A cast entry with `plays: '<cast id>'` is another voice of that character: it is not listed
+  // itself, and its lines count as the character's (a `plays` naming an id not in the cast is
+  // ignored, and the entry is credited normally). See show/credits.js.
+  return creditLines(CAST, who)
 }
 
 export function endModule(who = null) {

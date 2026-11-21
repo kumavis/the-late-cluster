@@ -2990,6 +2990,74 @@
    ]
   },
   {
+   "word": "simulator",
+   "status": "unstable",
+   "voices": [
+    "guest"
+   ],
+   "heard": [
+    {
+     "as": "simulator",
+     "count": 6
+    },
+    {
+     "as": "(lost)",
+     "count": 4
+    },
+    {
+     "as": "see me later",
+     "count": 2
+    },
+    {
+     "as": "see my leaker",
+     "count": 2
+    },
+    {
+     "as": "see my leaper",
+     "count": 2
+    },
+    {
+     "as": "similarly",
+     "count": 2
+    },
+    {
+     "as": "similarly purpose",
+     "count": 2
+    }
+   ],
+   "spellings": [
+    {
+     "as": "sim-yul-layt-ter",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "(lost)",
+       "count": 1
+      },
+      {
+       "as": "seem your lead",
+       "count": 1
+      },
+      {
+       "as": "seem your lead purpose",
+       "count": 1
+      },
+      {
+       "as": "sim your litter",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Sung by the bass lead at MIDI 52-57, a syllable to a half beat: heard 'simulators' or 'simulate her' after someone built, 'see me later' at the start of a line; sim-yul-layt-ter did worse. Spoken by Larry it is heard.",
+   "seen": [
+    "002-2026-w47/music-alt"
+   ]
+  },
+  {
    "word": "sixteen",
    "status": "works",
    "voices": [

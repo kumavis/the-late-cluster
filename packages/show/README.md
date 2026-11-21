@@ -355,6 +355,11 @@ seconds (captions lift above it). Handles are only ever a real account's (the gu
 invented one under `.example` (bible R8); the house characters are not accounts and have no
 handle, so their chyrons show name and title only.
 
+A cast entry may carry `plays: '<cast id>'`: it is another voice of that character (a singing
+voice, say). Today this affects the credits only: the entry is not listed itself, and its lines count
+as the character's, so the character is credited once. Puppets are still driven by each line's own
+cast id. A `plays` that names no cast entry is ignored.
+
 ### The set
 
 Back: `wall truss floor window` (the simcluster skyline) `curtain onair sign` (APPLAUSE/LAUGH,

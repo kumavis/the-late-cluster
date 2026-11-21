@@ -66,6 +66,7 @@ Heard in some takes or some lines, not others.
 | **repost** | larry, guest | (not recorded) | — | Heard "report" in some takes: a statement changed. Plain was best in a guest's line (3 of 4); rate 0.85 cleared Larry's short "I like. I ree-post."; slower rates and ree-poast did worse for the guest. |
 | **scenes** | larry | "scenes" ×2, "oh shins" ×1, "singh singh singh singh" ×1 | `Seenz` → "scenes" ×2, "oh shins" ×1 | Larry, one-word line: 'scenes' about half the takes, otherwise 'shins' or 'since'; Seenz, Sceenz the same. |
 | **sheet** | sibyl | "(a crude word)", "sheet" ×4 | — | After "other's" it was heard as a crude word, which is never accepted; respelling the word before it (`uh-therz`) cleared it. |
+| **simulator** | guest | "simulator" ×6, "(lost)" ×4, "see me later" ×2, "see my leaker" ×2 | `sim-yul-layt-ter` → "(lost)" ×1, "seem your lead" ×1 | Sung by the bass lead at MIDI 52-57, a syllable to a half beat: heard 'simulators' or 'simulate her' after someone built, 'see me later' at the start of a line; sim-yul-layt-ter did worse. Spoken by Larry it is heard. |
 | **values** | guest | (not recorded) | `val-yooz` → "values" ×3, "value is" ×1 | `val-yooz` heard in 3 of 4 takes; the fourth, "value is", changed the sentence. |
 
 ## Patterns
