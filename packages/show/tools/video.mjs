@@ -34,7 +34,7 @@ import { existsSync, openSync, readSync, closeSync } from 'node:fs'
 import { join, dirname, resolve } from 'node:path'
 import { tmpdir } from 'node:os'
 import { resolveEpisode, EpisodeError, REPO } from './episode.mjs'
-import { parseVideoArgs, USAGE, stamp, toSrt, toVtt, posterAt, previewName, preview360Args } from './video-lib.mjs'
+import { parseVideoArgs, USAGE, stamp, toSrt, toVtt, posterAt, previewName, previewArgs, blueskyVideoGraph } from './video-lib.mjs'
 
 const FFMPEG = process.env.FFMPEG ?? (existsSync('/opt/homebrew/bin/ffmpeg') ? '/opt/homebrew/bin/ffmpeg' : 'ffmpeg')
 const FFPROBE = process.env.FFPROBE ?? (existsSync('/opt/homebrew/bin/ffprobe') ? '/opt/homebrew/bin/ffprobe' : 'ffprobe')
@@ -48,14 +48,14 @@ if (args.errors.length) {
   console.error(`error: ${args.errors.join('; ')}\n${USAGE}`)
   process.exit(2)
 }
-// the standalone form: a phone preview of a file that already exists
+// the standalone form: the phone (and desktop) preview of a file that already exists
 if (args.previewFile) {
   if (args.ep || args.ids.length) {
-    console.error(`error: --preview-360 <file.mp4> takes no episode or segments\n${USAGE}`)
+    console.error(`error: --preview-360/--preview-720 <file.mp4> take no episode or segments\n${USAGE}`)
     process.exit(2)
   }
   try {
-    await preview360(resolve(args.previewFile))
+    for (const rung of args.previews) await preview(resolve(args.previewFile), rung)
     process.exit(0)
   } catch (e) {
     console.error(e.message)
@@ -84,7 +84,7 @@ let url = null
 // with the caption system off (named …-nocaps.mp4). --subs: only the subtitles (no pictures).
 const YT = 'late-cluster-youtube'
 const W = Math.round(1280 * scale), H = Math.round(720 * scale)
-/** every mp4 this run writes, for --preview-360 */
+/** every mp4 this run writes, for --preview-360 / --preview-720 */
 const written = []
 
 const rundown = ep.rundown
@@ -223,12 +223,12 @@ async function posterPart(tmp, parts, name, enc, { ext = 'mp4', check = false } 
 }
 
 // ------------------------------------------------------------------ the phone preview
-/** <file>-360p-preview.mp4 beside it: the file as Bluesky's low stream would serve it to a phone */
-async function preview360(file) {
+/** <file>-<rung>p-preview.mp4 beside it: the file as Bluesky serves it (360: a phone, 720: a desktop) */
+async function preview(file, rung) {
   if (!existsSync(file)) throw new Error(`no such file: ${file}`)
-  const out = previewName(file)
+  const out = previewName(file, rung)
   const t0 = Date.now()
-  await run(FFMPEG, preview360Args(file, out))
+  await run(FFMPEG, previewArgs(rung, file, out))
   console.log(`${out}  ${((await stat(out)).size / 1e6).toFixed(1)} MB  (${((Date.now() - t0) / 1000).toFixed(0)} s)`)
   return out
 }
@@ -270,10 +270,11 @@ async function buildBluesky(tmp) {
   const log = join(tmp, 'x264pass')
   const enc = (pass, k, dest) => ['-c:v', 'libx264', '-preset', preset, '-b:v', `${k}k`, '-pass', String(pass), '-passlogfile', log, '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-g', String(FPS * 5), '-x264-params', 'aq-mode=3', '-color_primaries', 'bt709', '-color_trc', 'bt709', '-colorspace', 'bt709', '-color_range', 'tv']
   const t0 = Date.now()
-  console.log(`${blueskyName}: ${dur.toFixed(3)} s, two-pass at ${kbps} kb/s video (limit ${maxMB} MB)`)
+  console.log(`${blueskyName}: ${dur.toFixed(3)} s, two-pass at ${kbps} kb/s video (limit ${maxMB} MB)${args.soften ? `, softened (${args.soften})` : ''}`)
   // the pictures: the parts, or the poster then the parts (the concat filter decodes both)
   const vin = poster ? ['-f', 'concat', '-safe', '0', '-i', list, '-i', poster] : ['-f', 'concat', '-safe', '0', '-i', list]
-  const vmap = poster ? ['-filter_complex', '[1:v]setsar=1[p];[0:v]setsar=1[m];[p][m]concat=n=2:v=1:a=0[v]', '-map', '[v]'] : ['-map', '0:v:0']
+  // (with --soften, the filter for Bluesky's downscale runs in this same encode)
+  const vmap = blueskyVideoGraph({ poster: !!poster, soften: args.soften })
   const ain = poster ? '2:a:0' : '1:a:0'
   await run(FFMPEG, ['-v', 'error', '-y', ...vin, ...vmap, ...enc(1, kbps), '-an', '-f', 'null', '-'])
   for (let attempt = 0; attempt < 4; attempt++) {
@@ -648,7 +649,7 @@ try {
     for (const id of rundown) await rm(join(tmp, `${id}.yt.mp4`), { force: true })
   }
   if ((youtube || subsOnly) && !frameLimit) await writeSubs()
-  if (args.preview360) for (const f of written) await preview360(f)
+  for (const rung of args.previews) for (const f of written) await preview(f, rung)
   console.log(`done in ${((Date.now() - T0) / 1000).toFixed(0)} s`)
   await cleanup()
   process.exit(0)

@@ -865,32 +865,43 @@ generation like the master. That takes about 1 GB per minute of temp space while
 `--bluesky` without `--all` re-encodes the CRF-16 clips instead, and says so.
 
 **For phones.** Bluesky re-encodes every video to two streams, and phones mostly get the low one:
-640×360, H.264 Main 3.0, about 0.95 Mbit/s. Its downscale is point sampling (from 1080p it keeps
-every third pixel, unfiltered), so thin strokes and small text break up; at 360p the caption text
-is 12.5 px. Three options deal with that:
+640×360, H.264 Main 3.0, about 0.95 Mbit/s. From a 1920×1080 upload it keeps the centre pixel of
+every 3×3 block (pixel 3x+1, 3y+1) and drops the other eight, unfiltered, in luma and chroma
+alike, so thin strokes and small text break up everywhere on screen, not only in the captions.
+Desktops get 1280×720 at about 3.2 Mbit/s, scaled with something bicubic-like. Four options deal
+with that:
 
 ```sh
-node packages/show/tools/video.mjs 2 --all --bluesky --caption-scale 1.6 --poster 215 --preview-360
-node packages/show/tools/video.mjs --preview-360 video/<ep-id>/late-cluster-bluesky.mp4   # an existing file
-npm run shoot -- 2 top-chicken 22 --caption-scale 1.6   # a frame to look at: …/top-chicken@22-cs1.6.png
+node packages/show/tools/video.mjs 2 --all --bluesky --max-mb 280 --soften box --caption-scale 1.4 --poster 215 --preview-360 --preview-720
+node packages/show/tools/video.mjs --preview-360 --preview-720 video/<ep-id>/late-cluster-bluesky.mp4   # an existing file
+npm run shoot -- 2 top-chicken 22 --caption-scale 1.4   # a frame to look at: …/top-chicken@22-cs1.4.png
 ```
 
+- `--soften box` (posting cut only, off by default; `tent` is a gentler 1-2-1 kernel) averages
+  each 3×3 block about its centre in the same two-pass encode that makes the cut, so the pixel
+  Bluesky keeps is the mean of its block and the phone gets a properly filtered picture. Against
+  an ideal downscale the phone picture goes from 30 to 39 dB, and post cards, chyrons, handles,
+  `PUPPET · PARODY`, the disclaimer and song credits become readable; the desktop picture keeps
+  97 % of its edge detail (a slight softening of the smallest text).
 - `--caption-scale <n>` (0.5 to 3, default 1) scales the whole caption bar: the line, the name
   tag, the box, its padding and the underline, and the `[ LAUGHTER ]` box. The bar stays centred,
   keeps its bottom edge (so it grows upward) and still lifts above a disclaimer or ticker; a chyron
   above it moves up by what the bar grew. The wrap width stays 1000 stage units, so larger text
   wraps into more lines and pages through more pairs of them, still following the word being said.
   The page reads it as `?capscale=<n>` (`Stage.captionScale`); at 1 every frame is as before.
+  With `--soften box`, 1.4 reads cleanly on a phone; without it, 1.6.
 - `--poster <seconds> [--poster-frames 2]` puts that frame of the finished cut in front of every
   whole-episode file the run writes (full, posting and YouTube cuts), held for two frames with
   silence under it, so the file's first frame (Bluesky's poster) is that picture. The `.srt` and
   `.vtt` it writes move later by the same amount: pass the same `--poster` to a `--subs` run whose
   captions go with such a cut. The full cut copies the clips, so the poster is encoded with this
   run's `--crf` and `--preset`; if the clips were made with others, it stops and says which.
-- `--preview-360` writes `<name>-360p-preview.mp4` beside every mp4 the run writes (or beside the
-  file given): the low stream's settings (640×360 point-sampled, Main 3.0, 950 kb/s average, 1.8
-  Mbit/s cap, 30 fps, AAC). Measured against frames Bluesky served for episode two, its frames
-  match at SSIM 0.988 to 0.994. Watch it on a phone before posting.
+- `--preview-360` and `--preview-720` write `<name>-360p-preview.mp4` and `<name>-720p-preview.mp4`
+  beside every mp4 the run writes (or beside the file given): the phone stream (640×360 point
+  sampled, Main 3.0, 950 kb/s average, 1.8 Mbit/s cap) and the desktop stream (1280×720 bicubic,
+  3.2 Mbit/s; its profile and peak are assumed). Against frames Bluesky served for episode two,
+  the 360p preview matches at SSIM 0.988 to 0.994 and the 720p scaler at about 41.5 dB. Watch
+  both before posting.
 
 **The YouTube build** is for platforms that show their own subtitles.
 

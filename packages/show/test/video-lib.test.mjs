@@ -3,7 +3,7 @@
 // Node builtins only: no browser, no ffmpeg.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { parseVideoArgs, toSrt, toVtt, shiftCues, stamp, posterAt, previewName, preview360Args, PREVIEW_360 } from '../tools/video-lib.mjs'
+import { parseVideoArgs, toSrt, toVtt, shiftCues, stamp, posterAt, previewName, preview360Args, preview720Args, PREVIEW_360, SOFTEN, blueskyVideoGraph } from '../tools/video-lib.mjs'
 
 test('defaults are what the tool always did', () => {
   const o = parseVideoArgs(['002', '--all'])
@@ -19,6 +19,8 @@ test('defaults are what the tool always did', () => {
   assert.equal(o.poster, null)
   assert.equal(o.preview360, false)
   assert.equal(o.previewFile, null)
+  assert.deepEqual(o.previews, [])
+  assert.equal(o.soften, null)
   assert.equal(o.bluesky, false)
   assert.equal(o.maxMB, 280)
   assert.equal(o.blueskyName, 'late-cluster-bluesky.mp4')
@@ -115,4 +117,63 @@ test('the phone preview: name and encoder settings', () => {
   assert.equal(at('-r'), '30')
   assert.equal(at('-c:a'), 'aac')
   assert.equal(PREVIEW_360.w * 9, PREVIEW_360.h * 16)
+})
+
+test('--preview-720 beside --preview-360, as flags or on one file', () => {
+  const a = parseVideoArgs(['--preview-360', '--preview-720', 'v/cut.mp4'])
+  assert.deepEqual(a.errors, [])
+  assert.deepEqual(a.previews, [360, 720])
+  assert.equal(a.previewFile, 'v/cut.mp4')
+  const b = parseVideoArgs(['--preview-720', 'v/cut.mp4'])
+  assert.deepEqual(b.previews, [720])
+  assert.equal(b.preview360, false)
+  assert.equal(b.previewFile, 'v/cut.mp4')
+  const c = parseVideoArgs(['2', '--all', '--bluesky', '--preview-720', '--preview-360'])
+  assert.deepEqual(c.previews, [360, 720])
+  assert.equal(c.previewFile, null)
+  assert.match(parseVideoArgs(['--preview-360', 'a.mp4', '--preview-720', 'b.mp4']).errors.join(), /one file/)
+})
+
+test('--soften: a mode of the posting cut, off by default', () => {
+  const o = parseVideoArgs(['2', '--all', '--bluesky', '--soften', 'box'])
+  assert.deepEqual(o.errors, [])
+  assert.equal(o.soften, 'box')
+  assert.equal(parseVideoArgs(['2', '--all', '--bluesky', '--soften', 'tent']).soften, 'tent')
+  assert.equal(parseVideoArgs(['2', '--all', '--bluesky', '--soften', 'off']).soften, null)
+  assert.equal(parseVideoArgs(['2', '--all', '--max-mb', '100', '--soften', 'box']).soften, 'box')
+  assert.match(parseVideoArgs(['2', '--all', '--soften', 'box']).errors.join(), /needs --bluesky/)
+  assert.match(parseVideoArgs(['2', '--all', '--bluesky', '--soften', 'blur']).errors.join(), /--soften blur: one of box, tent/)
+  assert.match(parseVideoArgs(['2', '--all', '--bluesky', '--soften']).errors.join(), /--soften needs a value/)
+})
+
+test('the posting cut graph: unchanged without options, the filter in the same encode with them', () => {
+  assert.deepEqual(blueskyVideoGraph(), ['-map', '0:v:0'])
+  assert.deepEqual(blueskyVideoGraph({ poster: true }), ['-filter_complex', '[1:v]setsar=1[p];[0:v]setsar=1[m];[p][m]concat=n=2:v=1:a=0[v]', '-map', '[v]'])
+  const b = blueskyVideoGraph({ soften: 'box' })
+  assert.equal(b[1], `[0:v]null,${SOFTEN.box}[v]`)
+  const pb = blueskyVideoGraph({ poster: true, soften: 'box' })
+  assert.match(pb[1], /concat=n=2:v=1:a=0,boxblur=luma_radius=1:luma_power=1:chroma_radius=1:chroma_power=1\[v\]$/)
+  assert.throws(() => blueskyVideoGraph({ soften: 'nope' }), /no soften mode/)
+})
+
+test('the box filter averages each 3x3 block about its centre, the pixel Bluesky keeps', () => {
+  // radius 1 = a 3x3 window centred on the pixel, equal weights, luma and chroma alike
+  assert.equal(SOFTEN.box, 'boxblur=luma_radius=1:luma_power=1:chroma_radius=1:chroma_power=1')
+  const k = SOFTEN.tent.match(/^convolution=([^:]+):/)[1].split(' ').map(Number)
+  assert.equal(k.length, 9)
+  assert.equal(k.reduce((a, b) => a + b, 0), 16)
+  assert.equal(k[4], 4)
+  assert.ok(Object.isFrozen(SOFTEN))
+})
+
+test('the desktop preview: 1280x720, bicubic, about 3.2 Mbit/s', () => {
+  assert.equal(previewName('/v/cut.mp4', 720), '/v/cut-720p-preview.mp4')
+  assert.equal(previewName('/v/cut.mp4'), '/v/cut-360p-preview.mp4')
+  const a = preview720Args('in.mp4', 'out.mp4')
+  const at = (k) => a[a.indexOf(k) + 1]
+  assert.equal(at('-vf'), 'scale=1280:720:flags=bicubic,format=yuv420p')
+  assert.equal(at('-b:v'), '3200k')
+  assert.equal(at('-profile:v'), 'main')
+  assert.ok(!preview720Args('i', 'o', { audio: false }).includes('-c:a'))
+  assert.ok(preview720Args('i', 'o', { audio: false }).includes('-an'))
 })

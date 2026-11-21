@@ -245,10 +245,11 @@ print as `error: ...`. `build` prints one line,
 
 Two studio tools have no root command and are run directly: `bun packages/show/tools/analyze.ts`
 (loudness, voices, the Whisper intelligibility pass) and `node packages/show/tools/video.mjs`
-(video exports into `video/<id>/`; for the cut Bluesky serves to phones, `--caption-scale <n>`
-scales the caption bar, `--poster <s>` puts that frame first as the poster, and `--preview-360`,
-also on an existing file, writes the 640×360 stream a phone gets; `packages/show/tools/README.md`,
-"For phones"). Review frames from `shoot` go to `shots/<id>/<seg>/`.
+(video exports into `video/<id>/`; for the cut Bluesky serves to phones, `--soften box` filters
+the posting cut in its own encode against Bluesky's unfiltered 3:1 downscale, `--caption-scale <n>`
+scales the caption bar, `--poster <s>` puts that frame first as the poster, and `--preview-360` and
+`--preview-720`, also on an existing file, write the streams a phone and a desktop get;
+`packages/show/tools/README.md`, "For phones"). Review frames from `shoot` go to `shots/<id>/<seg>/`.
 The sound editor's tools are `fit`, `voice-research` and `voices` (`packages/show/tools/README.md`,
 "Fitting a script", "The voice research file" and "Giving guests voices"). Fitting is best effort
 (the owner's ruling of 21 November 2026: subtitles carry the line): what the voice cannot say is
