@@ -219,7 +219,9 @@ stricter verdict stands. A blocked item goes back with an `avoid` line and nothi
 
 **People** are counted by the tool, by DID. Someone whose puppet spoke in the previous aired
 episode does not speak in this one. Most accounts featured on screen are new, measured over a
-set number of recent aired episodes. Nobody is in more than two segments of an episode, and
+set number of recent aired episodes. Nobody is in more than two segments of an episode (a post by a bot counts toward the
+person who runs it only where that person makes an appearance: is named, shown or voiced; the
+owner's ruling, 21 November 2026), and
 an episode has one interview. The tool warns when someone would be featured in too large a
 share of recent episodes; fresh people are preferred, and nobody is barred for having
 appeared before.

@@ -299,7 +299,8 @@
    "word": "bluesky",
    "status": "works",
    "voices": [
-    "sibyl"
+    "sibyl",
+    "larry"
    ],
    "heard": [],
    "spellings": [
@@ -314,6 +315,18 @@
        "count": 8
       }
      ]
+    },
+    {
+     "as": "Blue-Sky",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "bluesky",
+       "count": 4
+      }
+     ]
     }
    ],
    "works": [
@@ -322,12 +335,19 @@
      "voices": [
       "sibyl"
      ]
+    },
+    {
+     "as": "Blue-Sky",
+     "voices": [
+      "larry"
+     ]
     }
    ],
-   "note": "\"blue-sky\" heard in every take (harvested from fit.json).",
+   "note": "Not in the dictionary: the engine reads the plain word as bluh-eh-skee. Spelled as two words it is blue sky.",
    "seen": [
     "002-commissions-w47/riemann-proof-that-fits",
-    "002-commissions-w47/riemann-breaking-news"
+    "002-commissions-w47/riemann-breaking-news",
+    "002-2026-w47/bluesky-account"
    ]
   },
   {
@@ -464,6 +484,40 @@
    "note": "\"kaw-ling\" heard in every take (harvested from fit.json).",
    "seen": [
     "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "word": "can",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "cann",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "can",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "cann",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"cann\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-2026-w47/music-alt"
    ]
   },
   {
@@ -1060,6 +1114,63 @@
    ]
   },
   {
+   "word": "host",
+   "status": "unstable",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "hoped",
+     "count": 3
+    },
+    {
+     "as": "hope",
+     "count": 1
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "Larry, line-final after only: heard hoped in most takes (once post); plain at rate 0.9 was best; hoast and a comma after I did no better; hohst and hostt change the vowel.",
+   "seen": [
+    "002-2026-w47/music-alt"
+   ]
+  },
+  {
+   "word": "i",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "eye",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "i",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "eye",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"eye\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-2026-w47/music-alt"
+   ]
+  },
+  {
    "word": "icosahedrons",
    "status": "cannot",
    "voices": [
@@ -1088,6 +1199,49 @@
    "note": "Heard \"I call sahitarans\" / \"I call Sahedrons\" as eye-koh-sa-heed-rons; the caption carries it.",
    "seen": [
     "002-2026-w47/made-polyhedral-coffee-simulator"
+   ]
+  },
+  {
+   "word": "in",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "(lost)",
+     "count": 7
+    },
+    {
+     "as": "in",
+     "count": 7
+    }
+   ],
+   "spellings": [
+    {
+     "as": "inn",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "in",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "inn",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"inn\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-2026-w47/bluesky-account"
    ]
   },
   {
@@ -2102,6 +2256,73 @@
    "seen": [
     "002-commissions-w47/riemann-market-wrap",
     "002-commissions-w47/riemann-breaking-news"
+   ]
+  },
+  {
+   "word": "read",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "read",
+     "count": 7
+    },
+    {
+     "as": "a",
+     "count": 6
+    },
+    {
+     "as": "(lost)",
+     "count": 2
+    },
+    {
+     "as": "heard",
+     "count": 2
+    },
+    {
+     "as": "a very",
+     "count": 1
+    }
+   ],
+   "spellings": [
+    {
+     "as": "red",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "read",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "readd",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "a",
+       "count": 2
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "red",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"red\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-2026-w47/bluesky-account"
    ]
   },
   {
@@ -3695,6 +3916,51 @@
    ]
   },
   {
+   "word": "wop",
+   "status": "cannot",
+   "voices": [
+    "dee",
+    "hy"
+   ],
+   "heard": [
+    {
+     "as": "clap",
+     "count": 2
+    },
+    {
+     "as": "flap",
+     "count": 1
+    },
+    {
+     "as": "slap",
+     "count": 1
+    }
+   ],
+   "spellings": [
+    {
+     "as": "wopp",
+     "voices": [
+      "dee"
+     ],
+     "heard": [
+      {
+       "as": "slap",
+       "count": 3
+      },
+      {
+       "as": "let's",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Sung alone (Dee, MIDI 72, 0.36 s; Hy, MIDI 67): heard Clap, Flap, Slap, My baby, Love you; wopp and wwop keep the sounds and did no better (Slap, Let's, MUP). In do-wop it is heard as up. The lyric on screen carries it.",
+   "seen": [
+    "002-2026-w47/music-alt"
+   ]
+  },
+  {
    "word": "yowl",
    "status": "cannot",
    "voices": [
@@ -3870,6 +4136,33 @@
    ],
    "words": [
     "urp"
+   ]
+  },
+  {
+   "pattern": "A sung scat syllable",
+   "note": "Sung doo is transcribed Do or Doo (the sound is right); sung wop is never written, alone or in do-wop (up, Clap, love); whop has the same phonemes and the same render. Held hook endings set off loops of do do do.",
+   "seen": [
+    "002-2026-w47/music-alt"
+   ],
+   "words": [
+    "doo",
+    "wop"
+   ]
+  },
+  {
+   "pattern": "A sung lead line over a four-voice block",
+   "note": "Hy's lead at MIDI 64-71, a syllable to a half beat, over bass, ooh pads and brushes: rarely transcribed (silence, loops of long or no, some love for someone); a comma after someone helped a little. The lyric display carries it.",
+   "seen": [
+    "002-2026-w47/music-alt"
+   ],
+   "words": [
+    "someone",
+    "built",
+    "loader",
+    "wheelies",
+    "showed",
+    "mug",
+    "that"
    ]
   }
  ]
