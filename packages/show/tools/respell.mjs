@@ -67,6 +67,28 @@ export function loadDict(file = fileURLToPath(new URL('./data/cmudict.txt.gz', i
   return DICT
 }
 
+let READINGS = null
+/**
+ * Every reading the pronunciation dictionary gives: word → [phones, …] (the first is the one
+ * loadDict keeps; alternates are a repeated word or a "word(2)" line). The committed dictionary has
+ * one reading per word; config/sounds.json `readings` adds the alternates of words with two
+ * (sounds.mjs merges them).
+ */
+export function loadReadings(file = fileURLToPath(new URL('./data/cmudict.txt.gz', import.meta.url))) {
+  if (READINGS) return READINGS
+  READINGS = new Map()
+  for (const line of gunzipSync(readFileSync(file)).toString('utf8').split('\n')) {
+    const tab = line.indexOf('\t')
+    if (tab < 1) continue
+    const w = line.slice(0, tab).replace(/\(\d+\)$/, '')
+    const ph = line.slice(tab + 1).trim().split(/\s+/)
+    const list = READINGS.get(w) ?? []
+    if (!list.some((x) => x.join(' ') === ph.join(' '))) list.push(ph)
+    READINGS.set(w, list)
+  }
+  return READINGS
+}
+
 /** a caption token split into leading punctuation, the word, trailing punctuation */
 export function splitToken(tok) {
   const m = /^([^\p{L}\p{N}]*)(.*?)([^\p{L}\p{N}]*)$/u.exec(tok)

@@ -14,7 +14,7 @@
 import { renameSync, writeFileSync } from "node:fs";
 import { pathToFileURL } from "node:url";
 import { loadEngine } from "./engine.ts";
-import { loadDict } from "./respell.mjs";
+import { loadDict, loadReadings } from "./respell.mjs";
 import { auditSounds, loadSoundsConfig, memoIpa, scriptLines, soundsRow, spellingSounds, wordSounds } from "./sounds.mjs";
 import { PAGE_FILE, RESEARCH_FILE, loadResearch, markMisleading, renderPage, validate } from "./voice-research-lib.mjs";
 
@@ -22,7 +22,7 @@ import { PAGE_FILE, RESEARCH_FILE, loadResearch, markMisleading, renderPage, val
 export async function soundsTools() {
   const { g2p } = await loadEngine();
   const ipa = memoIpa((w: string) => g2p.toPhrases(w).flatMap((p: any) => p.segments.map((s: any) => s.ipa)));
-  return { ipa, dict: loadDict(), config: loadSoundsConfig() };
+  return { ipa, dict: loadDict(), readings: loadReadings(), config: loadSoundsConfig() };
 }
 
 export type SoundsTools = Awaited<ReturnType<typeof soundsTools>>;
@@ -42,7 +42,7 @@ export function acceptor(tools: SoundsTools, onReject?: (r: NonNullable<ReturnTy
 /** print the audit of one script; returns the audit */
 export function printAudit(label: string, script: any, tools: SoundsTools) {
   const a = auditSounds(scriptLines(script), tools);
-  console.log(`sounds ${label}: ${a.lines} line${a.lines === 1 ? "" : "s"} with \`as\` · ${a.different.length} word${a.different.length === 1 ? "" : "s"} sound different from the word · ${a.guesses.length} guess${a.guesses.length === 1 ? "" : "es"}`);
+  console.log(`sounds ${label}: ${a.lines} line${a.lines === 1 ? "" : "s"} with \`as\` · ${a.different.length} word${a.different.length === 1 ? "" : "s"} sound different from the word · ${a.guesses.length} guess${a.guesses.length === 1 ? "" : "es"} · ${a.readings.length} with two readings`);
   if (a.different.length) {
     console.log("sounds different from the word (the word's sounds → the spelling's):");
     for (const r of a.different) console.log(`  ${soundsRow(r)}`);
@@ -50,6 +50,10 @@ export function printAudit(label: string, script: any, tools: SoundsTools) {
   if (a.guesses.length) {
     console.log("guesses (not in the dictionary: no reference, sounds shown only):");
     for (const r of a.guesses) console.log(`  ${r.id} (${r.who}) ${r.word} → ${r.as}: /${r.ipa || "?"}/`);
+  }
+  if (a.readings.length) {
+    console.log("words with two readings (the engine's for the plain spelling; the others: which one the line means is yours to hear):");
+    for (const r of a.readings) console.log(`  ${r.id} (${r.who}) ${r.word}: plain /${r.plain}/ · also ${r.alternates.map((x: string) => `/${x}/`).join(", ")}`);
   }
   if (a.unaligned.length) console.log(`not checked (the \`as\` has not one word per caption word): ${a.unaligned.map((u) => u.id).join(", ")}`);
   return a;
@@ -64,7 +68,7 @@ export function researchSounds(tools: SoundsTools, { dry = false } = {}) {
     return 1;
   }
   const m = markMisleading(r, (word: string, spelling: string) => spellingSounds(word, spelling, tools));
-  for (const c of m.changed) console.log(`${c.word}: ${c.from}${c.to !== c.from ? ` → ${c.to}` : ""}${c.moved.length ? `; misleads: ${c.moved.join(", ")}` : ""}`);
+  for (const c of m.changed) console.log(`${c.word}: ${c.from}${c.to !== c.from ? ` → ${c.to}` : ""}${c.moved.length ? `; misleads: ${c.moved.join(", ")}` : ""}${c.works?.length ? `; works after all (a reading of the word): ${c.works.join(", ")}` : ""}`);
   const all = m.research.words.filter((e: any) => (e.misleads ?? []).length);
   console.log(`${m.changed.length} entr${m.changed.length === 1 ? "y" : "ies"} changed; ${all.length} word${all.length === 1 ? "" : "s"} with a misleading spelling, ${m.research.words.filter((e: any) => e.status === "misleads").length} marked misleads`);
   for (const e of all) for (const x of e.misleads) console.log(`  ${e.word} (${e.status}) /${e.ipa ?? "?"}/ → ${x.as} /${x.ipa || "?"}/${x.why ? ` (${x.why})` : ""}`);

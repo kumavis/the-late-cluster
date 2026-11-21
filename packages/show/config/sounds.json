@@ -1,7 +1,141 @@
 {
-  "$comment": "What a respelling in `as` may change of a dictionary word's sounds (tools/sounds.mjs; tools/README.md, 'A respelling keeps the word's sounds'). The sounds are the engine's own G2P (IPA segments). A respelling keeps the word's vowels, in order, and its consonants; it may double or lengthen a consonant, add a break or a pause, and shift stress (any stressed or unstressed form of the dictionary's vowel at that place, so a function word may take its strong vowel). nearVowels are the only other vowel swaps allowed: in this engine they are one dictionary vowel unstressed and stressed (AH as ə and ʌ, ER as ɚ and ɝ). Vowels that are merely close are not listed: ɛ and æ are close in the male body's formants, but bet and bat are different words; ɑ and ɔ are one vowel only in accents with the cot-caught merger, so stock respelled stawk is heard as stalk by everyone else. strongVowels are the stressed vowels of the two function words whose dictionary entry is only their weak form (the as thee, a as ay), so stressing them is a stress shift too. sameConsonant are allophones the G2P picks by context (dark l, the flap for t and d between vowels), so they are the same consonant. lengthens are consonants that may be put before another as a longer closure of it (the README's djoke: d before dʒ). Changed by ear, never because the transcription liked a spelling: the transcription's approval is not a listener's.",
-  "nearVowels": [["ə", "ʌ"], ["ɚ", "ɝ"]],
-  "strongVowels": { "the": ["i"], "a": ["eɪ"] },
-  "sameConsonant": [["l", "ɫ"], ["t", "ɾ"], ["d", "ɾ"]],
-  "lengthens": [["d", "dʒ"], ["t", "tʃ"]]
+  "$comment": "What a respelling in `as` may change of a dictionary word's sounds (tools/sounds.mjs; tools/README.md, 'A respelling keeps the word's sounds'). The sounds are the engine's own G2P (IPA segments). A respelling keeps the word's vowels, in order, and its consonants; it may double or lengthen a consonant, add a break or a pause, and shift stress (any stressed or unstressed form of the dictionary's vowel at that place, so a function word may take its strong vowel). nearVowels are the only other vowel swaps allowed: in this engine they are one dictionary vowel unstressed and stressed (AH as ə and ʌ, ER as ɚ and ɝ). Vowels that are merely close are not listed: ɛ and æ are close in the male body's formants, but bet and bat are different words; ɑ and ɔ are one vowel only in accents with the cot-caught merger, so stock respelled stawk is heard as stalk by everyone else. strongVowels are the stressed vowels of the two function words whose dictionary entry is only their weak form (the as thee, a as ay), so stressing them is a stress shift too. sameConsonant are allophones the G2P picks by context (dark l, the flap for t and d between vowels), so they are the same consonant. lengthens are consonants that may be put before another as a longer closure of it (the README's djoke: d before dʒ). Changed by ear, never because the transcription liked a spelling: the transcription's approval is not a listener's. readings are the other readings of words with two (the noun and the verb, the present and the past), in the dictionary's ARPAbet: the committed dictionary keeps one reading per word, and the engine says the plain spelling one way, so a respelling may keep the sounds of any reading listed here or in the dictionary; the audit lists every such word in a script under 'words with two readings'.",
+  "nearVowels": [
+    [
+      "ə",
+      "ʌ"
+    ],
+    [
+      "ɚ",
+      "ɝ"
+    ]
+  ],
+  "strongVowels": {
+    "the": [
+      "i"
+    ],
+    "a": [
+      "eɪ"
+    ]
+  },
+  "sameConsonant": [
+    [
+      "l",
+      "ɫ"
+    ],
+    [
+      "t",
+      "ɾ"
+    ],
+    [
+      "d",
+      "ɾ"
+    ]
+  ],
+  "lengthens": [
+    [
+      "d",
+      "dʒ"
+    ],
+    [
+      "t",
+      "tʃ"
+    ]
+  ],
+  "readings": {
+    "record": [
+      "R EH1 K ER0 D"
+    ],
+    "present": [
+      "P R IY0 Z EH1 N T"
+    ],
+    "read": [
+      "R EH1 D",
+      "R IY1 D"
+    ],
+    "live": [
+      "L AY1 V",
+      "L IH1 V"
+    ],
+    "lead": [
+      "L EH1 D",
+      "L IY1 D"
+    ],
+    "object": [
+      "AH0 B JH EH1 K T"
+    ],
+    "project": [
+      "P R AH0 JH EH1 K T"
+    ],
+    "permit": [
+      "P ER1 M IH0 T",
+      "P ER0 M IH1 T"
+    ],
+    "produce": [
+      "P R OW1 D UW0 S"
+    ],
+    "content": [
+      "K AH0 N T EH1 N T"
+    ],
+    "subject": [
+      "S AH0 B JH EH1 K T"
+    ],
+    "desert": [
+      "D IH0 Z ER1 T"
+    ],
+    "wind": [
+      "W AY1 N D"
+    ],
+    "tear": [
+      "T IH1 R"
+    ],
+    "close": [
+      "K L OW1 S"
+    ],
+    "use": [
+      "Y UW1 Z"
+    ],
+    "minute": [
+      "M AY0 N UW1 T"
+    ],
+    "refuse": [
+      "R EH1 F Y UW0 Z"
+    ],
+    "conduct": [
+      "K AH0 N D AH1 K T"
+    ],
+    "contract": [
+      "K AH0 N T R AE1 K T"
+    ],
+    "increase": [
+      "IH1 N K R IY2 S"
+    ],
+    "progress": [
+      "P R AH0 G R EH1 S"
+    ],
+    "row": [
+      "R AW1"
+    ],
+    "bow": [
+      "B OW1"
+    ],
+    "wound": [
+      "W AW1 N D"
+    ],
+    "separate": [
+      "S EH1 P ER0 AH0 T"
+    ],
+    "estimate": [
+      "EH1 S T AH0 M EY2 T"
+    ],
+    "polish": [
+      "P OW1 L IH0 SH"
+    ],
+    "uses": [
+      "Y UW1 Z AH0 Z"
+    ],
+    "used": [
+      "Y UW1 Z D"
+    ]
+  }
 }

@@ -597,15 +597,24 @@ Everything else is rejected before it is rendered (so it also saves renders): an
 does not know (a name, a handle, an invented word, shorthand read as it is meant: `ay-eye` for AI)
 has no reference: any spelling is a guess, unconstrained, and its sounds are shown. When no
 acceptable candidate beats the plain spelling, the plain spelling stays, and a line may stay
-misheard by the transcription: that is the best-effort ruling working as intended. A word with
-two readings (record, the noun and the verb) is checked against the dictionary's one reading;
-read such a line yourself.
+misheard by the transcription: that is the best-effort ruling working as intended.
+
+**A word with two readings** (record, the noun and the verb; read, live, present, …): a respelling
+is acceptable if it keeps the sounds of **any** reading the dictionary gives, under the same
+allowances. The engine says the plain spelling one way (the verb, /ɹ ə k ɔ ɹ d/, for "record"),
+so in a line that means the noun the plain spelling is the wrong one and `rekkerd` (/ɹ ɛ k k ɝ d/,
+the noun's /ɹ ɛ k ɚ d/) is right. The committed dictionary keeps one reading per word; the others
+are listed in `config/sounds.json` `readings` (ARPAbet), and any alternate line in the dictionary
+is used too. `fit.json`'s `sounds` gives the `reading` a spelling keeps when it is not the plain
+one; a rejected spelling lists the word's `readings`.
 
 A respelling already in the script (a sound editor's, by hand) goes through the same check every
 time the tool runs: a line whose `as` changes a dictionary word's vowels or consonants is listed
 under `sounds different from the word`, with both phoneme strings. That list does not block; it is
 for the sound editor and the owner. `--sounds` prints only that check, for a draft or a segment,
-with no rendering and no Whisper, and the guesses apart:
+with no rendering and no Whisper, the guesses apart, and, on a list of its own, every word of the
+script with two readings (respelled or not), with the reading the engine gives the plain spelling
+and the alternates. That list never blocks: the sound editor knows which reading the line means.
 
 ```
 sounds 002-commissions-w47 --draft making-of-inward: 11 lines with `as` · 7 words sound different from the word · 4 guesses
@@ -749,7 +758,8 @@ and a line whose only missed words are a name needs no entry.
 (above) over every working spelling in the file with the engine's G2P (under bun): one that changes
 the word moves from `works` to `misleads`, with its sounds and the word's, and its evidence
 (`spellings`, `heard`) stays. An entry left with no working spelling is marked `misleads`; another
-status is kept. The fitting tool never tries such a spelling, first or otherwise, and the page lists
+status is kept. A spelling marked `misleads` that keeps another reading of the word (`rekkerd`, the
+noun "record") moves back to `works`, with that `reading` recorded, and the page shows it. The fitting tool never tries a misleading spelling, first or otherwise, and the page lists
 them apart from the spellings that work, with both phoneme strings. Plain "show" is right (the
 owner, by ear): `showw` and `sshoww` are pronounced "shao". `--add <word> --status misleads --as
 <spelling>` records one by hand; `--sounds` fills in its sounds.
@@ -922,8 +932,8 @@ How it works:
 
 ## Known limits
 
-- The sounds check compares a respelling with the dictionary's one reading of a word, so a word
-  with two (record, the noun and the verb) can be judged against the wrong one, and Whisper's
+- The sounds check knows a word's other readings only from `config/sounds.json` `readings` (the
+  committed dictionary keeps one per word): add a heteronym there when you meet one. Whisper's
   approval of a spelling is never a listener's: read the phonemes, and listen.
 - Some words cannot be said, or are unstable, in some voices: they are recorded in
   [`docs/voice-research.md`](../../../docs/voice-research.md). A writer may still use them; the

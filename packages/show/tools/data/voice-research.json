@@ -5,19 +5,26 @@
    "word": "a",
    "status": "works",
    "voices": [
-    "larry"
+    "larry",
+    "guest"
    ],
-   "heard": [],
+   "heard": [
+    {
+     "as": "the",
+     "count": 2
+    }
+   ],
    "spellings": [
     {
      "as": "uh",
      "voices": [
-      "larry"
+      "larry",
+      "guest"
      ],
      "heard": [
       {
        "as": "a",
-       "count": 12
+       "count": 36
       }
      ]
     }
@@ -26,14 +33,18 @@
     {
      "as": "uh",
      "voices": [
-      "larry"
+      "larry",
+      "guest"
      ]
     }
    ],
    "note": "\"uh\" heard in every take (harvested from fit.json).",
    "seen": [
     "002-commissions-w47/making-of-inward",
-    "002-commissions-w47/making-of-outward"
+    "002-commissions-w47/making-of-outward",
+    "002-commissions-w47/riemann-breaking-news",
+    "002-2026-w47/made-mobius-chess-ringmate",
+    "002-2026-w47/interview-yonderdavid"
    ]
   },
   {
@@ -80,6 +91,29 @@
    "note": "Heard as \"head\" or \"edge\" in every one of eight tries.",
    "seen": [
     "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "word": "adulterated",
+   "status": "unstable",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [
+    {
+     "as": "touch rate bootlegs i",
+     "count": 3
+    },
+    {
+     "as": "touch rate",
+     "count": 1
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "In a read post, sibyl: heard \"touch-rate\" plain, \"dot rated\" as a-dull-ter-ay-tid (sounds kept); set apart by commas it is heard but the next word is lost.",
+   "seen": [
+    "002-2026-w47/made-polyhedral-coffee-simulator"
    ]
   },
   {
@@ -277,7 +311,7 @@
      "heard": [
       {
        "as": "bluesky",
-       "count": 4
+       "count": 8
       }
      ]
     }
@@ -292,7 +326,8 @@
    ],
    "note": "\"blue-sky\" heard in every take (harvested from fit.json).",
    "seen": [
-    "002-commissions-w47/riemann-proof-that-fits"
+    "002-commissions-w47/riemann-proof-that-fits",
+    "002-commissions-w47/riemann-breaking-news"
    ]
   },
   {
@@ -327,6 +362,40 @@
    "note": "\"book-ing\" heard in every take (harvested from fit.json).",
    "seen": [
     "002-commissions-w47/making-of-outward"
+   ]
+  },
+  {
+   "word": "bootleg",
+   "status": "works",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "boot-leg",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "bootleg",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "boot-leg",
+     "voices": [
+      "sibyl"
+     ]
+    }
+   ],
+   "note": "\"boot-leg\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-2026-w47/made-polyhedral-coffee-simulator"
    ]
   },
   {
@@ -432,6 +501,66 @@
    ]
   },
   {
+   "word": "chicken",
+   "status": "unstable",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [
+    {
+     "as": "click on",
+     "count": 2
+    },
+    {
+     "as": "tabs",
+     "count": 2
+    }
+   ],
+   "spellings": [
+    {
+     "as": "Chik-kun",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "nikon",
+       "count": 13
+      },
+      {
+       "as": "con",
+       "count": 2
+      },
+      {
+       "as": "which",
+       "count": 2
+      },
+      {
+       "as": "on",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "chik-kun",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "nikon",
+       "count": 2
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"top chicken\" in a read post, sibyl: heard \"tabs can\", \"Nikon\", \"connect\"; topp, Chik-kun with commas was best (16/20). Caption carries it.",
+   "seen": [
+    "002-2026-w47/top-chicken"
+   ]
+  },
+  {
    "word": "clue",
    "status": "cannot",
    "voices": [
@@ -448,6 +577,94 @@
    "note": "Heard as \"glue\" in every take and every spelling tried: an initial \"cl\" comes out \"gl\".",
    "seen": [
     "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
+   "word": "coffee",
+   "status": "unstable",
+   "voices": [
+    "guest"
+   ],
+   "heard": [
+    {
+     "as": "coffee",
+     "count": 4
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "After polyhedral, plain coffee was heard \"calf\" and kof-fee too; set apart by commas (\"polly-hee-drull, coffee, simulator\") it is heard. caw-fee is /k ɔ f i/, not the word.",
+   "seen": [
+    "002-2026-w47/made-polyhedral-coffee-simulator"
+   ]
+  },
+  {
+   "word": "datacenter",
+   "status": "works",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "dayta-center",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "datacenter",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "dayta-center",
+     "voices": [
+      "sibyl"
+     ]
+    }
+   ],
+   "note": "\"dayta-center\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-2026-w47/top-chicken"
+   ]
+  },
+  {
+   "word": "diverges",
+   "status": "cannot",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [
+    {
+     "as": "divergent",
+     "count": 16
+    },
+    {
+     "as": "undiverrage",
+     "count": 8
+    },
+    {
+     "as": "dash",
+     "count": 2
+    },
+    {
+     "as": "diver is",
+     "count": 1
+    },
+    {
+     "as": "have",
+     "count": 1
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "Sibyl: heard 'divergent' in every take, as written and with commas around zeta.",
+   "seen": [
+    "002-commissions-w47/riemann-breaking-news"
    ]
   },
   {
@@ -529,6 +746,40 @@
    ]
   },
   {
+   "word": "every",
+   "status": "works",
+   "voices": [
+    "guest"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "eh-ver-ee",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "every",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "eh-ver-ee",
+     "voices": [
+      "guest"
+     ]
+    }
+   ],
+   "note": "\"eh-ver-ee\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-breaking-news"
+   ]
+  },
+  {
    "word": "from",
    "status": "works",
    "voices": [
@@ -553,7 +804,7 @@
      "heard": [
       {
        "as": "from",
-       "count": 4
+       "count": 8
       }
      ]
     }
@@ -568,7 +819,8 @@
    ],
    "note": "\"frum\" heard in every take (harvested from fit.json).",
    "seen": [
-    "002-commissions-w47/making-of-inward"
+    "002-commissions-w47/making-of-inward",
+    "002-2026-w47/made-pen-plotter-replies"
    ]
   },
   {
@@ -722,6 +974,58 @@
    ]
   },
   {
+   "word": "halves",
+   "status": "cannot",
+   "voices": [
+    "guest"
+   ],
+   "heard": [
+    {
+     "as": "hair cast to infinity",
+     "count": 7
+    },
+    {
+     "as": "infinity",
+     "count": 2
+    },
+    {
+     "as": "menicare",
+     "count": 2
+    },
+    {
+     "as": "nehaer",
+     "count": 2
+    },
+    {
+     "as": "hairs cast to infinity",
+     "count": 1
+    }
+   ],
+   "spellings": [
+    {
+     "as": "havz",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "hair cast to infinity",
+       "count": 7
+      },
+      {
+       "as": "hairs cast to infinity",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Guest at 254 Hz, after 'many': 'hair', 'here', 'head'; havz the same.",
+   "seen": [
+    "002-commissions-w47/riemann-breaking-news"
+   ]
+  },
+  {
    "word": "hello",
    "status": "works",
    "voices": [
@@ -756,6 +1060,37 @@
    ]
   },
   {
+   "word": "icosahedrons",
+   "status": "cannot",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "eye-koh-sa-heed-rons",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "sahitarans",
+       "count": 3
+      },
+      {
+       "as": "i call sahitarans",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Heard \"I call sahitarans\" / \"I call Sahedrons\" as eye-koh-sa-heed-rons; the caption carries it.",
+   "seen": [
+    "002-2026-w47/made-polyhedral-coffee-simulator"
+   ]
+  },
+  {
    "word": "infinitely",
    "status": "cannot",
    "voices": [
@@ -764,15 +1099,23 @@
    "heard": [
     {
      "as": "infantry",
-     "count": 21
+     "count": 29
+    },
+    {
+     "as": "infantry meni hares",
+     "count": 3
+    },
+    {
+     "as": "inksen",
+     "count": 2
+    },
+    {
+     "as": "instant",
+     "count": 2
     },
     {
      "as": "thank you so much for watching and i'll see you in the",
      "count": 2
-    },
-    {
-     "as": "infantry meni hares",
-     "count": 1
     }
    ],
    "spellings": [
@@ -795,16 +1138,25 @@
      ],
      "heard": [
       {
+       "as": "infinearly",
+       "count": 6
+      },
+      {
        "as": "in fun not gee",
+       "count": 2
+      },
+      {
+       "as": "infinology",
        "count": 2
       }
      ]
     }
    ],
    "works": [],
-   "note": "Guest at 254 Hz: \"infantry\" ×4 as written; in-finn-it-lee \"Infiniti\", infinitly \"in fungi\", inn-fuh-nut-lee \"In Faknaji\"; never heard.",
+   "note": "Guest at 254 Hz, again 'infantry' in every take, with a comma after it too.",
    "seen": [
-    "002-commissions-w47/riemann-proof-that-fits"
+    "002-commissions-w47/riemann-proof-that-fits",
+    "002-commissions-w47/riemann-breaking-news"
    ]
   },
   {
@@ -857,7 +1209,7 @@
      "heard": [
       {
        "as": "it",
-       "count": 4
+       "count": 8
       }
      ]
     }
@@ -872,7 +1224,8 @@
    ],
    "note": "\"itt\" heard in every take (harvested from fit.json).",
    "seen": [
-    "002-commissions-w47/riemann-proof-that-fits"
+    "002-commissions-w47/riemann-proof-that-fits",
+    "002-commissions-w47/riemann-breaking-news"
    ]
   },
   {
@@ -907,6 +1260,25 @@
    "note": "\"djaw\" heard in every take (harvested from fit.json).",
    "seen": [
     "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
+   "word": "joke",
+   "status": "cannot",
+   "voices": [
+    "guest"
+   ],
+   "heard": [
+    {
+     "as": "rope",
+     "count": 4
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "Guest at 254 Hz, after 'gonna': 'rope', 'rock', 'broke'; djoke gave 'grope', near crude, not used.",
+   "seen": [
+    "002-commissions-w47/riemann-breaking-news"
    ]
   },
   {
@@ -945,17 +1317,26 @@
   },
   {
    "word": "kazoo",
-   "status": "misleads",
+   "status": "unstable",
    "voices": [
-    "larry"
+    "larry",
+    "guest"
    ],
    "heard": [
     {
-     "as": "zoom",
+     "as": "kakzu",
+     "count": 2
+    },
+    {
+     "as": "kazoo",
      "count": 2
     },
     {
      "as": "two",
+     "count": 2
+    },
+    {
+     "as": "zoom",
      "count": 2
     }
    ],
@@ -986,9 +1367,10 @@
     }
    ],
    "works": [],
-   "note": "`kah-zoo` is heard as \"Kazu\", which is kazoo as Whisper spells it; at a raised pitch (176 Hz) `ka-zoo` gave \"tazoo\".",
+   "note": "`kah-zoo` is heard as \"Kazu\" but is /k ɑ z u/; at a raised pitch `ka-zoo` gave \"tazoo\". In a guest's voice plain was heard \"clue\"; plain after \"uh\" (\"like uh kazoo\") was heard \"kazoo\" in 2 takes of 4, \"kakzu\" in 2.",
    "seen": [
-    "002-commissions-w47/making-of-inward"
+    "002-commissions-w47/making-of-inward",
+    "002-2026-w47/interview-yonderdavid"
    ],
    "misleads": [
     {
@@ -1453,6 +1835,101 @@
    ]
   },
   {
+   "word": "plotter",
+   "status": "unstable",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "ladder",
+     "count": 2
+    },
+    {
+     "as": "bladder",
+     "count": 1
+    },
+    {
+     "as": "platter",
+     "count": 1
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "After \"pen\" heard \"platter\", \"bladder\" or \"tenth ladder\"; plot-ter and a comma after pen did no better. The caption carries it.",
+   "seen": [
+    "002-2026-w47/made-pen-plotter-replies"
+   ]
+  },
+  {
+   "word": "polyhedra",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "polly-hee-dra",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "polyhedra",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "polly-hee-dra",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"polly-hee-dra\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-2026-w47/made-polyhedral-coffee-simulator"
+   ]
+  },
+  {
+   "word": "polyhedral",
+   "status": "works",
+   "voices": [
+    "guest"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "polly-hee-drull",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "polyhedral",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "polly-hee-drull",
+     "voices": [
+      "guest"
+     ]
+    }
+   ],
+   "note": "\"polly-hee-drull\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-2026-w47/made-polyhedral-coffee-simulator"
+   ]
+  },
+  {
    "word": "posted",
    "status": "works",
    "voices": [
@@ -1593,7 +2070,12 @@
    "voices": [
     "larry"
    ],
-   "heard": [],
+   "heard": [
+    {
+     "as": "gloating",
+     "count": 2
+    }
+   ],
    "spellings": [
     {
      "as": "kwoat-ing",
@@ -1603,7 +2085,7 @@
      "heard": [
       {
        "as": "quoting",
-       "count": 4
+       "count": 8
       }
      ]
     }
@@ -1618,7 +2100,8 @@
    ],
    "note": "\"kwoat-ing\" heard in every take (harvested from fit.json).",
    "seen": [
-    "002-commissions-w47/riemann-market-wrap"
+    "002-commissions-w47/riemann-market-wrap",
+    "002-commissions-w47/riemann-breaking-news"
    ]
   },
   {
@@ -1657,11 +2140,17 @@
   },
   {
    "word": "record",
-   "status": "misleads",
+   "status": "works",
    "voices": [
-    "larry"
+    "larry",
+    "eppy"
    ],
-   "heard": [],
+   "heard": [
+    {
+     "as": "record",
+     "count": 4
+    }
+   ],
    "spellings": [
     {
      "as": "rek-ord",
@@ -1674,12 +2163,28 @@
        "count": 4
       }
      ]
+    },
+    {
+     "as": "rekkerd",
+     "voices": [
+      "eppy"
+     ],
+     "heard": []
     }
    ],
-   "works": [],
-   "note": "\"rek-ord\" heard in every take (harvested from fit.json).",
+   "works": [
+    {
+     "as": "rekkerd",
+     "voices": [
+      "eppy"
+     ],
+     "reading": "ɹ ɛ k ɚ d"
+    }
+   ],
+   "note": "The noun (\"the record\"): plain is said as the dictionary's verb /ɹ ə k ɔ ɹ d/ yet heard \"record\" in every take; `rekkerd` /ɹ ɛ k k ɝ d/ keeps the noun's reading /ɹ ɛ k ɚ d/ and works; `rek-ord` keeps neither.",
    "seen": [
-    "002-commissions-w47/making-of-inward"
+    "002-commissions-w47/making-of-inward",
+    "002-2026-w47/top-chicken"
    ],
    "misleads": [
     {
@@ -1764,6 +2269,41 @@
     }
    ],
    "ipa": "ɹ ɪ p l aɪ"
+  },
+  {
+   "word": "repost",
+   "status": "unstable",
+   "voices": [
+    "larry",
+    "guest"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "ree-post",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "repost",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "ree-post",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "Heard \"report\" in some takes: a statement changed. Plain was best in a guest's line (3 of 4); rate 0.85 cleared Larry's short \"I like. I ree-post.\"; slower rates and ree-poast did worse for the guest.",
+   "seen": [
+    "002-2026-w47/made-mobius-chess-ringmate"
+   ]
   },
   {
    "word": "review",
@@ -2161,6 +2701,40 @@
    "ipa": "ʃ oʊ"
   },
   {
+   "word": "side",
+   "status": "works",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "sighed",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "side",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "sighed",
+     "voices": [
+      "sibyl"
+     ]
+    }
+   ],
+   "note": "\"sighed\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-2026-w47/made-mobius-chess-ringmate"
+   ]
+  },
+  {
    "word": "simcluster",
    "status": "works",
    "voices": [
@@ -2339,6 +2913,33 @@
    "ipa": "s ɑ ɫ v"
   },
   {
+   "word": "sphenomegacorona",
+   "status": "cannot",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "sfee-no-mega-corona",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "single megacroner",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Heard \"single megacroner\" as sfee-no-mega-corona in every take.",
+   "seen": [
+    "002-2026-w47/made-polyhedral-coffee-simulator"
+   ]
+  },
+  {
    "word": "stock",
    "status": "misleads",
    "voices": [
@@ -2378,6 +2979,40 @@
     }
    ],
    "ipa": "s t ɑ k"
+  },
+  {
+   "word": "suspense",
+   "status": "works",
+   "voices": [
+    "guest"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "sus-pense",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "suspense",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "sus-pense",
+     "voices": [
+      "guest"
+     ]
+    }
+   ],
+   "note": "\"sus-pense\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-2026-w47/made-pen-plotter-replies"
+   ]
   },
   {
    "word": "tech",
@@ -2624,7 +3259,7 @@
      "heard": [
       {
        "as": "the",
-       "count": 4
+       "count": 12
       }
      ]
     }
@@ -2639,7 +3274,9 @@
    ],
    "note": "\"thee\" heard in every take (harvested from fit.json).",
    "seen": [
-    "002-commissions-w47/riemann-market-wrap"
+    "002-commissions-w47/riemann-market-wrap",
+    "002-commissions-w47/riemann-breaking-news",
+    "002-2026-w47/interview-yonderdavid"
    ]
   },
   {
@@ -2861,6 +3498,41 @@
    ]
   },
   {
+   "word": "uses",
+   "status": "works",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "yoo-zuz",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "uses",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "yoo-zuz",
+     "voices": [
+      "sibyl"
+     ]
+    }
+   ],
+   "note": "\"yoo-zuz\" heard as the word in every take, but its sounds are not the word's (harvested from fit.json).",
+   "seen": [
+    "002-2026-w47/top-chicken"
+   ],
+   "ipa": "j u s ə z"
+  },
+  {
    "word": "values",
    "status": "unstable",
    "voices": [
@@ -2929,6 +3601,25 @@
    "note": "Heard as \"heelum\"; harmless nonsense, and a label on screen carried the word.",
    "seen": [
     "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
+   "word": "viewers",
+   "status": "cannot",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "were",
+     "count": 4
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "Larry, after 'For': 'after you were' in every take; view-erz the same, vyoo-erz adds a vowel; a comma after For gave 'Sir, you are'.",
+   "seen": [
+    "002-commissions-w47/riemann-breaking-news"
    ]
   },
   {
@@ -3001,6 +3692,88 @@
    "note": "\"wuz\" heard in every take (harvested from fit.json).",
    "seen": [
     "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
+   "word": "yowl",
+   "status": "cannot",
+   "voices": [
+    "guest"
+   ],
+   "heard": [
+    {
+     "as": "yau",
+     "count": 2
+    },
+    {
+     "as": "yow",
+     "count": 2
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "Heard \"yow\" (or \"Yau\", \"Yauro\") in every take, plain and `yowll`; the l is lost. The caption carries it.",
+   "seen": [
+    "002-2026-w47/interview-yonderdavid"
+   ]
+  },
+  {
+   "word": "zeta",
+   "status": "cannot",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [
+    {
+     "as": "later",
+     "count": 11
+    },
+    {
+     "as": "later evaluate",
+     "count": 3
+    },
+    {
+     "as": "later we will allow you",
+     "count": 3
+    },
+    {
+     "as": "(lost)",
+     "count": 2
+    },
+    {
+     "as": "later we",
+     "count": 2
+    },
+    {
+     "as": "should",
+     "count": 2
+    },
+    {
+     "as": "later if i",
+     "count": 1
+    },
+    {
+     "as": "later if i were you would",
+     "count": 1
+    },
+    {
+     "as": "later we will review a",
+     "count": 1
+    },
+    {
+     "as": "let",
+     "count": 1
+    },
+    {
+     "as": "they",
+     "count": 1
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "Never heard as the word: Sibyl 'red', 'z', 'they', 'later'; Larry 'red', 'data', 'that', 'late'; a guest's handle reading zay-tuh 'later'. Zay-tuh and zayta change the sounds (an added h, another vowel), so the plain spelling stays.",
+   "seen": [
+    "002-commissions-w47/riemann-breaking-news"
    ]
   }
  ],

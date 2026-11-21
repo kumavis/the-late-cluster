@@ -21,7 +21,7 @@ let CONFIG = null
 export function loadSoundsConfig(file = SOUNDS_CONFIG) {
   if (CONFIG && file === SOUNDS_CONFIG) return CONFIG
   const c = JSON.parse(readFileSync(file, 'utf8'))
-  const out = { nearVowels: c.nearVowels ?? [], strongVowels: c.strongVowels ?? {}, sameConsonant: c.sameConsonant ?? [], lengthens: c.lengthens ?? [] }
+  const out = { nearVowels: c.nearVowels ?? [], strongVowels: c.strongVowels ?? {}, sameConsonant: c.sameConsonant ?? [], lengthens: c.lengthens ?? [], readings: c.readings ?? {} }
   if (file === SOUNDS_CONFIG) CONFIG = out
   return out
 }
@@ -29,6 +29,51 @@ export function loadSoundsConfig(file = SOUNDS_CONFIG) {
 /** the dictionary's vowels as the engine says them, every stress (AH0 is ə, AH1 ʌ; ER0 ɚ, ER1 ɝ) */
 export const ARPA_VOWEL = { AA: ['ɑ'], AE: ['æ'], AH: ['ə', 'ʌ'], AO: ['ɔ'], AW: ['aʊ'], AY: ['aɪ'], EH: ['ɛ'], ER: ['ɚ', 'ɝ'], EY: ['eɪ'], IH: ['ɪ'], IY: ['i'], OW: ['oʊ'], OY: ['ɔɪ'], UH: ['ʊ'], UW: ['u'] }
 const ARPA_VOWEL_RE = /^(AA|AE|AH|AO|AW|AY|EH|ER|EY|IH|IY|OW|OY|UH|UW)[0-2]?$/
+
+const ARPA_CONS = { B: 'b', CH: 'tʃ', D: 'd', DH: 'ð', F: 'f', G: 'g', HH: 'h', JH: 'dʒ', K: 'k', L: 'l', M: 'm', N: 'n', NG: 'ŋ', P: 'p', R: 'ɹ', S: 's', SH: 'ʃ', T: 't', TH: 'θ', V: 'v', W: 'w', Y: 'j', Z: 'z', ZH: 'ʒ' }
+/** dictionary phones → IPA segments as the engine writes them (AH0 ə, AH1 ʌ, ER0 ɚ, ER1 ɝ) */
+export function arpaToIpa(phones) {
+  return (phones ?? []).map((p) => {
+    const m = /^([A-Z]+)([0-2])?$/.exec(p)
+    if (!m) return p
+    if (ARPA_VOWEL[m[1]]) return (m[1] === 'AH' || m[1] === 'ER') && m[2] !== '0' ? ARPA_VOWEL[m[1]][1] : ARPA_VOWEL[m[1]][0]
+    return ARPA_CONS[m[1]] ?? p.toLowerCase()
+  })
+}
+
+/**
+ * Every reading of a caption word the dictionary gives (`readings`: word → [phones, …], from
+ * respell.mjs loadReadings) and config/sounds.json `readings` adds ({ word: ["R EH1 K ER0 D"] }).
+ * Empty for a word with no reference.
+ */
+export function readingsOf(word, { dict, readings, config = loadSoundsConfig() }) {
+  const k = soundKey(word)
+  const first = dictPhones(word, dict)
+  if (!first) return []
+  const out = [first, ...(readings?.get(k) ?? []), ...(config.readings?.[k] ?? []).map((r) => r.split(/\s+/))]
+  return out.filter((r, i) => out.findIndex((x) => x.join(' ') === r.join(' ')) === i)
+}
+
+/**
+ * A word with more than one reading: { plain: the engine's reading of the plain spelling, alternates:
+ * [the other readings, IPA] }, or null. A reading the engine's already keeps (the same sounds under
+ * the allowances) is not an alternate.
+ */
+export function twoReadings(word, opts) {
+  const all = readingsOf(word, opts)
+  if (all.length < 2) return null
+  const plain = opts.ipa(soundKey(word))
+  if (!plain.length) return null
+  const config = opts.config ?? loadSoundsConfig()
+  const alternates = []
+  for (const r of all) {
+    const alt = arpaToIpa(r)
+    // the same sounds as the engine's reading (allophones, the near-identical vowels) is not another reading
+    if (keepsSounds(plain, alt, { config }).ok || keepsSounds(alt, plain, { config }).ok) continue
+    if (!alternates.includes(ipaText(alt))) alternates.push(ipaText(alt))
+  }
+  return alternates.length ? { plain: ipaText(plain), alternates } : null
+}
 
 /** an IPA segment that is a vowel (the engine's English vowels, and any other it might print) */
 export const isVowel = (s) => /^[aeiouyæɑɒɔəɚɛɜɝɪʊʌɐɨɯɤøœ]/.test(String(s ?? ''))
@@ -136,7 +181,7 @@ export const ipaText = (segs) => (segs ?? []).join(' ')
  * `keeps` is true or false for a dictionary word, null for a word with no reference (a guess).
  * null when the spelling is the word itself (any case).
  */
-export function wordSounds(word, spelling, { ipa, dict, config = loadSoundsConfig() }) {
+export function wordSounds(word, spelling, { ipa, dict, readings, config = loadSoundsConfig() }) {
   const w = splitToken(String(word ?? '')).core, s = splitToken(String(spelling ?? '')).core
   if (soundKey(w) === soundKey(s)) return null
   const phones = dictPhones(w, dict)
@@ -149,7 +194,15 @@ export function wordSounds(word, spelling, { ipa, dict, config = loadSoundsConfi
   const strong = config.strongVowels?.[soundKey(w)]
   if (strong && plain.filter(isVowel).length === 1) stress[0] = [...(stress[0] ?? []), ...strong]
   const r = keepsSounds(plain, got, { stress, config })
-  return { ...out, keeps: r.ok, ...(r.ok ? {} : { why: r.why }) }
+  if (r.ok) return { ...out, keeps: true }
+  // a word with two readings (record, the noun and the verb): any reading the dictionary gives will do
+  const two = twoReadings(w, { ipa, dict, readings, config })
+  for (const alt of two?.alternates ?? []) {
+    const segs = alt.split(' ')
+    const ph = readingsOf(w, { dict, readings, config }).find((x) => ipaText(arpaToIpa(x)) === alt)
+    if (keepsSounds(segs, got, { stress: stressForms(ph, segs), config }).ok) return { ...out, keeps: true, reading: alt }
+  }
+  return { ...out, keeps: false, why: r.why, ...(two ? { readings: [two.plain, ...two.alternates] } : {}) }
 }
 
 /**
@@ -227,12 +280,23 @@ export function scriptLines(script) {
 /**
  * The audit: every word of a script whose `as` spelling does not keep a dictionary word's sounds,
  * and, apart, the guesses (respelled words with no reference) and the lines whose `as` cannot be
- * paired word for word. → { lines, different: [{ id, who, word, as, plain, ipa, why }], guesses: [...], unaligned: [{ id, who }] }
+ * paired word for word, and every word with more than one reading (the engine's for the plain spelling, and the alternates).
+ * → { lines, different: [{ id, who, word, as, plain, ipa, why }], guesses: [...], unaligned: [{ id, who }], readings: [{ id, who, word, plain, alternates }] }
  */
 export function auditSounds(lines, opts) {
-  const different = [], guesses = [], unaligned = []
+  const different = [], guesses = [], unaligned = [], readings = []
   let withAs = 0
   for (const l of lines) {
+    // every word of the line with more than one reading, respelled or not: the sound editor knows which the line means
+    const seen = new Set()
+    for (const tok of String(l.text ?? '').split(/\s+/).filter(Boolean)) {
+      const word = splitToken(tok).core
+      const k = soundKey(word)
+      if (!k || seen.has(k)) continue
+      seen.add(k)
+      const two = twoReadings(word, opts)
+      if (two) readings.push({ id: l.id, who: l.who, word, plain: two.plain, alternates: two.alternates })
+    }
     if (l.as === undefined || l.as === null) continue
     withAs++
     const s = lineSounds(l.text, l.as, opts)
@@ -244,7 +308,7 @@ export function auditSounds(lines, opts) {
       else if (w.keeps === null && /[\p{L}\p{N}]/u.test(w.word)) guesses.push(row)
     }
   }
-  return { lines: withAs, different, guesses, unaligned }
+  return { lines: withAs, different, guesses, unaligned, readings }
 }
 
 /** one audit row as printed: `id (who) word → as: /plain/ → /ipa/ (why)` */

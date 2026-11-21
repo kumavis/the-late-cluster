@@ -231,3 +231,27 @@ test('the committed file: show misleads, by the owner\'s ear; nothing it marks m
     for (const [w, sp] of Object.entries(k.first)) for (const s of sp) assert.ok(!(k.avoid[w] ?? []).includes(s), `${w}: ${s}`)
   }
 })
+
+test('a spelling marked misleading that keeps another reading of the word works after all, with its reading', () => {
+  const RECORD = { word: 'record', status: 'misleads', voices: ['larry', 'eppy'], heard: [], spellings: [], works: [], note: 'n', seen: [SRC], ipa: 'ɹ ə k ɔ ɹ d', misleads: [{ as: 'rek-ord', voices: ['larry'], ipa: 'ɹ ɛ k ɔ ɹ d' }, { as: 'rekkerd', voices: ['eppy'], ipa: '' }] }
+  const chk = (w, s) => (s === 'rekkerd' ? { keeps: true, plain: 'ɹ ə k ɔ ɹ d', ipa: 'ɹ ɛ k k ɝ d', reading: 'ɹ ɛ k ɚ d' } : s === 'rek-ord' ? { keeps: false, plain: 'ɹ ə k ɔ ɹ d', ipa: 'ɹ ɛ k ɔ ɹ d', why: 'vowel ə → ɛ' } : null)
+  const m = markMisleading({ ...emptyResearch(), words: [RECORD] }, chk)
+  const e = m.research.words[0]
+  assert.equal(e.status, 'works')
+  assert.deepEqual(e.works, [{ as: 'rekkerd', voices: ['eppy'], reading: 'ɹ ɛ k ɚ d' }])
+  assert.deepEqual(e.misleads.map((x) => x.as), ['rek-ord'])
+  assert.deepEqual(m.changed[0].works, ['rekkerd'])
+  assert.deepEqual(validate(m.research), [])
+  assert.match(renderPage(m.research), /\| record \| `rekkerd` \(the reading \/ɹ ɛ k ɚ d\/\) \| eppy \|/)
+  assert.deepEqual(knownFor(m.research, 'eppy').first, { record: ['rekkerd'] })
+  // recorded twice (by hand and by the check): one working spelling
+  const twice = markMisleading({ ...emptyResearch(), words: [{ ...RECORD, works: [{ as: 'rekkerd', voices: ['guest'] }] }] }, chk).research.words[0]
+  assert.deepEqual(twice.works, [{ as: 'rekkerd', voices: ['guest', 'eppy'], reading: 'ɹ ɛ k ɚ d' }])
+})
+
+test('the committed file: rekkerd works for the noun "record"', () => {
+  const e = loadResearch(RESEARCH_FILE).words.find((x) => x.word === 'record')
+  assert.equal(e.status, 'works')
+  assert.deepEqual(e.works.find((w) => w.as === 'rekkerd')?.reading, 'ɹ ɛ k ɚ d')
+  assert.ok(!(e.misleads ?? []).some((m) => m.as === 'rekkerd'))
+})

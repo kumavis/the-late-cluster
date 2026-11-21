@@ -87,7 +87,7 @@ export function validate(r) {
       counts(s?.heard ?? [], `${at} spelling ${s?.as}`)
     }
     if (!Array.isArray(e?.works)) out.push(`${at}: "works" must be a list (empty when nothing works)`)
-    else for (const w of e.works) if (!one(w?.as) || !Array.isArray(w.voices) || !w.voices.length) out.push(`${at}: each working spelling is { as, voices }`)
+    else for (const w of e.works) if (!one(w?.as) || !Array.isArray(w.voices) || !w.voices.length || (w.reading !== undefined && typeof w.reading !== 'string')) out.push(`${at}: each working spelling is { as, voices, reading? }`)
     if (e?.status === 'works' && !e.works?.length) out.push(`${at}: status "works" needs a spelling in "works"`)
     if (e?.misleads !== undefined) {
       if (!Array.isArray(e.misleads)) out.push(`${at}: "misleads" must be a list`)
@@ -274,7 +274,7 @@ export function harvest(fit, { house, names = [] }) {
         // fit.json's sounds check: a spelling heard as the word whose sounds are not the word's misleads
         const snd = (l.sounds ?? []).find((s) => s.i === i)
         const misleading = snd?.keeps === false ? { keeps: false, plain: snd.plain, ipa: snd.ipa, ...(snd.why ? { why: snd.why } : {}) } : {}
-        works.push({ word, as, voice, line: l.id, heard: h.counts, spellings, asWritten, ...misleading })
+        works.push({ word, as, voice, line: l.id, heard: h.counts, spellings, asWritten, ...misleading, ...(snd?.reading ? { reading: snd.reading } : {}) })
       })
     }
     if (HARD.includes(l.status)) {
@@ -323,7 +323,7 @@ export function mergeWorks(research, works, { source }) {
     } else {
       const wk = e.works.find((x) => x.as === w.as)
       if (wk) wk.voices = union(wk.voices, [w.voice])
-      else e.works.push({ as: w.as, voices: [w.voice] })
+      else e.works.push({ as: w.as, voices: [w.voice], ...(w.reading ? { reading: w.reading } : {}) })
     }
     const sp = (as, heard) => {
       let s = e.spellings.find((x) => x.as === as)
@@ -502,6 +502,33 @@ export function markMisleading(research, check) {
       return true
     }
     e.works = (e.works ?? []).filter((w) => !mark(w.as, w.voices))
+    // a working spelling of a word with two readings: which reading it gives
+    for (const w of e.works) {
+      const c = check(e.word, w.as)
+      if (c?.reading && w.reading !== c.reading) w.reading = c.reading
+    }
+    // a spelling marked misleading that keeps the sounds of one of the word's readings works after all
+    const back = (e.misleads ?? []).filter((m) => check(e.word, m.as)?.keeps === true)
+    for (const m of back) {
+      const c = check(e.word, m.as)
+      e.misleads = e.misleads.filter((x) => x !== m)
+      const wk = e.works.find((x) => x.as === m.as)
+      if (wk) {
+        wk.voices = union(wk.voices, m.voices)
+        if (c.reading) wk.reading = c.reading
+      } else e.works.push({ as: m.as, voices: m.voices, ...(c.reading ? { reading: c.reading } : {}) })
+    }
+    // the same working spelling recorded twice (by hand and by the check) is one
+    e.works = e.works.filter((w, i) => {
+      const j = e.works.findIndex((x) => x.as === w.as)
+      if (j === i) return true
+      e.works[j].voices = union(e.works[j].voices, w.voices)
+      if (w.reading && !e.works[j].reading) e.works[j].reading = w.reading
+      return false
+    })
+    if (e.misleads && !e.misleads.length) delete e.misleads
+    if (back.length && e.status === 'misleads') e.status = 'works'
+
     for (const m of e.misleads ?? []) {
       if (m.ipa && e.ipa) continue
       const c = check(e.word, m.as)
@@ -509,7 +536,7 @@ export function markMisleading(research, check) {
       if (c?.plain && !e.ipa) e.ipa = c.plain
     }
     if (e.status === 'works' && !e.works.length && e.misleads?.length) e.status = 'misleads'
-    if (JSON.stringify(e) !== before) changed.push({ word: e.word, from, to: e.status, moved })
+    if (JSON.stringify(e) !== before) changed.push({ word: e.word, from, to: e.status, moved, ...(back.length ? { works: back.map((m) => m.as) } : {}) })
   }
   return { research: tidy(r), changed }
 }
@@ -559,11 +586,11 @@ export function renderPage(research) {
     for (const p of research.patterns) L.push(`| ${md(p.pattern)} | ${md(p.note)} |`)
     L.push('')
   } else L.push('Nothing recorded yet.', '')
-  L.push('## Spellings that work', '', 'Heard as the word, in these voices. Words above may have one too, in some voice.', '')
+  L.push('## Spellings that work', '', 'Heard as the word, in these voices. Words above may have one too, in some voice. For a word with two readings, the reading the spelling gives.', '')
   const working = words.filter((e) => (e.works ?? []).length)
   if (working.length) {
     L.push('| word | `as` | voices | note |', '|---|---|---|---|')
-    for (const e of working) for (const w of e.works) L.push(`| ${md(e.word)}${e.status !== 'works' ? ` (${e.status})` : ''} | \`${md(w.as)}\` | ${w.voices.join(', ')} | ${md(e.note)} |`)
+    for (const e of working) for (const w of e.works) L.push(`| ${md(e.word)}${e.status !== 'works' ? ` (${e.status})` : ''} | \`${md(w.as)}\`${w.reading ? ` (the reading /${md(w.reading)}/)` : ''} | ${w.voices.join(', ')} | ${md(e.note)} |`)
     L.push('')
   } else L.push('Nothing recorded yet.', '')
   L.push(

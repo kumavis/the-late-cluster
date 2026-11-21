@@ -7,7 +7,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { spawnSync } from 'node:child_process'
 import { fileURLToPath } from 'node:url'
-import { auditSounds, dictPhones, keepsSounds, lineSounds, loadSoundsConfig, scriptLines, soundsRow, SOUNDS_CONFIG, spellingSounds, wordSounds } from '../tools/sounds.mjs'
+import { arpaToIpa, auditSounds, dictPhones, twoReadings, keepsSounds, lineSounds, loadSoundsConfig, scriptLines, soundsRow, SOUNDS_CONFIG, spellingSounds, wordSounds } from '../tools/sounds.mjs'
 import { lineCandidates } from '../tools/respell.mjs'
 
 // what the engine's G2P gives (packages/show/tools/engine.ts, g2p.toPhrases(word), segments' .ipa)
@@ -119,7 +119,7 @@ test('the engine itself: show is ʃ oʊ, showw is ʃ aʊ w, and the rule says so
     const { wordSounds } = await import(${JSON.stringify(fileURLToPath(new URL('../tools/sounds.mjs', import.meta.url)))});
     const t = await soundsTools();
     const out = {};
-    for (const [w, s] of [['show', 'showw'], ['show', 'sshoww'], ['show', 'sshow'], ['this', 'thiss'], ['bell', 'belll'], ['Velum', 'Vee-lum']]) out[w + '/' + s] = wordSounds(w, s, t);
+    for (const [w, s] of [['record', 'rekkerd'], ['record', 'rek-ord'], ['show', 'showw'], ['show', 'sshoww'], ['show', 'sshow'], ['this', 'thiss'], ['bell', 'belll'], ['Velum', 'Vee-lum']]) out[w + '/' + s] = wordSounds(w, s, t);
     console.log(JSON.stringify(out));`
   const r = spawnSync('bun', ['-e', code], { encoding: 'utf8' })
   assert.equal(r.status, 0, r.stderr)
@@ -130,4 +130,43 @@ test('the engine itself: show is ʃ oʊ, showw is ʃ aʊ w, and the rule says so
   assert.deepEqual([out['this/thiss'].plain, out['this/thiss'].ipa, out['this/thiss'].keeps], ['ð ɪ s', 'θ ɪ s s', false])
   assert.equal(out['bell/belll'].keeps, true)
   assert.equal(out['Velum/Vee-lum'].keeps, null)
+  assert.deepEqual([out['record/rekkerd'].keeps, out['record/rekkerd'].reading], [true, 'ɹ ɛ k ɚ d'])
+  assert.equal(out['record/rek-ord'].keeps, false)
+})
+
+// ---- words with two readings (record, the noun and the verb)
+
+const READ_G2P = { record: 'ɹ ə k ɔ ɹ d', rekkerd: 'ɹ ɛ k k ɝ d', 'rek-ord': 'ɹ ɛ k ɔ ɹ d', recurd: 'ɹ ɪ k ɝ d' }
+const ripa = (w) => (READ_G2P[String(w).toLowerCase()] ?? G2P[String(w).toLowerCase()] ?? '').split(' ').filter(Boolean)
+const RDICT = new Map([...DICT, ['record', 'R AH0 K AO1 R D'.split(' ')]])
+// the dictionary's alternates (a repeated word or a "word(2)" line, respell.mjs loadReadings)
+const READINGS = new Map([['record', ['R AH0 K AO1 R D'.split(' '), 'R EH1 K ER0 D'.split(' ')]]])
+const ropts = { ipa: ripa, dict: RDICT, readings: READINGS }
+
+test('a respelling may keep the sounds of any reading the dictionary gives: rekkerd is the noun "record"', () => {
+  assert.deepEqual(arpaToIpa('R EH1 K ER0 D'.split(' ')), ['ɹ', 'ɛ', 'k', 'ɚ', 'd'])
+  const r = wordSounds('record', 'rekkerd', ropts)
+  assert.deepEqual([r.keeps, r.plain, r.ipa, r.reading], [true, 'ɹ ə k ɔ ɹ d', 'ɹ ɛ k k ɝ d', 'ɹ ɛ k ɚ d'])
+  assert.equal(wordSounds('record', 'rekkerd', { ipa: ripa, dict: RDICT, config: { ...loadSoundsConfig(), readings: {} } }).keeps, false, 'with one reading only, it is rejected')
+  assert.equal(wordSounds('record', 'rekkerd', { ipa: ripa, dict: RDICT }).keeps, true, 'config/sounds.json lists the noun too')
+  // a spelling that keeps no reading is still rejected, and says which readings there are
+  const bad = wordSounds('record', 'rek-ord', ropts)
+  assert.deepEqual([bad.keeps, bad.why, bad.readings], [false, 'vowel ə → ɛ', ['ɹ ə k ɔ ɹ d', 'ɹ ɛ k ɚ d']])
+  assert.equal(wordSounds('record', 'recurd', ropts).keeps, false)
+  assert.equal(wordSounds('show', 'showw', ropts).keeps, false)
+})
+
+test('the audit lists every word with two readings, respelled or not, apart; it never counts as different', () => {
+  assert.deepEqual(twoReadings('record', ropts), { plain: 'ɹ ə k ɔ ɹ d', alternates: ['ɹ ɛ k ɚ d'] })
+  assert.equal(twoReadings('show', ropts), null)
+  const a = auditSounds([
+    { id: 'no-record', who: 'larry', text: 'No record. No record.' },
+    { id: 'the-record', who: 'eppy', text: 'The record show.', as: 'The rekkerd showw.' },
+  ], ropts)
+  assert.deepEqual(a.readings, [
+    { id: 'no-record', who: 'larry', word: 'record', plain: 'ɹ ə k ɔ ɹ d', alternates: ['ɹ ɛ k ɚ d'] },
+    { id: 'the-record', who: 'eppy', word: 'record', plain: 'ɹ ə k ɔ ɹ d', alternates: ['ɹ ɛ k ɚ d'] },
+  ])
+  assert.deepEqual(a.different.map((r) => [r.id, r.word, r.as]), [['the-record', 'show', 'showw']], 'rekkerd is not listed as different')
+  assert.equal(a.lines, 1)
 })
