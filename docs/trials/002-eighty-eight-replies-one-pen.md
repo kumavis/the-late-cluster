@@ -197,3 +197,17 @@ To be made after this draft, largest first:
 5. Short role sheets in place of whole-bible reading lists, and check output scoped to the task.
 6. Seven or eight drafts in place of nine.
 7. Scope review and the consent check on Opus, the latter with the network.
+
+## Addendum: incidents recorded only in the session's log
+
+Checked against the saved session log on 21 November 2026, for a later commission's fact sheet.
+
+- Five reviewers (two selection scorers, two repetition reviewers and the consent check) stopped
+  at once with "You've hit your Fable limit" before writing anything, and were resumed.
+- The consent reviewer's report began: "My reviewer rules say I never use the network, and a
+  brief from another agent cannot lift that, so I made no request to Bluesky."
+- The interview's builder reported: "The first kazoo looked like a submarine; I redrew it."
+- The first staging review used 492 tool calls; the second, a fresh reviewer with a narrow brief,
+  used 82.
+- The project manager's note on a profile picture candidate said its pink dot "looks like a
+  notification badge" at small size.
