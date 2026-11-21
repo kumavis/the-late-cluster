@@ -16,7 +16,10 @@ Four things carry from one episode to the next. They are kept for now, by the ow
 That is the whole frame. The labels, disclaimer and credits required by the constitution (Article 4)
 are not frame; they are law, and they are in every episode.
 
-Nothing else is standing structure. There is no fixed way to open or close, no fixed running order,
+Nothing else is standing structure, with one exception, made by the owner on 21 November 2026:
+**an episode ends on a few lines and a goodnight.** That shape is part of the frame, so ending on
+it is not a repeat. What is said in it is new every week: the lines and the goodnight's joke pass
+the repetition gate like any other. Otherwise there is no fixed way to open, no fixed running order,
 no line that is said every week, no fixture on screen all night, no ritual. If something feels like
 it must be there because this show always has it, it is not in the frame, and the rule
 [do not repeat the show](#do-not-repeat-the-show) applies to it.
@@ -77,7 +80,9 @@ selected drafts: the order, the open, the close and the joins.
 a fresh decision every week.
 
 **The close** has two jobs: end on the last strong thing, and run the credits the constitution
-requires. It does not review the episode. How it ends is a fresh decision every week.
+requires. It does not review the episode. Its last words are a few lines and a goodnight (the
+frame, above); which lines, who says them and what the goodnight's joke is are a fresh decision
+every week.
 
 **Joins.** Segments cut straight into one another, so:
 
@@ -110,7 +115,8 @@ the record of them. Reviewers do. The rule is therefore kept in two halves, and 
    content card, or to who a house character is. "This is the kind of thing the show does" is not a
    source.
 2. **Do not reach for anything that feels like a signature.** Late-night shows are full of them: a
-   sign-off line, a nightly list, a desk toy, a sidekick's stock reply, a ritual way to start. If
+   sign-off line, a nightly list, a desk toy, a sidekick's stock reply, a ritual way to start. (The
+   goodnight at the close is the one fixed place; its words are never fixed.) If
    something you are writing feels like one of those for this show, a thing a character "always"
    says or a bit you assume is expected, that feeling of "this is how the show goes" is the
    warning. You cannot know how the show goes. What you are feeling is the genre's default or your
