@@ -4,6 +4,7 @@
 //   npm run shoot -- <ep> <id> <t1> [t2 …] [--out dir] [--size 1280x720] [--url http://localhost:5173/]
 //                        [--crop x,y,w,h]   (a stage-unit region, saved at 2× — for close inspection)
 //                        [--jpeg file]      (one frame, saved as a JPEG to that file: the thumbnail)
+//                        [--caption-scale n] (scale the caption bar, 0.5–3; frames are named …@<t>-cs<n>.png)
 //
 // <ep> is 1, 001, 001-pilot or ref. <id> is a segment id, or `title` / `end`. Each t loads
 // `?seg=<id>&t=<t>&freeze=1` in Playwright's Chromium, waits for window.__ready, and saves the
@@ -22,6 +23,7 @@ import { existsSync } from 'node:fs'
 import { join, dirname, resolve } from 'node:path'
 import { homedir, tmpdir } from 'node:os'
 import { resolveEpisode, EpisodeError, REPO } from './episode.mjs'
+import { parseCaptionScale } from '../src/stage/caption-layout.js'
 
 const argv = process.argv.slice(2)
 const opt = (name, def) => {
@@ -36,10 +38,16 @@ const [W, H] = opt('size', '1280x720').split('x').map(Number)
 let url = opt('url', null)
 const crop = opt('crop', null)?.split(',').map(Number) // x,y,w,h in stage units: saved at 2× for detail
 const jpeg = opt('jpeg', null)
+const capArg = opt('caption-scale', null)
+const capScale = capArg == null ? null : parseCaptionScale(capArg)
+if (capArg != null && capScale == null) {
+  console.error(`error: --caption-scale ${capArg}: a number from 0.5 to 3`)
+  process.exit(2)
+}
 const quiet = argv.includes('--quiet') && argv.splice(argv.indexOf('--quiet'), 1)
 const [epArg, id, ...times] = argv
 if (!epArg || !id || !times.length) {
-  console.error('usage: npm run shoot -- <ep> <id> <t1> [t2 …] [--out dir] [--size 1280x720] [--url URL] [--crop x,y,w,h] [--jpeg file]')
+  console.error('usage: npm run shoot -- <ep> <id> <t1> [t2 …] [--out dir] [--size 1280x720] [--url URL] [--crop x,y,w,h] [--jpeg file] [--caption-scale n]')
   process.exit(2)
 }
 let ep
@@ -158,10 +166,11 @@ for (const t of times) {
   const logs = []
   page.on('console', (m) => (m.type() === 'error' || m.type() === 'warning') && logs.push(`${m.type()}: ${m.text()}`))
   page.on('pageerror', (e) => logs.push(`pageerror: ${e.message}`))
-  const file = jpeg ? resolve(jpeg) : join(out, `${id}@${t}${crop ? '-crop' : ''}.png`)
+  const cs = capScale != null && capScale !== 1 ? `-cs${capScale}` : ''
+  const file = jpeg ? resolve(jpeg) : join(out, `${id}@${t}${cs}${crop ? '-crop' : ''}.png`)
   try {
     const t0 = Date.now()
-    await page.goto(`${url}?seg=${encodeURIComponent(id)}&t=${t}&freeze=1`, { waitUntil: 'load', timeout: 60000 })
+    await page.goto(`${url}?seg=${encodeURIComponent(id)}&t=${t}&freeze=1${capScale != null ? `&capscale=${capScale}` : ''}`, { waitUntil: 'load', timeout: 60000 })
     await page.waitForFunction(() => window.__ready === true, null, { timeout: 90000 })
     const data = await page.evaluate(([crop, jpeg]) => {
       const c = document.getElementById('stage')

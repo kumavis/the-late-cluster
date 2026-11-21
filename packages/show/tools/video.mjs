@@ -30,64 +30,62 @@
 // streams concatenated and encoded once, so audio and video cut together and nothing drifts.
 import { spawn } from 'node:child_process'
 import { mkdir, mkdtemp, rm, writeFile, readFile, stat } from 'node:fs/promises'
-import { existsSync } from 'node:fs'
+import { existsSync, openSync, readSync, closeSync } from 'node:fs'
 import { join, dirname, resolve } from 'node:path'
 import { tmpdir } from 'node:os'
 import { resolveEpisode, EpisodeError, REPO } from './episode.mjs'
+import { parseVideoArgs, USAGE, stamp, toSrt, toVtt, posterAt, previewName, preview360Args } from './video-lib.mjs'
 
 const FFMPEG = process.env.FFMPEG ?? (existsSync('/opt/homebrew/bin/ffmpeg') ? '/opt/homebrew/bin/ffmpeg' : 'ffmpeg')
+const FFPROBE = process.env.FFPROBE ?? (existsSync('/opt/homebrew/bin/ffprobe') ? '/opt/homebrew/bin/ffprobe' : 'ffprobe')
 const FPS = 30
 const SR = 48000
 const SPF = SR / FPS // audio samples per video frame (1600)
 
 // ------------------------------------------------------------------ arguments
-const argv = process.argv.slice(2)
-const opt = (name, def) => {
-  const i = argv.indexOf(`--${name}`)
-  if (i < 0) return def
-  const v = argv[i + 1]
-  argv.splice(i, 2)
-  return v
+const args = parseVideoArgs(process.argv.slice(2))
+if (args.errors.length) {
+  console.error(`error: ${args.errors.join('; ')}\n${USAGE}`)
+  process.exit(2)
 }
-const flag = (name) => {
-  const i = argv.indexOf(`--${name}`)
-  if (i < 0) return false
-  argv.splice(i, 1)
-  return true
+// the standalone form: a phone preview of a file that already exists
+if (args.previewFile) {
+  if (args.ep || args.ids.length) {
+    console.error(`error: --preview-360 <file.mp4> takes no episode or segments\n${USAGE}`)
+    process.exit(2)
+  }
+  try {
+    await preview360(resolve(args.previewFile))
+    process.exit(0)
+  } catch (e) {
+    console.error(e.message)
+    process.exit(1)
+  }
 }
 let ep
 try {
-  ep = resolveEpisode(argv[0]?.startsWith('--') ? '' : argv.shift()) // <ep> comes first
+  ep = resolveEpisode(args.ep)
 } catch (e) {
   if (!(e instanceof EpisodeError)) throw e
-  console.error(`error: ${e.message}\nusage: node packages/show/tools/video.mjs <ep> --all | <id> [id …] | --full  [options]`)
+  console.error(`error: ${e.message}\n${USAGE}`)
   process.exit(2)
 }
-const outDir = resolve(opt('out', join(REPO, 'video', ep.id)))
-const jobs = Math.max(1, Number(opt('jobs', 3)))
-const scale = Number(opt('scale', 1.5))
-const crf = String(opt('crf', 16))
-const preset = opt('preset', 'slow')
-const frameLimit = (() => {
-  const v = opt('frames', null)
-  return v == null ? null : Math.max(1, Number(v))
-})()
+const outDir = resolve(args.out ?? join(REPO, 'video', ep.id))
+const { jobs, scale, crf, preset, all, bluesky, maxMB, maxSeconds, blueskyName, youtube, noCaptions, captionScale, poster } = args
+const frameLimit = args.frames
+const fullOnly = args.full
+const subsOnly = args.subs
+// --poster: that frame of the finished cut, held for posterFrames, in front of every whole-episode
+// file (full, posting and YouTube cuts) with silence under it; the subtitles move by the same
+const posterFrames = poster == null ? 0 : args.posterFrames
 let url = null
-const all = flag('all')
-const fullOnly = flag('full')
-// --bluesky: also make the posting cut (default late-cluster-bluesky.mp4, ≤ 280 MB, < 600 s)
-const bluesky = flag('bluesky') || argv.includes('--max-mb')
-const maxMB = Number(opt('max-mb', 280))
-const maxSeconds = Number(opt('max-seconds', 600))
-const blueskyName = opt('out-name', 'late-cluster-bluesky.mp4')
 // --youtube: the whole episode with the caption system off (late-cluster-youtube.mp4, CRF like the
 // master) + subtitles mirroring the on-stage captions (.srt + .vtt). --no-captions: clips rendered
 // with the caption system off (named …-nocaps.mp4). --subs: only the subtitles (no pictures).
-const youtube = flag('youtube')
-const noCaptions = flag('no-captions')
-const subsOnly = flag('subs')
 const YT = 'late-cluster-youtube'
 const W = Math.round(1280 * scale), H = Math.round(720 * scale)
+/** every mp4 this run writes, for --preview-360 */
+const written = []
 
 const rundown = ep.rundown
 const cuesOf = async (id) => JSON.parse(await readFile(ep.segFile(id, 'cues.json'), 'utf8'))
@@ -104,13 +102,13 @@ const needCounts = (list) => {
 const clipName = (id, nocaps = false) => `${String(rundown.indexOf(id) + 1).padStart(2, '0')}-${id}${nocaps ? '-nocaps' : ''}.mp4`
 const FULL = 'late-cluster-full.mp4'
 
-let ids = all ? rundown.slice() : argv.filter((a) => !a.startsWith('--'))
+let ids = all ? rundown.slice() : args.ids
 // lossless sidecars (temp, this run only) when the run renders the whole rundown for a posting cut
 const keepLossless = bluesky && rundown.every((id) => ids.includes(id)) && !frameLimit
 const unknown = ids.filter((id) => !rundown.includes(id))
 if (unknown.length || (!ids.length && !fullOnly && !bluesky && !youtube && !subsOnly)) {
   if (unknown.length) console.error(`not in the rundown: ${unknown.join(', ')}`)
-  console.error('usage: node packages/show/tools/video.mjs <ep> --all | <id> [id …] | --full   [--out dir] [--jobs n] [--scale 1.5] [--crf 16] [--preset slow] [--frames n] [--bluesky [--max-mb 280] [--max-seconds 600] [--out-name late-cluster-bluesky.mp4]] [--youtube] [--no-captions] [--subs]')
+  console.error(USAGE)
   process.exit(2)
 }
 await mkdir(outDir, { recursive: true })
@@ -163,23 +161,83 @@ async function buildFull(tmp) {
 
 /** video-only parts (each starting at 0, in rundown order) + the segments' PCM back to back → out */
 async function assemble(tmp, parts, name) {
+  // the poster frame goes in as a part of its own, encoded like the clips so they copy together
+  const poster = posterFrames ? await posterPart(tmp, parts, name, X264([]), { check: true }) : null
+  const seq = poster ? [poster, ...parts] : parts
   const list = join(tmp, `${name}.txt`)
-  await writeFile(list, parts.map((f) => `file '${f.replace(/'/g, "'\\''")}'\n`).join(''))
-  const pcms = []
+  await writeFile(list, seq.map((f) => `file '${f.replace(/'/g, "'\\''")}'\n`).join(''))
+  const pcms = poster ? [Buffer.alloc(posterFrames * SPF * 8)] : []
   for (const [i, id] of rundown.entries()) pcms.push(await segmentPcm(id, frameCounts[i]))
   const pcmFile = join(tmp, `${name}.f32`)
   await writeFile(pcmFile, Buffer.concat(pcms))
   const t0 = Date.now()
   await run(FFMPEG, ['-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', list, '-f', 'f32le', '-ar', String(SR), '-ac', '2', '-i', pcmFile, '-map', '0:v:0', '-map', '1:a:0', '-c:v', 'copy', ...VUI, ...AAC, '-movflags', '+faststart', join(outDir, name)])
   await rm(pcmFile, { force: true })
-  console.log(`${name}  ${frameCounts.reduce((a, b) => a + b, 0)} frames  (${((Date.now() - t0) / 1000).toFixed(1)} s to mux)`)
+  if (poster) await rm(poster, { force: true })
+  written.push(join(outDir, name))
+  console.log(`${name}  ${frameCounts.reduce((a, b) => a + b, 0) + posterFrames} frames${poster ? ` (${posterFrames} poster frames from ${args.poster} s first)` : ''}  (${((Date.now() - t0) / 1000).toFixed(1)} s to mux)`)
+}
+
+// ------------------------------------------------------------------ the poster frame
+/** the first bytes of a file's H.264 decoder configuration (to check two parts can be copied together) */
+async function extradata(file) {
+  const out = (await run(FFPROBE, ['-v', 'error', '-select_streams', 'v:0', '-show_streams', '-show_data', file])).toString()
+  const m = out.match(/extradata=\n([\s\S]*?)\n(?:\S+=|\[)/)
+  return m ? m[1].trim() : ''
+}
+
+/**
+ * The poster: frame `--poster` of the finished cut (found in its part of `parts`, which are in
+ * rundown order), held for posterFrames, encoded with `enc` → a file in tmp. With `check`, its
+ * H.264 configuration must equal the parts' (the clips' settings), so the concat demuxer can copy
+ * it in front of them.
+ */
+async function posterPart(tmp, parts, name, enc, { ext = 'mp4', check = false } = {}) {
+  needCounts(rundown)
+  const at = posterAt(args.poster, frameCounts)
+  const src = parts[at.index]
+  const dest = join(tmp, `${name}.poster.${ext}`)
+  const [pw, ph] = (await run(FFPROBE, ['-v', 'error', '-select_streams', 'v:0', '-show_entries', 'stream=width,height', '-of', 'csv=p=0', src])).toString().trim().split(',').map(Number)
+  // the frame as raw yuv420p (seeking half a frame early: the first frame at or after that is
+  // frame `local`, exactly), then held and encoded the way the clips were: raw frames at 30 fps in
+  const ss = Math.max(0, (at.local - 0.5) / FPS)
+  const frame = await run(FFMPEG, ['-v', 'error', '-ss', ss.toFixed(6), '-i', src, '-map', '0:v:0', '-frames:v', '1', '-f', 'rawvideo', '-pix_fmt', 'yuv420p', '-'])
+  if (frame.length !== (pw * ph * 3) / 2) throw new Error(`${name}: could not read frame ${at.local} of ${src}`)
+  const tags = 'setparams=color_primaries=bt709:color_trc=bt709:colorspace=bt709:range=tv'
+  await run(FFMPEG, ['-v', 'error', '-y', '-f', 'rawvideo', '-pix_fmt', 'yuv420p', '-s', `${pw}x${ph}`, '-framerate', String(FPS), '-i', 'pipe:0', '-vf', tags, ...enc, '-an', dest], { input: Buffer.concat(Array(posterFrames).fill(frame)) })
+  if (check) {
+    const [a, b] = await Promise.all([extradata(dest), extradata(src)])
+    if (a !== b) {
+      const head = (f) => {
+        const fd = openSync(f, 'r'), buf = Buffer.alloc(8 << 20)
+        const n = readSync(fd, buf, 0, buf.length, 0)
+        closeSync(fd)
+        return buf.subarray(0, n).toString('latin1')
+      }
+      const opts = (f) => (head(f).match(/x264 - core[^\0]*/)?.[0].match(/\b(crf|ref|subme)=\S+/g) ?? []).join(' ')
+      throw new Error(`${name}: the clips were encoded with other settings (${opts(src)}) than this run's (${opts(dest)}), so the poster cannot be copied in front of them: run again with the --crf and --preset the clips were made with`)
+    }
+  }
+  console.log(`  poster: frame ${at.frame} of the cut (${rundown[at.index]} frame ${at.local}), held ${posterFrames} frames`)
+  return dest
+}
+
+// ------------------------------------------------------------------ the phone preview
+/** <file>-360p-preview.mp4 beside it: the file as Bluesky's low stream would serve it to a phone */
+async function preview360(file) {
+  if (!existsSync(file)) throw new Error(`no such file: ${file}`)
+  const out = previewName(file)
+  const t0 = Date.now()
+  await run(FFMPEG, preview360Args(file, out))
+  console.log(`${out}  ${((await stat(out)).size / 1e6).toFixed(1)} MB  (${((Date.now() - t0) / 1000).toFixed(0)} s)`)
+  return out
 }
 
 // ------------------------------------------------------------------ the posting cut (size-capped)
 /** two-pass x264 at the bitrate that fits maxMB, from the lossless sidecars (else the clips) */
 async function buildBluesky(tmp) {
   needCounts(rundown)
-  const frames = frameCounts.reduce((a, b) => a + b, 0)
+  const frames = frameCounts.reduce((a, b) => a + b, 0) + posterFrames
   const dur = frames / FPS
   if (dur >= maxSeconds) throw new Error(`the episode is ${dur.toFixed(2)} s: over the ${maxSeconds} s limit`)
   const lossless = rundown.map((id) => join(tmp, `${id}.lossless.mkv`))
@@ -196,10 +254,12 @@ async function buildBluesky(tmp) {
       parts.push(part)
     }
   }
+  // the poster frame: lossless, joined in front by the concat filter (this cut is re-encoded anyway)
+  const poster = posterFrames ? await posterPart(tmp, parts, blueskyName, ['-c:v', 'libx264', '-qp', '0', '-preset', 'ultrafast'], { ext: 'mkv' }) : null
   const list = join(tmp, 'bluesky.txt')
   await writeFile(list, parts.map((f) => `file '${f.replace(/'/g, "'\\''")}'\n`).join(''))
   const pcmFile = join(tmp, 'bluesky.f32')
-  const pcms = []
+  const pcms = poster ? [Buffer.alloc(posterFrames * SPF * 8)] : []
   for (const [i, id] of rundown.entries()) pcms.push(await segmentPcm(id, frameCounts[i]))
   await writeFile(pcmFile, Buffer.concat(pcms))
   pcms.length = 0
@@ -211,9 +271,13 @@ async function buildBluesky(tmp) {
   const enc = (pass, k, dest) => ['-c:v', 'libx264', '-preset', preset, '-b:v', `${k}k`, '-pass', String(pass), '-passlogfile', log, '-profile:v', 'high', '-pix_fmt', 'yuv420p', '-g', String(FPS * 5), '-x264-params', 'aq-mode=3', '-color_primaries', 'bt709', '-color_trc', 'bt709', '-colorspace', 'bt709', '-color_range', 'tv']
   const t0 = Date.now()
   console.log(`${blueskyName}: ${dur.toFixed(3)} s, two-pass at ${kbps} kb/s video (limit ${maxMB} MB)`)
-  await run(FFMPEG, ['-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', list, '-map', '0:v:0', ...enc(1, kbps), '-an', '-f', 'null', '-'])
+  // the pictures: the parts, or the poster then the parts (the concat filter decodes both)
+  const vin = poster ? ['-f', 'concat', '-safe', '0', '-i', list, '-i', poster] : ['-f', 'concat', '-safe', '0', '-i', list]
+  const vmap = poster ? ['-filter_complex', '[1:v]setsar=1[p];[0:v]setsar=1[m];[p][m]concat=n=2:v=1:a=0[v]', '-map', '[v]'] : ['-map', '0:v:0']
+  const ain = poster ? '2:a:0' : '1:a:0'
+  await run(FFMPEG, ['-v', 'error', '-y', ...vin, ...vmap, ...enc(1, kbps), '-an', '-f', 'null', '-'])
   for (let attempt = 0; attempt < 4; attempt++) {
-    await run(FFMPEG, ['-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', list, '-f', 'f32le', '-ar', String(SR), '-ac', '2', '-i', pcmFile, '-map', '0:v:0', '-map', '1:a:0', ...enc(2, kbps), ...AAC, '-movflags', '+faststart', out])
+    await run(FFMPEG, ['-v', 'error', '-y', ...vin, '-f', 'f32le', '-ar', String(SR), '-ac', '2', '-i', pcmFile, ...vmap, '-map', ain, ...enc(2, kbps), ...AAC, '-movflags', '+faststart', out])
     const size = (await stat(out)).size
     console.log(`${blueskyName}  ${(size / 1e6).toFixed(1)} MB at ${kbps} kb/s  (${((Date.now() - t0) / 1000).toFixed(0)} s)`)
     if (size <= limit) break
@@ -221,7 +285,9 @@ async function buildBluesky(tmp) {
     kbps = Math.floor((kbps * (limit * 0.98)) / size)
   }
   for (const f of parts) if (!lossless.includes(f)) await rm(f, { force: true })
+  if (poster) await rm(poster, { force: true })
   await rm(pcmFile, { force: true })
+  written.push(out)
 }
 
 // ------------------------------------------------------------------ subtitles (.srt + .vtt)
@@ -246,11 +312,6 @@ function wrapTokens(tokens, firstReserve, max) {
   }
   if (cur.length) lines.push(cur)
   return lines
-}
-const stamp = (t, sep) => {
-  const ms = Math.max(0, Math.round(t * 1000))
-  const p = (n, w = 2) => String(n).padStart(w, '0')
-  return `${p(Math.floor(ms / 3600000))}:${p(Math.floor(ms / 60000) % 60)}:${p(Math.floor(ms / 1000) % 60)}${sep}${p(ms % 1000, 3)}`
 }
 function subtitleCues() {
   needCounts(rundown)
@@ -337,22 +398,23 @@ function subtitleCues() {
 }
 async function writeSubs() {
   const cues = subtitleCues()
-  const srt = cues.map((c, k) => `${k + 1}\n${stamp(c.start, ',')} --> ${stamp(c.end, ',')}\n${c.text}\n`).join('\n')
-  const vtt = 'WEBVTT\n\n' + cues.map((c, k) => `${k + 1}\n${stamp(c.start, '.')} --> ${stamp(c.end, '.')}\n${c.text}\n`).join('\n')
-  await writeFile(join(outDir, `${YT}.srt`), srt, 'utf8')
-  await writeFile(join(outDir, `${YT}.vtt`), vtt, 'utf8')
-  console.log(`${YT}.srt / .vtt  ${cues.length} cues, ${stamp(cues[0]?.start ?? 0, '.')} → ${stamp(cues.at(-1)?.end ?? 0, '.')}`)
+  // a poster frame in front of the cut moves every caption later by its length
+  const shift = posterFrames / FPS
+  await writeFile(join(outDir, `${YT}.srt`), toSrt(cues, shift), 'utf8')
+  await writeFile(join(outDir, `${YT}.vtt`), toVtt(cues, shift), 'utf8')
+  console.log(`${YT}.srt / .vtt  ${cues.length} cues, ${stamp((cues[0]?.start ?? 0) + shift, '.')} → ${stamp((cues.at(-1)?.end ?? 0) + shift, '.')}${shift ? `  (shifted ${posterFrames} poster frames)` : ''}`)
 }
 
 // ------------------------------------------------------------------ the page side: one segment
 /** runs inside the page: build the Show from the app's modules and step it like app.js's tick() */
-async function pageRender({ id, frames, fps, sink, w, h, captions = true, dry = false }) {
+async function pageRender({ id, frames, fps, sink, w, h, captions = true, dry = false, captionScale = 1 }) {
   const [{ Show }, { load }, { Stage }] = await Promise.all([import('/src/show/show.js'), import('/src/show/segments.js'), import('/src/stage/stage.js')])
   const lc = window.__lc
   // same module instances as the app's? (otherwise puppets/heads would be a second copy)
   if (!(lc.stage instanceof Stage)) throw new Error('module identity check failed: /src/stage/stage.js is not the app’s instance')
   const st = lc.stage
   if (st.canvas.width !== w || st.canvas.height !== h) throw new Error(`stage backing store is ${st.canvas.width}×${st.canvas.height}, wanted ${w}×${h}`)
+  if (st.captionScale !== captionScale) throw new Error(`the page's caption scale is ${st.captionScale}, wanted ${captionScale}`)
   const d = await load(id, { audio: false })
   const show = new Show({ module: d.module, cues: d.cues, tele: d.tele, puppets: lc.puppets })
   show.captions = true
@@ -504,7 +566,7 @@ async function renderSegment(task) {
     const page = await ctx.newPage()
     page.on('console', (m) => (m.type() === 'error' || m.type() === 'warning') && !/GPU stall|ReadPixels/.test(m.text()) && console.log(`  [${id}] ${m.type()}: ${m.text()}`))
     page.on('pageerror', (e) => console.log(`  [${id}] pageerror: ${e.message}`))
-    await page.goto(`${url}?seg=title&t=0&freeze=1`, { waitUntil: 'load', timeout: 120000 })
+    await page.goto(`${url}?seg=title&t=0&freeze=1${captionScale !== 1 ? `&capscale=${captionScale}` : ''}`, { waitUntil: 'load', timeout: 120000 })
     await page.waitForFunction(() => window.__ready === true, null, { timeout: 120000 })
     const gl = await page.evaluate(() => {
       try {
@@ -515,10 +577,10 @@ async function renderSegment(task) {
         return 'n/a'
       }
     })
-    const info = await page.evaluate(pageRender, { id, frames, fps: FPS, sink: `/__video/${job}`, w: W, h: H, captions, dry })
+    const info = await page.evaluate(pageRender, { id, frames, fps: FPS, sink: `/__video/${job}`, w: W, h: H, captions, dry, captionScale })
     capRuns.set(id, info.runs)
     if (dry) console.log(`  ${id}: stepped ${frames} frames for subtitles (${info.runs.length} caption runs)`)
-    else console.log(`  ${job}: rendered ${frames} frames at ${info.w}×${info.h}, captions ${captions ? 'on' : 'off'} (k ${info.k}, glow ${info.glow}, ${gl}; ms/frame ${JSON.stringify(info.ms)})`)
+    else console.log(`  ${job}: rendered ${frames} frames at ${info.w}×${info.h}, captions ${captions ? (captionScale !== 1 ? `on at ×${captionScale}` : 'on') : 'off'} (k ${info.k}, glow ${info.glow}, ${gl}; ms/frame ${JSON.stringify(info.ms)})`)
   } finally {
     await browser.close().catch(() => {})
     browsers.delete(browser)
@@ -533,6 +595,7 @@ async function renderSegment(task) {
   await run(FFMPEG, ['-v', 'error', '-y', '-i', vfile, '-f', 'f32le', '-ar', String(SR), '-ac', '2', '-i', pcmFile, '-map', '0:v:0', '-map', '1:a:0', '-c:v', 'copy', ...VUI, ...AAC, '-movflags', '+faststart', out])
   await rm(vfile, { force: true })
   await rm(pcmFile, { force: true })
+  written.push(out)
   const mb = ((await stat(out)).size / 1e6).toFixed(1)
   console.log(`${out}  ${frames} frames = ${(frames / FPS).toFixed(3)} s (cues ${durations[i]} s)  ${mb} MB  ${((Date.now() - t0) / 1000).toFixed(0)} s`)
 }
@@ -585,6 +648,7 @@ try {
     for (const id of rundown) await rm(join(tmp, `${id}.yt.mp4`), { force: true })
   }
   if ((youtube || subsOnly) && !frameLimit) await writeSubs()
+  if (args.preview360) for (const f of written) await preview360(f)
   console.log(`done in ${((Date.now() - T0) / 1000).toFixed(0)} s`)
   await cleanup()
   process.exit(0)

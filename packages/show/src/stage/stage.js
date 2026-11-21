@@ -7,6 +7,7 @@ import { Glow, label, labelBlock, occlude, rectPath, panel as drawPanel, P } fro
 import { buildSet, drawSetBack, drawSetFront, drawAudience, drawSignOverlay, drawInstrument, drawProp, WORLD } from './set.js'
 import { drawCostume } from './costumes.js'
 import { caption, chyron, laughCaption, builtCounter, disclaimer } from './chrome.js'
+import { captionRise } from './caption-layout.js'
 import { tvFrame, ticker } from '../kit/props.js'
 import { clamp, unlerp, noise1, hash01 } from '../kit/ease.js'
 import { lookFor } from '../looks.js'
@@ -25,6 +26,8 @@ export class Stage {
     this.S = buildSet()
     this.maxDpr = Math.min(2, window.devicePixelRatio || 1)
     this.k = 1
+    /** the caption bar's scale (1: the show's own; the video tools raise it for small screens) */
+    this.captionScale = 1
     this.glowOn = true
     this.stats = { ms: 0, frames: 0, heads: 0, quality: 0 }
     this._slow = 0
@@ -151,19 +154,25 @@ export class Stage {
     if (show.builtNow) builtCounter(ctx, show.builtNow, t)
     const disc = show.disclaimerNow
     if (disc) disclaimer(ctx, disc.text, disc.alpha)
+    const cs = this.captionScale
+    const capsOn = o.captions ?? true
+    // a larger caption bar pushes the chyron up by what it grew (nothing at scale 1)
+    const rise = capsOn ? (show.captionNow ? captionRise(cs) : show.laughing > 0.05 ? captionRise(cs, true) : 0) : 0
     for (const c of show._frame.chyrons) {
       const id = c.spec.id
       const spec = id ? { name: show.puppets.get(id)?.name ?? CAST[id]?.name ?? id, title: CAST[id]?.title, handle: CAST[id]?.handle ?? lookFor(id).handle, color: lookFor(id).color, parody: !!CAST[id]?.guest, ...c.spec } : c.spec
       const inU = unlerp(c.from, c.from + 0.6, t), outU = unlerp(c.to - 0.5, c.to, t)
-      if (t >= c.from && t <= c.to) chyron(ctx, spec, inU, outU, (show.captionNow && (o.captions ?? true) ? 478 : 560) - (lane?.text ? 46 : 0))
+      let cy = (show.captionNow && capsOn ? 478 : 560) - (lane?.text ? 46 : 0)
+      if (rise) cy -= rise
+      if (t >= c.from && t <= c.to) chyron(ctx, spec, inU, outU, cy)
     }
     const signVisible = this.signInFrame(show)
     if (!signVisible) drawSignOverlay(ctx, show)
     if (o.captions ?? true) {
       // the captions rise above a ticker lane or the disclaimer footer
       const lift = Math.max(lane?.text ? 46 : 0, disc ? 34 * disc.alpha : 0)
-      if (show.captionNow) caption(ctx, show.captionNow, lift)
-      else if (show.laughing > 0.05) laughCaption(ctx, show.signText === 'APPLAUSE' ? 'APPLAUSE' : 'LAUGHTER', show.laughing, lift)
+      if (show.captionNow) caption(ctx, show.captionNow, lift, cs)
+      else if (show.laughing > 0.05) laughCaption(ctx, show.signText === 'APPLAUSE' ? 'APPLAUSE' : 'LAUGHTER', show.laughing, lift, cs)
     }
     if (o.overlay) o.overlay(ctx)
 

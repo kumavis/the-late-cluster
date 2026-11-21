@@ -1,6 +1,7 @@
 // Broadcast chrome drawn on the stage (stage units): the show logo, lower-third chyrons, the
 // caption bar.
 import { STAGE_TEXT } from './text.js'
+import { CAP, LAUGH, breakLines, pageStart, wrapWidth, captionBox, laughBox } from './caption-layout.js'
 import { beam, seg, ring, dot, label, labelWidth, wrapLabel, box, occlude, rectPath, butterfly, glowText, P, mix } from '../kit/draw.js'
 import { clamp, ease, smoothstep, rng } from '../kit/ease.js'
 import { confetti } from '../kit/props.js'
@@ -104,74 +105,60 @@ export function chyron(ctx, c, inU, outU, y = 520) {
 
 // ---------------------------------------------------------------- captions
 
-const CAP = { size: 25, y: 676, maxW: 1000 }
-
 /**
  * The caption bar: speaker's name in their colour, then the line with the word being said lit.
- * cap = show.captionNow
+ * cap = show.captionNow; lift raises it (above a ticker lane or the disclaimer); s scales the whole
+ * bar about its bottom edge (stage/caption-layout.js: 1 is the show's own size).
  */
-export function caption(ctx, cap, lift = 0) {
+export function caption(ctx, cap, lift = 0, s = 1) {
   if (!cap || cap.alpha <= 0.01) return
   const a = cap.alpha
   const tokens = cap.words?.length ? cap.words.map((w) => w[2]) : String(cap.text).split(/\s+/)
-  const o = { size: CAP.size, ls: 0.06 }
-  // break into lines
-  const lines = []
-  let cur = [], curW = 0
+  const o = { size: CAP.size * s, ls: 0.06 }
+  // break into lines (the wrap width is in stage units whatever the scale)
   const space = labelWidth(ctx, ' ', o)
-  tokens.forEach((tok, i) => {
-    const w = labelWidth(ctx, tok, o)
-    if (cur.length && curW + space + w > CAP.maxW) {
-      lines.push(cur)
-      cur = []
-      curW = 0
-    }
-    cur.push({ tok, i, w })
-    curW += (cur.length > 1 ? space : 0) + w
-  })
-  if (cur.length) lines.push(cur)
+  const tw = tokens.map((tok) => labelWidth(ctx, tok, o))
+  const lines = breakLines(tw, space, wrapWidth(s)).map((l) => l.map((i) => ({ tok: tokens[i], i, w: tw[i] })))
   // show two lines at a time: the pair holding the current word
   const wi = cap.word < 0 ? 0 : cap.word
-  let li = lines.findIndex((l) => l.some((x) => x.i === wi))
-  if (li < 0) li = cap.done ? lines.length - 1 : 0
-  const first = Math.max(0, Math.min(lines.length - 2, li - (li % 2)))
+  const first = pageStart(lines.map((l) => l.map((x) => x.i)), wi, cap.done)
   const shown = lines.slice(first, first + 2)
-  const lh = CAP.size * 1.32
-  const widths = shown.map((l) => l.reduce((s, x, k) => s + x.w + (k ? space : 0), 0))
+  const widths = shown.map((l) => l.reduce((sum, x, k) => sum + x.w + (k ? space : 0), 0))
   const maxw = Math.max(...widths)
   const name = String(cap.name ?? '').toUpperCase()
-  const nameW = name ? labelWidth(ctx, name, { size: 14, weight: 'm', ls: 0.2 }) : 0
-  const bw = Math.max(maxw, nameW) + 56
-  const bh = shown.length * lh + 40
-  const bx = 640 - bw / 2, by = CAP.y - bh + 30 - lift
-  box(ctx, bx, by, bw, bh, { color: cap.color ?? P.blue, cut: 8, width: 1.2, alpha: 0.6 * a, fillAlpha: 0.92 * a })
+  const tagO = { size: 14 * s, weight: 'm', ls: 0.2 }
+  const nameW = name ? labelWidth(ctx, name, tagO) : 0
+  const L = captionBox(shown.length, maxw, nameW, lift, s)
+  const { bx, by, bw, bh } = L
+  box(ctx, bx, by, bw, bh, { color: cap.color ?? P.blue, cut: L.frame.cut, width: L.frame.width, alpha: 0.6 * a, fillAlpha: 0.92 * a })
   if (name) {
-    occlude(ctx, rectPath(bx + 18, by - 9, nameW + 20, 18), '#000', a)
-    label(ctx, name, bx + 28, by + 5, { size: 14, weight: 'm', color: cap.color ?? P.blue, ls: 0.2, alpha: a })
+    occlude(ctx, rectPath(L.tag.x, L.tag.y, L.tag.w, L.tag.h), '#000', a)
+    label(ctx, name, L.tag.tx, L.tag.ty, { ...tagO, color: cap.color ?? P.blue, alpha: a })
   }
   shown.forEach((l, k) => {
     let x = 640 - widths[k] / 2
-    const y = by + 30 + k * lh + CAP.size * 0.55
+    const y = L.row(k)
     for (const it of l) {
       const said = cap.words ? it.i < wi || (it.i === wi && cap.word >= 0) : true
       const now = cap.words && it.i === wi && cap.word >= 0 && !cap.done
       const col = now ? cap.color ?? P.amber : P.white
       label(ctx, it.tok, x, y, { ...o, color: col, alpha: a * (said ? 1 : 0.5), weight: now ? 'm' : 'l' })
-      if (now) seg(ctx, x, y + 7, x + it.w, y + 7, col, 2, { hot: true, alpha: a })
+      if (now) seg(ctx, x, y + L.underline.dy, x + it.w, y + L.underline.dy, col, L.underline.width, { hot: true, alpha: a })
       x += it.w + space
     }
   })
 }
 
-/** "[ LAUGHTER ]" in the caption bar when the room is laughing and nobody's talking */
-export function laughCaption(ctx, text, a, lift = 0) {
+/** "[ LAUGHTER ]" in the caption bar when the room is laughing and nobody's talking (s as caption()) */
+export function laughCaption(ctx, text, a, lift = 0, s = 1) {
+  if (a <= 0.02) return
   ctx.save()
   ctx.translate(0, -lift)
-  if (a <= 0.02) return
-  const s = `[ ${text} ]`
-  const w = labelWidth(ctx, s, { size: 20, ls: 0.3 }) + 50
-  box(ctx, 640 - w / 2, 640, w, 44, { color: P.amber, cut: 8, width: 1.2, alpha: 0.6 * a, fillAlpha: 0.75 * a })
-  label(ctx, s, 640, 669, { size: 20, align: 'center', color: P.amber, ls: 0.3, alpha: a })
+  const str = `[ ${text} ]`
+  const o = { size: LAUGH.size * s, ls: 0.3 }
+  const B = laughBox(labelWidth(ctx, str, o), s)
+  box(ctx, B.x, B.y, B.w, B.h, { color: P.amber, cut: B.cut, width: B.width, alpha: 0.6 * a, fillAlpha: 0.75 * a })
+  label(ctx, str, 640, B.ty, { ...o, align: 'center', color: P.amber, alpha: a })
   ctx.restore()
 }
 

@@ -7,6 +7,7 @@
 //   ?seg=<id>&t=<s>&freeze=1   render that segment at exactly t (no audio, no gesture), set window.__ready
 //                              (seg may also be `title` or `end`)
 //   ?autostart=1               skip the title card; with &mute=1 runs silent on the wall clock (QA)
+//   ?capscale=<n>              scale the caption bar (0.5–3, default 1): the video tools' --caption-scale
 import { Stage } from './stage/stage.js'
 import { Show } from './show/show.js'
 import { Transport } from './engine/transport.js'
@@ -15,6 +16,7 @@ import { titleModule, endModule, productionModule } from './show/builtins.js'
 import { episode } from './episode.js'
 import { makeBar } from './ui/bar.js'
 import { label, P } from './kit/draw.js'
+import { parseCaptionScale } from './stage/caption-layout.js'
 
 /** a load that takes longer than this (s) puts up the "coming up" card; quicker ones hold the last frame */
 const LOADING_CARD_AFTER = 0.8
@@ -24,6 +26,11 @@ export async function startApp(params) {
   const canvas = document.getElementById('stage')
   const overlay = document.getElementById('overlay')
   const stage = new Stage(canvas, wrap)
+  if (params.capscale != null) {
+    const cs = parseCaptionScale(params.capscale)
+    if (cs == null) console.warn(`capscale=${params.capscale}: not a caption scale (0.5 to 3); using 1`)
+    else stage.captionScale = cs
+  }
   const puppets = new Map()
   const ids = rundown()
   // ?seg=<id> for a segment outside the rundown (e.g. demo): play it first

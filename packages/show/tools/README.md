@@ -864,6 +864,34 @@ yuv420p frames to the temp folder. The posting cut is encoded from those, so it 
 generation like the master. That takes about 1 GB per minute of temp space while it runs. A
 `--bluesky` without `--all` re-encodes the CRF-16 clips instead, and says so.
 
+**For phones.** Bluesky re-encodes every video to two streams, and phones mostly get the low one:
+640×360, H.264 Main 3.0, about 0.95 Mbit/s. Its downscale is point sampling (from 1080p it keeps
+every third pixel, unfiltered), so thin strokes and small text break up; at 360p the caption text
+is 12.5 px. Three options deal with that:
+
+```sh
+node packages/show/tools/video.mjs 2 --all --bluesky --caption-scale 1.6 --poster 215 --preview-360
+node packages/show/tools/video.mjs --preview-360 video/<ep-id>/late-cluster-bluesky.mp4   # an existing file
+npm run shoot -- 2 top-chicken 22 --caption-scale 1.6   # a frame to look at: …/top-chicken@22-cs1.6.png
+```
+
+- `--caption-scale <n>` (0.5 to 3, default 1) scales the whole caption bar: the line, the name
+  tag, the box, its padding and the underline, and the `[ LAUGHTER ]` box. The bar stays centred,
+  keeps its bottom edge (so it grows upward) and still lifts above a disclaimer or ticker; a chyron
+  above it moves up by what the bar grew. The wrap width stays 1000 stage units, so larger text
+  wraps into more lines and pages through more pairs of them, still following the word being said.
+  The page reads it as `?capscale=<n>` (`Stage.captionScale`); at 1 every frame is as before.
+- `--poster <seconds> [--poster-frames 2]` puts that frame of the finished cut in front of every
+  whole-episode file the run writes (full, posting and YouTube cuts), held for two frames with
+  silence under it, so the file's first frame (Bluesky's poster) is that picture. The `.srt` and
+  `.vtt` it writes move later by the same amount: pass the same `--poster` to a `--subs` run whose
+  captions go with such a cut. The full cut copies the clips, so the poster is encoded with this
+  run's `--crf` and `--preset`; if the clips were made with others, it stops and says which.
+- `--preview-360` writes `<name>-360p-preview.mp4` beside every mp4 the run writes (or beside the
+  file given): the low stream's settings (640×360 point-sampled, Main 3.0, 950 kb/s average, 1.8
+  Mbit/s cap, 30 fps, AAC). Measured against frames Bluesky served for episode two, its frames
+  match at SSIM 0.988 to 0.994. Watch it on a phone before posting.
+
 **The YouTube build** is for platforms that show their own subtitles.
 
 ```sh

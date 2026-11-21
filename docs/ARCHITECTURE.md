@@ -212,7 +212,7 @@ episode. `<seg>` is a segment id.
 | `npm run fit -- <ep> <seg> \| --draft <slug> [--json] [--apply] [--sounds]` | the fitting tool: render and transcribe every line several times, search respellings without changing words (a spelling the voice research file says works in that voice first; for a dictionary word only one whose phonemes, by the engine's G2P, keep the vowels and consonants of one of its readings, `packages/show/config/sounds.json`), report per line (`ok`, `weak`, `flagged`, `unsayable`: descriptions), the lines for the owner first and real people's lines heard differently last; `--json` writes `fit.json` beside the script, `--apply` writes only `as` fields; a script's own `as` that changes a dictionary word's sounds is listed, not blocked; `--sounds` runs only that check, with no rendering or Whisper, lists the words with two readings apart, and exits 0; exit 1 only if a line is heard as something alarming, out of bounds or crude |
 | `npm run voice-research -- <ep> --draft <slug> \| --drafts \| <seg> [--add <word> --line <id> --status … --note "…" \| --pattern "…"] [--dry-run]`, `-- --page` | the voice research file (`packages/show/tools/data/voice-research.json`, committed): harvest working spellings from `fit.json`, list the lines still hard, record a hard word or a pattern by hand (never a name), and regenerate `docs/voice-research.md`; `-- --sounds` (bun) marks every working spelling whose sounds are not the word's as `misleads` (the transcription accepts it, a listener does not); exit 1 while a hard line is unrecorded (node, nothing installed) |
 | `npm run voices -- <ep> [--drafts] [--rule <id>:<rule>] [--dry-run] [--json]` | give every guest (of the episode, and with `--drafts` of every draft together) a voice at least 1.5 from the house and each other, and write the cast entries |
-| `npm run shoot -- <ep> <seg> <t>...` | frozen frames to PNG for review (Playwright) |
+| `npm run shoot -- <ep> <seg> <t>... [--caption-scale <n>]` | frozen frames to PNG for review (Playwright); `--caption-scale` draws the caption bar larger, as the phone cut does (`?capscale=` on the page; frames named `…@<t>-cs<n>.png`) |
 | `npm run thumbnail -- <ep> [<seg> <t>]` | shoot a frame into `thumbnail.jpg`: the title card, or a moment of a segment |
 | `npm run avatar [-- --variant a\|b\|c] [--out file] [--candidates]` | render `brand/avatar.png`, the show's Bluesky profile picture, from the host puppet (Playwright); `--candidates` writes all three to `preview/_avatar/` with a contact sheet |
 | `npm run banner [-- --variant a\|b\|c] [--out file.png] [--candidates]` | render `brand/banner.png`, the account's banner: the title over the set's skyline, no host (Playwright); 3000×1000 PNG, or 1500×500 when the larger is over Bluesky's 1,000,000 bytes; refused if the title is under the profile picture or a phone button or under 140 points wide on a phone; `--candidates` writes all three to `brand/candidates/` with `banner-sheet.png` (each as a desktop and a phone profile) |
@@ -245,7 +245,10 @@ print as `error: ...`. `build` prints one line,
 
 Two studio tools have no root command and are run directly: `bun packages/show/tools/analyze.ts`
 (loudness, voices, the Whisper intelligibility pass) and `node packages/show/tools/video.mjs`
-(video exports into `video/<id>/`). Review frames from `shoot` go to `shots/<id>/<seg>/`.
+(video exports into `video/<id>/`; for the cut Bluesky serves to phones, `--caption-scale <n>`
+scales the caption bar, `--poster <s>` puts that frame first as the poster, and `--preview-360`,
+also on an existing file, writes the 640×360 stream a phone gets; `packages/show/tools/README.md`,
+"For phones"). Review frames from `shoot` go to `shots/<id>/<seg>/`.
 The sound editor's tools are `fit`, `voice-research` and `voices` (`packages/show/tools/README.md`,
 "Fitting a script", "The voice research file" and "Giving guests voices"). Fitting is best effort
 (the owner's ruling of 21 November 2026: subtitles carry the line): what the voice cannot say is
