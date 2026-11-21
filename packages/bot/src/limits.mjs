@@ -9,6 +9,12 @@ export const LIST_RECORDS_MAX_LIMIT = 100; // com.atproto.repo.listRecords limit
 // accept ["image/png", "image/jpeg"] and maxSize 1000000.
 export const AVATAR_MAX_BYTES = 1_000_000;
 export const AVATAR_MIME_TYPES = Object.freeze(['image/png', 'image/jpeg']);
+// app.bsky.actor.profile `banner` (from the same lexicon file as the avatar): a blob with
+// accept ["image/png", "image/jpeg"] and maxSize 1000000.
+export const BANNER_MAX_BYTES = 1_000_000;
+export const BANNER_MIME_TYPES = Object.freeze(['image/png', 'image/jpeg']);
+/** Not a lexicon limit: the apps crop banners to 3:1 (width:height), so `profile` warns otherwise. */
+export const BANNER_ASPECT = 3;
 /** Not a lexicon limit: below this the avatar looks soft in the apps, so `profile` warns. */
 export const AVATAR_MIN_SIDE_WARN = 400;
 // chat.bsky.convo.defs#messageInput `text` (verified 2026-11-19 against bluesky-social/atproto

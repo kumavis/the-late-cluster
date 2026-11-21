@@ -95,7 +95,7 @@ test('dry run of the avatar alone: validates, prints the plan, and makes no requ
   assert.match(r.out, /Account: @show\.example\.test \(did:plc:showprofile\) on https:\/\/bsky\.social/);
   assert.match(r.out, /getBlob for the current avatar and save it to data\/bot\/avatar-previous-<cid>\.<ext>/);
   assert.match(r.out, /changing only "avatar";/);
-  assert.match(r.out, /--only avatar: the description is not touched/);
+  assert.match(r.out, /--only avatar: the banner and the description are not touched/);
   assert.ok(!r.out.includes('Description'));
   assert.equal(r.err, '');
   assert.ok(!r.out.includes(PASSWORD));
@@ -349,8 +349,8 @@ test('usage: positionals and unknown flags exit 2; help lists the command', asyn
   assert.equal((await run(['profile', 'extra'], { root })).code, 2);
   assert.equal((await run(['profile', '--display-name', 'x'], { root })).code, 2);
   const help = await run(['help'], { root });
-  assert.match(help.out, /profile \[--only avatar\|description\] \[--avatar <file>\] \[--live\] \[--no-backup\]/);
-  assert.equal((await run(['profile', '--only', 'banner'], { root })).code, 2);
+  assert.match(help.out, /profile \[--only avatar\|banner\|description\] \[--avatar <file>\] \[--banner <file>\] \[--live\] \[--no-backup\]/);
+  assert.equal((await run(['profile', '--only', 'header'], { root })).code, 2);
   assert.equal((await run(['profile', '--only', 'description', '--avatar', 'x.png'], { root })).code, 2);
 });
 
@@ -400,7 +400,7 @@ test('dry run: a changed description is shown beside the live one, exactly', asy
   assert.match(r.out, /=> would change\. Exactly, as JSON:/);
   assert.ok(r.out.includes(`configured: ${JSON.stringify(NEW_DESCRIPTION)}`));
   assert.ok(!r.out.includes('Avatar:'), '--only description says nothing about the picture');
-  assert.match(r.out, /--only description: the avatar is not touched/);
+  assert.match(r.out, /--only description: the avatar and the banner are not touched/);
 
   const none = fakePds(routes({ record: null }));
   const r2 = await run(['profile', '--only', 'description'], { root, fetch: none });

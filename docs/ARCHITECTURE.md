@@ -227,7 +227,7 @@ episode. `<seg>` is a segment id.
 | `npm run bot -- post <ep> --video <file.mp4> --text-file <file> [--alt-file <file>] [--captions <file.vtt>] [--lang en] [--aspect <w>:<h>] [--upload-only] [--live]` | post the episode's video (no mention, no link), uploaded as a stream to the video service; `--upload-only` uploads and keeps the blob for a later post; dry run unless `--live` |
 | `npm run bot -- post --undo <post> [--live]` | delete one of the show's own posts (another account's is refused before any request); the dry run shows what goes with it; dry run unless `--live` |
 | `npm run bot -- reply <post> --text-file <file> --episode <ep> [--live]` | reply under one of the show's own posts, tagging only accounts in `episodes/<ep>/production/sources.json`; dry run unless `--live` |
-| `npm run bot -- profile [--only avatar\|description] [--avatar <file>] [--live] [--no-backup]` | set the account's profile picture (`avatar` in `bot.config.json`) and bio (`bluesky.profile.description` in `show.config.json`); the dry run compares the bio with the live one; dry run unless `--live` |
+| `npm run bot -- profile [--only avatar\|banner\|description] [--avatar <file>] [--banner <file>] [--live] [--no-backup]` | set the account's profile picture (`avatar` in `bot.config.json`), banner (`banner` there, only if the file exists unless `--only banner`) and bio (`bluesky.profile.description` in `show.config.json`); the dry run compares the bio and the banner with the live ones; dry run unless `--live` |
 | `npm run bot -- repost <post> [--live] [--undo]` | repost a post whose author is in `bluesky.repostAuthors`, or take the repost back; the dry run reads the post and prints the record; dry run unless `--live` |
 | `npm run bot -- dm send <handle-or-did> --file <path> [--live]` | send interview questions by direct message; dry run unless `--live` |
 | `npm run bot -- dm read <handle-or-did> [--limit 50] [--json]` | read that conversation; logs in, changes nothing |
@@ -360,8 +360,9 @@ episode a post is about"): only under the show's own posts, only accounts in tha
 refused if it moved, nobody on the opt-out list, and no links. Posts and replies are logged to
 `data/bot/posts.jsonl` and `data/bot/replies.jsonl`.
 
-`profile` sets the account's avatar and bio (`description`) and nothing else (`--only` picks
-one): it keeps every other field of the profile record, writes with `swapRecord` so a
+`profile` sets the account's avatar, banner and bio (`description`) and nothing else (`--only`
+picks one; the banner is skipped, with one line saying so, while its file does not exist): it
+keeps every other field of the profile record, writes with `swapRecord` so a
 concurrent change is refused, and first saves what it replaces (the picture, or the whole
 record when the bio changes) to `data/bot/` (gitignored). The bio is committed, in
 `bluesky.profile` in `show.config.json`; it is held to the lexicon's 256 graphemes and 2560

@@ -317,14 +317,29 @@ bsky.app URL, and appends a line to `data/bot/replies.jsonl` (gitignored).
 ## `profile`
 
 ```
-profile [--only avatar|description] [--avatar <file>] [--live] [--no-backup]
+profile [--only avatar|banner|description] [--avatar <file>] [--banner <file>] [--live] [--no-backup]
 ```
 
-Sets the account's profile picture and its bio (`description`), and nothing else. The picture
-is `avatar` in `bot.config.json` (relative to the repo root), or `--avatar <file>` (relative to
-where you run it). The bio is `bluesky.profile.description` in `show.config.json`. By default
-both are handled; `--only avatar` or `--only description` handles just one and leaves the other
-field exactly as it is (`--avatar` with `--only description` is a usage error).
+Sets the account's profile picture, its banner and its bio (`description`), and nothing else.
+The picture is `avatar` in `bot.config.json` (relative to the repo root), or `--avatar <file>`
+(relative to where you run it); the banner is `banner` there (`brand/banner.png`), or
+`--banner <file>`. The bio is `bluesky.profile.description` in `show.config.json`. By default the
+avatar and the bio are handled, and the banner too **only if its configured file exists**: if it
+does not, one line says no banner file is configured or present, and the banner is left alone.
+`--only avatar`, `--only banner` or `--only description` handles just one and leaves the other
+fields exactly as they are; with `--only banner` a missing file is an error. `--avatar` with
+another `--only`, and `--banner` with `--only avatar` or `--only description`, are usage errors.
+
+**The banner** gets the avatar's checks before anything is sent: it exists, is a file, is PNG or
+JPEG by its bytes, is at most 1,000,000 bytes (the lexicon's `banner` limit), and its header can
+be read. A banner that is not 3:1 gets a warning, not a refusal (the apps crop banners to 3:1).
+The dry run prints its file, type, bytes and pixels, and whether the live profile already has
+this exact banner. To decide that, it works out the file's blob CID locally (CIDv1, raw,
+sha2-256, the form the PDS gives) and compares it with the live record's. Live, the banner is
+uploaded and compared by CID like the avatar. The current banner is saved first as
+`data/bot/banner-previous-<cid>.<ext>` (unless `--no-backup`), and the record is written with
+only `banner` changed (plus any other field that changed in the same run), every other field
+carried over untouched.
 
 **Dry run is the default**: no login, and nothing is written. For the avatar it makes no request
 at all: it checks the file and prints its path, type, byte size and pixel size. For the bio it
@@ -359,9 +374,9 @@ Checked in both modes, before any request:
    fails, nothing is written;
 6. `com.atproto.repo.putRecord` with `swapRecord` set to the CID read in step 3 (`null` when
    there was no record), so a change made elsewhere in the meantime is refused, not
-   overwritten. Every other field (display name, banner, labels, pinned post, starter pack,
+   overwritten. Every other field (display name, labels, pinned post, starter pack,
    `createdAt`, and anything unrecognised) is kept exactly as read; only the fields that
-   changed, `avatar` and/or `description`, are replaced, in one write;
+   changed, of `avatar`, `banner` and `description`, are replaced, in one write;
 7. print the previous avatar's CID, the new one, whether the bio changed, and where the backups went.
 
 ## `repost <post> [--live] [--undo]`

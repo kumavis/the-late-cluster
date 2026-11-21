@@ -4,6 +4,7 @@
   "appView": "https://public.api.bsky.app",
   "langs": ["en"],
   "avatar": "brand/avatar.png",
+  "banner": "brand/banner.png",
   "video": {
     "service": "https://video.bsky.app",
     "did": "did:web:video.bsky.app",

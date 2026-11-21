@@ -11,8 +11,8 @@
 //   reply <post> --text-file <file> --episode <ep> [--live]
 //                                                    reply under the show's own post, tagging only
 //                                                    accounts in that episode's sources.json
-//   profile [--only avatar|description] [--avatar <file>] [--live] [--no-backup]
-//                                                    set the avatar and the bio (bluesky.profile in show.config.json)
+//   profile [--only avatar|banner|description] [--avatar <file>] [--banner <file>] [--live] [--no-backup]
+//                                                    set the avatar, the banner (if its file is there) and the bio
 //   repost <post> [--live] [--undo]                  repost a post by an author in bluesky.repostAuthors, or take it back
 //   dm send <handle-or-did> --file <path> [--live]   send interview questions by direct message
 //   dm read <handle-or-did> [--limit 50] [--json]    read that conversation; changes nothing

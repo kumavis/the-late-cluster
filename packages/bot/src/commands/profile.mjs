@@ -1,22 +1,27 @@
-// `profile [--only avatar|description] [--avatar <file>] [--live] [--no-backup]`: set the account's
-// profile picture and its bio (`description`). It changes those two fields and nothing else: every
-// other field of the profile record is kept exactly as it was read.
+// `profile [--only avatar|banner|description] [--avatar <file>] [--banner <file>] [--live] [--no-backup]`:
+// set the account's profile picture, its banner and its bio (`description`). It changes those
+// three fields and nothing else: every other field of the profile record is kept exactly as read.
+import { createHash } from 'node:crypto';
 import { existsSync, mkdirSync, readFileSync, statSync, writeFileSync } from 'node:fs';
 import { join, relative, resolve } from 'node:path';
 import { createClient, XrpcError } from '../atproto.mjs';
 import { loadSettings } from '../config.mjs';
 import { BotError, UsageError } from '../errors.mjs';
 import { imageDimensions, sniffImageType } from '../image.mjs';
-import { AVATAR_MAX_BYTES, AVATAR_MIME_TYPES, AVATAR_MIN_SIDE_WARN, DESCRIPTION_MAX_BYTES, DESCRIPTION_MAX_GRAPHEMES } from '../limits.mjs';
+import {
+  AVATAR_MAX_BYTES, AVATAR_MIME_TYPES, AVATAR_MIN_SIDE_WARN, BANNER_ASPECT, BANNER_MAX_BYTES, BANNER_MIME_TYPES,
+  DESCRIPTION_MAX_BYTES, DESCRIPTION_MAX_GRAPHEMES,
+} from '../limits.mjs';
 import { normHandle } from '../optout.mjs';
 import { graphemeLength, utf8Length } from '../richtext.mjs';
 
 const PROFILE_COLLECTION = 'app.bsky.actor.profile';
 const PROFILE_RKEY = 'self';
-/** Where the replaced picture and record are saved, relative to the repo root (gitignored by /data/). */
+/** Where the replaced pictures and record are saved, relative to the repo root (gitignored by /data/). */
 export const BACKUP_DIR = 'data/bot';
 const EXT = { 'image/png': 'png', 'image/jpeg': 'jpg' };
-const USAGE = 'profile [--only avatar|description] [--avatar <file>] [--live] [--no-backup]';
+const USAGE = 'profile [--only avatar|banner|description] [--avatar <file>] [--banner <file>] [--live] [--no-backup]';
+const ONLY = ['avatar', 'banner', 'description'];
 const DESCRIPTION_AT = 'bluesky.profile.description in show.config.json';
 const CREDITED_AT = 'bluesky.profile.credited in show.config.json';
 // Anything that reads as naming an account: @ at a word start followed by a name or DID.
@@ -24,11 +29,12 @@ const AT_NAME_RE = /(^|[^\w])@([a-z0-9][a-z0-9.:_-]*)/gi;
 
 export default {
   name: 'profile',
-  summary: 'set the account\'s profile picture and bio from committed configuration; dry run unless --live',
+  summary: 'set the account\'s profile picture, banner and bio from committed configuration; dry run unless --live',
   usage: USAGE,
   options: {
     only: { type: 'string' },
     avatar: { type: 'string' },
+    banner: { type: 'string' },
     live: { type: 'boolean', default: false },
     'no-backup': { type: 'boolean', default: false },
     root: { type: 'string' },
@@ -36,24 +42,54 @@ export default {
   run,
 };
 
-/** Reads and checks the picture. Throws BotError on anything Bluesky would refuse. */
-export function loadAvatar(path) {
-  if (!existsSync(path)) throw new BotError(`avatar ${path} does not exist`);
-  if (!statSync(path).isFile()) throw new BotError(`avatar ${path} is not a file`);
+/** Reads and checks a picture for `field`. Throws BotError on anything Bluesky would refuse. */
+function loadPicture(path, field, { maxBytes, mimeTypes }) {
+  if (!existsSync(path)) throw new BotError(`${field} ${path} does not exist`);
+  if (!statSync(path).isFile()) throw new BotError(`${field} ${path} is not a file`);
   const bytes = readFileSync(path);
   const mimeType = sniffImageType(bytes);
-  if (!mimeType || !AVATAR_MIME_TYPES.includes(mimeType)) {
-    throw new BotError(`avatar ${path} is not a PNG or JPEG image (checked by its bytes, not its name)`);
+  if (!mimeType || !mimeTypes.includes(mimeType)) {
+    throw new BotError(`${field} ${path} is not a PNG or JPEG image (checked by its bytes, not its name)`);
   }
-  if (bytes.length > AVATAR_MAX_BYTES) {
-    throw new BotError(`avatar ${path} is ${bytes.length} bytes; Bluesky avatars are limited to ${AVATAR_MAX_BYTES} bytes. Re-export it smaller.`);
+  if (bytes.length > maxBytes) {
+    throw new BotError(`${field} ${path} is ${bytes.length} bytes; Bluesky ${field}s are limited to ${maxBytes} bytes. Re-export it smaller.`);
   }
   const size = imageDimensions(bytes, mimeType);
-  if (!size) throw new BotError(`avatar ${path} looks like ${mimeType} but its header cannot be read; it may be damaged`);
+  if (!size) throw new BotError(`${field} ${path} looks like ${mimeType} but its header cannot be read; it may be damaged`);
+  return { bytes, mimeType, ...size };
+}
+
+/** Reads and checks the avatar. Throws BotError on anything Bluesky would refuse. */
+export function loadAvatar(path) {
+  const pic = loadPicture(path, 'avatar', { maxBytes: AVATAR_MAX_BYTES, mimeTypes: AVATAR_MIME_TYPES });
   const warnings = [];
-  if (size.width !== size.height) warnings.push(`the picture is ${size.width}x${size.height}, not square; the apps crop avatars to a circle`);
-  if (Math.min(size.width, size.height) < AVATAR_MIN_SIDE_WARN) warnings.push(`the picture is under ${AVATAR_MIN_SIDE_WARN} px on a side (${size.width}x${size.height}); it may look soft`);
-  return { bytes, mimeType, ...size, warnings };
+  if (pic.width !== pic.height) warnings.push(`the picture is ${pic.width}x${pic.height}, not square; the apps crop avatars to a circle`);
+  if (Math.min(pic.width, pic.height) < AVATAR_MIN_SIDE_WARN) warnings.push(`the picture is under ${AVATAR_MIN_SIDE_WARN} px on a side (${pic.width}x${pic.height}); it may look soft`);
+  return { ...pic, warnings };
+}
+
+/** Reads and checks the banner: the same checks, and a warning (not a refusal) when it is not 3:1. */
+export function loadBanner(path) {
+  const pic = loadPicture(path, 'banner', { maxBytes: BANNER_MAX_BYTES, mimeTypes: BANNER_MIME_TYPES });
+  const warnings = [];
+  if (pic.width !== pic.height * BANNER_ASPECT) warnings.push(`the banner is ${pic.width}x${pic.height}, not 3:1; the apps crop banners to 3:1`);
+  return { ...pic, warnings };
+}
+
+/**
+ * The CID a blob of these bytes gets: CIDv1, raw codec, sha2-256, base32 ("bafkrei…"), as the PDS
+ * computes it. Lets a dry run say whether the live profile already has this exact picture.
+ */
+export function localBlobCid(bytes) {
+  const cid = Buffer.concat([Buffer.from([0x01, 0x55, 0x12, 0x20]), createHash('sha256').update(bytes).digest()]);
+  const alphabet = 'abcdefghijklmnopqrstuvwxyz234567';
+  let bits = 0; let value = 0; let s = 'b';
+  for (const byte of cid) {
+    value = (value << 8) | byte; bits += 8;
+    while (bits >= 5) { s += alphabet[(value >>> (bits - 5)) & 31]; bits -= 5; }
+  }
+  if (bits > 0) s += alphabet[(value << (5 - bits)) & 31];
+  return s;
 }
 
 /**
@@ -104,12 +140,12 @@ export function blobCid(blob) {
 async function run(ctx) {
   const { positionals, values, env, out, err, root, cwd, now, fetch, configPath } = ctx;
   if (positionals.length) throw new UsageError(`profile takes no positional arguments\nusage: ${USAGE}`);
-  if (values.only !== undefined && !['avatar', 'description'].includes(values.only)) {
-    throw new UsageError(`--only takes avatar or description, not "${values.only}"\nusage: ${USAGE}`);
+  if (values.only !== undefined && !ONLY.includes(values.only)) {
+    throw new UsageError(`--only takes avatar, banner or description, not "${values.only}"\nusage: ${USAGE}`);
   }
-  const doAvatar = values.only !== 'description';
-  const doDescription = values.only !== 'avatar';
-  if (!doAvatar && values.avatar !== undefined) throw new UsageError('--avatar and --only description do not go together');
+  const only = values.only;
+  if (only && only !== 'avatar' && values.avatar !== undefined) throw new UsageError(`--avatar and --only ${only} do not go together`);
+  if (only && only !== 'banner' && values.banner !== undefined) throw new UsageError(`--banner and --only ${only} do not go together`);
   const settings = loadSettings({ env, configPath, showConfigPath: join(root, 'show.config.json') });
 
   if (values.live) {
@@ -123,15 +159,27 @@ async function run(ctx) {
   }
 
   // Everything that can fail locally fails here, before any network call.
-  const avatarPath = values.avatar ? resolve(cwd, values.avatar) : resolve(root, settings.avatar);
-  const avatar = doAvatar ? loadAvatar(avatarPath) : null;
-  const description = doDescription ? loadDescription(settings.profile) : null;
   const shown = (p) => { const r = relative(cwd, p); return !r ? p : r.startsWith('..') ? p : r; };
+  const avatarPath = values.avatar ? resolve(cwd, values.avatar) : resolve(root, settings.avatar);
+  const avatar = !only || only === 'avatar' ? loadAvatar(avatarPath) : null;
   for (const w of avatar?.warnings ?? []) err(`warning: ${w}`);
+  // The banner: with no --only, only if the configured file is there; asked for by name, it must be.
+  const bannerPath = values.banner ? resolve(cwd, values.banner) : settings.banner ? resolve(root, settings.banner) : null;
+  let banner = null;
+  let bannerNote = null;
+  if (only === 'banner' || values.banner !== undefined) {
+    if (!bannerPath) throw new BotError('no banner configured: set banner in bot.config.json, or give --banner <file>');
+    banner = loadBanner(bannerPath);
+  } else if (!only) {
+    if (bannerPath && existsSync(bannerPath)) banner = loadBanner(bannerPath);
+    else bannerNote = `Banner:  no banner file is configured or present${bannerPath ? ` (${shown(bannerPath)})` : ''}; the banner is left alone.`;
+  }
+  for (const w of banner?.warnings ?? []) err(`warning: ${w}`);
+  const description = !only || only === 'description' ? loadDescription(settings.profile) : null;
   const backupDir = join(root, BACKUP_DIR);
   const target = settings.handle ? `@${settings.handle}` : '(no handle: set bluesky.handle in show.config.json)';
   const did = settings.did ?? '(no DID: set bluesky.did in show.config.json)';
-  const fields = [avatar && '"avatar"', description && '"description"'].filter(Boolean).join(' and ');
+  const fields = [avatar && '"avatar"', banner && '"banner"', description && '"description"'].filter(Boolean).join(' and ');
   const client = createClient({ service: settings.service, userAgent: settings.userAgent, fetch });
 
   if (!values.live) {
@@ -144,32 +192,49 @@ async function run(ctx) {
         `Pixels:  ${avatar.width}x${avatar.height}`,
       );
     }
+    if (banner) {
+      lines.push(
+        `Banner:  ${shown(bannerPath)}${values.banner ? '' : ' (banner in bot.config.json)'}`,
+        `Type:    ${banner.mimeType}`,
+        `Size:    ${banner.bytes.length} bytes (limit ${BANNER_MAX_BYTES})`,
+        `Pixels:  ${banner.width}x${banner.height}`,
+      );
+    }
+    if (bannerNote) lines.push(bannerNote);
     lines.push(`Account: ${target} (${did}) on ${settings.service}`);
+
+    // A dry run may read: the profile record is public, so it is fetched without logging in.
+    let live;
+    if ((banner || description) && settings.did) {
+      try {
+        live = await client.getRecord({ repo: settings.did, collection: PROFILE_COLLECTION, rkey: PROFILE_RKEY, auth: false });
+      } catch (e) {
+        live = e instanceof XrpcError && e.error === 'RecordNotFound' ? null : { error: e };
+      }
+    }
+    const unread = !settings.did ? 'cannot be read without bluesky.did in show.config.json'
+      : live?.error ? `could not be read without logging in (${live.error.message}); --live reads it after logging in` : null;
+    if (banner) {
+      const cid = localBlobCid(banner.bytes);
+      const current = blobCid(live?.value?.banner);
+      lines.push('', `Banner on the live profile: ${unread ?? (current ?? 'none')}`,
+        unread ? '' : current === cid ? `  => unchanged: the live profile already has this exact banner (${cid}).` : `  => would change, to ${cid}.`);
+      if (!lines.at(-1)) lines.pop();
+    }
     if (description) {
       lines.push('', `Description (${DESCRIPTION_AT}): ${description.graphemes}/${DESCRIPTION_MAX_GRAPHEMES} graphemes, ${description.bytes}/${DESCRIPTION_MAX_BYTES} bytes`,
         '  configured:', ...quoted(description.text));
-      // A dry run may read: the profile record is public, so it is fetched without logging in.
-      if (!settings.did) {
-        lines.push('  live: cannot be read without bluesky.did in show.config.json');
+      if (unread) {
+        lines.push(`  live: ${unread}`);
       } else {
-        let live;
-        try {
-          live = await client.getRecord({ repo: settings.did, collection: PROFILE_COLLECTION, rkey: PROFILE_RKEY, auth: false });
-        } catch (e) {
-          live = e instanceof XrpcError && e.error === 'RecordNotFound' ? null : { error: e };
-        }
-        if (live?.error) {
-          lines.push(`  live: could not be read without logging in (${live.error.message}); --live reads it after logging in`);
+        const current = live?.value?.description;
+        lines.push(`  live (${live ? `record ${live.cid}` : 'no profile record yet'}):`, ...quoted(current));
+        if (current === description.text) {
+          lines.push('  => unchanged: --live would leave the description as it is.');
         } else {
-          const current = live?.value?.description;
-          lines.push(`  live (${live ? `record ${live.cid}` : 'no profile record yet'}):`, ...quoted(current));
-          if (current === description.text) {
-            lines.push('  => unchanged: --live would leave the description as it is.');
-          } else {
-            lines.push('  => would change. Exactly, as JSON:',
-              `     live:       ${current === undefined ? '(none)' : JSON.stringify(current)}`,
-              `     configured: ${JSON.stringify(description.text)}`);
-          }
+          lines.push('  => would change. Exactly, as JSON:',
+            `     live:       ${current === undefined ? '(none)' : JSON.stringify(current)}`,
+            `     configured: ${JSON.stringify(description.text)}`);
         }
       }
     }
@@ -178,11 +243,12 @@ async function run(ctx) {
       `stop unless the session's DID is ${did}`,
       `GET  com.atproto.repo.getRecord ${PROFILE_COLLECTION}/${PROFILE_RKEY} (none yet: create it)`,
     ];
-    if (avatar) {
-      steps.push('POST com.atproto.repo.uploadBlob with this picture; the avatar is left alone if it is already this one');
+    for (const [pic, name] of [[avatar, 'avatar'], [banner, 'banner']]) {
+      if (!pic) continue;
+      steps.push(`POST com.atproto.repo.uploadBlob with this ${name === 'avatar' ? 'picture' : 'banner'}; the ${name} is left alone if it is already this one`);
       steps.push(values['no-backup']
-        ? '(--no-backup: do not save the current avatar)'
-        : `GET  com.atproto.sync.getBlob for the current avatar and save it to ${shown(backupDir)}/avatar-previous-<cid>.<ext>`);
+        ? `(--no-backup: do not save the current ${name})`
+        : `GET  com.atproto.sync.getBlob for the current ${name} and save it to ${shown(backupDir)}/${name}-previous-<cid>.<ext>`);
     }
     if (description) {
       steps.push(values['no-backup']
@@ -191,8 +257,7 @@ async function run(ctx) {
     }
     steps.push(`POST com.atproto.repo.putRecord ${PROFILE_COLLECTION}/${PROFILE_RKEY} with swapRecord, changing only ${fields}; if nothing changes, write nothing`);
     lines.push('', 'With --live the bot would:', ...steps.map((s, i) => `  ${i + 1}. ${s}`));
-    if (!avatar) lines.push('  (--only description: the avatar is not touched)');
-    if (!description) lines.push('  (--only avatar: the description is not touched)');
+    if (only) lines.push(`  (--only ${only}: ${ONLY.filter((f) => f !== only).map((f) => `the ${f}`).join(' and ')} are not touched)`);
     out(lines.join('\n'));
     return 0;
   }
@@ -213,39 +278,42 @@ async function run(ctx) {
     throw new BotError('getRecord returned the profile without a CID, so the write cannot be guarded against a concurrent change; nothing was written');
   }
   const existing = current?.value && typeof current.value === 'object' ? current.value : null;
-  const previousCid = blobCid(existing?.avatar);
-  out(existing ? `Read the profile record (${current.cid}); current avatar: ${previousCid ?? 'none'}` : 'No profile record yet: one will be created.');
+  out(existing ? `Read the profile record (${current.cid}); current avatar: ${blobCid(existing.avatar) ?? 'none'}` : 'No profile record yet: one will be created.');
+  if (bannerNote) out(bannerNote);
 
-  let blob = null;
-  let newCid = null;
-  if (avatar) {
-    blob = await client.uploadBlob(avatar.bytes, avatar.mimeType);
-    newCid = blobCid(blob);
-    if (!newCid) throw new BotError('uploadBlob returned a blob without a CID; nothing was written');
-    out(`Uploaded ${shown(avatarPath)} (${avatar.bytes.length} bytes): ${newCid}`);
-    if (newCid === previousCid) out('That picture is already the avatar.');
+  // Each picture: upload it, compare its CID with the current one, and back the current one up.
+  const pictures = [];
+  for (const [pic, name, path] of [[avatar, 'avatar', avatarPath], [banner, 'banner', bannerPath]]) {
+    if (!pic) continue;
+    const previousCid = blobCid(existing?.[name]);
+    const blob = await client.uploadBlob(pic.bytes, pic.mimeType);
+    const newCid = blobCid(blob);
+    if (!newCid) throw new BotError(`uploadBlob returned a blob without a CID; nothing was written`);
+    out(`Uploaded ${shown(path)} (${pic.bytes.length} bytes): ${newCid}`);
+    if (newCid === previousCid) out(`That picture is already the ${name}.`);
+    pictures.push({ name, blob, newCid, previousCid, changes: newCid !== previousCid });
   }
-  const avatarChanges = Boolean(avatar) && newCid !== previousCid;
   const descriptionChanges = Boolean(description) && existing?.description !== description.text;
   if (description && !descriptionChanges) out('The description is already the configured one.');
-  if (!avatarChanges && !descriptionChanges) {
+  if (!pictures.some((p) => p.changes) && !descriptionChanges) {
     out('Nothing to change. Nothing was written.');
     return 0;
   }
 
-  let backup = values['no-backup'] ? 'skipped (--no-backup)' : 'none (no previous avatar)';
-  if (!avatarChanges) backup = 'not needed (avatar unchanged)';
-  else if (previousCid && !values['no-backup']) {
+  for (const p of pictures) {
+    p.backup = values['no-backup'] ? 'skipped (--no-backup)' : `none (no previous ${p.name})`;
+    if (!p.changes) { p.backup = `not needed (${p.name} unchanged)`; continue; }
+    if (!p.previousCid || values['no-backup']) continue;
     try {
-      const { bytes, contentType } = await client.getBlob({ did: session.did, cid: previousCid });
+      const { bytes, contentType } = await client.getBlob({ did: session.did, cid: p.previousCid });
       if (!bytes.length) throw new Error('getBlob returned no bytes');
-      const type = sniffImageType(bytes) ?? existing.avatar?.mimeType ?? contentType?.split(';')[0];
-      const path = join(backupDir, `avatar-previous-${safeName(previousCid)}.${EXT[type] ?? 'bin'}`);
+      const type = sniffImageType(bytes) ?? existing[p.name]?.mimeType ?? contentType?.split(';')[0];
+      const path = join(backupDir, `${p.name}-previous-${safeName(p.previousCid)}.${EXT[type] ?? 'bin'}`);
       mkdirSync(backupDir, { recursive: true });
       writeFileSync(path, bytes);
-      backup = `${shown(path)} (${bytes.length} bytes)`;
+      p.backup = `${shown(path)} (${bytes.length} bytes)`;
     } catch (e) {
-      throw new BotError(`could not back up the current avatar ${previousCid}: ${e.message}. Nothing was written. --no-backup skips the backup.`);
+      throw new BotError(`could not back up the current ${p.name} ${p.previousCid}: ${e.message}. Nothing was written. --no-backup skips the backup.`);
     }
   }
   let recordBackup = values['no-backup'] ? 'skipped (--no-backup)' : 'none (no previous record)';
@@ -261,10 +329,9 @@ async function run(ctx) {
     recordBackup = shown(path);
   }
 
-  const changes = {
-    ...(avatarChanges ? { avatar: blob } : {}),
-    ...(descriptionChanges ? { description: description.text } : {}),
-  };
+  const changes = {};
+  for (const p of pictures) if (p.changes) changes[p.name] = p.blob;
+  if (descriptionChanges) changes.description = description.text;
   const record = existing
     ? { ...existing, $type: PROFILE_COLLECTION, ...changes }
     : { $type: PROFILE_COLLECTION, ...changes, createdAt: now().toISOString() };
@@ -281,11 +348,12 @@ async function run(ctx) {
     throw e;
   }
   const lines = [`Updated ${written?.uri ?? `at://${session.did}/${PROFILE_COLLECTION}/${PROFILE_RKEY}`}`];
-  if (avatar) {
+  for (const p of pictures) {
+    const pad = (s) => `${s}:`.padEnd(17);
     lines.push(
-      `  previous avatar: ${previousCid ?? 'none'}`,
-      `  new avatar:      ${newCid}${avatarChanges ? '' : ' (unchanged)'}`,
-      `  backup:          ${backup}`,
+      `  ${pad(`previous ${p.name}`)}${p.previousCid ?? 'none'}`,
+      `  ${pad(`new ${p.name}`)}${p.newCid}${p.changes ? '' : ' (unchanged)'}`,
+      `  ${pad(p.name === 'avatar' ? 'backup' : 'banner backup')}${p.backup}`,
     );
   }
   if (description) {

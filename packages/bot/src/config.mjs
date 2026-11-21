@@ -15,6 +15,8 @@ export const CONFIG_PATH = fileURLToPath(new URL('../bot.config.json', import.me
 export const SHOW_CONFIG_PATH = join(REPO_ROOT, 'show.config.json');
 /** The profile picture `profile` sets, relative to the repo root, when bot.config.json names none. */
 export const DEFAULT_AVATAR = 'brand/avatar.png';
+/** The banner `profile` sets, relative to the repo root, when bot.config.json names none. It may not exist yet. */
+export const DEFAULT_BANNER = 'brand/banner.png';
 /** Where `repost` reads a post's author, text and counts without logging in. */
 export const DEFAULT_APPVIEW = 'https://public.api.bsky.app';
 
@@ -41,6 +43,7 @@ export function loadSettings({ env = {}, configPath = CONFIG_PATH, showConfigPat
     userAgent: env.BOT_USER_AGENT || file.userAgent || DEFAULT_USER_AGENT,
     langs: Array.isArray(file.langs) && file.langs.length ? file.langs : ['en'],
     avatar: typeof file.avatar === 'string' && file.avatar ? file.avatar : DEFAULT_AVATAR,
+    banner: typeof file.banner === 'string' && file.banner ? file.banner : DEFAULT_BANNER,
     handle: envHandle || showHandle || null,
     handleSource: envHandle ? 'BSKY_HANDLE' : showHandle ? 'show.config.json' : null,
     did: typeof show.bluesky?.did === 'string' && show.bluesky.did ? show.bluesky.did : null,
