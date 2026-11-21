@@ -903,6 +903,13 @@ npm run shoot -- 2 top-chicken 22 --caption-scale 1.4   # a frame to look at: â€
   the 360p preview matches at SSIM 0.988 to 0.994 and the 720p scaler at about 41.5 dB. Watch
   both before posting.
 
+Checked against the real thing on 21 November 2026: a cut made with `--soften box
+--caption-scale 1.4 --poster 5.9` was posted as a test, both streams were downloaded and the post
+deleted. Over the whole episode the served 360p stream matches the local preview at SSIM 0.990 and
+the served 720p at 0.996; small text is whole at 360p; and the poster Bluesky shows is the
+`--poster` frame. A deleted post's streams stop being served within minutes, so the previews are
+the way to check a cut without posting it.
+
 **The YouTube build** is for platforms that show their own subtitles.
 
 ```sh
