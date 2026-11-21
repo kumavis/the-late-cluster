@@ -1,0 +1,153 @@
+{
+  "format": "late-cluster-sources/1",
+  "week": "2026-W47",
+  "accounts": [
+    {
+      "handle": "yonderdavid.bsky.social",
+      "did": "did:plc:nqu76ue2hgr44emaxyvgbzsq",
+      "role": "guest",
+      "cast": "david"
+    }
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jfwtubf22r",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 61,
+      "reposts": 5,
+      "replies": 7,
+      "time": "2026-11-17T15:59:10.365Z",
+      "use": "card",
+      "segment": "made-polyhedra-instruments-sakura",
+      "alt": "Animated instruments composed of polyhedra play the Japanese folk tune さくら さくら while the camera explores a landscape composed of regular polyhedra. The landscape features many sakura trees.",
+      "note": "The video. The post has no text; the alt text is the maker's. Shown as a card with the real name, handle, date and like count and nothing in the text field: the blank is the picture for \"No caption. No words.\" The alt text is not put on screen and not read. Only one still of the video has been seen, second-hand (research/media-notes.md): the card does not draw the video."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jx6tq44k2p",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 10,
+      "reposts": 1,
+      "replies": 1,
+      "time": "2026-11-17T21:07:52.272Z",
+      "use": "line",
+      "segment": "made-polyhedra-instruments-sakura",
+      "text": "The first change request was \"everything is a cloud/sea of regular polyhedra, piling up or clustering together as necessary. Not every single outline would have to be rendered clearly to make the effect work, at least as it is in my mind's eye; just most of the edges.\" The result:",
+      "shown": "… everything is a cloud/sea of regular polyhedra, piling up or clustering together as necessary. …",
+      "note": "Performed by the puppet as a cut from inside the post, marked with … at both ends. Its card shows exactly the performed cut."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxjfkdu22p",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 7,
+      "reposts": 0,
+      "replies": 1,
+      "time": "2026-11-17T21:13:46.493Z",
+      "use": "line",
+      "segment": "made-polyhedra-instruments-sakura",
+      "text": "Same rows in this image. Saying \"I like tumbled + packed, but it could stand to be a bit denser in terms of ground and water coverage, and the legs of the pavilion look too warty. Perhaps they could be assembled out of a stack of polyhedra, or a towering pile of smaller ones.\" yielded the 2nd image.",
+      "shown": "… the legs of the pavilion look too warty. …",
+      "note": "Performed as a cut from inside the post, marked with … at both ends. Its card shows exactly the performed cut."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxvvh2xs2p",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 8,
+      "reposts": 0,
+      "replies": 2,
+      "time": "2026-11-17T21:20:45.828Z",
+      "use": "line",
+      "segment": "made-polyhedra-instruments-sakura",
+      "text": "After that the visuals were almost set, I just had to correct the koto physics, as those were animated with too much exaggeration and ignored the legs. Oh, and I had to tell it to make the river move.",
+      "shown": "… Oh, and I had to tell it to make the river move.",
+      "note": "Performed as the last sentence of the post, the cut before it marked with …. Its card shows exactly the performed cut."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jx2rb2kk2p",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 11,
+      "reposts": 0,
+      "replies": 1,
+      "time": "2026-11-17T21:05:35.464Z",
+      "use": "reference",
+      "segment": "made-polyhedra-instruments-sakura",
+      "text": "Ah, so I started out by asking for \"Moebius but it's all polyhedra,\" with no plan to get the exact Moebius style, just that neighborhood. My scene description was just the song name. The 1st image was the first still I got back, which wasn't great, but that same turn it refined to the 2nd.",
+      "note": "Not shown or spoken. The post note-first replied to: the occasion record only. It contains a word research could not explain (screen.md, item 8), which is one more reason it stays off screen."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxddunok2p",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 9,
+      "reposts": 1,
+      "replies": 1,
+      "time": "2026-11-17T21:10:23.417Z",
+      "use": "reference",
+      "segment": "made-polyhedra-instruments-sakura",
+      "text": "Those landscape, water, and platforms look too busy with zigzags to me, so I pointed that out and suggested giving every polyhedron collision as a solution. The third and fourth rows below show the placed and tumbled versions of that idea.",
+      "note": "Not shown or spoken. The post note-legs replied to: the occasion record only."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxsla2g22p",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 7,
+      "reposts": 0,
+      "replies": 1,
+      "time": "2026-11-17T21:18:54.445Z",
+      "use": "reference",
+      "segment": "made-polyhedra-instruments-sakura",
+      "text": "Then I asked for more compaction of the stage, foundation, and bridge, thinner lines, and no flat surface under the ground and water, just polyhedra. It got better but too gappy (1st image), so I asked for deeper piles (2nd image).",
+      "note": "Not shown or spoken. The post river replied to: the occasion record only."
+    }
+  ],
+  "links": [],
+  "lines": [
+    {
+      "segment": "made-polyhedra-instruments-sakura",
+      "line": "note-first",
+      "kind": "verbatim",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jx6tq44k2p",
+      "context": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jx2rb2kk2p",
+      "contextText": "Ah, so I started out by asking for \"Moebius but it's all polyhedra,\" with no plan to get the exact Moebius style, just that neighborhood. My scene description was just the song name. The 1st image was the first still I got back, which wasn't great, but that same turn it refined to the 2nd.",
+      "setup": {
+        "line": "ask-first",
+        "who": "larry",
+        "text": "It was made by sending notes to a machine. This was the first."
+      },
+      "occasion": "A thread by the maker under the maker's own video, telling in order how it was made. The post before this one says how the first request went; this post opens \"The first change request was\" and quotes the request. Staged: Larry says the video was made by sending notes to a machine and that this was the first, and the puppet says the quoted request. Same job: reporting the first change request. The words \"The first change request was\" are cut, and Larry's line carries that fact."
+    },
+    {
+      "segment": "made-polyhedra-instruments-sakura",
+      "line": "note-legs",
+      "kind": "verbatim",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxjfkdu22p",
+      "context": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxddunok2p",
+      "contextText": "Those landscape, water, and platforms look too busy with zigzags to me, so I pointed that out and suggested giving every polyhedron collision as a solution. The third and fourth rows below show the placed and tumbled versions of that idea.",
+      "setup": {
+        "line": "ask-another",
+        "who": "larry",
+        "text": "And another note."
+      },
+      "occasion": "The same thread, two posts on. The post reports a later request by quoting it (\"Saying \\\"…\\\" yielded the 2nd image.\"). Staged: Larry says \"And another note.\" and the puppet says one sentence of the quoted request. \"Another\", not \"the next\": one request came between. The legs are the legs of the pavilion in the maker's own stills; the setup line two beats earlier says the notes went to a machine."
+    },
+    {
+      "segment": "made-polyhedra-instruments-sakura",
+      "line": "river",
+      "kind": "verbatim",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxvvh2xs2p",
+      "context": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxsla2g22p",
+      "contextText": "Then I asked for more compaction of the stage, foundation, and bridge, thinner lines, and no flat surface under the ground and water, just polyhedra. It got better but too gappy (1st image), so I asked for deeper piles (2nd image).",
+      "setup": {
+        "line": "ask-last",
+        "who": "larry",
+        "text": "And this is the end of the last post."
+      },
+      "occasion": "The last post of the same thread, and its last sentence: an afterthought that closes the account. Staged: Larry says this is the end of the last post, and the puppet says that sentence. Same place, same job, same meaning: \"it\" is still the machine that made the video. The studio's sketch then does what the sentence says."
+    }
+  ]
+}

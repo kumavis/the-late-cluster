@@ -1,0 +1,210 @@
+{
+  "id": "made-voice-falling-blocks",
+  "lane": "made",
+  "title": "A synthesized talking head plays a falling-block game by voice",
+  "summary": "On Fri 13 Nov at 05:01Z @yonderdavid.bsky.social (971 followers) posted a video with no text. Its alt text reads: \"A chimera-vocal-synth talking head plays a falling block game using voice commands.\" The post quotes a 9 Nov post by @norvid-studies.bsky.social, \"catoid week rolls smoothly into chimera vocal synth week\". It has 78 likes and 9 reposts. In replies the maker said the synth builds to wasm, the frames were generated in a browser, the audio tracks were generated separately and mixed, and ffmpeg assembled the video; later the same day, answering a question about a different video, the maker added that this one \"featured a chiptune arrangement of Ievan Polkka\". A reply from @shimmermathlabs.com lists five commands, one per line. The synth is chimera-vocal-synth, an open-source vocal synthesizer whose GitHub repository (jamesondh/chimera-vocal-synth) the maker links; the bible says the show's own voices are synthesized by CHIMERA, a physical-model vocal synth.",
+  "made": [
+    {
+      "what": "video: a synthesized head speaks commands that play a falling-block game",
+      "by": "yonderdavid.bsky.social",
+      "address": "https://bsky.app/profile/yonderdavid.bsky.social/post/3n267cb64fk2t"
+    }
+  ],
+  "couldBeShown": "A head speaking short commands while blocks fall and respond: the alt text says only that the head \"plays a falling block game using voice commands\". Which commands the video uses, what the head looks like and how the game is drawn are not described in the data; the five lines in the reply from @shimmermathlabs.com are that account's own words, not a transcript.",
+  "numbers": [
+    "78 likes, 9 reposts, 6 replies on the video post.",
+    "Posted 05:01Z; the choir video followed as a reply at 14:51Z the same day (see made-vocal-synth-choir)."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n267cb64fk2t",
+      "text": "",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-13T05:01:00.102Z",
+      "counts": {
+        "likes": 78,
+        "reposts": 9,
+        "replies": 6,
+        "quotes": 1
+      },
+      "quotes": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3mzv3zufras2j",
+        "handle": "norvid-studies.bsky.social",
+        "text": "catoid week rolls smoothly into chimera vocal synth week",
+        "time": "2026-11-09T14:08:39.415Z"
+      },
+      "kind": "quote",
+      "alt": "A chimera-vocal-synth talking head plays a falling block game using voice commands.",
+      "media": "video",
+      "note": "The video. Text is empty; the alt text is the maker's."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n26ackqjb223",
+      "text": "@abeliansoup.bsky.social @minormobius.bsky.social @cee.wtf @brennan.computer etc etc etc",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-13T05:19:03.884Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n267cb64fk2t",
+        "handle": "yonderdavid.bsky.social",
+        "text": ""
+      },
+      "kind": "reply",
+      "note": "A reply that only tags other accounts."
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n26ddbnjtc2k",
+      "text": "\"nice!\"",
+      "handle": "cee.wtf",
+      "displayName": "cee",
+      "time": "2026-11-13T06:13:09.130Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n26ackqjb223",
+        "handle": "norvid-studies.bsky.social",
+        "text": "@abeliansoup.bsky.social @minormobius.bsky.social @cee.wtf @brennan.computer etc etc etc"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n26f25vn5k2b",
+      "text": "right\nright\nrotate into catoid\ndrop\nhiss",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-13T06:43:50.694Z",
+      "counts": {
+        "likes": 7,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n26ddbnjtc2k",
+        "handle": "cee.wtf",
+        "text": "\"nice!\""
+      },
+      "kind": "reply",
+      "note": "Five lines, in reply to the reply above."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n27cbllwmk22",
+      "text": "need...",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-13T15:26:58.451Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n26f25vn5k2b",
+        "handle": "shimmermathlabs.com",
+        "text": "right\nright\nrotate into catoid\ndrop\nhiss"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27kw5enmc27",
+      "text": "The Chimera synth builds to wasm, so it was natural to generate the frames in a browser. The audio tracks are generated separately and mixed, then everything gets turned into a video with ffmpeg. \ngithub.com/jamesondh/ch...",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-13T18:01:38.110Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "withheld": "the digest does not hold the post this replied to (its author is hidden from the scrape)"
+      },
+      "kind": "reply",
+      "links": [
+        {
+          "url": "https://github.com/jamesondh/chimera-vocal-synth",
+          "title": "GitHub - jamesondh/chimera-vocal-synth: the ultimate vocal synthesizer - sing, speak, beatbox, and more"
+        }
+      ],
+      "note": "The maker on how the video was produced. It answers a reply the digest does not hold, so it can be shown as a statement but not performed as an answer."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27jl4f5f22f",
+      "text": "The previous video featured a chiptune arrangement of Ievan Polkka.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-13T17:37:34.237Z",
+      "counts": {
+        "likes": 7,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27jjaiaks2f",
+        "handle": "yonderdavid.bsky.social",
+        "text": "It's Kyrie 1 from Palestrina's Missa Papae Marcelli."
+      },
+      "kind": "reply",
+      "note": "From the choir thread (see made-vocal-synth-choir): the maker names the music of this video while answering a question about the next one."
+    }
+  ],
+  "people": [
+    {
+      "handle": "yonderdavid.bsky.social",
+      "followers": 971,
+      "displayName": "David",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "maker"
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "followers": 2777,
+      "displayName": "norvid_studies",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "cee.wtf",
+      "followers": 2524,
+      "displayName": "cee",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "followers": 1454,
+      "displayName": "Amber 🌸",
+      "clusterMember": true,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    }
+  ],
+  "sensitive": "@norvid-studies.bsky.social is marked featuredPrevious: spoke, so the account is not cast to speak in this episode; its posts may be shown. The quoted post and two replies are that account's. The word \"catoid\" in the quoted post and in the reply from @shimmermathlabs.com comes from before the window and is not explained in the data (see notUnderstood). @shimmermathlabs.com is marked featuredPrevious: shown. Nothing else sensitive found. The same maker is the subject of three other cards in this lane.",
+  "notUnderstood": [
+    "\"catoid\" / \"catoid week\": a term from the week before the window. Research can see that it is used as a noun for some cat-like thing and does not know what it refers to."
+  ]
+}

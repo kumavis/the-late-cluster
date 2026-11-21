@@ -1,0 +1,209 @@
+{
+  "slug": "top-chicken",
+  "title": "Top Chicken: the winner trails the winner",
+  "format": "Top Chicken at the sports desk: one named result with its winning post read aloud, the record and the gap, the week's numbers, the play-money market told from its players' posts, and one labelled guess",
+  "seconds": 89,
+  "standing": "top-chicken",
+  "cards": [
+    "games-top-chicken-standings",
+    "games-top-chicken-saturday-201",
+    "games-top-chicken-market"
+  ],
+  "ideas": [
+    "writer-1-7",
+    "writer-2-7",
+    "writer-3-12",
+    "writer-2-11",
+    "writer-3-6",
+    "writer-1-12",
+    "writer-2-12",
+    "writer-3-13",
+    "writer-1-2",
+    "writer-2-1"
+  ],
+  "speakers": [],
+  "featured": [
+    "cee.wtf",
+    "topchicken.bsky.social",
+    "catblanketflower.yuwakisa.com",
+    "7778777.online"
+  ],
+  "results": [
+    "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2bo6xhuea2e",
+    "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n275pjqhle2r",
+    "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2gp4pjgwb2l"
+  ],
+  "story": "The record stood still all week, and the one winner the desk may name is the account that holds it: Saturday went to cee on 201 likes, 5,985 short of cee's own record. The movement was in the side market, where one player's bot lost 60,000 chicken bucks on Sunday and by Wednesday another player was posting that it could not be beaten.",
+  "retell": "The sports desk works out how far Saturday's winner is behind the record holder, asks who that is, and it is the same account; then a bot loses sixty thousand chicken bucks, and three days later another player gives up on beating it, because it now only buys the cheap tickets.",
+  "turn": "The winner trails the winner.",
+  "parts": [
+    "the results",
+    "the board (one named winner, two scores without names)",
+    "the record and the gap",
+    "the window's numbers",
+    "side games",
+    "speculation"
+  ],
+  "resultsUsed": [
+    {
+      "result": "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2bo6xhuea2e",
+      "how": "Named. The winner (cee), the score the game announced (201), the day's figures (2,648 posts overall; 245 of 760 people posted, as an unspoken tag) and the record line (6,186, held by cee.wtf) all come from this post. Its record line is the only part shown, as a cut that Sibyl reads exactly. The winning post it quotes is read aloud exactly on its own card."
+    },
+    {
+      "result": "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n275pjqhle2r",
+      "how": "Score only: 440, on a crown with no name and no day. The post is never shown or read; it names its winner and the screen does not clear that winner to be named."
+    },
+    {
+      "result": "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2gp4pjgwb2l",
+      "how": "Score only: 366, on a crown with no name and no day. Never shown or read, for the same reason."
+    }
+  ],
+  "resultsNotUsed": "Two other results the screen allows as numbers without names are left out, so that nothing on screen reads as a full table. One result does not appear in any form, by the screen's ruling: no slot, no blank, no figure. Nothing in the script counts the week's results or calls any score the highest. The all-time leaderboard below the record line is neither shown nor cited.",
+  "guess": {
+    "what": "Eppy guesses that the next result post will again say the record is \"still\" where it is.",
+    "voice": "Line `guess`: \"This next part is my guess.\" Everything from there to the end is the guess.",
+    "screen": "From cue guess-in to the end the board header reads EPPY'S GUESS · NOT A RESULT. The split-flap word STILL sits under that header and is never on screen without it.",
+    "arithmetic": "Spoken and shown: the median winning score of the 42 results the scrape fetched from before the week (2 Oct to 12 Nov) is 535; 6,186 ÷ 535 = 11.56, said as \"over eleven times\" and shown as 11.6.",
+    "about": "The game's own record line. It names nobody but the record holder, who is the week's named winner. Nobody is called a contender, due, or likely to lose."
+  },
+  "numbers": [
+    {
+      "value": "2,648 posts; 245 of 760 people posted",
+      "source": "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2bo6xhuea2e",
+      "note": "The game's own \"Window stats\" line for Saturday's result. The script says \"posts\" and \"people posted\" as the game does and does not say who the 760 are."
+    },
+    {
+      "value": "201",
+      "source": "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2bo6xhuea2e",
+      "note": "The score the game announced. The winning post had 222 likes when the digest was scraped, which is the count its card shows; the card carries the tag 201 AT THE RESULT so the two figures do not contradict each other."
+    },
+    {
+      "value": "6,186, held by cee.wtf",
+      "source": "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2bo6xhuea2e",
+      "note": "The record line of the result post."
+    },
+    {
+      "value": "5,985",
+      "method": "6,186 minus 201"
+    },
+    {
+      "value": "3.2 %",
+      "method": "201 ÷ 6,186 = 0.0325",
+      "note": "On screen only, with the sum."
+    },
+    {
+      "value": "the smallest win of the week",
+      "note": "201 is the lowest winning score among the week's results (standings card, aggregates). True of every result of the week, including those not shown."
+    },
+    {
+      "value": "440 and 366",
+      "source": [
+        "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n275pjqhle2r",
+        "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2gp4pjgwb2l"
+      ],
+      "note": "Scores the game announced on two other days. No name, no day."
+    },
+    {
+      "value": "60,000 chicken bucks; three days",
+      "source": [
+        "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2exnpv6us2k",
+        "at://did:plc:jg6o3bgflm3q4y7jpmpvenj3/app.bsky.feed.post/3n2me4phkfsed"
+      ],
+      "note": "The loss is the owner's own figure, as posted on Sun 15 Nov. The other player's post is from Wed 18 Nov."
+    },
+    {
+      "value": "535; over eleven times",
+      "method": "The digest's median winning score over the 42 results in the fetched history, 2 Oct to 12 Nov; 6,186 ÷ 535 = 11.56",
+      "note": "Labelled on the board as the median of fetched results, and in the voice as \"the results we fetched\"."
+    }
+  ],
+  "people": [
+    {
+      "handle": "cee.wtf",
+      "how": "Saturday's winner and the record holder, named because the game names its winner. Display name on the board, handle under it; the winning post on a card, read aloud exactly. Not a profile: one result, one post, the record line."
+    },
+    {
+      "handle": "topchicken.bsky.social",
+      "how": "The game's own account. Its Saturday result post is on a card, cut to the record line, read aloud exactly."
+    },
+    {
+      "handle": "catblanketflower.yuwakisa.com",
+      "how": "A player of the market whose bot is the story. Two posts on cards, read aloud exactly (one cut). Called \"one player\" and \"the owner\" in the voice; the card carries the name."
+    },
+    {
+      "handle": "7778777.online",
+      "how": "Another player. One post on a card, read aloud exactly, cut at the start. Called \"another player\" in the voice."
+    }
+  ],
+  "peopleChecks": "All four are marked new to the show in the digest (featuredPrevious null, timesFeatured 0). None is on the opt-out list (the list is empty today). No bio has been read by anyone: the screen says R11 and R14 are open on that point for every account that reaches a script, and they are open for these four. The repost test is my judgement and the reviewer's: the joke on cee compares cee only with cee's own record and ends on \"Same title\"; the bot's owner posted the loss with laughing emoji and ends the story unbeaten; the other player's post is a sporting concession.",
+  "staging": {
+    "shape": "Eppy at the sports desk throughout. Sibyl is the reader: whenever a post card is up, hers is the voice, and the card's words light as she says them. A small monitor of Sibyl beside the card would show whose voice it is.",
+    "cardsInIndex": "Put each card's shown text in index.js as a string literal, identical to the script line's `text` (ellipsis marks included). The unread-text gate treats a card with no matching literal as the whole post on screen, and two of these posts are longer than the cut that is read.",
+    "cues": {
+      "desk-in": "Sports desk. Board title TOP CHICKEN.",
+      "counter-in": "A counter rolls from 2,648 down to 1 and lands on \"One winner\" (line field). Unspoken tag: 245 OF 760 PEOPLE POSTED.",
+      "winner-in": "On the last word of line winner the board flips to CEE with @cee.wtf under it. On \"201\" (line score) the board adds 201.",
+      "card-post-in": "Post card, up for the whole of line post: display name cee, handle @cee.wtf, Fri 13 Nov 2026, 222 likes, 12 reposts, 15 replies. Unspoken tag on the card's like count: 201 AT THE RESULT. Card off at card-post-out, after a dry beat.",
+      "bars-in": "Two bars drawn to one scale: a sliver, 201, labelled CEE, and a tall bar, 6,186, labelled with a question mark. On \"5,985\" (line gap) a bracket between their tops reads 5,985.",
+      "card-record-in": "The result post's card: display name TopChicken with its robot emoji, @topchicken.bsky.social, Sat 14 Nov 2026, 2 likes, 0 reposts, 1 reply, showing only the cut that is read. On the word \"cee.wtf\" (line recordline) the tall bar's question mark flips to CEE. Leave the word \"still\" lit when the line ends: the guess pays it off.",
+      "share-tag": "Unspoken tag on the bars, during the laugh: 201 ÷ 6,186 = 3.2 %.",
+      "titles-in": "The card goes. Three identical crowns in a row (the kit has a crown): two carry a score and nothing else, 440 and 366; the third is gold and reads CEE 201. No names, no days, no column headings, and nothing that makes three look like the whole week. They stay the same size on \"Same title\".",
+      "market-in": "A market board. Label: THE SHOW'S SKETCH. Header: CHICKEN BUCKS · NO REAL MONEY. Small credit: topchicken.cee.wtf. The site has not been seen by anyone, so nothing here imitates it. One sketched line runs level across the board.",
+      "card-loss-in": "Post card: Singularity's Bounty e/CC, @catblanketflower.yuwakisa.com, Sun 15 Nov 2026, 10 likes, 0 reposts, 2 replies, emoji included. On \"$60,000\" (line loss) the sketched line drops out through the bottom of the board. Marker left behind: SUN.",
+      "card-gg-in": "Post card: I am nameless yet others name me, @7778777.online, Wed 18 Nov 2026, 3 likes, 0 reposts, 1 reply; the cut at the start shows as an ellipsis. On \"can't win\" (line gg) the sketched line comes back in through the top of the board. Marker: WED. Bracket between the markers: 3 DAYS.",
+      "card-fix-in": "Post card: Singularity's Bounty e/CC, @catblanketflower.yuwakisa.com, Wed 18 Nov 2026, 1 like, 0 reposts, 1 reply, marked as a reply to @7778777.online; the cut at the end shows as an ellipsis. On \"cheap\" (line fix) a price tag reading CHEAP swings onto the sketched line. Eppy lowers his notes for \"Fundamentals\".",
+      "market-out": "Market board and cards off.",
+      "guess-in": "Board header, up until the segment ends: EPPY'S GUESS · NOT A RESULT.",
+      "guess-sum": "Under the header, on \"535\" (line typical): MEDIAN OF 42 FETCHED RESULTS · 535, with the small tag 2 OCT – 12 NOV. On \"eleven\" (line eleven): 6,186 ÷ 535 = 11.6.",
+      "guess-flap": "The sum clears. A split-flap row under the header flips to STILL exactly on Sibyl's word (line still). Eppy looks at it, then at the camera, for \"I hope I'm wrong.\""
+    },
+    "glance": "Every string on screen that is not read aloud is six words or fewer (the gate allows eight). Keep to three blocks of text at a time: when a card is up, the board behind it shows only its picture."
+  },
+  "heard": {
+    "method": "Every line was rendered alone in the voice that says it, at the rate in the script, padded as the Whisper pass pads it, and transcribed with the same Whisper model the pipeline uses; the beats were laid out with the renderer's cursor rules to get the length. This is a lab pass on isolated clips, not a render: the mix will move things, and the heard text has to be read again at assembly.",
+    "names": "The winner's name is one syllable that starts with the engine's weak s-before-long-e. In Eppy's voice it was heard as \"she\" every time, and in a three-word line of Sibyl's as something crude, so the script never gives it to Eppy and never puts it at the start of a line. In the two places it is said it was heard as itself: \"Saturday's winner, C\" (line winner, stable at three rates) and \"… can still see, with the score of 61.86 to beat.\" (line recordline). Whisper cannot spell this name, so both lines will need a heard-waiver at assembly that quotes what was heard.",
+    "handle": "In line recordline Sibyl says the handle cee.wtf as the display name, cee, and the card shows the handle exactly. Spelling the handle out was heard as noise. This follows the voices chapter (say the display name, let the screen show the handle), applied inside a post that is read aloud; it is the one place where what is said is shorter than what is written, and the reviewer should rule on it.",
+    "lines": {
+      "open": "The sports desk in the cluster's daily game is tabbed in the (7 of 9; the game's name is the known weak word, carried by the board and the caption)",
+      "field": "Saturday, 2,648 posts, one winner.",
+      "winner": "Saturday's winner, C",
+      "score": "201 likes the winning post.",
+      "post": "I love when people think they're laptops somehow use less power per task than a data center. (14 of 16; the commas in `as` keep \"than a\" audible; without them it was heard as \"in the data center\")",
+      "gap": "The score is 5985 short of the record.",
+      "heldby": "The record is held by",
+      "recordline": "All timed objects can still see, with the score of 61.86 to beat. (12 of 20; \"top chicken is\" comes out as harmless nonsense; the name and the number are heard)",
+      "trails": "The winner trailing the winner",
+      "smallest": "The smallest window of the week, same title.",
+      "market": "Members also play a prediction mark in this game, which can bucks no real money.",
+      "sunday": "Sunday, one player bot.",
+      "loss": "My bought last list of 60,000 bucks today. (6 of 9, the same at four rates, four gains and through mp3; one more lost word would fail the 60 % gate)",
+      "later": "Three days later, another player about to spot.",
+      "gg": "So good gambling now, you can't win, even if you play well, good game.",
+      "owner": "The owner replied",
+      "fix": "I tweaked the logic for start of daylight or tickets to only buy the cheap ones. (15 of 16 here, but \"cheap ones\" was heard as \"trip once\" in most other tries: the card and the price tag carry it)",
+      "fundamentals": "Fundamentals",
+      "guess": "This next part is my guess.",
+      "typical": "In the results we set, the typical winning score is 535.",
+      "eleven": "The record is over 11 times either.",
+      "call": "so the next result post in one word",
+      "still": "Still",
+      "wrong": "I hope I'm wrong"
+    },
+    "rejected": "Lines dropped for what was heard: \"… short of the all-time record\" (heard with the name of an illness in it); \"Not a result.\" as the spoken label (heard as \"now the result\", the opposite); \"Now a guess. Only a guess.\" (heard as \"gush\"); \"record\" unrespelled (stressed as the verb and heard as \"card\"); the Sunday post without commas (heard as \"my boss lost 60,000 bucks\", which sounds like a statement about a job).",
+    "fallback": "If line loss drops under 60 % in the mix, give it to Eppy with the same `as` at rate 0.88: 7 of 9 in the lab (\"My bought lost list 60,000 bucks today.\").",
+    "length": "Laid out with the renderer's cursor rules from the isolated clips: 89.4 s, 72.9 s of it speech, 189 caption words, 2.1 words a second. No line under 60 %."
+  },
+  "leftOut": [
+    "The member's tease of the winner under the result, and the reply that answers it fondly. The screen allows the pair together; nothing shows how the winner took the tease, so the segment does without it.",
+    "The winner's follow-up to the winning post and the variation another member replied with: the show does not carry that argument on.",
+    "The other player's request for new features, the owner's second reply, the bot's name, the pre-registration post and its quote post, and anything about how the market is scored or who built it.",
+    "The range of people posting each day (223 to 246) and the count going from 757 to 767: both are cleared and neither earned its seconds. Either would fit as one unspoken tag if a reviewer wants more of the week's numbers on the board."
+  ],
+  "experiment": "Does not touch this segment: the experiment is for segments drafted from made cards, and it says Top Chicken is drafted as the bible has it.",
+  "forTheNextStage": [
+    "The length is a lab layout of isolated clips, 89 s, at the top of the format's 60 to 90. If it has to lose time: line sunday (2 s) can go, since the card carries the day, and the woo after the winner (1 s).",
+    "If the winner's account is a guest elsewhere in the episode, its role in the merged sources has to be guest; here it is quoted.",
+    "The segment ends on a sting with no applause, to leave the join to the assembler.",
+    "Two heard-waivers will be needed at assembly, for lines winner and recordline: Whisper writes the winner's name as the letter C or the word see. One line, loss, passes with one word to spare; its fallback is under heard."
+  ]
+}

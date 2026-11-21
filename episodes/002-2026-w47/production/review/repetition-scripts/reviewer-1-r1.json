@@ -1,0 +1,82 @@
+{
+  "reviewer": "reviewer-1",
+  "round": 1,
+  "items": [
+    {
+      "id": "interview",
+      "version": "1c665d1134ea",
+      "verdict": "repeat",
+      "fromPrevious": true,
+      "avoid": "Item: the exchange in which three requests are read out and answered in one word (lines same-member to woot), and the line before it that says how soon the game existed. Kind: runner, with its staging. What it repeats: the show has already built a whole runner on wishes spoken aloud that are met at once by a short flat declaration, each wished-for thing appearing on screen on that word and the short time it took given straight after. The one-word post is the guest's own; it is the show's staging around it that repeats. A turn: not open this episode.",
+      "reason": "The middle exchange does again what the show's last runner did (watch list 1, 2 and 3 all arise here). Three requests are read out and appear on the sketch as outlines, a one-word answer makes them real on that word, and the next line and its tag give the minutes it took as the topper; two lines earlier the game itself arrives on its word with the hours it took. That is two statements of time from ask to delivery in one script, and in the second the speed is the laugh. The one-word answer is the guest's own post; the staging around it is the show's and is what repeats. The rest is new: four dated exchanges whose opening, order and ending share nothing with any aired guest segment (watch list 9 does not arise). For the next version: the closing gag is a joke about the show itself (one an episode) and has the lights drop on a desk prop, so it must not sit at the real close; and the first question is an unnamed account's post, nearly word for word, from someone who spoke in the previous episode."
+    },
+    {
+      "id": "interview-yonderdavid",
+      "version": "2eb0372c907f",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "Six real answers on four occasions, from a board of the synth's animal voices to a plug that is a pastebin: no aired segment has this build, order or ending (watch list 9 does not arise), and the guest has not been in an aired episode. This thread was performed only in an unaired draft, which blocks nothing. Points to hold it to: it has one statement of time from ask to delivery, spoken and put up as a title on its word, in the line that takes the first exchange's only laugh. I read that laugh as the empty place on the board being filled after a very formal promise, not as the hours, but it is the closest thing in the set to the old runner after the blocked exchange, and a reviewer who hears the laugh as the delivery would be right to block it. The four animal calls follow the welcome directly; they are a roll call that sets up a real question, not the guest's emblem and not punctuation (watch list 7), and no cat call is played. The parody answer under the guest's own label is the episode's one joke about the show itself. Four of the six questions were first asked by an account that spoke in the previous episode; the host asks them unattributed."
+    },
+    {
+      "id": "made-cat-voice-quartet",
+      "version": "39b45b4e313c",
+      "verdict": "turned",
+      "turned": {
+        "what": "From the previous episode: a wish said aloud in the studio was met on the spot, with no work shown, and the host was among those whose wishes were met that way.",
+        "how": "Here the host asks for a song and the button is clicked, and nothing comes out. Three more machines have to be coupled on, pushing the stage across the room, before a very small band appears; then the maker's own account of the work is read. The laugh is the labour hidden behind one click, which is the reverse of the earlier laugh, and it is complete for a viewer who saw nothing before."
+      },
+      "fromPrevious": true,
+      "avoid": "",
+      "reason": "As drafted, a house character voices a wish and the studio's own machine fulfils it in the room, which the idea did not have; that picture is carried from the previous episode and the wordless stretch defeats what it used to promise. It holds only as one moment and would be the episode's one turned item: no other segment in the same rundown should have the studio act on a spoken request (watch list 4). Nothing here says how long anything took, nothing is stamped, and no animal call is used. The maker is new to aired episodes and is read aloud, not voiced; the asker spoke last time and is not named or shown."
+    },
+    {
+      "id": "made-mobius-chess-ringmate",
+      "version": "c162e7220b65",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "Three real posts in order, then the house sitting down at a board that turns out to have one side: premise, turn, picture and both speakers are new. It has one plain statement of how long the thing took to make, with no tag, no reaction and no delivery staged; the arrival of the link is left out, so the punch is the member's condition and then the board. The three lamps show a member's own three words and are not verdicts. Eppy has a seat and one line and brings none of the sports desk with him (watch list 8). The host losing is his character; losing this way is new."
+    },
+    {
+      "id": "made-pen-plotter-replies",
+      "version": "2162fdb83fc2",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "A pen writes three real replies and stops one letter short of the end of a word: nothing aired has this premise, turn or staging (the plotter was drawn only in an unaired draft, which blocks nothing, and not with this turn). The cut-off word is the reply's own, cut by the character limit, and is played as exactly that: nothing fails, and what lands on Sibyl's word is a count, not a verdict on the fragment (watch list 6 does not arise). The two count tags are single glance figures, not a running tally. No statement of time. People: the maker spoke in the previous episode and has no puppet here, but four of her posts are on screen, three are read aloud by house voices, two of them in the place of a line in an exchange (one is the setup a guest puppet answers), her name is said three times and her one-word card takes the last laugh. That is as close as a rested account comes to speaking anywhere in the set, in her second week running as the subject of a segment; the selection and the final review should weigh it."
+    },
+    {
+      "id": "made-polyhedra-instruments-sakura",
+      "version": "8051ab02ecae",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "A maker's own notes performed in order, a sketch that plays for twelve seconds while one thing in it stands still, and the maker's last line: premise, turn and build are new, and the guest is new to aired episodes. Watch list 4, as written: nothing in the set, the audience or the band changes on a spoken line and no house character gives an order. The labelled sketch is redrawn during the first note and just after the second, and its river moves on the last word of the third. I judge that a drawing illustrating the maker's account of sending notes to a machine, with the laugh on the one thing nobody asked for, and not the studio making what someone wishes for aloud; it stays fresh only while every change stays inside the sketch's frame. Beside the turned draft in one rundown it would put a spoken request answered by the studio's sketch in two segments about the same maker, and the final review should look at that pair. No statement of time."
+    },
+    {
+      "id": "made-polyhedral-coffee-simulator",
+      "version": "5a990772e8ba",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "The host sits down to win a thing whose whole play is having a coffee, then a real thread about a mug: no aired joke has either turn, one speaker has been shown before but never voiced, and the other two are new. The opening recreates a real occasion as the host's remark answered by the maker's own post, with the title screen arriving on its word. That is a made-on-request beat used as setup: its small laugh is the mismatch between what was asked and what was offered, and no time is stated anywhere in the script. No stamps: the two solids are drawn on with fact labels that stay up as evidence (watch list 6 does not arise). One string in the wordless stretch is the thing's own control prompt, a letter and an instruction; it must stay small legend text inside the sketch, with nothing drawn or pressed as a key, and the final review should look at that frame."
+    },
+    {
+      "id": "music",
+      "version": "d81a3d4bc2b0",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "Folk lament: slow, minor, in three, with no percussion or shouts, so it will not be heard as the last aired genre returning. The joke is made inside the music (the interrupter lands in tune and the planned angry verse is called off), and the two spoken lines are the singer's own, between and after the blocks. No aired song made its joke that way, and a cat joining the band appeared only in an unaired draft, which blocks nothing. Watch list 7: the cat's yowls and meows are sung notes inside the two blocks, including the one left alone in the band's silence at the end of the first; none is a call outside the bars or under speech. Watch list 10: the lyric stays in the cat story and recaps no other segment as written, but its board (four animals, an empty fifth place that fills at the end) is the picture and payoff of the first exchange of the interview-yonderdavid draft. In one rundown the song would be restating an earlier segment, so the two should not both be kept as they are. The last refrain comes back with one word changed; I weighed that against the earlier song and do not count it as the same structure. One card carries a tag of seconds between the maker's two posts, which is not ask to delivery and not the joke."
+    },
+    {
+      "id": "top-chicken",
+      "version": "7f61e0ca30d1",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "The standing segment built anew: it leads on a named result and its winning post, turns on the winner being short of the winner's own record, tells the side market from its players' posts and ends on a labelled guess. The aired version had a different lead, different parts and a different ending. Watch list 8: the furniture as written is the desk and one board at a time (a flip board, two bars, three crowns, a market sketch, a split-flap word); none of the earlier desk's other fixtures returns, and the boards are primitives doing new jobs. Nearest echoes, for the final review: the market board again carries a bot's large play-money figure with a no-real-money label and a soft crowd sound after it, though the story and its turn are this week's; two of the three crowns carry a score and no name; and the turn line sets one noun against itself in a tight parallel (an unaired draft reached the same reveal, which blocks nothing but suggests it is the obvious one). It has one statement of elapsed time, three days between two posts, spoken and as a bracket: not ask to delivery, and not the laugh. All four accounts are new to aired episodes."
+    }
+  ]
+}

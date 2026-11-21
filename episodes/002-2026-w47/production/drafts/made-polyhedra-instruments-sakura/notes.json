@@ -1,0 +1,122 @@
+{
+  "slug": "made-polyhedra-instruments-sakura",
+  "title": "Notes for a Landscape",
+  "format": "A demonstration. The maker's own posted change requests are performed by the maker's puppet while the studio's sketch of the landscape is redrawn after them; then the sketch is set going for twelve seconds with no words; then the last line of the maker's last post.",
+  "seconds": 66,
+  "standing": null,
+  "cards": [
+    "made-polyhedra-instruments-sakura"
+  ],
+  "ideas": [
+    "writer-3-53"
+  ],
+  "ideasNotUsed": {
+    "writer-2-70": "Not used at all. Nothing in the studio set changes on a spoken line, no house character gives an order, and the audience and band do nothing on command. The episode's one turned item is not spent here.",
+    "writer-2-69": "Not used. Its real line sits in the thread that named the week, and performing it needs two more accounts read or shown first (one shown last time, one named in the prompt who spoke last time). This segment keeps to one person."
+  },
+  "speakers": [
+    "yonderdavid.bsky.social"
+  ],
+  "featured": [
+    "yonderdavid.bsky.social"
+  ],
+  "retell": "The show followed a maker's own notes for a landscape built out of polyhedra, set it playing, and blossoms piled up on the river, because the one thing nobody had said was that rivers move, which turned out to be the maker's real last note.",
+  "turn": "Everything moves except the river.",
+  "experiment": {
+    "fiveWords": "Everything moves except the river.",
+    "where": "From the end of line `roll` to the `chuckle` after the music block `valley`. In a scratch render with this draft's cast entry it ran 36.16 s to 48.70 s: 12.55 s with no say, sing or shout line and no crowd sound. The laugh before it is over 1.3 s before it starts.",
+    "whatIsShown": "The studio's sketch of the landscape, after the two notes, in use: its instruments play a hummed line and its camera drifts along it (bars 1 and 2, six seconds), the camera reaches the river (bar 3), and blossoms that land on the river stay where they landed and pile up as high as the bridge while everything else goes on moving (bars 3 and 4, six seconds).",
+    "coldViewerShouldSay": "A line drawing of a landscape made of small solids plays a tune, and blossoms pile up on its river, which is the one thing not moving.",
+    "beforeIt": "No line before the stretch mentions the river, water or anything standing still. The title, the guest's chyron title and both on-screen labels do not either.",
+    "afterIt": "No house line says what was seen. Larry's next line only places the maker's sentence (the end of the last post). The maker's sentence does not describe the picture; it is the missing note, and the picture changes again on its last word. The setup and the real line are both after the stretch, with nothing between them.",
+    "sound": "Sound without words: one hummed line (Dee), a low hum struck once a bar (Al), and from bar 3 a lip pop on each note, one per blossom that lands (Pete and Al together; in the scratch mix the pops peak at about twice the hum). All of it is kind `beat` in cues.json. It is the sketch's sound: the band is not on screen.",
+    "paidInWords": "103 spoken words in about 66 seconds: 1.55 a second, against the 1.6 to 2.2 a segment usually carries. The stretch cost the words, not the running time."
+  },
+  "people": [
+    {
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "role": "The maker, and the only real account in the segment. Hero of it: the notes are precise, the result is lovely, and the joke that lands on the river is the maker's own, told on the maker's own post.",
+      "followers": 971,
+      "featuredBefore": "no (card: timesFeatured 0)",
+      "optOut": "Not on the opt-out list (packages/scraper/config/optout.json is empty). No post on the card asks not to be quoted.",
+      "bio": "NOT CHECKED. No network at this stage, and screen.md says no bio has been read. R11 and R14 still need it before this airs.",
+      "repostTest": "The segment's biggest laugh is the sentence the maker ended the thread on. Nothing is at the maker's expense: the frozen river is in the studio's sketch, and the studio is the one that forgot."
+    }
+  ],
+  "notInIt": "Nobody else on the card appears in any form: not the account that named the week (its one moment in the episode is not spent here), not the account that asked about the sound, not the two accounts in the thread above the maker's reply. No house line mentions a named week.",
+  "realLines": [
+    {
+      "line": "note-first",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jx6tq44k2p",
+      "cut": "One sentence from inside the quoted request. Cut before it: 'The first change request was' and the opening quote mark. Cut after it: the request's second sentence, the closing quote mark and 'The result:'. The meaning is unchanged; Larry's setup line carries 'the first'.",
+      "as": "Respells two words only: cloud/sea as cloud-sea, polyhedra as polly-heedra."
+    },
+    {
+      "line": "note-legs",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxjfkdu22p",
+      "cut": "Half a sentence from inside the quoted request, from 'the legs' to the full stop. Cut before it: 'Same rows in this image. Saying \"I like tumbled + packed, but it could stand to be a bit denser in terms of ground and water coverage, and'. Cut after it: the suggestion of a stack and 'yielded the 2nd image.' The sketch draws the stack the cut part asks for.",
+      "as": "None."
+    },
+    {
+      "line": "river",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxvvh2xs2p",
+      "cut": "The post's last sentence, whole. Cut before it: the sentence about the koto physics.",
+      "as": "Same words in the same order. 'it' is spelled 'itt' so the t is not swallowed (without it the transcriber heard 'tell you'), and a comma is added before 'move' for a short pause (without it the transcriber sometimes heard 'the ray remove'). The caption is the post's text exactly."
+    }
+  ],
+  "heard": {
+    "how": "A scratch render of this script with this draft's cast entry, through the studio's renderer and its transcription check (Whisper base.en, each line cut from the final mix), with the outputs kept outside the repo. 94 of 104 caption words heard. Every line's heard text was read. The official render at assembly has to be read again: transcriptions move from run to run.",
+    "lines": {
+      "intro": "A video by David, no caption, no words.",
+      "sketch": "This is our sketch of it.",
+      "what": "Instruments all built from polyhedra in the landscape of yet more polyhedra",
+      "ask-first": "It was made by sending note to a machine, this was the first.",
+      "note-first": "Everything is a cloud sea of regular polyhedra, piling up a clustering together is necessary.",
+      "one-note": "This was one note.",
+      "ask-another": "and another note",
+      "note-legs": "The legs of the pavilion look too hardy.",
+      "mine": "The director once said that about my leg",
+      "roll": "Note taken, roll it.",
+      "ask-last": "And this is the end of the last port.",
+      "river": "Oh, and I had to tell it to make the river move!",
+      "button": "good note"
+    },
+    "name": "The one real name, David, is spoken once, by Larry, at the end of its phrase, and was heard as David.",
+    "standing": "Two mishearings are in the maker's lines and are harmless nonsense about a drawing, not about a person: 'warty' heard as 'hardy' (in every voice and respelling tried; a /w/ onset, which the tools README lists as weak), and 'or' and 'as' heard as 'a' and 'is'. The card with the words lit carries 'warty', and the picture is the legs. Nothing heard is offensive, alarming, out of bounds or about a real person.",
+    "rejected": "Wordings dropped because the engine could not say them: 'The first change request.' (heard 'The first chin or glist'), 'I have had that note.' (heard 'I have to upload'), 'A later note.', a line that began with the name David (heard 'Today, it'), and 'Polyhedra, playing music…' at the start of a line (heard 'Pali Hidra' at three rates of four)."
+  },
+  "builder": [
+    "ONE PERSON, ONE THING. Two heads (Larry, David) and the sketch. Sibyl, Eppy and the band are not in it; Dee, Al and Pete are heard in the two music blocks as the sketch's sound and are never on screen.",
+    "THE SKETCH IS A DRAWING ON A BOARD OR MONITOR, NOT THE STUDIO. Everything that changes, changes inside its frame. Nothing in the set, the desk, the curtain or the audience changes on a spoken line. No sound and no counter per change, and the notes are not numbered on screen.",
+    "LABELS, on screen whenever the sketch is, including every frame of the wordless stretch: THE STUDIO'S SKETCH, and VIDEO BY DAVID with the handle @yonderdavid.bsky.social. Two glances. The sketch is never presented as the video: the video has been seen only as one still on someone else's quote post (research/media-notes.md).",
+    "WHAT THE SKETCH MAY DRAW, all from the card and the maker's posts: trees whose blossom is many small solids and whose trunks are blocks; ground and water made of solids; a river; a bridge; a pavilion on legs; a bell; glass chimes; drums; a koto on a stage. Draw the bell as a plain hanging bell. No other scenery, no figures, no lanterns or gates, no writing in any script, no costume or set dressing that points at a country (screen.md ruling 4; R10). The tune is not named in the voice or on screen.",
+    "THREE STATES OF THE STILL. `sketch-on`: the landscape in a few big plain solids, with the pavilion on two lumpy legs. `still-sea` (lands on the word 'piling' in note-first; the word timings are in the line): every outline gives way to heaps of small regular solids, piled and clustered; the maker's own request allows 'just most of the edges', so the heaps need not draw every edge. `still-legs` (0.4 s after note-legs ends, in silence): the pavilion's legs become neat stacks. If a reviewer wants more distance from a picture that changes on a spoken word, `still-sea` can move to 0.35 s after note-first ends, with `one-note` given a gap of about 1.6.",
+    "THE VIDEO'S POST CARD at `post-card`: the real display name, handle, 17 Nov 2026, 61 likes, and nothing in the text field. The blank is the picture for 'No caption. No words.' Do not draw the video on the card; a play mark is enough.",
+    "CARDS FOR THE THREE REAL LINES: up for exactly as long as the line is spoken, words lighting, each showing exactly the line's `text` with its … marks (not the whole post: the whole posts are 45 to 55 words and would be unread text), with David, the handle, 17 Nov 2026 and the like count (10, 7, 8), and a short label that it is from the maker's thread on how it was made.",
+    "THE WORDLESS STRETCH, `valley-play` to `valley-hold`, 12 s, beat = 0.75 s (use show.musicState('valley')). The sketch fills the frame; Larry's and David's heads can sit at its edges, looking at it. Bar 1 (beats 0 to 3): the still starts to move; one chime swings on each hummed note (beats 0, 1, 2); the bell swings once a bar. Bar 2 (beats 4 to 7): the sketch's own camera drifts along the landscape toward the bridge; koto strings and drums go with the notes; blossoms come off the trees and tumble where they land on the ground. Bar 3 (beats 8 to 11), `valley-river`: the river is centre frame under the bridge and its lines do not move at all; a blossom lands on the water on each of beats 8, 9, 10, 11 (there is a pop on each) and stays exactly where it landed, each on top of the last. Bar 4, `valley-pile`: four more land, on beats 12, 13, 13.5 and 14; by the last the pile stands in midstream as high as the bridge. Everything else keeps swinging to the end. `valley-look` (beat 14, the long last note): Larry's head comes round to the river, then to the camera. `valley-hold`: the hum stops; hold the pile for the 0.3 s before the chuckle.",
+    "THE PICTURE MUST CHANGE EVERY SECOND OF THE STRETCH, and three frames (start, middle, end) must differ, show the sketch in use and carry both labels. The turn has to be readable from stills one second apart with no words: so the river's lines are identical in every frame while everything round them differs, and the pile grows by one solid a beat.",
+    "THE FALLING BLOSSOM IS THE STUDIO'S OWN STAGING, inside a drawing labelled as the studio's. The card establishes blossom made of small solids and solids that collide and tumble; it does not say blossom falls in the video. A reviewer may want that weighed.",
+    "ACTING. Larry looks at the sketch when it changes, at David when he sets up a line, and down at his own legs on `mine`. David's puppet looks at the sketch or at Larry and does nothing else: no nod, shake, tilt or lean. A guest's puppet shows no reaction the person did not publish.",
+    "`river-moves` lands on the word 'move' (the `as` puts a short pause before it). The river's lines flow; the pile topples into the stream and is carried under the bridge and out of the sketch; blossoms that fall now are carried too. The block `downstream` (4.5 s) plays under it, with the laugh. Then Larry turns to David for `button`.",
+    "CHYRON for David from `note-first`: David, @yonderdavid.bsky.social, 'Made the polyhedra video', PUPPET · PARODY. The title must not mention the river: it is on screen before the stretch.",
+    "DISCLAIMER: if this is the first segment in the rundown with a guest, it needs the disclaimer footer from David's first appearance.",
+    "LOOK for the episode's looks.js: a hue and costume for what the account makes, not for a person. Suggested: the blossom pink of the one still that was seen, in a plain jacket. No prop: the thing David made is the video, and the sketch is the studio's.",
+    "Build the heaps of solids once in setup and animate by parameters of t; the stretch has to seek and freeze like everything else."
+  ],
+  "assembler": [
+    "This segment stands alone. It needs nothing from the interview or any other segment, and it uses only posts from the maker's making-of thread, none of which is a question-and-answer pair on the interview card.",
+    "CAST: drafts/made-polyhedra-instruments-sakura/cast.js has the guest entry `david`. If another selected draft casts the same account, keep one entry and one voice, and render the three real lines again in whichever voice is kept before trusting them.",
+    "Do not put a crowd sound or a spoken line between `roll` and the `chuckle` after `valley`, and do not shorten `valley` below 14 beats: the experiment's measure needs 10.0 s clear.",
+    "If it has to lose time, cut `sketch` (1.7 s) or the block `downstream` to its first four beats. Do not cut a note: two notes are the pattern the stretch breaks.",
+    "THE TUNE. The two music blocks hum the opening line and the closing bar of the tune the video plays, which is a traditional melody, written here from memory and not checked against a score (no network). It is hummed with no words, not named anywhere, and not dressed up. If the reviewers would sooner the studio's voices did not play it at all, replace Dee's track in both blocks with a single repeated pitch: the stretch, its timing and its turn do not depend on the melody.",
+    "The house lines describe what was posted and never what the maker thinks. 'It was made by sending notes to a machine' rests on the maker's own posts in the thread ('The first change request was', 'Then I asked for').",
+    "A word research could not explain is in the post that note-first replied to. That post is in sources.json only as the occasion record and is never shown or spoken."
+  ],
+  "couldNotCheck": [
+    "The maker's bio (no network).",
+    "The video itself: unseen except for one still described in research/media-notes.md.",
+    "How the hummed blocks sound to an ear. Checked by spectrogram and level only: the pitches are the ones written, the stretch sits at about dialogue level, and the pops stand clear of the hum.",
+    "The melody against a score."
+  ]
+}

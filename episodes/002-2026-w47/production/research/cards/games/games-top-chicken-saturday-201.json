@@ -1,0 +1,169 @@
+{
+  "id": "games-top-chicken-saturday-201",
+  "lane": "games",
+  "title": "Top Chicken, Sat 14 Nov: the record holder won with 201 likes, the lowest score of the window",
+  "summary": "On Sat 14 Nov the game named @cee.wtf the day's winner with 201 likes. It is the lowest winning score of the window and ranks 47th of the 48 results in the fetched history, whose lowest is 185. @cee.wtf also holds the all-time record, 6,186, which the same result post repeats; 201 is 3.2% of it. The winning post is a top-level post from Fri 13 Nov 18:42Z: \"i love when people think their laptop somehow uses less power per task than a datacenter\". Fifteen minutes later @cee.wtf replied to it with a follow-up, and at 20:00Z @riziles.bsky.social replied with a variation on the sentence. At 15:25Z on Saturday, an hour and twenty minutes after the result, @dave.9000ish.uk quoted the result post: \"@cee.wtf has really fallen off\" (24 likes). @catblanketflower.yuwakisa.com replied \"cee will return and it will be glorious\", and a minute later added that 201 likes is \"a tough bet to make on the chicken market\" (the market is on card games-top-chicken-market). The next day @cee.wtf posted \"Gm top chickens\" (card games-top-chicken-gm). This is the only winning post of the window that can be quoted (card games-top-chicken-standings).",
+  "aggregates": {
+    "score": "201 likes as the game announced it; the post had 222 when scraped",
+    "shareOfRecord": "3.2% (method: 201 / 6,186)",
+    "gapToRecord": "5,985 (method: 6,186 minus 201)",
+    "rankAmongFetchedResults": "47 of 48 (digest); the lowest of the 48 is 185",
+    "dayFigures": "245 of 760 people posted; 2,648 posts overall"
+  },
+  "couldShow": "The winning post, the result post that quotes it, and the quote and replies under the result, all as posted. No image is described on any of them.",
+  "posts": [
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n27n6oxsyk2l",
+      "handle": "cee.wtf",
+      "text": "i love when people think their laptop somehow uses less power per task than a datacenter",
+      "displayName": "cee",
+      "time": "2026-11-13T18:42:12.482Z",
+      "counts": {
+        "likes": 222,
+        "reposts": 12,
+        "replies": 15,
+        "quotes": 2
+      },
+      "situation": "A top-level post, Fri 13 Nov 18:42Z. Nothing in the data shows a single post it was answering."
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n27nzyhwrc2l",
+      "handle": "cee.wtf",
+      "text": "like... if your macbook was more efficient than the datacenter racks, wouldnt they just put macbooks in the rack?!",
+      "displayName": "cee",
+      "time": "2026-11-13T18:57:28.418Z",
+      "counts": {
+        "likes": 70,
+        "reposts": 2,
+        "replies": 4,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n27n6oxsyk2l",
+        "handle": "cee.wtf"
+      },
+      "note": "The author's own follow-up, fifteen minutes later."
+    },
+    {
+      "uri": "at://did:plc:lh5ckqvcxznutnohujlrpduz/app.bsky.feed.post/3n27rknz6zs22",
+      "handle": "riziles.bsky.social",
+      "text": "love when people think manufacturing sheets of paper somehow uses less power per task than a datacenter",
+      "displayName": "wariziles",
+      "time": "2026-11-13T20:00:29.099Z",
+      "counts": {
+        "likes": 15,
+        "reposts": 1,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n27n6oxsyk2l",
+        "handle": "cee.wtf"
+      }
+    },
+    {
+      "uri": "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2bo6xhuea2e",
+      "handle": "topchicken.bsky.social",
+      "text": "🐔 New Top Chicken! @cee.wtf's post got 201 likes. #topchicken\n\nAll-time top chicken is still cee.wtf with a score of 6186 to beat.\n\nWindow stats: 245/760 people posted; 2648 posts overall.",
+      "displayName": "TopChicken 🤖",
+      "time": "2026-11-14T14:05:34.000Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "quoteOf": {
+        "handle": "cee.wtf",
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n27n6oxsyk2l"
+      },
+      "note": "The result post, Sat 14 Nov 14:05Z. It quotes the winning post."
+    },
+    {
+      "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2bso7u4pc2e",
+      "handle": "dave.9000ish.uk",
+      "text": "@cee.wtf has really fallen off",
+      "displayName": "Dave",
+      "time": "2026-11-14T15:25:41.689Z",
+      "counts": {
+        "likes": 24,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "media": "the stored record marks an image or embed on this post; no description of it is stored",
+      "quoteOf": {
+        "handle": "topchicken.bsky.social",
+        "uri": "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2bo6xhuea2e"
+      },
+      "note": "Quotes the result post."
+    },
+    {
+      "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2bupyxat22v",
+      "handle": "catblanketflower.yuwakisa.com",
+      "text": "cee will return and it will be glorious",
+      "displayName": "Singularity's Bounty e/CC",
+      "time": "2026-11-14T16:02:29.044Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2bso7u4pc2e",
+        "handle": "dave.9000ish.uk"
+      }
+    },
+    {
+      "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2busk7dx22v",
+      "handle": "catblanketflower.yuwakisa.com",
+      "text": "but 201 likes is a tough bet to make on the chicken market. Easy for someone to roll in and top that in 10 minutes and there goes your bankroll",
+      "displayName": "Singularity's Bounty e/CC",
+      "time": "2026-11-14T16:03:54.245Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2bupyxat22v",
+        "handle": "catblanketflower.yuwakisa.com"
+      },
+      "note": "A reply to the author's own post just above."
+    }
+  ],
+  "people": [
+    {
+      "handle": "cee.wtf",
+      "followers": 2524,
+      "displayName": "cee",
+      "note": "the day's winner and the record holder"
+    },
+    {
+      "handle": "dave.9000ish.uk",
+      "followers": 880,
+      "displayName": "Dave",
+      "seed": true
+    },
+    {
+      "handle": "catblanketflower.yuwakisa.com",
+      "followers": 3607,
+      "displayName": "Singularity's Bounty e/CC"
+    },
+    {
+      "handle": "riziles.bsky.social",
+      "followers": 1055,
+      "displayName": "wariziles"
+    },
+    {
+      "handle": "topchicken.bsky.social",
+      "followers": 138,
+      "displayName": "TopChicken 🤖",
+      "small": true,
+      "note": "the game's account; a bot"
+    }
+  ],
+  "sensitive": "@dave.9000ish.uk's line is a tease aimed at the day's winner. Nothing in the digest shows how @cee.wtf took it: there is no reply from @cee.wtf in that thread as the digest holds it. The repost test is for the writer and the reviewer. The winning post is a remark in a wider public argument about how much power computing uses. It names nobody. In the same hour @cee.wtf posted about a performance review at work. Those posts are personal (R1, R10: jobs) and are not on this card. Left out: a reply under the quote post from an account with 94 followers, a pun on the winner's name that reads as a put-down (small account, R7); and a two-word reply to the winning post from an account with 2 followers that asks for a follow. @dave.9000ish.uk is one of the scraper's seed accounts. The threads are assembled from the posts the digest holds; replies from outside the cluster may be missing. The winning post has 222 likes in the digest; the game announced 201. @cee.wtf appears on five cards in this lane and @catblanketflower.yuwakisa.com on three."
+}

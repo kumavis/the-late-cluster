@@ -1,0 +1,128 @@
+{
+  "id": "games-top-chicken-record-and-leaderboard",
+  "lane": "games",
+  "title": "Top Chicken: the record stayed at 6,186; the all-time leaderboard and recent history",
+  "summary": "The all-time record stood at 6,186 likes, held by @cee.wtf, through all six results of the window. Each result post that can be listed says so in one line: \"All-time top chicken is still cee.wtf with a score of 6186 to beat.\" Saturday's is below. The digest's Community games section gives the all-time leaderboard as it stood on Wed 18 Nov at 14:05Z, eight entries: 1. cee.wtf, 6,186. 2. sneptech.bsky.social, 5,852 (334 behind the record). 3. gracekind.net, 3,641 (2,545 behind). 4. octopodeeznuts.bsky.social, 3,411 (2,775 behind). 5. sneptech.bsky.social, 2,939 (3,247 behind). 6. isolyth.dev, 2,881 (3,305 behind). 7. cee.wtf, 2,733 (3,453 behind). 8. sneptech.bsky.social, 2,607 (3,579 behind). Two accounts hold five of the eight entries: sneptech.bsky.social three and cee.wtf two. The window against the record: the best result was Tuesday's 2,421, which is 39.1% of the record and 3,765 short of it. It is also 186 short of the eighth entry, so no result in the window reached the top eight. The lowest result was Saturday's 201, by the record holder (card games-top-chicken-saturday-201). Recent history, as far as the scraper fetched the game's own posts: 42 results from Fri 2 Oct to Thu 12 Nov, with a median winning score of 534.5 (the digest prints 535), a highest of 5,852, a lowest of 185, and 23 different winners as the digest counts them. Set among those 42 and the window's own six (48 results), the window's results rank 28th (Fri), 47th (Sat), 16th (Sun), 32nd (Mon), 4th (Tue) and 37th (Wed). Four of the six are below the recent median; the window's own median is 403. No result from 2 Oct to 18 Nov reached 6,186, so the record is older than the fetched history. When it was set is not in the digest. The game's leaderboard posts themselves cannot be shown or quoted (see \"sensitive\"). Everything about the leaderboard on this card is the digest's numbers.",
+  "leaderboard": [
+    {
+      "rank": 1,
+      "handle": "cee.wtf",
+      "likes": 6186,
+      "behindRecord": 0
+    },
+    {
+      "rank": 2,
+      "handle": "sneptech.bsky.social",
+      "likes": 5852,
+      "behindRecord": 334
+    },
+    {
+      "rank": 3,
+      "handle": "gracekind.net",
+      "likes": 3641,
+      "behindRecord": 2545
+    },
+    {
+      "rank": 4,
+      "handle": "octopodeeznuts.bsky.social",
+      "likes": 3411,
+      "behindRecord": 2775
+    },
+    {
+      "rank": 5,
+      "handle": "sneptech.bsky.social",
+      "likes": 2939,
+      "behindRecord": 3247
+    },
+    {
+      "rank": 6,
+      "handle": "isolyth.dev",
+      "likes": 2881,
+      "behindRecord": 3305
+    },
+    {
+      "rank": 7,
+      "handle": "cee.wtf",
+      "likes": 2733,
+      "behindRecord": 3453
+    },
+    {
+      "rank": 8,
+      "handle": "sneptech.bsky.social",
+      "likes": 2607,
+      "behindRecord": 3579
+    }
+  ],
+  "aggregates": {
+    "source": "the digest's Community games section (sections.games): record, leaderboard as of Wed 18 Nov 14:05Z, recent history and standings. No leaderboard post is cited.",
+    "record": "6,186 likes, held by @cee.wtf; unchanged in the window (digest: changedInWindow false)",
+    "gapOnTheBestDay": "3,765 (method: 6,186 minus Tuesday's 2,421)",
+    "bestDayShareOfRecord": "39.1% (method: 2,421 / 6,186)",
+    "gapToEighthEntry": "186 (method: 2,607 minus 2,421)",
+    "topEightInTheWindow": "no result in the window reached the top eight (method: the best result, 2,421, is below the eighth entry, 2,607)",
+    "lowestDayShareOfRecord": "3.2% (method: 201 / 6,186)",
+    "recentHistory": "42 results, Fri 2 Oct 13:05Z to Thu 12 Nov 14:05Z: median 534.5, highest 5,852, lowest 185, 23 different winners as the digest counts them (digest, from the game's own posts as far as they were fetched)",
+    "windowAgainstRecentMedian": "4 of 6 below 534.5 (440, 201, 366, 333); 2 above (726, 2,421)",
+    "ranksAmongFetchedResults": "Fri 28, Sat 47, Sun 16, Mon 32, Tue 4, Wed 37, each of 48 (digest)",
+    "resultsSinceTheRecordLastMoved": "at least 48 (method: 42 fetched results from 2 Oct to 12 Nov, one a day, none above 5,852, plus the window's six). The true figure is not known.",
+    "entriesPerAccountInTheTopEight": "sneptech.bsky.social 3, cee.wtf 2, gracekind.net 1, octopodeeznuts.bsky.social 1, isolyth.dev 1"
+  },
+  "couldShow": "The game's leaderboard posts cannot be shown, and neither can the chart image attached to them. What can be shown is the record line as it appears in a result post (one is listed here) and the digest's numbers.",
+  "posts": [
+    {
+      "uri": "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2bo6xhuea2e",
+      "handle": "topchicken.bsky.social",
+      "text": "🐔 New Top Chicken! @cee.wtf's post got 201 likes. #topchicken\n\nAll-time top chicken is still cee.wtf with a score of 6186 to beat.\n\nWindow stats: 245/760 people posted; 2648 posts overall.",
+      "displayName": "TopChicken 🤖",
+      "time": "2026-11-14T14:05:34.000Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "quoteOf": {
+        "handle": "cee.wtf",
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n27n6oxsyk2l"
+      },
+      "note": "Saturday's result post, listed here for its record line. It is the one result post of the window whose embedded winning post can also be shown. The digest reads the same record score from the later results of the window."
+    }
+  ],
+  "people": [
+    {
+      "handle": "cee.wtf",
+      "followers": 2524,
+      "displayName": "cee",
+      "note": "record holder; first and seventh entries"
+    },
+    {
+      "handle": "sneptech.bsky.social",
+      "followers": 2942,
+      "displayName": "max power 🌌",
+      "note": "second, fifth and eighth entries"
+    },
+    {
+      "handle": "gracekind.net",
+      "followers": 8674,
+      "displayName": "Grace",
+      "seed": true,
+      "featuredPrevious": "shown",
+      "timesFeatured": 1,
+      "note": "third entry"
+    },
+    {
+      "handle": "octopodeeznuts.bsky.social",
+      "followers": 3253,
+      "displayName": "Natsuka",
+      "note": "fourth entry"
+    },
+    {
+      "handle": "topchicken.bsky.social",
+      "followers": 138,
+      "displayName": "TopChicken 🤖",
+      "small": true,
+      "note": "the game's account; a bot"
+    }
+  ],
+  "sensitive": "THE LEADERBOARD POSTS: the digest marks every one of the game's leaderboard posts in the window as redacted and out of bounds (R11). Each names an account the consent rules exclude, and its stored text is altered. They cannot be shown, quoted, performed or cited as posts, and neither can the chart image attached to them. None is listed on this card. The record, the eight entries and the gaps here come from the digest's Community games section, as numbers. The card gives the eight entries the digest gives and no others. Do not add to them from anywhere else, and do not try to work out who the excluded account is. @isolyth.dev (sixth entry) is not in the digest's accounts. There is no follower count for it and no way to run the opt-out or R10 checks from here, so it is not in the people list. Check before naming it. Every entry is a past winning score, so no non-winner is named. Nobody else may be named, ranked or guessed at (R7, scorecard A10). \"Rank in history\" in the digest means rank among the 48 results the scraper fetched, not all-time. The history figures rest on the scraper's fetch of the game's own posts (42 results). Label them that way. @gracekind.net is one of the scraper's seed accounts and is marked as shown in the previous episode. Follower counts are listed for the people rules. The formats chapter names \"follower counts as status\" as a way this segment goes wrong. No post in the window states the game's rules (see games-top-chicken-standings). Tuesday's winner is withheld (see games-top-chicken-standings): the 2,421 is a number without a name."
+}

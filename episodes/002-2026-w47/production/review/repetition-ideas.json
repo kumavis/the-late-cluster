@@ -1,0 +1,567 @@
+{
+  "shortlist": [
+    {
+      "card": "made-pen-plotter-replies",
+      "title": "A pen plotter wrote the replies to a post on paper, streamed live",
+      "final": 1.088,
+      "ideas": [
+        "writer-2-138",
+        "writer-1-108",
+        "writer-2-139",
+        "writer-2-137"
+      ]
+    },
+    {
+      "card": "interview-yonderdavid",
+      "title": "Interview candidate: David (@yonderdavid.bsky.social), who posted synth choirs, a singing cat and polyhedra instruments and answered questions about each",
+      "final": 1.043,
+      "ideas": [
+        "writer-2-27",
+        "writer-1-23",
+        "writer-2-25",
+        "writer-2-26",
+        "writer-2-30"
+      ]
+    },
+    {
+      "card": "made-polyhedral-coffee-simulator",
+      "title": "A \"polyhedral coffee simulator\" answers \"needs to be a game\", and gains a real mug",
+      "final": 0.988,
+      "ideas": [
+        "writer-2-77",
+        "writer-2-78",
+        "writer-2-80"
+      ]
+    },
+    {
+      "card": "made-cat-voice-quartet",
+      "title": "Asked why the synth has no cat, a maker adds a cat voice to a folk quartet",
+      "final": 0.94,
+      "ideas": [
+        "writer-2-55",
+        "writer-2-52"
+      ]
+    },
+    {
+      "card": "made-mobius-chess-ringmate",
+      "title": "One-dimensional chess on a Möbius strip, from an idea to a playable preview in 25 hours",
+      "final": 0.934,
+      "ideas": [
+        "writer-2-162",
+        "writer-1-63"
+      ]
+    },
+    {
+      "card": "made-polyhedra-instruments-sakura",
+      "title": "Instruments built from polyhedra play the folk tune Sakura Sakura in a landscape of polyhedra",
+      "final": 0.922,
+      "ideas": [
+        "writer-3-53",
+        "writer-2-70",
+        "writer-2-69"
+      ]
+    }
+  ],
+  "verdicts": {
+    "writer-2-138": {
+      "id": "writer-2-138",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "Nothing aired shares its premise (a reply cut off by the character limit in the middle of a word) or its turn (the pen has written every letter it was given and waits for the next); Sibyl reading exactly is her character. The maker spoke in the previous aired episode and is read aloud here, not voiced, which the people rule allows."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "Nothing aired is like it: a reply that stops in the middle of a word, read at the pen’s pace, with the pen left waiting for the next letter. The plotter and this reply were used only in an unaired draft, which blocks nothing, and not with this turn; the maker spoke in the previous episode and is read aloud here, not voiced, which the rest after speaking allows."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-1-108": {
+      "id": "writer-1-108",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "A staged silence in which the whole studio follows the pen arm back across the page is a premise, a turn and a staging the show has not aired. The member who speaks is new to the show; the maker is read aloud, not voiced."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "The show has not staged a machine’s dead time as the event itself; the silence is earned by a member’s own line, and that member is new to the show. The plotter was drawn only in an unaired draft, which blocks nothing; the maker’s line is read aloud, not voiced."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-2-139": {
+      "id": "writer-2-139",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "An attack on a sheet of paper whose own author finds the bug in it: premise and turn are new, and the replier is new to the show. The maker spoke in the previous aired episode; her lines are read by Sibyl with no puppet, which counts as shown and is allowed."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "A performed exchange whose punch is the replier’s own correction of his own code: no aired joke has that turn, and the puppet is a person new to the show. The maker’s replies are read by the announcer, not voiced, so the rest after speaking holds."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-2-137": {
+      "id": "writer-2-137",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "Eppy giving a slow event the gravity of sport is his character, and the turn (the drama is the return to the margin) is new; judged as a demonstration with its own order of moves, not as a sports-desk rundown of boards. The speaker is new; the maker is read aloud, not voiced."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "Broadcast gravity for small stakes is who the sportscaster is, and a live call of a pen’s trip back to the margin is not something he has done; the turn belongs to the replier’s line. The speaker is new to the show and the maker is read aloud, not voiced."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-2-27": {
+      "id": "writer-2-27",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "The joke is the register of a real reply, which no aired joke shares, and the guest has not been on an aired episode. This exchange and a picture like this one appeared only in an unaired draft, which blocks nothing, though two independent runs reaching the same picture suggests it is the obvious one."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "The joke is the formal register of a real reply, which the show has not used. This exchange was performed only in an unaired draft, which blocks nothing; the guest has not been in an aired episode, and the author of the question, who spoke last time, is asked for by the host and not voiced."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-1-23": {
+      "id": "writer-1-23",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "The interview is a standing format and no aired segment was built this way: every answer a real post, asked as it was asked, ending on the shortest. Host ceremony against short answers is Larry's character, and the guest is new to aired episodes; the first exchange appeared only in an unaired draft."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "The interview returns as a format by the owner’s decision; this build of it, three real exchanges that shrink to a four-word answer held in silence, is not one the show has aired. The guest has not been in an aired episode."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-2-25": {
+      "id": "writer-2-25",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "Premise and turn are new together: a real answer about how parody is allowed, landing on the puppet's own label. Judged fresh as one beat in one place."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "The show has not made a guest’s own remark land on its parody label, so the joke is new. It is a joke about the show itself, and an episode should carry no second one of that kind."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-2-26": {
+      "id": "writer-2-26",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "Two of the shortest real answers of the window and a plug that turns out to be a pastebin: a new premise and a new turn. Larry believing in the plug is his character."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "A host’s plug that turns out to be a pastebin, set on two very short real answers: nothing aired resembles it. The asker was shown last time and is not voiced here."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-2-30": {
+      "id": "writer-2-30",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "A host fishing for an anecdote and getting exact specifications is the format and the character as the bible gives them; no aired segment has this build, this order of moves or this guest."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "The host wanting a story is his nature; being handed a specification each time, with each answer shown as the thing working, is a turn and a build the show has not aired."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-2-77": {
+      "id": "writer-2-77",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "A consumer complaint about a solid that is two faces short: new premise, new turn, and a frame the show has not aired. One speaker is new; the other has been shown before but has never spoken, so may speak, though the account is also behind questions elsewhere on this shortlist and should not be leaned on twice."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "A small account’s correct identification of a solid, played as consumer affairs and landing on a real count of two missing faces: no aired joke has this premise or turn. One speaker was shown last time without speaking, so she may speak; the other is new."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-2-78": {
+      "id": "writer-2-78",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "The joke is a game with nothing to play and nothing to lose at, tried by the host, which is new. Judged on that turn: that it was made soon after someone asked is background here, not the joke."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "The joke is the host bringing a player’s expectations to a thing whose whole play is having a coffee, which the show has not done. The maker is new to aired episodes; the request’s author spoke last time and is put by the host in his own words, not voiced."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-2-80": {
+      "id": "writer-2-80",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "A remote link with nothing to report: the show has not aired a remote, and the turn and the quiet-then-loud cut are new."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "A remote link with nothing to report, closed by a member’s three-word review read exactly, is neither a shape nor a joke the show has aired. No real person’s puppet speaks."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-2-55": {
+      "id": "writer-2-55",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "The gap between one click and the four models, beeswax and string behind it is a new premise and turn, told from the maker's own account. Judged on that turn, the effort; the hours taken are evidence, not the joke."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "The turn is the labour hidden behind what looked like one click, told in the maker’s own phrase; no aired joke works that way. The asker spoke last time and is not voiced."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-2-52": {
+      "id": "writer-2-52",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "Neither the genre (a slow, mournful folk quartet; second choice barbershop) nor the structural joke (an angry ending overruled because the interrupter lands in tune) has aired. One element of the picture appeared only in an unaired draft, which blocks nothing."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "The genre is not the last aired song’s, and the form, a heckling voice that ends up in tune so that the planned ending is called off, is not how any aired song made its joke. A seat for the cat appeared only in an unaired draft, which blocks nothing."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-2-162": {
+      "id": "writer-2-162",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "A stated condition for love and its happy ending: new premise, new turn, and two speakers new to the show. Judged on that turn: the joke is the condition and the joy, not that the thing got made or how soon."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "A condition placed on love and met a day later, played as a romance between two people new to the show: the turn is the policy, and nothing aired resembles it."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-1-63": {
+      "id": "writer-1-63",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "Three house characters defeated by a board that has one side is new in premise, turn and picture. Sibyl stating the one rule she is sure of is her character."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "House characters defeated by a board that has only one side: the premise and the picture come from the thing itself and match nothing aired. No real person’s puppet speaks."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-3-53": {
+      "id": "writer-3-53",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "A maker's change requests read as notes while a sketch improves, with the river still until the last one: new premise, new turn. The guest is new to aired episodes, but this is the third shortlisted card that leans on the same account, which the variety pass should weigh."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "A maker’s change requests read in order while a sketch is redrawn to each, with the turn kept for the one thing nobody had asked for: not done before. The guest has not been in an aired episode."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "writer-2-70": {
+      "id": "writer-2-70",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "Change requests read as minutes and demonstrated on the set, turning on things staying still until they are told to move: a new premise and turn. Judged as a demonstration of the maker's own notes, which is what makes it this window's."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "turned",
+          "turned": {
+            "what": "From the previous episode: the studio itself carrying out, at once, things that are said aloud, one after another.",
+            "how": "There the point was that things got made whether or not anyone meant them. Here the set obeys three real requests only to set up the reverse: nothing happens that was not asked for, so the river stood still, and so has the host’s own audience, until he says one word."
+          },
+          "fromPrevious": true,
+          "avoid": "",
+          "reason": "The picture of a set that obeys is carried, but the joke is its reverse and is complete for a viewer who saw nothing before. It holds only as one moment: it would be the episode’s one turned item, and it stops being a turn if anything else in the episode has the studio act on a spoken request."
+        }
+      ],
+      "verdict": "turned",
+      "fromPrevious": true
+    },
+    "writer-2-69": {
+      "id": "writer-2-69",
+      "version": null,
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "A real figure of speech taken at its word, and a search for the one solid that is not regular: new premise, new turn. The prompt's author was shown in the previous aired episode and is only read here; the number on screen is a count in one shot, not a fixture."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 1,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "The joke hangs on one word of the maker’s own figure of speech, and the picture is a search for the one solid that is not regular; nothing aired has that premise or turn. The prompt’s author was shown last time and is read, not voiced."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    }
+  },
+  "excluded": [
+    "writer-2-53"
+  ]
+}

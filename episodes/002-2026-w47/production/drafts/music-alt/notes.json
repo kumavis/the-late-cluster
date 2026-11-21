@@ -1,0 +1,37 @@
+{
+  "slug": "music-alt",
+  "title": "Best We Can Doo-Wop",
+  "format": "music",
+  "seconds": 78,
+  "standing": "music",
+  "cards": [
+    "made-polyhedral-coffee-simulator",
+    "made-cat-voice-quartet",
+    "made-yard-shift-wheelie",
+    "talk-polyhedra-week",
+    "voices-plotter-queue-small-accounts",
+    "made-polyhedra-instruments-sakura",
+    "made-mobius-chess-ringmate",
+    "made-speak-and-spell"
+  ],
+  "ideas": [],
+  "speakers": [
+    "larry",
+    "hy",
+    "dee",
+    "al",
+    "pete"
+  ],
+  "featured": [
+    "dave.9000ish.uk",
+    "yonderdavid.bsky.social",
+    "cee.wtf",
+    "samantha.wiki"
+  ],
+  "genre": "doo-wop",
+  "theme": "This song is about handing over the little you have without knowing whether it is enough, and it feels like hearing \"we can work with that\".",
+  "message": "Whatever you have is worth handing over: this week a whole simulator was posted as \"best i can do\", a photo of a mug ended up inside it, and nothing anyone offered was too small for somebody to work with.",
+  "whyThisWeek": "The phrase is the week's own: on Tue 17 Nov Dave answered a remark under a video with a whole coffee simulator and the words \"best i can do\" (made-polyhedral-coffee-simulator, at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2jrgrxtss2w). The next day Samantha posted \"Coincidentally, my mug this morning has polyhedra on it\" and Dave put that mug into the simulator (same card). The same shrug came with the other things made in the window: \"New. Second draft, mostly vibed.\" about a new instrument (made-polyhedra-instruments-sakura), \"The original yowl sounded like a kazoo.\" about the cat voice added because a member asked (made-cat-voice-quartet), \"sneaky preview on a cloudflare tunnel\" (made-mobius-chess-ringmate), \"ok ok you win, i added a spacebar\" (made-speak-and-spell), \"done\" to three requests at once (made-yard-shift-wheelie). And small things were taken as entries beside big ones: a mug and old origami counted for polyhedra week, \"polyhedron week comes in many forms\", \"you may have already won it\" (talk-polyhedra-week); the pen plotter wrote a meow on paper and its maker answered \"I expected nothing less ❤️\" (voices-plotter-queue-small-accounts). The song names four of these (the cat voice, the simulator, the wheelie game, and the mug, which the lyric says is Samantha's), reads the four words once from their card, and says nothing about how long anything took. The goodnight after it wishes the week by the name the cluster gave it.",
+  "structuralJoke": "The week's phrase ends on the one syllable a doo-wop group is made of. Asked for the best it can do, the band has \"doo\" and, when pressed, \"wop\", and the form does the rest: the genre's filler syllables are the whole hook (\"best we can do-wop\"), sung against a list of what members built, so each time the lyric shrugs the arrangement gets bigger. Then the form does the same for the host: he has one low note, it is not the note the chord was waiting for, and instead of correcting him the song changes key to where his note is and sings the hook back as \"best you can do\", first to him and then to the lens.",
+  "position": "The last segment: the song closes the episode, and after its button and tag Larry says goodnight in two lines (ids happy-week and goodnight), the last words of the episode."
+}

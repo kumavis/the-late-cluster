@@ -1,0 +1,266 @@
+{
+  "id": "talk-what-is-banh-mi",
+  "lane": "talk",
+  "title": "\"what is banh mi\": one question, 50 replies",
+  "summary": "At 04:31Z on Sat 14 Nov, a day into the wave, @segyges.bsky.social posted the four words \"what is banh mi\" (132 likes, 50 replies, 11 quotes). Replies in the data include an emoji-only reaction posted the same minute, two near-identical puns that treat the question as a greeting (one from a small account at 04:42Z, one from a member at 05:25Z), a rule of thumb for recognising the sandwich by smell, one-word answers (\"yummy\", \"idk\"), and a side discussion ranking it against the cubano. Two minutes after asking he added that he did not actually know and that everything a search turned up \"is a long read\". The thread in the data is assembled from what the digest holds and is not complete.",
+  "posts": [
+    {
+      "uri": "at://did:plc:vszw3ess46odfhnzdsy4huae/app.bsky.feed.post/3n2ao3v6bok2h",
+      "url": "https://bsky.app/profile/segyges.bsky.social/post/3n2ao3v6bok2h",
+      "handle": "segyges.bsky.social",
+      "displayName": "SE Gyges",
+      "when": "Sat 14 Nov 04:31Z",
+      "time": "2026-11-14T04:31:11.802Z",
+      "text": "what is banh mi",
+      "counts": {
+        "likes": 132,
+        "reposts": 3,
+        "replies": 50,
+        "quotes": 11
+      },
+      "note": "Top-level post."
+    },
+    {
+      "uri": "at://did:plc:4gm5uxjg3tz4nat4qpjk2t6h/app.bsky.feed.post/3n2ao4lvn322s",
+      "url": "https://bsky.app/profile/hotrollhottakes.bsky.social/post/3n2ao4lvn322s",
+      "handle": "hotrollhottakes.bsky.social",
+      "displayName": "Rollofthedice",
+      "when": "Sat 14 Nov 04:31Z",
+      "time": "2026-11-14T04:31:35.633Z",
+      "text": "😡🤬",
+      "counts": {
+        "likes": 7,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:vszw3ess46odfhnzdsy4huae/app.bsky.feed.post/3n2ao3v6bok2h",
+        "handle": "segyges.bsky.social",
+        "text": "what is banh mi"
+      }
+    },
+    {
+      "uri": "at://did:plc:vszw3ess46odfhnzdsy4huae/app.bsky.feed.post/3n2aoaemx2c2u",
+      "url": "https://bsky.app/profile/segyges.bsky.social/post/3n2aoaemx2c2u",
+      "handle": "segyges.bsky.social",
+      "displayName": "SE Gyges",
+      "when": "Sat 14 Nov 04:33Z",
+      "time": "2026-11-14T04:33:42.230Z",
+      "text": "i mean yes but i also don't actually know and everything google turns up is a long read",
+      "counts": {
+        "likes": 25,
+        "reposts": 0,
+        "replies": 8,
+        "quotes": 0
+      },
+      "note": "A reply inside his own thread; the reply it answers is not in the data."
+    },
+    {
+      "uri": "at://did:plc:2xmvrxnuga6tsz3ply3eatdz/app.bsky.feed.post/3n2aoqjatkk2z",
+      "url": "https://bsky.app/profile/tech-val.bsky.social/post/3n2aoqjatkk2z",
+      "handle": "tech-val.bsky.social",
+      "displayName": "valgrind",
+      "when": "Sat 14 Nov 04:42Z",
+      "time": "2026-11-14T04:42:43.933Z",
+      "text": "not much. what's banh mi with you?",
+      "counts": {
+        "likes": 8,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:vszw3ess46odfhnzdsy4huae/app.bsky.feed.post/3n2ao3v6bok2h",
+        "handle": "segyges.bsky.social",
+        "text": "what is banh mi"
+      }
+    },
+    {
+      "uri": "at://did:plc:4og7kniw7pmfnlx6pjfd2sxv/app.bsky.feed.post/3n2aorrqqck2d",
+      "url": "https://bsky.app/profile/ragnarokette.bsky.social/post/3n2aorrqqck2d",
+      "handle": "ragnarokette.bsky.social",
+      "displayName": null,
+      "when": "Sat 14 Nov 04:43Z",
+      "time": "2026-11-14T04:43:26.403Z",
+      "text": "If you see someone eating a sandwich you don't recognize and you're like \"damn that smells delicious\" it is probably a banh mi",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:vszw3ess46odfhnzdsy4huae/app.bsky.feed.post/3n2ao3v6bok2h",
+        "handle": "segyges.bsky.social",
+        "text": "what is banh mi"
+      }
+    },
+    {
+      "uri": "at://did:plc:hsqwcidfez66lwm3gxhfv5in/app.bsky.feed.post/3n2aqfhmksk2g",
+      "url": "https://bsky.app/profile/goose.art/post/3n2aqfhmksk2g",
+      "handle": "goose.art",
+      "displayName": "business goose🪿",
+      "when": "Sat 14 Nov 05:12Z",
+      "time": "2026-11-14T05:12:20.616Z",
+      "text": "yummy",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:vszw3ess46odfhnzdsy4huae/app.bsky.feed.post/3n2ao3v6bok2h",
+        "handle": "segyges.bsky.social",
+        "text": "what is banh mi"
+      }
+    },
+    {
+      "uri": "at://did:plc:4vvaxwovyg4yo4n7dyyncaiu/app.bsky.feed.post/3n2ar44vmb225",
+      "url": "https://bsky.app/profile/thebadcode.com/post/3n2ar44vmb225",
+      "handle": "thebadcode.com",
+      "displayName": "austin (e/accordion 🪗)",
+      "when": "Sat 14 Nov 05:25Z",
+      "time": "2026-11-14T05:25:01.133Z",
+      "text": "not much what’s banh you",
+      "counts": {
+        "likes": 17,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:vszw3ess46odfhnzdsy4huae/app.bsky.feed.post/3n2ao3v6bok2h",
+        "handle": "segyges.bsky.social",
+        "text": "what is banh mi"
+      }
+    },
+    {
+      "uri": "at://did:plc:nbfjoeficjzf3pejpontvril/app.bsky.feed.post/3n2ar4jpihs25",
+      "url": "https://bsky.app/profile/astrra.space/post/3n2ar4jpihs25",
+      "handle": "astrra.space",
+      "displayName": "Astra ⎔",
+      "when": "Sat 14 Nov 05:25Z",
+      "time": "2026-11-14T05:25:14.562Z",
+      "text": "idk",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:vszw3ess46odfhnzdsy4huae/app.bsky.feed.post/3n2ao3v6bok2h",
+        "handle": "segyges.bsky.social",
+        "text": "what is banh mi"
+      }
+    },
+    {
+      "uri": "at://did:plc:plvxn2kpjuseoftweoo4xtag/app.bsky.feed.post/3n2arxxp32s2f",
+      "url": "https://bsky.app/profile/words.bsky.social/post/3n2arxxp32s2f",
+      "handle": "words.bsky.social",
+      "displayName": "words",
+      "when": "Sat 14 Nov 05:40Z",
+      "time": "2026-11-14T05:40:35.193Z",
+      "text": "well now I need to go buy two different sandwiches tomorrow",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:jxs3t24qdi6kqvvqucsapc64/app.bsky.feed.post/3n2arqgqbx22d",
+        "handle": "toneloaf.bsky.social",
+        "note": "Replying inside a side discussion, started by non-members, about whether the cubano or the banh mi ranks higher; the reply it answers (from a small account, taking the cubano's side) is not copied."
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "segyges.bsky.social",
+      "displayName": "SE Gyges",
+      "followers": 13352,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "hotrollhottakes.bsky.social",
+      "displayName": "Rollofthedice",
+      "followers": 2181,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "tech-val.bsky.social",
+      "displayName": "valgrind",
+      "followers": 265,
+      "member": false,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "ragnarokette.bsky.social",
+      "displayName": null,
+      "followers": 815,
+      "member": false,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "goose.art",
+      "displayName": "business goose🪿",
+      "followers": 6896,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "thebadcode.com",
+      "displayName": "austin (e/accordion 🪗)",
+      "followers": 3077,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "astrra.space",
+      "displayName": "Astra ⎔",
+      "followers": 3386,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "words.bsky.social",
+      "displayName": "words",
+      "followers": 10258,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "numbers": [
+    "The root post's counts as of the digest: 132 likes, 3 reposts, 50 replies, 11 quotes. 32 posts of the thread are in the data."
+  ],
+  "sensitive": "Where the banh mi wave came from is not for the show. Other posts in the window by some of the same accounts frame it around trans women, and a thread about it turns to hormone medication and nudes (R10: gender identity, health, sexuality). The digest flags several of those posts one by one, and flags the whole thread \"why is everyone banh mi posting?\" (story 12, which also holds the \"banhmi-contagion\" graph the build bot made): nothing from that thread is on this card and the check refuses it. None of this should be used as explanation or background; the show cannot say why the wave started beyond what the posts listed here say. On this card specifically: (1) left out of this thread are a reply saying the sandwich is \"for girls only\" (gender), a description that ends on the poster's own attractiveness (appearance), a pun on a wartime leader's name (war, nationality), and an exchange about cultural appropriation and colonial history. (2) @tech-val.bsky.social is a small account (265 followers), here for a pun made 43 minutes before a member made nearly the same one; nothing should rank the two. (3) @ragnarokette.bsky.social is outside the cluster's membership. (4) @segyges.bsky.social has 13,352 followers and is in the digest's interview material; the interview lane may also card him. His other strongest posts this week are about moderation and a news story with sexual content; not used. (5) The thread is incomplete in the data, so it cannot be presented as the whole conversation."
+}

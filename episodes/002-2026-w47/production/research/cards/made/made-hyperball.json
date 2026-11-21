@@ -1,0 +1,313 @@
+{
+  "id": "made-hyperball",
+  "lane": "made",
+  "title": "HYPERBALL, a multiplayer ball game in four dimensions, goes live",
+  "summary": "On Sat 14 Nov at 00:58Z @minormobius.bsky.social (7,162 followers) posted \"Good news everyone! Hyperball is live. log in with atproto, make multiplayer rooms, invite your friends!\" with a video and a link to hyperball.mino.mobi, whose page title is \"HYPERBALL — bike-ball in four dimensions\". It has 28 likes. One minute later @norvid-studies.bsky.social asked 'kind of a \"dumb\" question but what is hyperball'; the maker answered \"its rocket league in a hypersphere. a hypersphere is a lot like a sphere. but in 4 dimensions\". @anthonybecker.bsky.social opened a room and reported \"I have no idea how to play this ... overall I didn't know how to get to the ball or how to push the ball the way I wanted\"; the maker replied \"yes its not easy\" and added that the view is pinned so that gravity is up and the ball is visible, \"And then the goal, not easy to find!\". Asked \"Pls add tutorial\", the maker answered \"that's single player just driving around to ball\"; the player also wrote \"Have to hypercrawl before you can hyperwalk\". Five hours before the launch, when another member imagined every game ported to 4D, the maker had asked \"Do you enjoy spending time in 4d? I get the impression people mostly do not like this stuff\".",
+  "made": [
+    {
+      "what": "HYPERBALL: a multiplayer ball game played inside a hypersphere",
+      "by": "minormobius.bsky.social",
+      "address": "https://hyperball.mino.mobi"
+    }
+  ],
+  "couldBeShown": "A vehicle chasing a ball in a space where the view keeps rotating so that \"gravity up + you can see the ball\" stays true; a goal that is hard to find. The video has no alt text, so research has not seen the game; the description is the maker's. The page title calls it \"bike-ball\"; the maker's reply calls it \"rocket league in a hypersphere\".",
+  "numbers": [
+    "28 likes, 4 reposts on the launch post.",
+    "One minute from the launch post (00:58Z) to \"what is hyperball\" (00:59Z).",
+    "Four dimensions."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n27qr73cts24",
+      "text": "those 'binaries of every game' dark steam libraries but they port every game to 4D\n\ncc @minormobius.bsky.social",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-13T19:46:14.578Z",
+      "counts": {
+        "likes": 11,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:h25avmes6g7fgcddc3xj7qmg/app.bsky.feed.post/3n27km2btss2h",
+        "handle": "moultano.bsky.social",
+        "text": "A vision popped into my head of 4d Zelda. The sort of gradeschool level puzzles that are the hallmark of the series would be maddening in a delightful way in 4d.",
+        "time": "2026-11-13T17:55:59.328Z"
+      },
+      "kind": "quote",
+      "note": "Five hours before the launch. Quotes a post imagining a well-known adventure game in 4D."
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n27roebvf223",
+      "text": "Do you enjoy spending time in 4d? I get the impression people mostly do not like this stuff",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "time": "2026-11-13T20:02:33.114Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n27qr73cts24",
+        "handle": "norvid-studies.bsky.social",
+        "text": "those 'binaries of every game' dark steam libraries but they port every game to 4D\n\ncc @minormobius.bsky.social"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n27sdlfy5c2k",
+      "text": "no this would be purely an attention-getting stunt",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-13T20:14:25.234Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n27roebvf223",
+        "handle": "minormobius.bsky.social",
+        "text": "Do you enjoy spending time in 4d? I get the impression people mostly do not like this stuff"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2ac7lsyos2a",
+      "text": "Good news everyone! Hyperball is live. log in with atproto, make multiplayer rooms, invite your friends!\n\nhyperball.mino.mobi",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "time": "2026-11-14T00:58:31.312Z",
+      "counts": {
+        "likes": 28,
+        "reposts": 4,
+        "replies": 2,
+        "quotes": 1
+      },
+      "kind": "post",
+      "media": "video (no alt text; research has not seen it)",
+      "links": [
+        {
+          "url": "https://hyperball.mino.mobi"
+        }
+      ],
+      "note": "The launch. Top-level, with a video (no alt text)."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2acbmikbk2p",
+      "text": "kind of a \"dumb\" question but what is hyperball",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-14T00:59:39.126Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2ac7lsyos2a",
+        "handle": "minormobius.bsky.social",
+        "text": "Good news everyone! Hyperball is live. log in with atproto, make multiplayer rooms, invite your friends!\n\nhyperball.mino.mobi"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2acpqkzz22a",
+      "text": "its rocket league in a hypersphere. a hypersphere is a lot like a sphere. but in 4 dimensions",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "time": "2026-11-14T01:07:33.165Z",
+      "counts": {
+        "likes": 4,
+        "reposts": 1,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2acbmikbk2p",
+        "handle": "norvid-studies.bsky.social",
+        "text": "kind of a \"dumb\" question but what is hyperball"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n2achj3clc2s",
+      "text": "Room hyperball.mino.mobi#room=TXSV",
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "time": "2026-11-14T01:02:56.873Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2ac7lsyos2a",
+        "handle": "minormobius.bsky.social",
+        "text": "Good news everyone! Hyperball is live. log in with atproto, make multiplayer rooms, invite your friends!\n\nhyperball.mino.mobi"
+      },
+      "kind": "reply",
+      "links": [
+        {
+          "url": "https://hyperball.mino.mobi",
+          "title": "HYPERBALL — bike-ball in four dimensions"
+        }
+      ]
+    },
+    {
+      "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n2acpa2a522s",
+      "text": "I have no idea how to play this. I tried using the Ana kata controller as a normal controller and that didn’t work. So then I tried pretty much just braking and boosting and that worked slightly better, but overall I didn’t know how to get to the ball or how to push the ball the way I wanted",
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "time": "2026-11-14T01:07:15.837Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n2achj3clc2s",
+        "handle": "anthonybecker.bsky.social",
+        "text": "Room hyperball.mino.mobi#room=TXSV"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2acqudjzs2a",
+      "text": "yes its not easy",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "time": "2026-11-14T01:08:10.668Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n2acpa2a522s",
+        "handle": "anthonybecker.bsky.social",
+        "text": "I have no idea how to play this. I tried using the Ana kata controller as a normal controller and that didn’t work. So then I tried pretty much just braking and boosting and that worked slightly better, but overall I didn’t know how to get to the ball or how to push the ball the way I wanted"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n2acrs3mtc2s",
+      "text": "Pls add tutorial",
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "time": "2026-11-14T01:08:41.866Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2acqudjzs2a",
+        "handle": "minormobius.bsky.social",
+        "text": "yes its not easy"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2acsse4uk2a",
+      "text": "that's single player just driving around to ball",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "time": "2026-11-14T01:09:15.699Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n2acrs3mtc2s",
+        "handle": "anthonybecker.bsky.social",
+        "text": "Pls add tutorial"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n2acscvetk2s",
+      "text": "Have to hypercrawl before you can hyperwalk",
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "time": "2026-11-14T01:08:59.487Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n2acrs3mtc2s",
+        "handle": "anthonybecker.bsky.social",
+        "text": "Pls add tutorial"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2acsbx7yk2a",
+      "text": "your view is pinned to \"gravity up + you can see the ball\" everything else just rotates to make that true. And then the goal, not easy to find!",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "time": "2026-11-14T01:08:58.499Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2acqudjzs2a",
+        "handle": "minormobius.bsky.social",
+        "text": "yes its not easy"
+      },
+      "kind": "reply"
+    }
+  ],
+  "people": [
+    {
+      "handle": "minormobius.bsky.social",
+      "followers": 7162,
+      "displayName": "Minor Mobius",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "maker"
+    },
+    {
+      "handle": "anthonybecker.bsky.social",
+      "followers": 2318,
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "played it"
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "followers": 2777,
+      "displayName": "norvid_studies",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1,
+      "role": "asked what it is"
+    }
+  ],
+  "sensitive": "@minormobius.bsky.social has 7,162 followers, a little over the 7,000 that the scope review uses as a line for large accounts; it is a seed and takes part in many of the week's threads, so research treats it as a regular. @norvid-studies.bsky.social is marked featuredPrevious: spoke, so the account is not cast to speak in this episode; its posts may be shown. Read alone, the player's report could look like a complaint about the game; in the thread it is said in good humour and the maker agrees at once (\"yes its not easy\"). The maker's question about whether people enjoy 4D is mildly self-deprecating. Nothing else sensitive found. The same maker is the subject of made-four-dimensional-folding-and-rope."
+}

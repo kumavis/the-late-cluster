@@ -1,0 +1,235 @@
+{
+  "id": "talk-yard-shift-feedback",
+  "lane": "talk",
+  "title": "Feedback on a wheelie game, and three wishes answered in 21 minutes",
+  "summary": "On Tue 17 Nov @eriskii.net posted \"holy shit\" over an image with no description (205 likes); replies describe a video of a skid-steer loader doing wheelies. Four and a half hours later @cee.wtf quote-posted it with a browser game: \"do a sick wheelie at yard-shift.cee.wtf\" (122 likes, 15 reposts). Six minutes after that @tvanl.bsky.social gave feedback that the left and right controls sit too close together on a phone; @cee.wtf awarded themself the \"didnt even consider people on mobile\" award \"once again\", and got the reply \"I can't bring my desktop in my forklift\". At 00:10Z @shimmermathlabs.com listed three wishes: skid marks, a driver who can hang off the edge or jump out, and a button for hoots and woots. At 00:31Z @cee.wtf replied \"done\" with a screenshot. Her answering screenshot, by its alt text, shows the loader tipped back on its rear wheels, skid marks on the ground, a worker hanging off the side and a \"Woot!\" message.",
+  "posts": [
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kacrswx22q",
+      "url": "https://bsky.app/profile/cee.wtf/post/3n2kacrswx22q",
+      "handle": "cee.wtf",
+      "displayName": "cee",
+      "when": "Tue 17 Nov 23:51Z",
+      "time": "2026-11-17T23:51:08.165Z",
+      "text": "do a sick wheelie at yard-shift.cee.wtf",
+      "media": "video",
+      "links": [
+        "https://yard-shift.cee.wtf"
+      ],
+      "counts": {
+        "likes": 122,
+        "reposts": 15,
+        "replies": 6,
+        "quotes": 1
+      },
+      "quoting": {
+        "uri": "at://did:plc:allu5vs3gnm2wm7jzf4rad3r/app.bsky.feed.post/3n2jrfcrnnc25",
+        "handle": "eriskii.net",
+        "text": "holy shit"
+      },
+      "note": "Quote-post with a video of the game."
+    },
+    {
+      "uri": "at://did:plc:j5m7dstml3tg2ecrep322y2q/app.bsky.feed.post/3n2kanii4os2v",
+      "url": "https://bsky.app/profile/tvanl.bsky.social/post/3n2kanii4os2v",
+      "handle": "tvanl.bsky.social",
+      "displayName": "tvanl",
+      "when": "Tue 17 Nov 23:57Z",
+      "time": "2026-11-17T23:57:07.472Z",
+      "text": "Feedback: l & r being right next to each other on mobile makes it hard for people with big thumbs",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kacrswx22q",
+        "handle": "cee.wtf",
+        "text": "do a sick wheelie at yard-shift.cee.wtf"
+      }
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kapo43mc25",
+      "url": "https://bsky.app/profile/cee.wtf/post/3n2kapo43mc25",
+      "handle": "cee.wtf",
+      "displayName": "cee",
+      "when": "Tue 17 Nov 23:58Z",
+      "time": "2026-11-17T23:58:20.478Z",
+      "text": "giving myself the \"didnt even consider people on mobile\" award once again",
+      "counts": {
+        "likes": 10,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:j5m7dstml3tg2ecrep322y2q/app.bsky.feed.post/3n2kanii4os2v",
+        "handle": "tvanl.bsky.social",
+        "text": "Feedback: l & r being right next to each other on mobile makes it hard for people with big thumbs"
+      }
+    },
+    {
+      "uri": "at://did:plc:j5m7dstml3tg2ecrep322y2q/app.bsky.feed.post/3n2kavbl7v22v",
+      "url": "https://bsky.app/profile/tvanl.bsky.social/post/3n2kavbl7v22v",
+      "handle": "tvanl.bsky.social",
+      "displayName": "tvanl",
+      "when": "Wed 18 Nov 00:01Z",
+      "time": "2026-11-18T00:01:28.669Z",
+      "text": "I can't bring my desktop in my forklift",
+      "counts": {
+        "likes": 7,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kapo43mc25",
+        "handle": "cee.wtf",
+        "text": "giving myself the \"didnt even consider people on mobile\" award once again"
+      }
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2kbfb35d22y",
+      "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2kbfb35d22y",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "when": "Wed 18 Nov 00:10Z",
+      "time": "2026-11-18T00:10:25.012Z",
+      "text": "yeah!!!\n\ni want skid marks on the ground\ni want to be a driver inside that can hang off edge or jump out during tricks for extra points\ni want a button for hoots and woots",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kacrswx22q",
+        "handle": "cee.wtf",
+        "text": "do a sick wheelie at yard-shift.cee.wtf"
+      }
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kcl2qub225",
+      "url": "https://bsky.app/profile/cee.wtf/post/3n2kcl2qub225",
+      "handle": "cee.wtf",
+      "displayName": "cee",
+      "when": "Wed 18 Nov 00:31Z",
+      "time": "2026-11-18T00:31:33.451Z",
+      "text": "done",
+      "media": "image, no alt text in the data",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2kbfb35d22y",
+        "handle": "shimmermathlabs.com",
+        "text": "yeah!!!\n\ni want skid marks on the ground\ni want to be a driver inside that can hang off edge or jump out during tricks for extra points\ni want a button for hoots and woots"
+      },
+      "note": "Reply with a screenshot that has no alt text in the data."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2kd5c5awk2h",
+      "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2kd5c5awk2h",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "when": "Wed 18 Nov 00:41Z",
+      "time": "2026-11-18T00:41:45.174Z",
+      "text": "yes!\nthere has to be a way to run yourself over, the quest continues",
+      "alt": "Screenshot from a cartoony 3D construction game. A yellow skid steer loader with a black frame and a caged cab is tipped back onto its rear wheels, nose in the air, its arms fully extended so the bucket is up overhead. Two loose wheels sit in the bucket. A small worker in an orange high-vis vest and yellow hard hat hangs off the side of the machine, one arm flung up as if cheering or falling. A little “Woot!” message floats at the top of the screen. The setting is a concrete yard with tire skid marks, a chain-link fence and rounded low-poly trees under a gray sky.",
+      "media": "image",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kcl2qub225",
+        "handle": "cee.wtf",
+        "text": "done"
+      }
+    },
+    {
+      "uri": "at://did:plc:gwvh3frsmdih2zpol2holysc/app.bsky.feed.post/3n2km24xi4s2y",
+      "url": "https://bsky.app/profile/brennan.computer/post/3n2km24xi4s2y",
+      "handle": "brennan.computer",
+      "displayName": "brennan",
+      "when": "Wed 18 Nov 03:21Z",
+      "time": "2026-11-18T03:21:02.758Z",
+      "text": "QWOP mode",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kacrswx22q",
+        "handle": "cee.wtf",
+        "text": "do a sick wheelie at yard-shift.cee.wtf"
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "eriskii.net",
+      "displayName": "Eris ⌬",
+      "followers": 3060,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "cee.wtf",
+      "displayName": "cee",
+      "followers": 2524,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "tvanl.bsky.social",
+      "displayName": "tvanl",
+      "followers": 785,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "followers": 1454,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "brennan.computer",
+      "displayName": "brennan",
+      "followers": 3160,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "numbers": [
+    "Timestamps: 19:24Z the \"holy shit\" post; 23:51Z the game; 23:57Z the feedback; 23:58Z the award; 00:01Z the forklift reply; 00:10Z the three wishes; 00:31Z \"done\" (21 minutes); 00:41Z the answering screenshot."
+  ],
+  "couldBeShown": "The game is at a public address and runs in a browser; the post carries a video of it (no description in the data). The answering screenshot is described in detail in its alt text.",
+  "notUnderstood": "Whether \"my forklift\" refers to the poster's work or is said in play. What the \"holy shit\" image shows, beyond what replies say about it.",
+  "sensitive": "No post on this card carries a flag from the tool. (1) The game is a made thing and belongs to the made lane; this card is the exchange under it. @cee.wtf also holds the Top Chicken record and won Saturday's result, so the games lane will name them too: three lanes may carry the same account. (2) The post the game quotes drew replies the tool flags (health) and a link to an outside news story about the video; none of that is here, and the outside story is not the cluster's. (3) \"people with big thumbs\" is the poster's remark about their own hands (appearance, lightly). \"my forklift\" may be about the poster's job (R1): not known, see notUnderstood. (4) \"there has to be a way to run yourself over\" is about the game's driver character. (5) @shimmermathlabs.com is marked by the tool as shown in the previous episode, and appears on four cards in this lane. (6) @tvanl.bsky.social has 785 followers."
+}

@@ -1,0 +1,333 @@
+{
+  "format": "late-cluster-sources/1",
+  "week": "2026-W47",
+  "accounts": [
+    {
+      "handle": "yonderdavid.bsky.social",
+      "did": "did:plc:nqu76ue2hgr44emaxyvgbzsq",
+      "displayName": "David",
+      "role": "guest",
+      "cast": "david",
+      "followers": 971,
+      "checks": "Not on the opt-out list (packages/scraper/config/optout.json, read 20 Nov). None of the posts used asks not to be quoted, and none carries a label in the digest. Bio not read: no network at the draft stage."
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+      "displayName": "norvid_studies",
+      "role": "mentioned",
+      "checks": "Not on the opt-out list. Asked three of the five prompts. Not voiced, named or shown in this segment: Larry says \"a member asked\" and asks what was asked. Spoke in the previous episode according to the research card."
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+      "displayName": "Amber 🌸",
+      "role": "mentioned",
+      "checks": "Not on the opt-out list. Asked the two koto prompts. Not voiced, named or shown in this segment."
+    }
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cffuxxv22n",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "date": "2026-11-14T21:01:02.941Z",
+      "likes": 65,
+      "reposts": 7,
+      "replies": 7,
+      "text": "Very well, it's arguably still chimera-vocal-synth week, so I can fix that. The cat voice sim joins a quartet and instruments that get their sound from physical models.",
+      "alt": [
+        "A quartet of chimera-vocal-synth voices, plus a physically simulated feline voice, sing \"Poor Wayfaring Stranger,\" accompanied by physically simulated guitar and fiddle."
+      ],
+      "use": "line",
+      "segment": "interview-yonderdavid",
+      "why": "Answer 1, spoken by the puppet with its card up. The clause \"it's arguably still chimera-vocal-synth week,\" is cut from the first sentence (marked); the rest is spoken and shown whole."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cqbcwvqc2z",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "date": "2026-11-15T00:15:20.974Z",
+      "likes": 11,
+      "reposts": 0,
+      "replies": 3,
+      "text": "The articulation needed a couple repairs: nonzero airflow on the J and an exaggerated release on the D. I called the other sounds good enough. The meow and yowl took some work and iteration against reference recordings. The original yowl sounded like a kazoo.",
+      "use": "line",
+      "segment": "interview-yonderdavid",
+      "why": "Answer 2, spoken with its card up. The last two sentences are spoken and shown; the cut at the start is marked."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2crbcfzuk2z",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "date": "2026-11-15T00:33:14.162Z",
+      "likes": 4,
+      "reposts": 1,
+      "replies": 2,
+      "text": "My original idea was that the seal synth would hum bass for Greenfields, but it turns out that's still under copyright and covers aren't fair use. And the cat was missing, so the new plan was an older melancholic folk song with caterwauling. The lead singer would end by expressing anger at the cat.",
+      "use": "card",
+      "segment": "interview-yonderdavid",
+      "why": "Not an answer: Larry reads one clause of it aloud, exactly, with its card up, as the post the next question was asked about. Cuts at both ends are marked (line read-copyright)."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cro6iyc22z",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "date": "2026-11-15T00:40:26.273Z",
+      "likes": 1,
+      "reposts": 0,
+      "replies": 0,
+      "text": "I believe parody is considered transformative in the relevant sense.",
+      "use": "line",
+      "segment": "interview-yonderdavid",
+      "why": "Answer 3, spoken whole with its card up."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jnh3e6hc2t",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "date": "2026-11-17T18:13:31.290Z",
+      "likes": 1,
+      "reposts": 0,
+      "replies": 1,
+      "text": "New. Second draft, mostly vibed.",
+      "use": "line",
+      "segment": "interview-yonderdavid",
+      "why": "Answer 4, spoken whole with its card up."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jq4x7qys2t",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "date": "2026-11-17T19:01:32.632Z",
+      "likes": 2,
+      "reposts": 0,
+      "replies": 1,
+      "text": "Koto information wants to be free. \npastebin.com/cxLPkJby",
+      "use": "line",
+      "segment": "interview-yonderdavid",
+      "why": "Answer 5, spoken with its card up. The sentence is spoken; the link that follows it is cut from the speech (marked) and shown as the plug."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cq3hrnic2z",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "date": "2026-11-15T00:12:04.717Z",
+      "likes": 9,
+      "reposts": 0,
+      "replies": 1,
+      "text": "The plan was a quartet of male voices (the female synth voices need repair; see the soprano line in the Kyrie). I think the harmony helped fill out the voice a bit and the instruments sounding almost lifelike (the bowing should reverse on long notes) helped make the overall vibe ungoofy.",
+      "use": "reference",
+      "segment": "interview-yonderdavid",
+      "why": "Context only, not shown: the first half of the reply that answer 2 continues. It is the digest parent of answer 2."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27zewdpe223",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "date": "2026-11-13T22:20:26.441Z",
+      "likes": 13,
+      "reposts": 0,
+      "replies": 2,
+      "text": "I was just noticing this part of the readme.",
+      "alt": [
+        "Beatbox: pads and a step sequencer, every drum an articulatory gesture.\nBestiary: songbird (two-voice syrinx), seal, alligator and elephant."
+      ],
+      "use": "reference",
+      "segment": "interview-yonderdavid",
+      "why": "Context only, not shown: the image on this post is the readme list behind Larry's line that the synthesizer comes with four animals (songbird, seal, alligator, elephant)."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27kw5enmc27",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "date": "2026-11-13T18:01:38.110Z",
+      "likes": 5,
+      "reposts": 0,
+      "replies": 0,
+      "text": "The Chimera synth builds to wasm, so it was natural to generate the frames in a browser. The audio tracks are generated separately and mixed, then everything gets turned into a video with ffmpeg. \ngithub.com/jamesondh/ch...",
+      "use": "reference",
+      "segment": "interview-yonderdavid",
+      "why": "Context only, not shown: the post in which David links the synth, which is the source of the on-screen credit."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jfwtubf22r",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "date": "2026-11-17T15:59:10.365Z",
+      "likes": 61,
+      "reposts": 5,
+      "replies": 7,
+      "alt": [
+        "Animated instruments composed of polyhedra play the Japanese folk tune さくら さくら while the camera explores a landscape composed of regular polyhedra. The landscape features many sakura trees."
+      ],
+      "use": "reference",
+      "segment": "interview-yonderdavid",
+      "why": "Context only, not shown as a card: the polyhedra video (a post with no text). Its alt text is the source for the studio sketch."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2a65lsdec26",
+      "author": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "date": "2026-11-13T23:45:49.214Z",
+      "likes": 10,
+      "reposts": 0,
+      "replies": 3,
+      "text": "genuinely how did cat not make the top 4 here",
+      "use": "reference",
+      "segment": "interview-yonderdavid",
+      "why": "Context only, not shown or voiced: the remark answer 1 replied to. Larry says a member asked, and asks it in his own words."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2cmemvpv222",
+      "author": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "date": "2026-11-14T23:05:37.117Z",
+      "likes": 13,
+      "reposts": 0,
+      "replies": 1,
+      "text": "this works incredibly well, was there an unseen graveyard of failures or what's your theory of what went on here",
+      "use": "reference",
+      "segment": "interview-yonderdavid",
+      "why": "Context only, not shown or voiced: the question that answer 2 and the post before it reply to. Larry says a member asked, and asks it in his own words."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2cri7abyc2z",
+      "author": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "date": "2026-11-15T00:37:05.710Z",
+      "likes": 2,
+      "reposts": 0,
+      "replies": 2,
+      "text": "\" covers aren't fair use \" TIL!? so every cover you hear got legal permission from the original artist, or more likely their producer/studio?",
+      "use": "reference",
+      "segment": "interview-yonderdavid",
+      "why": "Context only, not shown or voiced: the question that quotes \"covers aren't fair use\" from David's post; the Weird Al question was posted as a reply to it."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2crnbhi5k2t",
+      "author": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "date": "2026-11-15T00:39:55.814Z",
+      "likes": 1,
+      "reposts": 0,
+      "replies": 1,
+      "text": "how does weird al work then...",
+      "use": "reference",
+      "segment": "interview-yonderdavid",
+      "why": "Context only, not shown or voiced: the question answer 3 replied to. Larry says a member asked, and asks it in his own words."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jmvm74dc2r",
+      "author": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "date": "2026-11-17T18:03:44.970Z",
+      "likes": 2,
+      "reposts": 0,
+      "replies": 1,
+      "text": "love the sound of the kotos!\nis this an existing physical model or a new thing?",
+      "use": "reference",
+      "segment": "interview-yonderdavid",
+      "why": "Context only, not shown or voiced: the question answer 4 replied to. Larry says a member asked, and asks it in his own words."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jnnda4es2y",
+      "author": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "date": "2026-11-17T18:17:00.872Z",
+      "likes": 1,
+      "reposts": 0,
+      "replies": 1,
+      "text": "any details or anything you can share would be appreciated, i want more kotos",
+      "use": "reference",
+      "segment": "interview-yonderdavid",
+      "why": "Context only, not shown or voiced: the request answer 5 replied to. Larry says the same member asked, and asks it in his own words."
+    }
+  ],
+  "links": [
+    {
+      "url": "https://github.com/jamesondh/chimera-vocal-synth",
+      "use": "credit",
+      "segment": "interview-yonderdavid",
+      "why": "The synth is another developer's project; this is its address as David linked it. A small credit while Larry says the synthesizer comes with four animals."
+    },
+    {
+      "url": "https://pastebin.com/cxLPkJby",
+      "use": "card",
+      "segment": "interview-yonderdavid",
+      "why": "The link that ends answer 5: shown on its card and on the plug card."
+    }
+  ],
+  "lines": [
+    {
+      "segment": "interview-yonderdavid",
+      "line": "very-well",
+      "kind": "verbatim",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cffuxxv22n",
+      "context": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2a65lsdec26",
+      "contextText": "genuinely how did cat not make the top 4 here",
+      "setup": {
+        "line": "ask-cat",
+        "who": "larry",
+        "text": "A member asked: how did the cat not make the top four?"
+      },
+      "note": "The remark was a reply under David's sample of the synth's animal voices, in the thread where he had posted the readme's list of four. One clause is cut from the reply's first sentence and marked: \"it's arguably still chimera-vocal-synth week,\". What remains is the agreement, the commitment and the whole second sentence, which says what was made. The time between remark and reply is not said, shown or counted."
+    },
+    {
+      "segment": "interview-yonderdavid",
+      "line": "kazoo",
+      "kind": "verbatim",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cqbcwvqc2z",
+      "context": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cq3hrnic2z",
+      "contextText": "The plan was a quartet of male voices (the female synth voices need repair; see the soprano line in the Kyrie). I think the harmony helped fill out the voice a bit and the instruments sounding almost lifelike (the bowing should reverse on long notes) helped make the overall vibe ungoofy.",
+      "setup": {
+        "line": "ask-failures",
+        "who": "larry",
+        "text": "Was there a stack of failures we never saw?"
+      },
+      "note": "This post is the second half of David's reply: its digest parent is his own post (the context above), which replied to the question at at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2cmemvpv222 (\"this works incredibly well, was there an unseen graveyard of failures or what's your theory of what went on here\"). The staged setup asks that question, the occasion of both halves; this half is the part about failures. The line before the setup (\"Under the video, a member asked:\") attributes it."
+    },
+    {
+      "segment": "interview-yonderdavid",
+      "line": "parody",
+      "kind": "verbatim",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cro6iyc22z",
+      "context": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2crnbhi5k2t",
+      "contextText": "how does weird al work then...",
+      "setup": {
+        "line": "ask-al",
+        "who": "larry",
+        "text": "Covers aren't fair use? Then how does Weird Al work?"
+      },
+      "note": "The question was about David's post at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2crbcfzuk2z, which Larry has just read from, exactly, with its card up (\"… it turns out that's still under copyright and covers aren't fair use. …\"). It was posted as a follow-on to at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2cri7abyc2z (\"\" covers aren't fair use \" TIL!? so every cover you hear got legal permission from the original artist, or more likely their producer/studio?\"), which quotes the words \"covers aren't fair use\" from that post. Larry says \"And a member asked:\", repeats those four words exactly, and asks the question. David's reply to the in-between question is not performed."
+    },
+    {
+      "segment": "interview-yonderdavid",
+      "line": "new",
+      "kind": "verbatim",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jnh3e6hc2t",
+      "context": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jmvm74dc2r",
+      "contextText": "love the sound of the kotos!\nis this an existing physical model or a new thing?",
+      "setup": {
+        "line": "ask-koto",
+        "who": "larry",
+        "text": "A member asked about the koto: an existing physical model, or a new thing?"
+      },
+      "note": "The setup is attributed to a member and keeps the question's own terms (\"an existing physical model\", \"a new thing\")."
+    },
+    {
+      "segment": "interview-yonderdavid",
+      "line": "free",
+      "kind": "verbatim",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jq4x7qys2t",
+      "context": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jnnda4es2y",
+      "contextText": "any details or anything you can share would be appreciated, i want more kotos",
+      "setup": {
+        "line": "ask-details",
+        "who": "larry",
+        "text": "The same member asked: can you share any details?"
+      },
+      "note": "The request was a reply to answer 4, from the same member, so these two exchanges really followed one another. The link that ends the post is cut from the speech and shown on screen."
+    }
+  ]
+}

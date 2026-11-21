@@ -1,0 +1,180 @@
+{
+  "format": "late-cluster-plan/2",
+  "id": "002-2026-w47",
+  "week": "2026-W47",
+  "segments": [
+    {
+      "id": "made-pen-plotter-replies",
+      "title": "One Pen",
+      "format": "A demonstration: the studio's sketch of the plotter writes three real replies, the last of them with no words spoken",
+      "seconds": 76,
+      "standing": null,
+      "cards": [
+        "made-pen-plotter-replies",
+        "voices-plotter-queue-small-accounts"
+      ],
+      "ideas": [
+        "writer-2-138",
+        "writer-1-108",
+        "writer-2-137",
+        "writer-3-119"
+      ],
+      "speakers": [
+        "ver.ooo"
+      ],
+      "featured": [
+        "samantha.wiki",
+        "ver.ooo",
+        "sophie.engineering",
+        "aparker.io"
+      ],
+      "score": 0.836,
+      "repetition": "fresh"
+    },
+    {
+      "id": "interview-yonderdavid",
+      "title": "The Interview: David",
+      "format": "interview",
+      "seconds": 95,
+      "standing": null,
+      "cards": [
+        "interview-yonderdavid"
+      ],
+      "ideas": [
+        "writer-2-27",
+        "writer-1-23",
+        "writer-2-25",
+        "writer-2-26",
+        "writer-2-30"
+      ],
+      "speakers": [
+        "yonderdavid.bsky.social"
+      ],
+      "featured": [
+        "yonderdavid.bsky.social"
+      ],
+      "score": 0.7,
+      "repetition": "fresh"
+    },
+    {
+      "id": "top-chicken",
+      "title": "Top Chicken: the winner trails the winner",
+      "format": "Top Chicken at the sports desk: one named result with its winning post read aloud, the record and the gap, the week's numbers, the play-money market told from its players' posts, and one labelled guess",
+      "seconds": 89,
+      "standing": "top-chicken",
+      "cards": [
+        "games-top-chicken-standings",
+        "games-top-chicken-saturday-201",
+        "games-top-chicken-market"
+      ],
+      "ideas": [
+        "writer-1-7",
+        "writer-2-7",
+        "writer-3-12",
+        "writer-2-11",
+        "writer-3-6",
+        "writer-1-12",
+        "writer-2-12",
+        "writer-3-13",
+        "writer-1-2",
+        "writer-2-1"
+      ],
+      "speakers": [],
+      "featured": [
+        "cee.wtf",
+        "topchicken.bsky.social",
+        "catblanketflower.yuwakisa.com",
+        "7778777.online"
+      ],
+      "score": 0.705,
+      "repetition": "fresh"
+    },
+    {
+      "id": "made-polyhedral-coffee-simulator",
+      "title": "Larry Plays a Game",
+      "format": "A demonstration (the host plays the thing a member made, and it is shown in use for thirteen seconds with no words), then the real mug thread, four posts in order: two performed by their author's puppet, one shown at a glance, and the correction read aloud from its card",
+      "seconds": 73,
+      "standing": null,
+      "cards": [
+        "made-polyhedral-coffee-simulator"
+      ],
+      "ideas": [
+        "writer-2-77",
+        "writer-2-78",
+        "writer-2-80"
+      ],
+      "speakers": [
+        "dave.9000ish.uk",
+        "shimmermathlabs.com"
+      ],
+      "featured": [
+        "dave.9000ish.uk",
+        "shimmermathlabs.com",
+        "oszillate.bsky.social",
+        "mokkenstorm.dev"
+      ],
+      "score": 0.779,
+      "repetition": "fresh"
+    },
+    {
+      "id": "music",
+      "title": "The Plan, With Caterwauling",
+      "format": "Music (standing): a folk lament whose planned angry last verse is called off by the song itself. Two posts by the maker, read aloud by Sibyl, frame it: the plan before the song, the outcome after it.",
+      "seconds": 83,
+      "standing": "music",
+      "cards": [
+        "made-cat-voice-quartet"
+      ],
+      "ideas": [
+        "writer-2-52"
+      ],
+      "speakers": [],
+      "featured": [
+        "yonderdavid.bsky.social"
+      ],
+      "genre": "folk lament",
+      "theme": "This song is about having an angry last verse ready for the newcomer who is wrecking your sad song, and it feels like the anger having nowhere to go once the newcomer sings the part you were missing.",
+      "score": 0.749,
+      "repetition": "fresh"
+    },
+    {
+      "id": "made-mobius-chess-ringmate",
+      "title": "Chess for Three",
+      "format": "A performed exchange (three real posts, in order, each by its author's puppet), then a demonstration: the house sits down at the studio's sketch of the board. The experiment's wordless stretch carries the turn.",
+      "seconds": 64,
+      "standing": null,
+      "cards": [
+        "made-mobius-chess-ringmate"
+      ],
+      "ideas": [
+        "writer-2-162",
+        "writer-1-63"
+      ],
+      "speakers": [
+        "mokkenstorm.dev",
+        "minormobius.bsky.social"
+      ],
+      "featured": [
+        "mokkenstorm.dev",
+        "minormobius.bsky.social"
+      ],
+      "score": 0.765,
+      "repetition": "fresh"
+    }
+  ],
+  "cut": [
+    {
+      "what": "interview",
+      "why": "the rundown already reached the 480 s target"
+    },
+    {
+      "what": "made-polyhedra-instruments-sakura",
+      "why": "the rundown already reached the 480 s target"
+    },
+    {
+      "what": "made-cat-voice-quartet",
+      "why": "the rundown already reached the 480 s target"
+    }
+  ],
+  "inherit": []
+}

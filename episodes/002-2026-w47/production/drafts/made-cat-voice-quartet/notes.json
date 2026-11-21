@@ -1,0 +1,108 @@
+{
+  "slug": "made-cat-voice-quartet",
+  "title": "One Click",
+  "format": "A demonstration: the studio's sketch of the thing is used on air, credited, and the maker's own posts about it are read aloud exactly",
+  "seconds": 62,
+  "standing": null,
+  "cards": [
+    "made-cat-voice-quartet"
+  ],
+  "ideas": [
+    "writer-2-55"
+  ],
+  "speakers": [],
+  "featured": [
+    "yonderdavid.bsky.social"
+  ],
+  "retell": "Someone asked a maker whether the singing synthesizer was now one click, so Larry clicked it, and it took three more machines before a very small band came out.",
+  "turn": "One click needed four machines",
+  "ideasNote": "Drafted from writer-2-55 only, as the project manager asked. writer-2-52 (the song) is not used here and is left free for the song's writer; that is why it is not in \"ideas\". The cat, the yowl and the first song's story are not in this segment at all, so it stands alone whichever other segments with this maker are kept.",
+  "experiment": {
+    "stretch": "the music block \"pipeline\": from the end of line \"order\" to the applause",
+    "seconds": 12.55,
+    "measured": "scratch render of this exact script (61.9 s): line \"order\" ends at 15.80 s, applause-1 starts at 28.35 s; between them the cues hold only beat lines (pete, al, dee, hy) and the one-shot ding-1. No say, sing or shout line and no crowd sound.",
+    "turnInFiveWords": "One click needed four machines",
+    "whatTheThingDoes": "The button is clicked for a song. Nothing comes out. A second box has to roll in, then a third, then a fourth, each one a new hum in the band, before the door of a very small stage opens on two heads, two fiddles and a cello.",
+    "before": "No earlier line says what the click took. Larry asks only whether it is one click, and orders a song.",
+    "after": "No later line says what was seen. Larry repeats the question in two words and hands over to the reply. The sentence of David's reply that lists the second, third and fourth model is the one sentence that is cut (marked with the ellipsis), because the stretch has already shown it and reading it would describe what was just seen.",
+    "forTheJudge": "One call a reviewer may want to make: the second post begins \"By such applications of beeswax and string\". I read that as David's own name for what was shown, a new joke in David's words, and kept wax and string out of the drawing until Sibyl says them. If that is judged to describe the stretch, the fix is to end the segment on the first post and lose the bowing.",
+    "words": "110 spoken words in 62 s, about 1.8 a second. The setup was cut to five lines to pay for the stretch: Larry does not say that the button is the studio's drawing; the two words STUDIO SKETCH on the drawing say it."
+  },
+  "people": [
+    {
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "role": "the maker and the hero. Credited on screen throughout; two posts on cards, read aloud by Sibyl. No puppet, so no PUPPET · PARODY chyron and no disclaimer are needed for this segment.",
+      "checks": "Not on the opt-out list (packages/scraper/config/optout.json read 2026-11-20). Bio not read: no network at drafting, as research/screen.md says of every account. 971 followers, not marked as a small account, timesFeatured 0."
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "role": "asked the question. Not named, not shown, not voiced, as the screen's ruling 1 and the project manager's note require. Larry says \"a member\" and asks what was asked in his own words. Listed in sources.json as \"mentioned\" only so a reviewer can lay the original beside Larry's lines."
+    }
+  ],
+  "readAloud": [
+    {
+      "line": "reply-1",
+      "reader": "sibyl",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2fmuqiess24",
+      "replyingTo": "David's own first post of a three-post reply (at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2fmuoefz224, not used), which answers at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ckbmplk22v",
+      "originalPrompt": "if this is now just a pipeline you can click on can you do this one www.youtube.com/watch?v=uj0R...",
+      "setup": {
+        "line": "setup-reply",
+        "who": "larry",
+        "text": "One click? Here is the reply from David."
+      },
+      "cut": "The second sentence (\"But I used another model to generate better voices, a third to correct the tune, and a fourth to re-sing with precise enough timing to kinda work.\") is cut and marked. The meaning of what is read does not change."
+    },
+    {
+      "line": "reply-2a, reply-2b",
+      "reader": "sibyl",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2fmuqiest24",
+      "replyingTo": "the post read at reply-1: it is the next post of the same reply, and the one the video was attached to",
+      "setup": "It follows reply-1 as it did in the thread. Larry's three words to the audience sit between the two posts, not inside either.",
+      "cut": "None. Read whole, split at its own sentence break across two consecutive beats. The ellipsis at the end of reply-2a and the start of reply-2b is the tools' mark for a caption that is part of a post; the card shows the post whole."
+    }
+  ],
+  "builder": {
+    "shape": "Desk, then the studio, then Sibyl and two cards. The stretch wants the whole studio: the pipeline should grow in the room, not in a graphics panel, so that the camera has to pull back from the desk to a full wide and Larry gets smaller as the thing gets longer.",
+    "credit": "From cue credit to the end: DAVID · @yonderdavid.bsky.social, small and constant. The address of the real thing is https://bsky.app/profile/yonderdavid.bsky.social/post/3n2fmuqiest24. The drawing carries the two words STUDIO SKETCH from cue button-in to the end. The video has not been seen by anyone on the show: all that is known is its alt text, \"Two chimera-vocal-synth heads sing, with voices otherwise synthesized, the folk song \\\"Factory Girl.\\\" They are accompanied by two fiddles and a cello, whose sound derives from physical simulation of those instruments.\" Draw two heads, two fiddles, a cello and nothing else on the small stage. They make no sound: the studio does not stand in for David's recording.",
+    "props": "All new, and this episode's own: a big button marked CLICK; four boxes numbered 1 to 4; a very small stage with a door and a sign; a pointer arrow in Larry's gold. Boxes 2, 3 and 4 may each carry one small icon for what David's post says that model did: a mouth (better voices), a tuning fork (correct the tune), a metronome (timing). Icons, not words.",
+    "stretch": "Sync to the music block's beats, not to seconds: click on beat 0, box 2 on beat 4, box 3 on 8, box 4 on 12, the door on 16, hold to 20 (cues click, box-2, box-3, box-4, door-open mark the same moments). The picture must change on every one of those beats: this is the experiment's measure, and frames from its start, middle and end have to differ. Each arriving box shoves the small stage further off, so by box 4 the song is at the far side of the studio. The fourth box is the biggest and the stage is the smallest thing in the frame when its door opens. The band is the sound of the machine: if a Formant is in frame, light them as their box joins (Pete with box 1, Al with 2, Dee with 3, Hy with 4). Larry watches and reacts with his head only: the door, then the camera, after the two thin ticks; each box as it lands; the camera again before the fourth.",
+    "textInTheStretch": "CLICK, the numerals, FACTORY GIRL, STUDIO SKETCH and the credit. Nothing else. No caption bar: nobody speaks.",
+    "after": "Card 1 is up from the first word of reply-1 to its last and shows exactly the text of that line, ellipsis included, with David, the handle, Nov 16 and 4 likes. Card 2 is up from the first word of reply-2a to the last of reply-2b and shows the post whole, with 8 likes, labelled as the next post of the same reply. Words light as Sibyl says them. On \"beeswax and string\" (cue wax-string) wax and string are added to the pipeline, which stays in view behind or beside the card. On \"bowing\" (cue bows) the three bows on the small stage draw one stroke together. Use the lines' word timings for both; the cues were set from a render and will drift if a line is re-timed.",
+    "sound": "I could not listen. The hum volumes (al 0.4, dee 0.32, hy 0.36) were set from level measurements so that the full chord sits near dialogue level; balance by ear. The hums are sustained and re-struck: Al once a beat, Dee twice, Hy every two beats."
+  },
+  "heard": {
+    "method": "This exact script rendered outside the repo with the studio's renderer and transcribed by its own Whisper check (base.en), every line read, six renders in all. Last render: 91 of 107 caption words heard.",
+    "names": "\"David\" is heard as David both times, in Larry's voice, placed last in its phrase. It was not heard as itself at the start of a sentence, so it is never placed there.",
+    "softLines": [
+      {
+        "line": "ask",
+        "heard": "The member asked for one more vector girl.",
+        "note": "The song title comes and goes between renders (\"factory girl\" once, \"effective girl\" twice, \"vector girl\" once). Harmless; the sign on the small stage carries it."
+      },
+      {
+        "line": "reply-1",
+        "heard": "So there was a simple pipeline or a partition version, but I could hardly inflict it in your the innocent bystanders whom might have an opponent.",
+        "note": "Between 15 and 21 of 25 words across the renders. Harmless nonsense where it slips. Larry's next line says \"innocent bystanders\" again and is heard 3 of 3 every time."
+      },
+      {
+        "line": "reply-2a",
+        "heard": "By such applications of this wax, I obtained the siren, which one might call distinguishable from the polished one.",
+        "note": "\"beeswax and string\" is the weak phrase in every voice tried (Sibyl, Hy, Al, Dee). The caption and the picture on the words carry it. READ THIS LINE AGAIN AT ASSEMBLY: with the plain spelling, and with the respellings beas-wax and bees-wacks, Whisper three times heard \"these elections\", which touches an out-of-bounds subject and cannot stand. The respelling used here (bee-swax, with a comma either side of \"and string\") gave \"these legs and string\", \"this action string\", \"this wax downstream\" and \"this wax\"."
+      }
+    ],
+    "avoided": "A first version of Larry's line to the audience ended \"That is us.\" and was heard as something close to a slur. It was replaced; do not restore it. \"bo-wing\" is right for Sibyl and wrong for Larry, where it is heard as \"bowling\"; Larry's last line uses the plain word."
+  },
+  "constraintsKept": [
+    "Not a song, and no house performer attempts David's song or any sound the studio cannot make.",
+    "No animal call anywhere.",
+    "How long the song took is not mentioned, and nothing is staged as an ask, a wait and a delivery.",
+    "The posts about masculine and feminine voices, the 45,295-follower account's quote post, the copyright branch and the replies by the show's owner are not used.",
+    "Nobody is given a pronoun."
+  ],
+  "nextStage": [
+    "The interview is drafted from the same person and may use these same two posts. I have not read it.",
+    "Larry's last line is six words in the caption (\"I'd have opened with the bowing.\") and is spoken as \"I would have\", which is the version the engine says clearly."
+  ]
+}

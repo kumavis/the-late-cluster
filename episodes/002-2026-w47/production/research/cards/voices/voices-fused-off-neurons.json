@@ -1,0 +1,91 @@
+{
+  "id": "voices-fused-off-neurons",
+  "lane": "voices",
+  "title": "\"we're using only 10% of our brains due to market segmentation\": a reply to a joke about fused-off neurons",
+  "summary": "On Sun 15 Nov members were discussing a report, posted by an account outside the cluster, that an 8GB graphics card could be unlocked to its full 80GB of memory, and why chips are sold with capacity switched off. At 19:04Z @thebadcode.com (3,077 followers) quote-posted that report with \"[2027 VOICE]:\" and \"yeah so it turns out God shipped the fruit fly connectome with an extra 20k neurons, they were just fused off\" (108 likes). At 20:17Z @refinement.systems (affine, 570 followers) replied: \"we're using only 10% of our brains due to market segmentation\" (31 likes), and six minutes later added: \"unrelated to how we lose a lot of synapses after early childhood, that's just binning\" (11 likes). @thebadcode.com then quote-posted the first reply; the text of that quote post is only a truncated link.",
+  "posts": [
+    {
+      "uri": "at://did:plc:4vvaxwovyg4yo4n7dyyncaiu/app.bsky.feed.post/3n2epewt7tk25",
+      "url": "https://bsky.app/profile/thebadcode.com/post/3n2epewt7tk25",
+      "handle": "thebadcode.com",
+      "displayName": "austin (e/accordion 🪗)",
+      "text": "[2027 VOICE]:\n\nyeah so it turns out God shipped the fruit fly connectome with an extra 20k neurons, they were just fused off",
+      "time": "2026-11-15T19:04:48.223Z",
+      "counts": {
+        "likes": 108,
+        "reposts": 5,
+        "replies": 3,
+        "quotes": 1
+      },
+      "quotes": {
+        "uri": "at://did:plc:7obcdkmaphcucglm3a777gct/app.bsky.feed.post/3n2ekkquewk25",
+        "handle": "hershgupta.com",
+        "withheld": "the digest flags this post (health); not reproduced"
+      }
+    },
+    {
+      "uri": "at://did:plc:jsaci272pfep77eoo5jjxfrm/app.bsky.feed.post/3n2etgvs53k2h",
+      "url": "https://bsky.app/profile/refinement.systems/post/3n2etgvs53k2h",
+      "handle": "refinement.systems",
+      "displayName": "affine",
+      "text": "we're using only 10% of our brains due to market segmentation",
+      "time": "2026-11-15T20:17:29.214Z",
+      "counts": {
+        "likes": 31,
+        "reposts": 3,
+        "replies": 1,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:4vvaxwovyg4yo4n7dyyncaiu/app.bsky.feed.post/3n2epewt7tk25",
+        "handle": "thebadcode.com",
+        "text": "[2027 VOICE]:\n\nyeah so it turns out God shipped the fruit fly connectome with an extra 20k neurons, they were just fused off"
+      }
+    },
+    {
+      "uri": "at://did:plc:jsaci272pfep77eoo5jjxfrm/app.bsky.feed.post/3n2etrvimnc2h",
+      "url": "https://bsky.app/profile/refinement.systems/post/3n2etrvimnc2h",
+      "handle": "refinement.systems",
+      "displayName": "affine",
+      "text": "unrelated to how we lose a lot of synapses after early childhood, that's just binning",
+      "time": "2026-11-15T20:23:38.001Z",
+      "counts": {
+        "likes": 11,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:jsaci272pfep77eoo5jjxfrm/app.bsky.feed.post/3n2etgvs53k2h",
+        "handle": "refinement.systems",
+        "text": "we're using only 10% of our brains due to market segmentation"
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "refinement.systems",
+      "displayName": "affine",
+      "followers": 570,
+      "smallAccount": false,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "wrote the two replies"
+    },
+    {
+      "handle": "thebadcode.com",
+      "displayName": "austin (e/accordion 🪗)",
+      "followers": 3077,
+      "smallAccount": false,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "wrote the post replied to"
+    }
+  ],
+  "watchable": "Text only. Three posts.",
+  "sensitive": "The post that started the discussion carries a digest flag (health keyword) and is described, not listed. @thebadcode.com won Top Chicken on Sun 15 Nov with a different post, which the digest flags and this card does not use. In the same hour @refinement.systems posted an irritated reply to people repeating a point; not used (R7). I take \"fused off\" and \"binning\" as chip-manufacturing terms from that discussion, and did not trace the \"fruit fly connectome\" item (R15 for that part). The second reply mentions childhood brain development in general terms; it is not about anyone's health."
+}

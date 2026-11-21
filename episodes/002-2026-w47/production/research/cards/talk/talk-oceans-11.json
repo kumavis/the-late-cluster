@@ -1,0 +1,372 @@
+{
+  "id": "talk-oceans-11",
+  "lane": "talk",
+  "title": "\"what are people's thoughts on Oceans 11\"",
+  "summary": "At 04:38Z on Sat 14 Nov @norvid-studies.bsky.social asked \"what are people's thoughts on Oceans 11\". Five minutes later a small account in the cluster, @kitto.nekoweb.org, answered \"Which one\". He replied, in quotation marks, \"there are more than one?\", and was told \"Rat pack 1960 vs Lexington & Shawnee 2001\"; asked about the new one, the answer was \"It's good, I like it\". @brennan.computer said it is perhaps his favourite film and that he watches it every year on the flight to Vegas. Another branch, with @nainrouge420.bsky.social, moved from praise of the film to a request for more things like it, in the asker's own phrase (\"Legitimately what else is like this, I want to build a collection\"). The thread has 15 posts in the data from 6 accounts; the digest notes one reply removed under the consent rules.",
+  "posts": [
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2aoiw3phk24",
+      "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2aoiw3phk24",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "when": "Sat 14 Nov 04:38Z",
+      "time": "2026-11-14T04:38:28.975Z",
+      "text": "what are people's thoughts on Oceans 11",
+      "counts": {
+        "likes": 10,
+        "reposts": 0,
+        "replies": 6,
+        "quotes": 1
+      },
+      "note": "Top-level post."
+    },
+    {
+      "uri": "at://did:plc:zgufzyadu3gghypxz4hp5psp/app.bsky.feed.post/3n2aorn7its2d",
+      "url": "https://bsky.app/profile/kitto.nekoweb.org/post/3n2aorn7its2d",
+      "handle": "kitto.nekoweb.org",
+      "displayName": "kit 🇱🇮 in the autumn rain 🍂🌧️",
+      "when": "Sat 14 Nov 04:43Z",
+      "time": "2026-11-14T04:43:21.651Z",
+      "text": "Which one",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2aoiw3phk24",
+        "handle": "norvid-studies.bsky.social",
+        "text": "what are people's thoughts on Oceans 11"
+      }
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2aphyap3k23",
+      "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2aphyap3k23",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "when": "Sat 14 Nov 04:55Z",
+      "time": "2026-11-14T04:55:51.422Z",
+      "text": "\"there are more than one?\"",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:zgufzyadu3gghypxz4hp5psp/app.bsky.feed.post/3n2aorn7its2d",
+        "handle": "kitto.nekoweb.org",
+        "text": "Which one"
+      }
+    },
+    {
+      "uri": "at://did:plc:zgufzyadu3gghypxz4hp5psp/app.bsky.feed.post/3n2aqiur7hc2h",
+      "url": "https://bsky.app/profile/kitto.nekoweb.org/post/3n2aqiur7hc2h",
+      "handle": "kitto.nekoweb.org",
+      "displayName": "kit 🇱🇮 in the autumn rain 🍂🌧️",
+      "when": "Sat 14 Nov 05:14Z",
+      "time": "2026-11-14T05:14:15.063Z",
+      "text": "Rat pack 1960 vs Lexington & Shawnee 2001",
+      "counts": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2aphyap3k23",
+        "handle": "norvid-studies.bsky.social",
+        "text": "\"there are more than one?\""
+      }
+    },
+    {
+      "uri": "at://did:plc:gwvh3frsmdih2zpol2holysc/app.bsky.feed.post/3n2bsdtzdwc2x",
+      "url": "https://bsky.app/profile/brennan.computer/post/3n2bsdtzdwc2x",
+      "handle": "brennan.computer",
+      "displayName": "brennan",
+      "when": "Sat 14 Nov 15:19Z",
+      "time": "2026-11-14T15:19:53.734Z",
+      "text": "perhaps my favourite film ever made?\n\nI watch it every year on the flight to vegas",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2aoiw3phk24",
+        "handle": "norvid-studies.bsky.social",
+        "text": "what are people's thoughts on Oceans 11"
+      }
+    },
+    {
+      "uri": "at://did:plc:6ifsih3ovovuolidhgxhqfup/app.bsky.feed.post/3n2ct4aq4rs25",
+      "url": "https://bsky.app/profile/ashanti.pds.witchcraft.systems/post/3n2ct4aq4rs25",
+      "handle": "ashanti.pds.witchcraft.systems",
+      "displayName": "Ash ⎔",
+      "when": "Sun 15 Nov 01:06Z",
+      "time": "2026-11-15T01:06:12.108Z",
+      "text": "guilty pleasure",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2aoiw3phk24",
+        "handle": "norvid-studies.bsky.social",
+        "text": "what are people's thoughts on Oceans 11"
+      }
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ct5frfik2p",
+      "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2ct5frfik2p",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "when": "Sun 15 Nov 01:06Z",
+      "time": "2026-11-15T01:06:50.946Z",
+      "text": "what are your thoughts on the new one",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:zgufzyadu3gghypxz4hp5psp/app.bsky.feed.post/3n2aqiur7hc2h",
+        "handle": "kitto.nekoweb.org",
+        "text": "Rat pack 1960 vs Lexington & Shawnee 2001"
+      }
+    },
+    {
+      "uri": "at://did:plc:zgufzyadu3gghypxz4hp5psp/app.bsky.feed.post/3n2ct7cx2ys2z",
+      "url": "https://bsky.app/profile/kitto.nekoweb.org/post/3n2ct7cx2ys2z",
+      "handle": "kitto.nekoweb.org",
+      "displayName": "kit 🇱🇮 in the autumn rain 🍂🌧️",
+      "when": "Sun 15 Nov 01:07Z",
+      "time": "2026-11-15T01:07:55.094Z",
+      "text": "It's good, I like it",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ct5frfik2p",
+        "handle": "norvid-studies.bsky.social",
+        "text": "what are your thoughts on the new one"
+      }
+    },
+    {
+      "uri": "at://did:plc:72bsmc54uyf5fpkqejojtea7/app.bsky.feed.post/3n2cucc5bos23",
+      "url": "https://bsky.app/profile/nainrouge420.bsky.social/post/3n2cucc5bos23",
+      "handle": "nainrouge420.bsky.social",
+      "displayName": "NainRouge420",
+      "when": "Sun 15 Nov 01:27Z",
+      "time": "2026-11-15T01:27:28.656Z",
+      "text": "One of my favorite movies, a true classic of the form",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2aoiw3phk24",
+        "handle": "norvid-studies.bsky.social",
+        "text": "what are people's thoughts on Oceans 11"
+      }
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2cvlelzis2p",
+      "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2cvlelzis2p",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "when": "Sun 15 Nov 01:50Z",
+      "time": "2026-11-15T01:50:26.968Z",
+      "text": "I was impressed by how good a job it did at what it was",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:72bsmc54uyf5fpkqejojtea7/app.bsky.feed.post/3n2cucc5bos23",
+        "handle": "nainrouge420.bsky.social",
+        "text": "One of my favorite movies, a true classic of the form"
+      }
+    },
+    {
+      "uri": "at://did:plc:72bsmc54uyf5fpkqejojtea7/app.bsky.feed.post/3n2cvtslyyk23",
+      "url": "https://bsky.app/profile/nainrouge420.bsky.social/post/3n2cvtslyyk23",
+      "handle": "nainrouge420.bsky.social",
+      "displayName": "NainRouge420",
+      "when": "Sun 15 Nov 01:55Z",
+      "time": "2026-11-15T01:55:10.081Z",
+      "text": "I think it’s a credit to both genre and form and it seems like everyone involved in the production is both having fun and near the top of their game",
+      "counts": {
+        "likes": 1,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2cvlelzis2p",
+        "handle": "norvid-studies.bsky.social",
+        "text": "I was impressed by how good a job it did at what it was"
+      }
+    },
+    {
+      "uri": "at://did:plc:72bsmc54uyf5fpkqejojtea7/app.bsky.feed.post/3n2cw43fgfs23",
+      "url": "https://bsky.app/profile/nainrouge420.bsky.social/post/3n2cw43fgfs23",
+      "handle": "nainrouge420.bsky.social",
+      "displayName": "NainRouge420",
+      "when": "Sun 15 Nov 01:59Z",
+      "time": "2026-11-15T01:59:47.740Z",
+      "text": "Legitimately what else is like this, I want to build a collection",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:72bsmc54uyf5fpkqejojtea7/app.bsky.feed.post/3n2cvtslyyk23",
+        "handle": "nainrouge420.bsky.social",
+        "text": "I think it’s a credit to both genre and form and it seems like everyone involved in the production is both having fun and near the top of their game"
+      }
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2cw74iys224",
+      "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2cw74iys224",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "when": "Sun 15 Nov 02:01Z",
+      "time": "2026-11-15T02:01:29.568Z",
+      "text": "in the sense of, very good at executing on its genre?",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:72bsmc54uyf5fpkqejojtea7/app.bsky.feed.post/3n2cw43fgfs23",
+        "handle": "nainrouge420.bsky.social",
+        "text": "Legitimately what else is like this, I want to build a collection"
+      }
+    },
+    {
+      "uri": "at://did:plc:72bsmc54uyf5fpkqejojtea7/app.bsky.feed.post/3n2cwebwpa223",
+      "url": "https://bsky.app/profile/nainrouge420.bsky.social/post/3n2cwebwpa223",
+      "handle": "nainrouge420.bsky.social",
+      "displayName": "NainRouge420",
+      "when": "Sun 15 Nov 02:04Z",
+      "time": "2026-11-15T02:04:23.032Z",
+      "text": "Yeah, and with seasoned pros having fun. I feel like Brandon Flowers most recent album is adjacent",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2cw74iys224",
+        "handle": "norvid-studies.bsky.social",
+        "text": "in the sense of, very good at executing on its genre?"
+      }
+    },
+    {
+      "uri": "at://did:plc:fakq3c4v2fvivhoc3cgom3nc/app.bsky.feed.post/3n2d7g4jd422b",
+      "url": "https://bsky.app/profile/marcelinebelardo.com/post/3n2d7g4jd422b",
+      "handle": "marcelinebelardo.com",
+      "displayName": "marcy aaa!!",
+      "when": "Sun 15 Nov 04:46Z",
+      "time": "2026-11-15T04:46:28.137Z",
+      "text": "i love it when a Director just Directs\n\none of my faves",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2aoiw3phk24",
+        "handle": "norvid-studies.bsky.social",
+        "text": "what are people's thoughts on Oceans 11"
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "followers": 2777,
+      "member": true,
+      "smallAccount": false,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "kitto.nekoweb.org",
+      "displayName": "kit 🇱🇮 in the autumn rain 🍂🌧️",
+      "followers": 248,
+      "member": true,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "brennan.computer",
+      "displayName": "brennan",
+      "followers": 3160,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "ashanti.pds.witchcraft.systems",
+      "displayName": "Ash ⎔",
+      "followers": 452,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "nainrouge420.bsky.social",
+      "displayName": "NainRouge420",
+      "followers": 541,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "marcelinebelardo.com",
+      "displayName": "marcy aaa!!",
+      "followers": 573,
+      "member": false,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "numbers": [
+    "Root post: 10 likes, 6 replies. The whole thread runs from Sat 14 Nov 04:38Z to Sun 15 Nov 04:46Z; no post in it has more than 10 likes."
+  ],
+  "notUnderstood": "\"Lexington & Shawnee\" is not explained in the thread. My reading is that it names the birthplaces of two of the 2001 film's leading actors, in parallel with \"Rat pack\" for the 1960 cast; I could not confirm that from the data.",
+  "sensitive": "No post on this card carries a flag from the tool. (1) @norvid-studies.bsky.social is marked by the tool as having spoken in the previous episode, and he has five of the fifteen posts here including the question: his posts may be shown, his puppet does not speak, so this thread cannot be performed as it stands. (2) @kitto.nekoweb.org is a small account (248 followers) and a cluster member; here they give the informed answer (R7: hero only). (3) @brennan.computer's line mentions a yearly trip (offline life, lightly). (4) @marcelinebelardo.com is outside the cluster's membership. (5) One reply is missing under the consent rules, so the thread is not whole. (6) Low engagement throughout: a quiet thread, not a popular one."
+}

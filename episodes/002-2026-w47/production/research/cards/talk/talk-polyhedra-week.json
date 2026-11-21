@@ -1,0 +1,309 @@
+{
+  "id": "talk-polyhedra-week",
+  "lane": "talk",
+  "title": "The cluster declares polyhedra week, and people post entries",
+  "summary": "The cluster names its weeks after whatever it is making. On Sat 14 Nov @yonderdavid.bsky.social prefaced a new video with \"it's arguably still chimera-vocal-synth week\". On Mon 16 Nov a small account in the cluster, @oscillatory.net, quote-posted a link about a newly described polyhedron with \"it's polyhedra week\" (15 likes). On Tue 17 Nov @norvid-studies.bsky.social quote-posted @yonderdavid.bsky.social's video of instruments made of polyhedra with \"it's polyhedra week now, lock in\" (42 likes), and an hour later @shimmermathlabs.com told the video's maker \"polyhedron week has just begun and you may have already won it\". By Wed 18 Nov posts were being offered as entries: a morning mug with polyhedra on it, answered by another mug with a hand-drawn twenty-sided shape; six pieces from a small account's origami collection \"for Simcluster Polyhedron Week™\" (38 likes, 5 reposts); a piece of music \"for polyhedra week\"; and one member promising a \"chimera week entry\" a few weeks late.",
+  "posts": [
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cffuxxv22n",
+      "url": "https://bsky.app/profile/yonderdavid.bsky.social/post/3n2cffuxxv22n",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "when": "Sat 14 Nov 21:01Z",
+      "time": "2026-11-14T21:01:02.941Z",
+      "text": "Very well, it's arguably still chimera-vocal-synth week, so I can fix that. The cat voice sim joins a quartet and instruments that get their sound from physical models.",
+      "alt": "A quartet of chimera-vocal-synth voices, plus a physically simulated feline voice, sing \"Poor Wayfaring Stranger,\" accompanied by physically simulated guitar and fiddle.",
+      "media": "video",
+      "counts": {
+        "likes": 65,
+        "reposts": 7,
+        "replies": 7,
+        "quotes": 9
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2a65lsdec26",
+        "handle": "norvid-studies.bsky.social",
+        "text": "genuinely how did cat not make the top 4 here"
+      },
+      "note": "Reply with a video; listed for the week's name."
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2h67hytac25",
+      "url": "https://bsky.app/profile/oscillatory.net/post/3n2h67hytac25",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "when": "Mon 16 Nov 18:35Z",
+      "time": "2026-11-16T18:35:30.509Z",
+      "text": "it's polyhedra week",
+      "counts": {
+        "likes": 15,
+        "reposts": 2,
+        "replies": 3,
+        "quotes": 0
+      },
+      "quoting": {
+        "uri": "at://did:plc:s4xmseub4a4pwwetg2xxmcyy/app.bsky.feed.post/3n2gz7l5trc2v",
+        "handle": "hn100.bsky.social",
+        "text": "Smallest possible nopert polyhedra: the Septopert\n\nDiscussion"
+      },
+      "note": "Quote-post of a link-sharing bot's post. The digest lists it as the first use of the phrase."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2jn7eneo22j",
+      "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2jn7eneo22j",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "when": "Tue 17 Nov 18:09Z",
+      "time": "2026-11-17T18:09:12.592Z",
+      "text": "it's polyhedra week now, lock in",
+      "counts": {
+        "likes": 42,
+        "reposts": 2,
+        "replies": 2,
+        "quotes": 0
+      },
+      "quoting": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jfwtubf22r",
+        "handle": "yonderdavid.bsky.social",
+        "text": "",
+        "alt": "Animated instruments composed of polyhedra play the Japanese folk tune さくら さくら while the camera explores a landscape composed of regular polyhedra. The landscape features many sakura trees."
+      },
+      "note": "Quote-post of the video; the quoted post has no text, only the video and its alt text."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jqohyzzk2h",
+      "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2jqohyzzk2h",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "when": "Tue 17 Nov 19:11Z",
+      "time": "2026-11-17T19:11:20.663Z",
+      "text": "thank you!\n\nit's literally simulating it as a polyhedron. polyhedron week has just begun and you may have already won it.",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jq4x7qys2t",
+        "handle": "yonderdavid.bsky.social",
+        "text": "Koto information wants to be free. \npastebin.com/cxLPkJby"
+      }
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2lmdzdw6s2n",
+      "url": "https://bsky.app/profile/samantha.wiki/post/3n2lmdzdw6s2n",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "when": "Wed 18 Nov 12:59Z",
+      "time": "2026-11-18T12:59:14.249Z",
+      "text": "Coincidentally, my mug this morning has polyhedra on it",
+      "media": "image, no alt text in the data",
+      "counts": {
+        "likes": 37,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 2
+      },
+      "quoting": {
+        "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2jrgrxtss2w",
+        "handle": "dave.9000ish.uk",
+        "text": "best i can do\n\npolyhedral coffee simulator\n\npolycoffee.9000ish.uk"
+      },
+      "note": "Quote-post with a photo that has no alt text in the data."
+    },
+    {
+      "uri": "at://did:plc:5clan7z4wsuvaffihedjv6fu/app.bsky.feed.post/3n2lwikerrc2g",
+      "url": "https://bsky.app/profile/heartpunk.com/post/3n2lwikerrc2g",
+      "handle": "heartpunk.com",
+      "displayName": "heartpunk (sophie!!)",
+      "when": "Wed 18 Nov 16:00Z",
+      "time": "2026-11-18T16:00:43.745Z",
+      "text": "doin chimera week entry soon a few weeks late",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "note": "Top-level post."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2lynnfhpc24",
+      "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2lynnfhpc24",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "when": "Wed 18 Nov 16:39Z",
+      "time": "2026-11-18T16:39:22.158Z",
+      "text": "polyhedron week comes in many forms",
+      "alt": "A pink coffee mug with crudely drawn polyhedron of 20 sides",
+      "media": "image",
+      "counts": {
+        "likes": 27,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "quoting": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2lmdzdw6s2n",
+        "handle": "samantha.wiki",
+        "text": "Coincidentally, my mug this morning has polyhedra on it"
+      },
+      "note": "Quote-post of @samantha.wiki's mug post, with a photo."
+    },
+    {
+      "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2m6otn2zs2i",
+      "url": "https://bsky.app/profile/oszillate.bsky.social/post/3n2m6otn2zs2i",
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "when": "Wed 18 Nov 18:27Z",
+      "time": "2026-11-18T18:27:24.706Z",
+      "text": "Improptu posting some old stuff from my origami collection for Simcluster Polyhedron Week™, see descriptions in alt text",
+      "alt": [
+        "Woven Dodecahedron, a classic model by David Brill of the British Origami Society; six strips that use one golden rectangle in its entirety. Maybe my favorite modular origami design. Unlike the average sort this is also *very* sturdy, you could outright play street hockey with it (I've tested)",
+        "Also a model of Brill's, roughly an omnisunken rhombic hexecontahedron. Technically, not a polyhedron as much as a net / skeleton for one, ideally folded this would have zero volume.",
+        "The classic rhombic dodecahedron; unit design by Nick Robinson. I have a whole pile of these stashed for demonstrating / testing the spacefilling property",
+        "Tiny \"harlequin cube\" showing the full symmetry elements of the octahedral group. Just six pieces that are mild variants of the classic Sonobe unit, much simpler than the finished model looks like.",
+        "A partially-sunken cube unit of my own design. Looks like 12 units but is actually just 6, each square face and its indents are one piece. I've wanted to use the principle from this to develop also the 24× sunken version similar to the previous cube, I never finished that project alas.",
+        "Another design of my own: kind of a half-unit for a sunken deltoidal icositetrahedron; this is one sheet, kind of a quadruple cootie catcher (though I suppose a smaller unit might make a sharper whole polyhedron). Also serves as a rosette for decorating gifts!"
+      ],
+      "media": "image",
+      "counts": {
+        "likes": 38,
+        "reposts": 5,
+        "replies": 0,
+        "quotes": 1
+      },
+      "note": "Top-level post with six photos; the descriptions are in the alt text."
+    },
+    {
+      "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n2mugs3occ2w",
+      "url": "https://bsky.app/profile/anthonybecker.bsky.social/post/3n2mugs3occ2w",
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "when": "Thu 19 Nov 00:56Z",
+      "time": "2026-11-19T00:56:36.981Z",
+      "text": "Glass Hour\nfor polyhedra week\nmusic by made in Ableton Live 12 by an agent testing my music production harness",
+      "media": "video",
+      "counts": {
+        "likes": 11,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "note": "Top-level post with a video; no description of the video in the data."
+    }
+  ],
+  "people": [
+    {
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "followers": 2777,
+      "member": true,
+      "smallAccount": false,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "followers": 971,
+      "member": true,
+      "smallAccount": false,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "hn100.bsky.social",
+      "displayName": "Hacker News Top 100 Bot (Unofficial)",
+      "followers": 1240,
+      "member": false,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "followers": 274,
+      "member": true,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "followers": 1454,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "dave.9000ish.uk",
+      "displayName": "Dave",
+      "followers": 880,
+      "member": true,
+      "smallAccount": false,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "followers": 977,
+      "member": true,
+      "smallAccount": false,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "heartpunk.com",
+      "displayName": "heartpunk (sophie!!)",
+      "followers": 3817,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "followers": 75,
+      "member": true,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "followers": 2318,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "numbers": [
+    "Digest, Appendix D: \"polyhedra week\" 3 people, 5 posts, declared; \"polyhedron week\" 2 people, 3 posts, declared; \"chimera week\" 2 people, 2 posts; \"chimera vocal synth week\" 1 person. Appendix C: \"polyhedra\" is new in this window, 9 members over 6 days.",
+    "My count from posts.jsonl: 8 posts containing \"polyhedra week\" or \"polyhedron week\", from 5 accounts, between Mon 16 Nov 18:35Z and Thu 19 Nov 00:56Z."
+  ],
+  "couldBeShown": "The origami post has six photographs, each with the folder's own alt text naming the model and its designer (two are the poster's own designs). The mug reply has a described image. The video the declaration quotes is described in its alt text.",
+  "sensitive": "No post on this card carries a flag from the tool. (1) Two small accounts, both cluster members: @oscillatory.net (274 followers), who named the week, and @oszillate.bsky.social (75 followers), who posted the origami. Both are here for something they did well (R7); the second is the smallest account on any card in this lane. Other threads by @oscillatory.net this week sit inside a story the digest flags and are not used. (2) \"chimera\" is the vocal synth this show is made with, and another \"chimera week\" post in the window is by the show's owner; that post is left out so that the show is not its own subject, and the two \"chimera\" lines here are listed only as the naming habit. (3) @heartpunk.com's line has 0 likes, and her other posts this week include her age, money and hormones, which are out of bounds; only this one line is carded. (4) @norvid-studies.bsky.social and @samantha.wiki are marked by the tool as having spoken in the previous episode, and @shimmermathlabs.com as shown: their posts may be shown; the first two do not speak. (5) Left out: a reply calling someone else's morning greeting \"an entry for polyhedra week... but not a good one\" (a tease at another account), and a mug photo that shows the poster's tattooed arm (appearance). (6) \"gar week\" in the digest's list is one member quoting an outside scientist's annual event; it is not a cluster week and is not carded. (7) The things made for the week belong to the made lane; this card is the naming and the entering."
+}

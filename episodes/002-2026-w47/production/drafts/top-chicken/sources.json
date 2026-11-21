@@ -1,0 +1,182 @@
+{
+  "format": "late-cluster-sources/1",
+  "week": "2026-W47",
+  "accounts": [
+    {
+      "handle": "cee.wtf",
+      "did": "did:plc:xb2urvqt5f4zzccjs46hysbf",
+      "role": "quoted",
+      "note": "Saturday's winner and the record holder; named as the game names its winner"
+    },
+    {
+      "handle": "topchicken.bsky.social",
+      "did": "did:plc:bty3nc67lteylmmb7hvgxeu5",
+      "role": "quoted",
+      "note": "the game's own account; a bot, operator not stated in the window"
+    },
+    {
+      "handle": "catblanketflower.yuwakisa.com",
+      "did": "did:plc:cwa5qtro5bhfz25opigbe6qi",
+      "role": "quoted",
+      "note": "plays the market; owner of the bot in the story"
+    },
+    {
+      "handle": "7778777.online",
+      "did": "did:plc:jg6o3bgflm3q4y7jpmpvenj3",
+      "role": "quoted",
+      "note": "plays the market"
+    }
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n27n6oxsyk2l",
+      "author": "cee.wtf",
+      "displayName": "cee",
+      "likes": 222,
+      "reposts": 12,
+      "replies": 15,
+      "use": "card",
+      "segment": "top-chicken",
+      "text": "i love when people think their laptop somehow uses less power per task than a datacenter",
+      "note": "Saturday's winning post, a top-level post from Fri 13 Nov. Read aloud exactly by Sibyl (line post). The count is the digest's; the game announced 201 and the card says so."
+    },
+    {
+      "uri": "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2bo6xhuea2e",
+      "author": "topchicken.bsky.social",
+      "displayName": "TopChicken 🤖",
+      "likes": 2,
+      "reposts": 0,
+      "replies": 1,
+      "use": "card",
+      "segment": "top-chicken",
+      "text": "… All-time top chicken is still cee.wtf with a score of 6186 to beat. …",
+      "note": "Saturday's result post, Sat 14 Nov. Only its record line is shown and read (line recordline). Its other two lines are the source of the winner, the score and the day's figures."
+    },
+    {
+      "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2exnpv6us2k",
+      "author": "catblanketflower.yuwakisa.com",
+      "displayName": "Singularity's Bounty e/CC",
+      "likes": 10,
+      "reposts": 0,
+      "replies": 2,
+      "use": "card",
+      "segment": "top-chicken",
+      "text": "my bot lost list $60,000 chicken bucks today 🤣😭",
+      "note": "A top-level post, Sun 15 Nov. Read aloud exactly (line loss)."
+    },
+    {
+      "uri": "at://did:plc:jg6o3bgflm3q4y7jpmpvenj3/app.bsky.feed.post/3n2me4phkfsed",
+      "author": "7778777.online",
+      "displayName": "I am nameless yet others name me",
+      "likes": 3,
+      "reposts": 0,
+      "replies": 1,
+      "use": "card",
+      "segment": "top-chicken",
+      "text": "… so good at gambling now that you can't win even if you play well gg",
+      "note": "A top-level post, Wed 18 Nov. Read aloud exactly, cut at the start (line gg): the cut drops the opening word, the owner's handle and \"'s bot is\"; the line before it says whose bot."
+    },
+    {
+      "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2miex33mk27",
+      "author": "catblanketflower.yuwakisa.com",
+      "displayName": "Singularity's Bounty e/CC",
+      "likes": 1,
+      "reposts": 0,
+      "replies": 1,
+      "use": "card",
+      "segment": "top-chicken",
+      "text": "I tweaked the logic for start-of-day lottery tickets to only buy the cheap ones …",
+      "note": "Wed 18 Nov, a reply in the thread under the post above: its parent is that player's own follow-up, one minute after it, which is not shown. Read aloud exactly, cut at the end (line fix): the cut drops the bot's name."
+    },
+    {
+      "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2glpqfbsk2u",
+      "author": "catblanketflower.yuwakisa.com",
+      "displayName": "Singularity's Bounty e/CC",
+      "likes": 3,
+      "reposts": 1,
+      "replies": 1,
+      "use": "reference",
+      "segment": "top-chicken",
+      "note": "Not shown. The source of \"prediction market\", \"chicken bucks\", \"no real money\" and the market's address."
+    },
+    {
+      "uri": "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n275pjqhle2r",
+      "author": "topchicken.bsky.social",
+      "displayName": "TopChicken 🤖",
+      "likes": 2,
+      "reposts": 0,
+      "replies": 1,
+      "use": "reference",
+      "segment": "top-chicken",
+      "note": "Not shown or read. The source of one score given without a name or a day: 440."
+    },
+    {
+      "uri": "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2gp4pjgwb2l",
+      "author": "topchicken.bsky.social",
+      "displayName": "TopChicken 🤖",
+      "likes": 4,
+      "reposts": 0,
+      "replies": 1,
+      "use": "reference",
+      "segment": "top-chicken",
+      "note": "Not shown or read. The source of one score given without a name or a day: 366."
+    }
+  ],
+  "links": [
+    {
+      "url": "https://topchicken.cee.wtf",
+      "use": "credit",
+      "segment": "top-chicken"
+    }
+  ],
+  "lines": [],
+  "numbers": [
+    {
+      "segment": "top-chicken",
+      "value": "5,985",
+      "method": "6,186 minus 201",
+      "posts": [
+        "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2bo6xhuea2e"
+      ]
+    },
+    {
+      "segment": "top-chicken",
+      "value": "3.2 %",
+      "method": "201 ÷ 6,186",
+      "posts": [
+        "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2bo6xhuea2e"
+      ]
+    },
+    {
+      "segment": "top-chicken",
+      "value": "the smallest win of the week",
+      "method": "201 is the lowest winning score among the week's results in the digest's standings",
+      "posts": [
+        "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2bo6xhuea2e"
+      ]
+    },
+    {
+      "segment": "top-chicken",
+      "value": "three days",
+      "method": "Sun 15 Nov to Wed 18 Nov",
+      "posts": [
+        "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2exnpv6us2k",
+        "at://did:plc:jg6o3bgflm3q4y7jpmpvenj3/app.bsky.feed.post/3n2me4phkfsed"
+      ]
+    },
+    {
+      "segment": "top-chicken",
+      "value": "535",
+      "method": "the digest's median winning score over the 42 results in the fetched history, 2 Oct to 12 Nov 2026",
+      "posts": []
+    },
+    {
+      "segment": "top-chicken",
+      "value": "over eleven times (11.6)",
+      "method": "6,186 ÷ 535 = 11.56",
+      "posts": [
+        "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2bo6xhuea2e"
+      ]
+    }
+  ]
+}

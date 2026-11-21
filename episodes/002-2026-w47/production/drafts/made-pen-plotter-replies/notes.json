@@ -1,0 +1,177 @@
+{
+  "slug": "made-pen-plotter-replies",
+  "title": "One Pen",
+  "format": "A demonstration: the studio's sketch of the plotter writes three real replies, the last of them with no words spoken",
+  "seconds": 76,
+  "standing": null,
+  "cards": [
+    "made-pen-plotter-replies",
+    "voices-plotter-queue-small-accounts"
+  ],
+  "ideas": [
+    "writer-2-138",
+    "writer-1-108",
+    "writer-2-137",
+    "writer-3-119"
+  ],
+  "speakers": [
+    "ver.ooo"
+  ],
+  "featured": [
+    "samantha.wiki",
+    "ver.ooo",
+    "sophie.engineering",
+    "aparker.io"
+  ],
+  "retell": "A member pointed a pen plotter at a sheet of paper and let Bluesky fill it, and when the pen got to the reply that was a film script it stopped dead in the middle of a word.",
+  "turn": "Pen stops one letter short",
+  "experiment": {
+    "turnInFiveWords": "Pen stops one letter short",
+    "stretch": "From the end of line `near` to the start of line `limit`: 12.5 s in a scratch render (51.85 to 64.35 of 75.8 s). No say, sing or shout line and no crowd sound in it. cues.json will show five beat lines by pete (run-return, run-yb1, run-yb2, run-yb3, run-cut), a tick, one more beat line (nudge), and nothing else.",
+    "whatTheThingDoes": "The pen travels back to the left margin (1 s), then writes the last eight words of austin's reply at a letter a sixteenth: 'Yellow, black.' three times, each with the same two-note hum, then 'Yellow, blac'. The reply ends there, so the pen and the hum stop there (cue pen-stops). The pen lifts (tick), waits, moves one letter's width to the right (nudge) and holds over the empty place.",
+    "nothingBeforeGivesItAway": "The lines before say only that the reply is the opening of a film script and that we are near its end. Nobody mentions a limit, a cut or a missing letter, and the card Larry reads from shows the first sentence only.",
+    "nothingAfterDescribesIt": "Sibyl states a rule (the limit is 300 characters) and a count (this one is 300). Neither line says what the pen did. The laugh, the 300 OF 300 counter and the maker's one-word reply come after the stretch.",
+    "inTheStretch": "No caption. On screen: the pen and the page, the written words (eight, a glance), the maker's credit and address, the STUDIO SKETCH tag. Larry and Sibyl watch; Larry looks at Sibyl after the nudge; Sibyl keeps looking at the page. Nobody speaks and the audience is silent.",
+    "notBetweenALineAndItsSetup": "The only performed real line (suspense) and its setup (youre-up) are 25 s earlier."
+  },
+  "people": {
+    "samantha.wiki": "Maker and hero. Spoke in the previous episode, so no puppet: four posts are read aloud or shown as the posts they were (the invitation, cut; 'you're up 👀'; 'I expected nothing less ❤️'; 'LMAO'). Spoken name: 'Samantha', three times, always last in its phrase.",
+    "ver.ooo": "Cluster member, 955 followers, new to the show. The one puppet: one line, its own reply, staged as the reply it was. The name is never spoken (the display name is the handle, and the engine cannot say it); the chyron carries it.",
+    "sophie.engineering": "282 followers, not a cluster member, new to the show. One reply, read aloud whole by Sibyl, as the hero of one moment, with the maker's welcome read straight after it. Appears nowhere else. No puppet. The name is on the card and the page and is not spoken (see open points).",
+    "aparker.io": "Cluster member ('austin'), 9,763 followers, new to the show. The reply's first sentence is read aloud by Larry; its last eight words are written by the pen. The joke is the reply's own: it was sent to run into the limit.",
+    "checks": "None of the four is on packages/scraper/config/optout.json (handles and DIDs checked). Their other posts in the window were skimmed with the lookup tool and none is used. No bio has been read: there was no network (see open points)."
+  },
+  "leftOut": {
+    "writer-2-139": "The fork-bomb exchange (five posts, code read aloud, a swear that needs a ruling). It is a segment of its own and would not fit beside the stretch. Its replier is not in this draft.",
+    "writer-2-146": "The poem. It would be the episode's one sincere moment, which is the assembler's to place once; it needs about 16 s; its last two lines turn on a word the show leaves alone.",
+    "alsoNotUsed": "Every reply by @cee.wtf (the project manager's people budget), the 'first' replies, the pun signed with a first name, both '80085' posts, the follow-up drawing, the queue posts ('a piece of paper in my apartment'), and the maker's line that names austin's handle. Eppy and the sports desk are not in it."
+  },
+  "onScreen": [
+    {
+      "cue": "plotter-in",
+      "text": "PEN PLOTTER BY @samantha.wiki",
+      "note": "The credit (R9). On from the first frame to the last, the stretch included."
+    },
+    {
+      "cue": "plotter-in",
+      "text": "stream.place/samantha.wiki",
+      "note": "The address, beside the credit, as a second string: the two in one string count as nine words and the gate would ask for them to be spoken."
+    },
+    {
+      "cue": "plotter-in",
+      "text": "STUDIO SKETCH",
+      "note": "A small tag on the drawing, on as long as the drawing is."
+    },
+    {
+      "cue": "invite-card",
+      "post": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+      "text": "… Reply to this post and my pen plotter will write it on paper …",
+      "note": "The card shows this cut and nothing else of the post; words light as Sibyl reads. Samantha · @samantha.wiki · 14 Nov · 83 likes."
+    },
+    {
+      "cue": "queue-in",
+      "text": "88 REPLIES · 1 PEN"
+    },
+    {
+      "cue": "ver-in",
+      "post": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2ccyxvuzk2b",
+      "text": "you're up 👀",
+      "note": "Samantha's card, marked as a reply to ver.ooo; up while Larry reads it. 2 likes."
+    },
+    {
+      "cue": "ver-lift",
+      "post": "at://did:plc:kpxj7utcy6mjv4rmzitnnrmv/app.bsky.feed.post/3n2cd7y55gc25",
+      "text": "😬 the suspense while it tracks back to the left side",
+      "note": "ver.ooo's card, marked as a reply to Samantha's; up while the puppet says it. 2 likes. Chyron: ver.ooo 🗿 · @ver.ooo · In line for the pen · PUPPET · PARODY."
+    },
+    {
+      "cue": "meow-card",
+      "post": "at://did:plc:ggggkstdfqtryrmermsho2pb/app.bsky.feed.post/3n2cfrthxl22s",
+      "text": "meowowowowowowowowowow MROW",
+      "note": "The pen writes it as Sibyl reads it. Sophie · @sophie.engineering · 3 likes."
+    },
+    {
+      "cue": "tally",
+      "text": "OW × 10"
+    },
+    {
+      "cue": "back",
+      "post": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cfssql422o",
+      "text": "I expected nothing less ❤️",
+      "note": "Samantha's card, marked as a reply to Sophie's; up while Larry reads it. 2 likes."
+    },
+    {
+      "cue": "austin-card",
+      "post": "at://did:plc:gttrfs4hfmrclyxvwkwcgpj7/app.bsky.feed.post/3n2cccl2rbc2o",
+      "text": "According to all known laws of aviation, there is no way a bee should be able to fly. …",
+      "note": "austin · @aparker.io · 14 likes. The card shows the first sentence and the ellipsis, and it is gone before pen-live."
+    },
+    {
+      "cue": "pen-live",
+      "post": "at://did:plc:gttrfs4hfmrclyxvwkwcgpj7/app.bsky.feed.post/3n2cccl2rbc2o",
+      "text": "… Yellow, black. Yellow, black. Yellow, black. Yellow, blac",
+      "note": "What the pen writes, letter by letter, after the cut mark. Eight words: exactly a glance. Draw the handle before it as a separate string."
+    },
+    {
+      "cue": "count",
+      "text": "300 OF 300"
+    },
+    {
+      "cue": "lmao",
+      "post": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cceb5pvc2j",
+      "text": "LMAO",
+      "note": "Samantha's card, marked as a reply to austin's. 6 likes. Not spoken: one word."
+    }
+  ],
+  "builder": [
+    "The page is the studio's sketch and says so (STUDIO SKETCH). It is never the real page: it carries these three replies and nothing else, no other handle, no other line. What the real one looks like is in research/media-notes.md: one blue pen in a holder on a small desktop gantry, a white sheet, small blue single-stroke lettering in full-width rows, each reply starting with its author's handle.",
+    "The pen's pace is one letter a sixteenth at 120 bpm (0.125 s) everywhere. In pen-run each yb track is 'Yellow,' on steps 0 to 5, a step for the space, 'black.' on steps 7 to 11, two steps of travel. run-cut is 'Yellow,' then b, l, a, c and nothing. Each track has its own line id in cues.json, so the lettering can be timed from show.line(id).",
+    "The meow: Sibyl's line is two caption words, so there are no per-syllable timings. Divide the first word's time by eleven (meow, then ten ow) and write two letters a syllable; tick the tally on each ow; MROW on the second word.",
+    "ver.ooo's own reply is song lyrics and is not on screen at any time. In that beat the pen's trace is out of frame or an unreadable scribble: the picture is the arm travelling and every head following it.",
+    "Head acting carries the house jokes: at ver-lift every head turns right to left with the pen for the whole of the guest's line and stops on the tick; in the stretch they follow the pen again, slower; after nudge Larry looks at Sibyl, back at the page, at Sibyl. Sibyl answers the look.",
+    "Pete is the motor. Show him only if a wide wants him; if he is in frame at pen-stops, he has stopped too.",
+    "The disclaimer runs from ver-in: this is the segment's first guest. If the segment is the episode's first with a guest, the gate wants it in index.js.",
+    "The television gate (stage.unread, stage.cards) as it counts: each long post that is shown needs its spoken cut in index.js as one string of more than eight words, exactly as in onScreen (the invitation's 13 words, the film script's first sentence with its ellipsis). The eight words the pen writes are a glance and pass as they are. Keep '@aparker.io' and the written words in separate strings, or the two together count as ten.",
+    "Captions carry emoji that the vector font may not draw (😬, 👀, ❤️). The post cards must still show the posts exactly."
+  ],
+  "heard": {
+    "method": "Rendered in a scratch folder with the studio's renderer (the guest's entry merged into the cast in memory; nothing written to the episode) and transcribed by Whisper base.en from the mix. Every line's heard text was read, over four full renders. In the last, 109 of 127 caption words were heard (86 %). The transcriber is not steady: the same audio gives slightly different words from run to run, so the list below is one render, quoted exactly.",
+    "names": {
+      "Samantha": "Heard as 'Samantha' in all three lines, with the respelling Sum-ann-thuh and only as the last word of a phrase. Without the respelling every house voice gave 'Schmanzer' or 'Shmantha'; mid-phrase the respelling gave 'some ants are'. Do not move the name.",
+      "austin": "Heard as 'Austin' in 'Earlier in the line: a reply from austin.' It was lost once when a laugh ran under the line, so the laugh before it holds until it is over.",
+      "Sophie": "Not spoken. Larry, Sibyl, Al and Dee gave 'Shoki', 'Shorty', 'Shofi'; Hy got it once and lost it at any other rate or wording.",
+      "ver.ooo": "Not spoken. The engine reads it as two unrelated syllables."
+    },
+    "realLine": "suspense, in the guest's voice at rate 0.92 with 'suspense' respelled sus-pense: heard 'The suspense while it tracks back to the left side.' 10 of 10. Without the respelling 'suspense' came out as 'spent'.",
+    "lines": {
+      "open": "Saturday, one pen platter, one sheet of paper, they belong to Samantha.",
+      "invite": "Replied to this post, my pen platter will ride in paper.",
+      "eighty-eight": "8-inch replies under one post. There was one pen.",
+      "queue": "The reply card in line, one of them heard from Samantha.",
+      "youre-up": "You're up",
+      "suspense": "The suspense while it tracks back to the left side.",
+      "hand": "Shible, will you take this one?",
+      "meow": "Boop Doop Doop Doop",
+      "back": "Back came a reply from Samantha",
+      "nothing-less": "I expect nothing less.",
+      "austin": "Earlier in the line, a reply from Austin.",
+      "film": "The opening of the film scraped.",
+      "bee": "According to all-only laws of aviation, there is no way a big should be able to fly.",
+      "near": "Here is the pen near the end.",
+      "limit": "The limit is 300 characters.",
+      "how-long": "How long is this one?",
+      "three-hundred": "300"
+    },
+    "harmlessAsHeard": "'platter' for plotter (twice), 'ride in paper', '8-inch replies', 'reply card in line', 'Shible' for Sibyl, 'film scraped', 'a big should', and the meow, which is not a word and transcribes as noise: 'Boop Doop Doop Doop' here; in the other three renders 'mea mya mya mya mya mya mya mya mya mya mya mya', 'Nya-wa-wa! ay,' and '78 70 60 60 70 70 70 70 soft blessing 90 Yah sports Yeah'. Nothing heard in the final version is offensive, alarming or about a person.",
+    "watch": "The film-script sentence. In it 'a bee should' runs together, and the transcriber turned it into an offensive word: 'a bitch' in Sibyl's voice (two renders of five; the others gave 'a bishop' and 'they should') and in Larry's without a respelling (one render of one). As written here (Larry, rate 0.92, 'should' respelled shood, no sound under the line) it was heard as 'a bee should' once and 'a big should' seven times, over four renders of the line alone at four rates and four full mixes, and never as anything else. Keep the reader, the respelling and the clean air, and read the heard text again after the real render. If it ever comes back wrong, read the reply's third sentence instead ('The bee, of course, flies anyway because bees don't care what humans think is impossible.'), cut marked at each end: it was heard with 'The bee' intact."
+  },
+  "openPoints": [
+    "Bios. R11 and R14 want the bio of every account that reaches a script. I had no network. Unread: ver.ooo, sophie.engineering, aparker.io, samantha.wiki.",
+    "Order. The three replies are not in the order they were sent: ver.ooo's turn came at 20:18 UTC, Sophie's reply at 21:07, austin's at 20:05. Larry marks the step back ('Earlier in the line') and each card carries its time. Nothing is made to follow from anything else. Chronological order would put the stretch second and the two lighter beats after it.",
+    "Sophie's name is on screen and not in the voice, because no house voice can say it. If a reviewer wants it spoken, Hy's 'This one is from Sophie.' at his own rate was the one version heard correctly, once.",
+    "The draft gate does not load a draft's cast.js, so it does not see the guest and skips the guest-line rules for this script. I ran those rules myself (checkGuestLines with this cast.js and this sources.json, and the sources and names rules of the assemble stage): no failures. They will run for real at assembly, when the entry is in the episode's cast.js.",
+    "notes.ideas lists the ideas the draft is built from, which is not the brief's list: writer-2-139 is left out and writer-3-119 comes from the second card. Reasons are under leftOut.",
+    "A meow is read aloud in this segment. If the cat-voice segment is also selected, the assembler should know there are two.",
+    "The last laugh is the segment's biggest and is written as a plain laugh. The assembler, who can see the whole episode, may make it the big one."
+  ]
+}

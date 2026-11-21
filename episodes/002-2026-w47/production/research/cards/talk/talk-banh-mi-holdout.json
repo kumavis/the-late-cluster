@@ -1,0 +1,442 @@
+{
+  "id": "talk-banh-mi-holdout",
+  "lane": "talk",
+  "title": "One member says she does not like banh mi, then tries one",
+  "summary": "At 15:15Z on Sat 14 Nov, a day and a half into the wave, @shibbi.me (display name Siobhán) posted \"I don’t like banh mi\" (37 likes, 13 replies). Replies included \"the truly nuclear take\", \"voted out of the oomfcluster\" and \"wow\". Answering @aly.codes that evening she allowed that she might not have had a good one. At 01:55Z on Tue 17 Nov she posted \"okay fine i’ll try a banh mi\" (46 likes), adding that she had only ever had one, years ago. Fifteen minutes later she posted a photo with the caption \"Yeah it’s all right ig\" (75 likes); her own alt text on the photo reads \"A surprisingly delicious banh mi with a bite taken out of it\". In the replies she said it was really good and that she was getting another for lunch the next day, and then that the caption \"was fully performative\". On Wed 18 Nov, asked about the difference between the caption and what she had said, she replied that she had downplayed it and was \"fully banh mi pilled now\".",
+  "posts": [
+    {
+      "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2bs4qjtlk2k",
+      "url": "https://bsky.app/profile/shibbi.me/post/3n2bs4qjtlk2k",
+      "handle": "shibbi.me",
+      "displayName": "Siobhán 🪏",
+      "when": "Sat 14 Nov 15:15Z",
+      "time": "2026-11-14T15:15:55.199Z",
+      "text": "I don’t like banh mi",
+      "counts": {
+        "likes": 37,
+        "reposts": 0,
+        "replies": 13,
+        "quotes": 2
+      },
+      "note": "Top-level post."
+    },
+    {
+      "uri": "at://did:plc:gwvh3frsmdih2zpol2holysc/app.bsky.feed.post/3n2bv272z5s2x",
+      "url": "https://bsky.app/profile/brennan.computer/post/3n2bv272z5s2x",
+      "handle": "brennan.computer",
+      "displayName": "brennan",
+      "when": "Sat 14 Nov 16:08Z",
+      "time": "2026-11-14T16:08:11.004Z",
+      "text": "the truly nuclear take",
+      "counts": {
+        "likes": 20,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2bs4qjtlk2k",
+        "handle": "shibbi.me",
+        "text": "I don’t like banh mi"
+      }
+    },
+    {
+      "uri": "at://did:plc:nbfjoeficjzf3pejpontvril/app.bsky.feed.post/3n2bvtfihl22f",
+      "url": "https://bsky.app/profile/astrra.space/post/3n2bvtfihl22f",
+      "handle": "astrra.space",
+      "displayName": "Astra ⎔",
+      "when": "Sat 14 Nov 16:22Z",
+      "time": "2026-11-14T16:22:16.597Z",
+      "text": "voted out of the oomfcluster",
+      "counts": {
+        "likes": 22,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2bs4qjtlk2k",
+        "handle": "shibbi.me",
+        "text": "I don’t like banh mi"
+      }
+    },
+    {
+      "uri": "at://did:plc:zntngpowgd6rorjt3haywj36/app.bsky.feed.post/3n2ci7qevx22k",
+      "url": "https://bsky.app/profile/aly.codes/post/3n2ci7qevx22k",
+      "handle": "aly.codes",
+      "displayName": "aly",
+      "when": "Sat 14 Nov 21:51Z",
+      "time": "2026-11-14T21:51:18.020Z",
+      "text": "of all the things we’ve disagreed on this one is the most arbitrary and most important to me :(",
+      "counts": {
+        "likes": 17,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2bs4qjtlk2k",
+        "handle": "shibbi.me",
+        "text": "I don’t like banh mi"
+      }
+    },
+    {
+      "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2cizowmbk23",
+      "url": "https://bsky.app/profile/catblanketflower.yuwakisa.com/post/3n2cizowmbk23",
+      "handle": "catblanketflower.yuwakisa.com",
+      "displayName": "Singularity's Bounty e/CC",
+      "when": "Sat 14 Nov 22:05Z",
+      "time": "2026-11-14T22:05:48.919Z",
+      "text": "wow",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2bs4qjtlk2k",
+        "handle": "shibbi.me",
+        "text": "I don’t like banh mi"
+      }
+    },
+    {
+      "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2coqcxmec2k",
+      "url": "https://bsky.app/profile/shibbi.me/post/3n2coqcxmec2k",
+      "handle": "shibbi.me",
+      "displayName": "Siobhán 🪏",
+      "when": "Sat 14 Nov 23:47Z",
+      "time": "2026-11-14T23:47:56.830Z",
+      "text": "it is possible I have not had good banh mi",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:zntngpowgd6rorjt3haywj36/app.bsky.feed.post/3n2ci7qevx22k",
+        "handle": "aly.codes",
+        "text": "of all the things we’ve disagreed on this one is the most arbitrary and most important to me :("
+      }
+    },
+    {
+      "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2hwsdoy4k2c",
+      "url": "https://bsky.app/profile/shibbi.me/post/3n2hwsdoy4k2c",
+      "handle": "shibbi.me",
+      "displayName": "Siobhán 🪏",
+      "when": "Tue 17 Nov 01:55Z",
+      "time": "2026-11-17T01:55:33.331Z",
+      "text": "okay fine i’ll try a banh mi",
+      "counts": {
+        "likes": 46,
+        "reposts": 0,
+        "replies": 3,
+        "quotes": 2
+      },
+      "note": "Top-level post, three days later."
+    },
+    {
+      "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2hwt2wi4c2c",
+      "url": "https://bsky.app/profile/shibbi.me/post/3n2hwt2wi4c2c",
+      "handle": "shibbi.me",
+      "displayName": "Siobhán 🪏",
+      "when": "Tue 17 Nov 01:55Z",
+      "time": "2026-11-17T01:55:57.694Z",
+      "text": "I’ve only ever had one and wasn’t a fan, but that was years ago",
+      "counts": {
+        "likes": 15,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2hwsdoy4k2c",
+        "handle": "shibbi.me",
+        "text": "okay fine i’ll try a banh mi"
+      }
+    },
+    {
+      "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2hxntqpvk2c",
+      "url": "https://bsky.app/profile/shibbi.me/post/3n2hxntqpvk2c",
+      "handle": "shibbi.me",
+      "displayName": "Siobhán 🪏",
+      "when": "Tue 17 Nov 02:10Z",
+      "time": "2026-11-17T02:10:56.131Z",
+      "text": "Yeah it’s all right ig",
+      "alt": "A surprisingly delicious banh mi with a bite taken out of it",
+      "media": "image",
+      "counts": {
+        "likes": 75,
+        "reposts": 0,
+        "replies": 4,
+        "quotes": 0
+      },
+      "quoting": {
+        "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2hwsdoy4k2c",
+        "handle": "shibbi.me",
+        "text": "okay fine i’ll try a banh mi"
+      },
+      "note": "Quote-post of her own post, with the photo."
+    },
+    {
+      "uri": "at://did:plc:vw4e7blkwzdokanwp24k3igr/app.bsky.feed.post/3n2i5prhvz22m",
+      "url": "https://bsky.app/profile/huwupy.kawaii.social/post/3n2i5prhvz22m",
+      "handle": "huwupy.kawaii.social",
+      "displayName": "🍁 thankful frood 🦃",
+      "when": "Tue 17 Nov 03:59Z",
+      "time": "2026-11-17T03:59:23.309Z",
+      "text": "bro does that even have pate",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2hxntqpvk2c",
+        "handle": "shibbi.me",
+        "text": "Yeah it’s all right ig",
+        "alt": "A surprisingly delicious banh mi with a bite taken out of it"
+      }
+    },
+    {
+      "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2i5ze2y4c2a",
+      "url": "https://bsky.app/profile/shibbi.me/post/3n2i5ze2y4c2a",
+      "handle": "shibbi.me",
+      "displayName": "Siobhán 🪏",
+      "when": "Tue 17 Nov 04:04Z",
+      "time": "2026-11-17T04:04:44.795Z",
+      "text": "said it did on the menu",
+      "counts": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:vw4e7blkwzdokanwp24k3igr/app.bsky.feed.post/3n2i5prhvz22m",
+        "handle": "huwupy.kawaii.social",
+        "text": "bro does that even have pate"
+      }
+    },
+    {
+      "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2i62ky2v22a",
+      "url": "https://bsky.app/profile/shibbi.me/post/3n2i62ky2v22a",
+      "handle": "shibbi.me",
+      "displayName": "Siobhán 🪏",
+      "when": "Tue 17 Nov 04:05Z",
+      "time": "2026-11-17T04:05:25.596Z",
+      "text": "(it was really good and I’m definitely getting one for lunch tomorrow)",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2i5ze2y4c2a",
+        "handle": "shibbi.me",
+        "text": "said it did on the menu"
+      }
+    },
+    {
+      "uri": "at://did:plc:vw4e7blkwzdokanwp24k3igr/app.bsky.feed.post/3n2i6eegflk2m",
+      "url": "https://bsky.app/profile/huwupy.kawaii.social/post/3n2i6eegflk2m",
+      "handle": "huwupy.kawaii.social",
+      "displayName": "🍁 thankful frood 🦃",
+      "when": "Tue 17 Nov 04:10Z",
+      "time": "2026-11-17T04:10:54.271Z",
+      "text": "Nice, that’s the secret to ordering the right one",
+      "counts": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2i62ky2v22a",
+        "handle": "shibbi.me",
+        "text": "(it was really good and I’m definitely getting one for lunch tomorrow)"
+      }
+    },
+    {
+      "uri": "at://did:plc:vw4e7blkwzdokanwp24k3igr/app.bsky.feed.post/3n2i6exe7dc2m",
+      "url": "https://bsky.app/profile/huwupy.kawaii.social/post/3n2i6exe7dc2m",
+      "handle": "huwupy.kawaii.social",
+      "displayName": "🍁 thankful frood 🦃",
+      "when": "Tue 17 Nov 04:11Z",
+      "time": "2026-11-17T04:11:14.121Z",
+      "text": "U sounded underwhelmed so helpful tip",
+      "counts": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:vw4e7blkwzdokanwp24k3igr/app.bsky.feed.post/3n2i6eegflk2m",
+        "handle": "huwupy.kawaii.social",
+        "text": "Nice, that’s the secret to ordering the right one"
+      }
+    },
+    {
+      "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2i6gvlf422a",
+      "url": "https://bsky.app/profile/shibbi.me/post/3n2i6gvlf422a",
+      "handle": "shibbi.me",
+      "displayName": "Siobhán 🪏",
+      "when": "Tue 17 Nov 04:12Z",
+      "time": "2026-11-17T04:12:19.369Z",
+      "text": "oh it was fully performative, it was fucking good",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:vw4e7blkwzdokanwp24k3igr/app.bsky.feed.post/3n2i6exe7dc2m",
+        "handle": "huwupy.kawaii.social",
+        "text": "U sounded underwhelmed so helpful tip"
+      }
+    },
+    {
+      "uri": "at://did:plc:zntngpowgd6rorjt3haywj36/app.bsky.feed.post/3n2icpmfvd22p",
+      "url": "https://bsky.app/profile/aly.codes/post/3n2icpmfvd22p",
+      "handle": "aly.codes",
+      "displayName": "aly",
+      "when": "Tue 17 Nov 05:28Z",
+      "time": "2026-11-17T05:28:46.708Z",
+      "text": "ur welcome",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2i6gvlf422a",
+        "handle": "shibbi.me",
+        "text": "oh it was fully performative, it was fucking good"
+      }
+    },
+    {
+      "uri": "at://did:plc:dro6pvn2dalx5pn2jm72cg2j/app.bsky.feed.post/3n2lw4fjpzs2n",
+      "url": "https://bsky.app/profile/emilia.bsky.social/post/3n2lw4fjpzs2n",
+      "handle": "emilia.bsky.social",
+      "displayName": "Azraël (עזראל) 🐉",
+      "when": "Wed 18 Nov 15:53Z",
+      "time": "2026-11-18T15:53:56.011Z",
+      "text": "i thought you said it was really yummy",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2hxntqpvk2c",
+        "handle": "shibbi.me",
+        "text": "Yeah it’s all right ig",
+        "alt": "A surprisingly delicious banh mi with a bite taken out of it"
+      }
+    },
+    {
+      "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2lxl4b7hc2d",
+      "url": "https://bsky.app/profile/shibbi.me/post/3n2lxl4b7hc2d",
+      "handle": "shibbi.me",
+      "displayName": "Siobhán 🪏",
+      "when": "Wed 18 Nov 16:20Z",
+      "time": "2026-11-18T16:20:03.353Z",
+      "text": "I downplayed it for the oomfs. I’m fully banh mi pilled now; it changed my neural chemistry.",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:dro6pvn2dalx5pn2jm72cg2j/app.bsky.feed.post/3n2lw4fjpzs2n",
+        "handle": "emilia.bsky.social",
+        "text": "i thought you said it was really yummy"
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "shibbi.me",
+      "displayName": "Siobhán 🪏",
+      "followers": 2887,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "brennan.computer",
+      "displayName": "brennan",
+      "followers": 3160,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "astrra.space",
+      "displayName": "Astra ⎔",
+      "followers": 3386,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "aly.codes",
+      "displayName": "aly",
+      "followers": 3663,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "catblanketflower.yuwakisa.com",
+      "displayName": "Singularity's Bounty e/CC",
+      "followers": 3607,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "huwupy.kawaii.social",
+      "displayName": "🍁 thankful frood 🦃",
+      "followers": 7191,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "emilia.bsky.social",
+      "displayName": "Azraël (עזראל) 🐉",
+      "followers": 1617,
+      "member": false,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "numbers": [
+    "Timeline from the posts' timestamps: Sat 14 Nov 15:15Z first post; Sat 23:47Z \"it is possible I have not had good banh mi\"; Tue 17 Nov 01:55Z \"okay fine\"; Tue 02:10Z the photo; Tue 04:05Z to 04:12Z the replies saying it was good; Wed 18 Nov 16:20Z the last post. About 58 hours 40 minutes from the first post to \"okay fine\", and 15 minutes from \"okay fine\" to the photo."
+  ],
+  "couldBeShown": "The photo of the sandwich with a bite taken out, described by its author's alt text, which contradicts her caption.",
+  "sensitive": "No post on this card carries a flag from the tool. Where the banh mi wave came from is not for the show. Other posts in the window by some of the same accounts frame it around trans women, and a thread about it turns to hormone medication and nudes (R10: gender identity, health, sexuality). The digest flags several of those posts one by one, and flags the whole thread \"why is everyone banh mi posting?\" (story 12, which also holds the \"banhmi-contagion\" graph the build bot made): nothing from that thread is on this card and the check refuses it. None of this should be used as explanation or background; the show cannot say why the wave started beyond what the posts listed here say. On this card specifically: (1) \"it changed my neural chemistry\" reads as a figure of speech about a sandwich and not as a statement about health; left for the reviewer to judge. (2) Left out of these threads: a reply asking whether she has a genetic taste trait, a reply and answer that name where she lives and the shop, and a reply from an account that spoke in the previous episode. (3) @aly.codes: see the note on the card talk-banh-mi-how-it-spread. (4) @emilia.bsky.social is outside the cluster's membership. (5) @huwupy.kawaii.social has 7,191 followers. (6) The same thread contains a separate exchange about where the best one is sold: card talk-banh-mi-ideal-shop."
+}

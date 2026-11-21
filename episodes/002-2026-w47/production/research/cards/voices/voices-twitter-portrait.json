@@ -1,0 +1,91 @@
+{
+  "id": "voices-twitter-portrait",
+  "lane": "voices",
+  "title": "A 345-follower account is the subject of \"TWITTER PORTRAITS #12\" and says thanks",
+  "summary": "On Mon 16 Nov 03:24Z @norvid-studies.bsky.social posted \"TWITTER PORTRAITS #12 @yhjet.bsky.social\" with a link to a post on Substack (10 likes). Four minutes later @yhjet.bsky.social (345 followers) quote-posted it: \"woah ty norvid !!\" (6 likes), and replied to that: \"everyone go watch 'center jenny'\". In the half hour before, the two accounts had exchanged several replies on other subjects. The portrait itself is on another site and is not in the digest.",
+  "posts": [
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2flcdx7j22p",
+      "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2flcdx7j22p",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "text": "TWITTER PORTRAITS #12 @yhjet.bsky.social \n\nnorvidstudies.substack.com/p/you-have-j...",
+      "time": "2026-11-16T03:24:26.092Z",
+      "counts": {
+        "likes": 10,
+        "reposts": 1,
+        "replies": 0,
+        "quotes": 1
+      },
+      "image": "image attached, no alt text in the digest",
+      "links": [
+        "https://norvidstudies.substack.com/p/you-have-just-experienced-things"
+      ]
+    },
+    {
+      "uri": "at://did:plc:jwr3dwdgs3qr3nc4slftc7b5/app.bsky.feed.post/3n2flkc6rfk24",
+      "url": "https://bsky.app/profile/yhjet.bsky.social/post/3n2flkc6rfk24",
+      "handle": "yhjet.bsky.social",
+      "displayName": "you-have-just-experienced-things",
+      "text": "woah ty norvid !!",
+      "time": "2026-11-16T03:28:52.678Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2flcdx7j22p",
+        "handle": "norvid-studies.bsky.social",
+        "text": "TWITTER PORTRAITS #12 @yhjet.bsky.social \n\nnorvidstudies.substack.com/p/you-have-j..."
+      }
+    },
+    {
+      "uri": "at://did:plc:jwr3dwdgs3qr3nc4slftc7b5/app.bsky.feed.post/3n2flkziufk24",
+      "url": "https://bsky.app/profile/yhjet.bsky.social/post/3n2flkziufk24",
+      "handle": "yhjet.bsky.social",
+      "displayName": "you-have-just-experienced-things",
+      "text": "everyone go watch 'center jenny'",
+      "time": "2026-11-16T03:29:17.126Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 1,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:jwr3dwdgs3qr3nc4slftc7b5/app.bsky.feed.post/3n2flkc6rfk24",
+        "handle": "yhjet.bsky.social",
+        "text": "woah ty norvid !!"
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "yhjet.bsky.social",
+      "displayName": "you-have-just-experienced-things",
+      "followers": 345,
+      "smallAccount": false,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "the subject of the portrait; said thanks"
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "followers": 2777,
+      "smallAccount": false,
+      "member": true,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1,
+      "role": "wrote and announced the portrait"
+    }
+  ],
+  "watchable": "The announcement post has an image with no alt text in the digest. The portrait is a written piece on another site.",
+  "sensitive": "R2: the portrait's text is off the platform and I have not read it; only the three posts here are in the digest. @yhjet.bsky.social has 345 followers (R7: hero only). @norvid-studies.bsky.social spoke in the previous episode (featuredPrevious: spoke). I do not know what \"center jenny\" is (R15). The number 12 is the series' own count; the earlier eleven are not in the window. Other posts by @yhjet.bsky.social in the window mention family and work and are not used (R1)."
+}

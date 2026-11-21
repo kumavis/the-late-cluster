@@ -1,0 +1,1471 @@
+{
+ "segment": "made-mobius-chess-ringmate",
+ "episode": "002-2026-w47",
+ "takes": 4,
+ "gate": 0.6,
+ "lines": [
+  {
+   "id": "open",
+   "who": "larry",
+   "kind": "say",
+   "text": "One more game before the song.",
+   "as": null,
+   "heard": [
+    {
+     "text": "One more game before the song.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 6,
+    "of": 6,
+    "min": 6
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "One more game before the song.",
+     "score": {
+      "heard": 6,
+      "of": 6,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "One more game before the song.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "one-post",
+   "who": "larry",
+   "kind": "say",
+   "text": "It began as one post.",
+   "as": null,
+   "heard": [
+    {
+     "text": "It began as one post.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 5,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "It began as one post.",
+     "score": {
+      "heard": 5,
+      "of": 5,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "It began as one post.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "idea",
+   "who": "mokkenstorm",
+   "kind": "say",
+   "text": "3 player 1d chess on a Möbius strip wormed its way into my brain and now I need to build it",
+   "as": "three player, one-dee, chess, on a Mobius, strip, wormed its way into my brain, and now I need to build it",
+   "was": "three player, one-dee chess, on a Mobius, strip, wormed its way into my brain, and now I need to build it",
+   "fix": "comma after 1d",
+   "heard": [
+    {
+     "text": "3 player 1D has an amphibious strip, warmed twin to my brain, and now I need to build it.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 15,
+    "of": 23,
+    "min": 15
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "chess",
+     "count": 4
+    },
+    {
+     "word": "on",
+     "count": 4
+    },
+    {
+     "word": "a",
+     "count": 4
+    },
+    {
+     "word": "m",
+     "count": 4
+    },
+    {
+     "word": "bius",
+     "count": 4
+    },
+    {
+     "word": "wormed",
+     "count": 4
+    },
+    {
+     "word": "its",
+     "count": 4
+    },
+    {
+     "word": "way",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 0,
+     "word": "3",
+     "as": "three",
+     "plain": "θ ɹ i",
+     "ipa": "θ ɹ i",
+     "keeps": null
+    },
+    {
+     "i": 2,
+     "word": "1d",
+     "as": "one-dee",
+     "plain": "w ʌ n d i",
+     "ipa": "w ʌ n d i",
+     "keeps": null
+    }
+   ],
+   "rejected": [
+    {
+     "word": "Möbius",
+     "as": "Moh-bee-uss",
+     "plain": "m oʊ b i ə s",
+     "ipa": "m ɑ h b i j u ɛ s ɛ s",
+     "why": "3 vowels → 5"
+    },
+    {
+     "word": "Möbius",
+     "as": "Mohb-bee-uss",
+     "plain": "m oʊ b i ə s",
+     "ipa": "m ɑ h b b i j u ɛ s ɛ s",
+     "why": "3 vowels → 5"
+    }
+   ],
+   "tried": [
+    {
+     "as": "three player, one-dee chess, on a Mobius, strip, wormed its way into my brain, and now I need to build it",
+     "score": {
+      "heard": 15,
+      "of": 23,
+      "min": 13
+     },
+     "heard": [
+      {
+       "text": "Three player, one detached, and a mobile strip, warmed its wing to my brain, and now I need to build it.",
+       "count": 2
+      },
+      {
+       "text": "3 player 1 detach and move the strip, warm the swing to my brain and now I need to build it.",
+       "count": 1
+      },
+      {
+       "text": "Three player, one day class, on a mobile strip, warmed twin to my brain, and now I need to build it.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "3",
+       "as": "three",
+       "plain": "θ ɹ i",
+       "ipa": "θ ɹ i",
+       "keeps": null
+      },
+      {
+       "i": 2,
+       "word": "1d",
+       "as": "one-dee",
+       "plain": "w ʌ n d i",
+       "ipa": "w ʌ n d i",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "3 player 1d chess on a Möbius strip wormed its way into my brain and now I need to build it",
+     "score": {
+      "heard": 11,
+      "of": 23,
+      "min": 11
+     },
+     "heard": [
+      {
+       "text": "3. Run the test no empty or strip-long the swing to my brain and now I need to build it.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "statement: negation"
+     ]
+    },
+    {
+     "as": "three player, one-dee chess, on a Möbius, strip, wormed its way into my brain, and now I need to build it",
+     "score": {
+      "heard": 12,
+      "of": 23,
+      "min": 12
+     },
+     "heard": [
+      {
+       "text": "3 players won the test, the new ambience strip warmed its wing to my brain, so now I need to build it.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "sounds": [
+      {
+       "i": 0,
+       "word": "3",
+       "as": "three",
+       "plain": "θ ɹ i",
+       "ipa": "θ ɹ i",
+       "keeps": null
+      },
+      {
+       "i": 2,
+       "word": "1d",
+       "as": "one-dee",
+       "plain": "w ʌ n d i",
+       "ipa": "w ʌ n d i",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "three player, one-dee chess, on a, Mobius, strip, wormed its way into my brain, and now I need to build it",
+     "score": {
+      "heard": 12,
+      "of": 23,
+      "min": 12
+     },
+     "heard": [
+      {
+       "text": "3 player won the test on a mobile strip, warmed its wing to my brain, and now I need to build it.",
+       "count": 1
+      },
+      {
+       "text": "3 players won the class and move the strip, warmed the swing to my brain and now I need to build it.",
+       "count": 1
+      },
+      {
+       "text": "3 players won the class and move the strip, warmed the swing to my brain, and now I need to build it.",
+       "count": 1
+      },
+      {
+       "text": "3 players won the test on a mobile strip, warm the swing to my brain, and now I need to build it.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "3",
+       "as": "three",
+       "plain": "θ ɹ i",
+       "ipa": "θ ɹ i",
+       "keeps": null
+      },
+      {
+       "i": 2,
+       "word": "1d",
+       "as": "one-dee",
+       "plain": "w ʌ n d i",
+       "ipa": "w ʌ n d i",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "three player, 1d chess, on a Mobius, strip, wormed its way into my brain, and now I need to build it",
+     "score": {
+      "heard": 12,
+      "of": 23,
+      "min": 12
+     },
+     "heard": [
+      {
+       "text": "3 players won the test and move the strip, warm the swing to my brain, and now I need to build it.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "sounds": [
+      {
+       "i": 0,
+       "word": "3",
+       "as": "three",
+       "plain": "θ ɹ i",
+       "ipa": "θ ɹ i",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "three player, one-dee, chess, on a Mobius, strip, wormed its way into my brain, and now I need to build it",
+     "score": {
+      "heard": 15,
+      "of": 23,
+      "min": 15
+     },
+     "heard": [
+      {
+       "text": "3 player 1D has an amphibious strip, warmed twin to my brain, and now I need to build it.",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "3",
+       "as": "three",
+       "plain": "θ ɹ i",
+       "ipa": "θ ɹ i",
+       "keeps": null
+      },
+      {
+       "i": 2,
+       "word": "1d",
+       "as": "one-dee",
+       "plain": "w ʌ n d i",
+       "ipa": "w ʌ n d i",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "three player one-dee chess, on a Mobius, strip, wormed its way into my brain, and now I need to build it",
+     "score": {
+      "heard": 14,
+      "of": 23,
+      "min": 14
+     },
+     "heard": [
+      {
+       "text": "3th layer one day test and a mobile strip warmed its wing to my brain and now I need to build it.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "sounds": [
+      {
+       "i": 0,
+       "word": "3",
+       "as": "three",
+       "plain": "θ ɹ i",
+       "ipa": "θ ɹ i",
+       "keeps": null
+      },
+      {
+       "i": 2,
+       "word": "1d",
+       "as": "one-dee",
+       "plain": "w ʌ n d i",
+       "ipa": "w ʌ n d i",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "three player, one-dee ches, on a Mobius, strip, wormed its way into my brain, and now I need to build it",
+     "score": {
+      "heard": 15,
+      "of": 23,
+      "min": 13
+     },
+     "heard": [
+      {
+       "text": "Three player, one detached, and a mobile strip, warmed its wing to my brain, and now I need to build it.",
+       "count": 2
+      },
+      {
+       "text": "3 player 1 detach and move the strip, warm the swing to my brain and now I need to build it.",
+       "count": 1
+      },
+      {
+       "text": "Three player, one day class, on a mobile strip, warmed twin to my brain, and now I need to build it.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "3",
+       "as": "three",
+       "plain": "θ ɹ i",
+       "ipa": "θ ɹ i",
+       "keeps": null
+      },
+      {
+       "i": 2,
+       "word": "1d",
+       "as": "one-dee",
+       "plain": "w ʌ n d i",
+       "ipa": "w ʌ n d i",
+       "keeps": null
+      },
+      {
+       "i": 3,
+       "word": "chess",
+       "as": "ches",
+       "plain": "tʃ ɛ s",
+       "ipa": "tʃ ɛ s",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "three player, one-dee, ches, on a Mobius, strip, wormed its way into my brain, and now I need to build it",
+     "score": {
+      "heard": 15,
+      "of": 23,
+      "min": 15
+     },
+     "heard": [
+      {
+       "text": "3 player 1D has an amphibious strip, warmed twin to my brain, and now I need to build it.",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "3",
+       "as": "three",
+       "plain": "θ ɹ i",
+       "ipa": "θ ɹ i",
+       "keeps": null
+      },
+      {
+       "i": 2,
+       "word": "1d",
+       "as": "one-dee",
+       "plain": "w ʌ n d i",
+       "ipa": "w ʌ n d i",
+       "keeps": null
+      },
+      {
+       "i": 3,
+       "word": "chess",
+       "as": "ches",
+       "plain": "tʃ ɛ s",
+       "ipa": "tʃ ɛ s",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tag",
+   "who": "larry",
+   "kind": "say",
+   "text": "Then came a picture, and a tag under it. The tag said: Minor Mobius.",
+   "as": "Then came uh picture, and a tag under it. The tag said: Minor, Mobius.",
+   "was": "Then came uh picture, and a tag under it. The tag said: Minor Mobius.",
+   "fix": "comma before Mobius",
+   "heard": [
+    {
+     "text": "Then came a picture and tag under it, the tag said minor mobius.",
+     "count": 3
+    },
+    {
+     "text": "Then came a picture and the tag under it, the tag said minor, mobius, liiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 13,
+    "of": 14,
+    "min": 13
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "a",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 2,
+     "word": "a",
+     "as": "uh",
+     "plain": "ə",
+     "ipa": "ʌ",
+     "keeps": true
+    }
+   ],
+   "rejected": [
+    {
+     "word": "Mobius",
+     "as": "Moh-bee-uss",
+     "plain": "m oʊ b i ə s",
+     "ipa": "m ɑ h b i j u ɛ s ɛ s",
+     "why": "3 vowels → 5"
+    },
+    {
+     "word": "Mobius",
+     "as": "Mohb-bee-uss",
+     "plain": "m oʊ b i ə s",
+     "ipa": "m ɑ h b b i j u ɛ s ɛ s",
+     "why": "3 vowels → 5"
+    }
+   ],
+   "tried": [
+    {
+     "as": "Then came uh picture, and a tag under it. The tag said: Minor Mobius.",
+     "score": {
+      "heard": 13,
+      "of": 14,
+      "min": 12
+     },
+     "heard": [
+      {
+       "text": "Then came a picture and the tag under it, the tag said minor mobius.",
+       "count": 2
+      },
+      {
+       "text": "Then came a picture and the tag under it, the tag said minor mopious.",
+       "count": 1
+      },
+      {
+       "text": "Then came a picture, and the tag under it, the tag said minor mobius.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: Minor Mobius"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Then came a picture, and a tag under it. The tag said: Minor Mobius.",
+     "score": {
+      "heard": 10,
+      "of": 14,
+      "min": 10
+     },
+     "heard": [
+      {
+       "text": "Then came the picture and the tag under it, the tag set minor mopious.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: Minor Mobius"
+     ]
+    },
+    {
+     "as": "Then came Uh picture, and a tag under it. The tag said: Minor Mobius.",
+     "score": {
+      "heard": 13,
+      "of": 14,
+      "min": 12
+     },
+     "heard": [
+      {
+       "text": "Then came a picture and the tag under it, the tag said minor mobius.",
+       "count": 2
+      },
+      {
+       "text": "Then came a picture and the tag under it, the tag said minor mopious.",
+       "count": 1
+      },
+      {
+       "text": "Then came a picture, and the tag under it, the tag said minor mobius.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: Minor Mobius"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "Uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Then came, uh picture, and a tag under it. The tag said: Minor Mobius.",
+     "score": {
+      "heard": 12,
+      "of": 14,
+      "min": 12
+     },
+     "heard": [
+      {
+       "text": "Then came a picture and the tag under it, the tag said minor mobius.",
+       "count": 1
+      },
+      {
+       "text": "Then came a picture and the tag under it, the tag said minor mopious.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: Minor Mobius"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Then came uh, picture, and a tag under it. The tag said: Minor Mobius.",
+     "score": {
+      "heard": 12,
+      "of": 14,
+      "min": 12
+     },
+     "heard": [
+      {
+       "text": "Then came a picture and a tag under it, the tag said minor mopious.",
+       "count": 1
+      },
+      {
+       "text": "Then came a picture and the tag under it, the tag said minor mopious.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: Minor Mobius"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Then came uh picture, and uh tag under it. The tag said: Minor Mobius.",
+     "score": {
+      "heard": 13,
+      "of": 14,
+      "min": 13
+     },
+     "heard": [
+      {
+       "text": "Then came a picture and a tag under it, the tag said minor mopious.",
+       "count": 1
+      },
+      {
+       "text": "Then came a picture, and a tag under it, the tag said minor mopious.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: Minor Mobius"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      },
+      {
+       "i": 5,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Then came uh picture, and Uh tag under it. The tag said: Minor Mobius.",
+     "score": {
+      "heard": 13,
+      "of": 14,
+      "min": 13
+     },
+     "heard": [
+      {
+       "text": "Then came a picture and a tag under it, the tag said minor mopious.",
+       "count": 1
+      },
+      {
+       "text": "Then came a picture, and a tag under it, the tag said minor mopious.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: Minor Mobius"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      },
+      {
+       "i": 5,
+       "word": "a",
+       "as": "Uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Then came uh picture, and, a tag under it. The tag said: Minor Mobius.",
+     "score": {
+      "heard": 13,
+      "of": 14,
+      "min": 13
+     },
+     "heard": [
+      {
+       "text": "Then came a picture and a tag under it, the tag said minor mobius.",
+       "count": 1
+      },
+      {
+       "text": "Then came a picture and a tag under it, the tag said minor mopious.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: Minor Mobius"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Then came uh picture, and a, tag under it. The tag said: Minor Mobius.",
+     "score": {
+      "heard": 9,
+      "of": 14,
+      "min": 9
+     },
+     "heard": [
+      {
+       "text": "Then came a picture in the tag under it, the tag said minor mopious.",
+       "count": 1
+      },
+      {
+       "text": "Then came a picture in the tag under the tag set minor mopious",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: Minor Mobius"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Then came uh picture, and a tag under it. The tag said: Minor, Mobius.",
+     "score": {
+      "heard": 13,
+      "of": 14,
+      "min": 13
+     },
+     "heard": [
+      {
+       "text": "Then came a picture and tag under it, the tag said minor mobius.",
+       "count": 3
+      },
+      {
+       "text": "Then came a picture and the tag under it, the tag said minor, mobius, liiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Then came Uh picture, and a tag under it. The tag said: Minor, Mobius.",
+     "score": {
+      "heard": 13,
+      "of": 14,
+      "min": 13
+     },
+     "heard": [
+      {
+       "text": "Then came a picture and tag under it, the tag said minor mobius.",
+       "count": 3
+      },
+      {
+       "text": "Then came a picture and the tag under it, the tag said minor, mobius, liiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiiii",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "Uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "awesome",
+   "who": "minormobius",
+   "kind": "say",
+   "text": "That’s awesome, I need a website tho",
+   "as": "That’s awesome, I need a website though",
+   "heard": [
+    {
+     "text": "Let's awesome, I need a website too!",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 7,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "that's",
+     "count": 4
+    },
+    {
+     "word": "tho",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 6,
+     "word": "tho",
+     "as": "though",
+     "plain": "ð oʊ",
+     "ipa": "ð oʊ",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "That’s awesome, I need a website though",
+     "score": {
+      "heard": 5,
+      "of": 7,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "Let's awesome, I need a website too!",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 6,
+       "word": "tho",
+       "as": "though",
+       "plain": "ð oʊ",
+       "ipa": "ð oʊ",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "meaning",
+   "who": "larry",
+   "kind": "say",
+   "text": "Meaning you only like posts that are also websites?",
+   "as": null,
+   "heard": [
+    {
+     "text": "Meaning you only like post that are also websites.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 8,
+    "of": 9,
+    "min": 8
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "posts",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Meaning you only like posts that are also websites?",
+     "score": {
+      "heard": 8,
+      "of": 9,
+      "min": 8
+     },
+     "heard": [
+      {
+       "text": "Meaning you only like post that are also websites.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "policy",
+   "who": "minormobius",
+   "kind": "say",
+   "text": "I like! I repost! But I’m not gonna love unless there’s a link",
+   "as": null,
+   "heard": [
+    {
+     "text": "I like, I repost, but I'm not gonna love unless there's a link.",
+     "count": 3
+    },
+    {
+     "text": "I like, I report, but I'm not gonna love unless there's a link.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 13,
+    "of": 13,
+    "min": 12
+   },
+   "status": "flagged",
+   "flags": [
+    "statement: report"
+   ],
+   "real": true,
+   "missed": [
+    {
+     "word": "repost",
+     "count": 1
+    }
+   ],
+   "rejected": [
+    {
+     "word": "repost",
+     "as": "ree-pohst",
+     "plain": "ɹ i p oʊ s t",
+     "ipa": "ɹ i p ɑ h s t",
+     "why": "vowel oʊ → ɑ"
+    },
+    {
+     "word": "repost",
+     "as": "reep-pohst",
+     "plain": "ɹ i p oʊ s t",
+     "ipa": "ɹ i p p ɑ h s t",
+     "why": "vowel oʊ → ɑ"
+    }
+   ],
+   "suggest": {
+    "rate": 0.9,
+    "as": "I like! I repost! But I’m not gonna love unless there’s a link",
+    "score": {
+     "heard": 11,
+     "of": 13,
+     "min": 11
+    }
+   },
+   "tried": [
+    {
+     "as": "I like! I repost! But I’m not gonna love unless there’s a link",
+     "score": {
+      "heard": 13,
+      "of": 13,
+      "min": 12
+     },
+     "heard": [
+      {
+       "text": "I like, I repost, but I'm not gonna love unless there's a link.",
+       "count": 3
+      },
+      {
+       "text": "I like, I report, but I'm not gonna love unless there's a link.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "statement: report"
+     ]
+    },
+    {
+     "as": "I like! I, repost! But I’m not gonna love unless there’s a link",
+     "score": {
+      "heard": 10,
+      "of": 13,
+      "min": 10
+     },
+     "heard": [
+      {
+       "text": "I like, I repost, but I'm not gonna love unless there's a link.",
+       "count": 2
+      },
+      {
+       "text": "I like I her post but I'm not gonna love unless they're the link",
+       "count": 1
+      },
+      {
+       "text": "I like I report but I'm not gonna love unless they're the link",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "statement: report"
+     ]
+    },
+    {
+     "as": "I like! I repost! But I’m not gonna love unless there’s a link",
+     "rate": 0.9,
+     "score": {
+      "heard": 11,
+      "of": 13,
+      "min": 11
+     },
+     "heard": [
+      {
+       "text": "I like, I repost, but I'm not gonna love unless they're the link.",
+       "count": 3
+      },
+      {
+       "text": "I like, I repost, but I'm not gonna love unless there's a link.",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "I like! I repost! But I’m not gonna love unless there’s a link",
+     "rate": 0.82,
+     "score": {
+      "heard": 11,
+      "of": 13,
+      "min": 11
+     },
+     "heard": [
+      {
+       "text": "I like, I repost, but I'm not gonna love unless there's a link.",
+       "count": 2
+      },
+      {
+       "text": "I like, I repost, but I'm not gonna love unless they're the link.",
+       "count": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "players",
+   "who": "eppy",
+   "kind": "say",
+   "text": "Three players, and one strip!",
+   "as": null,
+   "heard": [
+    {
+     "text": "three players and one strip",
+     "count": 3
+    },
+    {
+     "text": "3 players and 1 strip.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 5,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Three players, and one strip!",
+     "score": {
+      "heard": 5,
+      "of": 5,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "three players and one strip",
+       "count": 3
+      },
+      {
+       "text": "3 players and 1 strip.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "pick",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Pick a side.",
+   "as": "Pick a sighed.",
+   "heard": [
+    {
+     "text": "Pick a side.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 3,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "sounds": [
+    {
+     "i": 2,
+     "word": "side",
+     "as": "sighed",
+     "plain": "s aɪ d",
+     "ipa": "s aɪ d",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "Pick a sighed.",
+     "score": {
+      "heard": 3,
+      "of": 3,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "Pick a side.",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "side",
+       "as": "sighed",
+       "plain": "s aɪ d",
+       "ipa": "s aɪ d",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gold",
+   "who": "larry",
+   "kind": "say",
+   "text": "I'll take this side. In gold.",
+   "as": null,
+   "heard": [
+    {
+     "text": "I'll take this side in gold.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 6,
+    "of": 6,
+    "min": 6
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "I'll take this side. In gold.",
+     "score": {
+      "heard": 6,
+      "of": 6,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "I'll take this side in gold.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "move",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Larry. Your move.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Larry, be your move.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 3,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Larry. Your move.",
+     "score": {
+      "heard": 3,
+      "of": 3,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "Larry, be your move.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "like",
+   "who": "larry",
+   "kind": "say",
+   "text": "I like. I repost.",
+   "as": "I like. I ree-post.",
+   "heard": [
+    {
+     "text": "I like, I repost",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 4,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [],
+   "sounds": [
+    {
+     "i": 3,
+     "word": "repost",
+     "as": "ree-post",
+     "plain": "ɹ i p oʊ s t",
+     "ipa": "ɹ i p oʊ s t",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "I like. I ree-post.",
+     "score": {
+      "heard": 4,
+      "of": 4,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "I like, I repost",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 3,
+       "word": "repost",
+       "as": "ree-post",
+       "plain": "ɹ i p oʊ s t",
+       "ipa": "ɹ i p oʊ s t",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "resign",
+   "who": "larry",
+   "kind": "say",
+   "text": "I resign.",
+   "as": null,
+   "heard": [
+    {
+     "text": "I resign",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 2,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "I resign.",
+     "score": {
+      "heard": 2,
+      "of": 2,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "I resign",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "voices": {
+  "larry": {
+   "f0": 107,
+   "nearest": "pete",
+   "distance": 1.54
+  },
+  "mokkenstorm": {
+   "f0": 270,
+   "nearest": "moultano",
+   "distance": 1.56
+  },
+  "minormobius": {
+   "f0": 222,
+   "nearest": "sibyl",
+   "distance": 2.1
+  },
+  "eppy": {
+   "f0": 189,
+   "nearest": "david",
+   "distance": 1.66
+  },
+  "sibyl": {
+   "f0": 207,
+   "nearest": "david",
+   "distance": 2
+  }
+ },
+ "owner": [],
+ "heardDifferently": [
+  {
+   "id": "policy",
+   "who": "minormobius",
+   "status": "flagged",
+   "text": "I like! I repost! But I’m not gonna love unless there’s a link",
+   "heard": "I like, I repost, but I'm not gonna love unless there's a link."
+  }
+ ],
+ "soundsDifferent": []
+}

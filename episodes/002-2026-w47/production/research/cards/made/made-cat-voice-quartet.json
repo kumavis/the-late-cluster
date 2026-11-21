@@ -1,0 +1,529 @@
+{
+  "id": "made-cat-voice-quartet",
+  "lane": "made",
+  "title": "Asked why the synth has no cat, a maker adds a cat voice to a folk quartet",
+  "summary": "On Fri 13 Nov at 22:04Z @norvid-studies.bsky.social posted \"concept: chimera vocal synth but for cats\", quoting a photo of a cat posted by @goose.art. @yonderdavid.bsky.social (971 followers) replied with a screenshot of the synth's readme, which lists a \"Bestiary: songbird (two-voice syrinx), seal, alligator and elephant\", and at 22:36Z posted a video sample of those animal voices. @norvid-studies.bsky.social replied \"genuinely how did cat not make the top 4 here\". On Sat 14 Nov at 21:01Z, 21 hours later, the maker posted a video: per its alt text, \"A quartet of chimera-vocal-synth voices, plus a physically simulated feline voice, sing \"Poor Wayfaring Stranger,\" accompanied by physically simulated guitar and fiddle.\" It has 65 likes, 7 reposts and 9 quotes. In replies the maker described the work: the plan was a quartet of male voices; \"The meow and yowl took some work and iteration against reference recordings. The original yowl sounded like a kazoo.\"; the first idea had been for the seal voice to hum bass on a different song, dropped over copyright; and the lead singer was meant to end by \"expressing anger at the cat\", which was dropped because the yowls \"fit well enough that the cat deserved no such anger.\" Asked on Sat 14 Nov at 22:28Z to do another song, \"Factory Girl\", the maker posted it on Mon 16 Nov at 03:52Z, 29 hours later, with two heads, two fiddles and a cello, and an account of using three other models to get the voices to work.",
+  "made": [
+    {
+      "what": "video: sample of the synth's animal voices",
+      "by": "yonderdavid.bsky.social",
+      "address": "https://bsky.app/profile/yonderdavid.bsky.social/post/3n2a2b5ulbc2w"
+    },
+    {
+      "what": "video: male-voice quartet plus a simulated cat voice sing \"Poor Wayfaring Stranger\" with simulated guitar and fiddle",
+      "by": "yonderdavid.bsky.social",
+      "address": "https://bsky.app/profile/yonderdavid.bsky.social/post/3n2cffuxxv22n"
+    },
+    {
+      "what": "video: two heads sing \"Factory Girl\" with simulated fiddles and cello",
+      "by": "yonderdavid.bsky.social",
+      "address": "https://bsky.app/profile/yonderdavid.bsky.social/post/3n2fmuqiest24"
+    }
+  ],
+  "couldBeShown": "Four singing heads and a cat voice that meows and yowls in the arrangement; a guitar and a fiddle whose sound comes from physical simulation; the animal voices from the readme (songbird, seal, alligator, elephant) as a sample. The data describes the videos only through the alt texts quoted here; whether a cat is drawn on screen is not stated. The exchange in the thread is a run of short questions and answers between two accounts.",
+  "numbers": [
+    "Four animals in the synth's bestiary, none of them a cat (the readme screenshot's alt text).",
+    "21 h between \"how did cat not make the top 4\" (Fri 23:45Z) and the quartet with a cat (Sat 21:01Z).",
+    "65 likes, 7 reposts, 7 replies, 9 quotes on the quartet video.",
+    "29 h 24 min from the request for \"Factory Girl\" (Sat 22:28Z) to the video (Mon 03:52Z); the maker's account of it counts up to \"a fourth\" model."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n27yibr2cc2z",
+      "text": "concept: chimera vocal synth but for cats",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-13T22:04:25.332Z",
+      "counts": {
+        "likes": 25,
+        "reposts": 2,
+        "replies": 3,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:hsqwcidfez66lwm3gxhfv5in/app.bsky.feed.post/3n27uankxsk2e",
+        "handle": "goose.art",
+        "text": "where are his legs",
+        "time": "2026-11-13T20:48:34.287Z"
+      },
+      "kind": "quote",
+      "note": "The prompt. Quotes a cat photo by @goose.art."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27zewdpe223",
+      "text": "I was just noticing this part of the readme.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-13T22:20:26.441Z",
+      "counts": {
+        "likes": 13,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n27yibr2cc2z",
+        "handle": "norvid-studies.bsky.social",
+        "text": "concept: chimera vocal synth but for cats"
+      },
+      "kind": "reply",
+      "alt": "Beatbox: pads and a step sequencer, every drum an articulatory gesture.\nBestiary: songbird (two-voice syrinx), seal, alligator and elephant.",
+      "media": "image",
+      "note": "The alt text is the text of the readme screenshot."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n27zgetths25",
+      "text": "there's a seal synth that no one posted yet??",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-13T22:21:15.203Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27zewdpe223",
+        "handle": "yonderdavid.bsky.social",
+        "text": "I was just noticing this part of the readme."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2a2b5ulbc2w",
+      "text": "Here's a sample.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-13T22:36:13.858Z",
+      "counts": {
+        "likes": 20,
+        "reposts": 2,
+        "replies": 4,
+        "quotes": 2
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n27zgetths25",
+        "handle": "norvid-studies.bsky.social",
+        "text": "there's a seal synth that no one posted yet??"
+      },
+      "kind": "reply",
+      "alt": "A chimera-vocal-synth critter demo.",
+      "media": "video",
+      "note": "The animal-voice sample."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2a65lsdec26",
+      "text": "genuinely how did cat not make the top 4 here",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-13T23:45:49.214Z",
+      "counts": {
+        "likes": 10,
+        "reposts": 0,
+        "replies": 3,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2a2b5ulbc2w",
+        "handle": "yonderdavid.bsky.social",
+        "text": "Here's a sample."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cffuxxv22n",
+      "text": "Very well, it's arguably still chimera-vocal-synth week, so I can fix that. The cat voice sim joins a quartet and instruments that get their sound from physical models.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-14T21:01:02.941Z",
+      "counts": {
+        "likes": 65,
+        "reposts": 7,
+        "replies": 7,
+        "quotes": 9
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2a65lsdec26",
+        "handle": "norvid-studies.bsky.social",
+        "text": "genuinely how did cat not make the top 4 here"
+      },
+      "kind": "reply",
+      "alt": "A quartet of chimera-vocal-synth voices, plus a physically simulated feline voice, sing \"Poor Wayfaring Stranger,\" accompanied by physically simulated guitar and fiddle.",
+      "media": "video",
+      "note": "The quartet with the cat, as a reply to the post above."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2cllvrbvs2b",
+      "text": "this is great, love all the pieces and they come together really nicely",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-14T22:51:47.545Z",
+      "counts": {
+        "likes": 7,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cffuxxv22n",
+        "handle": "yonderdavid.bsky.social",
+        "text": "Very well, it's arguably still chimera-vocal-synth week, so I can fix that. The cat voice sim joins a quartet and instruments that get their sound from physical models."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2cmemvpv222",
+      "text": "this works incredibly well, was there an unseen graveyard of failures or what's your theory of what went on here",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-14T23:05:37.117Z",
+      "counts": {
+        "likes": 13,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cffuxxv22n",
+        "handle": "yonderdavid.bsky.social",
+        "text": "Very well, it's arguably still chimera-vocal-synth week, so I can fix that. The cat voice sim joins a quartet and instruments that get their sound from physical models."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cq3hrnic2z",
+      "text": "The plan was a quartet of male voices (the female synth voices need repair; see the soprano line in the Kyrie). I think the harmony helped fill out the voice a bit and the instruments sounding almost lifelike (the bowing should reverse on long notes) helped make the overall vibe ungoofy.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-15T00:12:04.717Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2cmemvpv222",
+        "handle": "norvid-studies.bsky.social",
+        "text": "this works incredibly well, was there an unseen graveyard of failures or what's your theory of what went on here"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cqbcwvqc2z",
+      "text": "The articulation needed a couple repairs: nonzero airflow on the J and an exaggerated release on the D. I called the other sounds good enough. The meow and yowl took some work and iteration against reference recordings. The original yowl sounded like a kazoo.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-15T00:15:20.974Z",
+      "counts": {
+        "likes": 11,
+        "reposts": 0,
+        "replies": 3,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cq3hrnic2z",
+        "handle": "yonderdavid.bsky.social",
+        "text": "The plan was a quartet of male voices (the female synth voices need repair; see the soprano line in the Kyrie). I think the harmony helped fill out the voice a bit and the instruments sounding almost lifelike (the bowing should reverse on long notes) helped make the overall vibe ungoofy."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2cqipffo22e",
+      "text": "are you surprised by how well it turned out, given your first inkling of an idea?",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-15T00:19:28.913Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cqbcwvqc2z",
+        "handle": "yonderdavid.bsky.social",
+        "text": "The articulation needed a couple repairs: nonzero airflow on the J and an exaggerated release on the D. I called the other sounds good enough. The meow and yowl took some work and iteration against reference recordings. The original yowl sounded like a kazoo."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2ddhc5zls2t",
+      "text": "I was positively surprised by the mood and negatively surprised by how tricky it was to improve the articulation. I had imagined greater returns to time spent tuning the voices.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-15T05:58:42.579Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2cqipffo22e",
+        "handle": "norvid-studies.bsky.social",
+        "text": "are you surprised by how well it turned out, given your first inkling of an idea?"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2cqpwiyts2l",
+      "text": "an edit where the catoid vocals are hideous kazoo screeching over the same melodious base track would be kind of funny... have to give preference to this version of course...",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-15T00:23:31.252Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cqbcwvqc2z",
+        "handle": "yonderdavid.bsky.social",
+        "text": "The articulation needed a couple repairs: nonzero airflow on the J and an exaggerated release on the D. I called the other sounds good enough. The meow and yowl took some work and iteration against reference recordings. The original yowl sounded like a kazoo."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2crbcfzuk2z",
+      "text": "My original idea was that the seal synth would hum bass for Greenfields, but it turns out that's still under copyright and covers aren't fair use. And the cat was missing, so the new plan was an older melancholic folk song with caterwauling. The lead singer would end by expressing anger at the cat.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-15T00:33:14.162Z",
+      "counts": {
+        "likes": 4,
+        "reposts": 1,
+        "replies": 2,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2cqpwiyts2l",
+        "handle": "norvid-studies.bsky.social",
+        "text": "an edit where the catoid vocals are hideous kazoo screeching over the same melodious base track would be kind of funny... have to give preference to this version of course..."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2crcmiaxs2z",
+      "text": "But then I ended up with yowls that fit well enough that the cat deserved no such anger.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-15T00:33:58.276Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2crbcfzuk2z",
+        "handle": "yonderdavid.bsky.social",
+        "text": "My original idea was that the seal synth would hum bass for Greenfields, but it turns out that's still under copyright and covers aren't fair use. And the cat was missing, so the new plan was an older melancholic folk song with caterwauling. The lead singer would end by expressing anger at the cat."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:oisofpd7lj26yvgiivf3lxsi/app.bsky.feed.post/3n2clykxiu22d",
+      "text": "we absolutely must pace the frontier. this has gone too far.",
+      "handle": "hailey.at",
+      "displayName": "hailey",
+      "time": "2026-11-14T22:58:52.420Z",
+      "counts": {
+        "likes": 47,
+        "reposts": 3,
+        "replies": 3,
+        "quotes": 1
+      },
+      "quotes": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cffuxxv22n",
+        "handle": "yonderdavid.bsky.social",
+        "text": "Very well, it's arguably still chimera-vocal-synth week, so I can fix that. The cat voice sim joins a quartet and instruments that get their sound from physical models.",
+        "time": "2026-11-14T21:01:02.941Z"
+      },
+      "kind": "quote",
+      "note": "A quote post of the quartet video by an account with 45,295 followers."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ff53cqwk2l",
+      "text": "I got earwormed by this to the point where I was humming it multiple times today",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-16T01:34:06.809Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cffuxxv22n",
+        "handle": "yonderdavid.bsky.social",
+        "text": "Very well, it's arguably still chimera-vocal-synth week, so I can fix that. The cat voice sim joins a quartet and instruments that get their sound from physical models."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2fgxvain22z",
+      "text": "I found myself whistling it here and there.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-16T02:07:00.157Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ff53cqwk2l",
+        "handle": "norvid-studies.bsky.social",
+        "text": "I got earwormed by this to the point where I was humming it multiple times today"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ckbmplk22v",
+      "text": "if this is now just a pipeline you can click on can you do this one www.youtube.com/watch?v=uj0R...",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-14T22:28:08.769Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cffuxxv22n",
+        "handle": "yonderdavid.bsky.social",
+        "text": "Very well, it's arguably still chimera-vocal-synth week, so I can fix that. The cat voice sim joins a quartet and instruments that get their sound from physical models."
+      },
+      "kind": "reply",
+      "links": [
+        {
+          "url": "https://youtube.com/watch?v=uj0R9Rqsxyk",
+          "title": "Factory Girl"
+        }
+      ],
+      "note": "The request for a second song."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2fmuoefz224",
+      "text": "I probably should have asked if you meant the feminine-voiced version of it, but at any rate that's what I attempted and ran into frustrations with the synth. It tends to make feminine voices sound like a masculine voice in falsetto, with either a reedy or a honky quality.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-16T03:52:34.733Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ckbmplk22v",
+        "handle": "norvid-studies.bsky.social",
+        "text": "if this is now just a pipeline you can click on can you do this one www.youtube.com/watch?v=uj0R..."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2fmuqiess24",
+      "text": "So there was a simple pipeline repetition version, but I could hardly inflict it on you or the innocent bystanders who might happen upon it. But I used another model to generate better voices, a third to correct the tune, and a fourth to re-sing with precise enough timing to kinda work.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-16T03:52:34.734Z",
+      "counts": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2fmuoefz224",
+        "handle": "yonderdavid.bsky.social",
+        "text": "I probably should have asked if you meant the feminine-voiced version of it, but at any rate that's what I attempted and ran into frustrations with the synth. It tends to make feminine voices sound like a masculine voice in falsetto, with either a reedy or a honky quality."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2fmuqiest24",
+      "text": "By such applications of beeswax and string I obtained this version, which one might call distinguishable from a polished one. But the bowing is improved.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-16T03:52:34.735Z",
+      "counts": {
+        "likes": 8,
+        "reposts": 1,
+        "replies": 0,
+        "quotes": 3
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2fmuqiess24",
+        "handle": "yonderdavid.bsky.social",
+        "text": "So there was a simple pipeline repetition version, but I could hardly inflict it on you or the innocent bystanders who might happen upon it. But I used another model to generate better voices, a third to correct the tune, and a fourth to re-sing with precise enough timing to kinda work."
+      },
+      "kind": "reply",
+      "alt": "Two chimera-vocal-synth heads sing, with voices otherwise synthesized, the folk song \"Factory Girl.\" They are accompanied by two fiddles and a cello, whose sound derives from physical simulation of those instruments.",
+      "media": "video",
+      "note": "The second song."
+    }
+  ],
+  "people": [
+    {
+      "handle": "yonderdavid.bsky.social",
+      "followers": 971,
+      "displayName": "David",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "maker"
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "followers": 2777,
+      "displayName": "norvid_studies",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1,
+      "role": "asked the questions"
+    },
+    {
+      "handle": "goose.art",
+      "followers": 6896,
+      "displayName": "business goose🪿",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "author of the quoted cat photo"
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "followers": 1454,
+      "displayName": "Amber 🌸",
+      "clusterMember": true,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "hailey.at",
+      "followers": 45295,
+      "displayName": "hailey",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "sensitive": "@norvid-studies.bsky.social is marked featuredPrevious: spoke, so the account is not cast to speak in this episode; its posts may be shown. Eight of the 22 posts carried here are that account's, including every question the maker answers. @hailey.at has 45,295 followers; the scope review asks research to apply R7 to large accounts, and this is a single quote post of the video. @shimmermathlabs.com is marked featuredPrevious: shown. The maker's remarks about \"male voices\" and \"feminine voices\" are about the synthesizer's timbres, not about people. \"Poor Wayfaring Stranger\" is a spiritual; the maker calls it \"an older melancholic folk song\". Left out: a branch about copyright law that ends on a keyword-flagged remark; a question about the maker's musical training and the answer (offline life, R1); replies by @kumavis.me, whom the scope review identifies as the show's owner. The same maker is the subject of three other cards in this lane.",
+  "notUnderstood": [
+    "\"catoid\", used by other accounts in this thread for the cat voice: a term from before the window (see made-voice-falling-blocks)."
+  ]
+}

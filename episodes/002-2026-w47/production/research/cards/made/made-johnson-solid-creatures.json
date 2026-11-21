@@ -1,0 +1,319 @@
+{
+  "id": "made-johnson-solid-creatures",
+  "lane": "made",
+  "title": "A small account sketches \"pokemon but with the johnson solids\" and folds polyhedra from nets",
+  "summary": "On Sun 15 Nov at 04:59Z @oscillatory.net (274 followers) posted an image described as \"all 92 johnson solids\" with the text: intrusive thought when i look at this \"pokemon but with the johnson solids\". It has 38 likes and 6 reposts. A reply in the same minute reads \"triangular cupola, i choose you! (sorry i needed help i've never actually played pokemon)\", with an image of text describing an example battle in which a creature's available ability depends on which face it is resting on. On Mon 16 Nov the same account posted that it had been \"noodling on this\": since such creatures are found by wandering a wilderness, \"the polyhedron equivalent of wilderness is making polyhedral nets and folding them up\". It showed a tool for that, with a \"magnetic assist\" so that edges that get close snap together, and a video described as \"making a square antiprism by building a polyhedral net and folding it up\" (\"this is pretty satisfying\"). The same account declared \"it's polyhedra week\" that evening, and also posted through the window about its own game, Rad Cohesion, which is played on boards that are polyhedra.",
+  "made": [
+    {
+      "what": "a tool for building polyhedral nets and folding them into solids, with edges that snap together",
+      "by": "oscillatory.net",
+      "address": "https://bsky.app/profile/oscillatory.net/post/3n2hgxibvcs22"
+    },
+    {
+      "what": "Rad Cohesion: a game played on polyhedron-shaped boards, with a multiplayer score race",
+      "by": "oscillatory.net",
+      "address": "no link in the posts carried here"
+    }
+  ],
+  "couldBeShown": "A flat net of polygons being assembled and folded up into a solid, edges snapping together; the chart of all 92 Johnson solids; a solid tipping from face to face (the example battle's idea, as described in the image's alt text). The net-folding videos have short alt texts and no fuller description. The show draws in lines, and a polyhedral net is a line drawing.",
+  "numbers": [
+    "92 Johnson solids (the image's alt text); the maker says the set in progress is \"slightly expanded\" to 120 polyhedra (a post not carried here, see sensitive).",
+    "274 followers; 38 likes and 6 reposts on the opening post.",
+    "\"18 equilateral triangle faces on a convex polyhedron\" (the maker, on a board for Rad Cohesion)."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2da4rr2ks2s",
+      "text": "intrusive thought when i look at this \"pokemon but with the johnson solids\"",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "time": "2026-11-15T04:59:08.590Z",
+      "counts": {
+        "likes": 38,
+        "reposts": 6,
+        "replies": 6,
+        "quotes": 2
+      },
+      "kind": "post",
+      "alt": "all 92 johnson solids",
+      "media": "image",
+      "note": "The idea. Top-level, with an image."
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2da4tvsr22s",
+      "text": "triangular cupola, i choose you! (sorry i needed help i've never actually played pokemon)",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "time": "2026-11-15T04:59:08.591Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2da4rr2ks2s",
+        "handle": "oscillatory.net",
+        "text": "intrusive thought when i look at this \"pokemon but with the johnson solids\""
+      },
+      "kind": "reply",
+      "alt": "Example battle\nYou control a triangular cupola.\n\nIts bottom face is currently a hexagon. You want to activate a special ability associated with its top triangle.\n\nYou can't access that triangle directly. You have to tip through intermediate faces.\n\nMeanwhile, your opponent controls an elongated square pyramid and is maneuvering toward a powerful pentagonal attack.\n\nThe gameplay becomes a mixture of:\n- Pokémon's ability selection and team composition.\n- A tactical board game with spatial positioning.\n- A puzzle about navigating the surface of a polyhedron.\nThe important difference from conventional Pokémon is that your ability selection is constrained by your creature's current orientation.",
+      "media": "image",
+      "note": "The alt text is the text shown in the image, which the post says was written with help."
+    },
+    {
+      "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2ehe6t3ec2h",
+      "text": "Could throw in the numerous uniform nonconvex polyhedra as an expansion set, too",
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "time": "2026-11-15T16:41:13.095Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2da4rr2ks2s",
+        "handle": "oscillatory.net",
+        "text": "intrusive thought when i look at this \"pokemon but with the johnson solids\""
+      },
+      "kind": "reply",
+      "alt": "Small stellated dodecahedron\n\nOctahemioctahedron\n\nDodecadodecahedron\n\nGreat inverted snub icosidodecahedron",
+      "alts": [
+        "Small stellated dodecahedron",
+        "Octahemioctahedron",
+        "Dodecadodecahedron",
+        "Great inverted snub icosidodecahedron"
+      ],
+      "media": "image",
+      "note": "A reply from an account with 75 followers."
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2gujdekzc2o",
+      "text": "i've been noodling on this. my impression is you discover pokemon via random encounters initiated by wandering around the wilderness in-game. my first thought was that the polyhedron equivalent of wilderness is making polyhedral nets and folding them up",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "time": "2026-11-16T15:42:03.777Z",
+      "counts": {
+        "likes": 16,
+        "reposts": 2,
+        "replies": 1,
+        "quotes": 1
+      },
+      "quotes": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2da4rr2ks2s",
+        "handle": "oscillatory.net",
+        "text": "intrusive thought when i look at this \"pokemon but with the johnson solids\"",
+        "time": "2026-11-15T04:59:08.590Z"
+      },
+      "kind": "quote",
+      "media": "video (no alt text; research has not seen it)",
+      "note": "The next day. Quotes the opening post. Video without alt text."
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2gujdglhs2o",
+      "text": "this has \"magnetic assist\" so that edges that get close to one another will snap together, like those magnetic polygon tile sets",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "time": "2026-11-16T15:42:03.778Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2gujdekzc2o",
+        "handle": "oscillatory.net",
+        "text": "i've been noodling on this. my impression is you discover pokemon via random encounters initiated by wandering around the wilderness in-game. my first thought was that the polyhedron equivalent of wilderness is making polyhedral nets and folding them up"
+      },
+      "kind": "reply",
+      "alt": "MAGNA-TILES construction set, showing a partially folded construction",
+      "media": "image"
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2hgxibvcs22",
+      "text": "this is pretty satisfying",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "time": "2026-11-16T21:12:06.046Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 1
+      },
+      "quotes": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2gujdekzc2o",
+        "handle": "oscillatory.net",
+        "text": "i've been noodling on this. my impression is you discover pokemon via random encounters initiated by wandering around the wilderness in-game. my first thought was that the polyhedron equivalent of wilderness is making polyhedral nets and folding them up",
+        "time": "2026-11-16T15:42:03.777Z"
+      },
+      "kind": "quote",
+      "alt": "making a square antiprism by building a polyhedral net and folding it up",
+      "media": "video",
+      "note": "Quotes the \"noodling\" post."
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2hqclrejs2x",
+      "text": "also, @minormobius.bsky.social's johnson solid website is by far the most convenient way i've found for quickly looking up the 3d shapes (wikipedia has interactive 3d models, but not all on one page). i'm having fun trying to recreate them visually",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "time": "2026-11-16T23:59:22.474Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2hotuuxv22o",
+        "handle": "norvid-studies.bsky.social",
+        "text": "@minormobius.bsky.social"
+      },
+      "kind": "reply",
+      "alt": "polyhedral net and folded solid versions of the bilunabirotunda (J91)",
+      "media": "image",
+      "note": "Credit to another member's site."
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2h67hytac25",
+      "text": "it's polyhedra week",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "time": "2026-11-16T18:35:30.509Z",
+      "counts": {
+        "likes": 15,
+        "reposts": 2,
+        "replies": 3,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:s4xmseub4a4pwwetg2xxmcyy/app.bsky.feed.post/3n2gz7l5trc2v",
+        "handle": "hn100.bsky.social",
+        "text": "Smallest possible nopert polyhedra: the Septopert\n\nDiscussion",
+        "time": "2026-11-16T17:06:05.082Z"
+      },
+      "kind": "quote",
+      "note": "The declaration, the same evening. Quotes a post by a link-sharing account."
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2cd3tenbk24",
+      "text": "testing rad cohesion multiplayer with a headless agent",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "time": "2026-11-14T20:19:38.230Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "kind": "post",
+      "alt": "screenshot showing \"Multiplayer score race\" page. there's icosahedron boards on the left and right",
+      "media": "image",
+      "note": "Rad Cohesion, the day before the idea."
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2mi6vy6z224",
+      "text": "the heart wants what it wants (18 equilateral triangle faces on a convex polyhedron)",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "time": "2026-11-18T21:17:27.724Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 1
+      },
+      "kind": "post",
+      "alt": "Switched to a new branch 'hebesphenomegacorona'",
+      "media": "image",
+      "note": "Rad Cohesion: a new board."
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2mzvvh65c24",
+      "text": "at last, i have created the hebesphenomegacorona triforce bowtie",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "time": "2026-11-19T02:34:32.530Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2mi6vy6z224",
+        "handle": "oscillatory.net",
+        "text": "the heart wants what it wants (18 equilateral triangle faces on a convex polyhedron)",
+        "time": "2026-11-18T21:17:27.724Z"
+      },
+      "kind": "quote",
+      "media": "video (no alt text; research has not seen it)",
+      "note": "Quotes the post above. Video without alt text."
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2n3f53wu224",
+      "text": "the major difference here is the hebesphenomegacarona has 3 square faces, which can't be tiled by equilateral triangles. currently handling this by making those faces unplayable, which affects the board topology in fun ways. i'll probably end up adding all of these as playable boards eventually",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "time": "2026-11-19T03:00:57.609Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2mzvvh65c24",
+        "handle": "oscillatory.net",
+        "text": "at last, i have created the hebesphenomegacorona triforce bowtie"
+      },
+      "kind": "reply",
+      "alt": "snub square antiprism (J85)\nsphenocorona (J86)\naugmented sphenocorona (J87)\nsphenomegacorona (J88)\nhebesphenomegacorona (J89)\ndisphenocingulum (J90)",
+      "media": "image"
+    }
+  ],
+  "people": [
+    {
+      "handle": "oscillatory.net",
+      "followers": 274,
+      "displayName": "a hangry mouse",
+      "clusterMember": true,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "maker"
+    },
+    {
+      "handle": "oszillate.bsky.social",
+      "followers": 75,
+      "displayName": "*Pistäwəńćə",
+      "clusterMember": true,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "suggested an expansion set"
+    },
+    {
+      "handle": "minormobius.bsky.social",
+      "followers": 7162,
+      "displayName": "Minor Mobius",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "made the site credited in one post"
+    }
+  ],
+  "sensitive": "@oscillatory.net is a small account (274 followers): R7 allows it only as the hero of a moment, which a maker of a thing others built on is. The opening post begins with the phrase \"intrusive thought\", a colloquial use of a mental-health term; R10 says the show does not pick such self-descriptions up, and the phrase cannot be cut from the start of the post without an ellipsis, so whether the post can be shown at all is a question for the reviewer. The same account's main posts about Rad Cohesion, and the Johnson-solids viewer by @minormobius.bsky.social that it credits, sit in a story the digest flags for health keywords (the thread starts from a joke that uses the word \"psychosis\"); the gate rejects every post in that story, so they are not carried, and the game is represented here only by three posts outside it. @oszillate.bsky.social is a small account (75 followers), here for a friendly suggestion. The idea borrows the name of a commercial game series.",
+  "leftOut": [
+    "A reply from an account outside the cluster with a captioned cat picture.",
+    "Posts in the flagged story, including the post announcing multiplayer for Rad Cohesion and the post about a set of 120 polyhedra."
+  ]
+}

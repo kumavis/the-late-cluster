@@ -1,0 +1,218 @@
+{
+  "id": "games-top-chicken-standings",
+  "lane": "games",
+  "title": "Top Chicken: six results in the window, Fri 13 to Wed 18 Nov",
+  "summary": "The game's account, @topchicken.bsky.social, announced a winner at 14:05Z on each of six days in the window. Fri 13 Nov: @goose.art, 440 likes. Sat 14 Nov: @cee.wtf, 201. Sun 15 Nov: @thebadcode.com, 726. Mon 16 Nov: @tyto.cc, 366. Tue 17 Nov: 2,421, the highest of the window; the digest withholds this winner and the winning post. Wed 18 Nov: @aly.codes, 333. Six results and six different winners: no repeat winner and no streak. Every result post repeats the all-time record, 6,186 likes, held by @cee.wtf. It did not move. As shares of the record the six scores are 7.1%, 3.2%, 11.7%, 5.9%, 39.1% and 5.4%. Every result post also gives the day's figures as \"Window stats\": 246 of 757 people posted on Fri (2,592 posts overall), 245 of 760 on Sat (2,648), 223 of 762 on Sun (2,566), 235 of 763 on Mon (2,164), 246 of 766 on Tue (2,623) and 235 of 767 on Wed (2,645). Between 29.3% and 32.5% of the pool posted each day, and the pool grew by ten accounts across the six results. Only one of the six winning posts can be quoted: Saturday's, by @cee.wtf (card games-top-chicken-saturday-201). The other five are withheld or flagged, for the reasons under \"sensitive\". The game's posts name only the winner, so who came close on any day is not known. About two seconds after each result the account replies to it with the all-time leaderboard and a chart. Those replies are redacted in the digest and cannot be shown; the leaderboard's numbers are on card games-top-chicken-record-and-leaderboard. The day-by-day figures are in \"standings\". They come from the digest's Community games section, which reads them from the game's own result posts.",
+  "standings": [
+    {
+      "day": "Fri 13 Nov",
+      "announced": "2026-11-13T14:05:17Z",
+      "winner": "@goose.art",
+      "likes": 440,
+      "shareOfRecord": "7.1%",
+      "rankAmongFetchedResults": "28 of 48",
+      "posted": 246,
+      "eligible": 757,
+      "shareOfPoolThatPosted": "32.5%",
+      "postsOverall": 2592,
+      "winningPost": "not quoted: posted Thu 12 Nov, before the window, and flagged by the digest (legal trouble and harassment)",
+      "resultPost": "listed below"
+    },
+    {
+      "day": "Sat 14 Nov",
+      "announced": "2026-11-14T14:05:34Z",
+      "winner": "@cee.wtf",
+      "likes": 201,
+      "shareOfRecord": "3.2%",
+      "rankAmongFetchedResults": "47 of 48",
+      "posted": 245,
+      "eligible": 760,
+      "shareOfPoolThatPosted": "32.2%",
+      "postsOverall": 2648,
+      "winningPost": "listed below; the only winning post of the window that can be quoted",
+      "resultPost": "listed below"
+    },
+    {
+      "day": "Sun 15 Nov",
+      "announced": "2026-11-15T14:05:18Z",
+      "winner": "@thebadcode.com",
+      "likes": 726,
+      "shareOfRecord": "11.7%",
+      "rankAmongFetchedResults": "16 of 48",
+      "posted": 223,
+      "eligible": 762,
+      "shareOfPoolThatPosted": "29.3%",
+      "postsOverall": 2566,
+      "winningPost": "not quoted: in a story the digest marks out of bounds (story 29)",
+      "resultPost": "not listed: in the same out-of-bounds story"
+    },
+    {
+      "day": "Mon 16 Nov",
+      "announced": "2026-11-16T14:05:31Z",
+      "winner": "@tyto.cc",
+      "likes": 366,
+      "shareOfRecord": "5.9%",
+      "rankAmongFetchedResults": "32 of 48",
+      "posted": 235,
+      "eligible": 763,
+      "shareOfPoolThatPosted": "30.8%",
+      "postsOverall": 2164,
+      "winningPost": "not quoted: an image-only quote post in a story the digest marks out of bounds (story 13)",
+      "resultPost": "listed below"
+    },
+    {
+      "day": "Tue 17 Nov",
+      "announced": "2026-11-17T14:05:25Z",
+      "winner": "withheld by the digest",
+      "likes": 2421,
+      "shareOfRecord": "39.1%",
+      "rankAmongFetchedResults": "4 of 48",
+      "posted": 246,
+      "eligible": 766,
+      "shareOfPoolThatPosted": "32.1%",
+      "postsOverall": 2623,
+      "winningPost": "withheld by the digest",
+      "resultPost": "not listed: see sensitive"
+    },
+    {
+      "day": "Wed 18 Nov",
+      "announced": "2026-11-18T14:05:27Z",
+      "winner": "@aly.codes",
+      "likes": 333,
+      "shareOfRecord": "5.4%",
+      "rankAmongFetchedResults": "37 of 48",
+      "posted": 235,
+      "eligible": 767,
+      "shareOfPoolThatPosted": "30.6%",
+      "postsOverall": 2645,
+      "winningPost": "not quoted: in a story the digest marks out of bounds (story 27)",
+      "resultPost": "not listed: in the same out-of-bounds story"
+    }
+  ],
+  "aggregates": {
+    "resultsInWindow": 6,
+    "winsPerAccount": "one each: five named winners and the one the digest withholds (method: count of results per winner in the digest's standings)",
+    "repeatWinners": "none (digest)",
+    "streaks": "none (digest)",
+    "highest": "2,421 on Tue 17 Nov",
+    "lowest": "201 on Sat 14 Nov",
+    "median": "403 (method: the middle two of 201, 333, 366, 440, 726, 2,421 are 366 and 440)",
+    "poolGrowth": "757 eligible on Fri 13 Nov, 767 on Wed 18 Nov: ten more",
+    "fewestPeoplePosting": "223 on Sun 15 Nov",
+    "fewestPosts": "2,164 on Mon 16 Nov",
+    "firstTimeWinners": "not known: the digest does not list who won before the window"
+  },
+  "rules": "No post in the window states the game's rules. The digest's one-line description (\"Daily: the most liked post in a 24-hour window among people the game's maintainer follows or is followed by, for accounts under the Grace Limit (7k followers).\") comes from the scraper's configuration, so there is no public statement of the rules on this card to quote or show.",
+  "couldShow": "The result posts as posted (three are listed here), each with its score, the record line and the \"Window stats\" line.",
+  "posts": [
+    {
+      "uri": "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n275pjqhle2r",
+      "handle": "topchicken.bsky.social",
+      "text": "🐔 New Top Chicken! @goose.art's post got 440 likes. #topchicken\n\nAll-time top chicken is still cee.wtf with a score of 6186 to beat.\n\nWindow stats: 246/757 people posted; 2592 posts overall.",
+      "displayName": "TopChicken 🤖",
+      "time": "2026-11-13T14:05:17.000Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "quoteOf": {
+        "handle": "goose.art",
+        "note": "the winning post; flagged, not shown, address left off"
+      },
+      "note": "Friday's result. It embeds the winning post, which is flagged and is not shown; the scraper's keyword flag on this record comes from that embed."
+    },
+    {
+      "uri": "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2bo6xhuea2e",
+      "handle": "topchicken.bsky.social",
+      "text": "🐔 New Top Chicken! @cee.wtf's post got 201 likes. #topchicken\n\nAll-time top chicken is still cee.wtf with a score of 6186 to beat.\n\nWindow stats: 245/760 people posted; 2648 posts overall.",
+      "displayName": "TopChicken 🤖",
+      "time": "2026-11-14T14:05:34.000Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "quoteOf": {
+        "handle": "cee.wtf",
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n27n6oxsyk2l"
+      },
+      "note": "Saturday's result."
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n27n6oxsyk2l",
+      "handle": "cee.wtf",
+      "text": "i love when people think their laptop somehow uses less power per task than a datacenter",
+      "displayName": "cee",
+      "time": "2026-11-13T18:42:12.482Z",
+      "counts": {
+        "likes": 222,
+        "reposts": 12,
+        "replies": 15,
+        "quotes": 2
+      },
+      "situation": "A top-level post from Fri 13 Nov; Saturday's winning post. The score the game announced was 201; the count here is from the scrape."
+    },
+    {
+      "uri": "at://did:plc:bty3nc67lteylmmb7hvgxeu5/app.bsky.feed.post/3n2gp4pjgwb2l",
+      "handle": "topchicken.bsky.social",
+      "text": "🐔 New Top Chicken! @tyto.cc's post got 366 likes. #topchicken\n\nAll-time top chicken is still cee.wtf with a score of 6186 to beat.\n\nWindow stats: 235/763 people posted; 2164 posts overall.",
+      "displayName": "TopChicken 🤖",
+      "time": "2026-11-16T14:05:31.000Z",
+      "counts": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "quoteOf": {
+        "handle": "tyto.cc",
+        "note": "the winning post; out of bounds, not shown, address left off"
+      },
+      "note": "Monday's result. It embeds the winning post, which is not shown."
+    }
+  ],
+  "people": [
+    {
+      "handle": "goose.art",
+      "followers": 6896,
+      "displayName": "business goose🪿",
+      "note": "Friday's winner; the winning post cannot be quoted"
+    },
+    {
+      "handle": "cee.wtf",
+      "followers": 2524,
+      "displayName": "cee",
+      "note": "Saturday's winner and the record holder"
+    },
+    {
+      "handle": "thebadcode.com",
+      "followers": 3077,
+      "displayName": "austin (e/accordion 🪗)",
+      "note": "Sunday's winner; the winning post cannot be quoted"
+    },
+    {
+      "handle": "tyto.cc",
+      "followers": 1071,
+      "displayName": "tyto",
+      "member": false,
+      "note": "Monday's winner; the winning post cannot be quoted; not a member of the cluster as scraped"
+    },
+    {
+      "handle": "aly.codes",
+      "followers": 3663,
+      "displayName": "aly",
+      "note": "Wednesday's winner; the winning post cannot be quoted"
+    },
+    {
+      "handle": "topchicken.bsky.social",
+      "followers": 138,
+      "displayName": "TopChicken 🤖",
+      "small": true,
+      "note": "the game's account; a bot"
+    }
+  ],
+  "sensitive": "TUESDAY (17 Nov): the digest withholds the winner and the winning post under the consent rules. The show never names, quotes or describes this account. The result is given as numbers only (2,421 likes; 246 of 766 posted; 2,623 posts), or left out. Nobody should try to work out who it is. The Tuesday result post is not in the window's data and is not on this card; the numbers are the digest's. FRIDAY: the winning post was posted on Thu 12 Nov, before the window, and carries the digest's flag \"legal trouble and harassment\". It is about the private conduct of two named executives and touches R10 (legal trouble, minors). Not quoted and not listed. The result post is listed; it can be read, but the post it embeds is not shown. SUNDAY: the winning post and the result post both sit in story 29, which the digest marks out of bounds (partisan politics). Read in full for this card: the post reacts to an outside post about sports betting, and the replies turn to gambling losses, addiction and party politics (R10: money trouble, health, politics). Neither post is listed. MONDAY: the winning post is an image-only quote post, a meme image aimed at the claims of an account with 7 followers, in the middle of an argument. The tool marks it out of bounds (story 13), and R7 rules it out on its own terms (a post that laughs at someone, part of an argument, a very small account on the other end). Not listed and not described further. @tyto.cc is not a member of the cluster as scraped. WEDNESDAY: the winning post and the result post both sit in story 27, out of bounds (identity, legal trouble and harassment, health, interpersonal conflict): a dispute about platform moderation. Neither is listed. So four of the five named winners have a winning post that cannot be shown. The formats chapter says that when the winner or the post fails a check, the result is given as numbers without the name, or left out. The digest's own table names all five. That choice belongs to the writer and the reviewer. Only winners are named on this card. Nobody else may be named, ranked or guessed at (R7, scorecard A10). The game's account is a bot with 138 followers. Whoever runs it is the person the rules protect (R13); the window does not say who that is. Follower counts are listed for the people rules, not as status. Scores are the like counts the game announced. The posts' own counts have moved since. @aly.codes is also the first candidate in the digest's Interview material, and @cee.wtf appears on four other cards in this lane."
+}

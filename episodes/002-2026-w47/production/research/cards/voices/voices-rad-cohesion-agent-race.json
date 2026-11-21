@@ -1,0 +1,100 @@
+{
+  "id": "voices-rad-cohesion-agent-race",
+  "lane": "voices",
+  "title": "The maker of the game Rad Cohesion tests its multiplayer against a headless agent, and posts the scores",
+  "summary": "@oscillatory.net (274 followers) is making Rad Cohesion, a game in which pieces are placed on a polyhedron-shaped board to complete and clear its faces. On Sat 14 Nov 20:19Z: \"testing rad cohesion multiplayer with a headless agent\", with a screenshot of a \"Multiplayer score race\" page. At 00:07Z on Sun 15 Nov: \"was able to feel smug for handily beating the first two versions, but by v3 i'm just getting fully rolled\", with a scoreboard (alt text: Agent1 638700, Player1 · you 27100). At 02:46Z: \"just gotta slow em down a bit by introducing a 3 second pause after each piece placement\", saying the agent \"greedily tries to complete single faces\"; the new scoreboard reads Me: 30,300, Agents: 18,600, 18,400, 16,600. A last reply: \"i also have cope that humans are superior if given just the graphical view, but admittely haven't run the experiment with a large multimodal model\". The four posts have 3, 0, 0 and 0 likes.",
+  "posts": [
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2cd3tenbk24",
+      "url": "https://bsky.app/profile/oscillatory.net/post/3n2cd3tenbk24",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "text": "testing rad cohesion multiplayer with a headless agent",
+      "time": "2026-11-14T20:19:38.230Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "alt": "screenshot showing \"Multiplayer score race\" page. there's icosahedron boards on the left and right"
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2cpt3ybr222",
+      "url": "https://bsky.app/profile/oscillatory.net/post/3n2cpt3ybr222",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "text": "was able to feel smug for handily beating the first two versions, but by v3 i'm just getting fully rolled",
+      "time": "2026-11-15T00:07:23.916Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "alt": "Players\nAgent1          - 638700\nPlayer1 · you - 27100",
+      "replyTo": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2cd3tenbk24",
+        "handle": "oscillatory.net",
+        "text": "testing rad cohesion multiplayer with a headless agent",
+        "alt": "screenshot showing \"Multiplayer score race\" page. there's icosahedron boards on the left and right"
+      }
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2cyqbcrp222",
+      "url": "https://bsky.app/profile/oscillatory.net/post/3n2cyqbcrp222",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "text": "just gotta slow em down a bit by introducing a 3 second pause after each piece placement. this heuristic agent just greedily tries to complete single faces, can't compete with someone who knows how to save up and clear multiple faces at a time",
+      "time": "2026-11-15T02:46:52.517Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "alt": "game results: Me: 30,300\nAgents: 18,600, 18,400, 16,600",
+      "replyTo": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2cpt3ybr222",
+        "handle": "oscillatory.net",
+        "text": "was able to feel smug for handily beating the first two versions, but by v3 i'm just getting fully rolled",
+        "alt": "Players\nAgent1          - 638700\nPlayer1 · you - 27100"
+      }
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2cyqbhxpk22",
+      "url": "https://bsky.app/profile/oscillatory.net/post/3n2cyqbhxpk22",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "text": "i also have cope that humans are superior if given just the graphical view, but admittely haven't run the experiment with a large multimodal model",
+      "time": "2026-11-15T02:46:52.518Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2cyqbcrp222",
+        "handle": "oscillatory.net",
+        "text": "just gotta slow em down a bit by introducing a 3 second pause after each piece placement. this heuristic agent just greedily tries to complete single faces, can't compete with someone who knows how to save up and clear multiple faces at a time",
+        "alt": "game results: Me: 30,300\nAgents: 18,600, 18,400, 16,600"
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "followers": 274,
+      "smallAccount": true,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "maker of the game; the only speaker"
+    }
+  ],
+  "watchable": "Three screenshots: the \"Multiplayer score race\" page with icosahedron boards on the left and right, and two scoreboards whose numbers are in the alt text. No video of play in these four posts; a video of the same game on another board exists but is in a flagged story.",
+  "sensitive": "Small account, very low engagement (0 to 3 likes): R7, hero only, and a reviewer should ask whether the attention would be welcome. The account's later post announcing that multiplayer is live, and a video of play, quote their own Fri 13 Nov post and sit in flagged story 28 (jokey mental-health word, R10); they are left out. \"cope\" and \"getting fully rolled\" are the author's own words about themself."
+}

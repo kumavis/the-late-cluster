@@ -1,0 +1,37 @@
+{
+  "id": "voices-gm-quota",
+  "lane": "voices",
+  "title": "A 104-follower account says \"gm\" to Claude to start the quota clock",
+  "summary": "On Mon 16 Nov 08:08Z @postfreq.bsky.social (jil, 104 followers) posted: \"saying \"gm\" to Claude first thing in the morning to start the 5-hour quota rolling\" (3 likes). It is a single top-level post with no replies in the digest.",
+  "posts": [
+    {
+      "uri": "at://did:plc:qb22jumuv3x2pdvuyvbz5sou/app.bsky.feed.post/3n2g35ripkk2z",
+      "url": "https://bsky.app/profile/postfreq.bsky.social/post/3n2g35ripkk2z",
+      "handle": "postfreq.bsky.social",
+      "displayName": "jil",
+      "text": "saying \"gm\" to Claude first thing in the morning to start the 5-hour quota rolling",
+      "time": "2026-11-16T08:08:12.393Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "postfreq.bsky.social",
+      "displayName": "jil",
+      "followers": 104,
+      "smallAccount": true,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "the only speaker"
+    }
+  ],
+  "watchable": "Text only. One number: a 5-hour quota.",
+  "sensitive": "A small account (104 followers) and a 3-like post (R7: hero only; a reviewer should ask whether the attention would be welcome). The account's next post that morning is about sex and a sleep treatment; not used (R10)."
+}

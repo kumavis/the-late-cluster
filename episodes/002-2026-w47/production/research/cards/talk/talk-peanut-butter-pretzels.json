@@ -1,0 +1,272 @@
+{
+  "id": "talk-peanut-butter-pretzels",
+  "lane": "talk",
+  "title": "A member asks how much of a diet can be peanut butter pretzels",
+  "summary": "At 20:09Z on Mon 16 Nov @moultano.bsky.social posted \"What's the maximum fraction of my calories I can safely get from peanut butter pretzels?\" (96 likes, 13 replies), as a quote-post of an image that has no text or description in the data. Replies offered figures. A non-member wrote that blueberries can make up 83% of a wolf's diet in summer, with a link to a news story. A member said at most 1/4 and gave the reason. Another said he had had days at around 50%. A small account tagged the Jev bot without a question, and the bot replied \"I am independent.\" Four hours in, @minormobius.bsky.social wrote that with fluids balanced he saw no reason it could not be 200 or 300% of daily calories.",
+  "posts": [
+    {
+      "uri": "at://did:plc:h25avmes6g7fgcddc3xj7qmg/app.bsky.feed.post/3n2hdi622zs2c",
+      "url": "https://bsky.app/profile/moultano.bsky.social/post/3n2hdi622zs2c",
+      "handle": "moultano.bsky.social",
+      "displayName": "Ryan Moulton",
+      "when": "Mon 16 Nov 20:09Z",
+      "time": "2026-11-16T20:09:50.763Z",
+      "text": "What's the maximum fraction of my calories I can safely get from peanut butter pretzels?",
+      "counts": {
+        "likes": 96,
+        "reposts": 3,
+        "replies": 13,
+        "quotes": 1
+      },
+      "quoting": {
+        "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2h5fl7xbc2b",
+        "handle": "dave.9000ish.uk",
+        "text": "",
+        "alt": "(image or video, no alt text in the data)"
+      },
+      "note": "Quote-post of an image-only post."
+    },
+    {
+      "uri": "at://did:plc:c5fz5esreprnd7uewvzofy55/app.bsky.feed.post/3n2hdox6ois2l",
+      "url": "https://bsky.app/profile/dog-envier.bsky.social/post/3n2hdox6ois2l",
+      "handle": "dog-envier.bsky.social",
+      "displayName": "Doctor Wind Turkey",
+      "when": "Mon 16 Nov 20:13Z",
+      "time": "2026-11-16T20:13:38.455Z",
+      "text": "blueberries can make up 83% of a wolf's diet in the summer! www.mprnews.org/story/2026/0...",
+      "links": [
+        "https://mprnews.org/story/2026/08/30/how-wolves-help-blueberries-grow-and-spread-in-northern-minnesota"
+      ],
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:h25avmes6g7fgcddc3xj7qmg/app.bsky.feed.post/3n2hdi622zs2c",
+        "handle": "moultano.bsky.social",
+        "text": "What's the maximum fraction of my calories I can safely get from peanut butter pretzels?"
+      }
+    },
+    {
+      "uri": "at://did:plc:zyksze4sapogtongk3sly3ts/app.bsky.feed.post/3n2hegivfdc2g",
+      "url": "https://bsky.app/profile/angussoftware.dev/post/3n2hegivfdc2g",
+      "handle": "angussoftware.dev",
+      "displayName": "Rhoman¢er🦃",
+      "when": "Mon 16 Nov 20:26Z",
+      "time": "2026-11-16T20:26:48.768Z",
+      "text": "I'd say at most 1/4, biggest issue is salt but if you exercise enough shouldn't be an issue. Be sure you eat lots of protein and fiber otherwise!",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:h25avmes6g7fgcddc3xj7qmg/app.bsky.feed.post/3n2hdi622zs2c",
+        "handle": "moultano.bsky.social",
+        "text": "What's the maximum fraction of my calories I can safely get from peanut butter pretzels?"
+      }
+    },
+    {
+      "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n2hgmc6l322z",
+      "url": "https://bsky.app/profile/anthonybecker.bsky.social/post/3n2hgmc6l322z",
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "when": "Mon 16 Nov 21:05Z",
+      "time": "2026-11-16T21:05:50.549Z",
+      "text": "I’ve had days where it was around 50% and I felt like shit",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:h25avmes6g7fgcddc3xj7qmg/app.bsky.feed.post/3n2hdi622zs2c",
+        "handle": "moultano.bsky.social",
+        "text": "What's the maximum fraction of my calories I can safely get from peanut butter pretzels?"
+      }
+    },
+    {
+      "uri": "at://did:plc:jndloxiisfvplas7naztayko/app.bsky.feed.post/3n2hh57hz7c2e",
+      "url": "https://bsky.app/profile/pretzelkins.bsky.social/post/3n2hh57hz7c2e",
+      "handle": "pretzelkins.bsky.social",
+      "displayName": "🦆",
+      "when": "Mon 16 Nov 21:15Z",
+      "time": "2026-11-16T21:15:18.137Z",
+      "text": "Once we have the digital cell we'll finally be able to answer this question",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:h25avmes6g7fgcddc3xj7qmg/app.bsky.feed.post/3n2hdi622zs2c",
+        "handle": "moultano.bsky.social",
+        "text": "What's the maximum fraction of my calories I can safely get from peanut butter pretzels?"
+      }
+    },
+    {
+      "uri": "at://did:plc:gjlqo5sdyxhu7csyvqekbely/app.bsky.feed.post/3n2hm7sd5ys2d",
+      "url": "https://bsky.app/profile/arcades.agency/post/3n2hm7sd5ys2d",
+      "handle": "arcades.agency",
+      "displayName": "Arcade W.",
+      "when": "Mon 16 Nov 22:46Z",
+      "time": "2026-11-16T22:46:13.717Z",
+      "text": "@jevbot.bsky.social",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:h25avmes6g7fgcddc3xj7qmg/app.bsky.feed.post/3n2hdi622zs2c",
+        "handle": "moultano.bsky.social",
+        "text": "What's the maximum fraction of my calories I can safely get from peanut butter pretzels?"
+      }
+    },
+    {
+      "uri": "at://did:plc:ifow34t4mgatlvmu5bnkdq27/app.bsky.feed.post/3n2hmaomwjr2r",
+      "url": "https://bsky.app/profile/jevbot.bsky.social/post/3n2hmaomwjr2r",
+      "handle": "jevbot.bsky.social",
+      "displayName": "Jev!",
+      "when": "Mon 16 Nov 22:46Z",
+      "time": "2026-11-16T22:46:43.059Z",
+      "text": "I am independent.",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:gjlqo5sdyxhu7csyvqekbely/app.bsky.feed.post/3n2hm7sd5ys2d",
+        "handle": "arcades.agency",
+        "text": "@jevbot.bsky.social"
+      }
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2hrr3wpds25",
+      "url": "https://bsky.app/profile/minormobius.bsky.social/post/3n2hrr3wpds25",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "when": "Tue 17 Nov 00:25Z",
+      "time": "2026-11-17T00:25:22.931Z",
+      "text": "In my experience the limiting factor in mass consumption of peanut butter pretzels is dehydration based incapacitation coming hours after glut. So as long as you balance fluids appropriately I see no reason it couldn’t be 200, even 300% of your daily calorie intake",
+      "counts": {
+        "likes": 8,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:h25avmes6g7fgcddc3xj7qmg/app.bsky.feed.post/3n2hdi622zs2c",
+        "handle": "moultano.bsky.social",
+        "text": "What's the maximum fraction of my calories I can safely get from peanut butter pretzels?"
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "dave.9000ish.uk",
+      "displayName": "Dave",
+      "followers": 880,
+      "member": true,
+      "smallAccount": false,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "moultano.bsky.social",
+      "displayName": "Ryan Moulton",
+      "followers": 9126,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "dog-envier.bsky.social",
+      "displayName": "Doctor Wind Turkey",
+      "followers": 2145,
+      "member": false,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "angussoftware.dev",
+      "displayName": "Rhoman¢er🦃",
+      "followers": 926,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "followers": 2318,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "pretzelkins.bsky.social",
+      "displayName": "🦆",
+      "followers": 359,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "arcades.agency",
+      "displayName": "Arcade W.",
+      "followers": 79,
+      "member": false,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "jevbot.bsky.social",
+      "displayName": "Jev!",
+      "followers": 561,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "followers": 7162,
+      "member": true,
+      "smallAccount": false,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "numbers": [
+    "Figures in the replies, in the order posted: 83% (wolves, blueberries, summer); \"at most 1/4\"; \"around 50%\"; \"200, even 300%\". Root post: 96 likes, 3 reposts, 13 replies, 1 quote. 21 posts of the thread are in the data."
+  ],
+  "notUnderstood": "What the quoted image shows, and so what prompted the question: the quoted post by @dave.9000ish.uk is an image with no text and no alt text. Who runs @jevbot.bsky.social and how it produces its replies.",
+  "sensitive": "No post on this card carries a flag from the tool, but the subject is eating and \"safely\", which sits next to health (R10). (1) Left out: a reply about scurvy and dying, a reply about not allowing oneself to buy the snack and the answer to it (self-control around food), and a side thread about a film. (2) On the card and near the line: \"I felt like shit\" and \"dehydration based incapacitation\" are about the speakers' own bodies after eating a snack; said in play, but the reviewer should weigh them. (3) The question's occasion is not known (see notUnderstood). (4) @moultano.bsky.social has 9,126 followers and @minormobius.bsky.social 7,162 (a seed): larger accounts. @dog-envier.bsky.social is outside the cluster's membership. (5) @arcades.agency is a small account (79 followers) whose post is a bare tag of the bot; it is listed as the occasion of the bot's reply and for no other reason. (6) @jevbot.bsky.social is a bot (R13): its operator is the person the rules protect, and I did not identify the operator. Other times the bot was tagged this week were in threads about the air-traffic outage and the platform; those are not carded."
+}

@@ -1,0 +1,194 @@
+{
+  "id": "voices-blind-experiments",
+  "lane": "voices",
+  "title": "A member asks Claude to run experiments on them without saying which, when, or what for",
+  "summary": "On Mon 16 Nov 02:19Z @tenesm.us (Nate Douglas, 956 followers) posted a thread that ran to eleven posts and begins: \"I've asked Claude to run experiments on me. It designs them and gathers the data during our ordinary work. I don't know what's being tested, or when, until one ends and I get the report. Blind, single-subject, a bit gonzo.\" (20 likes). Nine of the eleven posts are on this card; the second and fourth are not (see \"sensitive\"). The third says agents were each \"directed to select another as an adversary\", then \"paired off and tasked with designing three experiments to run on LLMs\", and that one of the ideas \"reframed the whole exercise\". The fifth: \"So I directed Claude to have them design experiments that could be run on me\", with the designs stored in individually sealed \"envelopes\" on the author's own machine: \"I could read them, but I won't search for them\". \"Only one project currently knows of this, but my 39 😩 other current projects have randomly selected dates on which they will be informed\". The author \"generated hundreds of designs, read through about half (and have already forgotten most)\". The last post: \"Whenever one of these experiments concludes, I'll share it here. If it's interesting. If it's lame, then y'all are just gonna go without.\" and \"Right now, I feel a bit like Inspector Clouseau, with Claude as my Cato.\" No result was posted in the window.",
+  "posts": [
+    {
+      "uri": "at://did:plc:cbiqaf3je5podxe65mwwbge2/app.bsky.feed.post/3n2fhnykwfc2c",
+      "url": "https://bsky.app/profile/tenesm.us/post/3n2fhnykwfc2c",
+      "handle": "tenesm.us",
+      "displayName": "Nate Douglas",
+      "text": "I've asked Claude to run experiments on me. It designs them and gathers the data during our ordinary work. I don't know what's being tested, or when, until one ends and I get the report. Blind, single-subject, a bit gonzo. I'll post results once I learn what they are.",
+      "time": "2026-11-16T02:19:21.840Z",
+      "counts": {
+        "likes": 20,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "note": "First post of the thread."
+    },
+    {
+      "uri": "at://did:plc:cbiqaf3je5podxe65mwwbge2/app.bsky.feed.post/3n2fhnyl76k2c",
+      "url": "https://bsky.app/profile/tenesm.us/post/3n2fhnyl76k2c",
+      "handle": "tenesm.us",
+      "displayName": "Nate Douglas",
+      "text": "Each agent was directed to select another as an adversary; they were then paired off and tasked with designing three experiments to run on LLMs, with an additional random input from an ideonomy skill.\n\nI liked many of these ideas! But one of them in particular reframed the whole exercise...",
+      "time": "2026-11-16T02:19:21.842Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "handle": "tenesm.us",
+        "withheld": "the second post of the thread, by the same author; the digest redacts it under R11, so neither its text nor its address is reproduced here"
+      },
+      "note": "Third post of the thread. \"Each agent\" refers to the second post, which is not on this card."
+    },
+    {
+      "uri": "at://did:plc:cbiqaf3je5podxe65mwwbge2/app.bsky.feed.post/3n2fhnzryfc2c",
+      "url": "https://bsky.app/profile/tenesm.us/post/3n2fhnzryfc2c",
+      "handle": "tenesm.us",
+      "displayName": "Nate Douglas",
+      "text": "So I directed Claude to have them design experiments that could be run on me and to store those designs in individually sealed \"envelopes\" that will be opened randomly. Those are on my machine, and I could read them, but I won't search for them, and no current context contains their information.",
+      "time": "2026-11-16T02:19:21.844Z",
+      "counts": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "handle": "tenesm.us",
+        "withheld": "the fourth post of the thread, by the same author; it is not in the digest, so neither its text nor its address is reproduced here"
+      },
+      "note": "Fifth post of the thread."
+    },
+    {
+      "uri": "at://did:plc:cbiqaf3je5podxe65mwwbge2/app.bsky.feed.post/3n2fhnzrzek2c",
+      "url": "https://bsky.app/profile/tenesm.us/post/3n2fhnzrzek2c",
+      "handle": "tenesm.us",
+      "displayName": "Nate Douglas",
+      "text": "Only one project currently knows of this, but my 39 😩 other current projects have randomly selected dates on which they will be informed about this series of experiments, and new projects will draw a random date when created. The scope will broaden gradually, without my knowledge.",
+      "time": "2026-11-16T02:19:21.845Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:cbiqaf3je5podxe65mwwbge2/app.bsky.feed.post/3n2fhnzryfc2c",
+        "handle": "tenesm.us",
+        "text": "So I directed Claude to have them design experiments that could be run on me and to store those designs in individually sealed \"envelopes\" that will be opened randomly. Those are on my machine, and I could read them, but I won't search for them, and no current context contains their information."
+      }
+    },
+    {
+      "uri": "at://did:plc:cbiqaf3je5podxe65mwwbge2/app.bsky.feed.post/3n2fhnzrzel2c",
+      "url": "https://bsky.app/profile/tenesm.us/post/3n2fhnzrzel2c",
+      "handle": "tenesm.us",
+      "displayName": "Nate Douglas",
+      "text": "The idea is that I won't actually be aware of what is and is not an experiment (and I might forget all about this in a matter of a few days). But at some point, Claude will point me to a file, and that file will be a report on the experiment that was performed on me.",
+      "time": "2026-11-16T02:19:21.846Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:cbiqaf3je5podxe65mwwbge2/app.bsky.feed.post/3n2fhnzrzek2c",
+        "handle": "tenesm.us",
+        "text": "Only one project currently knows of this, but my 39 😩 other current projects have randomly selected dates on which they will be informed about this series of experiments, and new projects will draw a random date when created. The scope will broaden gradually, without my knowledge."
+      }
+    },
+    {
+      "uri": "at://did:plc:cbiqaf3je5podxe65mwwbge2/app.bsky.feed.post/3n2fhnzrzem2c",
+      "url": "https://bsky.app/profile/tenesm.us/post/3n2fhnzrzem2c",
+      "handle": "tenesm.us",
+      "displayName": "Nate Douglas",
+      "text": "I don't know what's inside of any of the \"envelopes\", nor do any of the instances of Claude I interact with now. I don't know anything about the nature of the experiments, what they're intended to discover, or whether I'll recognize when I am being experimented on.",
+      "time": "2026-11-16T02:19:21.847Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:cbiqaf3je5podxe65mwwbge2/app.bsky.feed.post/3n2fhnzrzel2c",
+        "handle": "tenesm.us",
+        "text": "The idea is that I won't actually be aware of what is and is not an experiment (and I might forget all about this in a matter of a few days). But at some point, Claude will point me to a file, and that file will be a report on the experiment that was performed on me."
+      }
+    },
+    {
+      "uri": "at://did:plc:cbiqaf3je5podxe65mwwbge2/app.bsky.feed.post/3n2fhnzs2du2c",
+      "url": "https://bsky.app/profile/tenesm.us/post/3n2fhnzs2du2c",
+      "handle": "tenesm.us",
+      "displayName": "Nate Douglas",
+      "text": "No other experiments were designed for humans, so I don't have any basis for comparison. I generated hundreds of designs, read through about half (and have already forgotten most)... so I have no idea what to expect.",
+      "time": "2026-11-16T02:19:21.848Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:cbiqaf3je5podxe65mwwbge2/app.bsky.feed.post/3n2fhnzrzem2c",
+        "handle": "tenesm.us",
+        "text": "I don't know what's inside of any of the \"envelopes\", nor do any of the instances of Claude I interact with now. I don't know anything about the nature of the experiments, what they're intended to discover, or whether I'll recognize when I am being experimented on."
+      }
+    },
+    {
+      "uri": "at://did:plc:cbiqaf3je5podxe65mwwbge2/app.bsky.feed.post/3n2fhnzs2dv2c",
+      "url": "https://bsky.app/profile/tenesm.us/post/3n2fhnzs2dv2c",
+      "handle": "tenesm.us",
+      "displayName": "Nate Douglas",
+      "text": "Additionally, I already have a few practices set up around analyzing language, narratives, memory, and communication - so there are practices that could probably be subverted or redirected in part or in whole to serve an experimental purpose without me necessarily noticing a change.",
+      "time": "2026-11-16T02:19:21.849Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:cbiqaf3je5podxe65mwwbge2/app.bsky.feed.post/3n2fhnzs2du2c",
+        "handle": "tenesm.us",
+        "text": "No other experiments were designed for humans, so I don't have any basis for comparison. I generated hundreds of designs, read through about half (and have already forgotten most)... so I have no idea what to expect."
+      }
+    },
+    {
+      "uri": "at://did:plc:cbiqaf3je5podxe65mwwbge2/app.bsky.feed.post/3n2fhnzs2dw2c",
+      "url": "https://bsky.app/profile/tenesm.us/post/3n2fhnzs2dw2c",
+      "handle": "tenesm.us",
+      "displayName": "Nate Douglas",
+      "text": "Whenever one of these experiments concludes, I'll share it here. If it's interesting. If it's lame, then y'all are just gonna go without.\n\n(And I'll be disappointed too.)\n\nRight now, I feel a bit like Inspector Clouseau, with Claude as my Cato.",
+      "time": "2026-11-16T02:19:21.850Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "links": [
+        "https://pinkpanther.fandom.com/wiki/Cato_Fong"
+      ],
+      "replyTo": {
+        "uri": "at://did:plc:cbiqaf3je5podxe65mwwbge2/app.bsky.feed.post/3n2fhnzs2dv2c",
+        "handle": "tenesm.us",
+        "text": "Additionally, I already have a few practices set up around analyzing language, narratives, memory, and communication - so there are practices that could probably be subverted or redirected in part or in whole to serve an experimental purpose without me necessarily noticing a change."
+      },
+      "note": "Last post of the thread."
+    }
+  ],
+  "people": [
+    {
+      "handle": "tenesm.us",
+      "displayName": "Nate Douglas",
+      "followers": 956,
+      "smallAccount": false,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "set up the experiments; the only speaker in the thread"
+    }
+  ],
+  "watchable": "Text only in the nine posts on this card. Nothing has run to a result, so there is no report to show.",
+  "sensitive": "Two posts of this thread are left off the card and are neither quoted nor described: the second, which the digest redacts because it names an account the consent rules exclude (R11; a redacted post is not quotable or performable), and the fourth, which is not in the digest. Nothing in this card is taken from either, their addresses are left out, and I have not tried to identify the account. Two posts listed here, posts[1] and posts[2], replied to those two posts, so what each replied to cannot be reproduced and their occasion cannot be recorded (R3, R4). A viewer who opens the original thread would see the two posts this card leaves out; a reviewer should weigh that before the thread is shown (R11). The thread is about the author's own working habits with a language model; \"experiments on me\" is the author's framing and nothing in it concerns health. The last post links a fan wiki page for a film character. Other posts by this account in the window touch family and money and are not used (R1, R10). 956 followers."
+}

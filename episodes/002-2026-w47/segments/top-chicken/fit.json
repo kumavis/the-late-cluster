@@ -1,0 +1,1689 @@
+{
+ "segment": "top-chicken",
+ "episode": "002-2026-w47",
+ "takes": 4,
+ "gate": 0.6,
+ "lines": [
+  {
+   "id": "throw",
+   "who": "larry",
+   "kind": "say",
+   "text": "And now, the sports. Eppy?",
+   "as": "And now, the sports. Ep-ee?",
+   "heard": [
+    {
+     "text": "And now the sports epic",
+     "count": 1
+    },
+    {
+     "text": "And now the sports, happy",
+     "count": 1
+    },
+    {
+     "text": "And now, the sports epic sh-",
+     "count": 1
+    },
+    {
+     "text": "And now, the sports, happy.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 5,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "eppy",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 4,
+     "word": "Eppy",
+     "as": "Ep-ee",
+     "plain": "ɛ p p i",
+     "ipa": "ɛ p i",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "And now, the sports. Ep-ee?",
+     "score": {
+      "heard": 4,
+      "of": 5,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "And now the sports epic",
+       "count": 1
+      },
+      {
+       "text": "And now the sports, happy",
+       "count": 1
+      },
+      {
+       "text": "And now, the sports epic sh-",
+       "count": 1
+      },
+      {
+       "text": "And now, the sports, happy.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 4,
+       "word": "Eppy",
+       "as": "Ep-ee",
+       "plain": "ɛ p p i",
+       "ipa": "ɛ p i",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "open",
+   "who": "eppy",
+   "kind": "say",
+   "text": "Sports desk. The game is Top Chicken.",
+   "as": "Sports desk. The game is Top, Chik-kun.",
+   "heard": [
+    {
+     "text": "The sports desk, the game is top, which is corner.",
+     "count": 3
+    },
+    {
+     "text": "Sports desk, the game is top, which is corner.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 6,
+    "of": 7,
+    "min": 6
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "chicken",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 6,
+     "word": "Chicken",
+     "as": "Chik-kun",
+     "plain": "tʃ ɪ k ə n",
+     "ipa": "tʃ ɪ k k ʌ n",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "Sports desk. The game is Top, Chik-kun.",
+     "score": {
+      "heard": 6,
+      "of": 7,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "The sports desk, the game is top, which is corner.",
+       "count": 3
+      },
+      {
+       "text": "Sports desk, the game is top, which is corner.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 6,
+       "word": "Chicken",
+       "as": "Chik-kun",
+       "plain": "tʃ ɪ k ə n",
+       "ipa": "tʃ ɪ k k ʌ n",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "scorer",
+   "who": "eppy",
+   "kind": "say",
+   "text": "The score is kept by a bot.",
+   "as": null,
+   "heard": [
+    {
+     "text": "The score is kept by a bot.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 7,
+    "of": 7,
+    "min": 7
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "The score is kept by a bot.",
+     "score": {
+      "heard": 7,
+      "of": 7,
+      "min": 7
+     },
+     "heard": [
+      {
+       "text": "The score is kept by a bot.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "field",
+   "who": "eppy",
+   "kind": "say",
+   "text": "Saturday: 2,648 posts. One winner.",
+   "as": "Saturday: two-thousand-six-hundred-forty-eight posts. One winner.",
+   "heard": [
+    {
+     "text": "Saturday, 2,648 posts, one winner.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 9,
+    "of": 9,
+    "min": 9
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "sounds": [
+    {
+     "i": 1,
+     "word": "2,648",
+     "as": "two-thousand-six-hundred-forty-eight",
+     "plain": "t u s ɪ k s h ʌ n d ɹ ə d f ɔ ɹ ɾ i eɪ t",
+     "ipa": "t u θ aʊ z ə n d s ɪ k s h ʌ n d ɹ ə d f ɔ ɹ ɾ i eɪ t",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "Saturday: two-thousand-six-hundred-forty-eight posts. One winner.",
+     "score": {
+      "heard": 9,
+      "of": 9,
+      "min": 9
+     },
+     "heard": [
+      {
+       "text": "Saturday, 2,648 posts, one winner.",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "2,648",
+       "as": "two-thousand-six-hundred-forty-eight",
+       "plain": "t u s ɪ k s h ʌ n d ɹ ə d f ɔ ɹ ɾ i eɪ t",
+       "ipa": "t u θ aʊ z ə n d s ɪ k s h ʌ n d ɹ ə d f ɔ ɹ ɾ i eɪ t",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "winner",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Saturday's winner: cee.",
+   "as": "Saturday's winner: C.",
+   "heard": [
+    {
+     "text": "Saturday's winner, C",
+     "count": 2
+    },
+    {
+     "text": "Saturday's winner, see you!",
+     "count": 1
+    },
+    {
+     "text": "Saturday's winner, see!",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 3,
+    "min": 2
+   },
+   "status": "flagged",
+   "flags": [
+    "name: cee"
+   ],
+   "real": true,
+   "missed": [
+    {
+     "word": "cee",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 2,
+     "word": "cee",
+     "as": "C",
+     "plain": "s i",
+     "ipa": "s i",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "Saturday's winner: C.",
+     "score": {
+      "heard": 2,
+      "of": 3,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Saturday's winner, C",
+       "count": 2
+      },
+      {
+       "text": "Saturday's winner, see you!",
+       "count": 1
+      },
+      {
+       "text": "Saturday's winner, see!",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: cee"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "cee",
+       "as": "C",
+       "plain": "s i",
+       "ipa": "s i",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "Saturday's winner: cee.",
+     "score": {
+      "heard": 2,
+      "of": 3,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Saturday's winner, C",
+       "count": 1
+      },
+      {
+       "text": "Saturday's winner, see!",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: cee"
+     ]
+    },
+    {
+     "as": "Saturday's winner: C.",
+     "rate": 0.9,
+     "score": {
+      "heard": 2,
+      "of": 3,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Saturday's winner, Singh.",
+       "count": 3
+      },
+      {
+       "text": "Saturday's winner, C",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: cee"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "cee",
+       "as": "C",
+       "plain": "s i",
+       "ipa": "s i",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "Saturday's winner: C.",
+     "rate": 0.82,
+     "score": {
+      "heard": 2,
+      "of": 3,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Saturday's winner, Singh.",
+       "count": 3
+      },
+      {
+       "text": "Saturday's winner, C.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: cee"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "cee",
+       "as": "C",
+       "plain": "s i",
+       "ipa": "s i",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "score",
+   "who": "eppy",
+   "kind": "say",
+   "text": "201 likes. The winning post:",
+   "as": "Two-hundred-one likes. The winning post:",
+   "heard": [
+    {
+     "text": "201 likes, the winning post.",
+     "count": 3
+    },
+    {
+     "text": "201 likes the winning post.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 7,
+    "of": 7,
+    "min": 7
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "sounds": [
+    {
+     "i": 0,
+     "word": "201",
+     "as": "Two-hundred-one",
+     "plain": "t u h ʌ n d ɹ ə d w ʌ n",
+     "ipa": "t u h ʌ n d ɹ ə d w ʌ n",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "Two-hundred-one likes. The winning post:",
+     "score": {
+      "heard": 7,
+      "of": 7,
+      "min": 7
+     },
+     "heard": [
+      {
+       "text": "201 likes, the winning post.",
+       "count": 3
+      },
+      {
+       "text": "201 likes the winning post.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "201",
+       "as": "Two-hundred-one",
+       "plain": "t u h ʌ n d ɹ ə d w ʌ n",
+       "ipa": "t u h ʌ n d ɹ ə d w ʌ n",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "post",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "i love when people think their laptop somehow uses less power per task than a datacenter",
+   "as": "i love when people think their laptop somehow yoo-zuz less power, per taskk, than a dayta-center",
+   "heard": [
+    {
+     "text": "I love when people think they're laptop somehow uses less power per task than a data center.",
+     "count": 2
+    },
+    {
+     "text": "I love when people think their laptop somehow uses less power to protect the data center.",
+     "count": 1
+    },
+    {
+     "text": "I love when people think they're laptop somehow uses less power per task than the data center.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 14,
+    "of": 16,
+    "min": 12
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "their",
+     "count": 3
+    },
+    {
+     "word": "a",
+     "count": 2
+    },
+    {
+     "word": "per",
+     "count": 1
+    },
+    {
+     "word": "task",
+     "count": 1
+    },
+    {
+     "word": "than",
+     "count": 1
+    }
+   ],
+   "sounds": [
+    {
+     "i": 8,
+     "word": "uses",
+     "as": "yoo-zuz",
+     "plain": "j u s ə z",
+     "ipa": "j u z ʌ z",
+     "keeps": false,
+     "why": "consonants after vowel 1: s → z"
+    },
+    {
+     "i": 12,
+     "word": "task",
+     "as": "taskk",
+     "plain": "t æ s k",
+     "ipa": "t æ s k k",
+     "keeps": true
+    },
+    {
+     "i": 15,
+     "word": "datacenter",
+     "as": "dayta-center",
+     "plain": "d eɪ ɾ eɪ s ɛ n t ɚ",
+     "ipa": "d eɪ ɾ æ s ɛ n t ɚ",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "i love when people think their laptop somehow yoo-zuz less power, per taskk, than a dayta-center",
+     "score": {
+      "heard": 14,
+      "of": 16,
+      "min": 12
+     },
+     "heard": [
+      {
+       "text": "I love when people think they're laptop somehow uses less power per task than a data center.",
+       "count": 2
+      },
+      {
+       "text": "I love when people think their laptop somehow uses less power to protect the data center.",
+       "count": 1
+      },
+      {
+       "text": "I love when people think they're laptop somehow uses less power per task than the data center.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 8,
+       "word": "uses",
+       "as": "yoo-zuz",
+       "plain": "j u s ə z",
+       "ipa": "j u z ʌ z",
+       "keeps": false,
+       "why": "consonants after vowel 1: s → z"
+      },
+      {
+       "i": 12,
+       "word": "task",
+       "as": "taskk",
+       "plain": "t æ s k",
+       "ipa": "t æ s k k",
+       "keeps": true
+      },
+      {
+       "i": 15,
+       "word": "datacenter",
+       "as": "dayta-center",
+       "plain": "d eɪ ɾ eɪ s ɛ n t ɚ",
+       "ipa": "d eɪ ɾ æ s ɛ n t ɚ",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "gap",
+   "who": "eppy",
+   "kind": "say",
+   "text": "That score is 5,985 short of the record.",
+   "as": "That score is five-thousand-nine-hundred-eighty-five, short of the rekkerd.",
+   "heard": [
+    {
+     "text": "The score is 5985 short of the record.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 11,
+    "of": 12,
+    "min": 11
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "that",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 3,
+     "word": "5,985",
+     "as": "five-thousand-nine-hundred-eighty-five",
+     "plain": "f aɪ v n aɪ n h ʌ n d ɹ ə d eɪ ɾ i f aɪ v",
+     "ipa": "f aɪ v θ aʊ z ə n d n aɪ n h ʌ n d ɹ ə d eɪ ɾ i f aɪ v",
+     "keeps": null
+    },
+    {
+     "i": 7,
+     "word": "record",
+     "as": "rekkerd",
+     "plain": "ɹ ə k ɔ ɹ d",
+     "ipa": "ɹ ɛ k k ɝ d",
+     "keeps": true,
+     "reading": "ɹ ɛ k ɚ d"
+    }
+   ],
+   "tried": [
+    {
+     "as": "That score is five-thousand-nine-hundred-eighty-five, short of the rekkerd.",
+     "score": {
+      "heard": 11,
+      "of": 12,
+      "min": 11
+     },
+     "heard": [
+      {
+       "text": "The score is 5985 short of the record.",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 3,
+       "word": "5,985",
+       "as": "five-thousand-nine-hundred-eighty-five",
+       "plain": "f aɪ v n aɪ n h ʌ n d ɹ ə d eɪ ɾ i f aɪ v",
+       "ipa": "f aɪ v θ aʊ z ə n d n aɪ n h ʌ n d ɹ ə d eɪ ɾ i f aɪ v",
+       "keeps": null
+      },
+      {
+       "i": 7,
+       "word": "record",
+       "as": "rekkerd",
+       "plain": "ɹ ə k ɔ ɹ d",
+       "ipa": "ɹ ɛ k k ɝ d",
+       "keeps": true,
+       "reading": "ɹ ɛ k ɚ d"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "heldby",
+   "who": "eppy",
+   "kind": "say",
+   "text": "The record is held by?",
+   "as": "The rekkerd is held by?",
+   "heard": [
+    {
+     "text": "The record is held by",
+     "count": 3
+    },
+    {
+     "text": "the record is held by",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 5,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "sounds": [
+    {
+     "i": 1,
+     "word": "record",
+     "as": "rekkerd",
+     "plain": "ɹ ə k ɔ ɹ d",
+     "ipa": "ɹ ɛ k k ɝ d",
+     "keeps": true,
+     "reading": "ɹ ɛ k ɚ d"
+    }
+   ],
+   "tried": [
+    {
+     "as": "The rekkerd is held by?",
+     "score": {
+      "heard": 5,
+      "of": 5,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "The record is held by",
+       "count": 3
+      },
+      {
+       "text": "the record is held by",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "record",
+       "as": "rekkerd",
+       "plain": "ɹ ə k ɔ ɹ d",
+       "ipa": "ɹ ɛ k k ɝ d",
+       "keeps": true,
+       "reading": "ɹ ɛ k ɚ d"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "recordline",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "… All-time top chicken is still cee.wtf with a score of 6186 to beat. …",
+   "as": "… All-time topp, Chik-kun, is still see, with a score of six-thousand-one-eighty-six to beat. …",
+   "heard": [
+    {
+     "text": "All time top, Nikon is still safe with the score of 6186 to beat.",
+     "count": 3
+    },
+    {
+     "text": "All time tap, Nikon is still safe with the score of 6186 to beat.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 16,
+    "of": 20,
+    "min": 15
+   },
+   "status": "flagged",
+   "flags": [
+    "name: cee"
+   ],
+   "real": true,
+   "missed": [
+    {
+     "word": "chicken",
+     "count": 4
+    },
+    {
+     "word": "cee",
+     "count": 4
+    },
+    {
+     "word": "wtf",
+     "count": 4
+    },
+    {
+     "word": "a",
+     "count": 4
+    },
+    {
+     "word": "top",
+     "count": 1
+    }
+   ],
+   "sounds": [
+    {
+     "i": 2,
+     "word": "top",
+     "as": "topp",
+     "plain": "t ɑ p",
+     "ipa": "t ɑ p",
+     "keeps": true
+    },
+    {
+     "i": 3,
+     "word": "chicken",
+     "as": "Chik-kun",
+     "plain": "tʃ ɪ k ə n",
+     "ipa": "tʃ ɪ k k ʌ n",
+     "keeps": true
+    },
+    {
+     "i": 6,
+     "word": "cee.wtf",
+     "as": "see",
+     "plain": "s i w t f",
+     "ipa": "s i",
+     "keeps": null
+    },
+    {
+     "i": 11,
+     "word": "6186",
+     "as": "six-thousand-one-eighty-six",
+     "plain": "s ɪ k s θ aʊ z ə n d w ʌ n h ʌ n d ɹ ə d eɪ ɾ i s ɪ k s",
+     "ipa": "s ɪ k s θ aʊ z ə n d w ʌ n eɪ ɾ i s ɪ k s",
+     "keeps": null
+    }
+   ],
+   "rejected": [
+    {
+     "word": "chicken",
+     "as": "chih-kun",
+     "plain": "tʃ ɪ k ə n",
+     "ipa": "tʃ ɪ h k ʌ n",
+     "why": "consonants after vowel 1: k → h k"
+    }
+   ],
+   "tried": [
+    {
+     "as": "… All-time topp, Chik-kun, is still see, with a score of six-thousand-one-eighty-six to beat. …",
+     "score": {
+      "heard": 16,
+      "of": 20,
+      "min": 15
+     },
+     "heard": [
+      {
+       "text": "All time top, Nikon is still safe with the score of 6186 to beat.",
+       "count": 3
+      },
+      {
+       "text": "All time tap, Nikon is still safe with the score of 6186 to beat.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: cee"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "top",
+       "as": "topp",
+       "plain": "t ɑ p",
+       "ipa": "t ɑ p",
+       "keeps": true
+      },
+      {
+       "i": 3,
+       "word": "chicken",
+       "as": "Chik-kun",
+       "plain": "tʃ ɪ k ə n",
+       "ipa": "tʃ ɪ k k ʌ n",
+       "keeps": true
+      },
+      {
+       "i": 6,
+       "word": "cee.wtf",
+       "as": "see",
+       "plain": "s i w t f",
+       "ipa": "s i",
+       "keeps": null
+      },
+      {
+       "i": 11,
+       "word": "6186",
+       "as": "six-thousand-one-eighty-six",
+       "plain": "s ɪ k s θ aʊ z ə n d w ʌ n h ʌ n d ɹ ə d eɪ ɾ i s ɪ k s",
+       "ipa": "s ɪ k s θ aʊ z ə n d w ʌ n eɪ ɾ i s ɪ k s",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "… All-time top chicken is still cee.wtf with a score of 6186 to beat. …",
+     "score": {
+      "heard": 13,
+      "of": 20,
+      "min": 13
+     },
+     "heard": [
+      {
+       "text": "All time tabs can still see, put with a score of 6,106 to beat.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: cee"
+     ]
+    },
+    {
+     "as": "… All-time topp, Chik-kun, is still cee.wtf, with a score of six-thousand-one-eighty-six to beat. …",
+     "score": {
+      "heard": 13,
+      "of": 20,
+      "min": 13
+     },
+     "heard": [
+      {
+       "text": "All-time tab, which I can still see, with the score of 6186 to be loaded.",
+       "count": 1
+      },
+      {
+       "text": "All-time tab, which I can still see, with the score of 6186 to beat.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: cee"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "top",
+       "as": "topp",
+       "plain": "t ɑ p",
+       "ipa": "t ɑ p",
+       "keeps": true
+      },
+      {
+       "i": 3,
+       "word": "chicken",
+       "as": "Chik-kun",
+       "plain": "tʃ ɪ k ə n",
+       "ipa": "tʃ ɪ k k ʌ n",
+       "keeps": true
+      },
+      {
+       "i": 11,
+       "word": "6186",
+       "as": "six-thousand-one-eighty-six",
+       "plain": "s ɪ k s θ aʊ z ə n d w ʌ n h ʌ n d ɹ ə d eɪ ɾ i s ɪ k s",
+       "ipa": "s ɪ k s θ aʊ z ə n d w ʌ n eɪ ɾ i s ɪ k s",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "… All-time topp, Chik-kun, is still, see, with a score of six-thousand-one-eighty-six to beat. …",
+     "score": {
+      "heard": 15,
+      "of": 20,
+      "min": 15
+     },
+     "heard": [
+      {
+       "text": "All time tap, Nikon is still safe with the score of 6186 to beat.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: cee"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "top",
+       "as": "topp",
+       "plain": "t ɑ p",
+       "ipa": "t ɑ p",
+       "keeps": true
+      },
+      {
+       "i": 3,
+       "word": "chicken",
+       "as": "Chik-kun",
+       "plain": "tʃ ɪ k ə n",
+       "ipa": "tʃ ɪ k k ʌ n",
+       "keeps": true
+      },
+      {
+       "i": 6,
+       "word": "cee.wtf",
+       "as": "see",
+       "plain": "s i w t f",
+       "ipa": "s i",
+       "keeps": null
+      },
+      {
+       "i": 11,
+       "word": "6186",
+       "as": "six-thousand-one-eighty-six",
+       "plain": "s ɪ k s θ aʊ z ə n d w ʌ n h ʌ n d ɹ ə d eɪ ɾ i s ɪ k s",
+       "ipa": "s ɪ k s θ aʊ z ə n d w ʌ n eɪ ɾ i s ɪ k s",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "… All-time topp, chik-kun, is still see, with a score of six-thousand-one-eighty-six to beat. …",
+     "score": {
+      "heard": 16,
+      "of": 20,
+      "min": 16
+     },
+     "heard": [
+      {
+       "text": "All time top, Nikon is still safe with the score of 6186 to beat.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: cee"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "top",
+       "as": "topp",
+       "plain": "t ɑ p",
+       "ipa": "t ɑ p",
+       "keeps": true
+      },
+      {
+       "i": 3,
+       "word": "chicken",
+       "as": "chik-kun",
+       "plain": "tʃ ɪ k ə n",
+       "ipa": "tʃ ɪ k k ʌ n",
+       "keeps": true
+      },
+      {
+       "i": 6,
+       "word": "cee.wtf",
+       "as": "see",
+       "plain": "s i w t f",
+       "ipa": "s i",
+       "keeps": null
+      },
+      {
+       "i": 11,
+       "word": "6186",
+       "as": "six-thousand-one-eighty-six",
+       "plain": "s ɪ k s θ aʊ z ə n d w ʌ n h ʌ n d ɹ ə d eɪ ɾ i s ɪ k s",
+       "ipa": "s ɪ k s θ aʊ z ə n d w ʌ n eɪ ɾ i s ɪ k s",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "… All-time topp, chicken, is still see, with a score of six-thousand-one-eighty-six to beat. …",
+     "score": {
+      "heard": 14,
+      "of": 20,
+      "min": 14
+     },
+     "heard": [
+      {
+       "text": "All time top, click on the page till see, with the score of 6186 to beat.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: cee"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "top",
+       "as": "topp",
+       "plain": "t ɑ p",
+       "ipa": "t ɑ p",
+       "keeps": true
+      },
+      {
+       "i": 6,
+       "word": "cee.wtf",
+       "as": "see",
+       "plain": "s i w t f",
+       "ipa": "s i",
+       "keeps": null
+      },
+      {
+       "i": 11,
+       "word": "6186",
+       "as": "six-thousand-one-eighty-six",
+       "plain": "s ɪ k s θ aʊ z ə n d w ʌ n h ʌ n d ɹ ə d eɪ ɾ i s ɪ k s",
+       "ipa": "s ɪ k s θ aʊ z ə n d w ʌ n eɪ ɾ i s ɪ k s",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "… All-time topp Chik-kun, is still see, with a score of six-thousand-one-eighty-six to beat. …",
+     "score": {
+      "heard": 14,
+      "of": 20,
+      "min": 14
+     },
+     "heard": [
+      {
+       "text": "Our time-tapped con is still safe with the score of 6186 to beat.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: cee"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "top",
+       "as": "topp",
+       "plain": "t ɑ p",
+       "ipa": "t ɑ p",
+       "keeps": true
+      },
+      {
+       "i": 3,
+       "word": "chicken",
+       "as": "Chik-kun",
+       "plain": "tʃ ɪ k ə n",
+       "ipa": "tʃ ɪ k k ʌ n",
+       "keeps": true
+      },
+      {
+       "i": 6,
+       "word": "cee.wtf",
+       "as": "see",
+       "plain": "s i w t f",
+       "ipa": "s i",
+       "keeps": null
+      },
+      {
+       "i": 11,
+       "word": "6186",
+       "as": "six-thousand-one-eighty-six",
+       "plain": "s ɪ k s θ aʊ z ə n d w ʌ n h ʌ n d ɹ ə d eɪ ɾ i s ɪ k s",
+       "ipa": "s ɪ k s θ aʊ z ə n d w ʌ n eɪ ɾ i s ɪ k s",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "… All-time topp, Chik-kun, is still see, with uh score of six-thousand-one-eighty-six to beat. …",
+     "score": {
+      "heard": 16,
+      "of": 20,
+      "min": 16
+     },
+     "heard": [
+      {
+       "text": "All time tap, Nikon is still safe with a score of 6186 to beat.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: cee"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "top",
+       "as": "topp",
+       "plain": "t ɑ p",
+       "ipa": "t ɑ p",
+       "keeps": true
+      },
+      {
+       "i": 3,
+       "word": "chicken",
+       "as": "Chik-kun",
+       "plain": "tʃ ɪ k ə n",
+       "ipa": "tʃ ɪ k k ʌ n",
+       "keeps": true
+      },
+      {
+       "i": 6,
+       "word": "cee.wtf",
+       "as": "see",
+       "plain": "s i w t f",
+       "ipa": "s i",
+       "keeps": null
+      },
+      {
+       "i": 8,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      },
+      {
+       "i": 11,
+       "word": "6186",
+       "as": "six-thousand-one-eighty-six",
+       "plain": "s ɪ k s θ aʊ z ə n d w ʌ n h ʌ n d ɹ ə d eɪ ɾ i s ɪ k s",
+       "ipa": "s ɪ k s θ aʊ z ə n d w ʌ n eɪ ɾ i s ɪ k s",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "… All-time topp, Chik-kun, is still see, with Uh score of six-thousand-one-eighty-six to beat. …",
+     "score": {
+      "heard": 16,
+      "of": 20,
+      "min": 16
+     },
+     "heard": [
+      {
+       "text": "All time tap, Nikon is still safe with a score of 6186 to beat.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: cee"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "top",
+       "as": "topp",
+       "plain": "t ɑ p",
+       "ipa": "t ɑ p",
+       "keeps": true
+      },
+      {
+       "i": 3,
+       "word": "chicken",
+       "as": "Chik-kun",
+       "plain": "tʃ ɪ k ə n",
+       "ipa": "tʃ ɪ k k ʌ n",
+       "keeps": true
+      },
+      {
+       "i": 6,
+       "word": "cee.wtf",
+       "as": "see",
+       "plain": "s i w t f",
+       "ipa": "s i",
+       "keeps": null
+      },
+      {
+       "i": 8,
+       "word": "a",
+       "as": "Uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      },
+      {
+       "i": 11,
+       "word": "6186",
+       "as": "six-thousand-one-eighty-six",
+       "plain": "s ɪ k s θ aʊ z ə n d w ʌ n h ʌ n d ɹ ə d eɪ ɾ i s ɪ k s",
+       "ipa": "s ɪ k s θ aʊ z ə n d w ʌ n eɪ ɾ i s ɪ k s",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "… All-time topp, Chik-kun, is still see, with, a score of six-thousand-one-eighty-six to beat. …",
+     "score": {
+      "heard": 15,
+      "of": 20,
+      "min": 15
+     },
+     "heard": [
+      {
+       "text": "All time tap, Nikon is still safe with the score of 6186 to beat.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: cee"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "top",
+       "as": "topp",
+       "plain": "t ɑ p",
+       "ipa": "t ɑ p",
+       "keeps": true
+      },
+      {
+       "i": 3,
+       "word": "chicken",
+       "as": "Chik-kun",
+       "plain": "tʃ ɪ k ə n",
+       "ipa": "tʃ ɪ k k ʌ n",
+       "keeps": true
+      },
+      {
+       "i": 6,
+       "word": "cee.wtf",
+       "as": "see",
+       "plain": "s i w t f",
+       "ipa": "s i",
+       "keeps": null
+      },
+      {
+       "i": 11,
+       "word": "6186",
+       "as": "six-thousand-one-eighty-six",
+       "plain": "s ɪ k s θ aʊ z ə n d w ʌ n h ʌ n d ɹ ə d eɪ ɾ i s ɪ k s",
+       "ipa": "s ɪ k s θ aʊ z ə n d w ʌ n eɪ ɾ i s ɪ k s",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "… All-time topp, Chik-kun, is still see, with a, score of six-thousand-one-eighty-six to beat. …",
+     "score": {
+      "heard": 17,
+      "of": 20,
+      "min": 17
+     },
+     "heard": [
+      {
+       "text": "All time top, Nikon is still safe with a score of 6186 to beat.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: cee"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "top",
+       "as": "topp",
+       "plain": "t ɑ p",
+       "ipa": "t ɑ p",
+       "keeps": true
+      },
+      {
+       "i": 3,
+       "word": "chicken",
+       "as": "Chik-kun",
+       "plain": "tʃ ɪ k ə n",
+       "ipa": "tʃ ɪ k k ʌ n",
+       "keeps": true
+      },
+      {
+       "i": 6,
+       "word": "cee.wtf",
+       "as": "see",
+       "plain": "s i w t f",
+       "ipa": "s i",
+       "keeps": null
+      },
+      {
+       "i": 11,
+       "word": "6186",
+       "as": "six-thousand-one-eighty-six",
+       "plain": "s ɪ k s θ aʊ z ə n d w ʌ n h ʌ n d ɹ ə d eɪ ɾ i s ɪ k s",
+       "ipa": "s ɪ k s θ aʊ z ə n d w ʌ n eɪ ɾ i s ɪ k s",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "… All-time topp, Chik-kun, is still see, with a score of six-thousand-one-eighty-six to beat. …",
+     "rate": 0.9,
+     "score": {
+      "heard": 15,
+      "of": 20,
+      "min": 14
+     },
+     "heard": [
+      {
+       "text": "All time top, Nikon is still safe with the score of 6186 to be loaded.",
+       "count": 2
+      },
+      {
+       "text": "All time tap, click on this till see, with the score of 6186 to beat.",
+       "count": 1
+      },
+      {
+       "text": "All time top, CUN is still safe with the score of 6186 to be the winner.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: cee"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "top",
+       "as": "topp",
+       "plain": "t ɑ p",
+       "ipa": "t ɑ p",
+       "keeps": true
+      },
+      {
+       "i": 3,
+       "word": "chicken",
+       "as": "Chik-kun",
+       "plain": "tʃ ɪ k ə n",
+       "ipa": "tʃ ɪ k k ʌ n",
+       "keeps": true
+      },
+      {
+       "i": 6,
+       "word": "cee.wtf",
+       "as": "see",
+       "plain": "s i w t f",
+       "ipa": "s i",
+       "keeps": null
+      },
+      {
+       "i": 11,
+       "word": "6186",
+       "as": "six-thousand-one-eighty-six",
+       "plain": "s ɪ k s θ aʊ z ə n d w ʌ n h ʌ n d ɹ ə d eɪ ɾ i s ɪ k s",
+       "ipa": "s ɪ k s θ aʊ z ə n d w ʌ n eɪ ɾ i s ɪ k s",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "… All-time topp, Chik-kun, is still see, with a score of six-thousand-one-eighty-six to beat. …",
+     "rate": 0.82,
+     "score": {
+      "heard": 13,
+      "of": 20,
+      "min": 12
+     },
+     "heard": [
+      {
+       "text": "All time top, Chikon is still safe with the score of 6,186. The wind is real.",
+       "count": 1
+      },
+      {
+       "text": "All time top, Nikon is still safe, with a score of 6,186. The winner fails!",
+       "count": 1
+      },
+      {
+       "text": "All-time tap, Nikon is still safe with the score of 6186 to beat.",
+       "count": 1
+      },
+      {
+       "text": "All-time tap, Ticon is still safe with the score of 6,186 The winner trails",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: cee"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "top",
+       "as": "topp",
+       "plain": "t ɑ p",
+       "ipa": "t ɑ p",
+       "keeps": true
+      },
+      {
+       "i": 3,
+       "word": "chicken",
+       "as": "Chik-kun",
+       "plain": "tʃ ɪ k ə n",
+       "ipa": "tʃ ɪ k k ʌ n",
+       "keeps": true
+      },
+      {
+       "i": 6,
+       "word": "cee.wtf",
+       "as": "see",
+       "plain": "s i w t f",
+       "ipa": "s i",
+       "keeps": null
+      },
+      {
+       "i": 11,
+       "word": "6186",
+       "as": "six-thousand-one-eighty-six",
+       "plain": "s ɪ k s θ aʊ z ə n d w ʌ n h ʌ n d ɹ ə d eɪ ɾ i s ɪ k s",
+       "ipa": "s ɪ k s θ aʊ z ə n d w ʌ n eɪ ɾ i s ɪ k s",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "trails",
+   "who": "eppy",
+   "kind": "say",
+   "text": "The winner trails the winner.",
+   "as": null,
+   "heard": [
+    {
+     "text": "The winner trailing the winner",
+     "count": 2
+    },
+    {
+     "text": "the winner trail the winner",
+     "count": 1
+    },
+    {
+     "text": "The winner trail the winner",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 5,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "trails",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "The winner trails the winner.",
+     "score": {
+      "heard": 4,
+      "of": 5,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "The winner trailing the winner",
+       "count": 2
+      },
+      {
+       "text": "the winner trail the winner",
+       "count": 1
+      },
+      {
+       "text": "The winner trail the winner",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "smallest",
+   "who": "eppy",
+   "kind": "say",
+   "text": "The smallest win of the week. Same title.",
+   "as": null,
+   "heard": [
+    {
+     "text": "The smallest window of the week, same title.",
+     "count": 3
+    },
+    {
+     "text": "The smallest winner of the week, same title.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 8,
+    "of": 8,
+    "min": 8
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "The smallest win of the week. Same title.",
+     "score": {
+      "heard": 8,
+      "of": 8,
+      "min": 8
+     },
+     "heard": [
+      {
+       "text": "The smallest window of the week, same title.",
+       "count": 3
+      },
+      {
+       "text": "The smallest winner of the week, same title.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "voices": {
+  "larry": {
+   "f0": 107,
+   "nearest": "pete",
+   "distance": 1.54
+  },
+  "eppy": {
+   "f0": 189,
+   "nearest": "david",
+   "distance": 1.66
+  },
+  "sibyl": {
+   "f0": 207,
+   "nearest": "mokkenstorm",
+   "distance": 1.9
+  }
+ },
+ "owner": [],
+ "heardDifferently": [
+  {
+   "id": "winner",
+   "who": "sibyl",
+   "status": "flagged",
+   "text": "Saturday's winner: cee.",
+   "heard": "Saturday's winner, C"
+  },
+  {
+   "id": "recordline",
+   "who": "sibyl",
+   "status": "flagged",
+   "text": "… All-time top chicken is still cee.wtf with a score of 6186 to beat. …",
+   "heard": "All time top, Nikon is still safe with the score of 6186 to beat."
+  }
+ ],
+ "soundsDifferent": [
+  {
+   "id": "post",
+   "who": "sibyl",
+   "word": "uses",
+   "as": "yoo-zuz",
+   "plain": "j u s ə z",
+   "ipa": "j u z ʌ z",
+   "why": "consonants after vowel 1: s → z"
+  }
+ ]
+}

@@ -1,0 +1,214 @@
+{
+ "segment": "bluesky-account",
+ "episode": "002-2026-w47",
+ "takes": 4,
+ "gate": 0.6,
+ "lines": [
+  {
+   "id": "account",
+   "who": "larry",
+   "kind": "say",
+   "text": "I finally got a Bluesky account. This is my handle.",
+   "as": "I finally got a Blue-Sky account. This is my handle.",
+   "heard": [
+    {
+     "text": "I finally got a blue sky count. This is my handle.",
+     "count": 3
+    },
+    {
+     "text": "I only got a blue sky count, this is my handle.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 9,
+    "of": 10,
+    "min": 8
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "account",
+     "count": 4
+    },
+    {
+     "word": "finally",
+     "count": 1
+    }
+   ],
+   "sounds": [
+    {
+     "i": 4,
+     "word": "Bluesky",
+     "as": "Blue-Sky",
+     "plain": "b l ʌ ɛ s k i",
+     "ipa": "b l u s k aɪ",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "I finally got a Blue-Sky account. This is my handle.",
+     "score": {
+      "heard": 9,
+      "of": 10,
+      "min": 8
+     },
+     "heard": [
+      {
+       "text": "I finally got a blue sky count. This is my handle.",
+       "count": 3
+      },
+      {
+       "text": "I only got a blue sky count, this is my handle.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 4,
+       "word": "Bluesky",
+       "as": "Blue-Sky",
+       "plain": "b l ʌ ɛ s k i",
+       "ipa": "b l u s k aɪ",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "twice",
+   "who": "larry",
+   "kind": "say",
+   "text": "I have read it twice.",
+   "as": "I have red it twice.",
+   "heard": [
+    {
+     "text": "I have read twice",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 5,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "it",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 2,
+     "word": "read",
+     "as": "red",
+     "plain": "ɹ i d",
+     "ipa": "ɹ ɛ d",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "I have red it twice.",
+     "score": {
+      "heard": 4,
+      "of": 5,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "I have read twice",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "read",
+       "as": "red",
+       "plain": "ɹ i d",
+       "ipa": "ɹ ɛ d",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "not-in-it",
+   "who": "larry",
+   "kind": "say",
+   "text": "I'm not in it.",
+   "as": "I'm not inn it.",
+   "heard": [
+    {
+     "text": "I'm not in it.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 4,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "sounds": [
+    {
+     "i": 2,
+     "word": "in",
+     "as": "inn",
+     "plain": "ɪ n",
+     "ipa": "ɪ n",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "I'm not inn it.",
+     "score": {
+      "heard": 4,
+      "of": 4,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "I'm not in it.",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "in",
+       "as": "inn",
+       "plain": "ɪ n",
+       "ipa": "ɪ n",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "voices": {
+  "larry": {
+   "f0": 107,
+   "nearest": "pete",
+   "distance": 1.54
+  }
+ },
+ "owner": [],
+ "heardDifferently": [],
+ "soundsDifferent": []
+}

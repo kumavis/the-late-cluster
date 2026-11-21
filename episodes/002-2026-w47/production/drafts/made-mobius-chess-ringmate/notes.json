@@ -1,0 +1,144 @@
+{
+  "slug": "made-mobius-chess-ringmate",
+  "title": "Chess for Three",
+  "format": "A performed exchange (three real posts, in order, each by its author's puppet), then a demonstration: the house sits down at the studio's sketch of the board. The experiment's wordless stretch carries the turn.",
+  "seconds": 64,
+  "standing": null,
+  "cards": [
+    "made-mobius-chess-ringmate"
+  ],
+  "ideas": [
+    "writer-2-162",
+    "writer-1-63"
+  ],
+  "speakers": [
+    "mokkenstorm.dev",
+    "minormobius.bsky.social"
+  ],
+  "featured": [
+    "mokkenstorm.dev",
+    "minormobius.bsky.social"
+  ],
+  "retell": "A member built chess for three on a Möbius strip; another member would like it and repost it but not love it without a link; then Larry picked his side of the board in gold, the gold ran all the way round both faces, and he resigned before the first move.",
+  "turn": "Larry's side is every side",
+  "rendered": {
+    "how": "Rendered in a scratch folder with the studio's renderer and its Whisper check, with cast.js applied. Nothing was written under episodes/ but this draft.",
+    "seconds": 63.7,
+    "spokenWords": 105,
+    "wordsPerSecond": 1.65,
+    "whisper": "94 of 110 caption words (85%). Every line's heard text was read."
+  },
+  "experiment": {
+    "applies": true,
+    "turnInFiveWords": "Larry's side is every side",
+    "stretch": "From the end of the line `gold` to the cue `stretch-end`: 11.87 s in the scratch render (39.28 s to 51.15 s). It holds no `say`, `sing` or `shout` line and no audience sound. In it: one music block, `claim`, of two beat tracks (Pete's beat, Al's hummed bass: both kind `beat`), four ticks, two whooshes and a ding.",
+    "whatTheThingDoes": "The house sits down at the board and Larry claims a side: his gold flag sets off along the strip, comes back to his own seat underneath and upside down, keeps going, and arrives where it began with every square gold on both faces and the other two players' flags standing on it. The board has one side, and the board is what shows it.",
+    "before": "No line before it says what the board will do. Eppy counts the players and the strip, Sibyl says 'Pick a side.', Larry says 'I'll take this side. In gold.'",
+    "after": "No line after it says what it did. Sibyl: 'Larry. Your move.' Larry: 'I like. I repost.' 'I resign.' The laugh comes at `stretch-end`, not before.",
+    "onScreenDuringIt": "The studio's sketch, labelled STUDIO SKETCH; the credit 'ringmate · mobius.mokkenstorm.dev · by @mokkenstorm.dev'; three name flags (LARRY, SIBYL, EPPY); the travelling flag LARRY'S SIDE. Nothing else to read. No caption, no post card, no lamps.",
+    "forACutOrTrim": "Do not shorten the music block or move the laugh before `stretch-end`: the measure needs 10.0 s and the block alone gives 10.25."
+  },
+  "howItUsesTheIdeas": {
+    "writer-2-162": "Kept: its turn, the condition ('I like! I repost! But I'm not gonna love unless there's a link'), and the three lamps. Cut, on the project manager's note: the clock, the time jump, the link arriving, the third lamp lighting and the reply to the link. The exchange stops on the condition, so the punch is the condition and not that the thing got built. That also removes the swear. The condition comes back once, as Larry's button.",
+    "writer-1-63": "Kept: three house players and Larry wanting his side. Changed for the experiment: nobody says there is only one side. Sibyl's line is 'Pick a side.' and the board does the rest without words. Changed for the media notes: no pawn is pushed; what travels is Larry's flag."
+  },
+  "people": [
+    {
+      "handle": "mokkenstorm.dev",
+      "did": "did:plc:r5bee2hexwjtmhkfmfu2tphx",
+      "followers": 423,
+      "role": "the maker; puppet speaks one post",
+      "new": true,
+      "how": "Hero. Not named aloud: the display name cannot be said, and the handle came out as 'Martin Storm' and 'Mark and Storm' in Larry's voice. Chyron, card and credit carry the name and handle."
+    },
+    {
+      "handle": "minormobius.bsky.social",
+      "did": "did:plc:7zre4plmd5jllccww575j6sb",
+      "followers": 7162,
+      "role": "puppet speaks two posts",
+      "new": true,
+      "how": "Named once by Larry, last in its phrase. Their own joke, told as theirs."
+    }
+  ],
+  "peopleNotShown": "Two posts are recorded only as the occasions of real lines (sources.json, lines): a bare tag by an account shown in the previous episode, and a question by the account that cannot speak this episode. Neither account is named, shown or carded. The outside account that asked how the game plays is not used.",
+  "heard": [
+    {
+      "line": "idea",
+      "who": "mokkenstorm",
+      "caption": "3 player 1d chess on a Möbius strip wormed its way into my brain and now I need to build it",
+      "heard": "Three player, one day test, on a mobile strip, warmed its way into my brain, and now I need to build it.",
+      "judgement": "18 of 23. Harmless. 'chess' and 'Möbius' are soft in every voice tried (five voices, about ten spellings; 'chess' was heard as test, class, press). The card and the sketch carry both words. The second half is clear. One other voice heard something rude in the first half, so that voice was dropped."
+    },
+    {
+      "line": "awesome",
+      "who": "minormobius",
+      "caption": "That’s awesome, I need a website tho",
+      "heard": "That's awesome, I need a website too!",
+      "judgement": "6 of 8. Harmless. The last word would not come out as itself in this voice (too, row, low, hello, in more than ten tries). Without the respelling of the first two words the line was heard as 'Let's ask them', so keep `as`."
+    },
+    {
+      "line": "policy",
+      "who": "minormobius",
+      "caption": "I like! I repost! But I’m not gonna love unless there’s a link",
+      "heard": "I like, I repost, but I'm not gonna love unless there's a link.",
+      "judgement": "Heard whole."
+    },
+    {
+      "line": "tag",
+      "who": "larry",
+      "caption": "Then came a picture. Under it, a tag, for Minor Mobius.",
+      "heard": "Then came the picture under it, but tagged as a minor mobius.",
+      "judgement": "The name is heard as itself with `as: My-nor Mobius`. Without it the name came out as 'thermometer mobius' once in three. Do not give this line to Sibyl: in her voice 'Under it, a tag' was heard as 'Under attack'."
+    },
+    {
+      "line": "move",
+      "who": "sibyl",
+      "caption": "Larry. Your move.",
+      "heard": "Larry, be your move.",
+      "judgement": "Fine. 'Your move, Larry.' was heard as 'blurry', so the name goes first."
+    }
+  ],
+  "engineNotes": [
+    "'chess' is a weak word in every voice. It is in no house line and on no punch.",
+    "Short lines straight after a laugh were misheard; each laugh now has hold 0.8 before the next line. Keep that room.",
+    "The two guest voices sit in the house range's two open spots (median f0 176 Hz and 239 Hz; nearest house voice 1.52 and 2.10). Other drafts' guests may want the same spots: measure them together at assembly."
+  ],
+  "builder": [
+    "THE BOARD IS A SKETCH. Nobody here has seen the real board, its rules or a game in play. Draw only: a single file of squares bent into a loop with one half twist, and a circle of chess pieces standing on it (the picture's alt text). Label it STUDIO SKETCH for as long as it is up. Keep the credit 'ringmate · mobius.mokkenstorm.dev · by @mokkenstorm.dev' up with it.",
+    "THE PIECES NEVER MOVE. No arrows, no captures, no check, no turn order, nothing labelled RULES. Use plain piece shapes and do not suggest which pieces the real game has. The flag is a flag, not a pawn. Nothing is drawn for 'ghosts and ninjas': nobody knows what they are.",
+    "Make the two faces of the strip tell apart at a glance (say, bright squares on top, dimmer or dashed underneath), and put the twist in one visible place, on the far side between Eppy's seat and Larry's. Then one lap reads as: past Sibyl's flag, past Eppy's, through the twist, back under Larry. The flag stands along the surface, so it arrives hanging upside down.",
+    "THE STRETCH (cue `claim` to cue `stretch-end`) must keep changing. Beats of `claim` at 96 bpm: 0 the flag sets off; 2.67 and 5.33 it passes Sibyl's and Eppy's flags (ticks); 6.67 the twist (whoosh); 8 it is under Larry's seat, upside down, and does not stop; 10.67 and 13.33 it passes beneath the two flags (ticks); 14.67 the twist again (whoosh); 16 it is home, the right way up, and everything is gold (ding, the beat stops). Then 1.6 s: the gold loop turns slowly so both faces are seen.",
+    "HEADS IN THE STRETCH, no mouths: Larry follows his flag, leans to look under the board at `under`, and at `all-gold` looks left, right, then at us. Sibyl does not move at all. Eppy follows the flag and ends looking at his own, which now stands on gold. No caption bar, no sign lit, no audience bob until `stretch-end`.",
+    "THE GUESTS ARE NOT AT THE TABLE. Both guest puppets are off screen from `table` to the end. A guest puppet watching Larry lose would be a reaction its account never published.",
+    "CARDS: each real line has its post card up for the whole line, words lighting as spoken, with display name, handle, date and like count from sources.json (17 Nov, 2 likes; 18 Nov, 9 likes; 18 Nov, 5 likes). The two replies say what they replied to without naming anyone: REPLY UNDER THE PICTURE, and REPLY TO A QUESTION.",
+    "LAMPS: LIKE, REPOST, LOVE are the member's own three words. Under Minor Mobius, LIKE lights on 'like!', REPOST on 'repost!', and LOVE stays dark. Never light LOVE for Minor Mobius and never add a tick, a padlock caption or a verdict: the show does not say what they felt later. At the button the same three lamps are Larry's, in gold: LIKE on 'like.', REPOST on 'repost.', and on 'resign.' the third flips from LOVE to RESIGN and lights, and his flag tips over.",
+    "DISCLAIMER from `maker-in` (the first guest): 'Guests are puppets playing posting personas. Parody.'",
+    "The maker's display name is '👩‍💻 tbd : Option<name>', exactly. If the font cannot draw part of it, show what it can and the handle; do not replace the name with another.",
+    "LOOKS, a suggestion only: a hue and a tee for what each makes, nothing about the person. The maker: print '1D'. Minor Mobius: print '4D' (their own projects this window are four-dimensional). Heads are not likenesses."
+  ],
+  "checksDone": [
+    "All five posts in sources.json match the digest character for character, with display names, counts and times; both lines' contexts are the digest's parents; DIDs match.",
+    "The pipeline's guest-line rules (checkGuestLines) were run on this script with cast.js applied: no failures. A changed word and a missing setup were both caught in a negative test.",
+    "Opt-out list: empty; neither account is on it. Each account's posts in the window were read: none asks not to be quoted or shown.",
+    "The maker's other posts that week include personal ones (R10). Nothing here reaches for them.",
+    "Repost test: the maker's board beats a talk-show host without a move being made; Minor Mobius's own joke is told as theirs and becomes the house's button."
+  ],
+  "checksNotDone": [
+    "No bio was read (no network): R11 and R14 still need both bios.",
+    "Whether any post in the thread has been deleted or edited since the scrape.",
+    "Nobody has seen the real board. If someone does before the build, check the sketch against it and keep the label."
+  ],
+  "leftOut": [
+    "The link post and the reply to it: staging them makes the segment an ask and a delivery, which the project manager asked this draft not to be. The reply also opens on a swear.",
+    "'👩‍🍳 cooking..', the maker's two-word reply to 'I need a website tho'. Real, short and funny, and in the digest though not on the card. It was left out because it sits between the reply and the question Larry asks about it. If a later version wants a second line for the maker, this is the one.",
+    "'It’s multiplayer and agent friendly 👀' and 'I’m so happy rn you have no idea': each answers a post this draft does not perform.",
+    "The picture post's own text: it is addressed to the maker of the polyhedra video, and performing it would bring that person into a third segment.",
+    "'ghosts and ninjas', the '4d amoeba', the outside account's question, the two advertising replies and the maker's answers to them."
+  ],
+  "unclear": [
+    "The brief's Write line names script.js and notes.json and says 'Nothing else'; the task below it asks for sources.json and cast.js in the same folder. All four are written.",
+    "The draft gate reads only the episode's cast, so a guest defined in a draft's own cast.js is not a guest to it and that draft's real lines go unchecked at this stage. This draft was checked by hand as above.",
+    "The experiment asks for the thing 'shown in use'; the media notes say nobody has seen it in use and the pieces must not be shown moving. Read here as: the house sits down at the studio's sketch and picks sides, which needs only what a Möbius strip is.",
+    "'Three players' is from the maker's idea post. The preview is described by the maker as 'multiplayer'; the draft does not say how many the real page seats."
+  ]
+}

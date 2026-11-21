@@ -1,0 +1,281 @@
+{
+  "id": "talk-birthday",
+  "lane": "talk",
+  "title": "\"It's my birthday\", and nine replies",
+  "summary": "At 11:34Z on Sat 14 Nov @vibecode.rodeo (display name caranatar) posted \"It's my birthday\" (14 likes, 11 replies). Nine replies are in the data, from 14:59Z that day to 02:30Z the next: five plain \"happy birthday\" wishes in four variants of capitals and exclamation marks, \"Hurpy burpy!\", \"hbd 🥳\", \"woo\", and one that is only a video link (not listed). The day before, the same account had asked the build bot for an easier version of one of its games and got it four minutes later (the \"kinesin easy\" build in the digest's Built list).",
+  "posts": [
+    {
+      "uri": "at://did:plc:tkzqhwl7yem3xbng3rnb5tv2/app.bsky.feed.post/3n2bfrek6uk22",
+      "url": "https://bsky.app/profile/vibecode.rodeo/post/3n2bfrek6uk22",
+      "handle": "vibecode.rodeo",
+      "displayName": "caranatar",
+      "when": "Sat 14 Nov 11:34Z",
+      "time": "2026-11-14T11:34:48.621Z",
+      "text": "It's my birthday",
+      "counts": {
+        "likes": 14,
+        "reposts": 0,
+        "replies": 11,
+        "quotes": 0
+      },
+      "note": "Top-level post."
+    },
+    {
+      "uri": "at://did:plc:oyaz4zlc7jr3u5vsfwkjhm32/app.bsky.feed.post/3n2bymxgyus2v",
+      "url": "https://bsky.app/profile/vacchagotta.bsky.social/post/3n2bymxgyus2v",
+      "handle": "vacchagotta.bsky.social",
+      "displayName": "vacchagotta",
+      "when": "Sat 14 Nov 17:12Z",
+      "time": "2026-11-14T17:12:21.760Z",
+      "text": "Happy birthday!",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:tkzqhwl7yem3xbng3rnb5tv2/app.bsky.feed.post/3n2bfrek6uk22",
+        "handle": "vibecode.rodeo",
+        "text": "It's my birthday"
+      }
+    },
+    {
+      "uri": "at://did:plc:6amf2dzllh6lvnsqxsr4nf6e/app.bsky.feed.post/3n2byr5yjak2w",
+      "url": "https://bsky.app/profile/advanced-eschatonics.com/post/3n2byr5yjak2w",
+      "handle": "advanced-eschatonics.com",
+      "displayName": "Thomas Wood",
+      "when": "Sat 14 Nov 17:14Z",
+      "time": "2026-11-14T17:14:42.851Z",
+      "text": "Happy Birthday!",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:tkzqhwl7yem3xbng3rnb5tv2/app.bsky.feed.post/3n2bfrek6uk22",
+        "handle": "vibecode.rodeo",
+        "text": "It's my birthday"
+      }
+    },
+    {
+      "uri": "at://did:plc:x3yt3sdtbvlhizqx5jh3hwuf/app.bsky.feed.post/3n2bzinudck22",
+      "url": "https://bsky.app/profile/axeghostgame.bsky.social/post/3n2bzinudck22",
+      "handle": "axeghostgame.bsky.social",
+      "displayName": "Axe Ghost. On Steam!",
+      "when": "Sat 14 Nov 17:27Z",
+      "time": "2026-11-14T17:27:51.239Z",
+      "text": "happy birthday!",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:tkzqhwl7yem3xbng3rnb5tv2/app.bsky.feed.post/3n2bfrek6uk22",
+        "handle": "vibecode.rodeo",
+        "text": "It's my birthday"
+      }
+    },
+    {
+      "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n2c2p2oxjk2a",
+      "url": "https://bsky.app/profile/anthonybecker.bsky.social/post/3n2c2p2oxjk2a",
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "when": "Sat 14 Nov 17:49Z",
+      "time": "2026-11-14T17:49:19.767Z",
+      "text": "Hurpy burpy!",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:tkzqhwl7yem3xbng3rnb5tv2/app.bsky.feed.post/3n2bfrek6uk22",
+        "handle": "vibecode.rodeo",
+        "text": "It's my birthday"
+      }
+    },
+    {
+      "uri": "at://did:plc:4vvaxwovyg4yo4n7dyyncaiu/app.bsky.feed.post/3n2c4du43lc25",
+      "url": "https://bsky.app/profile/thebadcode.com/post/3n2c4du43lc25",
+      "handle": "thebadcode.com",
+      "displayName": "austin (e/accordion 🪗)",
+      "when": "Sat 14 Nov 18:18Z",
+      "time": "2026-11-14T18:18:51.241Z",
+      "text": "hbd 🥳",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:tkzqhwl7yem3xbng3rnb5tv2/app.bsky.feed.post/3n2bfrek6uk22",
+        "handle": "vibecode.rodeo",
+        "text": "It's my birthday"
+      }
+    },
+    {
+      "uri": "at://did:plc:dqrcz4py2hrv4lzcs6ygoagj/app.bsky.feed.post/3n2c4h2yrs22w",
+      "url": "https://bsky.app/profile/fasterthanli.me/post/3n2c4h2yrs22w",
+      "handle": "fasterthanli.me",
+      "displayName": "Amos Wenger",
+      "when": "Sat 14 Nov 18:20Z",
+      "time": "2026-11-14T18:20:39.132Z",
+      "text": "woo",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:tkzqhwl7yem3xbng3rnb5tv2/app.bsky.feed.post/3n2bfrek6uk22",
+        "handle": "vibecode.rodeo",
+        "text": "It's my birthday"
+      }
+    },
+    {
+      "uri": "at://did:plc:rpq7n4cfeybtabjw4uea5e4r/app.bsky.feed.post/3n2ccaxhme22e",
+      "url": "https://bsky.app/profile/jfc.ninja/post/3n2ccaxhme22e",
+      "handle": "jfc.ninja",
+      "displayName": "jfc",
+      "when": "Sat 14 Nov 20:04Z",
+      "time": "2026-11-14T20:04:36.553Z",
+      "text": "happy birthday!",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:tkzqhwl7yem3xbng3rnb5tv2/app.bsky.feed.post/3n2bfrek6uk22",
+        "handle": "vibecode.rodeo",
+        "text": "It's my birthday"
+      }
+    },
+    {
+      "uri": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n2cxslt7bs2p",
+      "url": "https://bsky.app/profile/bisks.net/post/3n2cxslt7bs2p",
+      "handle": "bisks.net",
+      "displayName": "rob",
+      "when": "Sun 15 Nov 02:30Z",
+      "time": "2026-11-15T02:30:16.907Z",
+      "text": "happy birthday!!",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:tkzqhwl7yem3xbng3rnb5tv2/app.bsky.feed.post/3n2bfrek6uk22",
+        "handle": "vibecode.rodeo",
+        "text": "It's my birthday"
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "vibecode.rodeo",
+      "displayName": "caranatar",
+      "followers": 1391,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "vacchagotta.bsky.social",
+      "displayName": "vacchagotta",
+      "followers": 328,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "advanced-eschatonics.com",
+      "displayName": "Thomas Wood",
+      "followers": 1457,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "axeghostgame.bsky.social",
+      "displayName": "Axe Ghost. On Steam!",
+      "followers": 1678,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "followers": 2318,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "thebadcode.com",
+      "displayName": "austin (e/accordion 🪗)",
+      "followers": 3077,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "fasterthanli.me",
+      "displayName": "Amos Wenger",
+      "followers": 17316,
+      "member": false,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "jfc.ninja",
+      "displayName": "jfc",
+      "followers": 450,
+      "member": false,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "bisks.net",
+      "displayName": "rob",
+      "followers": 721,
+      "member": true,
+      "smallAccount": false,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "numbers": [
+    "Root post: 14 likes, 0 reposts, 11 replies. Every reply in the data has exactly 1 like. Nine replies in the data; two more removed under the consent rules."
+  ],
+  "sensitive": "No post on this card carries a flag from the tool. (1) A birthday is a personal occasion (R1 keeps to the posting persona and away from anything personal). It was posted publicly, with no age or other detail, and the replies are greetings; whether it is persona or personal is left to the reviewer, and when in doubt it stays out. (2) Two replies were removed under the consent rules, so the thread is not whole. (3) One reply that is only a video link is left off the card: I could not see what the video is. (4) @vacchagotta.bsky.social has 328 followers, just above the small-account line. @fasterthanli.me (17,316 followers) and @jfc.ninja are outside the cluster's membership. (5) @bisks.net is a seed account and runs the build bot. (6) Another member posted about a birthday this week with their age and money worries; that is out of bounds and is not here."
+}

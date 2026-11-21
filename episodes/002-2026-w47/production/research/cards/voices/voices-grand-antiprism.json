@@ -1,0 +1,146 @@
+{
+  "id": "voices-grand-antiprism",
+  "lane": "voices",
+  "title": "A 75-follower account asks a 7,162-follower builder for the Grand Antiprism, and work begins the same day",
+  "summary": "On Wed 18 Nov 05:15Z @minormobius.bsky.social (7,162 followers) posted a video of \"biprism polychora origami\", four-dimensional shapes folded from prisms. At 07:55Z @oszillate.bsky.social (75 followers) replied \"Lmk once you get to the Grand Antiprism\", saying they were \"still unsure why it's unique\", and continued for four more replies of geometry. Nine minutes later they quote-posted their own reply: \"I incidentally love the Grand Antiprism also because it sounds like such a fantasy villain name\", followed by a speech written in the shape's voice (0 likes). At 17:04Z, nine hours after the request, @minormobius.bsky.social quote-posted it with a video: \"Work on the Grand Antiprism has begun. This is apparently unique, I’m to understand why. But the object itself goes so hard. 300 tetrahedra, 20 pentagonal antiprisms.\" @techyben.bsky.social (909 followers) quote-posted that: \"Oh. I've no idea what this is.\" and offered to make \"a Poly collection game\" of the shapes with \"spare Claude tokens\".",
+  "posts": [
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2ksh3askk2y",
+      "url": "https://bsky.app/profile/minormobius.bsky.social/post/3n2ksh3askk2y",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "text": "The biprism polychora origami is looking pretty slick. In one frame it’s one type of prism, but rotate the right axes and see the second prism. To get the pentagonal prism x hexagonal prism you just need to fold eleven prisms together\n\nana.mino.mobi/fold/#duo5,6",
+      "time": "2026-11-18T05:15:39.625Z",
+      "counts": {
+        "likes": 16,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 1
+      },
+      "video": true,
+      "links": [
+        "https://ana.mino.mobi/fold"
+      ]
+    },
+    {
+      "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2l3euxhn225",
+      "url": "https://bsky.app/profile/oszillate.bsky.social/post/3n2l3euxhn225",
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "text": "Lmk once you get to the Grand Antiprism, of which I am still unsure why it's unique rather than in a larger series of double-antiprisms. A central ridge torus of tetrahedra can be made in arbitrary sizes, so you'd think there might be e.g. a 14×14 version with heptagonal antiprisms.",
+      "time": "2026-11-18T07:55:29.596Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 2
+      },
+      "replyTo": {
+        "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2ksh3askk2y",
+        "handle": "minormobius.bsky.social",
+        "text": "The biprism polychora origami is looking pretty slick. In one frame it’s one type of prism, but rotate the right axes and see the second prism. To get the pentagonal prism x hexagonal prism you just need to fold eleven prisms together\n\nana.mino.mobi/fold/#duo5,6",
+        "video": true
+      }
+    },
+    {
+      "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2l3ufo3kt25",
+      "url": "https://bsky.app/profile/oszillate.bsky.social/post/3n2l3ufo3kt25",
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "text": "I incidentally love the Grand Antiprism also because it sounds like such a fantasy villain name\n\"Fools! You think you've exhausted the stock of polytopes with old Wythoff's pitiful construction? Well, think again! It is I, the Grand Antiprism, here to prove you wrong beyond all doubt,\"",
+      "time": "2026-11-18T08:04:10.432Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2l3euxhn225",
+        "handle": "oszillate.bsky.social",
+        "text": "Lmk once you get to the Grand Antiprism, of which I am still unsure why it's unique rather than in a larger series of double-antiprisms. A central ridge torus of tetrahedra can be made in arbitrary sizes, so you'd think there might be e.g. a 14×14 version with heptagonal antiprisms."
+      }
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2m22jqh522y",
+      "url": "https://bsky.app/profile/minormobius.bsky.social/post/3n2m22jqh522y",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "text": "Work on the Grand Antiprism has begun. This is apparently unique, I’m to understand why. But the object itself goes so hard. 300 tetrahedra, 20 pentagonal antiprisms. \n\nana.mino.mobi/fold/#grand",
+      "time": "2026-11-18T17:04:28.282Z",
+      "counts": {
+        "likes": 13,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "video": true,
+      "links": [
+        "https://ana.mino.mobi/fold"
+      ],
+      "quotes": {
+        "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2l3euxhn225",
+        "handle": "oszillate.bsky.social",
+        "text": "Lmk once you get to the Grand Antiprism, of which I am still unsure why it's unique rather than in a larger series of double-antiprisms. A central ridge torus of tetrahedra can be made in arbitrary sizes, so you'd think there might be e.g. a 14×14 version with heptagonal antiprisms."
+      }
+    },
+    {
+      "uri": "at://did:plc:xuzgwzfczpvmxay4yke247se/app.bsky.feed.post/3n2me7xdcr32p",
+      "url": "https://bsky.app/profile/techyben.bsky.social/post/3n2me7xdcr32p",
+      "handle": "techyben.bsky.social",
+      "displayName": "Techy Ben",
+      "text": "Oh. I've no idea what this is.\n\nBut send me a list of the poly/code/meshes and I'll make it a Poly collection game with my spare Claude tokens at the end of the week...\n\n(If I have any left. 😭)",
+      "time": "2026-11-18T20:06:27.725Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2m22jqh522y",
+        "handle": "minormobius.bsky.social",
+        "text": "Work on the Grand Antiprism has begun. This is apparently unique, I’m to understand why. But the object itself goes so hard. 300 tetrahedra, 20 pentagonal antiprisms. \n\nana.mino.mobi/fold/#grand",
+        "video": true
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "followers": 75,
+      "smallAccount": true,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "asked for the shape and wrote the villain speech"
+    },
+    {
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "followers": 7162,
+      "smallAccount": false,
+      "member": true,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "builder; began the shape the same day"
+    },
+    {
+      "handle": "techyben.bsky.social",
+      "displayName": "Techy Ben",
+      "followers": 909,
+      "smallAccount": false,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "quote-posted the result"
+    }
+  ],
+  "watchable": "Two videos by @minormobius.bsky.social (no alt text in the digest), each with a link to a page: ana.mino.mobi/fold/#duo5,6 and ana.mino.mobi/fold/#grand. The second post gives two counts for the shape: 300 tetrahedra, 20 pentagonal antiprisms.",
+  "sensitive": "Two different accounts with similar handles appear in the polyhedra cards: @oscillatory.net (display name \"a hangry mouse\", 274 followers) and @oszillate.bsky.social (display name \"*Pistäwəńćə\", 75 followers). They are not the same person. @oszillate.bsky.social is on four cards in this lane and @oscillatory.net on three, which is a lot of attention for accounts this small (R7; variety in people). @oszillate.bsky.social is a small account (R7: hero only); the villain-speech post has no likes. The speech names \"old Wythoff's pitiful construction\": Wythoff's construction is a method in geometry named after a mathematician who died in 1939, and the line is the shape speaking, not an insult to a living person. I understand the request only in outline (the Grand Antiprism is a four-dimensional shape; why it is \"unique\" is the open question in the posts). @minormobius.bsky.social is a seed account."
+}

@@ -1,0 +1,138 @@
+{
+  "id": "games-hatetris-record",
+  "lane": "games",
+  "title": "A new HATETRIS record: 4,178 lines (Mon 16 Nov)",
+  "summary": "@qntm.org, who keeps the record pages for the game HATETRIS on his own site, announced on Mon 16 Nov at 17:58Z: \"We have a new HATETRIS record, 4,178 lines by skidikipopop!\" (80 likes). In replies to his own post he added four things. The replay \"takes several hours to run to completion in real time\", and replays are now too large to express comfortably in the encoding used so far, so he will probably write them in raw format. The record came from a Tetris engine first meant for a bot competition, Botris, and modified to play against the HATETRIS AI. The player hopes to share source code. And the same player found \"a new shortest loop for HATETRIS Mild, at 14 lines (4 lines to set the well up, 10 lines per loop iteration). The previous record was 7+10 = 17.\" The posts link to qntm.org/records (\"HATETRIS high score progression\") and qntm.org/loops (\"Loops in HATETRIS\"). No member of the cluster replied in the thread as the digest holds it.",
+  "aggregates": {
+    "record": "4,178 lines",
+    "shortestLoopHatetrisMild": "14 lines (4 to set the well up, 10 per loop); the previous record was 7 + 10 = 17",
+    "replayLength": "\"several hours\" in real time, as posted; no figure given",
+    "previousLineRecord": "not stated in the window"
+  },
+  "couldShow": "Two pages on qntm.org are linked (the high score progression and the loops page), and a video of the engine in the bot competition. No image is described in the posts, and what the pages show is not in the digest.",
+  "posts": [
+    {
+      "uri": "at://did:plc:k4pk3m6rz5roldf73eww4ksb/app.bsky.feed.post/3n2h44s67c227",
+      "handle": "qntm.org",
+      "text": "We have a new HATETRIS record, 4,178 lines by skidikipopop!",
+      "displayName": "qntm",
+      "time": "2026-11-16T17:58:13.024Z",
+      "counts": {
+        "likes": 80,
+        "reposts": 10,
+        "replies": 2,
+        "quotes": 0
+      },
+      "media": "the stored record marks an image or embed on this post; no description of it is stored",
+      "situation": "A top-level post, Mon 16 Nov 17:58Z, announcing a record in the game."
+    },
+    {
+      "uri": "at://did:plc:k4pk3m6rz5roldf73eww4ksb/app.bsky.feed.post/3n2h47v32ok27",
+      "handle": "qntm.org",
+      "text": "You can find the replay here but be warned that it takes several hours to run to completion in real time\n\nWe're also now at the point where the replays are far too large to comfortably express using Base2048 - text editors and clipboard interfaces seem to struggle",
+      "displayName": "qntm",
+      "time": "2026-11-16T17:59:56.731Z",
+      "counts": {
+        "likes": 12,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "links": [
+        "https://qntm.org/records (HATETRIS high score progression)"
+      ],
+      "replyTo": {
+        "uri": "at://did:plc:k4pk3m6rz5roldf73eww4ksb/app.bsky.feed.post/3n2h44s67c227",
+        "handle": "qntm.org"
+      },
+      "note": "The author's own reply."
+    },
+    {
+      "uri": "at://did:plc:k4pk3m6rz5roldf73eww4ksb/app.bsky.feed.post/3n2h4bogmxk27",
+      "handle": "qntm.org",
+      "text": "I'm probably going to express replays in raw format in the future (\"DURDRDRUUDUDLDDD...\") because this is much easier to handle in practice even if it is quite a lot more verbose",
+      "displayName": "qntm",
+      "time": "2026-11-16T18:00:56.879Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:k4pk3m6rz5roldf73eww4ksb/app.bsky.feed.post/3n2h47v32ok27",
+        "handle": "qntm.org"
+      },
+      "note": "The author's own reply."
+    },
+    {
+      "uri": "at://did:plc:k4pk3m6rz5roldf73eww4ksb/app.bsky.feed.post/3n2h4er4fs227",
+      "handle": "qntm.org",
+      "text": "skidikipopop's record comes from a Tetris engine originally intended to play in the PvP bot competition, Botris. This engine received some modifications to work against the HATETRIS AI. Here's some sample gameplay from that competition",
+      "displayName": "qntm",
+      "time": "2026-11-16T18:02:40.353Z",
+      "counts": {
+        "likes": 8,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "links": [
+        "https://youtube.com/watch?v=SLcKEeNpDTw (Cobra vs inf upstack (ALL SPINS) - Botris Battle Round 3)"
+      ],
+      "replyTo": {
+        "uri": "at://did:plc:k4pk3m6rz5roldf73eww4ksb/app.bsky.feed.post/3n2h4bogmxk27",
+        "handle": "qntm.org"
+      },
+      "note": "The author's own reply."
+    },
+    {
+      "uri": "at://did:plc:k4pk3m6rz5roldf73eww4ksb/app.bsky.feed.post/3n2h4gtw7x227",
+      "handle": "qntm.org",
+      "text": "skidikipopop reportedly hopes to share some source code in the near future. I'll share that when it becomes available. Amazing stuff! 🐋",
+      "displayName": "qntm",
+      "time": "2026-11-16T18:03:50.405Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:k4pk3m6rz5roldf73eww4ksb/app.bsky.feed.post/3n2h4er4fs227",
+        "handle": "qntm.org"
+      },
+      "note": "The author's own reply."
+    },
+    {
+      "uri": "at://did:plc:k4pk3m6rz5roldf73eww4ksb/app.bsky.feed.post/3n2h4jw3v5k27",
+      "handle": "qntm.org",
+      "text": "ADDITIONALLY, skidikipopop announces a new shortest loop for HATETRIS Mild, at 14 lines (4 lines to set the well up, 10 lines per loop iteration). The previous record was 7+10 = 17. More here:",
+      "displayName": "qntm",
+      "time": "2026-11-16T18:05:33.351Z",
+      "counts": {
+        "likes": 22,
+        "reposts": 2,
+        "replies": 1,
+        "quotes": 0
+      },
+      "links": [
+        "https://qntm.org/loops (Loops in HATETRIS)"
+      ],
+      "replyTo": {
+        "uri": "at://did:plc:k4pk3m6rz5roldf73eww4ksb/app.bsky.feed.post/3n2h4gtw7x227",
+        "handle": "qntm.org"
+      },
+      "note": "The author's own reply."
+    }
+  ],
+  "people": [
+    {
+      "handle": "qntm.org",
+      "followers": 18116,
+      "displayName": "qntm",
+      "note": "announces the record and keeps the game's record pages"
+    }
+  ],
+  "sensitive": "@qntm.org has 18,116 followers, and no member of the cluster replies in this thread as the digest holds it. The scope review asks that large accounts be tested against R7: this may be an outside account's news more than something the community did. \"skidikipopop\" is the record holder's name as the post gives it. It is not an account in the digest: there is no handle, no follower count, and no way to run the opt-out check. It is a real person known here only through this post (R2). Named as a winner by the game's keeper. Left out: a reply from an account with 119 followers that gives its own score of 5 lines (small account, not a winner, R7). The posts do not explain the game's rules. Do not explain them from memory (R15)."
+}

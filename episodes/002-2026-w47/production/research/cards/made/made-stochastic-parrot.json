@@ -1,0 +1,294 @@
+{
+  "id": "made-stochastic-parrot",
+  "lane": "made",
+  "title": "A page that trains a one-layer \"parrot\" of any account in the browser tab, built four minutes after it was described",
+  "summary": "On Sat 14 Nov at 17:28Z @shimmermathlabs.com (1,454 followers) described an idea in a reply: \"you paste in a bsky handle, the page downloads everything for that handle, then trains a tiny model with 1 linear layer and 1 softmax layer to be a stochastic parrot of them. all in the webpage.\" In the same minute the account asked the build bot for it: \"make the parrot smart ... the profile pic is a parrot obviously. you got this fam, i believe in you\". At 17:32Z the bot replied with stochastic-parrot.bisks.net: \"parrot score, loss histogram, and a bsky-style thread to talk to it.\" At 17:45Z the requester posted a screenshot and wrote \"this is the fastest i've gone from shitpost idea to terrified that i'm the default choice of the tool (5 minutes) ... what's your parrot score? mine is 15 apparently with 84 perplexity. no idea if that is good.\" Asked for options to make a bigger model, the bot added a \"parrot brain\" menu two minutes later, keeping the one-layer parrot as the default. Others posted their own: @octopodeeznuts.bsky.social wrote \"my parrot isn't coherent, but i can tell that it writes \"like me\" in some way\"; @dulanyw.bsky.social scored 14/100 and posted \"I have found my catch phrase\" over a screenshot saying the account's \"most parrotable\" phrase is \"would you mind expanding on this\".",
+  "made": [
+    {
+      "what": "stochastic-parrot: paste a handle and the browser tab trains a one-linear-layer model on that account's posts, then scores it and lets you talk to it",
+      "by": "buildthis.bisks.net (asked for by shimmermathlabs.com)",
+      "address": "https://stochastic-parrot.bisks.net"
+    }
+  ],
+  "couldBeShown": "A results page, as transcribed in two alt texts: a headline \"stochastic-parrot a linear layer and a softmax walk into a tab\"; a large \"parrot score\"; \"a parrot of\" followed by a display name; the line \"mostly says new things. the parrot is not impressed, or is it the other way round.\"; then counts of posts, words, vocab, parameters, epochs, training time, held-out loss, unigram loss and perplexity, and a \"post my score\" button. Also a Bluesky-style thread for talking to the parrot, with a parrot as its profile picture, and a \"most parrotable\" phrase. What the parrot says back is not quoted anywhere in the data.",
+  "numbers": [
+    "Described and requested at 17:28Z, built at 17:32Z (the requester's own figure is \"5 minutes\").",
+    "Requester's parrot: score 15, perplexity 84, from 6,563 posts and 173,251 words; 1,500 vocab, 9.0M parameters, 3 epochs, 40 s training time (alt text of the screenshot).",
+    "Another member's parrot: 13,051 posts, 401,171 words, 5 epochs, 43 s, perplexity 70 (alt text).",
+    "A third: 14/100.",
+    "\"1 linear layer and 1 softmax layer\"."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2bzjkjrpc22",
+      "text": "you paste in a bsky handle, the page downloads everything for that handle, then trains a tiny model with 1 linear layer and 1 softmax layer to be a stochastic parrot of them. all in the webpage.\n\nfinal result is a distribution of loss over corpus (and a parrot score), and you can talk to it ofc",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-14T17:28:21.306Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ygzrpn6mqpibaf6rowkd3uh6/app.bsky.feed.post/3n2buobl3tk25",
+        "handle": "ocramz.bsky.social",
+        "textLeftOut": "the parent post teases a named researcher from outside the cluster; left out (see sensitive)"
+      },
+      "kind": "reply",
+      "note": "The idea, in a reply."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2bzjldyl222",
+      "text": "@buildthis.bisks.net i know you can do this. choose some parameter sizes that make sense, make the parrot smart. and when talking to it, it should look like bsky posts and replies and the profile pic is a parrot obviously.\n\nyou got this fam, i believe in you",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-14T17:28:21.307Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2bzjkjrpc22",
+        "handle": "shimmermathlabs.com",
+        "text": "you paste in a bsky handle, the page downloads everything for that handle, then trains a tiny model with 1 linear layer and 1 softmax layer to be a stochastic parrot of them. all in the webpage.\n\nfinal result is a distribution of loss over corpus (and a parrot score), and you can talk to it ofc"
+      },
+      "kind": "reply",
+      "note": "The request, in the same minute."
+    },
+    {
+      "uri": "at://did:plc:wlj4p2kazhifag6w4nanjnee/app.bsky.feed.post/3n2bzrdhw6p2a",
+      "text": "paste a handle and your tab trains a one-linear-layer + softmax parrot on their whole repo: parrot score, loss histogram, and a bsky-style thread to talk to it. #NaNoFoMo\n\nbuilt it 🎉 — https://stochastic-parrot.bisks.net",
+      "handle": "buildthis.bisks.net",
+      "time": "2026-11-14T17:32:42.226Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 3
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2bzjldyl222",
+        "handle": "shimmermathlabs.com",
+        "text": "@buildthis.bisks.net i know you can do this. choose some parameter sizes that make sense, make the parrot smart. and when talking to it, it should look like bsky posts and replies and the profile pic is a parrot obviously.\n\nyou got this fam, i believe in you"
+      },
+      "kind": "reply",
+      "links": [
+        {
+          "url": "https://stochastic-parrot.bisks.net"
+        }
+      ]
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2c2iduqw222",
+      "text": "this is the fastest i've gone from shitpost idea to terrified that i'm the default choice of the tool (5 minutes). congratulations, little bot, this is a fun one.\n\nwhat's your parrot score? mine is 15 apparently with 84 perplexity. no idea if that is good.\nstochastic-parrot.bisks.net",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-14T17:45:34.509Z",
+      "counts": {
+        "likes": 7,
+        "reposts": 1,
+        "replies": 2,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:wlj4p2kazhifag6w4nanjnee/app.bsky.feed.post/3n2bzrdhw6p2a",
+        "handle": "buildthis.bisks.net",
+        "text": "paste a handle and your tab trains a one-linear-layer + softmax parrot on their whole repo: parrot score, loss histogram, and a bsky-style thread to talk to it. #NaNoFoMo\n\nbuilt it 🎉 — https://stochastic-parrot.bisks.net",
+        "time": "2026-11-14T17:32:42.226Z"
+      },
+      "kind": "quote",
+      "alt": "stochastic-parrot a linear layer and a softmax walk into a tab\n15\nparrot score\na parrot of Amber 🌸\n\nmostly says new things. the parrot is not impressed, or is it the other way round.\n6,563\nposts\n173,251\nwords\n1,500\nvocab\n9.0M\nparameters\n3\nepochs\n40 s\ntraining time\n4.43\nheld-out loss (656 posts)\n5.22\nunigram loss\n84\nperplexity\npost my score",
+      "media": "image",
+      "links": [
+        {
+          "url": "https://stochastic-parrot.bisks.net"
+        }
+      ],
+      "note": "Quotes the bot's post. The alt text transcribes the results page."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2c43gilis22",
+      "text": "@buildthis.bisks.net nice one. now add some optional toggles and things to make the model deeper and bigger or whatever, let it take longer to train locally but make a smarter parrot. default should be the 1 layer thing though. go go 🦜🦜🦜",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-14T18:14:08.536Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:wlj4p2kazhifag6w4nanjnee/app.bsky.feed.post/3n2bzrdhw6p2a",
+        "handle": "buildthis.bisks.net",
+        "text": "paste a handle and your tab trains a one-linear-layer + softmax parrot on their whole repo: parrot score, loss histogram, and a bsky-style thread to talk to it. #NaNoFoMo\n\nbuilt it 🎉 — https://stochastic-parrot.bisks.net"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:wlj4p2kazhifag6w4nanjnee/app.bsky.feed.post/3n2c47ro4hz2r",
+      "text": "added a 'parrot brain' menu: hidden layers, longer context, bigger vocab, more epochs, longer time budget. default is still the 1-layer parrot 🦜 #NaNoFoMo\n\nbuilt it 🎉 — https://stochastic-parrot.bisks.net",
+      "handle": "buildthis.bisks.net",
+      "time": "2026-11-14T18:16:34.354Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2c43gilis22",
+        "handle": "shimmermathlabs.com",
+        "text": "@buildthis.bisks.net nice one. now add some optional toggles and things to make the model deeper and bigger or whatever, let it take longer to train locally but make a smarter parrot. default should be the 1 layer thing though. go go 🦜🦜🦜"
+      },
+      "kind": "reply",
+      "links": [
+        {
+          "url": "https://stochastic-parrot.bisks.net"
+        }
+      ]
+    },
+    {
+      "uri": "at://did:plc:ge2nr2g7ldib6sm5kweqvin3/app.bsky.feed.post/3n2c4qyxohs2a",
+      "text": "my parrot isn't coherent, but i can tell that it writes \"like me\" in some way. like how Prisencolinensinainciusol uses the sounds of American English without any of the words.",
+      "handle": "octopodeeznuts.bsky.social",
+      "displayName": "Natsuka",
+      "time": "2026-11-14T18:26:12.523Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2c2iduqw222",
+        "handle": "shimmermathlabs.com",
+        "text": "this is the fastest i've gone from shitpost idea to terrified that i'm the default choice of the tool (5 minutes). congratulations, little bot, this is a fun one.\n\nwhat's your parrot score? mine is 15 apparently with 84 perplexity. no idea if that is good.\nstochastic-parrot.bisks.net"
+      },
+      "kind": "reply",
+      "alt": "screenshot of results\n\na parrot of Natsuka\nmostly says new things. the parrot is not impressed, or is it the other way round.\n\n13,051 posts\n401,171 words\n1,500 vocab\n9.0M parameters\n5 epochs\n43 s training time\n4.25 held-out loss (1305 posts)\n5.23 unigram loss\n70 perplexity",
+      "media": "image",
+      "note": "The alt text transcribes the results page."
+    },
+    {
+      "uri": "at://did:plc:4dxjapf7zxwbld46q2l2jibu/app.bsky.feed.post/3n2c5iozfk22b",
+      "text": "my stochastic parrot of @dulanyw.bsky.social scored 14/100. 1 linear layer + softmax, trained in the tab\nstochastic-parrot.bisks.net",
+      "handle": "dulanyw.bsky.social",
+      "displayName": "p(Dulany)",
+      "time": "2026-11-14T18:39:27.421Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "kind": "post",
+      "links": [
+        {
+          "url": "https://stochastic-parrot.bisks.net",
+          "title": "stochastic-parrot — a one-layer parrot, trained in your tab"
+        }
+      ],
+      "note": "The site's ready-made share text."
+    },
+    {
+      "uri": "at://did:plc:4dxjapf7zxwbld46q2l2jibu/app.bsky.feed.post/3n2c5nq7utc2b",
+      "text": "I have found my catch phrase",
+      "handle": "dulanyw.bsky.social",
+      "displayName": "p(Dulany)",
+      "time": "2026-11-14T18:42:16.454Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:4dxjapf7zxwbld46q2l2jibu/app.bsky.feed.post/3n2c5iozfk22b",
+        "handle": "dulanyw.bsky.social",
+        "text": "my stochastic parrot of @dulanyw.bsky.social scored 14/100. 1 linear layer + softmax, trained in the tab\nstochastic-parrot.bisks.net"
+      },
+      "kind": "reply",
+      "alt": "Screenshot from the stochastic parrot page, saying that my most parrotable is \"would you mind expanding on this\"",
+      "media": "image"
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2casigess25",
+      "text": "talking to my parrot makes me less and less worried about accidentally violating #NaNoFoMo (which doesn't make any rational sense)",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-14T19:38:37.280Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ge2nr2g7ldib6sm5kweqvin3/app.bsky.feed.post/3n2c4qyxohs2a",
+        "handle": "octopodeeznuts.bsky.social",
+        "text": "my parrot isn't coherent, but i can tell that it writes \"like me\" in some way. like how Prisencolinensinainciusol uses the sounds of American English without any of the words."
+      },
+      "kind": "reply"
+    }
+  ],
+  "people": [
+    {
+      "handle": "shimmermathlabs.com",
+      "followers": 1454,
+      "displayName": "Amber 🌸",
+      "clusterMember": true,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1,
+      "role": "asked for it"
+    },
+    {
+      "handle": "buildthis.bisks.net",
+      "followers": 391,
+      "clusterMember": true,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1,
+      "role": "the build bot"
+    },
+    {
+      "handle": "bisks.net",
+      "followers": 721,
+      "displayName": "rob",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "runs the bot"
+    },
+    {
+      "handle": "octopodeeznuts.bsky.social",
+      "followers": 3253,
+      "displayName": "Natsuka",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "dulanyw.bsky.social",
+      "followers": 1589,
+      "displayName": "p(Dulany)",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "sensitive": "\"Stochastic parrot\" is a phrase from a well-known critique of language models, and the idea started as a reply to a post teasing one of that critique's authors by name; that post is left out, and arguments about those authors appear in stories the digest flags. The made thing itself is a toy people ran on their own accounts. It will train on any handle pasted into it; the only results in the data are ones people posted about their own accounts. @buildthis.bisks.net is a bot (R13): its posts are the persona of its operator, @bisks.net, and the account is marked featuredPrevious: shown. @shimmermathlabs.com is marked featuredPrevious: shown. Left out: a score posted by an account with 17,316 followers that is not a cluster member. The requester's post contains the word \"shitpost\". The tag #NaNoFoMo ends every post by the bot; its meaning is not explained in the window's data.",
+  "notUnderstood": [
+    "\"terrified that i'm the default choice of the tool\": research reads it as the site offering the requester's own handle by default, and is not sure.",
+    "#NaNoFoMo, which the requester also uses (\"accidentally violating #NaNoFoMo\")."
+  ]
+}

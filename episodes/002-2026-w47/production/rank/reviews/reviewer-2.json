@@ -1,0 +1,309 @@
+{
+  "reviewer": "reviewer-2",
+  "cards": {
+    "games-top-chicken-market": {
+      "interest": 6,
+      "bestJoke": {
+        "idea": "writer-1-12",
+        "score": 7
+      },
+      "reason": "A bot that lost 60,000 play-money bucks on Sunday and was called unbeatable by Wednesday is a real three-day story in the players' own words, but it is thin on pictures and nothing the market itself published can be used."
+    },
+    "games-top-chicken-saturday-201": {
+      "interest": 7,
+      "bestJoke": {
+        "idea": "writer-2-10",
+        "score": 7.5
+      },
+      "reason": "The record holder winning with the window's lowest score is the game's story this week, and a fanfare cut to scale (two seconds against sixty-two) says the gap in sound without adding to the member's tease."
+    },
+    "games-top-chicken-standings": {
+      "interest": 5,
+      "bestJoke": {
+        "idea": "writer-2-4",
+        "score": 6
+      },
+      "reason": "A quiet window in which only one result can carry a name leaves mostly aggregates, so this is supporting material for the Saturday card, with Eppy's labelled 8.07 guess the best of the number beats."
+    },
+    "interview-cee-wtf": {
+      "interest": 8,
+      "bestJoke": {
+        "idea": "writer-2-17",
+        "score": 8
+      },
+      "reason": "Short, exact answers and a game to show working make a real interview, built so the answers shrink to the one-word 'done'; it would be this account's second and last segment after Top Chicken."
+    },
+    "interview-yonderdavid": {
+      "interest": 8.5,
+      "bestJoke": {
+        "idea": "writer-2-25",
+        "score": 8
+      },
+      "reason": "The strongest interview subject of the window, with four made things the studio can show and deadpan answers that survive being spoken; the reply about parody said under the PUPPET · PARODY label is the best single moment, and it is the one joke about the show itself an episode gets."
+    },
+    "made-also-liked-feed": {
+      "interest": 6.5,
+      "bestJoke": {
+        "idea": "writer-2-32",
+        "score": 7.5
+      },
+      "reason": "A feed by a maker new to the show that members took up at once; the 23-minute 'blocking bots' outage re-enacted by emptying a studio full of synthetic voices is a clean picture, though the feed itself is hard to show working."
+    },
+    "made-build-bot-daily-slot": {
+      "interest": 4.5,
+      "bestJoke": {
+        "idea": "writer-2-40",
+        "score": 6
+      },
+      "reason": "Six mornings of 'left the repo alone' under a rising count is a gentle turn, but it is one bot's routine with nobody else in it and could be any week's, so it is a short bulletin at most."
+    },
+    "made-build-bot-small-wishes": {
+      "interest": 5,
+      "bestJoke": {
+        "idea": "writer-2-48",
+        "score": 7.5
+      },
+      "reason": "Six requests answered in minutes is one fact told six times, so the card is only as good as an idea that does not rest on the speed, and the filter that switches the host off and leaves the things people made is that idea."
+    },
+    "made-cat-voice-quartet": {
+      "interest": 8.5,
+      "bestJoke": {
+        "idea": "writer-2-52",
+        "score": 8
+      },
+      "reason": "Asked why there was no cat, a maker had one singing harmony 21 hours later, which is made, heard and close to what the show is built from; the song in which the heckling yowl turns out to be in tune takes its form from the maker's own cut ending."
+    },
+    "made-four-dimensional-folding-and-rope": {
+      "interest": 6,
+      "bestJoke": {
+        "idea": "writer-3-94",
+        "score": 7
+      },
+      "reason": "A regular's week of four-dimensional builds prompted by two small accounts has good lines ('you just need to fold eleven prisms together'), but the videos are unseen, so only desk-sized jokes are safe."
+    },
+    "made-gracepuns-real-words": {
+      "interest": 4.5,
+      "bestJoke": {
+        "idea": "writer-3-144",
+        "score": 5.5
+      },
+      "reason": "The story is a bot's correction with no pun that may be shown, which leaves an arithmetic beat about reading 83 posts a second and nothing to watch."
+    },
+    "made-hyperball": {
+      "interest": 7,
+      "bestJoke": {
+        "idea": "writer-2-157",
+        "score": 8
+      },
+      "reason": "A launch with a good-humoured exchange and a camera rule the studio can obey: the whole set turning round a fixed host, ending on the maker's 'the goal, not easy to find', is a demonstration that needs no explaining."
+    },
+    "made-johnson-solid-creatures": {
+      "interest": 6.5,
+      "bestJoke": {
+        "idea": "writer-2-159",
+        "score": 7.5
+      },
+      "reason": "A small account's idea that comes with rules to play: a fight in which the move is tipping onto another face is slow, visual and Eppy's, and it uses up that account's one appearance."
+    },
+    "made-mobius-chess-ringmate": {
+      "interest": 7,
+      "bestJoke": {
+        "idea": "writer-2-162",
+        "score": 8
+      },
+      "reason": "A 423-follower maker and a member who will 'like, repost, but not love unless there's a link' give a five-post exchange with a condition and a payoff 25 hours later, between two people new to the show."
+    },
+    "made-parfait-client": {
+      "interest": 7,
+      "bestJoke": {
+        "idea": "writer-2-168",
+        "score": 7.5
+      },
+      "reason": "A 321-follower maker's client praised all week is a hero story with high reach, and running the segment itself at four times speed is the right demonstration, but the maker cannot be voiced and the bio is unchecked."
+    },
+    "made-pen-plotter-replies": {
+      "interest": 9,
+      "bestJoke": {
+        "idea": "writer-2-137",
+        "score": 9
+      },
+      "reason": "The window's biggest story is a thing made, shown and watched live, and it holds several jokes that land as pictures; sports commentary on the pen's trip back to the left margin, set off by a replier's own line, is the one a viewer would retell."
+    },
+    "made-polyhedra-instruments-sakura": {
+      "interest": 7.5,
+      "bestJoke": {
+        "idea": "writer-3-53",
+        "score": 8
+      },
+      "reason": "A wordless video that set off half the week, with the maker's own change requests as a script: the studio redrawing itself note by note while the river sits still until 'I had to tell it to make the river move' is a full demonstration."
+    },
+    "made-polyhedra-week-small-entries": {
+      "interest": 5.5,
+      "bestJoke": {
+        "idea": "writer-2-75",
+        "score": 7.5
+      },
+      "reason": "Kept only for a tool-written love poem with proofs in it, which is slight as a story but gives a song its form: longing that keeps resolving into 'therefore'."
+    },
+    "made-polyhedral-coffee-simulator": {
+      "interest": 7.5,
+      "bestJoke": {
+        "idea": "writer-2-77",
+        "score": 8.5
+      },
+      "reason": "A game where you have a coffee, a real mug added nine minutes after it was posted, and a 75-follower account ruling a hand-drawn icosahedron a bootleg: the consumer-affairs exchange with 'faces owed: 2' is a small true number and a hero's moment in their own words."
+    },
+    "made-polykatamari": {
+      "interest": 6,
+      "bestJoke": {
+        "idea": "writer-1-59",
+        "score": 7
+      },
+      "reason": "Three requests and three builds in under an hour, best where 'instead of faking it' makes a pyramid lurch corner to corner; watchable, but the game is unseen and the requester is already on many cards."
+    },
+    "made-reply-diagrams": {
+      "interest": 4.5,
+      "bestJoke": {
+        "idea": "writer-1-116",
+        "score": 7.5
+      },
+      "reason": "The usable part is a request and a bug report from an account that cannot speak; the whole cast losing its heads to the same bug is a good picture attached to a thin story."
+    },
+    "made-simcluster-kombat-arcade": {
+      "interest": 5,
+      "bestJoke": {
+        "idea": "writer-1-120",
+        "score": 6.5
+      },
+      "reason": "With the rosters and the result line off limits and 'guava' unexplained, what is left is a tip about kicking the bot off the map, which makes one good physical bit and not a segment."
+    },
+    "made-speak-and-spell": {
+      "interest": 7.5,
+      "bestJoke": {
+        "idea": "writer-2-99",
+        "score": 7.5
+      },
+      "reason": "A generated picture of a toy 'found in my closet' became a working one in 25 hours, speaking in its maker's own voice, and pressing the one button the guide says not to press gets small print; strong, but its maker is already on sixteen cards."
+    },
+    "made-stochastic-parrot": {
+      "interest": 6.5,
+      "bestJoke": {
+        "idea": "writer-3-150",
+        "score": 8
+      },
+      "reason": "A toy people ran on themselves and posted about; a member's remark that the parrot 'writes like me' with none of the words becomes Hy scatting a joke in Larry's rhythm and getting the laugh, which the show's own voices can really do."
+    },
+    "made-vocal-synth-choir": {
+      "interest": 8,
+      "bestJoke": {
+        "idea": "writer-2-59",
+        "score": 8
+      },
+      "reason": "Three better versions of a synthetic choir in one day is the show's own medium being improved in public; 'It's simulated.' 'So are we.' is a complete joke with its picture, and the card also holds the window's best candidate for a quiet moment."
+    },
+    "made-voice-falling-blocks": {
+      "interest": 6.5,
+      "bestJoke": {
+        "idea": "writer-2-64",
+        "score": 8.5
+      },
+      "reason": "A synth head playing a game by voice is something the studio can try on itself, and Eppy's commentary becoming the controller, down to agreeing with Sibyl in one fatal word, is fact, turn, punch and picture together."
+    },
+    "made-yard-shift-wheelie": {
+      "interest": 8,
+      "bestJoke": {
+        "idea": "writer-2-107",
+        "score": 7.5
+      },
+      "reason": "A news clip became a playable wheelie game in 2 hours 51 minutes and gained three requested features in 21, which is made, shown and timed; Eppy getting a real sport is the natural staging, and it competes with the interview for this account's one other segment."
+    },
+    "talk-peanut-butter-pretzels": {
+      "interest": 5,
+      "bestJoke": {
+        "idea": "writer-1-140",
+        "score": 6.5
+      },
+      "reason": "A food question whose answers run from a quarter to 300 percent is funny in its own words, but it sits beside health, its image is unseen, and the show adds only a frame."
+    },
+    "talk-polyhedra-week": {
+      "interest": 6.5,
+      "bestJoke": {
+        "idea": "writer-2-116",
+        "score": 7.5
+      },
+      "reason": "The naming of the week ties the made cards together and has a small true count (five posts say polyhedra, three say polyhedron), but it is talk about the things and weaker than any of them."
+    },
+    "talk-what-else-is-like-this": {
+      "interest": 4.5,
+      "bestJoke": {
+        "idea": "writer-2-36",
+        "score": 7.5
+      },
+      "reason": "A caption spreading among members is talk about talk and reads as insider; the one idea that gives a newcomer something to see is the studio that turns out to have been at 12 percent all segment."
+    },
+    "voices-best-by-2029": {
+      "interest": 4,
+      "bestJoke": {
+        "idea": "writer-2-120",
+        "score": 6.5
+      },
+      "reason": "One witty line whose joke is complete in the post; the house run of expiry labels ending on 'see lid' is a good tag for it and no more."
+    },
+    "voices-forty-gigabytes": {
+      "interest": 5,
+      "bestJoke": {
+        "idea": "writer-3-176",
+        "score": 6.5
+      },
+      "reason": "A small account's own joke about 40 GB of files 'i in theory told him to do' is a pleasant desk item, and a dialog that will not eject the host is its button."
+    },
+    "voices-fused-off-neurons": {
+      "interest": 5.5,
+      "bestJoke": {
+        "idea": "writer-2-125",
+        "score": 7.5
+      },
+      "reason": "The reply about market segmentation is a finished joke that has to travel with a post phrased around God, read exactly; pulling back to show nine tenths of the studio locked is the best thing the show can add."
+    },
+    "voices-gm-quota": {
+      "interest": 4.5,
+      "bestJoke": {
+        "idea": "writer-2-127",
+        "score": 6.5
+      },
+      "reason": "A three-like post from a 104-follower account, but it offers a ready open: a greeting that starts a five-hour meter on an eight-minute show."
+    },
+    "voices-obsidian-priority-plugin": {
+      "interest": 4.5,
+      "bestJoke": {
+        "idea": "writer-1-159",
+        "score": 7.5
+      },
+      "reason": "A small made thing with nothing to show but its idea, though the idea demonstrates well: items slotted in at 2.5 and 2.25 while Larry's segment stays number three and never arrives."
+    },
+    "voices-origami-polyhedron-week": {
+      "interest": 6.5,
+      "bestJoke": {
+        "idea": "writer-2-132",
+        "score": 8
+      },
+      "reason": "A 75-follower account's alt text, a paper dodecahedron sturdy enough for street hockey '(I've tested)', hands Eppy a sport with a two-word match report; it would be that account's one appearance."
+    },
+    "voices-plotter-queue-small-accounts": {
+      "interest": 7,
+      "bestJoke": {
+        "idea": "writer-3-119",
+        "score": 7.5
+      },
+      "reason": "The small accounts' replies and the maker's welcomes are the warm half of the plotter story and belong in the same segment; Sibyl reading the long meow with every syllable counted is the best of them."
+    },
+    "voices-rad-cohesion-agent-race": {
+      "interest": 5,
+      "bestJoke": {
+        "idea": "writer-1-169",
+        "score": 6.5
+      },
+      "reason": "Four quiet posts about losing to one's own agent and then adding a three-second pause can only be told as the maker told them, so the house joke is a ruling ('legal, if it's your game'), and it costs that account's one appearance."
+    }
+  }
+}

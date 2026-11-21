@@ -1,0 +1,164 @@
+{
+  "slug": "interview-yonderdavid",
+  "title": "The Interview: David",
+  "format": "interview",
+  "seconds": 95,
+  "standing": null,
+  "cards": [
+    "interview-yonderdavid"
+  ],
+  "ideas": [
+    "writer-2-27",
+    "writer-1-23",
+    "writer-2-25",
+    "writer-2-26",
+    "writer-2-30"
+  ],
+  "speakers": [
+    "yonderdavid.bsky.social"
+  ],
+  "featured": [
+    "yonderdavid.bsky.social"
+  ],
+  "retell": "A member asked why the synth had no cat, and the guest's whole reply was 'Very well', a fix and a cat voice in a quartet; later the puppet explained why parody is allowed, under its own PARODY label.",
+  "turn": "Asked why. Got a cat.",
+  "redraft": {
+    "why": "Sent back by the repetition gate on exchange 1, with five further points from the project manager.",
+    "changes": [
+      "Exchange 1 no longer says, titles, tags or counts the time between the remark and the video, and the delivery line is gone. The answer now carries it in David's words: its second sentence ('The cat voice sim joins a quartet…') is performed. The laugh follows a line of Larry's about himself ('Me, I just say, good question.').",
+      "No board, no fifth place, no animal calls, no cat arriving. One plain line gives the premise the question needs ('The synthesizer you use comes with four animals.').",
+      "Five answers, not six. The 'Greenfields' post is no longer an answer: Larry reads one clause of it aloud, exactly, with its card up, as the post the next question was about. That removes the remark Larry used to make as his own.",
+      "Every setup is now attributed ('a member asked', 'the same member asked') and asks what was asked. Larry no longer says 'I love the kotos' or 'I want more kotos'.",
+      "Answer 1 has a marked cut ('it's arguably still chimera-vocal-synth week,') and scores 17 to 20 of 23 words in every render tried; it was 8 to 11 of 14.",
+      "Small respellings gave margin on three other real lines (kazoo, new, free).",
+      "94.6 s, from 106.3 s."
+    ]
+  },
+  "runningTime": {
+    "rendered": "94.6 s in a scratch render of this script with this cast entry (the studio's renderer, 20 Nov), 201 spoken words by the gate's count, 5 answers on 4 occasions.",
+    "ifItMustBeShorter": [
+      "Cut plug-line ('Finally, something to plug.'): about 2 s; the plug card and the button still land.",
+      "Cut good-question and its laugh: about 3 s; exchange 1 then runs dry into exchange 2.",
+      "End on 'New. Second draft, mostly vibed.' and its silence, cutting ask-details, free, plug-line and button: about 11 s and one answer, at the cost of the plug.",
+      "Do not cut you-posted and read-copyright without cutting answer 3: the Weird Al question needs David's own words 'covers aren't fair use' just before it."
+    ]
+  },
+  "exchanges": [
+    {
+      "n": 1,
+      "occasion": "Sat 14 Nov 2026",
+      "setup": "ask-cat",
+      "answer": "very-well",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cffuxxv22n",
+      "likes": 65,
+      "how": "a member asked; Larry asks it"
+    },
+    {
+      "n": 2,
+      "occasion": "Sun 15 Nov 2026, under the cat video",
+      "setup": "ask-failures",
+      "answer": "kazoo",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cqbcwvqc2z",
+      "likes": 11,
+      "how": "a member asked; Larry asks it. The post is the second half of the reply"
+    },
+    {
+      "n": 3,
+      "occasion": "Sun 15 Nov 2026, the same thread: a question about a post of David's, which Larry reads from first",
+      "setup": "ask-al",
+      "answer": "parody",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cro6iyc22z",
+      "likes": 1,
+      "how": "read what was said (David's own post, card up, 4 likes), then a member asked; Larry asks it"
+    },
+    {
+      "n": 4,
+      "occasion": "Tue 17 Nov 2026, under the polyhedra video",
+      "setup": "ask-koto",
+      "answer": "new",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jnh3e6hc2t",
+      "likes": 1,
+      "how": "a member asked; Larry asks it"
+    },
+    {
+      "n": 5,
+      "occasion": "Tue 17 Nov 2026, the same thread: the request that followed answer 4",
+      "setup": "ask-details",
+      "answer": "free",
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jq4x7qys2t",
+      "likes": 2,
+      "how": "the same member asked; Larry asks it. A real follow-up"
+    }
+  ],
+  "people": {
+    "speaks": "David (@yonderdavid.bsky.social, 971 followers, not featured before): the hero throughout. Every word the puppet says is from five of David's posts; nothing is added.",
+    "shown": "Only David: the puppet, its chyron, five answer cards and one card Larry reads from. No other account is voiced, named or shown.",
+    "notShown": "The members whose posts were the prompts (@norvid-studies.bsky.social for answers 1 to 3, @shimmermathlabs.com for 4 and 5) are in sources.json as 'mentioned', with the exact text of each prompt for the occasion test. Larry says 'a member asked' and asks what was asked; their posts stay off the screen.",
+    "namedInSpeech": "'Weird Al' is said once by Larry, because it is the question that was asked. Nothing is claimed about him.",
+    "pronouns": "None used for anyone real, in the script or meant for the screen.",
+    "castId": "The puppet's cast id here is 'david'. If another selected segment also casts this account, use one entry and one voice for both."
+  },
+  "selfJoke": "The episode's one joke about the show itself is in this segment and is used once: answer 3, 'I believe parody is considered transformative in the relevant sense.', said under the guest's own PUPPET · PARODY chyron. No line points at it or explains it. After the answer nobody speaks for 1.3 s; the next words are Larry's 'Two days later'. Keep it that way: no stamp, no caption, no reaction line.",
+  "experiment": "Not run here, by its own terms: experiment.md says the interview is drafted as the bible has it.",
+  "builder": {
+    "cast": "Add the entry in cast.js beside this file to the episode's cast.js. Pete is needed on the bandstand for one hummed phrase (cast: ['pete']). Guest order: ['david'].",
+    "look": "A hue and costume for what David makes, not for a person: a calm cyan, a cardigan, no prop. The head is not a likeness.",
+    "disclaimer": "From the guest's first appearance (cue guest-in): 'An interview built from public posts. Every answer is a real post. David is a puppet playing a posting persona. Parody.'",
+    "chyron": "At guest-in: David · Supplied the missing cat · @yonderdavid.bsky.social · PUPPET · PARODY. Bring it back for the whole of the line 'parody' (see label-hold).",
+    "cards": "Each answer's card is up for exactly its line, words lighting as spoken, and shows only the words that are spoken, with the ellipsis where the script has one (a whole 50-word post on a card would be unread text). Card: David · @yonderdavid.bsky.social · the date · the like count (see 'exchanges'; dates are UTC) and a small 'REPLY' tag. Do not put the asker's handle or words on any card.",
+    "notInThisSegment": "The episode's song uses a board of the synth's animals with a fifth place that fills. Nothing like it here: no board, no list of the four animals, no empty place, no animal sounds, no cat arriving, and no clock, count or title for how long anything took.",
+    "cues": {
+      "guest-in": "David arrives in the guest chair; chyron and disclaimer.",
+      "four (line)": "Larry to David. A small credit only: CHIMERA VOCAL SYNTH · github.com/jamesondh/chimera-vocal-synth (another developer's project; the show does not present the synth as its own).",
+      "very-well (line)": "Card 1. Stay on David for 'Very well, … so I can fix that.': those words are the register joke. From the start of the second sentence, a studio sketch of the video beside him, drawn complete at once and held still: four small singing heads, a fifth voice marked CAT VOICE, a guitar and a fiddle, labelled STUDIO SKETCH · VIDEO: @yonderdavid.bsky.social. It illustrates what he is saying; it is not a reveal, and nothing arrives. Nobody on the show has seen or heard the video: draw only what its alt text says, and do not name the song. If it sits too close to the song's picture, drop the sketch and hold on David and the card.",
+      "good-question (line)": "Larry to the camera, dry.",
+      "under-the-video": "Card date changes to SUN 15 NOV.",
+      "kazoo (line)": "Card 2. No reaction on 'kazoo': leave 0.5 s dry.",
+      "band-kazoo": "Cut to Pete on the bandstand humming the phrase (line id pete-kazoo, 1.4 s). Label: ARTIST'S IMPRESSION. It is the band's joke, not David's audio. The pitch line is in the script; it has not been heard by a person.",
+      "same-thread, you-posted, read-copyright": "On 'You posted:', the card of David's post (David · @yonderdavid.bsky.social · SUN 15 NOV · 4 likes) showing exactly the words of read-copyright, ellipses included, lighting as Larry reads them. Larry reads from the card. Take the card down before and-asked.",
+      "and-asked, ask-al": "Larry alone in frame, asking David. No card, no picture: the question has to be the only thing happening.",
+      "parody (line) and label-hold": "Cut to David on his first word, with card 3 (REPLY · SUN 15 NOV · 1 like), so the line is plainly his answer to the question just asked. Only on the word 'parody' (word 3 of the line) begin a slow push from David to David's own chyron, keeping his head in frame while he finishes, until PUPPET · PARODY fills the lower frame; hold through label-hold and the 1.3 s after it. Larry looks at the chyron, then at the camera. Nothing else: no stamp, no arrow, no caption.",
+      "polyhedra": "Card date TUE 17 NOV. A studio sketch of an instrument assembled from small polyhedra, labelled STUDIO SKETCH · VIDEO: @yonderdavid.bsky.social. What was seen of the real video is one still (media-notes.md): pastel, pink blossom made of small polyhedra, a pale blue-grey instrument shape. No costume, scenery or sound that plays on nationality.",
+      "koto-pluck": "One string of the sketched koto is plucked, on the tick.",
+      "new (line) and dry": "Card 4: five words, large. After it, hold on David for the 0.8 s of silence; Larry waits for more and does not get it. No reaction sound.",
+      "free (line) and plug": "Card 5 shows the spoken sentence and, under it, pastebin.com/cxLPkJby. At plug the address lifts off the card into a plug card drawn like a book plug: KOTO SIM · pastebin.com/cxLPkJby. Larry holds it up on 'Out now'."
+    }
+  },
+  "voice": {
+    "david": "body 0/0, f0 172, rate 0.94, accent 0.12, tension 0.55, brightness 0.4. Measured with the method of analyze.ts voices: median f0 173 Hz; nearest house voices dee 1.62, eppy 1.66, sibyl 2.00. Measure again with the episode's other guests.",
+    "respellings": "that (stressed): thatt. models: mod-els. The (before 'original'): Thee. New: Nee-oo (as written it is heard as 'No', which would reverse the answer). mostly: most-lee. Koto: Koh-toe. polyhedra: polly-hee-druh. In four lines 'as' adds a comma to set a word apart (parody; Weird Al; iteration; wants): the words and their order do not change."
+  },
+  "heard": {
+    "what": "Whisper base.en on the scratch render's final mix, every line read (20 Nov). 174 of 196 caption words (89%), no line under 60%. Nothing heard is offensive, alarming or out of bounds, and nothing heard says anything about a person.",
+    "realLines": {
+      "very-well": "19/23: 'Very well, so I can fix that. The cat noise similar in the glottet, and instruments that get their sound from physical models.' 17 to 20 of 23 in all fourteen renders and lab runs of this cut with its respelling. 'sim joins a quartet' stays soft; the card carries it. Harmless.",
+      "kazoo": "15/19: 'The meow and yow took some work in the duration against reference recordings, the original yow sounded like a clue.' 12 to 15 of 19 across the lab runs and renders, never under 60%, and 15 in the three with the final respelling. The word 'kazoo' is soft (also 'zoo', 'blue'); the card and the band's impression carry it. Harmless.",
+      "parody": "10/10 in every full render of the draft and the redraft (sixteen): 'I believe parody is considered transformative in the relevant sense.' Without the commas in 'as' the word was heard as 'Harry', 'Herod' or 'areas', and once 'transformative' split into two words, the first of which is on the heard-text list: keep the commas.",
+      "new": "3/5 in the last render: 'New, second draft, more focused.' Also heard as 'mostly lived', 'mostly hyped', 'movie-lived'. Three words are steady and 'vibed' is never transcribed, so the line scores 3 or 4 of 5 (fourteen lab runs, never fewer than 3): at the gate's edge, and it passes. The card carries 'mostly vibed'. Harmless.",
+      "free": "5/6: 'Photo information wants to be free.' The IPA for Koto is right (koʊtoʊ); the transcriber does not know the word. Harmless."
+    },
+    "readAloud": "read-copyright (Larry reading David's words from the card): 11/12, 'It turns out that still under copyright and covers aren't fair use.'",
+    "names": "'David' is heard as 'David' (3/3) in Larry's voice, last in its own short line. 'Weird Al' is heard as 'Weirdell', the name run together, in every render of this line. With 'A member asked:' in the same line it was heard as a different word, an unkind one, so the attribution is its own beat (and-asked) and must stay separate.",
+    "houseLines": "four: 'comes with for animals'. ask-cat: 'Remember asked, how did the cat not make the top four?' you-posted: 'But your first choice was another song, but you posted.' ask-details: 'can you share any tales?' button: 'wherever code is posted'. All harmless."
+  },
+  "terms": {
+    "kept": [
+      "The piece the quartet sings and the choir's piece are not named in the script or for the screen (screen ruling 4). They appear only inside the exact post text and alt text that sources.json records.",
+      "The koto is named as David and the asker name it. Larry says 'a video of instruments made from polyhedra' and nothing about the tune (ruling 4).",
+      "The 'piano' pair and the pair asked by the show's owner are not used.",
+      "Nothing on David's lines about masculine and feminine voices.",
+      "No figure about a person is said or shown."
+    ],
+    "notDone": "No bio has been read (no network at the draft stage). R11 and R14 need David's bio read before this airs."
+  },
+  "judgementCalls": [
+    "Answer 1's cut. 'Very well, … so I can fix that.' drops the clause 'it's arguably still chimera-vocal-synth week,'. The agreement and the commitment stand and the second sentence is whole, so the meaning holds; what is lost is the playful reason. It was cut because that clause is the part the engine cannot say, and it kept the line under the hearing gate.",
+    "The premise line 'The synthesizer you use comes with four animals.' The song tells that fact with a picture; here it is one plain sentence with no picture, because the member's question cannot be understood without it.",
+    "Larry reads a clause of David's own post aloud ('… it turns out that's still under copyright and covers aren't fair use. …') instead of the puppet performing it. It is shown and read as the post it was, so it is not made to answer anything, and the next question was really asked about it. Larry's lead-in, 'Your first choice was another song.', is a fact from the same post, not a view.",
+    "Answer 2's digest parent is David's own post (the first half of the reply), so that is its recorded context; the staged setup asks the member's question that both halves answer. sources.json gives both.",
+    "Answers 4 and 5 are a real question and follow-up from one member in one thread, performed in order.",
+    "Pete's hummed kazoo is the band's impression, labelled as one. Its pitches rise and fall like a yowl on paper and in the telemetry; nobody has listened to it.",
+    "The introduction says the singers and instruments 'are not real'. It is meant as a plain description of simulated voices and instruments."
+  ],
+  "gateNote": "The pipeline loads the episode's cast.js, not drafts/<slug>/cast.js, so until the entry is merged the draft-stage line gate does not see 'david' as a guest and passes without checking these five lines. The same gate function (checkGuestLines) was run on this draft with its cast.js merged in, from a scratch script: no failures."
+}

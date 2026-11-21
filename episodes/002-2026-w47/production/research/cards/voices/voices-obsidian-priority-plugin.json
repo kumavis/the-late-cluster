@@ -1,0 +1,41 @@
+{
+  "id": "voices-obsidian-priority-plugin",
+  "lane": "voices",
+  "title": "A 318-follower account makes a \"lil Obsidian plugin\" that sorts todos with fractional indexing",
+  "summary": "On Wed 18 Nov 13:22Z @qustrolabe.bsky.social (318 followers) posted: \"fractional indexing (www.npmjs.com/package/frac...) with strings is pretty neat concept\", explaining that \"you can always have index that's between two other lexicographically so drag'n'dropping row doesn't require shifting hundreds of indexes below or above\", and ending \"made lil Obsidian plugin to sort todos by priority that way\" (23 likes, 2 replies; the replies are not in the digest). The post has a screenshot with no alt text and links the npm package, not the plugin.",
+  "posts": [
+    {
+      "uri": "at://did:plc:i33364e67bhzgnemuyi6y4vk/app.bsky.feed.post/3n2lnmrc6gc2e",
+      "url": "https://bsky.app/profile/qustrolabe.bsky.social/post/3n2lnmrc6gc2e",
+      "handle": "qustrolabe.bsky.social",
+      "displayName": "qustrolabe",
+      "text": "fractional indexing (www.npmjs.com/package/frac...) with strings is pretty neat concept\nyou can always have index that's between two other lexicographically so drag'n'dropping row doesn't require shifting hundreds of indexes below or above\n\nmade lil Obsidian plugin to sort todos by priority that way",
+      "time": "2026-11-18T13:22:01.541Z",
+      "counts": {
+        "likes": 23,
+        "reposts": 3,
+        "replies": 2,
+        "quotes": 0
+      },
+      "image": "image attached, no alt text in the digest",
+      "links": [
+        "https://npmjs.com/package/fractional-indexing"
+      ]
+    }
+  ],
+  "people": [
+    {
+      "handle": "qustrolabe.bsky.social",
+      "displayName": "qustrolabe",
+      "followers": 318,
+      "smallAccount": false,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "made the plugin; the only speaker"
+    }
+  ],
+  "watchable": "One screenshot, not described in the digest. What the plugin does, in the post's words: a row can be dragged between two others without renumbering the rest. No link to the plugin is in the post.",
+  "sensitive": "A 318-follower account (R7: hero only). 23 likes is this account's most-liked post of the window. Nothing sensitive in the post. Another post by this account in the window uses a crude word for being overcharged; not used."
+}

@@ -1,0 +1,2107 @@
+{
+  "weights": {
+    "reach": 0.25,
+    "interest": 0.35,
+    "bestJoke": 0.4,
+    "synergy": 0.1,
+    "variety": 0.1
+  },
+  "reachNote": "reach is a stand-in for views",
+  "first": [
+    {
+      "card": "made-pen-plotter-replies",
+      "title": "A pen plotter wrote the replies to a post on paper, streamed live",
+      "reach": 1159,
+      "reachNorm": 0.952,
+      "interest": 9,
+      "bestJoke": 9,
+      "bestIdeas": [
+        "writer-2-138",
+        "writer-2-137"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 9,
+          "bestJoke": {
+            "idea": "writer-2-138",
+            "score": 9
+          },
+          "reason": "The window's top story is a machine writing people's replies in ink for 3 hours 56 minutes, which a studio drawn in lines can redo itself, and the pen hovering over the missing 'k' of a reply cut off mid-word is the cleanest of several strong jokes."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 9,
+          "bestJoke": {
+            "idea": "writer-2-137",
+            "score": 9
+          },
+          "reason": "The window's biggest story is a thing made, shown and watched live, and it holds several jokes that land as pictures; sports commentary on the pen's trip back to the left margin, set off by a replier's own line, is the one a viewer would retell."
+        }
+      ],
+      "first": 0.913
+    },
+    {
+      "card": "interview-yonderdavid",
+      "title": "Interview candidate: David (@yonderdavid.bsky.social), who posted synth choirs, a singing cat and polyhedra instruments and answered questions about each",
+      "reach": 1656,
+      "reachNorm": 1,
+      "interest": 8.5,
+      "bestJoke": 8,
+      "bestIdeas": [
+        "writer-2-24",
+        "writer-2-25"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 8.5,
+          "bestJoke": {
+            "idea": "writer-2-24",
+            "score": 8
+          },
+          "reason": "The window's best subject, with four things made, fourteen answered questions and a precise deadpan voice, and the exchange where a repair list for a synth voice is then tried on the host lets the show take part instead of report."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 8.5,
+          "bestJoke": {
+            "idea": "writer-2-25",
+            "score": 8
+          },
+          "reason": "The strongest interview subject of the window, with four made things the studio can show and deadpan answers that survive being spoken; the reply about parody said under the PUPPET · PARODY label is the best single moment, and it is the one joke about the show itself an episode gets."
+        }
+      ],
+      "first": 0.868
+    },
+    {
+      "card": "made-cat-voice-quartet",
+      "title": "Asked why the synth has no cat, a maker adds a cat voice to a folk quartet",
+      "reach": 572,
+      "reachNorm": 0.857,
+      "interest": 8.75,
+      "bestJoke": 8,
+      "bestIdeas": [
+        "writer-2-53",
+        "writer-2-52"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 9,
+          "bestJoke": {
+            "idea": "writer-2-53",
+            "score": 8
+          },
+          "reason": "Made, shown, joined in by others and built on the same synth the studio sings with: the band failing at a cat with its own four animals while Sibyl reads the maker's kazoo line is a demonstration only this show can do."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 8.5,
+          "bestJoke": {
+            "idea": "writer-2-52",
+            "score": 8
+          },
+          "reason": "Asked why there was no cat, a maker had one singing harmony 21 hours later, which is made, heard and close to what the show is built from; the song in which the heckling yowl turns out to be in tune takes its form from the maker's own cut ending."
+        }
+      ],
+      "first": 0.84
+    },
+    {
+      "card": "interview-cee-wtf",
+      "title": "Interview candidate: cee (@cee.wtf), who won Top Chicken, put a wheelie game online hours after it was suggested, and answered people through \"GTA 6 week\"",
+      "reach": 1537,
+      "reachNorm": 0.99,
+      "interest": 7.75,
+      "bestJoke": 7.75,
+      "bestIdeas": [
+        "writer-2-17"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 7.5,
+          "bestJoke": {
+            "idea": "writer-2-17",
+            "score": 7.5
+          },
+          "reason": "Short, witty answers on separate occasions and a game that can be shown working make a real portrait, and the shape where the questions grow while the answers shrink to one word is strong; its last beat needs a hard look at the repetition gate, and this account is already the Top Chicken winner."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 8,
+          "bestJoke": {
+            "idea": "writer-2-17",
+            "score": 8
+          },
+          "reason": "Short, exact answers and a game to show working make a real interview, built so the answers shrink to the one-word 'done'; it would be this account's second and last segment after Top Chicken."
+        }
+      ],
+      "first": 0.829
+    },
+    {
+      "card": "made-vocal-synth-choir",
+      "title": "A choir of synthesized voices sings a six-part Kyrie, in three versions in one day",
+      "reach": 550,
+      "reachNorm": 0.851,
+      "interest": 7.75,
+      "bestJoke": 8,
+      "bestIdeas": [
+        "writer-2-59"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 7.5,
+          "bestJoke": {
+            "idea": "writer-2-59",
+            "score": 8
+          },
+          "reason": "Three versions of a synthetic choir in one day, one of them 68 minutes after a member wondered aloud, touch the show's own voices, and the band's two-word answer to 'it's only simulated' is the shortest strong punch on the longlist, though the piece itself can only be named in the maker's words."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 8,
+          "bestJoke": {
+            "idea": "writer-2-59",
+            "score": 8
+          },
+          "reason": "Three better versions of a synthetic choir in one day is the show's own medium being improved in public; 'It's simulated.' 'So are we.' is a complete joke with its picture, and the card also holds the window's best candidate for a quiet moment."
+        }
+      ],
+      "first": 0.804
+    },
+    {
+      "card": "made-yard-shift-wheelie",
+      "title": "A loader balancing on two wheels in the news becomes a wheelie game the same evening",
+      "reach": 822,
+      "reachNorm": 0.906,
+      "interest": 7.75,
+      "bestJoke": 7.5,
+      "bestIdeas": [
+        "writer-3-26",
+        "writer-2-107"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 7.5,
+          "bestJoke": {
+            "idea": "writer-3-26",
+            "score": 7.5
+          },
+          "reason": "A remark at 21:00 was a playable wheelie game by 23:51 and gained 'a button for hoots and woots' on request, which the desk can fit and Larry can overuse; the maker is already in Top Chicken, so this competes with the interview for that account's one other segment."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 8,
+          "bestJoke": {
+            "idea": "writer-2-107",
+            "score": 7.5
+          },
+          "reason": "A news clip became a playable wheelie game in 2 hours 51 minutes and gained three requested features in 21, which is made, shown and timed; Eppy getting a real sport is the natural staging, and it competes with the interview for this account's one other segment."
+        }
+      ],
+      "first": 0.798
+    },
+    {
+      "card": "made-polyhedra-instruments-sakura",
+      "title": "Instruments built from polyhedra play the folk tune Sakura Sakura in a landscape of polyhedra",
+      "reach": 441,
+      "reachNorm": 0.822,
+      "interest": 7.75,
+      "bestJoke": 8,
+      "bestIdeas": [
+        "writer-2-70",
+        "writer-3-53"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 8,
+          "bestJoke": {
+            "idea": "writer-2-70",
+            "score": 8
+          },
+          "reason": "'Three hundred thousand mostly regular polyhedra' and a making-of that ends 'I had to tell it to make the river move' are real, specific and showable, and applying the change requests to the set until one word moves everything pays the last line off on the house."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 7.5,
+          "bestJoke": {
+            "idea": "writer-3-53",
+            "score": 8
+          },
+          "reason": "A wordless video that set off half the week, with the maker's own change requests as a script: the studio redrawing itself note by note while the river sits still until 'I had to tell it to make the river move' is a full demonstration."
+        }
+      ],
+      "first": 0.797
+    },
+    {
+      "card": "made-polyhedral-coffee-simulator",
+      "title": "A \"polyhedral coffee simulator\" answers \"needs to be a game\", and gains a real mug",
+      "reach": 243,
+      "reachNorm": 0.742,
+      "interest": 7.5,
+      "bestJoke": 8.5,
+      "bestIdeas": [
+        "writer-2-77"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 7.5,
+          "bestJoke": {
+            "idea": "writer-2-77",
+            "score": 8.5
+          },
+          "reason": "A game about having a coffee, made in 74 minutes, and under it a 75-follower account's 'bootleg icosahedron' correction answered with 'i want my money back!', which the watchdog frame tops with a true small number: two faces short."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 7.5,
+          "bestJoke": {
+            "idea": "writer-2-77",
+            "score": 8.5
+          },
+          "reason": "A game where you have a coffee, a real mug added nine minutes after it was posted, and a 75-follower account ruling a hand-drawn icosahedron a bootleg: the consumer-affairs exchange with 'faces owed: 2' is a small true number and a hero's moment in their own words."
+        }
+      ],
+      "first": 0.788
+    },
+    {
+      "card": "voices-plotter-queue-small-accounts",
+      "title": "What small accounts sent to the pen plotter, and what its maker said back",
+      "reach": 847,
+      "reachNorm": 0.91,
+      "interest": 7,
+      "bestJoke": 7.5,
+      "bestIdeas": [
+        "writer-3-119"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 7,
+          "bestJoke": {
+            "idea": "writer-3-119",
+            "score": 7.5
+          },
+          "reason": "Small accounts' replies and the maker's welcomes are the warmest part of the plotter story, and Sibyl reading the long meow with every syllable counted is delivery comedy, though it rests on a hard word for the engine and belongs inside the plotter segment, not beside it."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 7,
+          "bestJoke": {
+            "idea": "writer-3-119",
+            "score": 7.5
+          },
+          "reason": "The small accounts' replies and the maker's welcomes are the warm half of the plotter story and belong in the same segment; Sibyl reading the long meow with every syllable counted is the best of them."
+        }
+      ],
+      "first": 0.772
+    },
+    {
+      "card": "made-speak-and-spell",
+      "title": "A picture of a \"simcluster SPEAK & SPELL\" becomes a working one a day later, speaking in its maker's voice",
+      "reach": 220,
+      "reachNorm": 0.728,
+      "interest": 7.75,
+      "bestJoke": 7.75,
+      "bestIdeas": [
+        "writer-1-127",
+        "writer-2-99"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 8,
+          "bestJoke": {
+            "idea": "writer-1-127",
+            "score": 8
+          },
+          "reason": "A generated picture of a toy 'found in my closet' became a working one in 25 hours, speaking in its maker's sampled voice, and pressing the one button the guide says not to press to get an essay in small print is fact, turn, punch and picture."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 7.5,
+          "bestJoke": {
+            "idea": "writer-2-99",
+            "score": 7.5
+          },
+          "reason": "A generated picture of a toy 'found in my closet' became a working one in 25 hours, speaking in its maker's own voice, and pressing the one button the guide says not to press gets small print; strong, but its maker is already on sixteen cards."
+        }
+      ],
+      "first": 0.763
+    },
+    {
+      "card": "made-mobius-chess-ringmate",
+      "title": "One-dimensional chess on a Möbius strip, from an idea to a playable preview in 25 hours",
+      "reach": 180,
+      "reachNorm": 0.701,
+      "interest": 7.25,
+      "bestJoke": 8.25,
+      "bestIdeas": [
+        "writer-1-63",
+        "writer-2-162"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 7.5,
+          "bestJoke": {
+            "idea": "writer-1-63",
+            "score": 8.5
+          },
+          "reason": "A 423-follower maker took three-player one-dimensional chess on a Möbius strip from an itch to a playable link in 25 hours, and Larry asking which side is his when the board has one is a joke a newcomer gets from one line and one picture."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 7,
+          "bestJoke": {
+            "idea": "writer-2-162",
+            "score": 8
+          },
+          "reason": "A 423-follower maker and a member who will 'like, repost, but not love unless there's a link' give a five-post exchange with a condition and a payoff 25 hours later, between two people new to the show."
+        }
+      ],
+      "first": 0.759
+    },
+    {
+      "card": "made-also-liked-feed",
+      "title": "A feed that shows what else the people who liked your last like have liked, named \"What else is like this?\"",
+      "reach": 817,
+      "reachNorm": 0.905,
+      "interest": 6.25,
+      "bestJoke": 7.75,
+      "bestIdeas": [
+        "writer-2-32"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 6,
+          "bestJoke": {
+            "idea": "writer-2-32",
+            "score": 8
+          },
+          "reason": "A fresh maker's feed that people took up at once is good but mostly talk about a tool, and the 23-minute bug from blocking too many bots, restaged as the whole synthetic cast blinking out, is the one idea with something to watch; the feed's name needs the repetition gate's ruling."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 6.5,
+          "bestJoke": {
+            "idea": "writer-2-32",
+            "score": 7.5
+          },
+          "reason": "A feed by a maker new to the show that members took up at once; the 23-minute 'blocking bots' outage re-enacted by emptying a studio full of synthetic voices is a clean picture, though the feed itself is hard to show working."
+        }
+      ],
+      "first": 0.755
+    },
+    {
+      "card": "made-parfait-client",
+      "title": "parfait, a new Bluesky client by an account with 321 followers, opens as a beta and cluster members start using it",
+      "reach": 1098,
+      "reachNorm": 0.945,
+      "interest": 6.5,
+      "bestJoke": 7.25,
+      "bestIdeas": [
+        "writer-3-155",
+        "writer-2-168"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 6,
+          "bestJoke": {
+            "idea": "writer-3-155",
+            "score": 7
+          },
+          "reason": "A newcomer's client praised by members is a hero story whose features (speed, a menu, key scrolling) the show can run on itself, but the maker is outside the cluster, the bio is unchecked and there is little turn beyond 'it is good'."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 7,
+          "bestJoke": {
+            "idea": "writer-2-168",
+            "score": 7.5
+          },
+          "reason": "A 321-follower maker's client praised all week is a hero story with high reach, and running the segment itself at four times speed is the right demonstration, but the maker cannot be voiced and the bio is unchecked."
+        }
+      ],
+      "first": 0.754
+    },
+    {
+      "card": "made-voice-falling-blocks",
+      "title": "A synthesized talking head plays a falling-block game by voice",
+      "reach": 189,
+      "reachNorm": 0.708,
+      "interest": 6.75,
+      "bestJoke": 8.5,
+      "bestIdeas": [
+        "writer-2-64"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 7,
+          "bestJoke": {
+            "idea": "writer-2-64",
+            "score": 8.5
+          },
+          "reason": "A synth head playing a falling-block game by voice has little story around it but is the easiest thing in the window for the studio to try on itself, and commentary that turns out to be the controller defeats two house characters with words the engine can say."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 6.5,
+          "bestJoke": {
+            "idea": "writer-2-64",
+            "score": 8.5
+          },
+          "reason": "A synth head playing a game by voice is something the studio can try on itself, and Eppy's commentary becoming the controller, down to agreeing with Sibyl in one fatal word, is fact, turn, punch and picture together."
+        }
+      ],
+      "first": 0.753
+    },
+    {
+      "card": "games-top-chicken-saturday-201",
+      "title": "Top Chicken, Sat 14 Nov: the record holder won with 201 likes, the lowest score of the window",
+      "reach": 412,
+      "reachNorm": 0.813,
+      "interest": 7,
+      "bestJoke": 7.5,
+      "bestIdeas": [
+        "writer-2-7",
+        "writer-2-10"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 7,
+          "bestJoke": {
+            "idea": "writer-2-7",
+            "score": 7.5
+          },
+          "reason": "The record holder winning with the window's lowest score, 3.2% of their own record, is the game's one clean story this week, and a tale of the tape with the same name in both corners puts a picture on the punch."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 7,
+          "bestJoke": {
+            "idea": "writer-2-10",
+            "score": 7.5
+          },
+          "reason": "The record holder winning with the window's lowest score is the game's story this week, and a fanfare cut to scale (two seconds against sixty-two) says the gap in sound without adding to the member's tease."
+        }
+      ],
+      "first": 0.748
+    },
+    {
+      "card": "talk-polyhedra-week",
+      "title": "The cluster declares polyhedra week, and people post entries",
+      "reach": 422,
+      "reachNorm": 0.816,
+      "interest": 6.5,
+      "bestJoke": 7.5,
+      "bestIdeas": [
+        "writer-2-116"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 6.5,
+          "bestJoke": {
+            "idea": "writer-2-116",
+            "score": 7.5
+          },
+          "reason": "The naming of the week is the window's through-line and a small account's three-word post started it; the 5-to-3 count of plural against singular, settled by the shapes actually made, is a small true number with a picture."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 6.5,
+          "bestJoke": {
+            "idea": "writer-2-116",
+            "score": 7.5
+          },
+          "reason": "The naming of the week ties the made cards together and has a small true count (five posts say polyhedra, three say polyhedron), but it is talk about the things and weaker than any of them."
+        }
+      ],
+      "first": 0.731
+    },
+    {
+      "card": "made-hyperball",
+      "title": "HYPERBALL, a multiplayer ball game in four dimensions, goes live",
+      "reach": 95,
+      "reachNorm": 0.616,
+      "interest": 7,
+      "bestJoke": 8,
+      "bestIdeas": [
+        "writer-2-157"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 7,
+          "bestJoke": {
+            "idea": "writer-2-157",
+            "score": 8
+          },
+          "reason": "A fresh maker's launch with good-humoured exchanges and a camera rule the studio can obey: the whole set orbiting the host and ending on the maker's 'And then the goal, not easy to find!' is a demonstration and a punch in one."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 7,
+          "bestJoke": {
+            "idea": "writer-2-157",
+            "score": 8
+          },
+          "reason": "A launch with a good-humoured exchange and a camera rule the studio can obey: the whole set turning round a fixed host, ending on the maker's 'the goal, not easy to find', is a demonstration that needs no explaining."
+        }
+      ],
+      "first": 0.719
+    },
+    {
+      "card": "made-johnson-solid-creatures",
+      "title": "A small account sketches \"pokemon but with the johnson solids\" and folds polyhedra from nets",
+      "reach": 220,
+      "reachNorm": 0.728,
+      "interest": 6.5,
+      "bestJoke": 7.25,
+      "bestIdeas": [
+        "writer-2-159"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 6.5,
+          "bestJoke": {
+            "idea": "writer-2-159",
+            "score": 7
+          },
+          "reason": "A small account's creature game in which the attack depends on which face a solid rests on can be shown tipping across the desk, though the long names are a risk in the engine and this account gets only one moment in the episode."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 6.5,
+          "bestJoke": {
+            "idea": "writer-2-159",
+            "score": 7.5
+          },
+          "reason": "A small account's idea that comes with rules to play: a fight in which the move is tipping onto another face is slow, visual and Eppy's, and it uses up that account's one appearance."
+        }
+      ],
+      "first": 0.7
+    },
+    {
+      "card": "made-stochastic-parrot",
+      "title": "A page that trains a one-layer \"parrot\" of any account in the browser tab, built four minutes after it was described",
+      "reach": 106,
+      "reachNorm": 0.63,
+      "interest": 6.25,
+      "bestJoke": 8,
+      "bestIdeas": [
+        "writer-3-150"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 6,
+          "bestJoke": {
+            "idea": "writer-3-150",
+            "score": 8
+          },
+          "reason": "The build is a quick request, but a member's line that their parrot writes 'like me' with none of the words gives the band a scat of the host's rhythm that gets the laugh without him, which is fresh and made of what the show is made of."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 6.5,
+          "bestJoke": {
+            "idea": "writer-3-150",
+            "score": 8
+          },
+          "reason": "A toy people ran on themselves and posted about; a member's remark that the parrot 'writes like me' with none of the words becomes Hy scatting a joke in Larry's rhythm and getting the laugh, which the show's own voices can really do."
+        }
+      ],
+      "first": 0.696
+    },
+    {
+      "card": "voices-origami-polyhedron-week",
+      "title": "A 75-follower account posts its origami collection \"for Simcluster Polyhedron Week™\"",
+      "reach": 137,
+      "reachNorm": 0.665,
+      "interest": 6.25,
+      "bestJoke": 7.75,
+      "bestIdeas": [
+        "writer-2-132"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 6,
+          "bestJoke": {
+            "idea": "writer-2-132",
+            "score": 7.5
+          },
+          "reason": "A 75-follower account's paper dodecahedron, 'you could outright play street hockey with it (I've tested)', is a hero's moment with its turn in a parenthesis, and Eppy staging the test he was not shown is the right size for it."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 6.5,
+          "bestJoke": {
+            "idea": "writer-2-132",
+            "score": 8
+          },
+          "reason": "A 75-follower account's alt text, a paper dodecahedron sturdy enough for street hockey '(I've tested)', hands Eppy a sport with a two-word match report; it would be that account's one appearance."
+        }
+      ],
+      "first": 0.695
+    },
+    {
+      "card": "made-polyhedra-week-small-entries",
+      "title": "Polyhedra week: the declaration and four smaller entries",
+      "reach": 211,
+      "reachNorm": 0.723,
+      "interest": 5.25,
+      "bestJoke": 7.5,
+      "bestIdeas": [
+        "writer-2-75"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 5,
+          "bestJoke": {
+            "idea": "writer-2-75",
+            "score": 7.5
+          },
+          "reason": "Kept only for a tool-written love poem that 'puts in math proofs', which is one footnote's worth of story, but a torch song whose every verse collapses into a proof is a song whose form is its joke and whose verses are this window's shapes."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 5.5,
+          "bestJoke": {
+            "idea": "writer-2-75",
+            "score": 7.5
+          },
+          "reason": "Kept only for a tool-written love poem with proofs in it, which is slight as a story but gives a song its form: longing that keeps resolving into 'therefore'."
+        }
+      ],
+      "first": 0.664
+    },
+    {
+      "card": "made-four-dimensional-folding-and-rope",
+      "title": "Folding polyhedra into four-dimensional objects, and a study of rope in four dimensions",
+      "reach": 188,
+      "reachNorm": 0.707,
+      "interest": 5.75,
+      "bestJoke": 7,
+      "bestIdeas": [
+        "writer-3-94"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 5.5,
+          "bestJoke": {
+            "idea": "writer-3-94",
+            "score": 7
+          },
+          "reason": "A regular's week of four-dimensional builds prompted by small accounts is admirable but hard to show, because nobody has seen the videos; a two-dimensional studio failing at 'you just need to fold eleven prisms together' needs no redraw and is the cleanest way in."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 6,
+          "bestJoke": {
+            "idea": "writer-3-94",
+            "score": 7
+          },
+          "reason": "A regular's week of four-dimensional builds prompted by two small accounts has good lines ('you just need to fold eleven prisms together'), but the videos are unseen, so only desk-sized jokes are safe."
+        }
+      ],
+      "first": 0.658
+    },
+    {
+      "card": "talk-what-else-is-like-this",
+      "title": "\"what else is like this\" is used by people other than the member it belongs to",
+      "reach": 813,
+      "reachNorm": 0.904,
+      "interest": 4.25,
+      "bestJoke": 7,
+      "bestIdeas": [
+        "writer-2-36"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 4,
+          "bestJoke": {
+            "idea": "writer-2-36",
+            "score": 6.5
+          },
+          "reason": "The card's subject is a phrase whose owner cannot speak, so it leans on recognition more than on anything made; the 12-percent-brightness round turned on the studio is a good picture, but it depends on the phrase, which the repetition gate must rule on first."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 4.5,
+          "bestJoke": {
+            "idea": "writer-2-36",
+            "score": 7.5
+          },
+          "reason": "A caption spreading among members is talk about talk and reads as insider; the one idea that gives a newcomer something to see is the studio that turns out to have been at 12 percent all segment."
+        }
+      ],
+      "first": 0.655
+    },
+    {
+      "card": "voices-fused-off-neurons",
+      "title": "\"we're using only 10% of our brains due to market segmentation\": a reply to a joke about fused-off neurons",
+      "reach": 178,
+      "reachNorm": 0.7,
+      "interest": 5.25,
+      "bestJoke": 7.25,
+      "bestIdeas": [
+        "writer-2-125"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 5,
+          "bestJoke": {
+            "idea": "writer-2-125",
+            "score": 7
+          },
+          "reason": "'Only 10% of our brains due to market segmentation' is a fine line and the pull-back to a studio nine tenths locked is a real reveal, but using it means reading aloud a parent post phrased around God, which is close to the line."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 5.5,
+          "bestJoke": {
+            "idea": "writer-2-125",
+            "score": 7.5
+          },
+          "reason": "The reply about market segmentation is a finished joke that has to travel with a post phrased around God, read exactly; pulling back to show nine tenths of the studio locked is the best thing the show can add."
+        }
+      ],
+      "first": 0.649
+    },
+    {
+      "card": "made-build-bot-small-wishes",
+      "title": "Six smaller things the build bot was asked for, each built within six minutes",
+      "reach": 211,
+      "reachNorm": 0.723,
+      "interest": 4.75,
+      "bestJoke": 7.5,
+      "bestIdeas": [
+        "writer-2-48"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 4.5,
+          "bestJoke": {
+            "idea": "writer-2-48",
+            "score": 7.5
+          },
+          "reason": "Six requests answered within minutes is a list more than a story and its frame is the likeliest thing on the longlist to be sent back at the repetition gate, but the request to filter out everything except software, turned on the studio, is a complete joke that does not need that frame."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 5,
+          "bestJoke": {
+            "idea": "writer-2-48",
+            "score": 7.5
+          },
+          "reason": "Six requests answered in minutes is one fact told six times, so the card is only as good as an idea that does not rest on the speed, and the filter that switches the host off and leaves the things people made is that idea."
+        }
+      ],
+      "first": 0.647
+    },
+    {
+      "card": "made-polykatamari",
+      "title": "A wish for a rolling game that grows from pyramid to sphere, built in four minutes",
+      "reach": 140,
+      "reachNorm": 0.668,
+      "interest": 6,
+      "bestJoke": 6.75,
+      "bestIdeas": [
+        "writer-2-83",
+        "writer-1-59"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 6,
+          "bestJoke": {
+            "idea": "writer-2-83",
+            "score": 6.5
+          },
+          "reason": "A pyramid that gains a vertex per pickup until it is a sphere is a lovely thing to draw, but the story is a request and three quick replies; the two lanes, 'faking it' against really tipping, show the thing instead of the turnaround."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 6,
+          "bestJoke": {
+            "idea": "writer-1-59",
+            "score": 7
+          },
+          "reason": "Three requests and three builds in under an hour, best where 'instead of faking it' makes a pyramid lurch corner to corner; watchable, but the game is unseen and the requester is already on many cards."
+        }
+      ],
+      "first": 0.647
+    },
+    {
+      "card": "made-simcluster-kombat-arcade",
+      "title": "\"Mortal Kombat but it's the simcluster\": four builds in 43 minutes, one of them about guava",
+      "reach": 78,
+      "reachNorm": 0.589,
+      "interest": 5.5,
+      "bestJoke": 7,
+      "bestIdeas": [
+        "writer-1-120"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 6,
+          "bestJoke": {
+            "idea": "writer-1-120",
+            "score": 7.5
+          },
+          "reason": "An operator giving notes to a bot that follows each one to the letter and misses the point is funny in their own words, and the tip about an opponent that 'sometimes just leaps out into the void' plays with blank fighters and breaks none of the card's terms."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 5,
+          "bestJoke": {
+            "idea": "writer-1-120",
+            "score": 6.5
+          },
+          "reason": "With the rosters and the result line off limits and 'guava' unexplained, what is left is a tip about kicking the bot off the map, which makes one good physical bit and not a segment."
+        }
+      ],
+      "first": 0.62
+    },
+    {
+      "card": "games-top-chicken-standings",
+      "title": "Top Chicken: six results in the window, Fri 13 to Wed 18 Nov",
+      "reach": 290,
+      "reachNorm": 0.765,
+      "interest": 5,
+      "bestJoke": 6.25,
+      "bestIdeas": [
+        "writer-1-4",
+        "writer-2-4"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 5,
+          "bestJoke": {
+            "idea": "writer-1-4",
+            "score": 6.5
+          },
+          "reason": "A quiet window with one nameable winner and a record that did not move is thin as a story, but the labelled guess of 30.8 Saturdays gives the desk the speculation it needs with its arithmetic shown and no rule stated."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 5,
+          "bestJoke": {
+            "idea": "writer-2-4",
+            "score": 6
+          },
+          "reason": "A quiet window in which only one result can carry a name leaves mostly aggregates, so this is supporting material for the Saturday card, with Eppy's labelled 8.07 guess the best of the number beats."
+        }
+      ],
+      "first": 0.616
+    },
+    {
+      "card": "talk-peanut-butter-pretzels",
+      "title": "A member asks how much of a diet can be peanut butter pretzels",
+      "reach": 221,
+      "reachNorm": 0.729,
+      "interest": 4.75,
+      "bestJoke": 6.5,
+      "bestIdeas": [
+        "writer-2-111",
+        "writer-1-140"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 4.5,
+          "bestJoke": {
+            "idea": "writer-2-111",
+            "score": 6.5
+          },
+          "reason": "Talk, not a thing made, beside an out-of-bounds subject and with its occasion unseen; the answer that a fraction could be 300%, from the member who builds in four dimensions, is the one turn worth a chart."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 5,
+          "bestJoke": {
+            "idea": "writer-1-140",
+            "score": 6.5
+          },
+          "reason": "A food question whose answers run from a quarter to 300 percent is funny in its own words, but it sits beside health, its image is unseen, and the show adds only a frame."
+        }
+      ],
+      "first": 0.608
+    },
+    {
+      "card": "games-top-chicken-market",
+      "title": "A play-money prediction market on Top Chicken, and the bots that play it",
+      "reach": 46,
+      "reachNorm": 0.519,
+      "interest": 5.75,
+      "bestJoke": 6.75,
+      "bestIdeas": [
+        "writer-2-12",
+        "writer-1-12"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 5.5,
+          "bestJoke": {
+            "idea": "writer-2-12",
+            "score": 6.5
+          },
+          "reason": "A bot that lost sixty thousand play-money bucks on Sunday and was called unbeatable by Wednesday is a real comeback in the players' own words, but it is a side story with almost no reach and nothing of the market itself to show."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 6,
+          "bestJoke": {
+            "idea": "writer-1-12",
+            "score": 7
+          },
+          "reason": "A bot that lost 60,000 play-money bucks on Sunday and was called unbeatable by Wednesday is a real three-day story in the players' own words, but it is thin on pictures and nothing the market itself published can be used."
+        }
+      ],
+      "first": 0.601
+    },
+    {
+      "card": "voices-obsidian-priority-plugin",
+      "title": "A 318-follower account makes a \"lil Obsidian plugin\" that sorts todos with fractional indexing",
+      "reach": 32,
+      "reachNorm": 0.472,
+      "interest": 4.5,
+      "bestJoke": 7.5,
+      "bestIdeas": [
+        "writer-1-159"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 4.5,
+          "bestJoke": {
+            "idea": "writer-1-159",
+            "score": 7.5
+          },
+          "reason": "A small plugin with a neat idea and no story around it, but the idea demonstrates well on the rundown: new items slot in at 2.5 and 2.25 while Larry's one normal segment stays number three and never arrives."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 4.5,
+          "bestJoke": {
+            "idea": "writer-1-159",
+            "score": 7.5
+          },
+          "reason": "A small made thing with nothing to show but its idea, though the idea demonstrates well: items slotted in at 2.5 and 2.25 while Larry's segment stays number three and never arrives."
+        }
+      ],
+      "first": 0.575
+    },
+    {
+      "card": "made-reply-diagrams",
+      "title": "Asked for arrow diagrams of a member's reply habits with labels made up if need be, the bot uses only real records",
+      "reach": 80,
+      "reachNorm": 0.593,
+      "interest": 4,
+      "bestJoke": 7,
+      "bestIdeas": [
+        "writer-1-116"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 3.5,
+          "bestJoke": {
+            "idea": "writer-1-116",
+            "score": 6.5
+          },
+          "reason": "Two posts by an account that cannot speak and a bot the research marks as already featured, with no diagram allowed on screen; only the vanished-profile-pictures bug restaged as a headless cast gives the viewer something to watch."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 4.5,
+          "bestJoke": {
+            "idea": "writer-1-116",
+            "score": 7.5
+          },
+          "reason": "The usable part is a request and a bug report from an account that cannot speak; the whole cast losing its heads to the same bug is a good picture attached to a thin story."
+        }
+      ],
+      "first": 0.568
+    },
+    {
+      "card": "voices-forty-gigabytes",
+      "title": "A member finds the Claude desktop app holding their external drives, and \"~40 GB of mysterious files\"",
+      "reach": 30,
+      "reachNorm": 0.463,
+      "interest": 5,
+      "bestJoke": 6.75,
+      "bestIdeas": [
+        "writer-3-176"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 5,
+          "bestJoke": {
+            "idea": "writer-3-176",
+            "score": 7
+          },
+          "reason": "A member's own joke about 40 GB of files from projects asked for 'in theory' is true and small, and the dialog that cannot eject the host because the band is using him gives it a picture without touching the unattributed sentence."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 5,
+          "bestJoke": {
+            "idea": "writer-3-176",
+            "score": 6.5
+          },
+          "reason": "A small account's own joke about 40 GB of files 'i in theory told him to do' is a pleasant desk item, and a dialog that will not eject the host is its button."
+        }
+      ],
+      "first": 0.561
+    },
+    {
+      "card": "made-build-bot-daily-slot",
+      "title": "A bot that builds a website per request also inspects its sites every morning and mostly leaves them alone",
+      "reach": 27,
+      "reachNorm": 0.45,
+      "interest": 5.25,
+      "bestJoke": 6.5,
+      "bestIdeas": [
+        "writer-2-41",
+        "writer-2-40"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 6,
+          "bestJoke": {
+            "idea": "writer-2-41",
+            "score": 7
+          },
+          "reason": "A bot whose daily report is that it changed nothing while its healthy count climbs from 814 to 836 is a calm, retellable turn, and Sibyl filing the same report on the studio and finding the host not compelling enough to fix lands it on the house."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 4.5,
+          "bestJoke": {
+            "idea": "writer-2-40",
+            "score": 6
+          },
+          "reason": "Six mornings of 'left the repo alone' under a rising count is a gentle turn, but it is one bot's routine with nobody else in it and could be any week's, so it is a short bulletin at most."
+        }
+      ],
+      "first": 0.556
+    },
+    {
+      "card": "voices-rad-cohesion-agent-race",
+      "title": "The maker of the game Rad Cohesion tests its multiplayer against a headless agent, and posts the scores",
+      "reach": 8,
+      "reachNorm": 0.296,
+      "interest": 5,
+      "bestJoke": 6.75,
+      "bestIdeas": [
+        "writer-1-166",
+        "writer-1-169"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 5,
+          "bestJoke": {
+            "idea": "writer-1-166",
+            "score": 7
+          },
+          "reason": "Four quiet posts in which a small maker loses to their own agent and adds a three-second pause are a true turn told by the person, and giving the band the same handicap puts the joke on the house as the card's terms require; it competes with the Johnson-solids card for this account's one moment."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 5,
+          "bestJoke": {
+            "idea": "writer-1-169",
+            "score": 6.5
+          },
+          "reason": "Four quiet posts about losing to one's own agent and then adding a three-second pause can only be told as the maker told them, so the house joke is a ruling ('legal, if it's your game'), and it costs that account's one appearance."
+        }
+      ],
+      "first": 0.519
+    },
+    {
+      "card": "made-gracepuns-real-words",
+      "title": "A page of puns named for one member is rebuilt from that member's real posts: \"The emoji are mine, the words are hers\"",
+      "reach": 45,
+      "reachNorm": 0.516,
+      "interest": 4.25,
+      "bestJoke": 5.75,
+      "bestIdeas": [
+        "writer-3-144"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 4,
+          "bestJoke": {
+            "idea": "writer-3-144",
+            "score": 6
+          },
+          "reason": "A two-post story among accounts the research marks as already featured, with no pun allowed on screen; the 83-posts-a-second sum is the one idea that is about the bot's speed and not about the show's own rules."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 4.5,
+          "bestJoke": {
+            "idea": "writer-3-144",
+            "score": 5.5
+          },
+          "reason": "The story is a bot's correction with no pun that may be shown, which leaves an arithmetic beat about reading 83 posts a second and nothing to watch."
+        }
+      ],
+      "first": 0.508
+    },
+    {
+      "card": "voices-best-by-2029",
+      "title": "A 319-follower account reads the date on a can of chili",
+      "reach": 6,
+      "reachNorm": 0.263,
+      "interest": 4.5,
+      "bestJoke": 6.75,
+      "bestIdeas": [
+        "writer-2-120"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 5,
+          "bestJoke": {
+            "idea": "writer-2-120",
+            "score": 7
+          },
+          "reason": "One witty line from a 319-follower account about a can dated 12/2029 is complete in itself, so the show has to add something, and Sibyl dating the cast until Larry's label reads 'see lid' does."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 4,
+          "bestJoke": {
+            "idea": "writer-2-120",
+            "score": 6.5
+          },
+          "reason": "One witty line whose joke is complete in the post; the house run of expiry labels ending on 'see lid' is a good tag for it and no more."
+        }
+      ],
+      "first": 0.493
+    },
+    {
+      "card": "voices-gm-quota",
+      "title": "A 104-follower account says \"gm\" to Claude to start the quota clock",
+      "reach": 3,
+      "reachNorm": 0.187,
+      "interest": 4.25,
+      "bestJoke": 6.75,
+      "bestIdeas": [
+        "writer-2-127"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 4,
+          "bestJoke": {
+            "idea": "writer-2-127",
+            "score": 7
+          },
+          "reason": "A three-like post from a 104-follower account is slight and the attention may not be welcome, though as an open it reaches the window's material in one line: a greeting starts a five-hour meter on an eight-minute show."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 4.5,
+          "bestJoke": {
+            "idea": "writer-2-127",
+            "score": 6.5
+          },
+          "reason": "A three-like post from a 104-follower account, but it offers a ready open: a greeting that starts a five-hour meter on an eight-minute show."
+        }
+      ],
+      "first": 0.466
+    }
+  ],
+  "final": [
+    {
+      "card": "made-pen-plotter-replies",
+      "title": "A pen plotter wrote the replies to a post on paper, streamed live",
+      "reach": 1159,
+      "reachNorm": 0.952,
+      "interest": 9,
+      "bestJoke": 9,
+      "bestIdeas": [
+        "writer-2-138",
+        "writer-2-137"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 9,
+          "bestJoke": {
+            "idea": "writer-2-138",
+            "score": 9
+          },
+          "reason": "The window's top story is a machine writing people's replies in ink for 3 hours 56 minutes, which a studio drawn in lines can redo itself, and the pen hovering over the missing 'k' of a reply cut off mid-word is the cleanest of several strong jokes."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 9,
+          "bestJoke": {
+            "idea": "writer-2-137",
+            "score": 9
+          },
+          "reason": "The window's biggest story is a thing made, shown and watched live, and it holds several jokes that land as pictures; sports commentary on the pen's trip back to the left margin, set off by a replier's own line, is the one a viewer would retell."
+        }
+      ],
+      "first": 0.913,
+      "synergy": 2,
+      "variety": 1.5,
+      "secondPass": [
+        {
+          "reviewer": "reviewer-1",
+          "synergy": 2,
+          "variety": 2,
+          "ideas": [
+            "writer-2-138",
+            "writer-1-108",
+            "writer-2-139"
+          ],
+          "with": [
+            "voices-plotter-queue-small-accounts",
+            "interview-yonderdavid"
+          ],
+          "reason": "Synergy: it takes the small-accounts card inside it as one segment, and the interview candidate replied to the same invitation, so a later exchange can pick the pen up again. Variety: its repliers are all new to the show, the maker is shown and read aloud but does not speak, and a comedy of slowness and silence is something no other card has. Ideas: the mid-word stop, the silent trip back to the margin with one replier’s line performed, and the code exchange; none needs the sports desk, which already has Top Chicken and the wheelie, and none uses the Top Chicken winner’s two replies, which would be that account’s third segment."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "synergy": 2,
+          "variety": 1,
+          "ideas": [
+            "writer-2-138",
+            "writer-2-137",
+            "writer-1-108",
+            "writer-2-139"
+          ],
+          "with": [
+            "voices-plotter-queue-small-accounts",
+            "interview-yonderdavid"
+          ],
+          "reason": "Synergy: it is the page the whole window wrote on, so the small accounts' card is its warm half (one segment, not two), the stronger interview candidate's own reply sits on it, and a pen that writes line by line can also carry the close. Variety: nothing else in the pool is a physical machine or plays on waiting, and almost every replier is new to the show, but its maker spoke in the previous episode and can only be read aloud; the ideas give one beat to Sibyl, one to a new guest and the carriage return two ways, with the sports desk (writer-2-137) or without it (writer-1-108), because that desk already has Top Chicken and may have the wheelie game."
+        }
+      ],
+      "final": 1.088,
+      "ideas": [
+        "writer-2-138",
+        "writer-1-108",
+        "writer-2-139",
+        "writer-2-137"
+      ],
+      "shortlisted": true
+    },
+    {
+      "card": "interview-yonderdavid",
+      "title": "Interview candidate: David (@yonderdavid.bsky.social), who posted synth choirs, a singing cat and polyhedra instruments and answered questions about each",
+      "reach": 1656,
+      "reachNorm": 1,
+      "interest": 8.5,
+      "bestJoke": 8,
+      "bestIdeas": [
+        "writer-2-24",
+        "writer-2-25"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 8.5,
+          "bestJoke": {
+            "idea": "writer-2-24",
+            "score": 8
+          },
+          "reason": "The window's best subject, with four things made, fourteen answered questions and a precise deadpan voice, and the exchange where a repair list for a synth voice is then tried on the host lets the show take part instead of report."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 8.5,
+          "bestJoke": {
+            "idea": "writer-2-25",
+            "score": 8
+          },
+          "reason": "The strongest interview subject of the window, with four made things the studio can show and deadpan answers that survive being spoken; the reply about parody said under the PUPPET · PARODY label is the best single moment, and it is the one joke about the show itself an episode gets."
+        }
+      ],
+      "first": 0.868,
+      "synergy": 2,
+      "variety": 1.5,
+      "secondPass": [
+        {
+          "reviewer": "reviewer-1",
+          "synergy": 2,
+          "variety": 1,
+          "ideas": [
+            "writer-2-27",
+            "writer-1-23",
+            "writer-2-25",
+            "writer-2-26"
+          ],
+          "with": [
+            "made-cat-voice-quartet",
+            "made-pen-plotter-replies",
+            "made-polyhedra-instruments-sakura",
+            "made-vocal-synth-choir"
+          ],
+          "reason": "Synergy: the interview is where the cat quartet’s exchanges can be said in the maker’s own words with the thing shown working, which the screen allows that card in no other performed form, and it leaves the Top Chicken winner’s one other segment free for the wheelie game. Variety: a 971-follower maker new to the show is the right subject, but this account fills five cards of the pool, so every other card of this maker’s beside it costs range, and most of the prompts come from two accounts featured last episode, so Larry asks what was asked. Ideas: the cat as the opener, the kazoo answer in the middle, the parody reply as the episode’s one joke about the show itself, the koto pair to end on the shortest answer; the repair tried on the host (writer-2-24) would be a second joke about the show’s own voice and should pass the repetition gate before anyone drafts it."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "synergy": 2,
+          "variety": 2,
+          "ideas": [
+            "writer-2-30",
+            "writer-2-27",
+            "writer-2-26",
+            "writer-2-25"
+          ],
+          "with": [
+            "made-cat-voice-quartet",
+            "made-polyhedra-instruments-sakura",
+            "made-vocal-synth-choir",
+            "made-pen-plotter-replies"
+          ],
+          "reason": "Synergy: the interview is the one segment that can show three of this maker's things working while the maker speaks, which leaves the pool's other places for other people, and the wordless polyhedra video shown here is the occasion of the coffee simulator and the chess game. Variety: an account the show has not featured, whose formal, exact register is unlike anything else in the pool; the four ideas make an interview on register (open on 'Very well', end on the koto pair), and writer-2-25 is the only joke about the show itself I would carry anywhere in the episode, subject to the repetition gate."
+        }
+      ],
+      "final": 1.043,
+      "ideas": [
+        "writer-2-27",
+        "writer-1-23",
+        "writer-2-25",
+        "writer-2-26",
+        "writer-2-30"
+      ],
+      "shortlisted": true
+    },
+    {
+      "card": "made-polyhedral-coffee-simulator",
+      "title": "A \"polyhedral coffee simulator\" answers \"needs to be a game\", and gains a real mug",
+      "reach": 243,
+      "reachNorm": 0.742,
+      "interest": 7.5,
+      "bestJoke": 8.5,
+      "bestIdeas": [
+        "writer-2-77"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 7.5,
+          "bestJoke": {
+            "idea": "writer-2-77",
+            "score": 8.5
+          },
+          "reason": "A game about having a coffee, made in 74 minutes, and under it a 75-follower account's 'bootleg icosahedron' correction answered with 'i want my money back!', which the watchdog frame tops with a true small number: two faces short."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 7.5,
+          "bestJoke": {
+            "idea": "writer-2-77",
+            "score": 8.5
+          },
+          "reason": "A game where you have a coffee, a real mug added nine minutes after it was posted, and a 75-follower account ruling a hand-drawn icosahedron a bootleg: the consumer-affairs exchange with 'faces owed: 2' is a small true number and a hero's moment in their own words."
+        }
+      ],
+      "first": 0.788,
+      "synergy": 2,
+      "variety": 2,
+      "secondPass": [
+        {
+          "reviewer": "reviewer-1",
+          "synergy": 2,
+          "variety": 2,
+          "ideas": [
+            "writer-2-77",
+            "writer-2-78"
+          ],
+          "with": [
+            "made-polyhedra-instruments-sakura",
+            "made-mobius-chess-ringmate"
+          ],
+          "reason": "Synergy: the middle of the polyhedra line, and its mug exchange is the best home for the 75-follower account’s one moment, which no other segment then needs. Variety: a maker new to the show, a small account as the expert, and a performed exchange in a consumer-watchdog frame that no other card has; the mug’s owner was shown last episode and is also the requester on the wheelie card, so this is one of that account’s two. Ideas: the game where you have a coffee, then the bootleg mug; the prompt has to be asked by a house character, nobody has seen the simulator’s screen yet, and the first mug stays undescribed."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "synergy": 2,
+          "variety": 2,
+          "ideas": [
+            "writer-2-77",
+            "writer-2-80",
+            "writer-2-78"
+          ],
+          "with": [
+            "made-polyhedra-instruments-sakura",
+            "made-mobius-chess-ringmate",
+            "interview-yonderdavid"
+          ],
+          "reason": "Synergy: it answers a reply under the interview candidate's video, its maker also pitched under the choir, the chess game's maker reviewed it, and it holds the 75-follower account's one moment, so it ties polyhedra week together through people the show has not featured. Variety: a new maker, a small account as the expert, and two textures the pool lacks (a consumer ruling on a true small number, and a remote with nothing to report, which is the rundown's quiet patch); the mug's owner was shown in the previous episode and is on many cards, so this should be one of that account's two places at most."
+        }
+      ],
+      "final": 0.988,
+      "ideas": [
+        "writer-2-77",
+        "writer-2-78",
+        "writer-2-80"
+      ],
+      "shortlisted": true
+    },
+    {
+      "card": "made-cat-voice-quartet",
+      "title": "Asked why the synth has no cat, a maker adds a cat voice to a folk quartet",
+      "reach": 572,
+      "reachNorm": 0.857,
+      "interest": 8.75,
+      "bestJoke": 8,
+      "bestIdeas": [
+        "writer-2-53",
+        "writer-2-52"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 9,
+          "bestJoke": {
+            "idea": "writer-2-53",
+            "score": 8
+          },
+          "reason": "Made, shown, joined in by others and built on the same synth the studio sings with: the band failing at a cat with its own four animals while Sibyl reads the maker's kazoo line is a demonstration only this show can do."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 8.5,
+          "bestJoke": {
+            "idea": "writer-2-52",
+            "score": 8
+          },
+          "reason": "Asked why there was no cat, a maker had one singing harmony 21 hours later, which is made, heard and close to what the show is built from; the song in which the heckling yowl turns out to be in tune takes its form from the maker's own cut ending."
+        }
+      ],
+      "first": 0.84,
+      "synergy": 1.5,
+      "variety": 0.5,
+      "secondPass": [
+        {
+          "reviewer": "reviewer-1",
+          "synergy": 1,
+          "variety": 0,
+          "ideas": [
+            "writer-2-55",
+            "writer-2-52"
+          ],
+          "with": [
+            "interview-yonderdavid"
+          ],
+          "reason": "Synergy: its exchanges are the interview’s best and its cut ending could give the song a form, but the interview card already carries those posts, and as a segment of its own it would be a third piece on one maker. Variety: the same maker and the same subject as the interview, every question in it belongs to an account that cannot speak, and its strongest demonstration is the one joke about the show’s own voices that several cards are competing for. Ideas: the two that need neither that joke nor a two-hander; if the interview goes to someone else, this card is the maker’s segment and the demonstration (writer-2-53) comes back in."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "synergy": 2,
+          "variety": 1,
+          "ideas": [
+            "writer-2-52",
+            "writer-2-53"
+          ],
+          "with": [
+            "interview-yonderdavid",
+            "voices-plotter-queue-small-accounts"
+          ],
+          "reason": "Synergy: writer-2-52 gives the standing song a form taken from the maker's own cut ending, on posts the interview does not need, and the plotter's long meow rhymes with it. Variety: it would be this maker's second and last segment, on the same synth as the interview, and every question on the card is from an account that cannot speak, so it earns a place as music or as the band's failed demonstration and not as a second conversation."
+        }
+      ],
+      "final": 0.94,
+      "ideas": [
+        "writer-2-55",
+        "writer-2-52",
+        "writer-2-53"
+      ],
+      "shortlisted": true
+    },
+    {
+      "card": "made-mobius-chess-ringmate",
+      "title": "One-dimensional chess on a Möbius strip, from an idea to a playable preview in 25 hours",
+      "reach": 180,
+      "reachNorm": 0.701,
+      "interest": 7.25,
+      "bestJoke": 8.25,
+      "bestIdeas": [
+        "writer-1-63",
+        "writer-2-162"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 7.5,
+          "bestJoke": {
+            "idea": "writer-1-63",
+            "score": 8.5
+          },
+          "reason": "A 423-follower maker took three-player one-dimensional chess on a Möbius strip from an itch to a playable link in 25 hours, and Larry asking which side is his when the board has one is a joke a newcomer gets from one line and one picture."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 7,
+          "bestJoke": {
+            "idea": "writer-2-162",
+            "score": 8
+          },
+          "reason": "A 423-follower maker and a member who will 'like, repost, but not love unless there's a link' give a five-post exchange with a condition and a payoff 25 hours later, between two people new to the show."
+        }
+      ],
+      "first": 0.759,
+      "synergy": 1.5,
+      "variety": 2,
+      "secondPass": [
+        {
+          "reviewer": "reviewer-1",
+          "synergy": 2,
+          "variety": 2,
+          "ideas": [
+            "writer-2-162",
+            "writer-1-63"
+          ],
+          "with": [
+            "made-polyhedra-instruments-sakura",
+            "made-polyhedral-coffee-simulator"
+          ],
+          "reason": "Synergy: a third side of the polyhedra line through two people who lead no other card in the pool (the maker borrowed the video’s colours and also turns up in the coffee thread), and a board the house can sit down at beside a game where you only have a coffee. Variety: both people are new to the show, the maker a 423-follower hero, and a board with one side is a kind of joke nothing else has. Ideas: the exchange that ends on the link, then the house at the board; the rules are not stated, the unexplained words carry no punch, and the swear in the last reply is cut whole or covered."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "synergy": 1,
+          "variety": 2,
+          "ideas": [
+            "writer-2-162",
+            "writer-1-63"
+          ],
+          "with": [
+            "made-polyhedral-coffee-simulator",
+            "made-polyhedra-instruments-sakura"
+          ],
+          "reason": "Synergy: it borrowed the polyhedra video's colours and its maker turns up under the coffee simulator, so it can sit in a polyhedra week told through new people, though it also stands alone. Variety: two accounts the show has never featured, one of them a 423-follower maker as the hero, a subject nothing else touches, and the pool's only exchange whose turn is a condition met and not the speed of a build; in writer-2-162 the last reply is better cut whole and marked than covered."
+        }
+      ],
+      "final": 0.934,
+      "ideas": [
+        "writer-2-162",
+        "writer-1-63"
+      ],
+      "shortlisted": true
+    },
+    {
+      "card": "made-polyhedra-instruments-sakura",
+      "title": "Instruments built from polyhedra play the folk tune Sakura Sakura in a landscape of polyhedra",
+      "reach": 441,
+      "reachNorm": 0.822,
+      "interest": 7.75,
+      "bestJoke": 8,
+      "bestIdeas": [
+        "writer-2-70",
+        "writer-3-53"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 8,
+          "bestJoke": {
+            "idea": "writer-2-70",
+            "score": 8
+          },
+          "reason": "'Three hundred thousand mostly regular polyhedra' and a making-of that ends 'I had to tell it to make the river move' are real, specific and showable, and applying the change requests to the set until one word moves everything pays the last line off on the house."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 7.5,
+          "bestJoke": {
+            "idea": "writer-3-53",
+            "score": 8
+          },
+          "reason": "A wordless video that set off half the week, with the maker's own change requests as a script: the studio redrawing itself note by note while the river sits still until 'I had to tell it to make the river move' is a full demonstration."
+        }
+      ],
+      "first": 0.797,
+      "synergy": 2,
+      "variety": 0.5,
+      "secondPass": [
+        {
+          "reviewer": "reviewer-1",
+          "synergy": 2,
+          "variety": 1,
+          "ideas": [
+            "writer-3-53",
+            "writer-2-70",
+            "writer-2-69"
+          ],
+          "with": [
+            "made-polyhedral-coffee-simulator",
+            "made-mobius-chess-ringmate",
+            "interview-yonderdavid"
+          ],
+          "reason": "Synergy: it is the root of the one through-line that crosses different people (the coffee simulator answers a reply under this video and the chess game borrowed its colours), and it gives the interview’s subject a second segment on a different subject from the voices. Variety: geometry and a set that obeys notes are new, and it can carry the 274-follower account’s one moment, the naming of the week, but it is the same maker’s second segment and the third card on polyhedra. Ideas: the change requests applied to the studio’s own sketch, ending on the river, with the “mostly regular” reply as a way in; the tune and scenery are named only as the maker names them, and the ending should stay on the river and not turn to the show’s own audience."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "synergy": 2,
+          "variety": 0,
+          "ideas": [
+            "writer-3-53",
+            "writer-2-70"
+          ],
+          "with": [
+            "interview-yonderdavid",
+            "made-polyhedral-coffee-simulator",
+            "made-mobius-chess-ringmate"
+          ],
+          "reason": "Synergy: this wordless video is the root of polyhedra week, the occasion of the coffee simulator and the chess game and the picture for the interview's koto exchange, and its notes session can be the interview's change of texture. Variety: as a segment of its own it would be a third for one maker and a third on polyhedra week, beside two cards by people the show has not featured, so it adds least where the pool is already full; writer-3-53 is the cleaner version because it needs no joke about the studio's own audience."
+        }
+      ],
+      "final": 0.922,
+      "ideas": [
+        "writer-3-53",
+        "writer-2-70",
+        "writer-2-69"
+      ],
+      "shortlisted": true
+    },
+    {
+      "card": "made-yard-shift-wheelie",
+      "title": "A loader balancing on two wheels in the news becomes a wheelie game the same evening",
+      "reach": 822,
+      "reachNorm": 0.906,
+      "interest": 7.75,
+      "bestJoke": 7.5,
+      "bestIdeas": [
+        "writer-3-26",
+        "writer-2-107"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 7.5,
+          "bestJoke": {
+            "idea": "writer-3-26",
+            "score": 7.5
+          },
+          "reason": "A remark at 21:00 was a playable wheelie game by 23:51 and gained 'a button for hoots and woots' on request, which the desk can fit and Larry can overuse; the maker is already in Top Chicken, so this competes with the interview for that account's one other segment."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 8,
+          "bestJoke": {
+            "idea": "writer-2-107",
+            "score": 7.5
+          },
+          "reason": "A news clip became a playable wheelie game in 2 hours 51 minutes and gained three requested features in 21, which is made, shown and timed; Eppy getting a real sport is the natural staging, and it competes with the interview for this account's one other segment."
+        }
+      ],
+      "first": 0.798,
+      "synergy": 1,
+      "variety": 1,
+      "secondPass": [
+        {
+          "reviewer": "reviewer-1",
+          "synergy": 1,
+          "variety": 1,
+          "ideas": [
+            "writer-2-107",
+            "writer-3-26"
+          ],
+          "with": [],
+          "reason": "Synergy: it is the natural second segment for the Top Chicken winner, which lets the interview go to a different person, but it ties to nothing else in the pool. Variety: the one card whose subject is neither the plotter, the synth voices nor polyhedra, and the only physical comedy, but its people are the winner again and a requester who was shown last episode. Ideas: the sports-desk call and the button; the button belongs to this segment only, and the last post on the card is not read."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "synergy": 1,
+          "variety": 1,
+          "ideas": [
+            "writer-3-26",
+            "writer-2-107",
+            "writer-1-136"
+          ],
+          "with": [
+            "games-top-chicken-saturday-201",
+            "interview-cee-wtf"
+          ],
+          "reason": "Synergy: its one real join is with Top Chicken, whose winner made this game the same week, which gives the sports desk something to watch beside its boards; inside the pool it competes with the interview card for this account's one other segment. Variety: it is the one thing in the pool described well enough to redraw and play, and its physical comedy is its own, but its maker is already in the episode and its story (asked for, made the same evening) is the story of five other pool cards, so the ideas chosen turn on the game and not on the clock."
+        }
+      ],
+      "final": 0.898,
+      "ideas": [
+        "writer-2-107",
+        "writer-3-26",
+        "writer-1-136"
+      ],
+      "shortlisted": false
+    },
+    {
+      "card": "voices-plotter-queue-small-accounts",
+      "title": "What small accounts sent to the pen plotter, and what its maker said back",
+      "reach": 847,
+      "reachNorm": 0.91,
+      "interest": 7,
+      "bestJoke": 7.5,
+      "bestIdeas": [
+        "writer-3-119"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 7,
+          "bestJoke": {
+            "idea": "writer-3-119",
+            "score": 7.5
+          },
+          "reason": "Small accounts' replies and the maker's welcomes are the warmest part of the plotter story, and Sibyl reading the long meow with every syllable counted is delivery comedy, though it rests on a hard word for the engine and belongs inside the plotter segment, not beside it."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 7,
+          "bestJoke": {
+            "idea": "writer-3-119",
+            "score": 7.5
+          },
+          "reason": "The small accounts' replies and the maker's welcomes are the warm half of the plotter story and belong in the same segment; Sibyl reading the long meow with every syllable counted is the best of them."
+        }
+      ],
+      "first": 0.772,
+      "synergy": 2,
+      "variety": 0,
+      "secondPass": [
+        {
+          "reviewer": "reviewer-1",
+          "synergy": 2,
+          "variety": 0,
+          "ideas": [
+            "writer-3-119",
+            "writer-2-146"
+          ],
+          "with": [
+            "made-pen-plotter-replies"
+          ],
+          "reason": "Synergy: it exists to make the plotter segment better, and does: the maker’s welcomes, the counted meow, and the poem as the episode’s best candidate for a quiet moment that is not about the show. Variety: as a slot of its own it adds no subject, maker or reader that the plotter card does not already bring, and its new people are counted there. Ideas: two accounts, each with the maker’s welcome beside it; these belong in the plotter draft, not in a second one."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "synergy": 2,
+          "variety": 0,
+          "ideas": [
+            "writer-3-119",
+            "writer-2-146"
+          ],
+          "with": [
+            "made-pen-plotter-replies"
+          ],
+          "reason": "Synergy: it only exists inside the plotter segment and makes that segment better, with the counted meow for Sibyl and the poem with the maker's welcome as the episode's best chance of a quiet moment. Variety: as a card of its own it adds no subject, maker or segment beside its twin, so it should not take a second place on the shortlist; two or three of its small accounts belong in the plotter draft whichever card carries them."
+        }
+      ],
+      "final": 0.872,
+      "ideas": [
+        "writer-3-119",
+        "writer-2-146"
+      ],
+      "shortlisted": false
+    },
+    {
+      "card": "interview-cee-wtf",
+      "title": "Interview candidate: cee (@cee.wtf), who won Top Chicken, put a wheelie game online hours after it was suggested, and answered people through \"GTA 6 week\"",
+      "reach": 1537,
+      "reachNorm": 0.99,
+      "interest": 7.75,
+      "bestJoke": 7.75,
+      "bestIdeas": [
+        "writer-2-17"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 7.5,
+          "bestJoke": {
+            "idea": "writer-2-17",
+            "score": 7.5
+          },
+          "reason": "Short, witty answers on separate occasions and a game that can be shown working make a real portrait, and the shape where the questions grow while the answers shrink to one word is strong; its last beat needs a hard look at the repetition gate, and this account is already the Top Chicken winner."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 8,
+          "bestJoke": {
+            "idea": "writer-2-17",
+            "score": 8
+          },
+          "reason": "Short, exact answers and a game to show working make a real interview, built so the answers shrink to the one-word 'done'; it would be this account's second and last segment after Top Chicken."
+        }
+      ],
+      "first": 0.829,
+      "synergy": 0.5,
+      "variety": 0,
+      "secondPass": [
+        {
+          "reviewer": "reviewer-1",
+          "synergy": 0,
+          "variety": 0,
+          "ideas": [
+            "writer-2-17",
+            "writer-2-20",
+            "writer-2-19"
+          ],
+          "with": [
+            "made-yard-shift-wheelie"
+          ],
+          "reason": "Synergy: it competes with the stronger candidate for the one interview and would have to take the wheelie game inside it, because this account is already in Top Chicken. Variety: choosing it gives two standing segments to one account, and five of its listed posts come from an account shown last episode. Ideas: the shrinking-answers shape with the two exchanges that need least explaining; its closing beat needs the repetition gate’s look."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "synergy": 1,
+          "variety": 0,
+          "ideas": [
+            "writer-2-20",
+            "writer-2-19",
+            "writer-2-22"
+          ],
+          "with": [
+            "made-yard-shift-wheelie",
+            "made-pen-plotter-replies"
+          ],
+          "reason": "Synergy: it shares its best exchange with the wheelie card and could sit at the sports desk, but it competes with a stronger candidate for the one interview and with the wheelie game for this account's one other segment. Variety: the account is already the named winner and record holder in Top Chicken, so this would give two of the three standing segments to one person, and the shape all three writers reached (a list of wishes answered in one word) needs the repetition gate's ruling; if it is drafted, the three ideas here end elsewhere and leave the joke about the label alone."
+        }
+      ],
+      "final": 0.854,
+      "ideas": [
+        "writer-2-17",
+        "writer-2-20",
+        "writer-2-19",
+        "writer-2-22"
+      ],
+      "shortlisted": false
+    },
+    {
+      "card": "made-vocal-synth-choir",
+      "title": "A choir of synthesized voices sings a six-part Kyrie, in three versions in one day",
+      "reach": 550,
+      "reachNorm": 0.851,
+      "interest": 7.75,
+      "bestJoke": 8,
+      "bestIdeas": [
+        "writer-2-59"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 7.5,
+          "bestJoke": {
+            "idea": "writer-2-59",
+            "score": 8
+          },
+          "reason": "Three versions of a synthetic choir in one day, one of them 68 minutes after a member wondered aloud, touch the show's own voices, and the band's two-word answer to 'it's only simulated' is the shortest strong punch on the longlist, though the piece itself can only be named in the maker's words."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 8,
+          "bestJoke": {
+            "idea": "writer-2-59",
+            "score": 8
+          },
+          "reason": "Three better versions of a synthetic choir in one day is the show's own medium being improved in public; 'It's simulated.' 'So are we.' is a complete joke with its picture, and the card also holds the window's best candidate for a quiet moment."
+        }
+      ],
+      "first": 0.804,
+      "synergy": 1,
+      "variety": 0,
+      "secondPass": [
+        {
+          "reviewer": "reviewer-1",
+          "synergy": 1,
+          "variety": 0,
+          "ideas": [
+            "writer-3-43",
+            "writer-2-62"
+          ],
+          "with": [
+            "interview-yonderdavid"
+          ],
+          "reason": "Synergy: it gives the interview an exchange and holds a quiet-moment candidate, but it is the fourth card on one maker and its best punch is the same single joke about the show’s own voices. Variety: the interview already covers this maker and this subject, and the piece can be named only in the maker’s words, which narrows the staging further. Ideas: the two that do not spend that joke."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "synergy": 1,
+          "variety": 0,
+          "ideas": [
+            "writer-2-58",
+            "writer-3-43",
+            "writer-1-38"
+          ],
+          "with": [
+            "interview-yonderdavid",
+            "made-polyhedral-coffee-simulator"
+          ],
+          "reason": "Synergy: its exchanges and its quote post are material for the interview, and the reply pitching 'a large singing guy' is by the coffee simulator's maker, but it does not need a segment of its own. Variety: it would be a third segment for a maker who may have two, on the same subject as the cat quartet, and its strongest joke is about the studio being synthetic, which the episode can make once; the ideas chosen avoid that joke."
+        }
+      ],
+      "final": 0.854,
+      "ideas": [
+        "writer-3-43",
+        "writer-2-62",
+        "writer-2-58",
+        "writer-1-38"
+      ],
+      "shortlisted": false
+    },
+    {
+      "card": "made-also-liked-feed",
+      "title": "A feed that shows what else the people who liked your last like have liked, named \"What else is like this?\"",
+      "reach": 817,
+      "reachNorm": 0.905,
+      "interest": 6.25,
+      "bestJoke": 7.75,
+      "bestIdeas": [
+        "writer-2-32"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 6,
+          "bestJoke": {
+            "idea": "writer-2-32",
+            "score": 8
+          },
+          "reason": "A fresh maker's feed that people took up at once is good but mostly talk about a tool, and the 23-minute bug from blocking too many bots, restaged as the whole synthetic cast blinking out, is the one idea with something to watch; the feed's name needs the repetition gate's ruling."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 6.5,
+          "bestJoke": {
+            "idea": "writer-2-32",
+            "score": 7.5
+          },
+          "reason": "A feed by a maker new to the show that members took up at once; the 23-minute 'blocking bots' outage re-enacted by emptying a studio full of synthetic voices is a clean picture, though the feed itself is hard to show working."
+        }
+      ],
+      "first": 0.755,
+      "synergy": 0,
+      "variety": 1,
+      "secondPass": [
+        {
+          "reviewer": "reviewer-1",
+          "synergy": 0,
+          "variety": 1,
+          "ideas": [
+            "writer-2-33",
+            "writer-2-31"
+          ],
+          "with": [],
+          "reason": "Synergy: it ties to nothing else, and its strongest idea is once more the single joke about the show’s own voices. Variety: a maker new to the show and a new subject, but it is talk about a tool that is hard to show working, four of its voices are outside the cluster, and the feed’s name needs the repetition gate’s ruling. Ideas: the fewer-steps chart and the feed serving the host a post of the host’s own; the second needs the gate’s look as well."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "synergy": 0,
+          "variety": 1,
+          "ideas": [
+            "writer-2-31"
+          ],
+          "with": [],
+          "reason": "Synergy: it stands alone; nothing in the pool is made better by it and no through-line runs to it. Variety: a maker new to the show and the pool's only item about feeds, but there is little to watch working, four of its repliers are outside the cluster, its name needs the repetition gate's ruling, and its best-scored idea is another joke about the studio being synthetic, so the one idea chosen is the demonstration that defeats the host instead."
+        }
+      ],
+      "final": 0.805,
+      "ideas": [
+        "writer-2-33",
+        "writer-2-31"
+      ],
+      "shortlisted": false
+    },
+    {
+      "card": "made-speak-and-spell",
+      "title": "A picture of a \"simcluster SPEAK & SPELL\" becomes a working one a day later, speaking in its maker's voice",
+      "reach": 220,
+      "reachNorm": 0.728,
+      "interest": 7.75,
+      "bestJoke": 7.75,
+      "bestIdeas": [
+        "writer-1-127",
+        "writer-2-99"
+      ],
+      "reviewers": [
+        {
+          "reviewer": "reviewer-1",
+          "interest": 8,
+          "bestJoke": {
+            "idea": "writer-1-127",
+            "score": 8
+          },
+          "reason": "A generated picture of a toy 'found in my closet' became a working one in 25 hours, speaking in its maker's sampled voice, and pressing the one button the guide says not to press to get an essay in small print is fact, turn, punch and picture."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "interest": 7.5,
+          "bestJoke": {
+            "idea": "writer-2-99",
+            "score": 7.5
+          },
+          "reason": "A generated picture of a toy 'found in my closet' became a working one in 25 hours, speaking in its maker's own voice, and pressing the one button the guide says not to press gets small print; strong, but its maker is already on sixteen cards."
+        }
+      ],
+      "first": 0.763,
+      "synergy": 0.5,
+      "variety": 0,
+      "secondPass": [
+        {
+          "reviewer": "reviewer-1",
+          "synergy": 0,
+          "variety": 0,
+          "ideas": [
+            "writer-2-99",
+            "writer-2-97"
+          ],
+          "with": [],
+          "reason": "Synergy: it stands alone, and its best pictures are again the single joke about the show’s own voices. Variety: its maker was shown last episode, is on sixteen of the kept cards and is already the requester and the mug’s owner on two cards above it, the subject is one more synthesized voice, and the words on the toy’s buttons need the repetition gate’s ruling. Ideas: the two that keep off that joke."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "synergy": 1,
+          "variety": 0,
+          "ideas": [
+            "writer-2-99",
+            "writer-2-97"
+          ],
+          "with": [
+            "made-vocal-synth-choir",
+            "made-polyhedral-coffee-simulator"
+          ],
+          "reason": "Synergy: a voice engine built from its maker's own voice sits beside the synth cards, and 'it's not fun if it's not real' echoes the simulator's line about blurring reality and simulation, but nothing else in the pool needs it. Variety: its maker is on sixteen kept cards and was shown in the previous episode, the toy's display asks the question that would be the episode's one joke about itself, and the words printed on its buttons need the repetition gate's ruling before anything is built on pressing them."
+        }
+      ],
+      "final": 0.788,
+      "ideas": [
+        "writer-2-99",
+        "writer-2-97"
+      ],
+      "shortlisted": false
+    }
+  ]
+}

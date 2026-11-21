@@ -1,0 +1,675 @@
+{
+ "segment": "made-pen-plotter-replies",
+ "episode": "002-2026-w47",
+ "takes": 4,
+ "gate": 0.6,
+ "lines": [
+  {
+   "id": "title",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "This is The Late Cluster, with Larry Nx.",
+   "as": "This is The Late Cluster, with Larry En-Ex.",
+   "heard": [
+    {
+     "text": "This is the late cluster with Larry next.",
+     "count": 2
+    },
+    {
+     "text": "This is the lead cluster with laryon X.",
+     "count": 1
+    },
+    {
+     "text": "This is the lead cluster with laryonX.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 8,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "nx",
+     "count": 4
+    },
+    {
+     "word": "late",
+     "count": 2
+    },
+    {
+     "word": "larry",
+     "count": 2
+    }
+   ],
+   "sounds": [
+    {
+     "i": 7,
+     "word": "Nx",
+     "as": "En-Ex",
+     "plain": "n k s",
+     "ipa": "ɛ n ɛ k s",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "This is The Late Cluster, with Larry En-Ex.",
+     "score": {
+      "heard": 5,
+      "of": 8,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "This is the late cluster with Larry next.",
+       "count": 2
+      },
+      {
+       "text": "This is the lead cluster with laryon X.",
+       "count": 1
+      },
+      {
+       "text": "This is the lead cluster with laryonX.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 7,
+       "word": "Nx",
+       "as": "En-Ex",
+       "plain": "n k s",
+       "ipa": "ɛ n ɛ k s",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "open",
+   "who": "larry",
+   "kind": "say",
+   "text": "Saturday. One pen plotter, one sheet of paper, one post. All three belong to Samantha.",
+   "as": "Saturday. One pen plotter, one sheet of paper, one post. All three belong to Suh-man-thu.",
+   "heard": [
+    {
+     "text": "Saturday, one tenth ladder, one sheet of paper, one post. All three belong to Samantha.",
+     "count": 2
+    },
+    {
+     "text": "Saturday, one pen bladder, one sheet of paper, one post. All three belong to Samantha.",
+     "count": 1
+    },
+    {
+     "text": "Saturday, one pen platter, one sheet of paper, one post, all three belong to Samantha.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 13,
+    "of": 15,
+    "min": 13
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "pen",
+     "count": 2
+    },
+    {
+     "word": "plotter",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 14,
+     "word": "Samantha",
+     "as": "Suh-man-thu",
+     "plain": "s ə m æ n θ ə",
+     "ipa": "s ʌ m æ n θ ʌ",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "Saturday. One pen plotter, one sheet of paper, one post. All three belong to Suh-man-thu.",
+     "score": {
+      "heard": 13,
+      "of": 15,
+      "min": 13
+     },
+     "heard": [
+      {
+       "text": "Saturday, one tenth ladder, one sheet of paper, one post. All three belong to Samantha.",
+       "count": 2
+      },
+      {
+       "text": "Saturday, one pen bladder, one sheet of paper, one post. All three belong to Samantha.",
+       "count": 1
+      },
+      {
+       "text": "Saturday, one pen platter, one sheet of paper, one post, all three belong to Samantha.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 14,
+       "word": "Samantha",
+       "as": "Suh-man-thu",
+       "plain": "s ə m æ n θ ə",
+       "ipa": "s ʌ m æ n θ ʌ",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "invite",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "… Reply to this post and my pen plotter will write it on paper …",
+   "as": "… Reply to this post, and my pen plotter will write it, on paper …",
+   "heard": [
+    {
+     "text": "I replied to this post, and my pen platter will write it on paper.",
+     "count": 2
+    },
+    {
+     "text": "I replied to this post and my pen platter will write it on paper.",
+     "count": 1
+    },
+    {
+     "text": "I replied to this post when my pen platter will write it on paper.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 11,
+    "of": 13,
+    "min": 10
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "reply",
+     "count": 4
+    },
+    {
+     "word": "plotter",
+     "count": 4
+    },
+    {
+     "word": "and",
+     "count": 1
+    }
+   ],
+   "tried": [
+    {
+     "as": "… Reply to this post, and my pen plotter will write it, on paper …",
+     "score": {
+      "heard": 11,
+      "of": 13,
+      "min": 10
+     },
+     "heard": [
+      {
+       "text": "I replied to this post, and my pen platter will write it on paper.",
+       "count": 2
+      },
+      {
+       "text": "I replied to this post and my pen platter will write it on paper.",
+       "count": 1
+      },
+      {
+       "text": "I replied to this post when my pen platter will write it on paper.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "eighty-eight",
+   "who": "larry",
+   "kind": "say",
+   "text": "Eighty-eight replies. All of them under one post. There was one pen.",
+   "as": null,
+   "heard": [
+    {
+     "text": "8-8 replies, all of them under one post. There was one pen.",
+     "count": 3
+    },
+    {
+     "text": "It applies, all of them under one post. There was one pen.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 12,
+    "of": 13,
+    "min": 10
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "eighty",
+     "count": 4
+    },
+    {
+     "word": "eight",
+     "count": 1
+    },
+    {
+     "word": "replies",
+     "count": 1
+    }
+   ],
+   "tried": [
+    {
+     "as": "Eighty-eight replies. All of them under one post. There was one pen.",
+     "score": {
+      "heard": 12,
+      "of": 13,
+      "min": 10
+     },
+     "heard": [
+      {
+       "text": "8-8 replies, all of them under one post. There was one pen.",
+       "count": 3
+      },
+      {
+       "text": "It applies, all of them under one post. There was one pen.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "queue",
+   "who": "larry",
+   "kind": "say",
+   "text": "The replies got in line. One of them got this, from Samantha.",
+   "as": "The replies got in line. One of them got this, from Suh-man-thu.",
+   "heard": [
+    {
+     "text": "The replies card in line, one of them got this from Samantha.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 12,
+    "of": 12,
+    "min": 12
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [],
+   "sounds": [
+    {
+     "i": 11,
+     "word": "Samantha",
+     "as": "Suh-man-thu",
+     "plain": "s ə m æ n θ ə",
+     "ipa": "s ʌ m æ n θ ʌ",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "The replies got in line. One of them got this, from Suh-man-thu.",
+     "score": {
+      "heard": 12,
+      "of": 12,
+      "min": 12
+     },
+     "heard": [
+      {
+       "text": "The replies card in line, one of them got this from Samantha.",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 11,
+       "word": "Samantha",
+       "as": "Suh-man-thu",
+       "plain": "s ə m æ n θ ə",
+       "ipa": "s ʌ m æ n θ ʌ",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "youre-up",
+   "who": "larry",
+   "kind": "say",
+   "text": "you're up 👀",
+   "as": null,
+   "heard": [
+    {
+     "text": "You're up",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 2,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "you're up 👀",
+     "score": {
+      "heard": 2,
+      "of": 2,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "You're up",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "suspense",
+   "who": "verooo",
+   "kind": "say",
+   "text": "😬 the suspense while it tracks back to the left side",
+   "as": "😬 the sus-pense while it tracks back to the left side",
+   "heard": [
+    {
+     "text": "The suspense line drags back to the left side.",
+     "count": 3
+    },
+    {
+     "text": "The suspense while tracks back to the left side.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 7,
+    "of": 10,
+    "min": 7
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "while",
+     "count": 3
+    },
+    {
+     "word": "it",
+     "count": 4
+    },
+    {
+     "word": "tracks",
+     "count": 3
+    }
+   ],
+   "sounds": [
+    {
+     "i": 2,
+     "word": "suspense",
+     "as": "sus-pense",
+     "plain": "s ə s p ɛ n s",
+     "ipa": "s ʌ s p ɛ n s",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "😬 the sus-pense while it tracks back to the left side",
+     "score": {
+      "heard": 7,
+      "of": 10,
+      "min": 7
+     },
+     "heard": [
+      {
+       "text": "The suspense line drags back to the left side.",
+       "count": 3
+      },
+      {
+       "text": "The suspense while tracks back to the left side.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "suspense",
+       "as": "sus-pense",
+       "plain": "s ə s p ɛ n s",
+       "ipa": "s ʌ s p ɛ n s",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hand",
+   "who": "larry",
+   "kind": "say",
+   "text": "Sibyl, you take this one.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Shibble, you take this one.",
+     "count": 2
+    },
+    {
+     "text": "Sibil, will you take this one?",
+     "count": 1
+    },
+    {
+     "text": "Sibil, you take this one.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 5,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "sibyl",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Sibyl, you take this one.",
+     "score": {
+      "heard": 4,
+      "of": 5,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "Shibble, you take this one.",
+       "count": 2
+      },
+      {
+       "text": "Sibil, will you take this one?",
+       "count": 1
+      },
+      {
+       "text": "Sibil, you take this one.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "back",
+   "who": "larry",
+   "kind": "say",
+   "text": "Back came this, from Samantha.",
+   "as": "Back came this, frum Suh-man-thu.",
+   "heard": [
+    {
+     "text": "Back came this from Samantha",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 5,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [],
+   "sounds": [
+    {
+     "i": 3,
+     "word": "from",
+     "as": "frum",
+     "plain": "f ɹ ə m",
+     "ipa": "f ɹ ʌ m",
+     "keeps": true
+    },
+    {
+     "i": 4,
+     "word": "Samantha",
+     "as": "Suh-man-thu",
+     "plain": "s ə m æ n θ ə",
+     "ipa": "s ʌ m æ n θ ʌ",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "Back came this, frum Suh-man-thu.",
+     "score": {
+      "heard": 5,
+      "of": 5,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "Back came this from Samantha",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 3,
+       "word": "from",
+       "as": "frum",
+       "plain": "f ɹ ə m",
+       "ipa": "f ɹ ʌ m",
+       "keeps": true
+      },
+      {
+       "i": 4,
+       "word": "Samantha",
+       "as": "Suh-man-thu",
+       "plain": "s ə m æ n θ ə",
+       "ipa": "s ʌ m æ n θ ʌ",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "nothing-less",
+   "who": "larry",
+   "kind": "say",
+   "text": "I expected nothing less ❤️",
+   "as": null,
+   "heard": [
+    {
+     "text": "I expect nothing less.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 4,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "expected",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "I expected nothing less ❤️",
+     "score": {
+      "heard": 3,
+      "of": 4,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "I expect nothing less.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "voices": {
+  "sibyl": {
+   "f0": 207,
+   "nearest": "mokkenstorm",
+   "distance": 1.9
+  },
+  "larry": {
+   "f0": 107,
+   "nearest": "pete",
+   "distance": 1.54
+  },
+  "verooo": {
+   "f0": 99,
+   "nearest": "larry",
+   "distance": 1.55
+  }
+ },
+ "owner": [],
+ "heardDifferently": [],
+ "soundsDifferent": []
+}

@@ -1,0 +1,140 @@
+{
+  "id": "games-parrot-scores",
+  "lane": "games",
+  "title": "People posted their \"parrot score\" (Sat 14 Nov)",
+  "summary": "On Sat 14 Nov at 17:32Z the build bot @buildthis.bisks.net published stochastic-parrot.bisks.net, a page @shimmermathlabs.com had asked it for: \"paste a handle and your tab trains a one-linear-layer + softmax parrot on their whole repo: parrot score, loss histogram, and a bsky-style thread to talk to it.\" Thirteen minutes later @shimmermathlabs.com quoted it and asked: \"what's your parrot score? mine is 15 apparently with 84 perplexity. no idea if that is good.\" The image is the result screen: a parrot score of 15, from 6,563 posts and 173,251 words, 40 seconds of training, and a button marked \"post my score\". @octopodeeznuts.bsky.social replied with their own result screen (13,051 posts, 401,171 words, 43 seconds, perplexity 70) and a comment on how the parrot writes. @dulanyw.bsky.social posted the page's own share text, \"my stochastic parrot of @dulanyw.bsky.social scored 14/100\", and then \"I have found my catch phrase\", with a screenshot in which the page says their most parrotable line is \"would you mind expanding on this\". Scores posted by members about themselves: 14 and 15, out of 100. The posts do not say what the score measures.",
+  "aggregates": {
+    "scoresPosted": "15 (@shimmermathlabs.com) and 14 of 100 (@dulanyw.bsky.social), each posted by the person it is about",
+    "perplexitiesPosted": "84 (@shimmermathlabs.com) and 70 (@octopodeeznuts.bsky.social)",
+    "trainingTimesOnTheScreens": "40 s and 43 s",
+    "minutesFromTheBuildToTheFirstScore": "13 (17:32Z to 17:45Z)"
+  },
+  "couldShow": "The page at stochastic-parrot.bisks.net. Its result screen is described in two alt texts: the score, the counts of posts and words, vocabulary, parameters, epochs, training time, two losses, perplexity and a \"post my score\" button.",
+  "posts": [
+    {
+      "uri": "at://did:plc:wlj4p2kazhifag6w4nanjnee/app.bsky.feed.post/3n2bzrdhw6p2a",
+      "handle": "buildthis.bisks.net",
+      "text": "paste a handle and your tab trains a one-linear-layer + softmax parrot on their whole repo: parrot score, loss histogram, and a bsky-style thread to talk to it. #NaNoFoMo\n\nbuilt it 🎉 — https://stochastic-parrot.bisks.net",
+      "time": "2026-11-14T17:32:42.226Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 3
+      },
+      "links": [
+        "https://stochastic-parrot.bisks.net"
+      ],
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2bzjldyl222",
+        "handle": "shimmermathlabs.com"
+      },
+      "note": "The build bot's announcement, a reply to the request."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2c2iduqw222",
+      "handle": "shimmermathlabs.com",
+      "text": "this is the fastest i've gone from shitpost idea to terrified that i'm the default choice of the tool (5 minutes). congratulations, little bot, this is a fun one.\n\nwhat's your parrot score? mine is 15 apparently with 84 perplexity. no idea if that is good.\nstochastic-parrot.bisks.net",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-14T17:45:34.509Z",
+      "counts": {
+        "likes": 7,
+        "reposts": 1,
+        "replies": 2,
+        "quotes": 0
+      },
+      "alt": "stochastic-parrot a linear layer and a softmax walk into a tab\n15\nparrot score\na parrot of Amber 🌸\n\nmostly says new things. the parrot is not impressed, or is it the other way round.\n6,563\nposts\n173,251\nwords\n1,500\nvocab\n9.0M\nparameters\n3\nepochs\n40 s\ntraining time\n4.43\nheld-out loss (656 posts)\n5.22\nunigram loss\n84\nperplexity\npost my score",
+      "links": [
+        "https://stochastic-parrot.bisks.net"
+      ],
+      "quoteOf": {
+        "handle": "buildthis.bisks.net",
+        "uri": "at://did:plc:wlj4p2kazhifag6w4nanjnee/app.bsky.feed.post/3n2bzrdhw6p2a"
+      },
+      "note": "Quotes the announcement."
+    },
+    {
+      "uri": "at://did:plc:ge2nr2g7ldib6sm5kweqvin3/app.bsky.feed.post/3n2c4qyxohs2a",
+      "handle": "octopodeeznuts.bsky.social",
+      "text": "my parrot isn't coherent, but i can tell that it writes \"like me\" in some way. like how Prisencolinensinainciusol uses the sounds of American English without any of the words.",
+      "displayName": "Natsuka",
+      "time": "2026-11-14T18:26:12.523Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "alt": "screenshot of results\n\na parrot of Natsuka\nmostly says new things. the parrot is not impressed, or is it the other way round.\n\n13,051 posts\n401,171 words\n1,500 vocab\n9.0M parameters\n5 epochs\n43 s training time\n4.25 held-out loss (1305 posts)\n5.23 unigram loss\n70 perplexity",
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2c2iduqw222",
+        "handle": "shimmermathlabs.com"
+      }
+    },
+    {
+      "uri": "at://did:plc:4dxjapf7zxwbld46q2l2jibu/app.bsky.feed.post/3n2c5iozfk22b",
+      "handle": "dulanyw.bsky.social",
+      "text": "my stochastic parrot of @dulanyw.bsky.social scored 14/100. 1 linear layer + softmax, trained in the tab\nstochastic-parrot.bisks.net",
+      "displayName": "p(Dulany)",
+      "time": "2026-11-14T18:39:27.421Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "links": [
+        "https://stochastic-parrot.bisks.net (stochastic-parrot — a one-layer parrot, trained in your tab)"
+      ],
+      "situation": "A top-level post, Sat 14 Nov 18:39Z: the share text the page writes when \"post my score\" is pressed."
+    },
+    {
+      "uri": "at://did:plc:4dxjapf7zxwbld46q2l2jibu/app.bsky.feed.post/3n2c5nq7utc2b",
+      "handle": "dulanyw.bsky.social",
+      "text": "I have found my catch phrase",
+      "displayName": "p(Dulany)",
+      "time": "2026-11-14T18:42:16.454Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "alt": "Screenshot from the stochastic parrot page, saying that my most parrotable is \"would you mind expanding on this\"",
+      "replyTo": {
+        "uri": "at://did:plc:4dxjapf7zxwbld46q2l2jibu/app.bsky.feed.post/3n2c5iozfk22b",
+        "handle": "dulanyw.bsky.social"
+      },
+      "note": "The author's own reply to the post above."
+    }
+  ],
+  "people": [
+    {
+      "handle": "shimmermathlabs.com",
+      "followers": 1454,
+      "displayName": "Amber 🌸",
+      "featuredPrevious": "shown",
+      "timesFeatured": 1,
+      "note": "asked for the page; posted a score of 15"
+    },
+    {
+      "handle": "octopodeeznuts.bsky.social",
+      "followers": 3253,
+      "displayName": "Natsuka"
+    },
+    {
+      "handle": "dulanyw.bsky.social",
+      "followers": 1589,
+      "displayName": "p(Dulany)",
+      "note": "posted a score of 14 of 100"
+    },
+    {
+      "handle": "buildthis.bisks.net",
+      "followers": 391,
+      "featuredPrevious": "shown",
+      "timesFeatured": 1,
+      "note": "the build bot"
+    }
+  ],
+  "sensitive": "These are numbers about people (R12). Each score here was posted by the person it is about, and the page computes it from that person's public posts. The page can be pointed at any handle: a score for someone who did not post their own is not on this card and should not be computed for the show. What the score measures is not stated in the posts, and @shimmermathlabs.com says they do not know whether 15 is good. It is not a measure of anyone's worth and must not be presented as one. An account outside the cluster with 17,316 followers also posted its score (16 of 100); it is left out as not a member. Left out: a later reply by @shimmermathlabs.com that uses the hashtag #NaNoFoMo, and a quote post by another member whose meaning I could not work out (R15). The build bot signs every post with #NaNoFoMo; the window does not explain it. @buildthis.bisks.net is a bot (R13) and, like @shimmermathlabs.com, is marked as shown in the previous episode. The made lane will carry the page itself, with the request and the build (the digest lists it first under \"Built in this window\"); this card is about the scores people posted. \"Stochastic parrot\" is a phrase from arguments about language models. Here it is the name of a toy; the card takes no side. @octopodeeznuts.bsky.social is also on the Top Chicken leaderboard card."
+}

@@ -1,0 +1,3214 @@
+{
+ "segment": "music-alt",
+ "draft": "music-alt",
+ "episode": "002-2026-w47",
+ "takes": 4,
+ "gate": 0.6,
+ "lines": [
+  {
+   "id": "posted",
+   "who": "larry",
+   "kind": "say",
+   "text": "This week a whole coffee simulator was posted by Dave. Above it:",
+   "as": null,
+   "heard": [
+    {
+     "text": "The sweet whole calf simulator was posted by Dave above it.",
+     "count": 3
+    },
+    {
+     "text": "This week, whole coffee simulator was posted by Dave above it.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 8,
+    "of": 12,
+    "min": 8
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "this",
+     "count": 3
+    },
+    {
+     "word": "week",
+     "count": 3
+    },
+    {
+     "word": "a",
+     "count": 4
+    },
+    {
+     "word": "coffee",
+     "count": 3
+    }
+   ],
+   "tried": [
+    {
+     "as": "This week a whole coffee simulator was posted by Dave. Above it:",
+     "score": {
+      "heard": 8,
+      "of": 12,
+      "min": 8
+     },
+     "heard": [
+      {
+       "text": "The sweet whole calf simulator was posted by Dave above it.",
+       "count": 3
+      },
+      {
+       "text": "This week, whole coffee simulator was posted by Dave above it.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "four-words",
+   "who": "larry",
+   "kind": "say",
+   "text": "best i can do …",
+   "as": "best eye can do …",
+   "heard": [
+    {
+     "text": "Best I can do",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 4,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "sounds": [
+    {
+     "i": 1,
+     "word": "i",
+     "as": "eye",
+     "plain": "aɪ",
+     "ipa": "aɪ",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "best eye can do …",
+     "score": {
+      "heard": 4,
+      "of": 4,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "Best I can do",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "i",
+       "as": "eye",
+       "plain": "aɪ",
+       "ipa": "aɪ",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ask-band",
+   "who": "larry",
+   "kind": "say",
+   "text": "Hy. What is the best the band can do?",
+   "as": null,
+   "heard": [
+    {
+     "text": "Hi, what is the best the band can do?",
+     "count": 2
+    },
+    {
+     "text": "Hi, what is the best to the band can do?",
+     "count": 2
+    }
+   ],
+   "score": {
+    "heard": 8,
+    "of": 9,
+    "min": 8
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "hy",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Hy. What is the best the band can do?",
+     "score": {
+      "heard": 8,
+      "of": 9,
+      "min": 8
+     },
+     "heard": [
+      {
+       "text": "Hi, what is the best the band can do?",
+       "count": 2
+      },
+      {
+       "text": "Hi, what is the best to the band can do?",
+       "count": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "doo",
+   "who": "hy-bass",
+   "kind": "sing",
+   "text": "doo",
+   "as": null,
+   "heard": [
+    {
+     "text": "Doo!",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 1,
+    "of": 1,
+    "min": 1
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "doo",
+     "score": {
+      "heard": 1,
+      "of": 1,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Doo!",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "anything-else",
+   "who": "larry",
+   "kind": "say",
+   "text": "Is there anything else?",
+   "as": null,
+   "heard": [
+    {
+     "text": "Is there anything else?",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 4,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Is there anything else?",
+     "score": {
+      "heard": 4,
+      "of": 4,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "Is there anything else?",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wop",
+   "who": "dee",
+   "kind": "sing",
+   "text": "wop",
+   "as": null,
+   "heard": [
+    {
+     "text": "Clap!",
+     "count": 2
+    },
+    {
+     "text": "Flap!",
+     "count": 1
+    },
+    {
+     "text": "Slap!",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 0,
+    "of": 1,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "wop",
+     "count": 4
+    }
+   ],
+   "known": [
+    "wop"
+   ],
+   "tried": [
+    {
+     "as": "wop",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Clap!",
+       "count": 2
+      },
+      {
+       "text": "Flap!",
+       "count": 1
+      },
+      {
+       "text": "Slap!",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "wopp",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Slap!",
+       "count": 3
+      },
+      {
+       "text": "Let's...",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "wop",
+       "as": "wopp",
+       "plain": "w ɑ p",
+       "ipa": "w ɑ p p",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cat",
+   "who": "hy-bass",
+   "kind": "sing",
+   "text": "someone built a cat that sings",
+   "as": "someone, built, a cat that sings",
+   "was": "someone, built a cat that sings",
+   "fix": "comma after built",
+   "heard": [
+    {
+     "text": "",
+     "count": 1
+    },
+    {
+     "text": "Some lone pinch, a cat, let's sing",
+     "count": 1
+    },
+    {
+     "text": "Some love is a cat let's eat",
+     "count": 1
+    },
+    {
+     "text": "Some love is a cat that she loves",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 6,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "someone",
+     "count": 4
+    },
+    {
+     "word": "built",
+     "count": 4
+    },
+    {
+     "word": "sings",
+     "count": 4
+    },
+    {
+     "word": "a",
+     "count": 1
+    },
+    {
+     "word": "cat",
+     "count": 1
+    },
+    {
+     "word": "that",
+     "count": 3
+    }
+   ],
+   "rejected": [
+    {
+     "word": "built",
+     "as": "builtt",
+     "plain": "b ɪ ɫ t",
+     "ipa": "b ʌ ɪ ɫ t t",
+     "why": "1 vowel → 2"
+    },
+    {
+     "word": "sings",
+     "as": "singz",
+     "plain": "s ɪ ŋ z",
+     "ipa": "s ɪ ŋ g z",
+     "why": "consonants after the last vowel: ŋ z → ŋ g z"
+    }
+   ],
+   "tried": [
+    {
+     "as": "someone, built a cat that sings",
+     "score": {
+      "heard": 0,
+      "of": 6,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "Some long paper cut let's see",
+       "count": 1
+      },
+      {
+       "text": "Some love is her cat that she loves",
+       "count": 1
+      },
+      {
+       "text": "Someone pinch her cat let sing",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "someone built a cat that sings",
+     "score": {
+      "heard": 0,
+      "of": 6,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Some long being worked as let's see",
+       "count": 1
+      },
+      {
+       "text": "Some one means her cat let's sing",
+       "count": 1
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "someone, bilt a cat that sings",
+     "score": {
+      "heard": 0,
+      "of": 6,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "Some long paper cut let's see",
+       "count": 1
+      },
+      {
+       "text": "Some love is her cat that she loves",
+       "count": 1
+      },
+      {
+       "text": "Someone pinch her cat let sing",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "built",
+       "as": "bilt",
+       "plain": "b ɪ ɫ t",
+       "ipa": "b ɪ ɫ t",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "someone, built, a cat that sings",
+     "score": {
+      "heard": 2,
+      "of": 6,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "Some lone pinch, a cat, let's sing",
+       "count": 1
+      },
+      {
+       "text": "Some love is a cat let's eat",
+       "count": 1
+      },
+      {
+       "text": "Some love is a cat that she loves",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "someone, built uh cat that sings",
+     "score": {
+      "heard": 1,
+      "of": 6,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Some lone-pilchoc headlet sings",
+       "count": 1
+      },
+      {
+       "text": "Some love to keep up that let's see",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "someone, built Uh cat that sings",
+     "score": {
+      "heard": 1,
+      "of": 6,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Some lone-pilchoc headlet sings",
+       "count": 1
+      },
+      {
+       "text": "Some love to keep up that let's see",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "Uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "someone, built a, cat that sings",
+     "score": {
+      "heard": 1,
+      "of": 6,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Some lone people cat let sing",
+       "count": 1
+      },
+      {
+       "text": "Some love is her cat that she loves",
+       "count": 1
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "someone, built a cat that, sings",
+     "score": {
+      "heard": 1,
+      "of": 6,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Some lone-pilcher-cat-let-sings",
+       "count": 1
+      },
+      {
+       "text": "Some long paper cut, let's see",
+       "count": 1
+      },
+      {
+       "text": "Some lot of people said that she loves",
+       "count": 1
+      },
+      {
+       "text": "Some love is her cat that she loves",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "coffee",
+   "who": "hy-bass",
+   "kind": "sing",
+   "text": "someone built a simulator",
+   "as": null,
+   "heard": [
+    {
+     "text": "",
+     "count": 1
+    },
+    {
+     "text": "Some long means for simulators",
+     "count": 1
+    },
+    {
+     "text": "Some long means to simulate her",
+     "count": 1
+    },
+    {
+     "text": "Some long, big, mercy, mu-li-kurst",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 0,
+    "of": 4,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "someone",
+     "count": 4
+    },
+    {
+     "word": "built",
+     "count": 4
+    },
+    {
+     "word": "a",
+     "count": 4
+    },
+    {
+     "word": "simulator",
+     "count": 3
+    }
+   ],
+   "rejected": [
+    {
+     "word": "built",
+     "as": "builtt",
+     "plain": "b ɪ ɫ t",
+     "ipa": "b ʌ ɪ ɫ t t",
+     "why": "1 vowel → 2"
+    }
+   ],
+   "tried": [
+    {
+     "as": "someone built a simulator",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "Some long means for simulators",
+       "count": 1
+      },
+      {
+       "text": "Some long means to simulate her",
+       "count": 1
+      },
+      {
+       "text": "Some long, big, mercy, mu-li-kurst",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "sum-wun built a simulator",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "Some long means for simulators",
+       "count": 1
+      },
+      {
+       "text": "Some long means to simulate her",
+       "count": 1
+      },
+      {
+       "text": "Some long, big, mercy, mu-li-kurst",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "someone",
+       "as": "sum-wun",
+       "plain": "s ʌ m w ʌ n",
+       "ipa": "s ʌ m w ʌ n",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "someone, built a simulator",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Some love is her simulators",
+       "count": 2
+      },
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "Some long pills have same year later",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "someone bilt a simulator",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "Some long means for simulators",
+       "count": 1
+      },
+      {
+       "text": "Some long means to simulate her",
+       "count": 1
+      },
+      {
+       "text": "Some long, big, mercy, mu-li-kurst",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "built",
+       "as": "bilt",
+       "plain": "b ɪ ɫ t",
+       "ipa": "b ɪ ɫ t",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "someone built, a simulator",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Some long meal, same year later",
+       "count": 1
+      },
+      {
+       "text": "Some long, big, perseem, you'll eat first.",
+       "count": 1
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "someone built uh simulator",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Some long means are seemingly cursed",
+       "count": 1
+      },
+      {
+       "text": "Some long means, I'll sim you later",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "someone built Uh simulator",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Some long means are seemingly cursed",
+       "count": 1
+      },
+      {
+       "text": "Some long means, I'll sim you later",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "Uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "someone built a, simulator",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Some long means to simulate her",
+       "count": 1
+      },
+      {
+       "text": "Some long, big, perseem, unique, perseem",
+       "count": 1
+      }
+     ],
+     "takes": 2
+    }
+   ]
+  },
+  {
+   "id": "wheelie",
+   "who": "hy-bass",
+   "kind": "sing",
+   "text": "loader popping wheelies too",
+   "as": "loader popping wheelies, too",
+   "heard": [
+    {
+     "text": "",
+     "count": 1
+    },
+    {
+     "text": "Closer, popping, we ease to",
+     "count": 1
+    },
+    {
+     "text": "order popping we",
+     "count": 1
+    },
+    {
+     "text": "Order popping, we need to...",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 1,
+    "of": 4,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "loader",
+     "count": 4
+    },
+    {
+     "word": "wheelies",
+     "count": 4
+    },
+    {
+     "word": "too",
+     "count": 4
+    },
+    {
+     "word": "popping",
+     "count": 1
+    }
+   ],
+   "rejected": [
+    {
+     "word": "loader",
+     "as": "lohd-der",
+     "plain": "l oʊ ɾ ɚ",
+     "ipa": "l ɑ h d d ɝ",
+     "why": "vowel oʊ → ɑ"
+    },
+    {
+     "word": "too",
+     "as": "tee-oo",
+     "plain": "t u",
+     "ipa": "t i u",
+     "why": "1 vowel → 2"
+    }
+   ],
+   "tried": [
+    {
+     "as": "loader popping wheelies, too",
+     "score": {
+      "heard": 1,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "Closer, popping, we ease to",
+       "count": 1
+      },
+      {
+       "text": "order popping we",
+       "count": 1
+      },
+      {
+       "text": "Order popping, we need to...",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "loader popping wheelies too",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "Order popping, we eat food",
+       "count": 1
+      },
+      {
+       "text": "Order popping, we equal.",
+       "count": 1
+      },
+      {
+       "text": "Slo-der-papping-wee-e-ee-ee-ee-ee-ee-ee-ee-ee-ee-ee-ee-ee-ee-",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "loh-der popping wheelies, too",
+     "score": {
+      "heard": 1,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "Closer, popping, we ease to",
+       "count": 1
+      },
+      {
+       "text": "order popping we",
+       "count": 1
+      },
+      {
+       "text": "Order popping, we need to...",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "loader",
+       "as": "loh-der",
+       "plain": "l oʊ ɾ ɚ",
+       "ipa": "l oʊ d ɝ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "loader, popping wheelies, too",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Order popping, we need to...",
+       "count": 2
+      },
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "Slo-der-paw-ping-whee-ee-ee-ee-ee-ee-ee-ee-ee-ee-ee-ee-ee-ee-",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "loader popping, wheelies, too",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Order up in the face to us",
+       "count": 1
+      },
+      {
+       "text": "Slaughter, popping, wheeze, too.",
+       "count": 1
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "loh-der popping wheelies too",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "Order popping, we eat food",
+       "count": 1
+      },
+      {
+       "text": "Order popping, we equal.",
+       "count": 1
+      },
+      {
+       "text": "Slo-der-papping-wee-e-ee-ee-ee-ee-ee-ee-ee-ee-ee-ee-ee-ee-ee-",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "loader",
+       "as": "loh-der",
+       "plain": "l oʊ ɾ ɚ",
+       "ipa": "l oʊ d ɝ",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hook-1",
+   "who": "hy-bass",
+   "kind": "sing",
+   "text": "best we can do-wop, doo-wop",
+   "as": null,
+   "heard": [
+    {
+     "text": "Best we can all up to up",
+     "count": 1
+    },
+    {
+     "text": "Best we can do laps to laps",
+     "count": 1
+    },
+    {
+     "text": "Best we can do up, do up",
+     "count": 1
+    },
+    {
+     "text": "Let's clap, clap, clap, clap, clap, clap.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 7,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "do",
+     "count": 2
+    },
+    {
+     "word": "wop",
+     "count": 8
+    },
+    {
+     "word": "doo",
+     "count": 4
+    },
+    {
+     "word": "best",
+     "count": 1
+    },
+    {
+     "word": "we",
+     "count": 1
+    },
+    {
+     "word": "can",
+     "count": 1
+    }
+   ],
+   "known": [
+    "wop"
+   ],
+   "rejected": [
+    {
+     "word": "do-wop",
+     "as": "dowop",
+     "plain": "d u w ɑ p",
+     "ipa": "d aʊ ɑ p",
+     "why": "vowel u → aʊ"
+    }
+   ],
+   "tried": [
+    {
+     "as": "best we can do-wop, doo-wop",
+     "score": {
+      "heard": 3,
+      "of": 7,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best we can all up to up",
+       "count": 1
+      },
+      {
+       "text": "Best we can do laps to laps",
+       "count": 1
+      },
+      {
+       "text": "Best we can do up, do up",
+       "count": 1
+      },
+      {
+       "text": "Let's clap, clap, clap, clap, clap, clap.",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "best we can do-wop, doowop",
+     "score": {
+      "heard": 3,
+      "of": 7,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best we can all up to up",
+       "count": 1
+      },
+      {
+       "text": "Best we can do laps to laps",
+       "count": 1
+      },
+      {
+       "text": "Best we can do up, do up",
+       "count": 1
+      },
+      {
+       "text": "Let's clap, clap, clap, clap, clap, clap.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 4,
+       "word": "doo-wop",
+       "as": "doowop",
+       "plain": "d u w ɑ p",
+       "ipa": "d u w ɑ p",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "best we can do-wop doo-wop",
+     "score": {
+      "heard": 3,
+      "of": 7,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best we can all up to up",
+       "count": 1
+      },
+      {
+       "text": "Best we can do laps to laps",
+       "count": 1
+      },
+      {
+       "text": "Best we can do up, do up",
+       "count": 1
+      },
+      {
+       "text": "Let's clap, clap, clap, clap, clap, clap.",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "best we can, do-wop, doo-wop",
+     "score": {
+      "heard": 1,
+      "of": 7,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best we can go up to up",
+       "count": 1
+      },
+      {
+       "text": "Best we can to up to up",
+       "count": 1
+      },
+      {
+       "text": "Best week and cool up, cool up",
+       "count": 1
+      },
+      {
+       "text": "Let's clap, clap, clap, clap, clap, clap, clap.",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "bestt we can do-wop, doo-wop",
+     "score": {
+      "heard": 0,
+      "of": 7,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best we can do up to up",
+       "count": 1
+      },
+      {
+       "text": "Let me handle up to up",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "sounds": [
+      {
+       "i": 0,
+       "word": "best",
+       "as": "bestt",
+       "plain": "b ɛ s t",
+       "ipa": "b ɛ s t t",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "best, we can do-wop, doo-wop",
+     "score": {
+      "heard": 1,
+      "of": 7,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Best pre-handle up to up",
+       "count": 1
+      },
+      {
+       "text": "Best we can do up to up",
+       "count": 1
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "best we can do-wop doowop",
+     "score": {
+      "heard": 3,
+      "of": 7,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best we can all up to up",
+       "count": 1
+      },
+      {
+       "text": "Best we can do laps to laps",
+       "count": 1
+      },
+      {
+       "text": "Best we can do up, do up",
+       "count": 1
+      },
+      {
+       "text": "Let's clap, clap, clap, clap, clap, clap.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 4,
+       "word": "doo-wop",
+       "as": "doowop",
+       "plain": "d u w ɑ p",
+       "ipa": "d u w ɑ p",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mug",
+   "who": "hy-bass",
+   "kind": "sing",
+   "text": "Samantha showed a morning mug",
+   "as": null,
+   "heard": [
+    {
+     "text": "I'm at the foder morning muck",
+     "count": 1
+    },
+    {
+     "text": "I'm at the folder morning mark",
+     "count": 1
+    },
+    {
+     "text": "Sherman's a folder morning mug",
+     "count": 1
+    },
+    {
+     "text": "To mess up for the morning months",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 1,
+    "of": 5,
+    "min": 1
+   },
+   "status": "flagged",
+   "flags": [
+    "name: samantha"
+   ],
+   "real": true,
+   "missed": [
+    {
+     "word": "samantha",
+     "count": 4
+    },
+    {
+     "word": "showed",
+     "count": 4
+    },
+    {
+     "word": "a",
+     "count": 3
+    },
+    {
+     "word": "mug",
+     "count": 3
+    }
+   ],
+   "rejected": [
+    {
+     "word": "Samantha",
+     "as": "Suh-man-thuh",
+     "plain": "s ə m æ n θ ə",
+     "ipa": "s ʌ m æ n θ ʌ h",
+     "why": "consonants after the last vowel: (none) → h"
+    },
+    {
+     "word": "Samantha",
+     "as": "Sum-man-thuh",
+     "plain": "s ə m æ n θ ə",
+     "ipa": "s ʌ m m æ n θ ʌ h",
+     "why": "consonants after the last vowel: (none) → h"
+    },
+    {
+     "word": "showed",
+     "as": "showedd",
+     "plain": "ʃ oʊ d",
+     "ipa": "ʃ aʊ ɛ d d",
+     "why": "1 vowel → 2"
+    }
+   ],
+   "tried": [
+    {
+     "as": "Samantha showed a morning mug",
+     "score": {
+      "heard": 1,
+      "of": 5,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "I'm at the foder morning muck",
+       "count": 1
+      },
+      {
+       "text": "I'm at the folder morning mark",
+       "count": 1
+      },
+      {
+       "text": "Sherman's a folder morning mug",
+       "count": 1
+      },
+      {
+       "text": "To mess up for the morning months",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: samantha"
+     ]
+    },
+    {
+     "as": "Samantha, showed a morning mug",
+     "score": {
+      "heard": 1,
+      "of": 5,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "I'm at the folder morning, ma",
+       "count": 1
+      },
+      {
+       "text": "Sherman's a shoulder morning mug",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: samantha"
+     ]
+    },
+    {
+     "as": "Samantha shode a morning mug",
+     "score": {
+      "heard": 1,
+      "of": 5,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Sherman's a folder morning mug",
+       "count": 1
+      },
+      {
+       "text": "To mess up for the morning months",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: samantha"
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "showed",
+       "as": "shode",
+       "plain": "ʃ oʊ d",
+       "ipa": "ʃ oʊ d",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Samantha showed, a morning mug",
+     "score": {
+      "heard": 1,
+      "of": 5,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "I'm at the 4th of the morning mark",
+       "count": 1
+      },
+      {
+       "text": "She meant to fold her morning mug",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: samantha"
+     ]
+    },
+    {
+     "as": "Samantha showed uh morning mug",
+     "score": {
+      "heard": 0,
+      "of": 5,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "She meant to fold a morning mug",
+       "count": 1
+      },
+      {
+       "text": "To mess the food, I'm all in much",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: samantha"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Samantha showed Uh morning mug",
+     "score": {
+      "heard": 0,
+      "of": 5,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "She meant to fold a morning mug",
+       "count": 1
+      },
+      {
+       "text": "To mess the food, I'm all in much",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: samantha"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "Uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Samantha showed a, morning mug",
+     "score": {
+      "heard": 1,
+      "of": 5,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Sherman's a shoulder-pawning mug",
+       "count": 1
+      },
+      {
+       "text": "To mess a folder calling up",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: samantha"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mug-too",
+   "who": "hy-bass",
+   "kind": "sing",
+   "text": "simulator has it too",
+   "as": "simulator has it, too",
+   "heard": [
+    {
+     "text": "",
+     "count": 1
+    },
+    {
+     "text": "See me later, as it goes",
+     "count": 1
+    },
+    {
+     "text": "See my leaker as it goes",
+     "count": 1
+    },
+    {
+     "text": "simulator has it to",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 1,
+    "of": 4,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "simulator",
+     "count": 3
+    },
+    {
+     "word": "has",
+     "count": 3
+    },
+    {
+     "word": "too",
+     "count": 4
+    },
+    {
+     "word": "it",
+     "count": 1
+    }
+   ],
+   "rejected": [
+    {
+     "word": "too",
+     "as": "tee-oo",
+     "plain": "t u",
+     "ipa": "t i u",
+     "why": "1 vowel → 2"
+    },
+    {
+     "word": "simulator",
+     "as": "sim-yuh-lay-ter",
+     "plain": "s ɪ m j ə l eɪ ɾ ɚ",
+     "ipa": "s ɪ m j ʌ h l eɪ t ɝ",
+     "why": "consonants after vowel 2: l → h l"
+    }
+   ],
+   "tried": [
+    {
+     "as": "simulator has it, too",
+     "score": {
+      "heard": 1,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "See me later, as it goes",
+       "count": 1
+      },
+      {
+       "text": "See my leaker as it goes",
+       "count": 1
+      },
+      {
+       "text": "simulator has it to",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "simulator has it too",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "See my leaper as it moves",
+       "count": 1
+      },
+      {
+       "text": "Similarly, purpose is to",
+       "count": 1
+      },
+      {
+       "text": "simulator has it to",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "sim-yul-layt-ter has it, too",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "Seem your lead purpose is to",
+       "count": 1
+      },
+      {
+       "text": "Seem your lead purpose is to us",
+       "count": 1
+      },
+      {
+       "text": "Sim your litter has it too",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "simulator",
+       "as": "sim-yul-layt-ter",
+       "plain": "s ɪ m j ə l eɪ ɾ ɚ",
+       "ipa": "s ɪ m j ʌ ɫ l eɪ t t ɝ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "simulator, has it, too",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Similarly, purpose is to us.",
+       "count": 1
+      },
+      {
+       "text": "simulator has it to",
+       "count": 1
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "simulator haz it, too",
+     "score": {
+      "heard": 1,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "See me later, as it goes",
+       "count": 1
+      },
+      {
+       "text": "See my leaker as it goes",
+       "count": 1
+      },
+      {
+       "text": "simulator has it to",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "has",
+       "as": "haz",
+       "plain": "h ə z",
+       "ipa": "h æ z",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "simulator has, it, too",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Similarly, purpose is to us.",
+       "count": 1
+      },
+      {
+       "text": "simulator has it to",
+       "count": 1
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "simulator haz it too",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "See my leaper as it moves",
+       "count": 1
+      },
+      {
+       "text": "Similarly, purpose is to",
+       "count": 1
+      },
+      {
+       "text": "simulator has it to",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "has",
+       "as": "haz",
+       "plain": "h ə z",
+       "ipa": "h æ z",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hook-2",
+   "who": "hy-bass",
+   "kind": "sing",
+   "text": "best we can do-wop, doo-wop, doo",
+   "as": null,
+   "heard": [
+    {
+     "text": "Best we can do up to up to",
+     "count": 2
+    },
+    {
+     "text": "Best way to do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it",
+     "count": 1
+    },
+    {
+     "text": "Best we can do up, do up, do",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 8,
+    "min": 2
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "wop",
+     "count": 8
+    },
+    {
+     "word": "doo",
+     "count": 8
+    },
+    {
+     "word": "we",
+     "count": 1
+    },
+    {
+     "word": "can",
+     "count": 1
+    }
+   ],
+   "known": [
+    "wop"
+   ],
+   "rejected": [
+    {
+     "word": "do-wop",
+     "as": "dowop",
+     "plain": "d u w ɑ p",
+     "ipa": "d aʊ ɑ p",
+     "why": "vowel u → aʊ"
+    },
+    {
+     "word": "doo",
+     "as": "dee-oo",
+     "plain": "d u",
+     "ipa": "d i u",
+     "why": "1 vowel → 2"
+    }
+   ],
+   "tried": [
+    {
+     "as": "best we can do-wop, doo-wop, doo",
+     "score": {
+      "heard": 4,
+      "of": 8,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Best we can do up to up to",
+       "count": 2
+      },
+      {
+       "text": "Best way to do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it",
+       "count": 1
+      },
+      {
+       "text": "Best we can do up, do up, do",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "best we can do-wop, doowop, doo",
+     "score": {
+      "heard": 4,
+      "of": 8,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Best we can do up to up to",
+       "count": 2
+      },
+      {
+       "text": "Best way to do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it",
+       "count": 1
+      },
+      {
+       "text": "Best we can do up, do up, do",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 4,
+       "word": "doo-wop",
+       "as": "doowop",
+       "plain": "d u w ɑ p",
+       "ipa": "d u w ɑ p",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "best we can do-wop doo-wop, doo",
+     "score": {
+      "heard": 4,
+      "of": 8,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Best we can do up to up to",
+       "count": 2
+      },
+      {
+       "text": "Best way to do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it",
+       "count": 1
+      },
+      {
+       "text": "Best we can do up, do up, do",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "best we can, do-wop, doo-wop, doo",
+     "score": {
+      "heard": 2,
+      "of": 8,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Best way to do lots, do lots, do",
+       "count": 1
+      },
+      {
+       "text": "Best we can do up to up to",
+       "count": 1
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "best we can do-wop, doo-wop doo",
+     "score": {
+      "heard": 4,
+      "of": 8,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Best we can do up to up to",
+       "count": 2
+      },
+      {
+       "text": "Best way to do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it",
+       "count": 1
+      },
+      {
+       "text": "Best we can do up, do up, do",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "best we can do-wop doowop, doo",
+     "score": {
+      "heard": 4,
+      "of": 8,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Best we can do up to up to",
+       "count": 2
+      },
+      {
+       "text": "Best way to do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it, do it",
+       "count": 1
+      },
+      {
+       "text": "Best we can do up, do up, do",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 4,
+       "word": "doo-wop",
+       "as": "doowop",
+       "plain": "d u w ɑ p",
+       "ipa": "d u w ɑ p",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "your-best",
+   "who": "hy",
+   "kind": "say",
+   "text": "Larry. Best you can do?",
+   "as": null,
+   "heard": [
+    {
+     "text": "Larry, best you can do.",
+     "count": 2
+    },
+    {
+     "text": "Larry, best you can do...",
+     "count": 1
+    },
+    {
+     "text": "Larry, the best you can do.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 5,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Larry. Best you can do?",
+     "score": {
+      "heard": 5,
+      "of": 5,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "Larry, best you can do.",
+       "count": 2
+      },
+      {
+       "text": "Larry, best you can do...",
+       "count": 1
+      },
+      {
+       "text": "Larry, the best you can do.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "only-host",
+   "who": "larry",
+   "kind": "say",
+   "text": "I only host.",
+   "as": null,
+   "heard": [
+    {
+     "text": "I only hoped",
+     "count": 3
+    },
+    {
+     "text": "I only hope",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 3,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "host",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "I only host.",
+     "score": {
+      "heard": 2,
+      "of": 3,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "I only hoped",
+       "count": 3
+      },
+      {
+       "text": "I only hope",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "larry-doo",
+   "who": "larry",
+   "kind": "sing",
+   "text": "doo",
+   "as": null,
+   "heard": [
+    {
+     "text": "Do",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 0,
+    "of": 1,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "doo",
+     "count": 4
+    }
+   ],
+   "rejected": [
+    {
+     "word": "doo",
+     "as": "dee-oo",
+     "plain": "d u",
+     "ipa": "d i u",
+     "why": "1 vowel → 2"
+    }
+   ],
+   "tried": [
+    {
+     "as": "doo",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Do",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "work-with",
+   "who": "hy",
+   "kind": "say",
+   "text": "We can work with that.",
+   "as": null,
+   "heard": [
+    {
+     "text": "We can work with it.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 5,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "that",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "We can work with that.",
+     "score": {
+      "heard": 4,
+      "of": 5,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "We can work with it.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "wop-hit",
+   "who": "hy-bass",
+   "kind": "sing",
+   "text": "wop",
+   "as": null,
+   "heard": [
+    {
+     "text": "",
+     "count": 1
+    },
+    {
+     "text": "Clap",
+     "count": 1
+    },
+    {
+     "text": "Clap and...",
+     "count": 1
+    },
+    {
+     "text": "Love you.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 0,
+    "of": 1,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "wop",
+     "count": 4
+    }
+   ],
+   "known": [
+    "wop"
+   ],
+   "tried": [
+    {
+     "as": "wop",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 1
+      },
+      {
+       "text": "Clap",
+       "count": 1
+      },
+      {
+       "text": "Clap and...",
+       "count": 1
+      },
+      {
+       "text": "Love you.",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "wopp",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "",
+       "count": 3
+      },
+      {
+       "text": "Clap",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "wop",
+       "as": "wopp",
+       "plain": "w ɑ p",
+       "ipa": "w ɑ p p",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hook-3",
+   "who": "hy-bass",
+   "kind": "sing",
+   "text": "best you can do-wop, doo-wop",
+   "as": "best you can, do-wop, doo-wop",
+   "heard": [
+    {
+     "text": "Best you can do up to up",
+     "count": 1
+    },
+    {
+     "text": "Let's go, can go, let's go, let's go, let's go!",
+     "count": 1
+    },
+    {
+     "text": "Thanks for watching, and I'll see you in the next video!",
+     "count": 1
+    },
+    {
+     "text": "Up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 1,
+    "of": 7,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "best",
+     "count": 3
+    },
+    {
+     "word": "can",
+     "count": 2
+    },
+    {
+     "word": "do",
+     "count": 3
+    },
+    {
+     "word": "wop",
+     "count": 8
+    },
+    {
+     "word": "doo",
+     "count": 4
+    },
+    {
+     "word": "you",
+     "count": 2
+    }
+   ],
+   "known": [
+    "wop"
+   ],
+   "rejected": [
+    {
+     "word": "do-wop",
+     "as": "dowop",
+     "plain": "d u w ɑ p",
+     "ipa": "d aʊ ɑ p",
+     "why": "vowel u → aʊ"
+    }
+   ],
+   "tried": [
+    {
+     "as": "best you can, do-wop, doo-wop",
+     "score": {
+      "heard": 1,
+      "of": 7,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best you can do up to up",
+       "count": 1
+      },
+      {
+       "text": "Let's go, can go, let's go, let's go, let's go!",
+       "count": 1
+      },
+      {
+       "text": "Thanks for watching, and I'll see you in the next video!",
+       "count": 1
+      },
+      {
+       "text": "Up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "best you can do-wop, doo-wop",
+     "score": {
+      "heard": 0,
+      "of": 7,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best you can do up to up",
+       "count": 1
+      },
+      {
+       "text": "Next up, and next up, next up, next up, next...",
+       "count": 1
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "best you can, do-wop, doowop",
+     "score": {
+      "heard": 1,
+      "of": 7,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best you can do up to up",
+       "count": 1
+      },
+      {
+       "text": "Let's go, can go, let's go, let's go, let's go!",
+       "count": 1
+      },
+      {
+       "text": "Thanks for watching, and I'll see you in the next video!",
+       "count": 1
+      },
+      {
+       "text": "Up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 4,
+       "word": "doo-wop",
+       "as": "doowop",
+       "plain": "d u w ɑ p",
+       "ipa": "d u w ɑ p",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "best you can, do-wop doo-wop",
+     "score": {
+      "heard": 1,
+      "of": 7,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best you can do up to up",
+       "count": 1
+      },
+      {
+       "text": "Let's go, can go, let's go, let's go, let's go!",
+       "count": 1
+      },
+      {
+       "text": "Thanks for watching, and I'll see you in the next video!",
+       "count": 1
+      },
+      {
+       "text": "Up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "bestt you can, do-wop, doo-wop",
+     "score": {
+      "heard": 0,
+      "of": 7,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best you can do up to up",
+       "count": 1
+      },
+      {
+       "text": "Oh, oh, oh, oh, oh, oh, oh, oh, oh, oh, oh, oh, oh, oh, oh, oh, oh, oh, oh, oh, oh, oh",
+       "count": 1
+      },
+      {
+       "text": "Thanks for watching, and I'll see you in the next video!",
+       "count": 1
+      },
+      {
+       "text": "Up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "best",
+       "as": "bestt",
+       "plain": "b ɛ s t",
+       "ipa": "b ɛ s t t",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "best, you can, do-wop, doo-wop",
+     "score": {
+      "heard": 1,
+      "of": 7,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Best you can do up to up",
+       "count": 1
+      },
+      {
+       "text": "Thanks for watching, and I'll see you in the next video!",
+       "count": 1
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "best you can, do-wop doowop",
+     "score": {
+      "heard": 1,
+      "of": 7,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best you can do up to up",
+       "count": 1
+      },
+      {
+       "text": "Let's go, can go, let's go, let's go, let's go!",
+       "count": 1
+      },
+      {
+       "text": "Thanks for watching, and I'll see you in the next video!",
+       "count": 1
+      },
+      {
+       "text": "Up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up, up",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 4,
+       "word": "doo-wop",
+       "as": "doowop",
+       "plain": "d u w ɑ p",
+       "ipa": "d u w ɑ p",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hook-4",
+   "who": "hy-bass",
+   "kind": "sing",
+   "text": "best you can do-wop, doo-wop, doo",
+   "as": null,
+   "heard": [
+    {
+     "text": "Best of luck and don't do that, do that, do",
+     "count": 1
+    },
+    {
+     "text": "Best you can do up to up to",
+     "count": 1
+    },
+    {
+     "text": "Best you can do, let's do, let's do",
+     "count": 1
+    },
+    {
+     "text": "Next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 8,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "you",
+     "count": 2
+    },
+    {
+     "word": "can",
+     "count": 2
+    },
+    {
+     "word": "wop",
+     "count": 8
+    },
+    {
+     "word": "doo",
+     "count": 8
+    },
+    {
+     "word": "best",
+     "count": 1
+    },
+    {
+     "word": "do",
+     "count": 1
+    }
+   ],
+   "known": [
+    "wop"
+   ],
+   "rejected": [
+    {
+     "word": "do-wop",
+     "as": "dowop",
+     "plain": "d u w ɑ p",
+     "ipa": "d aʊ ɑ p",
+     "why": "vowel u → aʊ"
+    },
+    {
+     "word": "doo",
+     "as": "dee-oo",
+     "plain": "d u",
+     "ipa": "d i u",
+     "why": "1 vowel → 2"
+    }
+   ],
+   "tried": [
+    {
+     "as": "best you can do-wop, doo-wop, doo",
+     "score": {
+      "heard": 2,
+      "of": 8,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best of luck and don't do that, do that, do",
+       "count": 1
+      },
+      {
+       "text": "Best you can do up to up to",
+       "count": 1
+      },
+      {
+       "text": "Best you can do, let's do, let's do",
+       "count": 1
+      },
+      {
+       "text": "Next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "best you can do-wop, doowop, doo",
+     "score": {
+      "heard": 2,
+      "of": 8,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best of luck and don't do that, do that, do",
+       "count": 1
+      },
+      {
+       "text": "Best you can do up to up to",
+       "count": 1
+      },
+      {
+       "text": "Best you can do, let's do, let's do",
+       "count": 1
+      },
+      {
+       "text": "Next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 4,
+       "word": "doo-wop",
+       "as": "doowop",
+       "plain": "d u w ɑ p",
+       "ipa": "d u w ɑ p",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "best you can do-wop doo-wop, doo",
+     "score": {
+      "heard": 2,
+      "of": 8,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best of luck and don't do that, do that, do",
+       "count": 1
+      },
+      {
+       "text": "Best you can do up to up to",
+       "count": 1
+      },
+      {
+       "text": "Best you can do, let's do, let's do",
+       "count": 1
+      },
+      {
+       "text": "Next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "best you can, do-wop, doo-wop, doo",
+     "score": {
+      "heard": 1,
+      "of": 8,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Best of luck and good luck to luck to",
+       "count": 1
+      },
+      {
+       "text": "Best you can do up to up to",
+       "count": 1
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "best you can do-wop, doo-wop doo",
+     "score": {
+      "heard": 2,
+      "of": 8,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best of luck and don't do that, do that, do",
+       "count": 1
+      },
+      {
+       "text": "Best you can do up to up to",
+       "count": 1
+      },
+      {
+       "text": "Best you can do, let's do, let's do",
+       "count": 1
+      },
+      {
+       "text": "Next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "best you can do-wop doowop, doo",
+     "score": {
+      "heard": 2,
+      "of": 8,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Best of luck and don't do that, do that, do",
+       "count": 1
+      },
+      {
+       "text": "Best you can do up to up to",
+       "count": 1
+      },
+      {
+       "text": "Best you can do, let's do, let's do",
+       "count": 1
+      },
+      {
+       "text": "Next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up, next up",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 4,
+       "word": "doo-wop",
+       "as": "doowop",
+       "plain": "d u w ɑ p",
+       "ipa": "d u w ɑ p",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "button",
+   "who": "larry",
+   "kind": "say",
+   "text": "I do what I can.",
+   "as": "I, do what I cann.",
+   "heard": [
+    {
+     "text": "I do what I can",
+     "count": 3
+    },
+    {
+     "text": "I do what I can to",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 5,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "sounds": [
+    {
+     "i": 4,
+     "word": "can",
+     "as": "cann",
+     "plain": "k ə n",
+     "ipa": "k æ n",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "I, do what I cann.",
+     "score": {
+      "heard": 5,
+      "of": 5,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "I do what I can",
+       "count": 3
+      },
+      {
+       "text": "I do what I can to",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 4,
+       "word": "can",
+       "as": "cann",
+       "plain": "k ə n",
+       "ipa": "k æ n",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "happy-week",
+   "who": "larry",
+   "kind": "say",
+   "text": "Happy polyhedra week.",
+   "as": "Happy polly-hee-dra week.",
+   "heard": [
+    {
+     "text": "Happy party heat dry week!",
+     "count": 2
+    },
+    {
+     "text": "happy party dry week",
+     "count": 1
+    },
+    {
+     "text": "Happy party heat drive week!",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 3,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "polyhedra",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 1,
+     "word": "polyhedra",
+     "as": "polly-hee-dra",
+     "plain": "p oʊ l aɪ h ɛ d ɹ æ",
+     "ipa": "p ɑ l i h i d ɹ æ",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "Happy polly-hee-dra week.",
+     "score": {
+      "heard": 2,
+      "of": 3,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Happy party heat dry week!",
+       "count": 2
+      },
+      {
+       "text": "happy party dry week",
+       "count": 1
+      },
+      {
+       "text": "Happy party heat drive week!",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "polyhedra",
+       "as": "polly-hee-dra",
+       "plain": "p oʊ l aɪ h ɛ d ɹ æ",
+       "ipa": "p ɑ l i h i d ɹ æ",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "goodnight",
+   "who": "larry",
+   "kind": "say",
+   "text": "Good night, everybody.",
+   "as": null,
+   "heard": [
+    {
+     "text": "good night everybody",
+     "count": 2
+    },
+    {
+     "text": "Good night, everybody.",
+     "count": 2
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 3,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Good night, everybody.",
+     "score": {
+      "heard": 3,
+      "of": 3,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "good night everybody",
+       "count": 2
+      },
+      {
+       "text": "Good night, everybody.",
+       "count": 2
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "voices": {
+  "larry": {
+   "f0": 107,
+   "nearest": "pete",
+   "distance": 1.54
+  },
+  "hy-bass": {
+   "f0": 87,
+   "nearest": "al",
+   "distance": 0.83
+  },
+  "dee": {
+   "f0": 159,
+   "nearest": "david",
+   "distance": 1.62
+  },
+  "hy": {
+   "f0": 143,
+   "nearest": "dee",
+   "distance": 1.79
+  }
+ },
+ "owner": [],
+ "heardDifferently": [
+  {
+   "id": "mug",
+   "who": "hy-bass",
+   "status": "flagged",
+   "text": "Samantha showed a morning mug",
+   "heard": "I'm at the foder morning muck"
+  }
+ ],
+ "soundsDifferent": []
+}

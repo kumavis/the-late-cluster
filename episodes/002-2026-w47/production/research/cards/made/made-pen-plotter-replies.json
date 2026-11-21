@@ -1,0 +1,933 @@
+{
+  "id": "made-pen-plotter-replies",
+  "lane": "made",
+  "title": "A pen plotter wrote the replies to a post on paper, streamed live",
+  "summary": "On Sat 14 Nov at 20:02Z @samantha.wiki (977 followers) posted that a pen plotter would write replies to the post on paper, with a live stream at stream.place/samantha.wiki. The stated rules: only a person's first reply is plotted, rude replies are skipped, and replies are locked when the page fills. Replies were locked at 23:58Z, 3 hours 56 minutes after the post, and a thank-you post with a time lapse followed at 00:47Z on Sun 15 Nov. The post has 88 replies; the digest counts 43 distinct accounts replying or quoting it and 31 cluster members across the story, which is the highest-scored story of the window. During the run the maker posted the state of the queue (\"half full (half empty?)\" at 21:47Z; \"currently EMPTY and we have 42% of the page remaining\" at 22:52Z), told repliers when their turn came (\"you're up\"), and described a moderation check that screens replies before plotting. People replied with, among other things, the word \"first\", the opening of a film script cut off at the character limit, a line of code written to spawn processes without end (its author noted afterwards that it would not have run as written), a six-line poem about the plotter, and a pun. Asked how text becomes plotter paths, the maker replied \"claude did 100% of this\". The machine, in the maker's words, is a Genmitsu 3018 CNC machine with a 3d-printed pen plotter attachment; a post the day before showed it plotting a curve with a blue Pilot G2 0.7mm pen. Afterwards @joshuashew.bsky.social (475 followers) posted a drawing \"in the style of the the pen plotter project\", and the maker said more such projects are coming.",
+  "made": [
+    {
+      "what": "pen plotter that writes a thread's replies on paper, with a live stream",
+      "by": "samantha.wiki",
+      "address": "https://stream.place/samantha.wiki"
+    }
+  ],
+  "couldBeShown": "A pen moving across a page writing one reply at a time, left to right, then tracking back to the left margin (a replier wrote of \"the suspense while it tracks back to the left side\"); a queue of waiting replies; the page filling to the point where replies lock. The maker's own images and videos carry no alt text, so research has not seen the page: its layout, the handwriting and the illustration the maker mentions are not described anywhere in the data. The only description of the look is the alt text on the follow-up drawing by @joshuashew.bsky.social (blue ink on cream paper), which is of that drawing, not of the plotted page.",
+  "numbers": [
+    "88 replies on the opening post (post counts); 43 participants (the digest's reach figure for that post); 31 cluster members in the story (digest).",
+    "Open for replies 20:02Z to 23:58Z on 14 Nov: 3 h 56 min (post timestamps).",
+    "\"42% of the page remaining\" with an empty queue at 22:52Z (the maker's post).",
+    "A reply reading \"first\" arrived at 20:03Z, one minute after the post; it is the earliest reply in the data."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n25u7fw3zs2q",
+      "text": "Plotting a Generalized Hilbert Curve (\"Gilbert\" curve)\n\nPlotted on a Genmitsu 3018 CNC router with a pen plotter attachment that Opus 5.5 and I designed.\n\nThe pen is a blue Pilot G2 0.7mm.",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-13T01:42:33.258Z",
+      "counts": {
+        "likes": 26,
+        "reposts": 5,
+        "replies": 2,
+        "quotes": 0
+      },
+      "kind": "post",
+      "media": "video (no alt text; research has not seen it)",
+      "note": "The day before: the same machine plotting a curve. Top-level post with a video."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+      "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T20:02:44.143Z",
+      "counts": {
+        "likes": 83,
+        "reposts": 10,
+        "replies": 88,
+        "quotes": 7
+      },
+      "kind": "post",
+      "media": "image (no alt text; research has not seen it)",
+      "links": [
+        {
+          "url": "https://stream.place/samantha.wiki"
+        }
+      ],
+      "note": "The opening post. Top-level, with an image."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc7yxc622n",
+      "text": "Inspired by @cee.wtf and @dame.is's previous projects, as well as @jacobjoaquin.bsky.social",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T20:04:04.560Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+        "handle": "samantha.wiki",
+        "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀"
+      },
+      "kind": "reply",
+      "note": "The maker credits earlier projects by others."
+    },
+    {
+      "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2cc76ilgs2k",
+      "text": "first",
+      "handle": "shibbi.me",
+      "displayName": "Siobhán 🪏",
+      "time": "2026-11-14T20:03:36.815Z",
+      "counts": {
+        "likes": 10,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+        "handle": "samantha.wiki",
+        "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀"
+      },
+      "kind": "reply",
+      "note": "The earliest reply in the data, one minute in."
+    },
+    {
+      "uri": "at://did:plc:gttrfs4hfmrclyxvwkwcgpj7/app.bsky.feed.post/3n2cccl2rbc2o",
+      "text": "According to all known laws of aviation, there is no way a bee should be able to fly.\nIts wings are too small to get its fat little body off the ground.\nThe bee, of course, flies anyway because bees don't care what humans think is impossible.\nYellow, black. Yellow, black. Yellow, black. Yellow, blac",
+      "handle": "aparker.io",
+      "displayName": "austin",
+      "time": "2026-11-14T20:05:30.658Z",
+      "counts": {
+        "likes": 14,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+        "handle": "samantha.wiki",
+        "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀"
+      },
+      "kind": "reply",
+      "note": "A reply that runs to the character limit and stops mid-word."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cceb5pvc2j",
+      "text": "LMAO",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T20:06:27.377Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:gttrfs4hfmrclyxvwkwcgpj7/app.bsky.feed.post/3n2cccl2rbc2o",
+        "handle": "aparker.io",
+        "text": "According to all known laws of aviation, there is no way a bee should be able to fly.\nIts wings are too small to get its fat little body off the ground.\nThe bee, of course, flies anyway because bees don't care what humans think is impossible.\nYellow, black. Yellow, black. Yellow, black. Yellow, blac"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2ccgws4bk2c",
+      "text": "It's gonna take a few minutes to get through @aparker.io's... 😅",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T20:07:57.174Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+        "handle": "samantha.wiki",
+        "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀"
+      },
+      "kind": "reply",
+      "note": "The maker, to the thread, about how long that reply will take to plot."
+    },
+    {
+      "uri": "at://did:plc:ygzrpn6mqpibaf6rowkd3uh6/app.bsky.feed.post/3n2cclvn4jk25",
+      "text": "eval(\"import os;\\nwhile True:\\n  os.fork()\")",
+      "handle": "ocramz.bsky.social",
+      "displayName": "Marco Z",
+      "time": "2026-11-14T20:10:43.730Z",
+      "counts": {
+        "likes": 16,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+        "handle": "samantha.wiki",
+        "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀"
+      },
+      "kind": "reply",
+      "note": "A reply written as code."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2ccnqcgqk2c",
+      "text": "oh no",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T20:11:45.251Z",
+      "counts": {
+        "likes": 12,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ygzrpn6mqpibaf6rowkd3uh6/app.bsky.feed.post/3n2cclvn4jk25",
+        "handle": "ocramz.bsky.social",
+        "text": "eval(\"import os;\\nwhile True:\\n  os.fork()\")"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:ygzrpn6mqpibaf6rowkd3uh6/app.bsky.feed.post/3n2cczwrz5c25",
+      "text": "you are sanitizing inputs right ☕️",
+      "handle": "ocramz.bsky.social",
+      "displayName": "Marco Z",
+      "time": "2026-11-14T20:18:34.706Z",
+      "counts": {
+        "likes": 11,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2ccnqcgqk2c",
+        "handle": "samantha.wiki",
+        "text": "oh no"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cd37xaj22b",
+      "text": "i don't know what this means why is my computer hot",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T20:19:17.869Z",
+      "counts": {
+        "likes": 18,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ygzrpn6mqpibaf6rowkd3uh6/app.bsky.feed.post/3n2cczwrz5c25",
+        "handle": "ocramz.bsky.social",
+        "text": "you are sanitizing inputs right ☕️"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:ygzrpn6mqpibaf6rowkd3uh6/app.bsky.feed.post/3n2cdt3kqzs25",
+      "text": "(shit you need exec for statements, not eval. there goes my haxor cred",
+      "handle": "ocramz.bsky.social",
+      "displayName": "Marco Z",
+      "time": "2026-11-14T20:32:38.571Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ygzrpn6mqpibaf6rowkd3uh6/app.bsky.feed.post/3n2cclvn4jk25",
+        "handle": "ocramz.bsky.social",
+        "text": "eval(\"import os;\\nwhile True:\\n  os.fork()\")"
+      },
+      "kind": "reply",
+      "note": "The same replier, later, on why the code would not have run."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2ccvut46k2c",
+      "text": "we're still chugging along folks\n\nif you're in line stay in line",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T20:16:18.427Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+        "handle": "samantha.wiki",
+        "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀"
+      },
+      "kind": "reply",
+      "note": "The maker, to the thread, 14 minutes in."
+    },
+    {
+      "uri": "at://did:plc:kpxj7utcy6mjv4rmzitnnrmv/app.bsky.feed.post/3n2ccgtdp3225",
+      "text": "All right, stop, collaborate and listen\nIce is back with my brand new invention\nSomething grabs ahold of me tightly\nFlow like a harpoon daily and nightly\n\"Will it ever stop?\" Yo, I don't know\nTurn off the lights, and I'll glow",
+      "handle": "ver.ooo",
+      "displayName": "ver.ooo 🗿",
+      "time": "2026-11-14T20:07:53.557Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+        "handle": "samantha.wiki",
+        "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀"
+      },
+      "kind": "reply",
+      "note": "A reply made of song lyrics."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2ccyxvuzk2b",
+      "text": "you're up 👀",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T20:18:02.327Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:kpxj7utcy6mjv4rmzitnnrmv/app.bsky.feed.post/3n2ccgtdp3225",
+        "handle": "ver.ooo",
+        "text": "All right, stop, collaborate and listen\nIce is back with my brand new invention\nSomething grabs ahold of me tightly\nFlow like a harpoon daily and nightly\n\"Will it ever stop?\" Yo, I don't know\nTurn off the lights, and I'll glow"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:kpxj7utcy6mjv4rmzitnnrmv/app.bsky.feed.post/3n2cd7y55gc25",
+      "text": "😬 the suspense while it tracks back to the left side",
+      "handle": "ver.ooo",
+      "displayName": "ver.ooo 🗿",
+      "time": "2026-11-14T20:21:57.446Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2ccyxvuzk2b",
+        "handle": "samantha.wiki",
+        "text": "you're up 👀"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2cdsm3v3s2q",
+      "text": "First",
+      "handle": "cee.wtf",
+      "displayName": "cee",
+      "time": "2026-11-14T20:32:22.354Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+        "handle": "samantha.wiki",
+        "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀"
+      },
+      "kind": "reply",
+      "note": "A second \"First\", half an hour after the first one."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cdvqhkjs27",
+      "text": "if it's written in ink it's legally true @shibbi.me",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T20:34:07.596Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2cdsm3v3s2q",
+        "handle": "cee.wtf",
+        "text": "First"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2cexa5zf22k",
+      "text": "this means i was first first :3 first²",
+      "handle": "shibbi.me",
+      "displayName": "Siobhán 🪏",
+      "time": "2026-11-14T20:52:51.357Z",
+      "counts": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cdvqhkjs27",
+        "handle": "samantha.wiki",
+        "text": "if it's written in ink it's legally true @shibbi.me"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:bogaa3hdl22iy3jdang5poz2/app.bsky.feed.post/3n2cebhfwrk24",
+      "text": "A silver arm across the white,\nDraws hidden stars from realms of light.\nThe wheels turn round, the ink runs deep,\nAnd sleeping shapes awaken from sleep.\nWhat god of gears, what hand divine,\nCommands the stars to walk in line?",
+      "handle": "vinnymac.dev",
+      "displayName": "Vincent",
+      "time": "2026-11-14T20:40:40.756Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+        "handle": "samantha.wiki",
+        "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀"
+      },
+      "kind": "reply",
+      "note": "A poem about the plotter, from an account with 85 followers that is not a cluster member."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cgtb3qn22b",
+      "text": "You're up! This is one of my favorites so far",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T21:26:25.597Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:bogaa3hdl22iy3jdang5poz2/app.bsky.feed.post/3n2cebhfwrk24",
+        "handle": "vinnymac.dev",
+        "text": "A silver arm across the white,\nDraws hidden stars from realms of light.\nThe wheels turn round, the ink runs deep,\nAnd sleeping shapes awaken from sleep.\nWhat god of gears, what hand divine,\nCommands the stars to walk in line?"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2chz7spq22k",
+      "text": "The queue is half full (half empty?), come join!\n\nImmortalize yourself forever on a piece of paper in my apartment!",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T21:47:39.301Z",
+      "counts": {
+        "likes": 11,
+        "reposts": 2,
+        "replies": 1,
+        "quotes": 1
+      },
+      "quotes": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+        "handle": "samantha.wiki",
+        "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀",
+        "time": "2026-11-14T20:02:44.143Z"
+      },
+      "kind": "quote",
+      "media": "image (no alt text; research has not seen it)",
+      "note": "Queue status, quoting the opening post."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2clnqgp2k25",
+      "text": "The queue is currently EMPTY and we have 42% of the page remaining >.>",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T22:52:49.027Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+        "handle": "samantha.wiki",
+        "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀",
+        "time": "2026-11-14T20:02:44.143Z"
+      },
+      "kind": "quote",
+      "media": "image (no alt text; research has not seen it)",
+      "note": "Queue status, quoting the opening post."
+    },
+    {
+      "uri": "at://did:plc:rnpkyqnmsw4ipey6eotbdnnf/app.bsky.feed.post/3n2cmimxev22l",
+      "text": "How do you organize a space party? You plan-et! - Bailey",
+      "handle": "pds.dad",
+      "displayName": "Bailey Townsend 🦀",
+      "time": "2026-11-14T23:07:51.389Z",
+      "counts": {
+        "likes": 8,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+        "handle": "samantha.wiki",
+        "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀"
+      },
+      "kind": "reply",
+      "note": "A pun, signed with a first name."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cmlilvpc2k",
+      "text": "I'm pretty sure I heard the moderation agent audibly groan when it approved this :)",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T23:09:27.482Z",
+      "counts": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:rnpkyqnmsw4ipey6eotbdnnf/app.bsky.feed.post/3n2cmimxev22l",
+        "handle": "pds.dad",
+        "text": "How do you organize a space party? You plan-et! - Bailey"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:cp5hnfgqbgjdbizyqyp4zgdl/app.bsky.feed.post/3n2cn7y6bd22t",
+      "text": "help I am trapped in a pen plotter",
+      "handle": "antiali.as",
+      "displayName": "alias #NaNoFoMo",
+      "time": "2026-11-14T23:20:54.897Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+        "handle": "samantha.wiki",
+        "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:riz34menmdv5zcqsiytb23xx/app.bsky.feed.post/3n2cnbtu3lc26",
+      "text": "How do you translate unicode to a gcode path ?\nI would guess monospace font → SVG path → gcode pipeline.",
+      "handle": "jorropo.bsky.social",
+      "displayName": "Jorropo",
+      "time": "2026-11-14T23:21:57.482Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+        "handle": "samantha.wiki",
+        "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀"
+      },
+      "kind": "reply",
+      "note": "A question about how it works."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cnfzhzns2b",
+      "text": "claude did 100% of this",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T23:24:17.591Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:riz34menmdv5zcqsiytb23xx/app.bsky.feed.post/3n2cnbtu3lc26",
+        "handle": "jorropo.bsky.social",
+        "text": "How do you translate unicode to a gcode path ?\nI would guess monospace font → SVG path → gcode pipeline."
+      },
+      "kind": "reply",
+      "media": "image (no alt text; research has not seen it)",
+      "note": "The answer came with an image (no alt text)."
+    },
+    {
+      "uri": "at://did:plc:riz34menmdv5zcqsiytb23xx/app.bsky.feed.post/3n2cnkgyjrc26",
+      "text": "It would be faster to say what claude doesn't do theses days.\nThe explanation is great altho it still kills me how slow the plotter is running.",
+      "handle": "jorropo.bsky.social",
+      "displayName": "Jorropo",
+      "time": "2026-11-14T23:26:45.986Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cnfzhzns2b",
+        "handle": "samantha.wiki",
+        "text": "claude did 100% of this"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:kbk6trqdgqkxf5d72j2wwuwt/app.bsky.feed.post/3n2cntmfg422q",
+      "text": "cool. I want a pen plotter.",
+      "handle": "robmurrish.bsky.social",
+      "time": "2026-11-14T23:31:53.640Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+        "handle": "samantha.wiki",
+        "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2coaeowrs2h",
+      "text": "It's very fun!!! Would recommend. Mine is a Genmitsu 3018 CNC machine with a 3d-printed pen plotter attachment",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T23:39:01.772Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:kbk6trqdgqkxf5d72j2wwuwt/app.bsky.feed.post/3n2cntmfg422q",
+        "handle": "robmurrish.bsky.social",
+        "text": "cool. I want a pen plotter."
+      },
+      "kind": "reply",
+      "note": "The maker names the machine."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cpdy5tbs2k",
+      "text": "Replies are locked, but things are still happening...\n\nstream.place/samantha.wiki",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T23:58:56.553Z",
+      "counts": {
+        "likes": 48,
+        "reposts": 3,
+        "replies": 5,
+        "quotes": 2
+      },
+      "quotes": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+        "handle": "samantha.wiki",
+        "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀",
+        "time": "2026-11-14T20:02:44.143Z"
+      },
+      "kind": "quote",
+      "media": "image (no alt text; research has not seen it)",
+      "links": [
+        {
+          "url": "https://stream.place/samantha.wiki"
+        }
+      ],
+      "note": "Replies locked. Quotes the opening post."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cs2khmas22",
+      "text": "Thanks for participating everyone! This was really fun! :) To those who didn't get to participate, there will be more/similar opportunities in the future... 👀\n\nSee thread for time lapse",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-15T00:47:21.294Z",
+      "counts": {
+        "likes": 115,
+        "reposts": 15,
+        "replies": 10,
+        "quotes": 8
+      },
+      "quotes": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cpdy5tbs2k",
+        "handle": "samantha.wiki",
+        "text": "Replies are locked, but things are still happening...\n\nstream.place/samantha.wiki",
+        "time": "2026-11-14T23:58:56.553Z"
+      },
+      "kind": "quote",
+      "media": "image (no alt text; research has not seen it)",
+      "note": "Thanks, and a promise of more. Quotes the \"locked\" post. The time lapse it mentions is a video-only reply with no text and no alt text, so it cannot be carried on a card."
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2ctpapnwk2q",
+      "text": "Seems like something that should be sent into space or buried under a giant tree",
+      "handle": "cee.wtf",
+      "displayName": "cee",
+      "time": "2026-11-15T01:16:49.624Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cs2khmas22",
+        "handle": "samantha.wiki",
+        "text": "Thanks for participating everyone! This was really fun! :) To those who didn't get to participate, there will be more/similar opportunities in the future... 👀\n\nSee thread for time lapse"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2ctt4munk2c",
+      "text": "Announcing my crowdfunding effort to get a cubesat with this in it launched",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-15T01:18:59.559Z",
+      "counts": {
+        "likes": 7,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2ctpapnwk2q",
+        "handle": "cee.wtf",
+        "text": "Seems like something that should be sent into space or buried under a giant tree"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2ct3sbnxc2h",
+      "text": "yay for more opportunities! i was literally sleeping and missed the cutoff it by 10 minutes",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-15T01:05:56.954Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cs2khmas22",
+        "handle": "samantha.wiki",
+        "text": "Thanks for participating everyone! This was really fun! :) To those who didn't get to participate, there will be more/similar opportunities in the future... 👀\n\nSee thread for time lapse"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2ct6osjys22",
+      "text": "I saw when you liked it I was like nooooooo so close!! 😭 there will be more things like this for sure!",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-15T01:07:33.976Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2ct3sbnxc2h",
+        "handle": "shimmermathlabs.com",
+        "text": "yay for more opportunities! i was literally sleeping and missed the cutoff it by 10 minutes"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:sfmur4r4wzriaupbgmz7sshy/app.bsky.feed.post/3n2fq5xv6lkxg",
+      "text": "... now in the style of the the pen plotter project (:",
+      "handle": "joshuashew.bsky.social",
+      "displayName": "Joshua Shew",
+      "time": "2026-11-16T04:51:27.109Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sfmur4r4wzriaupbgmz7sshy/app.bsky.feed.post/3n2fpjwoxlc4q",
+        "handle": "joshuashew.bsky.social",
+        "text": "a goldmine of affirmations\n\nhttps://impro.social/search?q=from%3Anorvid-studies.bsky.social+affirmations"
+      },
+      "quotes": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cs2khmas22",
+        "handle": "samantha.wiki",
+        "text": "Thanks for participating everyone! This was really fun! :) To those who didn't get to participate, there will be more/similar opportunities in the future... 👀\n\nSee thread for time lapse",
+        "time": "2026-11-15T00:47:21.294Z"
+      },
+      "kind": "reply+quote",
+      "alt": "A pen-plotter drawing in blue ink on cream paper titled \"daily affirmations\", with a small bee on each side. Below it, 58 Bluesky posts that norvid_studies quote-posted as \"daily affirmations\" run together as one block of text, each as @handle: text, separated by //. At the bottom is an ornamental band with five medallions: a tiny carrot, a ravioli, a bee in a honeycomb hexagon, an open book, and a spiral sun.",
+      "media": "image",
+      "note": "A follow-up made by someone else: a drawing in the plotter's style. It is a reply to the same author's own post about another member's \"daily affirmations\" posts and quotes the maker's thank-you post."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2gkwy6l5k2j",
+      "text": "wowowowoowo I love this!!!\n\ndaily affirmation: more pen plotter projects! 🫡",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-16T12:50:44.390Z",
+      "counts": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sfmur4r4wzriaupbgmz7sshy/app.bsky.feed.post/3n2fq5xv6lkxg",
+        "handle": "joshuashew.bsky.social",
+        "text": "... now in the style of the the pen plotter project (:"
+      },
+      "kind": "reply"
+    }
+  ],
+  "people": [
+    {
+      "handle": "samantha.wiki",
+      "followers": 977,
+      "displayName": "Samantha",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1,
+      "role": "maker"
+    },
+    {
+      "handle": "joshuashew.bsky.social",
+      "followers": 475,
+      "displayName": "Joshua Shew",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "made a follow-up drawing"
+    },
+    {
+      "handle": "shibbi.me",
+      "followers": 2887,
+      "displayName": "Siobhán 🪏",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "aparker.io",
+      "followers": 9763,
+      "displayName": "austin",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "ocramz.bsky.social",
+      "followers": 2010,
+      "displayName": "Marco Z",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "ver.ooo",
+      "followers": 955,
+      "displayName": "ver.ooo 🗿",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "cee.wtf",
+      "followers": 2524,
+      "displayName": "cee",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "vinnymac.dev",
+      "followers": 85,
+      "displayName": "Vincent",
+      "clusterMember": false,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "pds.dad",
+      "followers": 5234,
+      "displayName": "Bailey Townsend 🦀",
+      "clusterMember": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "antiali.as",
+      "followers": 535,
+      "displayName": "alias #NaNoFoMo",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "jorropo.bsky.social",
+      "followers": 688,
+      "displayName": "Jorropo",
+      "clusterMember": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "robmurrish.bsky.social",
+      "followers": 139,
+      "clusterMember": false,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "followers": 1454,
+      "displayName": "Amber 🌸",
+      "clusterMember": true,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    }
+  ],
+  "sensitive": "@samantha.wiki is marked featuredPrevious: spoke, so the account is not cast to speak in this episode; its posts may be shown. Several repliers are small accounts or are not cluster members (see people: vinnymac.dev 85, robmurrish.bsky.social 139, jorropo.bsky.social 688, pds.dad 5,234); R7 applies, and each is here only for a reply the maker welcomed. Left out on purpose: a reply the maker's moderation check held back as a \"vulgar insult aimed at a person\", with the maker's explanation (it would show a named person's reply being rejected); two of the maker's replies whose only text is \"tragic\" with undescribed images (the digest keyword-flags them); one of the maker's replies that mentions an account the digest redacts as opted out; a plotted reply made of two-letter abbreviations that research does not understand; a reply that is a number spelling a crude word, and its author's later \"I'm famous!\"; two replies that are part of the \"banh mi\" bit, whose story the digest flags. The follow-up drawing by @joshuashew.bsky.social is built from 58 posts that @norvid-studies.bsky.social quote-posted; @norvid-studies.bsky.social is marked featuredPrevious: spoke, so the account is not cast to speak in this episode; its posts may be shown. The maker says the queue post would \"Immortalize yourself forever on a piece of paper in my apartment\": a passing mention of home, nothing more.",
+  "notUnderstood": [
+    "What the finished page looks like: no image or video of it has alt text.",
+    "A recap video by @zzstoatzz.io quoting the thank-you post (\"... chimerabufopenplotter recap\", 29 likes) has no description; research does not know what it shows, and its title begins with a swear word. Not carried."
+  ],
+  "leftOut": [
+    "Replies whose parent post the digest withholds (their authors are hidden from the scrape), including the maker's remark that non-ASCII characters are skipped and come out as question marks."
+  ]
+}

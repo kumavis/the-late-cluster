@@ -1,0 +1,965 @@
+{
+ "id": "interview-yonderdavid",
+ "title": "The Interview: David",
+ "duration": 66.377,
+ "audio": "audio/interview-yonderdavid.mp3",
+ "tele": "tele/interview-yonderdavid.bin",
+ "lines": [
+  {
+   "i": 0,
+   "id": "intro",
+   "who": "larry",
+   "kind": "say",
+   "text": "My guest makes music with singers and instruments that are not real.",
+   "caption": true,
+   "t0": 0.3,
+   "t1": 3.994,
+   "words": [
+    [
+     0.36,
+     0.572,
+     "My"
+    ],
+    [
+     0.572,
+     0.907,
+     "guest"
+    ],
+    [
+     0.907,
+     1.251,
+     "makes"
+    ],
+    [
+     1.251,
+     1.7,
+     "music"
+    ],
+    [
+     1.7,
+     1.888,
+     "with"
+    ],
+    [
+     1.888,
+     2.297,
+     "singers"
+    ],
+    [
+     2.297,
+     2.478,
+     "and"
+    ],
+    [
+     2.478,
+     3.167,
+     "instruments"
+    ],
+    [
+     3.167,
+     3.295,
+     "that"
+    ],
+    [
+     3.295,
+     3.419,
+     "are"
+    ],
+    [
+     3.419,
+     3.657,
+     "not"
+    ],
+    [
+     3.657,
+     3.994,
+     "real."
+    ]
+   ],
+   "tele": 0,
+   "teleT0": 0.25
+  },
+  {
+   "i": 1,
+   "id": "welcome",
+   "who": "larry",
+   "kind": "say",
+   "text": "Please welcome David.",
+   "caption": true,
+   "t0": 4.244,
+   "t1": 5.518,
+   "words": [
+    [
+     4.304,
+     4.629,
+     "Please"
+    ],
+    [
+     4.629,
+     5.066,
+     "welcome"
+    ],
+    [
+     5.066,
+     5.518,
+     "David."
+    ]
+   ],
+   "tele": 1,
+   "teleT0": 4.194
+  },
+  {
+   "i": 2,
+   "id": "four",
+   "who": "larry",
+   "kind": "say",
+   "text": "The synthesizer you use comes with four animals.",
+   "caption": true,
+   "t0": 6.948,
+   "t1": 10.059,
+   "words": [
+    [
+     7.008,
+     7.122,
+     "The"
+    ],
+    [
+     7.122,
+     7.915,
+     "synthesizer"
+    ],
+    [
+     7.915,
+     8.096,
+     "you"
+    ],
+    [
+     8.096,
+     8.394,
+     "use"
+    ],
+    [
+     8.394,
+     8.758,
+     "comes"
+    ],
+    [
+     8.998,
+     9.189,
+     "with"
+    ],
+    [
+     9.189,
+     9.526,
+     "four"
+    ],
+    [
+     9.526,
+     10.059,
+     "animals."
+    ]
+   ],
+   "tele": 2,
+   "teleT0": 6.898
+  },
+  {
+   "i": 3,
+   "id": "ask-cat",
+   "who": "larry",
+   "kind": "say",
+   "text": "A member asked: how did the cat not make the top four?",
+   "caption": true,
+   "t0": 10.359,
+   "t1": 13.853,
+   "words": [
+    [
+     10.419,
+     10.485,
+     "A"
+    ],
+    [
+     10.485,
+     10.882,
+     "member"
+    ],
+    [
+     10.882,
+     11.316,
+     "asked:"
+    ],
+    [
+     11.556,
+     11.812,
+     "how"
+    ],
+    [
+     11.812,
+     12.017,
+     "did"
+    ],
+    [
+     12.017,
+     12.126,
+     "the"
+    ],
+    [
+     12.126,
+     12.443,
+     "cat"
+    ],
+    [
+     12.443,
+     12.68,
+     "not"
+    ],
+    [
+     12.68,
+     12.947,
+     "make"
+    ],
+    [
+     12.947,
+     13.055,
+     "the"
+    ],
+    [
+     13.055,
+     13.387,
+     "top"
+    ],
+    [
+     13.387,
+     13.853,
+     "four?"
+    ]
+   ],
+   "tele": 3,
+   "teleT0": 10.309
+  },
+  {
+   "i": 4,
+   "id": "very-well",
+   "who": "david",
+   "kind": "say",
+   "text": "Very well, … so I can fix that. The cat voice sim joins a quartet and instruments that get their sound from physical models.",
+   "caption": true,
+   "t0": 14.303,
+   "t1": 23.745,
+   "words": [
+    [
+     14.363,
+     14.688,
+     "Very"
+    ],
+    [
+     14.688,
+     15.06,
+     "well,"
+    ],
+    [
+     15.06,
+     15.06,
+     "…"
+    ],
+    [
+     15.3,
+     15.551,
+     "so"
+    ],
+    [
+     15.551,
+     15.685,
+     "I"
+    ],
+    [
+     15.685,
+     15.9,
+     "can"
+    ],
+    [
+     15.9,
+     16.258,
+     "fix"
+    ],
+    [
+     16.258,
+     16.479,
+     "that."
+    ],
+    [
+     16.889,
+     17.014,
+     "The"
+    ],
+    [
+     17.014,
+     17.362,
+     "cat"
+    ],
+    [
+     17.362,
+     17.877,
+     "voice"
+    ],
+    [
+     18.117,
+     18.468,
+     "sim"
+    ],
+    [
+     18.708,
+     19.212,
+     "joins"
+    ],
+    [
+     19.452,
+     19.524,
+     "a"
+    ],
+    [
+     19.524,
+     20.161,
+     "quartet"
+    ],
+    [
+     20.401,
+     20.6,
+     "and"
+    ],
+    [
+     20.6,
+     21.355,
+     "instruments"
+    ],
+    [
+     21.355,
+     21.54,
+     "that"
+    ],
+    [
+     21.54,
+     21.808,
+     "get"
+    ],
+    [
+     21.808,
+     21.991,
+     "their"
+    ],
+    [
+     21.991,
+     22.404,
+     "sound"
+    ],
+    [
+     22.404,
+     22.704,
+     "from"
+    ],
+    [
+     22.704,
+     23.236,
+     "physical"
+    ],
+    [
+     23.236,
+     23.745,
+     "models."
+    ]
+   ],
+   "tele": 4,
+   "teleT0": 14.253
+  },
+  {
+   "i": 5,
+   "id": "good-question",
+   "who": "larry",
+   "kind": "say",
+   "text": "Me, I just say, good question.",
+   "caption": true,
+   "t0": 24.245,
+   "t1": 26.721,
+   "words": [
+    [
+     24.305,
+     24.542,
+     "Me,"
+    ],
+    [
+     24.782,
+     24.94,
+     "I"
+    ],
+    [
+     24.94,
+     25.265,
+     "just"
+    ],
+    [
+     25.265,
+     25.615,
+     "say,"
+    ],
+    [
+     25.855,
+     26.141,
+     "good"
+    ],
+    [
+     26.141,
+     26.721,
+     "question."
+    ]
+   ],
+   "tele": 5,
+   "teleT0": 24.195
+  },
+  {
+   "i": 6,
+   "id": "under",
+   "who": "larry",
+   "kind": "say",
+   "text": "Under the video, a member asked:",
+   "caption": true,
+   "t0": 28.062,
+   "t1": 30.005,
+   "words": [
+    [
+     28.122,
+     28.409,
+     "Under"
+    ],
+    [
+     28.409,
+     28.523,
+     "the"
+    ],
+    [
+     28.523,
+     28.877,
+     "video,"
+    ],
+    [
+     29.117,
+     29.182,
+     "a"
+    ],
+    [
+     29.182,
+     29.575,
+     "member"
+    ],
+    [
+     29.575,
+     30.005,
+     "asked:"
+    ]
+   ],
+   "tele": 6,
+   "teleT0": 28.012
+  },
+  {
+   "i": 7,
+   "id": "ask-failures",
+   "who": "larry",
+   "kind": "say",
+   "text": "Was there a stack of failures we never saw?",
+   "caption": true,
+   "t0": 30.155,
+   "t1": 32.59,
+   "words": [
+    [
+     30.215,
+     30.431,
+     "Was"
+    ],
+    [
+     30.431,
+     30.615,
+     "there"
+    ],
+    [
+     30.615,
+     30.683,
+     "a"
+    ],
+    [
+     30.683,
+     31.098,
+     "stack"
+    ],
+    [
+     31.098,
+     31.224,
+     "of"
+    ],
+    [
+     31.224,
+     31.721,
+     "failures"
+    ],
+    [
+     31.721,
+     31.876,
+     "we"
+    ],
+    [
+     31.876,
+     32.189,
+     "never"
+    ],
+    [
+     32.189,
+     32.59,
+     "saw?"
+    ]
+   ],
+   "tele": 7,
+   "teleT0": 30.105
+  },
+  {
+   "i": 8,
+   "id": "kazoo",
+   "who": "david",
+   "kind": "say",
+   "text": "… The meow and yowl took some work and iteration against reference recordings. The original yowl sounded like a kazoo.",
+   "caption": true,
+   "t0": 33.04,
+   "t1": 41.298,
+   "words": [
+    [
+     33.04,
+     33.04,
+     "…"
+    ],
+    [
+     33.1,
+     33.225,
+     "The"
+    ],
+    [
+     33.225,
+     33.542,
+     "meow"
+    ],
+    [
+     33.542,
+     33.725,
+     "and"
+    ],
+    [
+     33.725,
+     34.061,
+     "yowl"
+    ],
+    [
+     34.061,
+     34.352,
+     "took"
+    ],
+    [
+     34.352,
+     34.632,
+     "some"
+    ],
+    [
+     34.632,
+     34.982,
+     "work"
+    ],
+    [
+     35.222,
+     35.421,
+     "and"
+    ],
+    [
+     35.421,
+     36,
+     "iteration"
+    ],
+    [
+     36.24,
+     36.705,
+     "against"
+    ],
+    [
+     36.705,
+     37.277,
+     "reference"
+    ],
+    [
+     37.277,
+     38.014,
+     "recordings."
+    ],
+    [
+     38.424,
+     38.612,
+     "The"
+    ],
+    [
+     38.612,
+     39.066,
+     "original"
+    ],
+    [
+     39.066,
+     39.546,
+     "yowl"
+    ],
+    [
+     39.786,
+     40.325,
+     "sounded"
+    ],
+    [
+     40.325,
+     40.697,
+     "like"
+    ],
+    [
+     40.697,
+     40.833,
+     "a"
+    ],
+    [
+     40.833,
+     41.298,
+     "kazoo."
+    ]
+   ],
+   "tele": 8,
+   "teleT0": 32.99
+  },
+  {
+   "i": 9,
+   "id": "you-posted",
+   "who": "larry",
+   "kind": "say",
+   "text": "Your first choice was another song. You posted:",
+   "caption": true,
+   "t0": 43.079,
+   "t1": 46.231,
+   "words": [
+    [
+     43.139,
+     43.339,
+     "Your"
+    ],
+    [
+     43.339,
+     43.705,
+     "first"
+    ],
+    [
+     43.705,
+     44.07,
+     "choice"
+    ],
+    [
+     44.07,
+     44.28,
+     "was"
+    ],
+    [
+     44.28,
+     44.612,
+     "another"
+    ],
+    [
+     44.612,
+     45.07,
+     "song."
+    ],
+    [
+     45.48,
+     45.661,
+     "You"
+    ],
+    [
+     45.661,
+     46.231,
+     "posted:"
+    ]
+   ],
+   "tele": 9,
+   "teleT0": 43.029
+  },
+  {
+   "i": 10,
+   "id": "read-copyright",
+   "who": "larry",
+   "kind": "say",
+   "text": "… it turns out that's still under copyright and covers aren't fair use. …",
+   "caption": true,
+   "t0": 46.531,
+   "t1": 50.683,
+   "words": [
+    [
+     46.531,
+     46.531,
+     "…"
+    ],
+    [
+     46.591,
+     46.72,
+     "it"
+    ],
+    [
+     46.72,
+     47.062,
+     "turns"
+    ],
+    [
+     47.062,
+     47.303,
+     "out"
+    ],
+    [
+     47.303,
+     47.653,
+     "that's"
+    ],
+    [
+     47.653,
+     47.991,
+     "still"
+    ],
+    [
+     47.991,
+     48.29,
+     "under"
+    ],
+    [
+     48.29,
+     48.976,
+     "copyright"
+    ],
+    [
+     48.976,
+     49.159,
+     "and"
+    ],
+    [
+     49.159,
+     49.574,
+     "covers"
+    ],
+    [
+     49.574,
+     49.979,
+     "aren't"
+    ],
+    [
+     49.979,
+     50.251,
+     "fair"
+    ],
+    [
+     50.251,
+     50.683,
+     "use."
+    ],
+    [
+     50.683,
+     50.683,
+     "…"
+    ]
+   ],
+   "tele": 10,
+   "teleT0": 46.481
+  },
+  {
+   "i": 11,
+   "id": "and-asked",
+   "who": "larry",
+   "kind": "say",
+   "text": "And a member asked:",
+   "caption": true,
+   "t0": 51.033,
+   "t1": 52.203,
+   "words": [
+    [
+     51.093,
+     51.28,
+     "And"
+    ],
+    [
+     51.28,
+     51.348,
+     "a"
+    ],
+    [
+     51.348,
+     51.756,
+     "member"
+    ],
+    [
+     51.756,
+     52.203,
+     "asked:"
+    ]
+   ],
+   "tele": 11,
+   "teleT0": 50.983
+  },
+  {
+   "i": 12,
+   "id": "ask-al",
+   "who": "larry",
+   "kind": "say",
+   "text": "Covers aren't fair use? Then how does Weird Al work?",
+   "caption": true,
+   "t0": 52.353,
+   "t1": 56.581,
+   "words": [
+    [
+     52.413,
+     52.834,
+     "Covers"
+    ],
+    [
+     52.834,
+     53.239,
+     "aren't"
+    ],
+    [
+     53.239,
+     53.511,
+     "fair"
+    ],
+    [
+     53.511,
+     53.943,
+     "use?"
+    ],
+    [
+     54.353,
+     54.525,
+     "Then"
+    ],
+    [
+     54.525,
+     54.771,
+     "how"
+    ],
+    [
+     54.771,
+     55.087,
+     "does"
+    ],
+    [
+     55.327,
+     55.629,
+     "Weird"
+    ],
+    [
+     55.629,
+     56.006,
+     "Al"
+    ],
+    [
+     56.246,
+     56.581,
+     "work?"
+    ]
+   ],
+   "tele": 12,
+   "teleT0": 52.303
+  },
+  {
+   "i": 13,
+   "id": "parody",
+   "who": "david",
+   "kind": "say",
+   "text": "I believe parody is considered transformative in the relevant sense.",
+   "caption": true,
+   "t0": 57.081,
+   "t1": 61.977,
+   "words": [
+    [
+     57.141,
+     57.299,
+     "I"
+    ],
+    [
+     57.299,
+     57.834,
+     "believe"
+    ],
+    [
+     58.074,
+     58.589,
+     "parody"
+    ],
+    [
+     58.829,
+     58.975,
+     "is"
+    ],
+    [
+     58.975,
+     59.533,
+     "considered"
+    ],
+    [
+     59.533,
+     60.716,
+     "transformative"
+    ],
+    [
+     60.716,
+     60.846,
+     "in"
+    ],
+    [
+     60.846,
+     60.965,
+     "the"
+    ],
+    [
+     60.965,
+     61.55,
+     "relevant"
+    ],
+    [
+     61.55,
+     61.977,
+     "sense."
+    ]
+   ],
+   "tele": 13,
+   "teleT0": 57.031
+  }
+ ],
+ "cues": {
+  "guest-in": 3.994,
+  "under-the-video": 27.762,
+  "kazoo-pic": 40.698,
+  "same-thread": 42.779,
+  "label-hold": 61.977
+ },
+ "sfx": [
+  {
+   "name": "applause-1",
+   "t0": 5.618,
+   "t1": 8.838
+  },
+  {
+   "name": "laugh-1",
+   "t0": 26.871,
+   "t1": 28.491
+  },
+  {
+   "name": "laugh-2",
+   "t0": 41.798,
+   "t1": 43.308
+  },
+  {
+   "name": "biglaugh-1",
+   "t0": 63.277,
+   "t1": 65.777
+  }
+ ],
+ "music": []
+}

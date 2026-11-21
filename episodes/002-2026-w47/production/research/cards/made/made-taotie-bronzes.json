@@ -1,0 +1,323 @@
+{
+  "id": "made-taotie-bronzes",
+  "lane": "made",
+  "title": "A generator of late-Shang bronze vessels, and the surface detail a coding model could not copy",
+  "summary": "On Tue 17 Nov @kumavis.me (1,690 followers) posted a run of images and videos from a project that generates bronze vessels in the style of the late Shang dynasty, and a link to play with it (page title: \"Taotie Bronze 饕餮 — procedural late-Shang ritual bronzes\"). It began at 13:12Z: \"feel like im finally hitting an engineering challenge that fable/opus is struggling with. trying to extract details from my hastily taken photos. first image: red mine given as example, blue theirs.\" (38 likes). Nine minutes later: \"it actually did an incredible job unless you look closely. and brother, my face is pressed against the screen\". Then \"he has flanges\" and \"i like these two. what kind of adventures should they go on?\" over two videos, and an image described in alt text as a \"desktop computer with CRT monitor, in the style of 12th century BC shang dynasty bronze\", captioned \"I know this, its a DESIGN system!\". A member thought the close-ups looked Mayan and the maker agreed; another wrote \"damn i don't remember this level from The Witness\". The maker published the reference photos and challenged others to get a model to extract the surface motifs. Asked whether a coding agent was the wrong tool, the maker replied: \"it did train a small model, but not enough labeled data. But even a sota coding agent being the wrong tool is a new experience\". The digest groups 55 posts and 15 cluster members in this story.",
+  "made": [
+    {
+      "what": "Taotie Bronze: a generator of late-Shang-style bronze vessels, playable in the browser",
+      "by": "kumavis.me",
+      "address": "https://kumavis.github.io/vibe-dump/taotie-bronze"
+    }
+  ],
+  "couldBeShown": "Generated bronze vessels turning on screen; two of them side by side (\"these two\"); a vessel with flanges; a comparison of surface motifs traced by hand (red) and by a model (blue); an everyday object, a desktop computer with a CRT monitor, rendered in the same bronze style. Only that last image has alt text; research has not seen the vessels, the videos or the red-and-blue comparison.",
+  "numbers": [
+    "\"12th century BC\" (the alt text).",
+    "38 likes on the opening post; 25 on the computer image; 14 likes and 3 reposts on \"i like these two\".",
+    "Nine minutes between \"struggling\" and \"an incredible job unless you look closely\".",
+    "55 posts, 15 cluster members in the story (digest)."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2j4mpzv4c2s",
+      "text": "feel like im finally hitting an engineering challenge that fable/opus is struggling with. trying to extract details from my hastily taken photos. first image: red mine given as example, blue theirs.",
+      "handle": "kumavis.me",
+      "displayName": "🪷 kumavis 🪷",
+      "time": "2026-11-17T13:12:27.121Z",
+      "counts": {
+        "likes": 38,
+        "reposts": 0,
+        "replies": 5,
+        "quotes": 4
+      },
+      "quotes": {
+        "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2htzm32ok27",
+        "handle": "kumavis.me",
+        "text": "dear computer i love you so much",
+        "time": "2026-11-17T01:05:55.766Z"
+      },
+      "kind": "quote",
+      "media": "image (no alt text; research has not seen it)",
+      "note": "The opening post. Quotes an earlier post of the maker's. Image without alt text."
+    },
+    {
+      "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2j54v2fw22s",
+      "text": "it actually did an incredible job unless you look closely. and brother, my face is pressed against the screen 😵‍💫",
+      "handle": "kumavis.me",
+      "displayName": "🪷 kumavis 🪷",
+      "time": "2026-11-17T13:21:29.261Z",
+      "counts": {
+        "likes": 17,
+        "reposts": 0,
+        "replies": 3,
+        "quotes": 2
+      },
+      "replyTo": {
+        "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2j4mpzv4c2s",
+        "handle": "kumavis.me",
+        "text": "feel like im finally hitting an engineering challenge that fable/opus is struggling with. trying to extract details from my hastily taken photos. first image: red mine given as example, blue theirs."
+      },
+      "kind": "reply",
+      "media": "image (no alt text; research has not seen it)",
+      "note": "Image without alt text."
+    },
+    {
+      "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2j62brkp22s",
+      "text": "he has flanges",
+      "handle": "kumavis.me",
+      "displayName": "🪷 kumavis 🪷",
+      "time": "2026-11-17T13:37:55.685Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2j5buc4g22s",
+        "handle": "kumavis.me",
+        "text": "anyways, heres wonderwall"
+      },
+      "kind": "reply",
+      "media": "video (no alt text; research has not seen it)",
+      "note": "Video without alt text."
+    },
+    {
+      "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2j6djzny22s",
+      "text": "i like these two. what kind of adventures should they go on?",
+      "handle": "kumavis.me",
+      "displayName": "🪷 kumavis 🪷",
+      "time": "2026-11-17T13:43:06.329Z",
+      "counts": {
+        "likes": 14,
+        "reposts": 3,
+        "replies": 2,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2j62brkp22s",
+        "handle": "kumavis.me",
+        "text": "he has flanges"
+      },
+      "kind": "reply",
+      "media": "video (no alt text; research has not seen it)",
+      "note": "Video without alt text."
+    },
+    {
+      "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2j6nidq3c2s",
+      "text": "I know this, its a DESIGN system!",
+      "handle": "kumavis.me",
+      "displayName": "🪷 kumavis 🪷",
+      "time": "2026-11-17T13:48:40.104Z",
+      "counts": {
+        "likes": 25,
+        "reposts": 2,
+        "replies": 3,
+        "quotes": 1
+      },
+      "quotes": {
+        "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2j54v2fw22s",
+        "handle": "kumavis.me",
+        "text": "it actually did an incredible job unless you look closely. and brother, my face is pressed against the screen 😵‍💫",
+        "time": "2026-11-17T13:21:29.261Z"
+      },
+      "kind": "quote",
+      "alt": "desktop computer with CRT monitor, in the style of 12th century BC shang dynasty bronze",
+      "media": "image",
+      "note": "Quotes the maker's post above."
+    },
+    {
+      "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2j7kdnfyk2s",
+      "text": "you can play with them here kumavis.github.io/vibe-dump/ta...",
+      "handle": "kumavis.me",
+      "displayName": "🪷 kumavis 🪷",
+      "time": "2026-11-17T14:04:48.259Z",
+      "counts": {
+        "likes": 8,
+        "reposts": 1,
+        "replies": 0,
+        "quotes": 1
+      },
+      "quotes": {
+        "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2j54v2fw22s",
+        "handle": "kumavis.me",
+        "text": "it actually did an incredible job unless you look closely. and brother, my face is pressed against the screen 😵‍💫",
+        "time": "2026-11-17T13:21:29.261Z"
+      },
+      "kind": "quote",
+      "links": [
+        {
+          "url": "https://kumavis.github.io/vibe-dump/taotie-bronze",
+          "title": "Taotie Bronze 饕餮 — procedural late-Shang ritual bronzes"
+        }
+      ],
+      "note": "The link to try it."
+    },
+    {
+      "uri": "at://did:plc:pcpxcmv5z6oseafi5khuulta/app.bsky.feed.post/3n2jauc7j422m",
+      "text": "huh I thought these were Mayan just by the close-ups",
+      "handle": "wavebidder.bsky.social",
+      "time": "2026-11-17T14:28:16.039Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2j54v2fw22s",
+        "handle": "kumavis.me",
+        "text": "it actually did an incredible job unless you look closely. and brother, my face is pressed against the screen 😵‍💫"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2jayckezk2x",
+      "text": "I thought so too! especially these",
+      "handle": "kumavis.me",
+      "displayName": "🪷 kumavis 🪷",
+      "time": "2026-11-17T14:30:30.604Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:pcpxcmv5z6oseafi5khuulta/app.bsky.feed.post/3n2jauc7j422m",
+        "handle": "wavebidder.bsky.social",
+        "text": "huh I thought these were Mayan just by the close-ups"
+      },
+      "kind": "reply",
+      "media": "image (no alt text; research has not seen it)",
+      "note": "Image without alt text."
+    },
+    {
+      "uri": "at://did:plc:4vvaxwovyg4yo4n7dyyncaiu/app.bsky.feed.post/3n2jh3db7b22i",
+      "text": "damn i don’t remember this level from The Witness",
+      "handle": "thebadcode.com",
+      "displayName": "austin (e/accordion 🪗)",
+      "time": "2026-11-17T16:19:34.477Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2j4mpzv4c2s",
+        "handle": "kumavis.me",
+        "text": "feel like im finally hitting an engineering challenge that fable/opus is struggling with. trying to extract details from my hastily taken photos. first image: red mine given as example, blue theirs."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2jdoxtfts2x",
+      "text": "think you a machine whisperer? better than the best? you might be but i bet you cant extract these surface details from the reference photos included here. Prompt hint in next post github.com/kumavis/vibe...",
+      "handle": "kumavis.me",
+      "displayName": "🪷 kumavis 🪷",
+      "time": "2026-11-17T15:18:58.610Z",
+      "counts": {
+        "likes": 4,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 1
+      },
+      "quotes": {
+        "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2j4mpzv4c2s",
+        "handle": "kumavis.me",
+        "text": "feel like im finally hitting an engineering challenge that fable/opus is struggling with. trying to extract details from my hastily taken photos. first image: red mine given as example, blue theirs.",
+        "time": "2026-11-17T13:12:27.121Z"
+      },
+      "kind": "quote",
+      "links": [
+        {
+          "url": "https://github.com/kumavis/vibe-dump/tree/main/packages/taotie-bronze"
+        }
+      ],
+      "note": "The challenge."
+    },
+    {
+      "uri": "at://did:plc:xuzgwzfczpvmxay4yke247se/app.bsky.feed.post/3n2k3iqjtzs22",
+      "text": "Wrong tool? This is a deep learning task?",
+      "handle": "techyben.bsky.social",
+      "displayName": "Techy Ben",
+      "time": "2026-11-17T22:24:59.436Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2j4mpzv4c2s",
+        "handle": "kumavis.me",
+        "text": "feel like im finally hitting an engineering challenge that fable/opus is struggling with. trying to extract details from my hastily taken photos. first image: red mine given as example, blue theirs."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2k7ljjzds2g",
+      "text": "it did train a small model, but not enough labeled data. But even a sota coding agent being the wrong tool is a new experience",
+      "handle": "kumavis.me",
+      "displayName": "🪷 kumavis 🪷",
+      "time": "2026-11-17T23:38:07.729Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xuzgwzfczpvmxay4yke247se/app.bsky.feed.post/3n2k3iqjtzs22",
+        "handle": "techyben.bsky.social",
+        "text": "Wrong tool? This is a deep learning task?"
+      },
+      "kind": "reply"
+    }
+  ],
+  "people": [
+    {
+      "handle": "kumavis.me",
+      "followers": 1690,
+      "displayName": "🪷 kumavis 🪷",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "maker"
+    },
+    {
+      "handle": "wavebidder.bsky.social",
+      "followers": 922,
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "thebadcode.com",
+      "followers": 3077,
+      "displayName": "austin (e/accordion 🪗)",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "techyben.bsky.social",
+      "followers": 909,
+      "displayName": "Techy Ben",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "sensitive": "The scope review identifies @kumavis.me as the show's owner and calls this story \"the owner's own project\". The bible says the show is not its own subject; this project is not about the show, but whether the show should feature its owner's work is a decision for the reviewer and the owner, not for research. It is carded because it is one of the highest-scored usable stories in the window. The vessels are ritual objects of an ancient culture; R10 lists religion and nationality; the maker treats them as craft and design. Left out: the maker's post of Fri 13 Nov (an image with text saying one \"hyperfocus\" had ended and this one had begun), because the word is a colloquial use of a clinical term and the earlier focus it names is the show's own synth; a later post in the thread that mentions the show; a remark about a draft podcast; replies by @samantha.wiki (featuredPrevious: spoke) that carry undescribed images. \"fable/opus\" are names of AI models.",
+  "notUnderstood": [
+    "Who \"he\" is in \"he has flanges\": presumably one of the generated vessels.",
+    "What the red-and-blue comparison image shows in detail."
+  ]
+}

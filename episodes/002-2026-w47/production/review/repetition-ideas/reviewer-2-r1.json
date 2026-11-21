@@ -1,0 +1,131 @@
+{
+  "reviewer": "reviewer-2",
+  "round": 1,
+  "items": [
+    {
+      "id": "writer-2-138",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "Nothing aired is like it: a reply that stops in the middle of a word, read at the pen’s pace, with the pen left waiting for the next letter. The plotter and this reply were used only in an unaired draft, which blocks nothing, and not with this turn; the maker spoke in the previous episode and is read aloud here, not voiced, which the rest after speaking allows."
+    },
+    {
+      "id": "writer-1-108",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "The show has not staged a machine’s dead time as the event itself; the silence is earned by a member’s own line, and that member is new to the show. The plotter was drawn only in an unaired draft, which blocks nothing; the maker’s line is read aloud, not voiced."
+    },
+    {
+      "id": "writer-2-139",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "A performed exchange whose punch is the replier’s own correction of his own code: no aired joke has that turn, and the puppet is a person new to the show. The maker’s replies are read by the announcer, not voiced, so the rest after speaking holds."
+    },
+    {
+      "id": "writer-2-137",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "Broadcast gravity for small stakes is who the sportscaster is, and a live call of a pen’s trip back to the margin is not something he has done; the turn belongs to the replier’s line. The speaker is new to the show and the maker is read aloud, not voiced."
+    },
+    {
+      "id": "writer-2-27",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "The joke is the formal register of a real reply, which the show has not used. This exchange was performed only in an unaired draft, which blocks nothing; the guest has not been in an aired episode, and the author of the question, who spoke last time, is asked for by the host and not voiced."
+    },
+    {
+      "id": "writer-1-23",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "The interview returns as a format by the owner’s decision; this build of it, three real exchanges that shrink to a four-word answer held in silence, is not one the show has aired. The guest has not been in an aired episode."
+    },
+    {
+      "id": "writer-2-25",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "The show has not made a guest’s own remark land on its parody label, so the joke is new. It is a joke about the show itself, and an episode should carry no second one of that kind."
+    },
+    {
+      "id": "writer-2-26",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "A host’s plug that turns out to be a pastebin, set on two very short real answers: nothing aired resembles it. The asker was shown last time and is not voiced here."
+    },
+    {
+      "id": "writer-2-30",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "The host wanting a story is his nature; being handed a specification each time, with each answer shown as the thing working, is a turn and a build the show has not aired."
+    },
+    {
+      "id": "writer-2-77",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "A small account’s correct identification of a solid, played as consumer affairs and landing on a real count of two missing faces: no aired joke has this premise or turn. One speaker was shown last time without speaking, so she may speak; the other is new."
+    },
+    {
+      "id": "writer-2-78",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "The joke is the host bringing a player’s expectations to a thing whose whole play is having a coffee, which the show has not done. The maker is new to aired episodes; the request’s author spoke last time and is put by the host in his own words, not voiced."
+    },
+    {
+      "id": "writer-2-80",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "A remote link with nothing to report, closed by a member’s three-word review read exactly, is neither a shape nor a joke the show has aired. No real person’s puppet speaks."
+    },
+    {
+      "id": "writer-2-55",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "The turn is the labour hidden behind what looked like one click, told in the maker’s own phrase; no aired joke works that way. The asker spoke last time and is not voiced."
+    },
+    {
+      "id": "writer-2-52",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "The genre is not the last aired song’s, and the form, a heckling voice that ends up in tune so that the planned ending is called off, is not how any aired song made its joke. A seat for the cat appeared only in an unaired draft, which blocks nothing."
+    },
+    {
+      "id": "writer-2-53",
+      "verdict": "repeat",
+      "fromPrevious": true,
+      "avoid": "Kind: joke and device. The show has had a house performer attempt a sound its own synthesizer cannot make, with the wrong noise that comes out as the laugh and the engine’s limits put on screen as the proof. A turn is not open on this one this episode: replace it.",
+      "reason": "Premise and turn are both the earlier ones with new nouns: the studio’s engine lacks a sound the community has been talking about, a house performer tries it anyway, and the failure is the punch. The block rests on the previous aired episode; that an unaired draft also used this material counts neither for nor against it."
+    },
+    {
+      "id": "writer-2-162",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "A condition placed on love and met a day later, played as a romance between two people new to the show: the turn is the policy, and nothing aired resembles it."
+    },
+    {
+      "id": "writer-1-63",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "House characters defeated by a board that has only one side: the premise and the picture come from the thing itself and match nothing aired. No real person’s puppet speaks."
+    },
+    {
+      "id": "writer-3-53",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "A maker’s change requests read in order while a sketch is redrawn to each, with the turn kept for the one thing nobody had asked for: not done before. The guest has not been in an aired episode."
+    },
+    {
+      "id": "writer-2-70",
+      "verdict": "turned",
+      "fromPrevious": true,
+      "turned": {
+        "what": "From the previous episode: the studio itself carrying out, at once, things that are said aloud, one after another.",
+        "how": "There the point was that things got made whether or not anyone meant them. Here the set obeys three real requests only to set up the reverse: nothing happens that was not asked for, so the river stood still, and so has the host’s own audience, until he says one word."
+      },
+      "reason": "The picture of a set that obeys is carried, but the joke is its reverse and is complete for a viewer who saw nothing before. It holds only as one moment: it would be the episode’s one turned item, and it stops being a turn if anything else in the episode has the studio act on a spoken request."
+    },
+    {
+      "id": "writer-2-69",
+      "verdict": "fresh",
+      "fromPrevious": false,
+      "reason": "The joke hangs on one word of the maker’s own figure of speech, and the picture is a search for the one solid that is not regular; nothing aired has that premise or turn. The prompt’s author was shown last time and is read, not voiced."
+    }
+  ]
+}

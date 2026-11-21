@@ -1,0 +1,25 @@
+{
+  "id": "002-2026-w47",
+  "number": 2,
+  "slug": "2026-w47",
+  "title": "Eighty-Eight Replies, One Pen",
+  "description": "The one where a pen plotter has eighty-eight replies to write and one pen. Also: breaking news on the Riemann hypothesis, a trip down Larry's throat to see how the show is made, and a doo-wop in which Larry has exactly one note.",
+  "airDate": "2026-11-21",
+  "week": "2026-W47",
+  "status": "published",
+  "rundown": [
+    "made-pen-plotter-replies",
+    "bluesky-account",
+    "interview-yonderdavid",
+    "riemann-breaking-news",
+    "making-of-inward",
+    "top-chicken",
+    "made-polyhedral-coffee-simulator",
+    "made-mobius-chess-ringmate",
+    "music-alt"
+  ],
+  "build": {
+    "sourceHash": "12a6db2f905b05c15edaab6555ee5c4b4a5060044ee71691a78be1c3e73c6f34",
+    "studioHash": "5b54b8839f53d46c8f231b0b4a5e966e469c309198ee4f000d220a8f94ce6e65"
+  }
+}

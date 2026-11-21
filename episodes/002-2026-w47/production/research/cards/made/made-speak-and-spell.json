@@ -1,0 +1,390 @@
+{
+  "id": "made-speak-and-spell",
+  "lane": "made",
+  "title": "A picture of a \"simcluster SPEAK & SPELL\" becomes a working one a day later, speaking in its maker's voice",
+  "summary": "On Fri 13 Nov at 20:18Z @shimmermathlabs.com (1,454 followers) posted \"look what i found in my closet under some old gpus\" with an image that its alt text calls a \"Photorealistic image of a battered 1980s-style electronic toy\", labelled \"simcluster SPEAK & SPELL\", with a display asking \"ARE YOU REAL.\" and four buttons: \"PROMPT,\" \"BUILD,\" \"REPEAT,\" and \"CLAIM.\" It has 88 likes. On Sat 14 Nov at 21:14Z, just under 25 hours later, the same account posted: \"\"it's not fun if it's not real\" / using LPC technology and samples of my own voice i built a voice engine that runs in the browser and can say words and phrases. the simcluster speak & spell lives. / come play\", with a demo video and a link. A two-post user guide followed: spell with the letter keys, press \"prompt\" to hear it, \"repeat\" to hear it again; \"claim\" switches on a \"claim mode\" in which \"prompt\" asks \"what else is like this\"; the last line is \"don't build the singularity please, it's #NaNoFoMo\". Someone had replied to the picture \"nospacebargoeshard\"; after the launch the maker answered \"ok ok you win, i added a spacebar\". A player said the alphabetical keyboard was confusing and the maker agreed (\"you can see me fumbling with the mouse in the demo\"). On Mon 16 Nov the maker showed a hidden feature: type SINGULARITY and press BUILD, and \"an essay is transmitted to the screen in smaller font than normal\" (alt text). In replies the maker explained that the voice engine began as a Python program and now runs in the page, that it is \"not an accurate simulation\" of the original toy's chip but \"inspired by\" it, and that it was tuned against recordings of the maker's own sentences.",
+  "made": [
+    {
+      "what": "a browser toy modelled on a 1980s speak-and-spell, with a voice engine built from samples of the maker's voice",
+      "by": "shimmermathlabs.com",
+      "address": "https://shimmermathlabs.com/speaknspell/toy.html"
+    }
+  ],
+  "couldBeShown": "An orange toy with a carrying handle, a speaker grille, chunky alphabet keys in alphabetical order, a green segmented display, four big buttons and a red \"MUTUAL\" light (all from the first image's alt text, which is long and exact). The working version: a key press powers it on, letters are spelled out, \"prompt\" speaks them in a buzzy synthesized voice; in \"claim mode\" it asks \"what else is like this\"; typing SINGULARITY and pressing BUILD scrolls an essay. The show's medium is synthesized voices, and this is one more of them, made by a different method (LPC). How it actually sounds is not in the data.",
+  "numbers": [
+    "24 h 56 min from the picture (Fri 20:18Z) to the working toy (Sat 21:14Z).",
+    "88 likes on the picture; 40 on the working toy.",
+    "Four buttons: PROMPT, BUILD, REPEAT, CLAIM.",
+    "Technical details the maker gives: 8k rate, 320 sample window, order 10, truncated to 4 coefficients for unvoiced sounds (in a post not carried here)."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n27skdpdk22u",
+      "text": "look what i found in my closet under some old gpus",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-13T20:18:12.016Z",
+      "counts": {
+        "likes": 88,
+        "reposts": 3,
+        "replies": 3,
+        "quotes": 1
+      },
+      "kind": "post",
+      "alt": "Photorealistic image of a battered 1980s-style electronic toy on a wooden desk, labeled “simcluster SPEAK & SPELL” and “DISTRIBUTED LEARNING SYSTEM.” Its scratched orange case has a carrying handle, burgundy faceplate, speaker grille, and chunky alphabet keys. A green segmented display asks “ARE YOU REAL.” Four large buttons read “PROMPT,” “BUILD,” “REPEAT,” and “CLAIM.” A red indicator marked “MUTUAL” glows above them. Worn stickers show a crow and the words “PROPERTY OF EVERYONE.” Faded lettering, dusty crevices, and scuffed plastic make it look lovingly used for decades.",
+      "media": "image",
+      "note": "The picture. Top-level. The alt text is the maker's and describes a made image."
+    },
+    {
+      "uri": "at://did:plc:rhtazgvloflondzburvubdft/app.bsky.feed.post/3n2abuu2urs2e",
+      "text": "nospacebargoeshard",
+      "handle": "ghostynewt.bsky.social",
+      "displayName": "Kimmy W",
+      "time": "2026-11-14T00:52:30.859Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n27skdpdk22u",
+        "handle": "shimmermathlabs.com",
+        "text": "look what i found in my closet under some old gpus"
+      },
+      "kind": "reply",
+      "note": "A reply to the picture, from an account that is not a cluster member."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2cg5g6dbk25",
+      "text": "\"it's not fun if it's not real\"\n\nusing LPC technology and samples of my own voice i built a voice engine that runs in the browser and can say words and phrases. the simcluster speak & spell lives.\n\ncome play\nshimmermathlabs.com/speaknspell/...",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-14T21:14:12.726Z",
+      "counts": {
+        "likes": 40,
+        "reposts": 2,
+        "replies": 5,
+        "quotes": 2
+      },
+      "quotes": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n27skdpdk22u",
+        "handle": "shimmermathlabs.com",
+        "text": "look what i found in my closet under some old gpus",
+        "time": "2026-11-13T20:18:12.016Z"
+      },
+      "kind": "quote",
+      "media": "video (no alt text; research has not seen it)",
+      "links": [
+        {
+          "url": "https://shimmermathlabs.com/speaknspell/toy.html"
+        }
+      ],
+      "note": "The working toy. Quotes the picture post. Video without alt text."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2cg5g6pxs25",
+      "text": "basic user guide:\n* press any key to power on\n* spell a word or phrase with letters and/or space\n* press \"prompt\" to say it\n* press \"repeat\" to say last one again\n* \"claim\" is a toggle for a special \"claim mode\"\n* in \"claim mode\" you can prompt to ask \"what else is like this\"",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-14T21:14:12.727Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2cg5g6dbk25",
+        "handle": "shimmermathlabs.com",
+        "text": "\"it's not fun if it's not real\"\n\nusing LPC technology and samples of my own voice i built a voice engine that runs in the browser and can say words and phrases. the simcluster speak & spell lives.\n\ncome play\nshimmermathlabs.com/speaknspell/..."
+      },
+      "kind": "reply",
+      "note": "User guide, first part."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2cg5g6pxt25",
+      "text": "* in \"claim mode\" pressing \"build\" toggled vocal gender\n* in \"claim mode\" pressing \"repeat\" changes voice speed\n* in \"claim mode\" space does backspace\n* don't build the singularity please, it's #NaNoFoMo",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-14T21:14:12.728Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2cg5g6pxs25",
+        "handle": "shimmermathlabs.com",
+        "text": "basic user guide:\n* press any key to power on\n* spell a word or phrase with letters and/or space\n* press \"prompt\" to say it\n* press \"repeat\" to say last one again\n* \"claim\" is a toggle for a special \"claim mode\"\n* in \"claim mode\" you can prompt to ask \"what else is like this\""
+      },
+      "kind": "reply",
+      "note": "User guide, second part."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2ch5f7sv22m",
+      "text": "ok ok you win, i added a spacebar",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-14T21:32:05.469Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:rhtazgvloflondzburvubdft/app.bsky.feed.post/3n2abuu2urs2e",
+        "handle": "ghostynewt.bsky.social",
+        "text": "nospacebargoeshard"
+      },
+      "quotes": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2cg5g6dbk25",
+        "handle": "shimmermathlabs.com",
+        "text": "\"it's not fun if it's not real\"\n\nusing LPC technology and samples of my own voice i built a voice engine that runs in the browser and can say words and phrases. the simcluster speak & spell lives.\n\ncome play\nshimmermathlabs.com/speaknspell/...",
+        "time": "2026-11-14T21:14:12.726Z"
+      },
+      "kind": "reply+quote",
+      "note": "The maker answers the spacebar reply, quoting the launch post."
+    },
+    {
+      "uri": "at://did:plc:w2wvugwwbehm7v774fkgagfl/app.bsky.feed.post/3n2chfefbsk2v",
+      "text": "The keyboard in alphabetical order confused me more than I expected. 😵‍💫 :D",
+      "handle": "davideaversa.it",
+      "displayName": "Davide Aversa 🍂",
+      "time": "2026-11-14T21:36:33.031Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2cg5g6pxt25",
+        "handle": "shimmermathlabs.com",
+        "text": "* in \"claim mode\" pressing \"build\" toggled vocal gender\n* in \"claim mode\" pressing \"repeat\" changes voice speed\n* in \"claim mode\" space does backspace\n* don't build the singularity please, it's #NaNoFoMo"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2chparlds2n",
+      "text": "me too! you can see me fumbling with the mouse in the demo.",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-14T21:42:04.787Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:w2wvugwwbehm7v774fkgagfl/app.bsky.feed.post/3n2chfefbsk2v",
+        "handle": "davideaversa.it",
+        "text": "The keyboard in alphabetical order confused me more than I expected. 😵‍💫 :D"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2ckj7kz3k2q",
+      "text": "MASH THAT CLAIM BUTTON",
+      "handle": "cee.wtf",
+      "displayName": "cee",
+      "time": "2026-11-14T22:32:23.423Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2cg5g6dbk25",
+        "handle": "shimmermathlabs.com",
+        "text": "\"it's not fun if it's not real\"\n\nusing LPC technology and samples of my own voice i built a voice engine that runs in the browser and can say words and phrases. the simcluster speak & spell lives.\n\ncome play\nshimmermathlabs.com/speaknspell/..."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:xuzgwzfczpvmxay4yke247se/app.bsky.feed.post/3n2clo4qbrs2w",
+      "text": "It's Winamp Skins all over again, but this time it's moving into reality!",
+      "handle": "techyben.bsky.social",
+      "displayName": "Techy Ben",
+      "time": "2026-11-14T22:53:01.964Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2cg5g6dbk25",
+        "handle": "shimmermathlabs.com",
+        "text": "\"it's not fun if it's not real\"\n\nusing LPC technology and samples of my own voice i built a voice engine that runs in the browser and can say words and phrases. the simcluster speak & spell lives.\n\ncome play\nshimmermathlabs.com/speaknspell/..."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:ootusrnpre35v2nlowrwxdsm/app.bsky.feed.post/3n2cibglmos2j",
+      "text": "LPC in the browser with your own voice samples is such a good speak and spell move. is the filter running in an audioworklet or plain web audio nodes",
+      "handle": "mohith808.bsky.social",
+      "time": "2026-11-14T21:52:14.863Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2cg5g6dbk25",
+        "handle": "shimmermathlabs.com",
+        "text": "\"it's not fun if it's not real\"\n\nusing LPC technology and samples of my own voice i built a voice engine that runs in the browser and can say words and phrases. the simcluster speak & spell lives.\n\ncome play\nshimmermathlabs.com/speaknspell/..."
+      },
+      "kind": "reply",
+      "note": "A question from an account with 43 followers that is not a cluster member."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2cig4zhns2m",
+      "text": "it's running in a general worklet. the program started life as a python standalone program for model development, then turned into a server that ran python for computation, then migrated to python running via WASM and pyodide entirely on the page. the filter stuff is numpy style code.",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-14T21:54:52.604Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ootusrnpre35v2nlowrwxdsm/app.bsky.feed.post/3n2cibglmos2j",
+        "handle": "mohith808.bsky.social",
+        "text": "LPC in the browser with your own voice samples is such a good speak and spell move. is the filter running in an audioworklet or plain web audio nodes"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2fgqszn3c2d",
+      "text": "it is not an accurate simulation of the ti chip used. i would say it is more \"inspired by\" and tuned a bit by iterative refinement of gpt astra and my aural feedback.",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-16T02:03:02.498Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2fgqszm422d",
+        "handle": "shimmermathlabs.com",
+        "text": "there are lots of tricks. example: it does order 10 but looks into the frames and detects if it is an uvoiced sound. if it is unvoiced it truncates the coefficients down to 4 (to match the ti chip). lots of values are quantized diff ways sometimes (but not always) to give the \"speak & spell sound\"."
+      },
+      "kind": "reply",
+      "note": "From a later chain of technical notes."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2h6qfh7l22k",
+      "text": "almost forgot: i recorded several sentences. astra sliced and diced to extract phonemes, then used those as the ground truth for what the output \"should\" sound like to be more legible. this let astra tune and tweak autonomously without feedback on each tiny thing.",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-16T18:44:58.261Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2fgqszn3c2d",
+        "handle": "shimmermathlabs.com",
+        "text": "it is not an accurate simulation of the ti chip used. i would say it is more \"inspired by\" and tuned a bit by iterative refinement of gpt astra and my aural feedback."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2hmfyvnqs2k",
+      "text": "let's play \"build the singularity\"\n(simcluster speak & spell easter egg)\nshimmermathlabs.com/speaknspell/...",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-16T22:49:41.936Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "kind": "post",
+      "alt": "mouse turns on speak & spell.\nthen types SINGULARITY and presses BUILD.\nan essay is transmitted to the screen in smaller font than normal.",
+      "media": "video",
+      "links": [
+        {
+          "url": "https://shimmermathlabs.com/speaknspell/toy.html"
+        }
+      ],
+      "note": "The hidden feature. The alt text describes the video."
+    }
+  ],
+  "people": [
+    {
+      "handle": "shimmermathlabs.com",
+      "followers": 1454,
+      "displayName": "Amber 🌸",
+      "clusterMember": true,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1,
+      "role": "maker"
+    },
+    {
+      "handle": "ghostynewt.bsky.social",
+      "followers": 462,
+      "displayName": "Kimmy W",
+      "clusterMember": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "davideaversa.it",
+      "followers": 892,
+      "displayName": "Davide Aversa 🍂",
+      "clusterMember": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "cee.wtf",
+      "followers": 2524,
+      "displayName": "cee",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "techyben.bsky.social",
+      "followers": 909,
+      "displayName": "Techy Ben",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "mohith808.bsky.social",
+      "followers": 43,
+      "clusterMember": false,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "sensitive": "@shimmermathlabs.com is marked featuredPrevious: shown. The toy's \"CLAIM\" button and its \"what else is like this\" line are phrases that other members address to @norvid-studies.bsky.social in this window's data; @norvid-studies.bsky.social is marked featuredPrevious: spoke, so the account is not cast to speak in this episode; its posts may be shown. Whether the show has used those phrases before is for the reviewers. The first image is a generated picture of an object that did not exist; the alt text says so (\"Photorealistic image\"), so it is not a photograph of a real toy. One guide line says a button \"toggled vocal gender\": that is a setting of the synthesized voice. Three repliers are not cluster members (ghostynewt.bsky.social 462, davideaversa.it 892, mohith808.bsky.social 43, a small account); each is here because the maker answered them. Left out: a second picture whose alt text describes a hand and jewellery (appearance, R1); a note about the maker's first attempt as a teenager (age, R1). The tag #NaNoFoMo is not explained in the window's data.",
+  "notUnderstood": [
+    "#NaNoFoMo, and why building the singularity would go against it.",
+    "The crow sticker and the label \"PROPERTY OF EVERYONE\" on the pictured toy.",
+    "\"claim mode\": what \"claim\" means in the cluster beyond being a one-word quote post several accounts make."
+  ]
+}

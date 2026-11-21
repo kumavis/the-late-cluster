@@ -1,0 +1,194 @@
+{
+  "id": "talk-banh-mi-ideal-shop",
+  "lane": "talk",
+  "title": "Two members describe the shop the ideal banh mi comes from",
+  "summary": "Under @shibbi.me's photo of her first banh mi in years (Tue 17 Nov, caption \"Yeah it’s all right ig\"), @handackett.bsky.social wrote that real ones rarely live up to the ideal in his head, which he traced to a single remembered hole-in-the-wall. @anthonybecker.bsky.social answered with the kind of place one has to buy them from: a business that would rather not sell them because its main product is baguettes. He added \"proceed to eat 2-4 of them per week for years\", the same figure he had posted about himself earlier in the window, on Fri 13 Nov (\"I eat 2-4 banh mi per week btw\"). @handackett.bsky.social added that the shop should not look like a legitimate business, and @words.bsky.social agreed in general terms about food and tax status.",
+  "posts": [
+    {
+      "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n27vms2il22m",
+      "url": "https://bsky.app/profile/anthonybecker.bsky.social/post/3n27vms2il22m",
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "when": "Fri 13 Nov 21:13Z",
+      "time": "2026-11-13T21:13:15.413Z",
+      "text": "I eat 2-4 banh mi per week btw",
+      "counts": {
+        "likes": 13,
+        "reposts": 0,
+        "replies": 4,
+        "quotes": 0
+      },
+      "note": "Top-level post from Fri 13 Nov, before the exchange; listed for the repeated figure."
+    },
+    {
+      "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2hxntqpvk2c",
+      "url": "https://bsky.app/profile/shibbi.me/post/3n2hxntqpvk2c",
+      "handle": "shibbi.me",
+      "displayName": "Siobhán 🪏",
+      "when": "Tue 17 Nov 02:10Z",
+      "time": "2026-11-17T02:10:56.131Z",
+      "text": "Yeah it’s all right ig",
+      "alt": "A surprisingly delicious banh mi with a bite taken out of it",
+      "media": "image",
+      "counts": {
+        "likes": 75,
+        "reposts": 0,
+        "replies": 4,
+        "quotes": 0
+      },
+      "quoting": {
+        "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2hwsdoy4k2c",
+        "handle": "shibbi.me",
+        "text": "okay fine i’ll try a banh mi"
+      },
+      "note": "The post the exchange hangs under."
+    },
+    {
+      "uri": "at://did:plc:vfdslp6rpi4zsg3xtcdfaddv/app.bsky.feed.post/3n2hzzo522s2g",
+      "url": "https://bsky.app/profile/handackett.bsky.social/post/3n2hzzo522s2g",
+      "handle": "handackett.bsky.social",
+      "displayName": "Dan",
+      "when": "Tue 17 Nov 02:53Z",
+      "time": "2026-11-17T02:53:20.384Z",
+      "text": "Yeah I most often find them not living up to the ideal in my head tbh, which was presumably set by the one true banh mi from a hole in the wall that appears once per moon in a side alley you can't seem to find anymore and the employees never seem to age",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2hxntqpvk2c",
+        "handle": "shibbi.me",
+        "text": "Yeah it’s all right ig",
+        "alt": "A surprisingly delicious banh mi with a bite taken out of it"
+      }
+    },
+    {
+      "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n2i2tfh77k2a",
+      "url": "https://bsky.app/profile/anthonybecker.bsky.social/post/3n2i2tfh77k2a",
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "when": "Tue 17 Nov 03:07Z",
+      "time": "2026-11-17T03:07:43.694Z",
+      "text": "Yeah you have to get them from the secret place that would really rather not sell you a banh mi because it’s not their main product  they’re actually selling thousands of baguettes but there’s downtime so they gotta sell something and they are also insanely cracked at cooking for some reason",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:vfdslp6rpi4zsg3xtcdfaddv/app.bsky.feed.post/3n2hzzo522s2g",
+        "handle": "handackett.bsky.social",
+        "text": "Yeah I most often find them not living up to the ideal in my head tbh, which was presumably set by the one true banh mi from a hole in the wall that appears once per moon in a side alley you can't seem to find anymore and the employees never seem to age"
+      }
+    },
+    {
+      "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n2i2twt2d22a",
+      "url": "https://bsky.app/profile/anthonybecker.bsky.social/post/3n2i2twt2d22a",
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "when": "Tue 17 Nov 03:08Z",
+      "time": "2026-11-17T03:08:01.909Z",
+      "text": "Given the above, proceed to eat 2-4 of them per week for years",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n2i2tfh77k2a",
+        "handle": "anthonybecker.bsky.social",
+        "text": "Yeah you have to get them from the secret place that would really rather not sell you a banh mi because it’s not their main product  they’re actually selling thousands of baguettes but there’s downtime so they gotta sell something and they are also insanely cracked at cooking for some reason"
+      }
+    },
+    {
+      "uri": "at://did:plc:vfdslp6rpi4zsg3xtcdfaddv/app.bsky.feed.post/3n2i344kgzc2g",
+      "url": "https://bsky.app/profile/handackett.bsky.social/post/3n2i344kgzc2g",
+      "handle": "handackett.bsky.social",
+      "displayName": "Dan",
+      "when": "Tue 17 Nov 03:12Z",
+      "time": "2026-11-17T03:12:36.354Z",
+      "text": "I think the key is that it should not have the appearance of a legitimate business, but not in a way you're worried about, you're just pretty sure the IRS doesn't know about your sandwich",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n2i2twt2d22a",
+        "handle": "anthonybecker.bsky.social",
+        "text": "Given the above, proceed to eat 2-4 of them per week for years"
+      }
+    },
+    {
+      "uri": "at://did:plc:plvxn2kpjuseoftweoo4xtag/app.bsky.feed.post/3n2i6nm6k4s2j",
+      "url": "https://bsky.app/profile/words.bsky.social/post/3n2i6nm6k4s2j",
+      "handle": "words.bsky.social",
+      "displayName": "words",
+      "when": "Tue 17 Nov 04:16Z",
+      "time": "2026-11-17T04:16:04.392Z",
+      "text": "never really thought about how much the IRS not knowing about my culinary decisions has informed my diet but you are absolutely right that the tax status of various food items often directly correlates to deliciousness",
+      "counts": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:vfdslp6rpi4zsg3xtcdfaddv/app.bsky.feed.post/3n2i344kgzc2g",
+        "handle": "handackett.bsky.social",
+        "text": "I think the key is that it should not have the appearance of a legitimate business, but not in a way you're worried about, you're just pretty sure the IRS doesn't know about your sandwich"
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "followers": 2318,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "shibbi.me",
+      "displayName": "Siobhán 🪏",
+      "followers": 2887,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "handackett.bsky.social",
+      "displayName": "Dan",
+      "followers": 461,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "words.bsky.social",
+      "displayName": "words",
+      "followers": 10258,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "numbers": [
+    "\"2-4 per week\" appears twice from @anthonybecker.bsky.social: Fri 13 Nov 21:13Z as a top-level post and Tue 17 Nov 03:08Z in this exchange."
+  ],
+  "sensitive": "No post on this card carries a flag from the tool. (1) The exchange continues past the last post here into personal anecdotes that involve drugs; those five posts are left out. (2) The lines about the tax authorities are about an imagined kind of shop, not a named business; nothing here should be attached to a real shop. (3) @handackett.bsky.social has 461 followers: above the digest's small-account line of 300, still a small audience. (4) The wave's origin: Where the banh mi wave came from is not for the show. Other posts in the window by some of the same accounts frame it around trans women, and a thread about it turns to hormone medication and nudes (R10: gender identity, health, sexuality). The digest flags several of those posts one by one, and flags the whole thread \"why is everyone banh mi posting?\" (story 12, which also holds the \"banhmi-contagion\" graph the build bot made): nothing from that thread is on this card and the check refuses it. None of this should be used as explanation or background; the show cannot say why the wave started beyond what the posts listed here say."
+}

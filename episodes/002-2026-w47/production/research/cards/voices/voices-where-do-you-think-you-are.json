@@ -1,0 +1,86 @@
+{
+  "id": "voices-where-do-you-think-you-are",
+  "lane": "voices",
+  "title": "\"Imagine? Where do you think you are right now\": a three-post exchange about scrolling through software",
+  "summary": "On Tue 17 Nov 23:29Z @harsimony.bsky.social (1,952 followers) posted: \"With stuff like the Chimera voice, the fruit fly connectome, and people posting minigames, its clear that software objects are becoming memes too.\" and \"Interesting to imagine a social media site where you can scroll through different software.\" (41 likes). At 01:15Z @handackett.bsky.social (Dan, 461 followers) replied: \"Imagine? Where do you think you are right now\" (8 likes). Thirteen hours later the first account answered with a question: \"Oh, what bluesky feed allows you to frictionlessly scroll through software objects that publicly record how users interact with them?\" The digest holds no further reply.",
+  "posts": [
+    {
+      "uri": "at://did:plc:6ond5sxlegjxpe3ismrczk3r/app.bsky.feed.post/3n2k74iprxs23",
+      "url": "https://bsky.app/profile/harsimony.bsky.social/post/3n2k74iprxs23",
+      "handle": "harsimony.bsky.social",
+      "displayName": "Sam Harsimony",
+      "text": "With stuff like the Chimera voice, the fruit fly connectome, and people posting minigames, its clear that software objects are becoming memes too. \n\nInteresting to imagine a social media site where you can scroll through different software.",
+      "time": "2026-11-17T23:29:43.555Z",
+      "counts": {
+        "likes": 41,
+        "reposts": 3,
+        "replies": 6,
+        "quotes": 0
+      }
+    },
+    {
+      "uri": "at://did:plc:vfdslp6rpi4zsg3xtcdfaddv/app.bsky.feed.post/3n2keyvy4uc27",
+      "url": "https://bsky.app/profile/handackett.bsky.social/post/3n2keyvy4uc27",
+      "handle": "handackett.bsky.social",
+      "displayName": "Dan",
+      "text": "Imagine? Where do you think you are right now",
+      "time": "2026-11-18T01:15:05.693Z",
+      "counts": {
+        "likes": 8,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:6ond5sxlegjxpe3ismrczk3r/app.bsky.feed.post/3n2k74iprxs23",
+        "handle": "harsimony.bsky.social",
+        "text": "With stuff like the Chimera voice, the fruit fly connectome, and people posting minigames, its clear that software objects are becoming memes too. \n\nInteresting to imagine a social media site where you can scroll through different software."
+      }
+    },
+    {
+      "uri": "at://did:plc:6ond5sxlegjxpe3ismrczk3r/app.bsky.feed.post/3n2lqnn6hoc24",
+      "url": "https://bsky.app/profile/harsimony.bsky.social/post/3n2lqnn6hoc24",
+      "handle": "harsimony.bsky.social",
+      "displayName": "Sam Harsimony",
+      "text": "Oh, what bluesky feed allows you to frictionlessly scroll through software objects that publicly record how users interact with them?",
+      "time": "2026-11-18T14:16:12.006Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:vfdslp6rpi4zsg3xtcdfaddv/app.bsky.feed.post/3n2keyvy4uc27",
+        "handle": "handackett.bsky.social",
+        "text": "Imagine? Where do you think you are right now"
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "harsimony.bsky.social",
+      "displayName": "Sam Harsimony",
+      "followers": 1952,
+      "smallAccount": false,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "posted the thought and the closing question"
+    },
+    {
+      "handle": "handackett.bsky.social",
+      "displayName": "Dan",
+      "followers": 461,
+      "smallAccount": false,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "replied"
+    }
+  ],
+  "watchable": "Text only. The first post names three things from the window (the Chimera voice, the fruit fly connectome, minigames people posted); this card does not document them.",
+  "sensitive": "Dan is a 461-follower account (R7: hero only). The last post is a mild disagreement, phrased as a question and left unanswered; it is not an argument, but a reviewer should confirm it reads that way (R7, R10). I did not trace the \"fruit fly connectome\" item the first post refers to."
+}

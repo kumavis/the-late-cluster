@@ -1,0 +1,657 @@
+{
+ "id": "top-chicken",
+ "title": "Top Chicken",
+ "duration": 47.365,
+ "audio": "audio/top-chicken.mp3",
+ "tele": "tele/top-chicken.bin",
+ "lines": [
+  {
+   "i": 0,
+   "id": "throw",
+   "who": "larry",
+   "kind": "say",
+   "text": "And now, the sports. Eppy?",
+   "caption": true,
+   "t0": 0.3,
+   "t1": 2.727,
+   "words": [
+    [
+     0.36,
+     0.543,
+     "And"
+    ],
+    [
+     0.543,
+     0.896,
+     "now,"
+    ],
+    [
+     1.136,
+     1.253,
+     "the"
+    ],
+    [
+     1.253,
+     1.951,
+     "sports."
+    ],
+    [
+     2.361,
+     2.727,
+     "Eppy?"
+    ]
+   ],
+   "tele": 0,
+   "teleT0": 0.25
+  },
+  {
+   "i": 1,
+   "id": "open",
+   "who": "eppy",
+   "kind": "say",
+   "text": "Sports desk. The game is Top Chicken.",
+   "caption": true,
+   "t0": 3.657,
+   "t1": 6.746,
+   "words": [
+    [
+     3.717,
+     4.272,
+     "Sports"
+    ],
+    [
+     4.272,
+     4.671,
+     "desk."
+    ],
+    [
+     5.081,
+     5.197,
+     "The"
+    ],
+    [
+     5.197,
+     5.478,
+     "game"
+    ],
+    [
+     5.478,
+     5.613,
+     "is"
+    ],
+    [
+     5.613,
+     6.009,
+     "Top"
+    ],
+    [
+     6.249,
+     6.746,
+     "Chicken."
+    ]
+   ],
+   "tele": 1,
+   "teleT0": 3.607
+  },
+  {
+   "i": 2,
+   "id": "scorer",
+   "who": "eppy",
+   "kind": "say",
+   "text": "The score is kept by a bot.",
+   "caption": true,
+   "t0": 7.026,
+   "t1": 8.776,
+   "words": [
+    [
+     7.086,
+     7.202,
+     "The"
+    ],
+    [
+     7.202,
+     7.633,
+     "score"
+    ],
+    [
+     7.633,
+     7.768,
+     "is"
+    ],
+    [
+     7.768,
+     8.1,
+     "kept"
+    ],
+    [
+     8.1,
+     8.336,
+     "by"
+    ],
+    [
+     8.336,
+     8.391,
+     "a"
+    ],
+    [
+     8.391,
+     8.776,
+     "bot."
+    ]
+   ],
+   "tele": 2,
+   "teleT0": 6.976
+  },
+  {
+   "i": 3,
+   "id": "field",
+   "who": "eppy",
+   "kind": "say",
+   "text": "Saturday: 2,648 posts. One winner.",
+   "caption": true,
+   "t0": 9.056,
+   "t1": 13.435,
+   "words": [
+    [
+     9.116,
+     9.6,
+     "Saturday:"
+    ],
+    [
+     9.84,
+     11.844,
+     "2,648"
+    ],
+    [
+     11.844,
+     12.436,
+     "posts."
+    ],
+    [
+     12.846,
+     13.083,
+     "One"
+    ],
+    [
+     13.083,
+     13.435,
+     "winner."
+    ]
+   ],
+   "tele": 3,
+   "teleT0": 9.006
+  },
+  {
+   "i": 4,
+   "id": "winner",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Saturday's winner: cee.",
+   "caption": true,
+   "t0": 13.715,
+   "t1": 15.259,
+   "words": [
+    [
+     13.775,
+     14.315,
+     "Saturday's"
+    ],
+    [
+     14.315,
+     14.699,
+     "winner:"
+    ],
+    [
+     14.939,
+     15.259,
+     "cee."
+    ]
+   ],
+   "tele": 4,
+   "teleT0": 13.665
+  },
+  {
+   "i": 5,
+   "id": "score",
+   "who": "eppy",
+   "kind": "say",
+   "text": "201 likes. The winning post:",
+   "caption": true,
+   "t0": 16.504,
+   "t1": 19.294,
+   "words": [
+    [
+     16.564,
+     17.452,
+     "201"
+    ],
+    [
+     17.452,
+     17.917,
+     "likes."
+    ],
+    [
+     18.327,
+     18.443,
+     "The"
+    ],
+    [
+     18.443,
+     18.783,
+     "winning"
+    ],
+    [
+     18.783,
+     19.294,
+     "post:"
+    ]
+   ],
+   "tele": 5,
+   "teleT0": 16.454
+  },
+  {
+   "i": 6,
+   "id": "post",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "i love when people think their laptop somehow uses less power per task than a datacenter",
+   "caption": true,
+   "t0": 19.574,
+   "t1": 25.47,
+   "words": [
+    [
+     19.634,
+     19.777,
+     "i"
+    ],
+    [
+     19.777,
+     20.016,
+     "love"
+    ],
+    [
+     20.016,
+     20.253,
+     "when"
+    ],
+    [
+     20.253,
+     20.628,
+     "people"
+    ],
+    [
+     20.628,
+     20.934,
+     "think"
+    ],
+    [
+     20.934,
+     21.099,
+     "their"
+    ],
+    [
+     21.099,
+     21.668,
+     "laptop"
+    ],
+    [
+     21.668,
+     22.121,
+     "somehow"
+    ],
+    [
+     22.121,
+     22.557,
+     "uses"
+    ],
+    [
+     22.557,
+     22.82,
+     "less"
+    ],
+    [
+     22.82,
+     23.185,
+     "power"
+    ],
+    [
+     23.425,
+     23.66,
+     "per"
+    ],
+    [
+     23.66,
+     24.249,
+     "task"
+    ],
+    [
+     24.489,
+     24.657,
+     "than"
+    ],
+    [
+     24.657,
+     24.722,
+     "a"
+    ],
+    [
+     24.722,
+     25.47,
+     "datacenter"
+    ]
+   ],
+   "tele": 6,
+   "teleT0": 19.524
+  },
+  {
+   "i": 7,
+   "id": "gap",
+   "who": "eppy",
+   "kind": "say",
+   "text": "That score is 5,985 short of the record.",
+   "caption": true,
+   "t0": 26.15,
+   "t1": 30.555,
+   "words": [
+    [
+     26.21,
+     26.386,
+     "That"
+    ],
+    [
+     26.386,
+     26.808,
+     "score"
+    ],
+    [
+     26.808,
+     26.943,
+     "is"
+    ],
+    [
+     26.943,
+     29.166,
+     "5,985"
+    ],
+    [
+     29.406,
+     29.767,
+     "short"
+    ],
+    [
+     29.767,
+     29.891,
+     "of"
+    ],
+    [
+     29.891,
+     30,
+     "the"
+    ],
+    [
+     30,
+     30.555,
+     "record."
+    ]
+   ],
+   "tele": 7,
+   "teleT0": 26.1
+  },
+  {
+   "i": 8,
+   "id": "heldby",
+   "who": "eppy",
+   "kind": "say",
+   "text": "The record is held by?",
+   "caption": true,
+   "t0": 30.835,
+   "t1": 32.154,
+   "words": [
+    [
+     30.895,
+     31.008,
+     "The"
+    ],
+    [
+     31.008,
+     31.421,
+     "record"
+    ],
+    [
+     31.421,
+     31.553,
+     "is"
+    ],
+    [
+     31.553,
+     31.844,
+     "held"
+    ],
+    [
+     31.844,
+     32.154,
+     "by?"
+    ]
+   ],
+   "tele": 8,
+   "teleT0": 30.785
+  },
+  {
+   "i": 9,
+   "id": "recordline",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "… All-time top chicken is still cee.wtf with a score of 6186 to beat. …",
+   "caption": true,
+   "t0": 32.434,
+   "t1": 38.678,
+   "words": [
+    [
+     32.434,
+     32.434,
+     "…"
+    ],
+    [
+     32.494,
+     33.101,
+     "All-time"
+    ],
+    [
+     33.101,
+     33.533,
+     "top"
+    ],
+    [
+     33.773,
+     34.315,
+     "chicken"
+    ],
+    [
+     34.555,
+     34.702,
+     "is"
+    ],
+    [
+     34.702,
+     35.053,
+     "still"
+    ],
+    [
+     35.053,
+     35.359,
+     "cee.wtf"
+    ],
+    [
+     35.599,
+     35.817,
+     "with"
+    ],
+    [
+     35.817,
+     35.889,
+     "a"
+    ],
+    [
+     35.889,
+     36.359,
+     "score"
+    ],
+    [
+     36.359,
+     36.494,
+     "of"
+    ],
+    [
+     36.494,
+     38.16,
+     "6186"
+    ],
+    [
+     38.16,
+     38.348,
+     "to"
+    ],
+    [
+     38.348,
+     38.678,
+     "beat."
+    ],
+    [
+     38.678,
+     38.678,
+     "…"
+    ]
+   ],
+   "tele": 9,
+   "teleT0": 32.384
+  },
+  {
+   "i": 10,
+   "id": "trails",
+   "who": "eppy",
+   "kind": "say",
+   "text": "The winner trails the winner.",
+   "caption": true,
+   "t0": 39.178,
+   "t1": 40.558,
+   "words": [
+    [
+     39.238,
+     39.359,
+     "The"
+    ],
+    [
+     39.359,
+     39.67,
+     "winner"
+    ],
+    [
+     39.67,
+     40.068,
+     "trails"
+    ],
+    [
+     40.068,
+     40.183,
+     "the"
+    ],
+    [
+     40.183,
+     40.558,
+     "winner."
+    ]
+   ],
+   "tele": 10,
+   "teleT0": 39.128
+  },
+  {
+   "i": 11,
+   "id": "smallest",
+   "who": "eppy",
+   "kind": "say",
+   "text": "The smallest win of the week. Same title.",
+   "caption": true,
+   "t0": 41.717,
+   "t1": 44.425,
+   "words": [
+    [
+     41.777,
+     41.892,
+     "The"
+    ],
+    [
+     41.892,
+     42.476,
+     "smallest"
+    ],
+    [
+     42.476,
+     42.698,
+     "win"
+    ],
+    [
+     42.698,
+     42.822,
+     "of"
+    ],
+    [
+     42.822,
+     42.932,
+     "the"
+    ],
+    [
+     42.932,
+     43.235,
+     "week."
+    ],
+    [
+     43.645,
+     43.949,
+     "Same"
+    ],
+    [
+     43.949,
+     44.425,
+     "title."
+    ]
+   ],
+   "tele": 11,
+   "teleT0": 41.667
+  }
+ ],
+ "cues": {
+  "desk-in": 3.377,
+  "scorer-tag": 6.946,
+  "counter-in": 8.776,
+  "winner-in": 13.635,
+  "card-post-in": 19.294,
+  "card-post-out": 25.87,
+  "bars-in": 25.87,
+  "card-record-in": 32.154,
+  "share-tag": 41.137,
+  "titles-in": 41.437
+ },
+ "sfx": [
+  {
+   "name": "whoosh-1",
+   "t0": 2.827,
+   "t1": 3.377
+  },
+  {
+   "name": "woo-1",
+   "t0": 15.359,
+   "t1": 16.689
+  },
+  {
+   "name": "laugh-1",
+   "t0": 40.708,
+   "t1": 42.328
+  },
+  {
+   "name": "sting-1",
+   "t0": 44.475,
+   "t1": 46.765
+  }
+ ],
+ "music": []
+}

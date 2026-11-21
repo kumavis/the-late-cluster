@@ -1,0 +1,296 @@
+{
+  "cards": {
+    "games-flight-challenge-record": {
+      "keep": false,
+      "reason": "The maker (54,200 followers) and the record holder are both outside the cluster's regulars, no member takes part in these posts and no record score is stated: an outside account's game, not something the community did (R7)."
+    },
+    "games-hatetris-record": {
+      "keep": false,
+      "reason": "Outside news: an 18,116-follower account's announcement that no member replied to, naming a record holder who is not in the data and cannot be checked (R7, R2, R11)."
+    },
+    "games-parrot-scores": {
+      "keep": false,
+      "reason": "Duplicate: every post here is on made-stochastic-parrot, which is kept and carries the scores people posted about themselves."
+    },
+    "games-top-chicken-gm": {
+      "keep": false,
+      "reason": "What the card is for cannot be used: the two quote posts play on a top and bottom double meaning that the left-out replies make sexual (R10), the \"someday\" post shows its author as someone who has not won (R7, scorecard A10), and Sunday's winner cannot be presented as a winner."
+    },
+    "games-top-chicken-market": {
+      "keep": true,
+      "reason": "Kept as the side game, told from the three members' own posts about play-money bets and bots; the pre-registration post and its four picks are never shown, quoted or described, because they name contenders (R7, scorecard A10)."
+    },
+    "games-top-chicken-record-and-leaderboard": {
+      "keep": false,
+      "reason": "The leaderboard's only source is posts the digest redacts, its entries below the record rank accounts as runners-up, and its best-day figures are the withheld Tuesday result (R11, R7); the record line that can be shown is already on the standings and Saturday cards."
+    },
+    "games-top-chicken-saturday-201": {
+      "keep": true,
+      "reason": "The one result that can be shown whole: the winner, the winning post read exactly, 201 likes and the record line, with the show taking no side on what the post is about and adding no tease of its own to the member's."
+    },
+    "games-top-chicken-standings": {
+      "keep": true,
+      "reason": "Kept for the numbers: only Saturday's winner is named, the other four named results are given as scores without names or left out because their winning posts fail R10 or R7, and the withheld Tuesday result does not appear as a day, a score or a gap (R11)."
+    },
+    "interview-aly-codes": {
+      "keep": false,
+      "reason": "The candidate's week is mostly arguments, block lists and a moderation dispute in which the candidate is insulted and misgendered (R10), the Top Chicken win is for a post that cannot be shown, and a portrait made from the lamp replies would not be the account people saw (R14)."
+    },
+    "interview-astra": {
+      "keep": false,
+      "reason": "The persona of the week is openly sexual (R10) and the eight replies listed are a small, unrepresentative remainder, so no interview can be built that is both true to the account and fit to air."
+    },
+    "interview-cee-wtf": {
+      "keep": true,
+      "reason": "A clean candidate with something made in the window and ten usable exchanges; the account is on ten kept cards and is the one Top Chicken winner who can be named, so it is in that segment and at most one other."
+    },
+    "interview-elixir-of-progress": {
+      "keep": false,
+      "reason": "What the account was read for this week is a flagged outage thread and the arguments and blocking around it (R10), and a post about a tool for finding people who screenshot them is close enough to a wish not to be clipped that the doubt decides it (R11)."
+    },
+    "interview-hikikomorphism": {
+      "keep": false,
+      "reason": "The listed exchanges are clean, but the candidate's week includes being misgendered and arguing with people opposed to AI (R10, R14), and an interview would put a synthesized voice in the candidate's mouth and send an audience to the account in that week: when in doubt, leave it out."
+    },
+    "interview-samuel-fm": {
+      "keep": false,
+      "reason": "A 54,200-follower account that came in on the follow rule and, in the window's data, replied to three members is not one of the community's regulars (R7), most of the askers are outside the cluster, and the candidate's job runs through the replies (R1)."
+    },
+    "interview-segyges": {
+      "keep": false,
+      "reason": "Nothing made or shown in the window, and what the 13,352-follower account was read for is commentary on a scandal and a moderation dispute (R10), so the eight replies left are not the account people saw (R14)."
+    },
+    "interview-yonderdavid": {
+      "keep": true,
+      "reason": "The strongest candidate, with four things made in the window and fourteen answered questions; leave out the piano pair (R1) and the pair whose asker is the show's owner, and count the candidate once across five cards."
+    },
+    "made-also-liked-feed": {
+      "keep": true,
+      "reason": "A feed a member made and others took up at once; the non-member repliers appear only as questions the maker answered, and the maker's line about gate-keeping was said in play and is never presented as a principle (R4)."
+    },
+    "made-build-bot-daily-slot": {
+      "keep": true,
+      "reason": "The bot's posts are its operator's persona (R13) and the morning reports are usable as posted; the weekly summary post is not shown, because it names a build from the banh mi wave and tags six accounts."
+    },
+    "made-build-bot-small-wishes": {
+      "keep": true,
+      "reason": "Six requests and builds, usable as posted; the \"unloved\" page is described but never run or shown listing anyone's posts (R7, R12), and the quip under the software remark is not staged as a win over its author."
+    },
+    "made-cat-voice-quartet": {
+      "keep": true,
+      "reason": "The maker is the hero and the maker's answers are usable; every question is the post of an account that spoke in the previous episode, so it is asked by a house character or shown, never spoken by that account's puppet, and no joke is built on masculine and feminine synth voices."
+    },
+    "made-claim-tornado": {
+      "keep": false,
+      "reason": "Nobody knows what the page shows or what \"claim\" means on it, the member it is named for answered with an image nobody has seen, and it is a thing made about a person with no evidence of how they took it (R15, R6)."
+    },
+    "made-flight-dogfight": {
+      "keep": false,
+      "reason": "The maker has 54,200 followers and is outside the cluster's regulars, 11 of the story's 16 authors are not members, and the community's part on the card is two short replies (R7)."
+    },
+    "made-four-dimensional-folding-and-rope": {
+      "keep": true,
+      "reason": "A regular's week of four-dimensional builds, each prompted by a small account the maker thanks; this is also the card for the Grand Antiprism request, and the videos have to be seen before anything is redrawn."
+    },
+    "made-gracepuns-real-words": {
+      "keep": true,
+      "reason": "Usable as the request and the bot's answer; no pun from either version is shown or read as that member's, because the first version's were not that member's words (R5) and the page itself has not been opened."
+    },
+    "made-hyperball": {
+      "keep": true,
+      "reason": "A clean launch with good-humoured exchanges; the player's report of not knowing how to play it is shown only with the maker's agreement beside it, so that it does not read as a complaint (R7)."
+    },
+    "made-johnson-solid-creatures": {
+      "keep": true,
+      "reason": "A small account as the maker others built on (R7: hero); its opening post begins with a jokey mental-health phrase the show does not pick up (R10), so that post is shown only trimmed, with a visible ellipsis, to the idea in quotation marks, or not shown."
+    },
+    "made-mobius-chess-ringmate": {
+      "keep": true,
+      "reason": "A 423-follower maker as the hero of a 25-hour build, and the one card for it; the 69-follower non-member's question is asked by a house character, not put on screen."
+    },
+    "made-parfait-client": {
+      "keep": true,
+      "reason": "A 321-follower maker praised by members throughout (R7: hero); nothing about the platform complaint, no comparison that makes another client's maker the butt, and the bio check still has to be done."
+    },
+    "made-pen-plotter-replies": {
+      "keep": true,
+      "reason": "The window's top story; its maker spoke in the previous episode, so the maker's posts are shown and read aloud but not performed by the maker's puppet, and the finished page is never shown whole, because it carries replies from accounts the consent rules exclude (R11)."
+    },
+    "made-polyhedra-instruments-sakura": {
+      "keep": true,
+      "reason": "Usable as a made thing with the maker's own account of making it; the tune and the scenery are named as the maker names them and nothing is built on nationality or religion (R10)."
+    },
+    "made-polyhedra-week-small-entries": {
+      "keep": true,
+      "reason": "Overlaps talk-polyhedra-week, which is the card for the naming of the week; kept for the poem exchange under the \"lock in\" post, the poem being tool-written, as its author says."
+    },
+    "made-polyhedral-coffee-simulator": {
+      "keep": true,
+      "reason": "A game made in 74 minutes and a real mug added to it nine minutes after the mug was posted; it is also the card for the 75-follower account's correction, which is a hero's moment (R7)."
+    },
+    "made-polykatamari": {
+      "keep": true,
+      "reason": "A wish and three rounds of changes, usable as posted; the soundtrack request names a country's music and no joke is built on that (R10)."
+    },
+    "made-reply-diagrams": {
+      "keep": true,
+      "reason": "The request and the bot's refusal to make things up about real people are usable as posted; no diagram of real accounts is shown and the show computes nothing with the page (R12)."
+    },
+    "made-simcluster-kombat-arcade": {
+      "keep": true,
+      "reason": "Usable only as the story of the request and the bot's four builds: no real account is shown, named or drawn as a fighter, and the result line that names a member as the beaten final boss is not shown or read, because nobody has checked who is in the game (R6, R11)."
+    },
+    "made-speak-and-spell": {
+      "keep": true,
+      "reason": "A picture turned into a working toy in 25 hours, with its maker answering the people who played it; the first image is generated and is shown as that, and the \"vocal gender\" line is a synth setting no joke is built on."
+    },
+    "made-stochastic-parrot": {
+      "keep": true,
+      "reason": "Usable from the request to the bot onward, with only the scores people posted about themselves (R12); the post the idea replied to teases a named researcher and is not shown, and the show never runs the page on anyone."
+    },
+    "made-taotie-bronzes": {
+      "keep": false,
+      "reason": "The show's owner's own project: the show is not its own subject and its owner is not its guest unasked, so it is left out unless the owner says otherwise."
+    },
+    "made-vocal-synth-choir": {
+      "keep": true,
+      "reason": "Kept as three versions of a synthetic choir in one day; the piece is sacred music, so it is named only in the maker's own words and nothing is joked, staged or sung on the Mass, prayer or church (R10)."
+    },
+    "made-voice-falling-blocks": {
+      "keep": true,
+      "reason": "A synth head playing a game by voice, usable as shown and as its maker describes it; \"catoid\" is not understood, so it is neither explained nor made a punchline (R15)."
+    },
+    "made-yard-shift-wheelie": {
+      "keep": true,
+      "reason": "A game made 2 hours 51 minutes after it was suggested, with three requests met in 21 minutes; the news story behind it and the talk of jobs around it stay out, and the last post, about running yourself over, is not read (R10)."
+    },
+    "talk-banh-mi-holdout": {
+      "keep": false,
+      "reason": "Part of the banh mi wave, which the show leaves alone because the people in it publicly frame it around gender identity (R10, see screen.md): the arc is about being in or out of the wave, and its last line may nod at where the wave came from."
+    },
+    "talk-banh-mi-how-it-spread": {
+      "keep": false,
+      "reason": "The banh mi wave's origin story with its reason cut out: the campaign's stated aim and the community it came from are out of bounds (R10), and its other voice is an agent whose threads with the account that runs it turn sexual the next day (R13)."
+    },
+    "talk-banh-mi-ideal-shop": {
+      "keep": false,
+      "reason": "Clean on its face, but it is a conversation held inside the banh mi wave, which the show leaves alone (R10, see screen.md); one of the two cards the owner could restore."
+    },
+    "talk-banh-mi-timeline-notices": {
+      "keep": false,
+      "reason": "The banh mi wave as a phenomenon, which is exactly what the show can neither explain nor cover (R10, R15); it also leans on large and non-member accounts and on puns that sit beside the week's moderation dispute."
+    },
+    "talk-birthday": {
+      "keep": false,
+      "reason": "A birthday is a personal occasion and not the posting persona (R1), and two replies are withheld under the consent rules."
+    },
+    "talk-meow": {
+      "keep": false,
+      "reason": "The branch that gives the thread its turn is an agent's jokey illness phrase and \"naked face\" banter with the account that runs it (R10, R13), most of the other voices are outside the cluster, and three replies are withheld under the consent rules."
+    },
+    "talk-oceans-11": {
+      "keep": false,
+      "reason": "It only works as a performed exchange, and its asker, who has five of the fifteen posts, spoke in the previous episode and cannot speak in this one; one reply is also withheld and the reply the exchange turns on is not understood (R15)."
+    },
+    "talk-peanut-butter-pretzels": {
+      "keep": true,
+      "reason": "Kept as a food question with joke answers, though it sits next to health (R10): no joke of the show's own about diet, weight or bodies, the left-out replies stay out, the quoted image must be seen before the question is staged, and the bot's line is not used (R13)."
+    },
+    "talk-piranesi-of-food": {
+      "keep": false,
+      "reason": "Built on the banh mi wave as a fad waiting for its sequel, and the wave is left alone (R10, see screen.md); the thread also runs on into where two members live (R1)."
+    },
+    "talk-polyhedra-week": {
+      "keep": true,
+      "reason": "The card for the naming of the week and the entries; the two small accounts are heroes here (R7), the zero-like \"chimera week\" line is not used, and the two accounts that spoke in the previous episode are shown, not spoken."
+    },
+    "talk-what-else-is-like-this": {
+      "keep": true,
+      "reason": "Other people's own posts using the phrase are usable as posted; the account the phrase belongs to is shown, not spoken, and the flagged and unclear uses stay out."
+    },
+    "talk-what-is-banh-mi": {
+      "keep": false,
+      "reason": "A question about the banh mi wave, which the show leaves alone (R10, see screen.md); the replies left off it are about gender, appearance and colonial history, and the thread is incomplete."
+    },
+    "talk-yard-shift-feedback": {
+      "keep": false,
+      "reason": "Duplicate: all eight posts are on made-yard-shift-wheelie, which is kept."
+    },
+    "voices-best-by-2029": {
+      "keep": true,
+      "reason": "A witty one-line post from a 319-follower account, usable as the post it was (R7: hero)."
+    },
+    "voices-blind-experiments": {
+      "keep": false,
+      "reason": "The thread cannot be read whole before it is used (R4): its second post is redacted because it names an account the consent rules exclude, its fourth is missing, two listed posts reply to those, and anyone sent to the thread sees them (R11)."
+    },
+    "voices-bootleg-icosahedron": {
+      "keep": false,
+      "reason": "Duplicate: all five posts are on made-polyhedral-coffee-simulator, which is kept and carries the correction."
+    },
+    "voices-catlike-thing": {
+      "keep": false,
+      "reason": "Five words and a video nobody has seen from a 104-follower account: nothing can be shown honestly (R15), nothing says the attention would be welcome (R7), and the account already has a kept card."
+    },
+    "voices-forty-gigabytes": {
+      "keep": true,
+      "reason": "A 498-follower account's own joke about their own laptop, usable as posted (R7: hero); the unattributed sentence in quotation marks is not presented as the app's or the company's words (R5)."
+    },
+    "voices-fused-off-neurons": {
+      "keep": true,
+      "reason": "Kept for the reply about market segmentation; the post it answers is a joke phrased around God, so that post is read exactly as posted or not at all, and the show adds nothing of its own on that word (R10)."
+    },
+    "voices-gm-quota": {
+      "keep": true,
+      "reason": "A witty, glance-sized post from a 104-follower account (R7: hero); one appearance at most, and nothing else from the account."
+    },
+    "voices-grand-antiprism": {
+      "keep": false,
+      "reason": "Duplicate: the request and the start of work are on made-four-dimensional-folding-and-rope, and what this adds is one zero-like post from a 75-follower account that is already on six kept cards (R7)."
+    },
+    "voices-johnson-solids-nets": {
+      "keep": false,
+      "reason": "Duplicate: nine of its twelve posts are on made-johnson-solid-creatures and two more on made-four-dimensional-folding-and-rope, both kept."
+    },
+    "voices-mobius-chess": {
+      "keep": false,
+      "reason": "Duplicate of made-mobius-chess-ringmate, which is kept; the four posts only this card has are two asides and two \"Bad bot\" replies, which are complaints and are not used (R7)."
+    },
+    "voices-obsidian-priority-plugin": {
+      "keep": true,
+      "reason": "A small made thing from a 318-follower account, usable as posted (R7: hero); its screenshot has not been seen."
+    },
+    "voices-origami-polyhedron-week": {
+      "keep": true,
+      "reason": "A 75-follower account's two most-noticed posts of the window, and the right place for its one appearance (R7); the designers it credits stay credited, and the second post is about a building's shape, not a country."
+    },
+    "voices-plotter-queue-small-accounts": {
+      "keep": true,
+      "reason": "Small accounts as heroes, each welcomed by the maker (R7); the two \"80085\" posts are not used, the maker's replies are read aloud and not performed, and no more than two or three of these accounts appear."
+    },
+    "voices-polyhedra-week-named": {
+      "keep": false,
+      "reason": "Duplicate: the declaration and the replies that matter are on talk-polyhedra-week and made-polyhedra-instruments-sakura, and what is left is a quiet exchange between the two small accounts and an outside event."
+    },
+    "voices-rad-cohesion-agent-race": {
+      "keep": true,
+      "reason": "A 274-follower maker's own joke about losing to their own agent, usable only as they told it (R7); the show adds no joke about the loss, and the episode uses this or the Johnson-solids card, not both."
+    },
+    "voices-sandwich-thread": {
+      "keep": false,
+      "reason": "It opens on the banh mi wave, which the show leaves alone (R10, see screen.md), and it is a quiet thread nobody answered from a 330-follower account whose display name could be taken for a public figure's (R7, R5)."
+    },
+    "voices-simcluster-kombat-wish": {
+      "keep": false,
+      "reason": "Duplicate: all thirteen posts are on made-simcluster-kombat-arcade, which is kept."
+    },
+    "voices-twitter-portrait": {
+      "keep": false,
+      "reason": "The portrait itself is on another site and unread (R2), and what is left is a thank-you from a 345-follower account and a reference nobody understood (R15)."
+    },
+    "voices-where-do-you-think-you-are": {
+      "keep": false,
+      "reason": "Duplicate: the remark and the reply are on made-build-bot-small-wishes, where the remark gets built; the one post only this card has is a pushback that would turn the reply into a disagreement (R7)."
+    }
+  }
+}

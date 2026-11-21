@@ -1,0 +1,199 @@
+{
+  "format": "late-cluster-sources/1",
+  "week": "2026-W47",
+  "accounts": [
+    {
+      "handle": "samantha.wiki",
+      "did": "did:plc:sna3qx44beg2mb5fao44gsxh",
+      "displayName": "Samantha",
+      "role": "quoted",
+      "followers": 977,
+      "clusterMember": true,
+      "note": "The maker of the plotter, and the hero of the segment. Four of the maker's posts are shown and read aloud; the maker is never voiced, because the account spoke in the previous episode. Also credited on screen, with the stream address, for the whole segment."
+    },
+    {
+      "handle": "ver.ooo",
+      "did": "did:plc:kpxj7utcy6mjv4rmzitnnrmv",
+      "displayName": "ver.ooo 🗿",
+      "role": "guest",
+      "cast": "verooo",
+      "followers": 955,
+      "clusterMember": true,
+      "note": "Speaks one line, its own reply, to the maker's reply it answered. A cluster member, new to the show."
+    },
+    {
+      "handle": "sophie.engineering",
+      "did": "did:plc:ggggkstdfqtryrmermsho2pb",
+      "displayName": "Sophie",
+      "role": "quoted",
+      "followers": 282,
+      "clusterMember": false,
+      "note": "A small account outside the cluster's membership: one reply, as the hero of one moment, with the maker's welcome beside it. Appears nowhere else. The name is on the card and on the page but is not spoken: no house voice could say it (see notes.json)."
+    },
+    {
+      "handle": "aparker.io",
+      "did": "did:plc:gttrfs4hfmrclyxvwkwcgpj7",
+      "displayName": "austin",
+      "role": "quoted",
+      "followers": 9763,
+      "clusterMember": true,
+      "note": "A cluster member, new to the show. The reply is read aloud in part and written by the pen in part."
+    }
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+      "author": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T20:02:44.143Z",
+      "text": "🚨 Fun experiment is live! 🚨\n\nReply to this post and my pen plotter will write it on paper, watch it live! Only your first post in the thread gets plotted, rude replies are skipped. Once the page fills up, replies will be locked. stream.place/samantha.wiki\n\nWho will be first? 👀",
+      "likes": 83,
+      "reposts": 10,
+      "replies": 88,
+      "replyTo": null,
+      "use": "card",
+      "segment": "made-pen-plotter-replies",
+      "note": "The invitation. Read aloud by Sibyl, cut at both ends with an ellipsis: \"… Reply to this post and my pen plotter will write it on paper …\". Its card shows that cut and nothing more of it."
+    },
+    {
+      "uri": "at://did:plc:kpxj7utcy6mjv4rmzitnnrmv/app.bsky.feed.post/3n2ccgtdp3225",
+      "author": "ver.ooo",
+      "displayName": "ver.ooo 🗿",
+      "time": "2026-11-14T20:07:53.557Z",
+      "text": "All right, stop, collaborate and listen\nIce is back with my brand new invention\nSomething grabs ahold of me tightly\nFlow like a harpoon daily and nightly\n\"Will it ever stop?\" Yo, I don't know\nTurn off the lights, and I'll glow",
+      "likes": 9,
+      "reposts": 0,
+      "replies": 1,
+      "replyTo": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+      "use": "reference",
+      "segment": "made-pen-plotter-replies",
+      "note": "ver.ooo's own reply to the invitation (song lyrics). Not shown and not read: it is here because the maker's \"you're up\" replied to it."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2ccyxvuzk2b",
+      "author": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T20:18:02.327Z",
+      "text": "you're up 👀",
+      "likes": 2,
+      "reposts": 0,
+      "replies": 1,
+      "replyTo": "at://did:plc:kpxj7utcy6mjv4rmzitnnrmv/app.bsky.feed.post/3n2ccgtdp3225",
+      "use": "card",
+      "segment": "made-pen-plotter-replies",
+      "note": "The maker's reply to ver.ooo's reply. Read aloud by Larry from its card; it is the staged prompt for ver.ooo's line."
+    },
+    {
+      "uri": "at://did:plc:kpxj7utcy6mjv4rmzitnnrmv/app.bsky.feed.post/3n2cd7y55gc25",
+      "author": "ver.ooo",
+      "displayName": "ver.ooo 🗿",
+      "time": "2026-11-14T20:21:57.446Z",
+      "text": "😬 the suspense while it tracks back to the left side",
+      "likes": 2,
+      "reposts": 0,
+      "replies": 0,
+      "replyTo": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2ccyxvuzk2b",
+      "use": "line",
+      "segment": "made-pen-plotter-replies",
+      "note": "Spoken by ver.ooo's puppet as the reply it was, while the pen tracks back."
+    },
+    {
+      "uri": "at://did:plc:ggggkstdfqtryrmermsho2pb/app.bsky.feed.post/3n2cfrthxl22s",
+      "author": "sophie.engineering",
+      "displayName": "Sophie",
+      "time": "2026-11-14T21:07:44.021Z",
+      "text": "meowowowowowowowowowow MROW",
+      "likes": 3,
+      "reposts": 0,
+      "replies": 1,
+      "replyTo": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+      "use": "card",
+      "segment": "made-pen-plotter-replies",
+      "note": "A small account's reply (282 followers, not a cluster member): the hero of one moment, with the maker's welcome beside it. Read aloud by Sibyl, whole, while the pen writes it."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cfssql422o",
+      "author": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T21:08:16.808Z",
+      "text": "I expected nothing less ❤️",
+      "likes": 2,
+      "reposts": 0,
+      "replies": 0,
+      "replyTo": "at://did:plc:ggggkstdfqtryrmermsho2pb/app.bsky.feed.post/3n2cfrthxl22s",
+      "use": "card",
+      "segment": "made-pen-plotter-replies",
+      "note": "The maker's reply to that reply. Read aloud by Larry from its card."
+    },
+    {
+      "uri": "at://did:plc:gttrfs4hfmrclyxvwkwcgpj7/app.bsky.feed.post/3n2cccl2rbc2o",
+      "author": "aparker.io",
+      "displayName": "austin",
+      "time": "2026-11-14T20:05:30.658Z",
+      "text": "According to all known laws of aviation, there is no way a bee should be able to fly.\nIts wings are too small to get its fat little body off the ground.\nThe bee, of course, flies anyway because bees don't care what humans think is impossible.\nYellow, black. Yellow, black. Yellow, black. Yellow, blac",
+      "likes": 14,
+      "reposts": 0,
+      "replies": 1,
+      "replyTo": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+      "use": "card",
+      "segment": "made-pen-plotter-replies",
+      "note": "Its first sentence is read aloud by Larry from a card that shows that sentence and the cut (\"According to all known laws of aviation, there is no way a bee should be able to fly. …\"). Its last eight words are what the pen writes in the wordless stretch (\"… Yellow, black. Yellow, black. Yellow, black. Yellow, blac\"), a glance. Nothing else of it is on screen."
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cceb5pvc2j",
+      "author": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-14T20:06:27.377Z",
+      "text": "LMAO",
+      "likes": 6,
+      "reposts": 0,
+      "replies": 0,
+      "replyTo": "at://did:plc:gttrfs4hfmrclyxvwkwcgpj7/app.bsky.feed.post/3n2cccl2rbc2o",
+      "use": "card",
+      "segment": "made-pen-plotter-replies",
+      "note": "The maker's reply to austin's reply: one word, on its card at the end. A glance; not spoken."
+    }
+  ],
+  "links": [
+    {
+      "url": "https://stream.place/samantha.wiki",
+      "use": "credit",
+      "segment": "made-pen-plotter-replies",
+      "note": "The stream's address, from the invitation post. On screen with the maker's handle as the credit for the plotter."
+    }
+  ],
+  "lines": [
+    {
+      "segment": "made-pen-plotter-replies",
+      "line": "suspense",
+      "kind": "verbatim",
+      "post": "at://did:plc:kpxj7utcy6mjv4rmzitnnrmv/app.bsky.feed.post/3n2cd7y55gc25",
+      "context": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2ccyxvuzk2b",
+      "contextText": "you're up 👀",
+      "setup": {
+        "line": "youre-up",
+        "who": "larry",
+        "text": "you're up 👀"
+      },
+      "occasion": "The maker told ver.ooo its reply was next (\"you're up\"), and ver.ooo answered while watching the pen on the stream. Staged the same way: Larry reads the maker's reply aloud from its card, word for word; the pen runs out a line and starts back; the puppet says the reply as the pen travels. Nothing is spoken between the prompt and the line."
+    }
+  ],
+  "numbers": [
+    {
+      "segment": "made-pen-plotter-replies",
+      "value": 88,
+      "said": "Eighty-eight replies, under one post.",
+      "what": "replies on the invitation post, as the digest counts them",
+      "post": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2cc5mbfqs22",
+      "method": "the post's reply count in the digest (generated 2026-11-19); it counts every direct reply, the maker's own among them"
+    },
+    {
+      "segment": "made-pen-plotter-replies",
+      "value": 300,
+      "said": "The limit is three hundred characters. / Three hundred.",
+      "what": "characters in austin's reply, which is also the most a post can hold",
+      "post": "at://did:plc:gttrfs4hfmrclyxvwkwcgpj7/app.bsky.feed.post/3n2cccl2rbc2o",
+      "method": "the length of the post's text as the digest has it, each line break counted as one character: 300"
+    }
+  ]
+}

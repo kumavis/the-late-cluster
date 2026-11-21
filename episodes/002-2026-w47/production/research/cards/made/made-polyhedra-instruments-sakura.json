@@ -1,0 +1,532 @@
+{
+  "id": "made-polyhedra-instruments-sakura",
+  "lane": "made",
+  "title": "Instruments built from polyhedra play the folk tune Sakura Sakura in a landscape of polyhedra",
+  "summary": "On Tue 17 Nov at 15:59Z @yonderdavid.bsky.social (971 followers) posted a video with no text. Its alt text reads: \"Animated instruments composed of polyhedra play the Japanese folk tune さくら さくら while the camera explores a landscape composed of regular polyhedra. The landscape features many sakura trees.\" It has 61 likes, 5 reposts, 7 replies and 7 quotes. The day before, @oscillatory.net (274 followers) had posted \"it's polyhedra week\"; one minute after the video the maker replied in that thread, quoting the video: \"Perfect, I had about three hundred thousand mostly regular polyhedra lying around and needed something to do with them.\" @norvid-studies.bsky.social quote-posted the video with \"it's polyhedra week now, lock in\" (42 likes). Asked whether the koto sound was an existing physical model, the maker replied \"New. Second draft, mostly vibed.\", shared the code (\"Koto information wants to be free.\"), and explained: \"My first thought was just that I wanted to hear polyhedra, so that gave rise to the glass chimes and bell and drums.\" Between 20:53Z and 21:20Z the maker posted an eight-post account of how the video was made: it is generated in Blender, with Claude turning descriptions into Python and stills for the maker to judge; the first request was \"Moebius but it's all polyhedra,\" and the scene description was just the song name; a series of change requests followed (pile the polyhedra, give every polyhedron collision, make the pavilion's legs a stack of polyhedra, remove the \"mortar\" look); it ends \"Oh, and I had to tell it to make the river move.\" The video set off several other things made the same day and the next (see made-polyhedral-coffee-simulator, made-mobius-chess-ringmate, made-polykatamari).",
+  "made": [
+    {
+      "what": "video: instruments made of polyhedra (koto, glass chimes, bell, drums are named in the maker's posts) play a folk tune in a landscape of polyhedra",
+      "by": "yonderdavid.bsky.social",
+      "address": "https://bsky.app/profile/yonderdavid.bsky.social/post/3n2jfwtubf22r"
+    }
+  ],
+  "couldBeShown": "Instruments assembled from regular polyhedra playing a tune; a camera moving through a landscape of piled polyhedra with trees, water, a bridge, a pavilion on stacked legs, a temple bell and a koto stage (all named in the maker's process posts); the successive drafts, which the maker posted as stills with short alt texts (\"A first draft of the sakura landscape.\", \"Giving the polyhedra collision.\", \"First improvement.\"). Colours and the exact look are not described in the data, though another member says they borrowed the video's colour scheme. The studio draws in lines, and the maker's first change request says \"Not every single outline would have to be rendered clearly to make the effect work ... just most of the edges.\"",
+  "numbers": [
+    "\"about three hundred thousand mostly regular polyhedra\" (the maker's post; a figure of speech or a count, the data does not say).",
+    "61 likes, 5 reposts, 7 replies, 7 quotes on the video.",
+    "Eight posts of process notes in 27 minutes (20:53Z to 21:20Z).",
+    "The koto is the maker's \"Second draft\"."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2h67hytac25",
+      "text": "it's polyhedra week",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "time": "2026-11-16T18:35:30.509Z",
+      "counts": {
+        "likes": 15,
+        "reposts": 2,
+        "replies": 3,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:s4xmseub4a4pwwetg2xxmcyy/app.bsky.feed.post/3n2gz7l5trc2v",
+        "handle": "hn100.bsky.social",
+        "text": "Smallest possible nopert polyhedra: the Septopert\n\nDiscussion",
+        "time": "2026-11-16T17:06:05.082Z"
+      },
+      "kind": "quote",
+      "note": "The day before: the declaration. Quotes a post by a link-sharing account titled \"Smallest possible nopert polyhedra: the Septopert\"."
+    },
+    {
+      "uri": "at://did:plc:p572wxnsuoogcrhlfrlizlrb/app.bsky.feed.post/3n2h6jvz4mshz",
+      "text": "@norvid-studies.bsky.social let's get it trending",
+      "handle": "gracekind.net",
+      "displayName": "Grace",
+      "time": "2026-11-16T18:41:20.743Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 4,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2h67hytac25",
+        "handle": "oscillatory.net",
+        "text": "it's polyhedra week"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jfwtubf22r",
+      "text": "",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-17T15:59:10.365Z",
+      "counts": {
+        "likes": 61,
+        "reposts": 5,
+        "replies": 7,
+        "quotes": 7
+      },
+      "kind": "post",
+      "alt": "Animated instruments composed of polyhedra play the Japanese folk tune さくら さくら while the camera explores a landscape composed of regular polyhedra. The landscape features many sakura trees.",
+      "media": "video",
+      "note": "The video. Text is empty; the alt text is the maker's."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jfzxpbmk27",
+      "text": "Perfect, I had about three hundred thousand mostly regular polyhedra lying around and needed something to do with them. \nbsky.app/profile/yond...",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-17T16:00:55.059Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:p572wxnsuoogcrhlfrlizlrb/app.bsky.feed.post/3n2h6jvz4mshz",
+        "handle": "gracekind.net",
+        "text": "@norvid-studies.bsky.social let's get it trending"
+      },
+      "quotes": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jfwtubf22r",
+        "handle": "yonderdavid.bsky.social",
+        "text": "",
+        "time": "2026-11-17T15:59:10.365Z"
+      },
+      "kind": "reply+quote",
+      "note": "The maker, one minute later, in the \"it's polyhedra week\" thread, quoting the video."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2jn7eneo22j",
+      "text": "it's polyhedra week now, lock in",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-17T18:09:12.592Z",
+      "counts": {
+        "likes": 42,
+        "reposts": 2,
+        "replies": 2,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jfwtubf22r",
+        "handle": "yonderdavid.bsky.social",
+        "text": "",
+        "time": "2026-11-17T15:59:10.365Z"
+      },
+      "kind": "quote",
+      "note": "A quote post of the video."
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2jpyc4q5k24",
+      "text": "this is lovely. one thought i have is that it could be made even more polyhedral by replacing the strings with Boerdijk–Coxeter helices en.wikipedia.org/wiki/Boerdij...",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "time": "2026-11-17T18:58:56.295Z",
+      "counts": {
+        "likes": 22,
+        "reposts": 1,
+        "replies": 0,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jfwtubf22r",
+        "handle": "yonderdavid.bsky.social",
+        "text": "",
+        "time": "2026-11-17T15:59:10.365Z"
+      },
+      "kind": "quote",
+      "links": [
+        {
+          "url": "https://en.wikipedia.org/wiki/Boerdijk%E2%80%93Coxeter_helix",
+          "title": "Boerdijk–Coxeter helix - Wikipedia"
+        }
+      ],
+      "note": "A quote post of the video from an account with 274 followers."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jmvm74dc2r",
+      "text": "love the sound of the kotos!\nis this an existing physical model or a new thing?",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-17T18:03:44.970Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jfwtubf22r",
+        "handle": "yonderdavid.bsky.social",
+        "text": ""
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jnh3e6hc2t",
+      "text": "New. Second draft, mostly vibed.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-17T18:13:31.290Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jmvm74dc2r",
+        "handle": "shimmermathlabs.com",
+        "text": "love the sound of the kotos!\nis this an existing physical model or a new thing?"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jnnda4es2y",
+      "text": "any details or anything you can share would be appreciated, i want more kotos",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-17T18:17:00.872Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jnh3e6hc2t",
+        "handle": "yonderdavid.bsky.social",
+        "text": "New. Second draft, mostly vibed."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jq4x7qys2t",
+      "text": "Koto information wants to be free. \npastebin.com/cxLPkJby",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-17T19:01:32.632Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jnnda4es2y",
+        "handle": "shimmermathlabs.com",
+        "text": "any details or anything you can share would be appreciated, i want more kotos"
+      },
+      "kind": "reply",
+      "links": [
+        {
+          "url": "https://pastebin.com/cxLPkJby",
+          "title": "Koto Sim - Pastebin.com"
+        }
+      ]
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jqohyzzk2h",
+      "text": "thank you!\n\nit's literally simulating it as a polyhedron. polyhedron week has just begun and you may have already won it.",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-17T19:11:20.663Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jq4x7qys2t",
+        "handle": "yonderdavid.bsky.social",
+        "text": "Koto information wants to be free. \npastebin.com/cxLPkJby"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jsyjtdc22t",
+      "text": "😊\n\nMy first thought was just that I wanted to hear polyhedra, so that gave rise to the glass chimes and bell and drums. Those then seemed suited to Japanese folk music, so the other instruments followed.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-17T19:52:45.601Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jqohyzzk2h",
+        "handle": "shimmermathlabs.com",
+        "text": "thank you!\n\nit's literally simulating it as a polyhedron. polyhedron week has just begun and you may have already won it."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jwfmphh22p",
+      "text": "The video is generated in Blender. Years ago I'd looked at its Python API as a way to make math videos, but ended up using WebGL instead. Now I can just ask Claude to use the API for me, and it translates from descriptions to Python to stills for me to evaluate before it renders the video.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-17T20:53:46.052Z",
+      "counts": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "withheld": "the digest does not hold the post this replied to (its author is hidden from the scrape)"
+      },
+      "kind": "reply",
+      "note": "Process notes begin. This and the next post answer replies the digest does not hold, so they can be shown as statements but not performed as answers."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jx2rb2kk2p",
+      "text": "Ah, so I started out by asking for \"Moebius but it's all polyhedra,\" with no plan to get the exact Moebius style, just that neighborhood. My scene description was just the song name. The 1st image was the first still I got back, which wasn't great, but that same turn it refined to the 2nd.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-17T21:05:35.464Z",
+      "counts": {
+        "likes": 11,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 4
+      },
+      "replyTo": {
+        "withheld": "the digest does not hold the post this replied to (its author is hidden from the scrape)"
+      },
+      "kind": "reply",
+      "alt": "A first draft of the sakura landscape.\n\nSecond draft preview still.",
+      "alts": [
+        "A first draft of the sakura landscape.",
+        "Second draft preview still."
+      ],
+      "media": "image"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jx6tq44k2p",
+      "text": "The first change request was \"everything is a cloud/sea of regular polyhedra, piling up or clustering together as necessary. Not every single outline would have to be rendered clearly to make the effect work, at least as it is in my mind's eye; just most of the edges.\" The result:",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-17T21:07:52.272Z",
+      "counts": {
+        "likes": 10,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jx2rb2kk2p",
+        "handle": "yonderdavid.bsky.social",
+        "text": "Ah, so I started out by asking for \"Moebius but it's all polyhedra,\" with no plan to get the exact Moebius style, just that neighborhood. My scene description was just the song name. The 1st image was the first still I got back, which wasn't great, but that same turn it refined to the 2nd."
+      },
+      "kind": "reply",
+      "alt": "The result of asking for piled up regular polyhedra.",
+      "media": "image"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxddunok2p",
+      "text": "Those landscape, water, and platforms look too busy with zigzags to me, so I pointed that out and suggested giving every polyhedron collision as a solution. The third and fourth rows below show the placed and tumbled versions of that idea.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-17T21:10:23.417Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jx6tq44k2p",
+        "handle": "yonderdavid.bsky.social",
+        "text": "The first change request was \"everything is a cloud/sea of regular polyhedra, piling up or clustering together as necessary. Not every single outline would have to be rendered clearly to make the effect work, at least as it is in my mind's eye; just most of the edges.\" The result:"
+      },
+      "kind": "reply",
+      "alt": "Giving the polyhedra collision.",
+      "media": "image"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxjfkdu22p",
+      "text": "Same rows in this image. Saying \"I like tumbled + packed, but it could stand to be a bit denser in terms of ground and water coverage, and the legs of the pavilion look too warty. Perhaps they could be assembled out of a stack of polyhedra, or a towering pile of smaller ones.\" yielded the 2nd image.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-17T21:13:46.493Z",
+      "counts": {
+        "likes": 7,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxddunok2p",
+        "handle": "yonderdavid.bsky.social",
+        "text": "Those landscape, water, and platforms look too busy with zigzags to me, so I pointed that out and suggested giving every polyhedron collision as a solution. The third and fourth rows below show the placed and tumbled versions of that idea."
+      },
+      "kind": "reply",
+      "alt": "Another preview contact sheet with the third and fourth rows showing the placed and tumbled versions of the physical arrangement of the polyhedra.\n\nImproving surface shapes.",
+      "alts": [
+        "Another preview contact sheet with the third and fourth rows showing the placed and tumbled versions of the physical arrangement of the polyhedra.",
+        "Improving surface shapes."
+      ],
+      "media": "image"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxmugsn22p",
+      "text": "Next: \"The bridge,...and koto stage all have a sort of polyhedra-in-mortar look...Let's allow the temple bell and koto to have compositions that produce good sound in simulation, and have the bridge, foundation, and stage all be appropriately shaped piles of polyhedra without the 'mortar' layer.\"",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-17T21:15:42.779Z",
+      "counts": {
+        "likes": 7,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxjfkdu22p",
+        "handle": "yonderdavid.bsky.social",
+        "text": "Same rows in this image. Saying \"I like tumbled + packed, but it could stand to be a bit denser in terms of ground and water coverage, and the legs of the pavilion look too warty. Perhaps they could be assembled out of a stack of polyhedra, or a towering pile of smaller ones.\" yielded the 2nd image."
+      },
+      "kind": "reply",
+      "alt": "The left shows the previous version, the right the new version based on the above instruction.",
+      "media": "image"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxsla2g22p",
+      "text": "Then I asked for more compaction of the stage, foundation, and bridge, thinner lines, and no flat surface under the ground and water, just polyhedra. It got better but too gappy (1st image), so I asked for deeper piles (2nd image).",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-17T21:18:54.445Z",
+      "counts": {
+        "likes": 7,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxmugsn22p",
+        "handle": "yonderdavid.bsky.social",
+        "text": "Next: \"The bridge,...and koto stage all have a sort of polyhedra-in-mortar look...Let's allow the temple bell and koto to have compositions that produce good sound in simulation, and have the bridge, foundation, and stage all be appropriately shaped piles of polyhedra without the 'mortar' layer.\""
+      },
+      "kind": "reply",
+      "alt": "First improvement.\n\nSecond improvement.",
+      "alts": [
+        "First improvement.",
+        "Second improvement."
+      ],
+      "media": "image"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxvvh2xs2p",
+      "text": "After that the visuals were almost set, I just had to correct the koto physics, as those were animated with too much exaggeration and ignored the legs. Oh, and I had to tell it to make the river move.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-17T21:20:45.828Z",
+      "counts": {
+        "likes": 8,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jxsla2g22p",
+        "handle": "yonderdavid.bsky.social",
+        "text": "Then I asked for more compaction of the stage, foundation, and bridge, thinner lines, and no flat surface under the ground and water, just polyhedra. It got better but too gappy (1st image), so I asked for deeper piles (2nd image)."
+      },
+      "kind": "reply",
+      "note": "Last of the process notes."
+    },
+    {
+      "uri": "at://did:plc:ygzrpn6mqpibaf6rowkd3uh6/app.bsky.feed.post/3n2losofgak24",
+      "text": "how do I move in there",
+      "handle": "ocramz.bsky.social",
+      "displayName": "Marco Z",
+      "time": "2026-11-18T13:43:13.571Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jfwtubf22r",
+        "handle": "yonderdavid.bsky.social",
+        "text": ""
+      },
+      "kind": "reply"
+    }
+  ],
+  "people": [
+    {
+      "handle": "yonderdavid.bsky.social",
+      "followers": 971,
+      "displayName": "David",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "maker"
+    },
+    {
+      "handle": "oscillatory.net",
+      "followers": 274,
+      "displayName": "a hangry mouse",
+      "clusterMember": true,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "declared the week; suggested helices for strings"
+    },
+    {
+      "handle": "gracekind.net",
+      "followers": 8674,
+      "displayName": "Grace",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "followers": 2777,
+      "displayName": "norvid_studies",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "followers": 1454,
+      "displayName": "Amber 🌸",
+      "clusterMember": true,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "ocramz.bsky.social",
+      "followers": 2010,
+      "displayName": "Marco Z",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "sensitive": "The piece uses a Japanese folk tune and scenery (sakura trees, a temple bell, a pavilion, a koto). R10 lists nationality and religion as subjects the show leaves alone; the maker presents the piece as music and geometry and says nothing about either. @oscillatory.net is a small account (274 followers) and appears as the person who named the week and offered a suggestion the thread welcomed. @norvid-studies.bsky.social is marked featuredPrevious: spoke, so the account is not cast to speak in this episode; its posts may be shown. @gracekind.net is marked featuredPrevious: shown; @shimmermathlabs.com likewise. Left out: a quote post that praises the video by calling the poster's corner of the site \"unhinged\" (a jokey mental-state word; R10). The same maker is the subject of three other cards in this lane.",
+  "notUnderstood": [
+    "\"Moebius\" in the maker's first request: the maker speaks of \"the exact Moebius style\", which research reads as the comics artist of that name; other members pun on it with the handle of @minormobius.bsky.social."
+  ]
+}

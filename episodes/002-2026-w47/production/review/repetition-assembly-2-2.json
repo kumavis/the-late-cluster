@@ -1,0 +1,41 @@
+{
+  "bit": {
+    "verdict": "fresh",
+    "turned": null,
+    "avoid": null,
+    "why": "Fresh by mechanism: a host who gets a handle, reads it twice and finds his own name missing has not aired (his aired defeats were a score, a bet, a glass case and a bird; this is a new one, in character), and the handle under his name is the chyron primitive used as evidence, not a comic title. Two notes that are not blocks: the button ends on the same two words as an aired stock line that told the host he was 'in it' and as the aired song's last hook, here negated and plainly about a handle on screen, which I judge a returning viewer will not take for the old line; and the aired episode twice put an invented handle of the host's own on screen, once on a post of his, which 'finally' passes over."
+  },
+  "echoes": [
+    {
+      "line": "not-in-it",
+      "with": "making-of-inward l2-list",
+      "matters": false,
+      "why": "The same mould (Larry, slow, a flat 'X is not in/on it' as the second half of a two-line setup) carrying two different jokes: here he is looking for his own name, there it is a fact about who may read what, with its own tag after it. They are over three minutes and two loud segments apart, one a button with a laugh and the other an aside in a raised voice with no audience, so it passes as how he talks. It is a construction, not a stock phrase; a third line in this mould the same night would make it one."
+    },
+    {
+      "line": "not-in-it",
+      "with": "making-of-inward turn-mouth",
+      "matters": false,
+      "why": "The closest the two pieces come: both times the same handle is the biggest thing on screen while Larry ends, at the same slow rate, on a short 'I'm ...' line that makes himself small. The reasons differ (his name is missing; he cannot reply), the later line has its own setup inside the making-of, and the pictures differ (a desk and a chyron; a bare tract and a typed post), so it reads as one character twice and the second gains from the first."
+    },
+    {
+      "line": "account",
+      "with": "making-of-inward turn-point, turn-handle, turn-where (the turn to the audience)",
+      "matters": false,
+      "why": "They do not tread. The bit says only that the account exists and shows the handle, asks nothing and says nothing of what it is for, and it comes first, so the joke on the handle is spent before the handle is used in earnest and never after. One small cost: the making-of types the handle a character at a time as its biggest picture, and a viewer who had it large for six seconds four minutes earlier is ahead of the typing, so that moment is now a recognition, not a reveal. 'My handle' here and 'the show's name' there agree, because the bit's punch is that it is not his."
+    },
+    {
+      "line": "twice",
+      "with": "making-of-inward review-early-seen",
+      "matters": false,
+      "why": "Both lines end on the word 'twice' in Larry's mouth, and the making-of also writes one word on its gauge twice. Different jokes, far apart; nobody will connect them."
+    },
+    {
+      "line": "left-out",
+      "with": "made-mobius-chess-ringmate gold, all-gold",
+      "matters": false,
+      "why": "Gold as Larry's colour carries a punch twice: here by being absent from the handle, at the close by covering every square. Opposite uses, eight minutes apart, and only the second says the colour aloud. Consistent, not a repeat."
+    }
+  ],
+  "order": "Not the aired shape: the open, the close and the order of the standing segments all differ, though the song is again second from last with the closing segment straight after it, and a third week of that would make it a home position. The one join to look at is 2 into 3: the bit's punch is a line under the host's name and the interview ends on a held line under the guest's name, so the night's first big laugh becomes the second lower-third joke about the show itself in about a minute."
+}

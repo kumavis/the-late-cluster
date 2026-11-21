@@ -1,0 +1,761 @@
+{
+ "segment": "interview-yonderdavid",
+ "episode": "002-2026-w47",
+ "takes": 4,
+ "gate": 0.6,
+ "lines": [
+  {
+   "id": "intro",
+   "who": "larry",
+   "kind": "say",
+   "text": "My guest makes music with singers and instruments that are not real.",
+   "as": null,
+   "heard": [
+    {
+     "text": "My guest makes music with singers and instruments that are not real.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 12,
+    "of": 12,
+    "min": 12
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "My guest makes music with singers and instruments that are not real.",
+     "score": {
+      "heard": 12,
+      "of": 12,
+      "min": 12
+     },
+     "heard": [
+      {
+       "text": "My guest makes music with singers and instruments that are not real.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "welcome",
+   "who": "larry",
+   "kind": "say",
+   "text": "Please welcome David.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Please welcome David.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 3,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Please welcome David.",
+     "score": {
+      "heard": 3,
+      "of": 3,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "Please welcome David.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "four",
+   "who": "larry",
+   "kind": "say",
+   "text": "The synthesizer you use comes with four animals.",
+   "as": "The synthesizer you yooz comes, with four animals.",
+   "heard": [
+    {
+     "text": "The sixth-sizer you use comes with four animals.",
+     "count": 1
+    },
+    {
+     "text": "The synthesizer UU comes with four animals.",
+     "count": 1
+    },
+    {
+     "text": "The synthesizer you use comes with 4 animals",
+     "count": 1
+    },
+    {
+     "text": "The synthesizer you use comes with four animals.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 7,
+    "of": 8,
+    "min": 6
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "synthesizer",
+     "count": 1
+    },
+    {
+     "word": "you",
+     "count": 1
+    },
+    {
+     "word": "use",
+     "count": 1
+    }
+   ],
+   "sounds": [
+    {
+     "i": 3,
+     "word": "use",
+     "as": "yooz",
+     "plain": "j u s",
+     "ipa": "j u z",
+     "keeps": true,
+     "reading": "j u z"
+    }
+   ],
+   "tried": [
+    {
+     "as": "The synthesizer you yooz comes, with four animals.",
+     "score": {
+      "heard": 7,
+      "of": 8,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "The sixth-sizer you use comes with four animals.",
+       "count": 1
+      },
+      {
+       "text": "The synthesizer UU comes with four animals.",
+       "count": 1
+      },
+      {
+       "text": "The synthesizer you use comes with 4 animals",
+       "count": 1
+      },
+      {
+       "text": "The synthesizer you use comes with four animals.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 3,
+       "word": "use",
+       "as": "yooz",
+       "plain": "j u s",
+       "ipa": "j u z",
+       "keeps": true,
+       "reading": "j u z"
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ask-cat",
+   "who": "larry",
+   "kind": "say",
+   "text": "A member asked: how did the cat not make the top four?",
+   "as": null,
+   "heard": [
+    {
+     "text": "The member asked, how did the cat not make the top four?",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 11,
+    "of": 12,
+    "min": 11
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "a",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "A member asked: how did the cat not make the top four?",
+     "score": {
+      "heard": 11,
+      "of": 12,
+      "min": 11
+     },
+     "heard": [
+      {
+       "text": "The member asked, how did the cat not make the top four?",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "very-well",
+   "who": "david",
+   "kind": "say",
+   "text": "Very well, … so I can fix that. The cat voice sim joins a quartet and instruments that get their sound from physical models.",
+   "as": "Very well, … so I can fix that. The cat voice, sim, joins, a quartet, and instruments that get their sound from physical models.",
+   "heard": [
+    {
+     "text": "Very well, so I can fix it. The cat voice, sim, drawings, a glortet, and instruments that get their sound from physical models.",
+     "count": 3
+    },
+    {
+     "text": "Very well, so I can fix it. The cat voice, sim, drawings, a glort head, and instruments that get their sound from physical models.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 21,
+    "of": 23,
+    "min": 21
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "joins",
+     "count": 4
+    },
+    {
+     "word": "quartet",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Very well, … so I can fix that. The cat voice, sim, joins, a quartet, and instruments that get their sound from physical models.",
+     "score": {
+      "heard": 21,
+      "of": 23,
+      "min": 21
+     },
+     "heard": [
+      {
+       "text": "Very well, so I can fix it. The cat voice, sim, drawings, a glortet, and instruments that get their sound from physical models.",
+       "count": 3
+      },
+      {
+       "text": "Very well, so I can fix it. The cat voice, sim, drawings, a glort head, and instruments that get their sound from physical models.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "good-question",
+   "who": "larry",
+   "kind": "say",
+   "text": "Me, I just say, good question.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Me, I just say, good question.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 6,
+    "of": 6,
+    "min": 6
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Me, I just say, good question.",
+     "score": {
+      "heard": 6,
+      "of": 6,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "Me, I just say, good question.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "under",
+   "who": "larry",
+   "kind": "say",
+   "text": "Under the video, a member asked:",
+   "as": null,
+   "heard": [
+    {
+     "text": "Under the video, a member asked.",
+     "count": 3
+    },
+    {
+     "text": "Under the video, the member asked who",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 6,
+    "of": 6,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "a",
+     "count": 1
+    }
+   ],
+   "tried": [
+    {
+     "as": "Under the video, a member asked:",
+     "score": {
+      "heard": 6,
+      "of": 6,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "Under the video, a member asked.",
+       "count": 3
+      },
+      {
+       "text": "Under the video, the member asked who",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ask-failures",
+   "who": "larry",
+   "kind": "say",
+   "text": "Was there a stack of failures we never saw?",
+   "as": null,
+   "heard": [
+    {
+     "text": "Was there a stack of failures we never saw?",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 9,
+    "of": 9,
+    "min": 9
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Was there a stack of failures we never saw?",
+     "score": {
+      "heard": 9,
+      "of": 9,
+      "min": 9
+     },
+     "heard": [
+      {
+       "text": "Was there a stack of failures we never saw?",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "kazoo",
+   "who": "david",
+   "kind": "say",
+   "text": "… The meow and yowl took some work and iteration against reference recordings. The original yowl sounded like a kazoo.",
+   "as": "… The meow and yowl took some work, and iteration, against reference recordings. Thee original yowl, sounded like uh kazoo.",
+   "heard": [
+    {
+     "text": "The meow and yow took some work and duration against reference recordings, the original yow sounded like a kakzu.",
+     "count": 2
+    },
+    {
+     "text": "The Mayau and Yau took some work in the duration against reference recordings, the original Yau sounded like a kazoo.",
+     "count": 1
+    },
+    {
+     "text": "The Mayau and Yau took some work on the duration against reference recordings, the original Yau sounded like a kazoo.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 15,
+    "of": 19,
+    "min": 15
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "yowl",
+     "count": 8
+    },
+    {
+     "word": "iteration",
+     "count": 4
+    },
+    {
+     "word": "kazoo",
+     "count": 2
+    },
+    {
+     "word": "meow",
+     "count": 2
+    }
+   ],
+   "sounds": [
+    {
+     "i": 13,
+     "word": "The",
+     "as": "Thee",
+     "plain": "ð ə",
+     "ipa": "ð i",
+     "keeps": true
+    },
+    {
+     "i": 18,
+     "word": "a",
+     "as": "uh",
+     "plain": "ə",
+     "ipa": "ʌ",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "… The meow and yowl took some work, and iteration, against reference recordings. Thee original yowl, sounded like uh kazoo.",
+     "score": {
+      "heard": 15,
+      "of": 19,
+      "min": 15
+     },
+     "heard": [
+      {
+       "text": "The meow and yow took some work and duration against reference recordings, the original yow sounded like a kakzu.",
+       "count": 2
+      },
+      {
+       "text": "The Mayau and Yau took some work in the duration against reference recordings, the original Yau sounded like a kazoo.",
+       "count": 1
+      },
+      {
+       "text": "The Mayau and Yau took some work on the duration against reference recordings, the original Yau sounded like a kazoo.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 13,
+       "word": "The",
+       "as": "Thee",
+       "plain": "ð ə",
+       "ipa": "ð i",
+       "keeps": true
+      },
+      {
+       "i": 18,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "you-posted",
+   "who": "larry",
+   "kind": "say",
+   "text": "Your first choice was another song. You posted:",
+   "as": null,
+   "heard": [
+    {
+     "text": "Your first choice was another song, but you posted.",
+     "count": 2
+    },
+    {
+     "text": "But your first choice was another song, but you posted.",
+     "count": 1
+    },
+    {
+     "text": "For your first try, so is another song, for you posted.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 8,
+    "of": 8,
+    "min": 6
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "choice",
+     "count": 1
+    },
+    {
+     "word": "was",
+     "count": 1
+    }
+   ],
+   "tried": [
+    {
+     "as": "Your first choice was another song. You posted:",
+     "score": {
+      "heard": 8,
+      "of": 8,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "Your first choice was another song, but you posted.",
+       "count": 2
+      },
+      {
+       "text": "But your first choice was another song, but you posted.",
+       "count": 1
+      },
+      {
+       "text": "For your first try, so is another song, for you posted.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "read-copyright",
+   "who": "larry",
+   "kind": "say",
+   "text": "… it turns out that's still under copyright and covers aren't fair use. …",
+   "as": null,
+   "heard": [
+    {
+     "text": "It turns out that still under copyright and covers aren't fair use.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 11,
+    "of": 12,
+    "min": 11
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "that's",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "… it turns out that's still under copyright and covers aren't fair use. …",
+     "score": {
+      "heard": 11,
+      "of": 12,
+      "min": 11
+     },
+     "heard": [
+      {
+       "text": "It turns out that still under copyright and covers aren't fair use.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "and-asked",
+   "who": "larry",
+   "kind": "say",
+   "text": "And a member asked:",
+   "as": null,
+   "heard": [
+    {
+     "text": "and a member asked",
+     "count": 2
+    },
+    {
+     "text": "And a member asked",
+     "count": 2
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 4,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "And a member asked:",
+     "score": {
+      "heard": 4,
+      "of": 4,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "and a member asked",
+       "count": 2
+      },
+      {
+       "text": "And a member asked",
+       "count": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ask-al",
+   "who": "larry",
+   "kind": "say",
+   "text": "Covers aren't fair use? Then how does Weird Al work?",
+   "as": "Covers aren't fair use? Then how does, Weird Al, work?",
+   "heard": [
+    {
+     "text": "Covers aren't fair use, then how does Weirdell work?",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 9,
+    "of": 10,
+    "min": 9
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "al",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Covers aren't fair use? Then how does, Weird Al, work?",
+     "score": {
+      "heard": 9,
+      "of": 10,
+      "min": 9
+     },
+     "heard": [
+      {
+       "text": "Covers aren't fair use, then how does Weirdell work?",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "parody",
+   "who": "david",
+   "kind": "say",
+   "text": "I believe parody is considered transformative in the relevant sense.",
+   "as": "I believe, parody, is considered transformative in the relevant sense.",
+   "heard": [
+    {
+     "text": "I believe parody is considered transformative in the relevant sense.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 10,
+    "of": 10,
+    "min": 10
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [],
+   "tried": [
+    {
+     "as": "I believe, parody, is considered transformative in the relevant sense.",
+     "score": {
+      "heard": 10,
+      "of": 10,
+      "min": 10
+     },
+     "heard": [
+      {
+       "text": "I believe parody is considered transformative in the relevant sense.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "voices": {
+  "larry": {
+   "f0": 107,
+   "nearest": "pete",
+   "distance": 1.54
+  },
+  "david": {
+   "f0": 173,
+   "nearest": "dee",
+   "distance": 1.62
+  }
+ },
+ "owner": [],
+ "heardDifferently": [],
+ "soundsDifferent": []
+}

@@ -1,0 +1,77 @@
+{
+  "id": "voices-sandwich-thread",
+  "lane": "voices",
+  "title": "In the middle of the banh mi posting, a 330-follower account starts \"a thread of good sandwiches I have eaten\"",
+  "summary": "The phrase \"banh mi\" was used by 36 members over 7 days of the window (Appendix C). On Sun 15 Nov 00:01Z @mensmachina.com (330 followers) posted: \"I like banh mi, so I’m just happy to see more sandwiches on the timeline. Continuing that theme, this is a thread of good sandwiches I have eaten.\" (6 likes) and added four replies to it over the next 23 minutes. Two of them are recipes: a Philly cheesesteak made with tofu (\"Slice it thin, marinade in soy, teaspoon of Vegemite, bit of instant gravy powder, smoked paprika, onion powder, garlic powder and water.\"), and a fried egg sandwich \"upgraded by adding a slice of cheese and some Indomie Mi Goreng noodles, Kewpie mayonnaise and Sriracha\", with a photo of a packet of the noodles. The digest holds no replies from anyone else.",
+  "posts": [
+    {
+      "uri": "at://did:plc:rckigwnqsvji73vtwbovp256/app.bsky.feed.post/3n2cpj7egz22d",
+      "url": "https://bsky.app/profile/mensmachina.com/post/3n2cpj7egz22d",
+      "handle": "mensmachina.com",
+      "displayName": "Ben Carson",
+      "text": "I like banh mi, so I’m just happy to see more sandwiches on the timeline. Continuing that theme, this is a thread of good sandwiches I have eaten.",
+      "time": "2026-11-15T00:01:51.916Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      }
+    },
+    {
+      "uri": "at://did:plc:rckigwnqsvji73vtwbovp256/app.bsky.feed.post/3n2cqhlqmrs2d",
+      "url": "https://bsky.app/profile/mensmachina.com/post/3n2cqhlqmrs2d",
+      "handle": "mensmachina.com",
+      "displayName": "Ben Carson",
+      "text": "You can actually make a pretty good Philly Cheesesteak with tofu. Slice it thin, marinade in soy, teaspoon of Vegemite, bit of instant gravy powder, smoked paprika, onion powder, garlic powder and water. Bake for 20-30m, then fry in a pan with capsicum and onions. Slice of Swiss cheese on top.",
+      "time": "2026-11-15T00:18:51.531Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:rckigwnqsvji73vtwbovp256/app.bsky.feed.post/3n2cq2xhu7s2d",
+        "handle": "mensmachina.com",
+        "withheld": "the author's previous post in the thread, which is personal; not reproduced (R1)"
+      },
+      "note": "Fourth post of the thread."
+    },
+    {
+      "uri": "at://did:plc:rckigwnqsvji73vtwbovp256/app.bsky.feed.post/3n2cqqv2pxc2d",
+      "url": "https://bsky.app/profile/mensmachina.com/post/3n2cqqv2pxc2d",
+      "handle": "mensmachina.com",
+      "displayName": "Ben Carson",
+      "text": "A fried egg sandwich can be upgraded by adding a slice of cheese and some Indomie Mi Goreng noodles, Kewpie mayonnaise and Sriracha.",
+      "time": "2026-11-15T00:24:03.288Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "alt": "A packet of Indomie Mi goreng instant noodles.",
+      "replyTo": {
+        "uri": "at://did:plc:rckigwnqsvji73vtwbovp256/app.bsky.feed.post/3n2cqhlqmrs2d",
+        "handle": "mensmachina.com",
+        "text": "You can actually make a pretty good Philly Cheesesteak with tofu. Slice it thin, marinade in soy, teaspoon of Vegemite, bit of instant gravy powder, smoked paprika, onion powder, garlic powder and water. Bake for 20-30m, then fry in a pan with capsicum and onions. Slice of Swiss cheese on top."
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "mensmachina.com",
+      "displayName": "Ben Carson",
+      "followers": 330,
+      "smallAccount": false,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "wrote the thread; the only speaker"
+    }
+  ],
+  "watchable": "One photo: \"A packet of Indomie Mi goreng instant noodles.\" (alt text). Two recipes that could be followed.",
+  "sensitive": "330 followers and 1 to 6 likes per post: a quiet thread that nobody answered (R7: hero only; a reviewer should ask whether the attention would be welcome). Two posts in the thread are left out because they say where the author has travelled and mention a time the author had not eaten (R1). The account's display name is also the name of a well-known public figure; nothing suggests they are the same person, and the show should not imply it. The banh mi posting this thread answers began in conversations about identity, and the digest flags its story 12 (health keyword); none of that is used here."
+}

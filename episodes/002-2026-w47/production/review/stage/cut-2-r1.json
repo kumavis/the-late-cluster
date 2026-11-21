@@ -1,0 +1,124 @@
+{
+  "round": 1,
+  "auditor": "auditor (frames, cut 2)",
+  "date": "2026-11-21",
+  "check": "npm run check -- 002-2026-w47: 9 passed, 0 failed, 0 skipped",
+  "segments": {
+    "made-pen-plotter-replies": {
+      "verdict": "change",
+      "notes": "Shot at 0.2-47.5 s (35 frames, plus 5.5-6.12 and 29.86-30.8). The pen writes 'The Late Cluster' from 0.4 to 2.4 s and the title is whole and is the only title on screen up to 6.12 s. The maker's credit is not on screen while the title is written; it slides in from the right at `host` (6.2 s) over a blank sheet. Nothing of cut 1 remains: no austin card, no film-script card, no character counter, no LMAO card. ver.ooo's chyron (PUPPET · PARODY, @ver.ooo) slides in at his first word (29.86 s) and the disclaimer runs from `ver-in`. Every card matches sources.json (88/10/83; 1/0/2; 0/0/2; 1/0/3; 0/0/2; handles and dates).",
+      "changes": [
+        {
+          "must": true,
+          "at": "35.1 s to the end (the room shot, from `meow-card`)",
+          "change": "To the builder (segments/made-pen-plotter-replies/index.js): the top scribble row of the sketch, the one that carries '// @ver.ooo', is cut in half by the top edge of the panel, so a real handle is shown cut off. Frame the sheet so that no row is clipped (scroll it by whole rows, or clip the paper a full row above the first visible one)."
+        },
+        {
+          "must": true,
+          "at": "35.1 s to the end (the room shot)",
+          "change": "To the builder (same file): the STUDIO SKETCH tag sits on top of the first full scribble row. Move the tag off the written area (into the panel's margin above or beside the paper, as in the desk shot before 23 s) so nothing overlaps it."
+        },
+        {
+          "must": false,
+          "at": "36 s, and 41.1-46 s (Larry's lines `hand`, `back`, `nothing-less`)",
+          "change": "To the builder: the lectern's name plate SIBYL ANT shows below and around Larry's caption box in the caption band. Frame the room shot a little higher or drop the plate's label while a caption is up."
+        }
+      ]
+    },
+    "bluesky-account": {
+      "verdict": "pass",
+      "notes": "Shot at 0.1-9.7 s (17 frames, with 3.42, 3.425, 3.44). The handle reads exactly @latecluster.simcluster.tv, whole at once on 'handle.' (3.424 s), in the plain line colour. The gold underline runs under it twice and is gone at 6.9 s; no gold in the handle after that. No post box, cursor, typing, mention colour, profile card or other handle. The black band covers the desk's name plate from 3.42 s. Larry's chyron sits higher than usual and reads LARRY NX with no title.",
+      "changes": []
+    },
+    "interview-yonderdavid": {
+      "verdict": "change",
+      "notes": "Shot at 0.3-66.3 s (34 frames, plus 14.35 and 33.1). Nothing of cut 5 remains (no polyhedra, koto, pastebin card or plug). It ends on `parody` with the enlarged DAVID · PUPPET · PARODY · SUPPLIED THE MISSING CAT · @yonderdavid.bsky.social chyron held to 66.3 s and the room's [ LAUGHTER ] caption under it. Cards match sources.json (7/7/65; 3/0/11; 0/0/1; Sat 14 Nov, Sun 15 Nov). The chyron is up from 4.3 to 10.4 s with the disclaimer footer. RULING on the label: the studio's convention (one lower third at a guest's first appearance) is met, but the label rule is about the puppet speaking a real person's words, and the standard applied elsewhere in this cut is a puppet wears its label from its first word (riemann, chess, ver.ooo all do). David's first word is at 14.3 s; at 14.35 s there is no chyron, no label and no disclaimer on screen, only his puppet and a real post card with his handle. A clip of that answer seen alone does not say it is a puppet (R9's reason). So the first answer is a must; the second (33 s) is a recommendation.",
+      "changes": [
+        {
+          "must": true,
+          "at": "14.303 s (first word of `very-well`) through that line",
+          "change": "To the builder (segments/interview-yonderdavid/index.js): bring David's chyron, or at least the PUPPET · PARODY label with his name, back up from his first spoken word at 14.3 s and keep it while he says the line. Do not change the script."
+        },
+        {
+          "must": false,
+          "at": "33.04 s (`kazoo`)",
+          "change": "To the builder: the same for his second answer, so every answer he speaks carries the label; the held chyron at the end already covers the third."
+        }
+      ]
+    },
+    "riemann-breaking-news": {
+      "verdict": "change",
+      "notes": "Shot at 0.3-89.4 s (58 frames). BREAKING and its strap are still on screen at 13.97 s (they start to drop at `banner-off`) and fully gone at 14.3, 14.424 and 14.45 s; the chart card's first frame is at 14.424 s, so no frame has a news graphic with the chart, a market card or her proof. The chart image is only inside davidcrespo's card and inside moultano's card as the quoted post; no house graphic gives a price, a percentage, a symbol or a company's name. Cards are exact against the kept research records: text, display name, handle, 20 Nov 2026, counts 23/144/889, 3/1/71, 1/0/4 (call), 1/0/4 (zetaof1), 1/0/8 (proof). Each puppet wears PUPPET · PARODY from its first word (davidcrespo 14.6 s, moultano 26.9 s, Amber 39.3 s), and the disclaimer runs from 14.3 s to the end. The call card's reply line reads only REPLY. The tag at `tag-k` reads exactly '… more simply: block k has 2ᵏ terms, each ≥ 1/2ᵏ⁺¹, …'. Her card keeps PROOF AS POSTED BY @shimmermathlabs.com and ZETA AT 1 · NOT THE HYPOTHESIS to the last frame. Amber's look is the same violet here and in segment 7. The handles under 14 px while a card scales (from 49.76 s and from 64.1 s) last a few frames of a move and are readable before and after: no change needed.",
+      "changes": [
+        {
+          "must": true,
+          "at": "production/sources.json, the five riemann-breaking-news posts and three accounts",
+          "change": "To the researcher (owner of sources.json): the records for 3n2qvzbb7dk2z, 3n2r4vqpsh22m, 3n2r4vvxhok24, 3n2r54p53es2s and 3n2r5ogdxis24 carry no text and no time, and the accounts zetaof1.bsky.social, davidcrespo.bsky.social and moultano.bsky.social carry no displayName, so the cards cannot be checked against sources.json. Add text, time and displayName exactly as in episodes/002-commissions-w47/production/research/kept/ (the cards already match those). Nothing on screen changes."
+        },
+        {
+          "must": false,
+          "at": "23.5-25 s, 57 s",
+          "change": "To the builder: the room's LAUGH sign touches the top border of davidcrespo's and zetaof1's cards. Nudge the cards down or the sign up."
+        },
+        {
+          "must": false,
+          "at": "81 s (`crane`)",
+          "change": "To the builder: as the camera cranes, the set's ON AIR sign lands against the top-left corner of Amber's caption box. Hide the sign while the caption is up, or stop the crane a little higher."
+        }
+      ]
+    },
+    "making-of-inward": {
+      "verdict": "pass",
+      "notes": "Spot check at 16, 70 and 84 s. The builder's report card, the COMMUNITY rung, and the handle typed as @latecluster.simcluster.tv in mention blue at 84 s, with 'No spaces.' captioned. Nothing overlaps or is cut off.",
+      "changes": []
+    },
+    "top-chicken": {
+      "verdict": "pass",
+      "notes": "Shot at 0.3-47.2 s (28 frames). No market board, bot card, guess or split-flap STILL remains. It ends on the three crowns (440, CEE 201, 366) and SCORED BY A BOT · UNOFFICIAL through the sting to 47.2 s. Cards match sources.json counts (222 likes, 12 reposts; TopChicken 🤖 2 likes, BOT · UNOFFICIAL RANKINGS). At 25.9 s the bars start growing behind Sibyl's monitor: the monitor is filled, nothing shows through, and it is gone by 28 s.",
+      "changes": [
+        {
+          "must": false,
+          "at": "25.87 s (`bars-in`)",
+          "change": "To the builder: start the bars, or move Sibyl's monitor out, so the tall bar does not begin behind the monitor for that moment."
+        },
+        {
+          "must": false,
+          "at": "production/sources.json, posts 3n27n6oxsyk2l and 3n2bo6xhuea2e",
+          "change": "To the researcher: these two records have no time, so the cards' dates (13 Nov, 14 Nov) cannot be checked against sources.json. Add the posts' times."
+        }
+      ]
+    },
+    "made-polyhedral-coffee-simulator": {
+      "verdict": "pass",
+      "notes": "Shot at 0.9-76.4 s (32 frames). The staging still lands on its cues (solids, dave-in, dave-card, title-screen, the wordless stretch and its prompts, review-card, pink-mug, enhance, hold-on, two-solids, money-card, kettle). Amber's chyron reads AMBER 🌸 · PUPPET · PARODY · OWNER, ONE PINK MUG · @shimmermathlabs.com; her look is the same violet as in segment 4.",
+      "changes": [
+        {
+          "must": false,
+          "at": "production/sources.json, post 3n2jfwtubf22r",
+          "change": "To the researcher: David's polyhedra video record is still tagged segment interview-yonderdavid, which no longer uses it (trim.md, left for the owner 5). If the coffee line `video` describes it, retag it to made-polyhedral-coffee-simulator with its reason; if not, remove it."
+        }
+      ]
+    },
+    "music": {
+      "verdict": "pass",
+      "notes": "Spot check at 8, 33 and 68 s: the plan card, the band and the yowl, the verdict card. Nothing overlaps or is cut off.",
+      "changes": []
+    },
+    "made-mobius-chess-ringmate": {
+      "verdict": "pass",
+      "notes": "Shot at 0.3-66.2 s (30 frames, plus 4.6-6.5 and 18.6-20). No `day` line and no sign-off remain. It ends on 'I resign.' with LIKE · REPOST · RESIGN lit and the picture held through the laugh, the sting and the applause to 66.2 s. mokkenstorm's chyron comes up at 4.4 s and Minor Mobius's at 18.4 s, each at the first word while Larry's caption is fading; both carry PUPPET · PARODY with the right name and handle, and the disclaimer runs from 4.06 s.",
+      "changes": []
+    }
+  },
+  "endRoll": {
+    "verdict": "pass",
+    "notes": "Shot `end` at 8-50 s. Under PUPPETS PLAYED THE POSTING PERSONAS OF each of the eight accounts whose puppet spoke is named once: ver.ooo 🗿 @ver.ooo, Dave @dave.9000ish.uk, Amber 🌸 @shimmermathlabs.com, 👩‍💻 tbd : Option<name> @mokkenstorm.dev, Minor Mobius @minormobius.bsky.social, David @yonderdavid.bsky.social, conputer dipshit @davidcrespo.bsky.social, Ryan Moulton @moultano.bsky.social. austin, the two market players and the commission's unused accounts are not named. It says every voice is synthesized by CHIMERA.",
+    "changes": [
+      {
+        "must": false,
+        "at": "the guest list",
+        "change": "To the builder (packages/show credits style): display names are set in capitals (VER.OOO, CONPUTER DIPSHIT, TBD : OPTION<NAME>), and the 👩‍💻 renders as a different glyph at that size. The words are right; if 'exact display name' is meant literally, set the name column in its own case."
+      }
+    ]
+  }
+}

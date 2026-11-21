@@ -1,0 +1,275 @@
+{
+  "id": "made-polyhedra-week-small-entries",
+  "lane": "made",
+  "title": "Polyhedra week: the declaration and four smaller entries",
+  "summary": "On Mon 16 Nov at 18:35Z @oscillatory.net (274 followers) quote-posted an item titled \"Smallest possible nopert polyhedra: the Septopert\" with \"it's polyhedra week\"; @gracekind.net replied \"let's get it trending\", and the next day @norvid-studies.bsky.social wrote \"it's polyhedra week now, lock in\". The digest counts \"polyhedra week\" in 5 posts by 3 people and \"polyhedron week\" in 3 posts by 2 people. Besides the larger things (see the other made-poly... cards), members marked the week with smaller ones. @oszillate.bsky.social (75 followers) posted six photographs \"from my origami collection for Simcluster Polyhedron Week™\", each described in alt text: a woven dodecahedron sturdy enough that \"you could outright play street hockey with it (I've tested)\", a rhombic dodecahedron from \"a whole pile of these stashed for demonstrating / testing the spacefilling property\", and two designs of the poster's own. It has 38 likes. @anthonybecker.bsky.social posted a video titled \"Glass Hour / for polyhedra week\", music made \"by an agent testing my music production harness\". Under the \"lock in\" post, @shimmermathlabs.com wrote \"the seasons change so quickly\", @norvid-studies.bsky.social answered with an image captioned \"the zonohedron in winter*\" and a note that it was tool assisted, \"but not well\", and @shimmermathlabs.com replied with an eight-line poem about a pink tetrahedron, adding \"(obviously tool assisted, i told it to write a love poem and it puts in math proofs)\".",
+  "made": [
+    {
+      "what": "six origami polyhedra, photographed (two of the poster's own design)",
+      "by": "oszillate.bsky.social",
+      "address": "https://bsky.app/profile/oszillate.bsky.social/post/3n2m6otn2zs2i"
+    },
+    {
+      "what": "video with music, \"Glass Hour\"",
+      "by": "anthonybecker.bsky.social",
+      "address": "https://bsky.app/profile/anthonybecker.bsky.social/post/3n2mugs3occ2w"
+    }
+  ],
+  "couldBeShown": "Paper polyhedra: a woven dodecahedron of six strips, a rhombic dodecahedron, a tiny \"harlequin cube\" of six pieces, a partially sunken cube, a rosette-like half-unit (all from the alt texts, which are detailed). The \"Glass Hour\" video and the \"zonohedron in winter\" image have no alt text; research has not seen or heard them.",
+  "numbers": [
+    "\"polyhedra week\": 5 posts, 3 people; \"polyhedron week\": 3 posts, 2 people (digest, Appendix D).",
+    "Six photographs; 38 likes; the poster has 75 followers.",
+    "Woven dodecahedron: \"six strips that use one golden rectangle in its entirety\" (alt text).",
+    "An eight-line poem; 0 likes."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2h67hytac25",
+      "text": "it's polyhedra week",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "time": "2026-11-16T18:35:30.509Z",
+      "counts": {
+        "likes": 15,
+        "reposts": 2,
+        "replies": 3,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:s4xmseub4a4pwwetg2xxmcyy/app.bsky.feed.post/3n2gz7l5trc2v",
+        "handle": "hn100.bsky.social",
+        "text": "Smallest possible nopert polyhedra: the Septopert\n\nDiscussion",
+        "time": "2026-11-16T17:06:05.082Z"
+      },
+      "kind": "quote",
+      "note": "The declaration. Quotes a post by a link-sharing account."
+    },
+    {
+      "uri": "at://did:plc:p572wxnsuoogcrhlfrlizlrb/app.bsky.feed.post/3n2h6jvz4mshz",
+      "text": "@norvid-studies.bsky.social let's get it trending",
+      "handle": "gracekind.net",
+      "displayName": "Grace",
+      "time": "2026-11-16T18:41:20.743Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 4,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2h67hytac25",
+        "handle": "oscillatory.net",
+        "text": "it's polyhedra week"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2jn7eneo22j",
+      "text": "it's polyhedra week now, lock in",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-17T18:09:12.592Z",
+      "counts": {
+        "likes": 42,
+        "reposts": 2,
+        "replies": 2,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jfwtubf22r",
+        "handle": "yonderdavid.bsky.social",
+        "text": "",
+        "time": "2026-11-17T15:59:10.365Z"
+      },
+      "kind": "quote",
+      "note": "The next day, quoting the polyhedra video (whose text is empty)."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jo23y6us2x",
+      "text": "the seasons change so quickly",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-17T18:24:09.479Z",
+      "counts": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2jn7eneo22j",
+        "handle": "norvid-studies.bsky.social",
+        "text": "it's polyhedra week now, lock in"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2jo5d3a7k2g",
+      "text": "the zonohedron in winter*\n\n*this was tool assisted... but not well...",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-17T18:25:57.583Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jo23y6us2x",
+        "handle": "shimmermathlabs.com",
+        "text": "the seasons change so quickly"
+      },
+      "kind": "reply",
+      "media": "image (no alt text; research has not seen it)",
+      "note": "Image without alt text."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jovzlsh22x",
+      "text": "devouring time, eat through the plate\nand fret the joints that turn my wrist.\nyour pink tetrahedron still fits\nthe little hollow of my fist.\n\nyour thumb wore one sharp vertex round\nthrough proofs abandoned, lost, and found.\nfour points. i’ll make it sharp, and then\ncome think and wear it down again.",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-17T18:39:46.500Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2jo5d3a7k2g",
+        "handle": "norvid-studies.bsky.social",
+        "text": "the zonohedron in winter*\n\n*this was tool assisted... but not well..."
+      },
+      "kind": "reply",
+      "note": "A poem, in reply."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2joy5zir22x",
+      "text": "(obviously tool assisted, i told it to write a love poem and it puts in math proofs)",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-17T18:40:58.253Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jovzlsh22x",
+        "handle": "shimmermathlabs.com",
+        "text": "devouring time, eat through the plate\nand fret the joints that turn my wrist.\nyour pink tetrahedron still fits\nthe little hollow of my fist.\n\nyour thumb wore one sharp vertex round\nthrough proofs abandoned, lost, and found.\nfour points. i’ll make it sharp, and then\ncome think and wear it down again."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2m6otn2zs2i",
+      "text": "Improptu posting some old stuff from my origami collection for Simcluster Polyhedron Week™, see descriptions in alt text",
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "time": "2026-11-18T18:27:24.706Z",
+      "counts": {
+        "likes": 38,
+        "reposts": 5,
+        "replies": 0,
+        "quotes": 1
+      },
+      "kind": "post",
+      "alt": "Woven Dodecahedron, a classic model by David Brill of the British Origami Society; six strips that use one golden rectangle in its entirety. Maybe my favorite modular origami design. Unlike the average sort this is also *very* sturdy, you could outright play street hockey with it (I've tested)\n\nAlso a model of Brill's, roughly an omnisunken rhombic hexecontahedron. Technically, not a polyhedron as much as a net / skeleton for one, ideally folded this would have zero volume.\n\nThe classic rhombic dodecahedron; unit design by Nick Robinson. I have a whole pile of these stashed for demonstrating / testing the spacefilling property\n\nTiny \"harlequin cube\" showing the full symmetry elements of the octahedral group. Just six pieces that are mild variants of the classic Sonobe unit, much simpler than the finished model looks like.\n\nA partially-sunken cube unit of my own design. Looks like 12 units but is actually just 6, each square face and its indents are one piece. I've wanted to use the principle from this to develop also the 24× sunken version similar to the previous cube, I never finished that project alas.\n\nAnother design of my own: kind of a half-unit for a sunken deltoidal icositetrahedron; this is one sheet, kind of a quadruple cootie catcher (though I suppose a smaller unit might make a sharper whole polyhedron). Also serves as a rosette for decorating gifts!",
+      "alts": [
+        "Woven Dodecahedron, a classic model by David Brill of the British Origami Society; six strips that use one golden rectangle in its entirety. Maybe my favorite modular origami design. Unlike the average sort this is also *very* sturdy, you could outright play street hockey with it (I've tested)",
+        "Also a model of Brill's, roughly an omnisunken rhombic hexecontahedron. Technically, not a polyhedron as much as a net / skeleton for one, ideally folded this would have zero volume.",
+        "The classic rhombic dodecahedron; unit design by Nick Robinson. I have a whole pile of these stashed for demonstrating / testing the spacefilling property",
+        "Tiny \"harlequin cube\" showing the full symmetry elements of the octahedral group. Just six pieces that are mild variants of the classic Sonobe unit, much simpler than the finished model looks like.",
+        "A partially-sunken cube unit of my own design. Looks like 12 units but is actually just 6, each square face and its indents are one piece. I've wanted to use the principle from this to develop also the 24× sunken version similar to the previous cube, I never finished that project alas.",
+        "Another design of my own: kind of a half-unit for a sunken deltoidal icositetrahedron; this is one sheet, kind of a quadruple cootie catcher (though I suppose a smaller unit might make a sharper whole polyhedron). Also serves as a rosette for decorating gifts!"
+      ],
+      "media": "image",
+      "note": "Origami. Six images; the alt texts are the poster's."
+    },
+    {
+      "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n2mugs3occ2w",
+      "text": "Glass Hour\nfor polyhedra week\nmusic by made in Ableton Live 12 by an agent testing my music production harness",
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "time": "2026-11-19T00:56:36.981Z",
+      "counts": {
+        "likes": 11,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "kind": "post",
+      "media": "video (no alt text; research has not seen it)",
+      "note": "Music. Video without alt text."
+    }
+  ],
+  "people": [
+    {
+      "handle": "oscillatory.net",
+      "followers": 274,
+      "displayName": "a hangry mouse",
+      "clusterMember": true,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "declared the week"
+    },
+    {
+      "handle": "oszillate.bsky.social",
+      "followers": 75,
+      "displayName": "*Pistäwəńćə",
+      "clusterMember": true,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "posted the origami"
+    },
+    {
+      "handle": "anthonybecker.bsky.social",
+      "followers": 2318,
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "posted the music"
+    },
+    {
+      "handle": "gracekind.net",
+      "followers": 8674,
+      "displayName": "Grace",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "followers": 2777,
+      "displayName": "norvid_studies",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "followers": 1454,
+      "displayName": "Amber 🌸",
+      "clusterMember": true,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    }
+  ],
+  "sensitive": "@oszillate.bsky.social (75 followers) and @oscillatory.net (274) are small accounts: R7 allows them only as heroes of a moment, which is what these posts are. Three of the origami models are credited in the alt text to two named designers outside Bluesky; those credits are part of the poster's alt text. @norvid-studies.bsky.social is marked featuredPrevious: spoke, so the account is not cast to speak in this episode; its posts may be shown. @gracekind.net and @shimmermathlabs.com are marked featuredPrevious: shown. The poem is described by its author as written by a tool at the author's request, so it is the author's post but not the author's own verse. Naming of weeks may also be covered by the talk lane.",
+  "notUnderstood": [
+    "What \"Glass Hour\" sounds like and what its video shows."
+  ]
+}

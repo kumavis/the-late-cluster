@@ -1,0 +1,39 @@
+{
+  "id": "voices-catlike-thing",
+  "lane": "voices",
+  "title": "A 104-follower account posts \"a catlike thing\", a rough animation",
+  "summary": "On Tue 17 Nov 15:22Z @postfreq.bsky.social (jil, 104 followers) posted a video with the words \"a catlike thing\" (5 likes). The alt text reads: \"a rough animation of a cat- or fox-like critter turning and sniffing the air\". The post is top-level, quotes nothing, and has no replies in the digest; it does not say how the animation was made or what it is for. The same window had cat-themed threads among members (the digest's story 16, \"concept: chimera vocal synth but for cats\"); the post does not say whether it is connected.",
+  "posts": [
+    {
+      "uri": "at://did:plc:qb22jumuv3x2pdvuyvbz5sou/app.bsky.feed.post/3n2jdvitgh22l",
+      "url": "https://bsky.app/profile/postfreq.bsky.social/post/3n2jdvitgh22l",
+      "handle": "postfreq.bsky.social",
+      "displayName": "jil",
+      "text": "a catlike thing",
+      "time": "2026-11-17T15:22:37.765Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 2,
+        "replies": 0,
+        "quotes": 0
+      },
+      "alt": "a rough animation of a cat- or fox-like critter turning and sniffing the air",
+      "video": true
+    }
+  ],
+  "people": [
+    {
+      "handle": "postfreq.bsky.social",
+      "displayName": "jil",
+      "followers": 104,
+      "smallAccount": true,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "made and posted the animation"
+    }
+  ],
+  "watchable": "One video: a cat- or fox-like critter turning and sniffing the air (alt text). I have not seen the video; the digest holds only its description.",
+  "sensitive": "A small account (104 followers) and a 5-like post (R7: hero only). What the animation is for and how it was made are unknown (R15). Earlier in the window the same account asked other members how they made their animations and images, in posts not used here."
+}

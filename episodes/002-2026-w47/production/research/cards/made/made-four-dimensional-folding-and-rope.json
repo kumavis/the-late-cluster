@@ -1,0 +1,339 @@
+{
+  "id": "made-four-dimensional-folding-and-rope",
+  "lane": "made",
+  "title": "Folding polyhedra into four-dimensional objects, and a study of rope in four dimensions",
+  "summary": "Through the window @minormobius.bsky.social (7,162 followers) posted a run of small sites about four-dimensional geometry. On Fri 13 Nov: \"the 4D rope studies are making progress. The sheathed filament rope is pretty goated, pulling ahead.\" On Mon 16 Nov, after @oscillatory.net showed polyhedra being folded from nets (see made-johnson-solid-creatures), the maker thanked that account for the push and a little over two hours later posted \"Rich new vein, folding polyhedra into 4d objects. “Polychora Oragami” ... Find all 261 octanimos that fold into a tesseract here\" with a video and a link to ana.mino.mobi/fold (48 likes). On Wed 18 Nov came a \"biprism\" for which \"you just need to fold eleven prisms together\"; then, after @oszillate.bsky.social (75 followers) wrote \"Lmk once you get to the Grand Antiprism\", the maker posted nine hours later \"Work on the Grand Antiprism has begun ... the object itself goes so hard. 300 tetrahedra, 20 pentagonal antiprisms.\" On Thu 19 Nov the maker posted a short article, \"Rope after the knot: what holds in four dimensions\", with figures that \"can be clicked and manipulated in four dimensions\".",
+  "made": [
+    {
+      "what": "polychora origami: nets of solids folding into four-dimensional shapes (tesseract, biprism, Grand Antiprism)",
+      "by": "minormobius.bsky.social",
+      "address": "https://ana.mino.mobi/fold"
+    },
+    {
+      "what": "4D rope studies and the article \"Rope after the knot: what holds in four dimensions\"",
+      "by": "minormobius.bsky.social",
+      "address": "https://kata.mino.mobi/papers/r1/paper"
+    }
+  ],
+  "couldBeShown": "Nets folding up into a tesseract (the maker's \"octanimos\", which research takes to be arrangements of eight cubes); a shape that looks like one prism until it is rotated and shows another (\"In one frame it's one type of prism, but rotate the right axes and see the second prism\"); a rope design being pulled in a strength comparison. None of the videos or images has alt text; these descriptions are the maker's words in the posts.",
+  "numbers": [
+    "\"all 261 octanimos that fold into a tesseract\" (the maker's post).",
+    "\"fold eleven prisms together\" for the pentagonal prism x hexagonal prism.",
+    "Grand Antiprism: \"300 tetrahedra, 20 pentagonal antiprisms\".",
+    "9 h 9 min from \"Lmk once you get to the Grand Antiprism\" (Wed 07:55Z) to \"Work on the Grand Antiprism has begun\" (Wed 17:04Z).",
+    "48 likes on the tesseract post."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n27ph5tar22a",
+      "text": "the 4D rope studies are making progress. The sheathed filament rope is pretty goated, pulling ahead.\n\nkata.mino.mobi/pull",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "time": "2026-11-13T19:22:43.980Z",
+      "counts": {
+        "likes": 7,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "kind": "post",
+      "media": "image (no alt text; research has not seen it)",
+      "links": [
+        {
+          "url": "https://kata.mino.mobi/pull"
+        }
+      ],
+      "note": "Rope. Top-level, with an image (no alt text)."
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2gujdekzc2o",
+      "text": "i've been noodling on this. my impression is you discover pokemon via random encounters initiated by wandering around the wilderness in-game. my first thought was that the polyhedron equivalent of wilderness is making polyhedral nets and folding them up",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "time": "2026-11-16T15:42:03.777Z",
+      "counts": {
+        "likes": 16,
+        "reposts": 2,
+        "replies": 1,
+        "quotes": 1
+      },
+      "quotes": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2da4rr2ks2s",
+        "handle": "oscillatory.net",
+        "textLeftOut": "it quotes the same account's opening post; see made-johnson-solid-creatures"
+      },
+      "kind": "quote",
+      "media": "video (no alt text; research has not seen it)",
+      "note": "The post by @oscillatory.net that the maker's thanks below belongs to: nets folded into solids."
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2gvehmmuc25",
+      "text": "Ooh I had NOT thought about oragami polychora for understanding the 4d thank you for that push. Fabulous work on all fronts",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "time": "2026-11-16T15:57:14.206Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2gujds3n22o",
+        "handle": "oscillatory.net",
+        "textLeftOut": "the parent quotes a post in a flagged story; see made-johnson-solid-creatures"
+      },
+      "kind": "reply",
+      "note": "The maker's thanks. It is a reply to a later post in that account's thread, which quotes a post in a story the digest flags, so the parent's text is left out here."
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2h4vy6kr225",
+      "text": "Rich new vein, folding polyhedra into 4d objects. “Polychora Oragami”, this is apparently a field with rich prior art. Find all 261 octanimos that fold into a tesseract here\n\nana.mino.mobi/fold",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "time": "2026-11-16T18:12:18.188Z",
+      "counts": {
+        "likes": 48,
+        "reposts": 2,
+        "replies": 3,
+        "quotes": 1
+      },
+      "kind": "post",
+      "media": "video (no alt text; research has not seen it)",
+      "links": [
+        {
+          "url": "https://ana.mino.mobi/fold"
+        }
+      ],
+      "note": "Folding into a tesseract. Top-level, with a video (no alt text)."
+    },
+    {
+      "uri": "at://did:plc:ysaiuavm2f7d4th42c4valhw/app.bsky.feed.post/3n2hcwdd2zc2k",
+      "text": "Computer, prove or disprove: every convex polytope admits a non-overlapping net. Make no mistakes. Do a breakthrough.",
+      "handle": "e-infinity.space",
+      "displayName": "ꭓle Ormsby 𓆙",
+      "time": "2026-11-16T19:59:52.322Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2h4vy6kr225",
+        "handle": "minormobius.bsky.social",
+        "text": "Rich new vein, folding polyhedra into 4d objects. “Polychora Oragami”, this is apparently a field with rich prior art. Find all 261 octanimos that fold into a tesseract here\n\nana.mino.mobi/fold"
+      },
+      "kind": "reply",
+      "note": "A reply from an account outside the cluster."
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2hcz4xlyc25",
+      "text": "It’s gonna go great",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "time": "2026-11-16T20:01:26.313Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ysaiuavm2f7d4th42c4valhw/app.bsky.feed.post/3n2hcwdd2zc2k",
+        "handle": "e-infinity.space",
+        "text": "Computer, prove or disprove: every convex polytope admits a non-overlapping net. Make no mistakes. Do a breakthrough."
+      },
+      "kind": "reply",
+      "media": "image (no alt text; research has not seen it)",
+      "note": "Image without alt text."
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2ksh3askk2y",
+      "text": "The biprism polychora origami is looking pretty slick. In one frame it’s one type of prism, but rotate the right axes and see the second prism. To get the pentagonal prism x hexagonal prism you just need to fold eleven prisms together\n\nana.mino.mobi/fold/#duo5,6",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "time": "2026-11-18T05:15:39.625Z",
+      "counts": {
+        "likes": 16,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 1
+      },
+      "kind": "post",
+      "media": "video (no alt text; research has not seen it)",
+      "links": [
+        {
+          "url": "https://ana.mino.mobi/fold"
+        }
+      ],
+      "note": "The biprism."
+    },
+    {
+      "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2l3euxhn225",
+      "text": "Lmk once you get to the Grand Antiprism, of which I am still unsure why it's unique rather than in a larger series of double-antiprisms. A central ridge torus of tetrahedra can be made in arbitrary sizes, so you'd think there might be e.g. a 14×14 version with heptagonal antiprisms.",
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "time": "2026-11-18T07:55:29.596Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 2
+      },
+      "replyTo": {
+        "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2ksh3askk2y",
+        "handle": "minormobius.bsky.social",
+        "text": "The biprism polychora origami is looking pretty slick. In one frame it’s one type of prism, but rotate the right axes and see the second prism. To get the pentagonal prism x hexagonal prism you just need to fold eleven prisms together\n\nana.mino.mobi/fold/#duo5,6"
+      },
+      "kind": "reply",
+      "note": "A reply from an account with 75 followers."
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2m22jqh522y",
+      "text": "Work on the Grand Antiprism has begun. This is apparently unique, I’m to understand why. But the object itself goes so hard. 300 tetrahedra, 20 pentagonal antiprisms. \n\nana.mino.mobi/fold/#grand",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "time": "2026-11-18T17:04:28.282Z",
+      "counts": {
+        "likes": 13,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "quotes": {
+        "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2l3euxhn225",
+        "handle": "oszillate.bsky.social",
+        "text": "Lmk once you get to the Grand Antiprism, of which I am still unsure why it's unique rather than in a larger series of double-antiprisms. A central ridge torus of tetrahedra can be made in arbitrary sizes, so you'd think there might be e.g. a 14×14 version with heptagonal antiprisms.",
+        "time": "2026-11-18T07:55:29.596Z"
+      },
+      "kind": "quote",
+      "media": "video (no alt text; research has not seen it)",
+      "links": [
+        {
+          "url": "https://ana.mino.mobi/fold"
+        }
+      ],
+      "note": "Quotes the reply above."
+    },
+    {
+      "uri": "at://did:plc:xuzgwzfczpvmxay4yke247se/app.bsky.feed.post/3n2me7xdcr32p",
+      "text": "Oh. I've no idea what this is.\n\nBut send me a list of the poly/code/meshes and I'll make it a Poly collection game with my spare Claude tokens at the end of the week...\n\n(If I have any left. 😭)",
+      "handle": "techyben.bsky.social",
+      "displayName": "Techy Ben",
+      "time": "2026-11-18T20:06:27.725Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2m22jqh522y",
+        "handle": "minormobius.bsky.social",
+        "text": "Work on the Grand Antiprism has begun. This is apparently unique, I’m to understand why. But the object itself goes so hard. 300 tetrahedra, 20 pentagonal antiprisms. \n\nana.mino.mobi/fold/#grand",
+        "time": "2026-11-18T17:04:28.282Z"
+      },
+      "kind": "quote",
+      "note": "A quote post of the Grand Antiprism post."
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2ncb3gsmk2y",
+      "text": "A small article but important nonetheless. You can assemble ropes and cables in four dimensions, they can bind with internal friction, you can get the compensation for weak fibers in high variance threads.\n\nkata.mino.mobi/papers/r1/pa...",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "time": "2026-11-19T05:03:57.842Z",
+      "counts": {
+        "likes": 21,
+        "reposts": 1,
+        "replies": 2,
+        "quotes": 1
+      },
+      "kind": "post",
+      "links": [
+        {
+          "url": "https://kata.mino.mobi/papers/r1/paper",
+          "title": "Rope after the knot: what holds in four dimensions"
+        }
+      ],
+      "note": "The article."
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2ncb4jmus2y",
+      "text": "Small article tech upgrade, figures can be clicked and manipulated in four dimensions for the spatial design piece.",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "time": "2026-11-19T05:03:57.843Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2ncb3gsmk2y",
+        "handle": "minormobius.bsky.social",
+        "text": "A small article but important nonetheless. You can assemble ropes and cables in four dimensions, they can bind with internal friction, you can get the compensation for weak fibers in high variance threads.\n\nkata.mino.mobi/papers/r1/pa..."
+      },
+      "kind": "reply"
+    }
+  ],
+  "people": [
+    {
+      "handle": "minormobius.bsky.social",
+      "followers": 7162,
+      "displayName": "Minor Mobius",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "maker"
+    },
+    {
+      "handle": "oscillatory.net",
+      "followers": 274,
+      "displayName": "a hangry mouse",
+      "clusterMember": true,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "prompted the folding"
+    },
+    {
+      "handle": "oszillate.bsky.social",
+      "followers": 75,
+      "displayName": "*Pistäwəńćə",
+      "clusterMember": true,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "asked for the Grand Antiprism"
+    },
+    {
+      "handle": "e-infinity.space",
+      "followers": 1786,
+      "displayName": "ꭓle Ormsby 𓆙",
+      "clusterMember": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "techyben.bsky.social",
+      "followers": 909,
+      "displayName": "Techy Ben",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "sensitive": "@minormobius.bsky.social has 7,162 followers (see made-hyperball on why research treats it as a regular). @oscillatory.net (274 followers) and @oszillate.bsky.social (75) are small accounts, here as the people whose remarks the maker built on. @e-infinity.space (1,786 followers) is not a cluster member; its one reply is a mock instruction to a computer. The same maker's viewer for the 92 Johnson solids is in a story the digest flags (health keywords; see made-johnson-solid-creatures) and is not carried. The maker's spelling \"Oragami\" is the maker's; a card must keep it or avoid the phrase. Nothing else sensitive found.",
+  "notUnderstood": [
+    "\"octanimos\": research takes it to mean arrangements of eight cubes (the nets of a tesseract) and has not checked the term.",
+    "Why the Grand Antiprism is \"unique\": the maker says \"I'm to understand why\"."
+  ]
+}

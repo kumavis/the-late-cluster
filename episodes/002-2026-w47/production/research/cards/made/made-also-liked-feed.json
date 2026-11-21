@@ -1,0 +1,495 @@
+{
+  "id": "made-also-liked-feed",
+  "lane": "made",
+  "title": "A feed that shows what else the people who liked your last like have liked, named \"What else is like this?\"",
+  "summary": "On Sun 15 Nov at 23:00Z @spacecowboy17.bsky.social (5,812 followers) posted a new custom feed: \"You like a post and wonder: what else do the people who liked it like? / This feed helps answer that question. It takes the last post you liked, finds people who also liked it, and shows what else they've liked.\" The feed's name, shown in the post's embed, is \"What else is like this?\". The post has 220 likes, 36 reposts and 12 quotes. One minute later a reply tagged @norvid-studies.bsky.social with the words \"what else is like this\". The maker explained it is \"a feed version of what I built as a standalone page 7 months ago\". When a user reported errors in another client, the maker replied \"Hm, I may have overdone it with blocking bots. Looking...\" and 23 minutes later \"Indeed. Fixed it now.\" A confused user was served one of their own posts; the maker explained that the system \"treats posts as auto-liked by the author\". One user wrote \"That's pretty dope! / And after having used it, also very disillusioning. 😄\". Quote posts included a one-word \"claim\" (79 likes), \"Oh my god they actually made it\", and \"Switching to this as my primary feed\" (57 likes). In the thread someone proposed a \"claims\" bot and the maker replied \"One cannot gate-keep a simcluster.\"",
+  "made": [
+    {
+      "what": "a custom feed, \"What else is like this?\", built from your most recent like",
+      "by": "spacecowboy17.bsky.social",
+      "address": "https://bsky.app/profile/spacecowboy17.bsky.social/post/3n2f4l7n23s2p"
+    }
+  ],
+  "couldBeShown": "One liked post; the other people who liked it; what else each of them liked, as a feed. A user being shown their own post because the system counts authors as liking their own posts. There is no image in the thread apart from one undescribed reply.",
+  "numbers": [
+    "220 likes, 36 reposts, 8 replies, 12 quotes on the feed post.",
+    "\"7 months ago\": the standalone page it is a version of.",
+    "23 minutes from \"Looking...\" to \"Fixed it now.\"",
+    "One minute from the feed post to the first \"what else is like this\" reply."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f4l7n23s2p",
+      "text": "You like a post and wonder: what else do the people who liked it like?\n\nThis feed helps answer that question. It takes the last post you liked, finds people who also liked it, and shows what else they've liked.",
+      "handle": "spacecowboy17.bsky.social",
+      "displayName": "spacecowboy",
+      "time": "2026-11-15T23:00:57.427Z",
+      "counts": {
+        "likes": 220,
+        "reposts": 36,
+        "replies": 8,
+        "quotes": 12
+      },
+      "kind": "post",
+      "embed": {
+        "kind": "defs#generatorView",
+        "name": "What else is like this?"
+      },
+      "note": "The feed. Top-level, with the feed embedded."
+    },
+    {
+      "uri": "at://did:plc:bhklr7m5t5fdqebgy63hpfum/app.bsky.feed.post/3n2f4maz6r226",
+      "text": "@norvid-studies.bsky.social what else is like this",
+      "handle": "satyrs.eu",
+      "displayName": "Xanthe van Otterburn 🦦️🍇️",
+      "time": "2026-11-15T23:01:32.427Z",
+      "counts": {
+        "likes": 23,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f4l7n23s2p",
+        "handle": "spacecowboy17.bsky.social",
+        "text": "You like a post and wonder: what else do the people who liked it like?\n\nThis feed helps answer that question. It takes the last post you liked, finds people who also liked it, and shows what else they've liked."
+      },
+      "kind": "reply",
+      "note": "From an account that is not a cluster member."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2f4thmzzs2y",
+      "text": "to quote @croissanthology.com",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-15T23:05:34.251Z",
+      "counts": {
+        "likes": 29,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:bhklr7m5t5fdqebgy63hpfum/app.bsky.feed.post/3n2f4maz6r226",
+        "handle": "satyrs.eu",
+        "text": "@norvid-studies.bsky.social what else is like this"
+      },
+      "kind": "reply",
+      "media": "image (no alt text; research has not seen it)",
+      "note": "Image without alt text."
+    },
+    {
+      "uri": "at://did:plc:wixdgg4ejykqrsoqgi7c2fk6/app.bsky.feed.post/3n2f5ulsyvcva",
+      "text": "coming soon: a \"claims\" bot that auto-qts dubious syncluster (like simcluster but synths) material",
+      "handle": "temujin9.t9productions.com",
+      "displayName": "Prose and Khans",
+      "time": "2026-11-15T23:24:05.936Z",
+      "counts": {
+        "likes": 11,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2f4thmzzs2y",
+        "handle": "norvid-studies.bsky.social",
+        "text": "to quote @croissanthology.com"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f6cmsins2v",
+      "text": "One cannot gate-keep a simcluster.",
+      "handle": "spacecowboy17.bsky.social",
+      "displayName": "spacecowboy",
+      "time": "2026-11-15T23:31:56.731Z",
+      "counts": {
+        "likes": 17,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:wixdgg4ejykqrsoqgi7c2fk6/app.bsky.feed.post/3n2f5ulsyvcva",
+        "handle": "temujin9.t9productions.com",
+        "text": "coming soon: a \"claims\" bot that auto-qts dubious syncluster (like simcluster but synths) material"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:wixdgg4ejykqrsoqgi7c2fk6/app.bsky.feed.post/3n2f6f3nlw2sz",
+      "text": "the urge to qt this with \"claim\" is overwhelming",
+      "handle": "temujin9.t9productions.com",
+      "displayName": "Prose and Khans",
+      "time": "2026-11-15T23:33:19.408Z",
+      "counts": {
+        "likes": 14,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f6cmsins2v",
+        "handle": "spacecowboy17.bsky.social",
+        "text": "One cannot gate-keep a simcluster."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f573fpfc2p",
+      "text": "This is a feed version of what I built as a standalone page 7 months ago: foryou.club/also-liked \n\nI think the feed version will be easier to use - no post urls to copy-paste, no need to leave the app.\n\nbsky.app/profile/spac...",
+      "handle": "spacecowboy17.bsky.social",
+      "displayName": "spacecowboy",
+      "time": "2026-11-15T23:12:04.081Z",
+      "counts": {
+        "likes": 17,
+        "reposts": 2,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f4l7n23s2p",
+        "handle": "spacecowboy17.bsky.social",
+        "text": "You like a post and wonder: what else do the people who liked it like?\n\nThis feed helps answer that question. It takes the last post you liked, finds people who also liked it, and shows what else they've liked."
+      },
+      "quotes": {
+        "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3mjrpauiu3k2l",
+        "handle": "spacecowboy17.bsky.social",
+        "text": "Introducing a new way to explore Bluesky: foryou.club/also-liked\n\nEnter a post URL to see what other posts people who liked it also like.\n\nFor example, enter the url of this art post: bsky.app/profile/alar...\nand you will get a bunch more art posts: foryou.club/also-liked?p...",
+        "time": "2026-04-18T14:58:50.493Z"
+      },
+      "kind": "reply+quote",
+      "links": [
+        {
+          "url": "https://foryou.club/also-liked"
+        }
+      ],
+      "note": "The maker on where it came from. Quotes an older post of the maker's."
+    },
+    {
+      "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f6a7ahu22v",
+      "text": "Speaking of \"easier to use\", some custom clients have this built-in: bsky.app/profile/spac...",
+      "handle": "spacecowboy17.bsky.social",
+      "displayName": "spacecowboy",
+      "time": "2026-11-15T23:30:35.401Z",
+      "counts": {
+        "likes": 11,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f573fpfc2p",
+        "handle": "spacecowboy17.bsky.social",
+        "text": "This is a feed version of what I built as a standalone page 7 months ago: foryou.club/also-liked \n\nI think the feed version will be easier to use - no post urls to copy-paste, no need to leave the app.\n\nbsky.app/profile/spac..."
+      },
+      "quotes": {
+        "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3mkg2o7t7qs2b",
+        "handle": "spacecowboy17.bsky.social",
+        "text": "Two Bluesky client apps have integrated the \"also liked\" functionality:\n- @boostblue.bsky.social - iOS and Android\n- @skywalker.thereforeiam.eu - Android\n\nThe app integration makes it a much smoother experience than the stand-alone website foryou.club/also-liked\n\nHere is how it looks in Boost Blue:",
+        "time": "2026-04-26T17:16:24.503Z"
+      },
+      "kind": "reply+quote"
+    },
+    {
+      "uri": "at://did:plc:q7suwaz53ztc4mbiqyygbn43/app.bsky.feed.post/3n2fg4p5mxc2j",
+      "text": "is the api broken? seeing 403 errors in Witchsky",
+      "handle": "xan.lol",
+      "displayName": "xan",
+      "time": "2026-11-16T01:51:47.802Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f6a7ahu22v",
+        "handle": "spacecowboy17.bsky.social",
+        "text": "Speaking of \"easier to use\", some custom clients have this built-in: bsky.app/profile/spac..."
+      },
+      "kind": "reply",
+      "note": "From an account that is not a cluster member."
+    },
+    {
+      "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2fgtlo2pc2y",
+      "text": "Hm, I may have overdone it with blocking bots. Looking...",
+      "handle": "spacecowboy17.bsky.social",
+      "displayName": "spacecowboy",
+      "time": "2026-11-16T02:04:35.889Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:q7suwaz53ztc4mbiqyygbn43/app.bsky.feed.post/3n2fg4p5mxc2j",
+        "handle": "xan.lol",
+        "text": "is the api broken? seeing 403 errors in Witchsky"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2fi3soh3s2p",
+      "text": "Indeed. Fixed it now.",
+      "handle": "spacecowboy17.bsky.social",
+      "displayName": "spacecowboy",
+      "time": "2026-11-16T02:27:05.427Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2fgtlo2pc2y",
+        "handle": "spacecowboy17.bsky.social",
+        "text": "Hm, I may have overdone it with blocking bots. Looking..."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:fd4fglehl4vor2ogjtorkdes/app.bsky.feed.post/3n2fcaqgg722s",
+      "text": "I’m confused. I tapped on the feed and it served me a post of _mine_ (which I had not self-liked).  What am I missing?",
+      "handle": "donotgogently.bsky.social",
+      "displayName": "Chris Patil",
+      "time": "2026-11-16T00:42:28.388Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f4l7n23s2p",
+        "handle": "spacecowboy17.bsky.social",
+        "text": "You like a post and wonder: what else do the people who liked it like?\n\nThis feed helps answer that question. It takes the last post you liked, finds people who also liked it, and shows what else they've liked."
+      },
+      "kind": "reply",
+      "note": "From an account that is not a cluster member."
+    },
+    {
+      "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2fcnnyhhc2p",
+      "text": "For You treats posts as auto-liked by the author. So it sees you last top level post as your most recent like.",
+      "handle": "spacecowboy17.bsky.social",
+      "displayName": "spacecowboy",
+      "time": "2026-11-16T00:49:42.042Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:fd4fglehl4vor2ogjtorkdes/app.bsky.feed.post/3n2fcaqgg722s",
+        "handle": "donotgogently.bsky.social",
+        "text": "I’m confused. I tapped on the feed and it served me a post of _mine_ (which I had not self-liked).  What am I missing?"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:w6p7n5zlkzuwbtpj5dyjdjsu/app.bsky.feed.post/3n2gtkpch4s2s",
+      "text": "That's pretty dope!\n\nAnd after having used it, also very disillusioning. 😄",
+      "handle": "fanodelli.bsky.social",
+      "displayName": "Sven 🔴⚪",
+      "time": "2026-11-16T15:24:56.101Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f4l7n23s2p",
+        "handle": "spacecowboy17.bsky.social",
+        "text": "You like a post and wonder: what else do the people who liked it like?\n\nThis feed helps answer that question. It takes the last post you liked, finds people who also liked it, and shows what else they've liked."
+      },
+      "kind": "reply",
+      "note": "From a small account (276 followers) that is not a cluster member."
+    },
+    {
+      "uri": "at://did:plc:nbfjoeficjzf3pejpontvril/app.bsky.feed.post/3n2f6shdk4c2v",
+      "text": "claim",
+      "handle": "astrra.space",
+      "displayName": "Astra ⎔",
+      "time": "2026-11-15T23:40:47.866Z",
+      "counts": {
+        "likes": 79,
+        "reposts": 4,
+        "replies": 1,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f4l7n23s2p",
+        "handle": "spacecowboy17.bsky.social",
+        "text": "You like a post and wonder: what else do the people who liked it like?\n\nThis feed helps answer that question. It takes the last post you liked, finds people who also liked it, and shows what else they've liked.",
+        "time": "2026-11-15T23:00:57.427Z"
+      },
+      "kind": "quote",
+      "note": "A quote post of the feed post."
+    },
+    {
+      "uri": "at://did:plc:pcpxcmv5z6oseafi5khuulta/app.bsky.feed.post/3n2f7x73fy22b",
+      "text": "Oh my god they actually made it",
+      "handle": "wavebidder.bsky.social",
+      "time": "2026-11-16T00:01:20.728Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f4l7n23s2p",
+        "handle": "spacecowboy17.bsky.social",
+        "text": "You like a post and wonder: what else do the people who liked it like?\n\nThis feed helps answer that question. It takes the last post you liked, finds people who also liked it, and shows what else they've liked.",
+        "time": "2026-11-15T23:00:57.427Z"
+      },
+      "kind": "quote",
+      "note": "A quote post of the feed post."
+    },
+    {
+      "uri": "at://did:plc:7dudjk2uag3q4wb7l6vfe5yk/app.bsky.feed.post/3n2fjjkovic2l",
+      "text": "Switching to this as my primary feed",
+      "handle": "apenwarr.ca",
+      "displayName": "apenwarr",
+      "time": "2026-11-16T02:52:40.558Z",
+      "counts": {
+        "likes": 57,
+        "reposts": 1,
+        "replies": 2,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f4l7n23s2p",
+        "handle": "spacecowboy17.bsky.social",
+        "text": "You like a post and wonder: what else do the people who liked it like?\n\nThis feed helps answer that question. It takes the last post you liked, finds people who also liked it, and shows what else they've liked.",
+        "time": "2026-11-15T23:00:57.427Z"
+      },
+      "kind": "quote",
+      "note": "A quote post of the feed post."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2f5wfmods2k",
+      "text": "trying it out, its sort of a hyper-sensitive-to-whatever-you-just-saw feed simulator, ie the substack native For You feed that everyone complains about over there. that said as a toggle to explore it's neat to have",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-15T23:25:06.547Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f4l7n23s2p",
+        "handle": "spacecowboy17.bsky.social",
+        "text": "You like a post and wonder: what else do the people who liked it like?\n\nThis feed helps answer that question. It takes the last post you liked, finds people who also liked it, and shows what else they've liked.",
+        "time": "2026-11-15T23:00:57.427Z"
+      },
+      "kind": "quote",
+      "note": "A quote post of the feed post."
+    }
+  ],
+  "people": [
+    {
+      "handle": "spacecowboy17.bsky.social",
+      "followers": 5812,
+      "displayName": "spacecowboy",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "maker"
+    },
+    {
+      "handle": "satyrs.eu",
+      "followers": 402,
+      "displayName": "Xanthe van Otterburn 🦦️🍇️",
+      "clusterMember": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "followers": 2777,
+      "displayName": "norvid_studies",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "temujin9.t9productions.com",
+      "followers": 2268,
+      "displayName": "Prose and Khans",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "xan.lol",
+      "followers": 2116,
+      "displayName": "xan",
+      "clusterMember": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "donotgogently.bsky.social",
+      "followers": 897,
+      "displayName": "Chris Patil",
+      "clusterMember": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "fanodelli.bsky.social",
+      "followers": 276,
+      "displayName": "Sven 🔴⚪",
+      "clusterMember": false,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "astrra.space",
+      "followers": 3386,
+      "displayName": "Astra ⎔",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "wavebidder.bsky.social",
+      "followers": 922,
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "apenwarr.ca",
+      "followers": 4642,
+      "displayName": "apenwarr",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "sensitive": "The digest lists this thread among its \"Threads you could perform\" (thread 3), so the talk lane may card the same exchange. The feed's name and the word \"claim\" are phrases other members address to @norvid-studies.bsky.social in this window's data; @norvid-studies.bsky.social is marked featuredPrevious: spoke, so the account is not cast to speak in this episode; its posts may be shown. Four repliers are not cluster members (satyrs.eu 402, xan.lol 2,116, donotgogently.bsky.social 897, fanodelli.bsky.social 276, a small account); each is here for a question the maker answered or a remark about using the feed. The \"very disillusioning\" remark is a user laughing at what the feed showed them about their own tastes; it is not a complaint about the maker. Nothing out of bounds found.",
+  "notUnderstood": [
+    "\"syncluster (like simcluster but synths)\" and the proposed \"claims\" bot.",
+    "Why \"claim\" is the reply to a thing like this.",
+    "What the image in the reply \"to quote @croissanthology.com\" shows."
+  ]
+}

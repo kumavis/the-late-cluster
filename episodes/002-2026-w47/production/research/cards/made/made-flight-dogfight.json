@@ -1,0 +1,284 @@
+{
+  "id": "made-flight-dogfight",
+  "lane": "made",
+  "title": "A browser flight game adds \"dogfight your mutuals\", a lobby and then a tutorial as players ask",
+  "summary": "On Fri 13 Nov @samuel.fm (54,200 followers) posted updates to a flight game at flight.mozzius.dev. At 10:12Z: new biomes, weather, time of day and a \"Challenge\" mode (\"one life, increasing waves of bandits. post your high score!\"); at 15:31Z \"my high score is 1550 after a couple of attempts\"; at 16:12Z: \"dogfight your mutuals! multiplayer via atproto now available. sign in with your atmosphere account!\" with an image described as \"my flight sim game on a laptop and a phone. on the laptop a missile is streaking towards mozzius.dev. on the phone a missile warning is visible\" (187 likes, 25 reposts). A minute later: \"probably buggy as all hell, use at own risk\". Cluster members joined in: @bisks.net suggested a lobby and the maker replied one minute later \"just added a lobby yeah! matchmaking is the next step, will do that now\"; @norvid-studies.bsky.social asked \"how do I shoot missiles\" and was told \"F or right click / pause menu shows controls\". On Sat 14 Nov at 13:23Z an account with 161 followers asked \"could you add a tutorial session? i unfortunately have no idea how to play this LMAO\"; at 20:58Z the maker quote-posted that: \"flight.mozzius.dev now has a tutorial! along with much better touch controls, and a new main menu\". The digest groups 40 posts from 16 authors in this story; 5 are cluster members.",
+  "made": [
+    {
+      "what": "a browser flight game with a multiplayer dogfight mode signed in through Bluesky accounts",
+      "by": "samuel.fm",
+      "address": "https://flight.mozzius.dev"
+    }
+  ],
+  "couldBeShown": "A plane over one of four landscapes (alpine, tundra, farmland, archipelago) in changing weather and time of day; a missile streaking toward another player whose handle is shown; a missile warning on a phone; a score of 1550. The descriptions come from the maker's posts and two alt texts.",
+  "numbers": [
+    "High score 1550 \"after a couple of attempts\".",
+    "Four biomes.",
+    "187 likes, 25 reposts, 17 replies, 10 quotes on the multiplayer post.",
+    "7 h 35 min from the request for a tutorial (Sat 13:23Z) to the tutorial (20:58Z).",
+    "40 posts, 16 authors, 5 cluster members (digest)."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n26qorewqs2z",
+      "text": "now on flight.mozzius.dev:\n- alpine, tundra, farmland, archipelago biomes\n- different weather conditions\n- different time of day\n- new game mode: Challenge. one life, increasing waves of bandits. post your high score!",
+      "handle": "samuel.fm",
+      "displayName": "Samuel",
+      "time": "2026-11-13T10:12:13.361Z",
+      "counts": {
+        "likes": 45,
+        "reposts": 0,
+        "replies": 3,
+        "quotes": 1
+      },
+      "kind": "post",
+      "media": "image (no alt text; research has not seen it)",
+      "links": [
+        {
+          "url": "https://flight.mozzius.dev"
+        }
+      ],
+      "note": "Fri 10:12Z. Top-level."
+    },
+    {
+      "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n27cizvdcs2y",
+      "text": "my high score is 1550 after a couple of attempts",
+      "handle": "samuel.fm",
+      "displayName": "Samuel",
+      "time": "2026-11-13T15:31:08.313Z",
+      "counts": {
+        "likes": 8,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n26qorewqs2z",
+        "handle": "samuel.fm",
+        "text": "now on flight.mozzius.dev:\n- alpine, tundra, farmland, archipelago biomes\n- different weather conditions\n- different time of day\n- new game mode: Challenge. one life, increasing waves of bandits. post your high score!"
+      },
+      "kind": "reply",
+      "alt": "1550\n\nbest 1550\n\nretry menu",
+      "media": "image"
+    },
+    {
+      "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n27eszwgis2k",
+      "text": "now on flight.mozzius.dev\n\ndogfight your mutuals! multiplayer via atproto now available. sign in with your atmosphere account!",
+      "handle": "samuel.fm",
+      "displayName": "Samuel",
+      "time": "2026-11-13T16:12:31.376Z",
+      "counts": {
+        "likes": 187,
+        "reposts": 25,
+        "replies": 17,
+        "quotes": 10
+      },
+      "quotes": {
+        "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n26qorewqs2z",
+        "handle": "samuel.fm",
+        "text": "now on flight.mozzius.dev:\n- alpine, tundra, farmland, archipelago biomes\n- different weather conditions\n- different time of day\n- new game mode: Challenge. one life, increasing waves of bandits. post your high score!",
+        "time": "2026-11-13T10:12:13.361Z"
+      },
+      "kind": "quote",
+      "alt": "my flight sim game on a laptop and a phone. on the laptop a missile is streaking towards mozzius.dev. on the phone a missile warning is visible",
+      "media": "image",
+      "links": [
+        {
+          "url": "https://flight.mozzius.dev"
+        }
+      ],
+      "note": "Multiplayer. Quotes the post above. The alt text is the maker's."
+    },
+    {
+      "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n27euslbak2k",
+      "text": "probably buggy as all hell, use at own risk. if on desktop, click aggressively at the start of the round to avoid the pointer lock error",
+      "handle": "samuel.fm",
+      "displayName": "Samuel",
+      "time": "2026-11-13T16:13:30.787Z",
+      "counts": {
+        "likes": 31,
+        "reposts": 0,
+        "replies": 3,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n27eszwgis2k",
+        "handle": "samuel.fm",
+        "text": "now on flight.mozzius.dev\n\ndogfight your mutuals! multiplayer via atproto now available. sign in with your atmosphere account!"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n27mjxuu5s2a",
+      "text": "maybe the matchmaking could improve? lobby / find opponent instead of having to set it up beforehand?",
+      "handle": "bisks.net",
+      "displayName": "rob",
+      "time": "2026-11-13T18:30:37.179Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n27eszwgis2k",
+        "handle": "samuel.fm",
+        "text": "now on flight.mozzius.dev\n\ndogfight your mutuals! multiplayer via atproto now available. sign in with your atmosphere account!"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n27ml5cfh22p",
+      "text": "just added a lobby yeah! matchmaking is the next step, will do that now",
+      "handle": "samuel.fm",
+      "displayName": "Samuel",
+      "time": "2026-11-13T18:31:16.421Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n27mjxuu5s2a",
+        "handle": "bisks.net",
+        "text": "maybe the matchmaking could improve? lobby / find opponent instead of having to set it up beforehand?"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n27nxrzdck2b",
+      "text": "how do I shoot missiles",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-13T18:56:14.539Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n27eszwgis2k",
+        "handle": "samuel.fm",
+        "text": "now on flight.mozzius.dev\n\ndogfight your mutuals! multiplayer via atproto now available. sign in with your atmosphere account!"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n27nzbtmzs2p",
+      "text": "F or right click\n\npause menu shows controls",
+      "handle": "samuel.fm",
+      "displayName": "Samuel",
+      "time": "2026-11-13T18:57:04.684Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n27nxrzdck2b",
+        "handle": "norvid-studies.bsky.social",
+        "text": "how do I shoot missiles"
+      },
+      "kind": "reply",
+      "note": "The maker gave the same answer, word for word, to another account that asked the same thing a few minutes earlier."
+    },
+    {
+      "uri": "at://did:plc:pyzvvyrh6eudle55nhqe62tv/app.bsky.feed.post/3n2bltfi52s2z",
+      "text": "could you add a tutorial session? i unfortunately have no idea how to play this LMAO",
+      "handle": "cookie.ebil.club",
+      "displayName": "cookie",
+      "time": "2026-11-14T13:23:19.168Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n27eszwgis2k",
+        "handle": "samuel.fm",
+        "text": "now on flight.mozzius.dev\n\ndogfight your mutuals! multiplayer via atproto now available. sign in with your atmosphere account!"
+      },
+      "kind": "reply",
+      "note": "From a small account (161 followers) that is not a cluster member."
+    },
+    {
+      "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n2cfc3seus2h",
+      "text": "flight.mozzius.dev now has a tutorial! along with much better touch controls, and a new main menu",
+      "handle": "samuel.fm",
+      "displayName": "Samuel",
+      "time": "2026-11-14T20:58:55.871Z",
+      "counts": {
+        "likes": 17,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:pyzvvyrh6eudle55nhqe62tv/app.bsky.feed.post/3n2bltfi52s2z",
+        "handle": "cookie.ebil.club",
+        "text": "could you add a tutorial session? i unfortunately have no idea how to play this LMAO",
+        "time": "2026-11-14T13:23:19.168Z"
+      },
+      "kind": "quote",
+      "media": "image (no alt text; research has not seen it)",
+      "links": [
+        {
+          "url": "https://flight.mozzius.dev"
+        }
+      ],
+      "note": "Quotes the request above."
+    }
+  ],
+  "people": [
+    {
+      "handle": "samuel.fm",
+      "followers": 54200,
+      "displayName": "Samuel",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "maker"
+    },
+    {
+      "handle": "bisks.net",
+      "followers": 721,
+      "displayName": "rob",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "suggested a lobby"
+    },
+    {
+      "handle": "cookie.ebil.club",
+      "followers": 161,
+      "displayName": "cookie",
+      "clusterMember": false,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "asked for a tutorial"
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "followers": 2777,
+      "displayName": "norvid_studies",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    }
+  ],
+  "sensitive": "@samuel.fm has 54,200 followers. The scope review says the wider cap let in accounts that are not the community's regulars and asks research to apply R7 (\"Don't use one-off viral posts by people outside the cluster's regulars\") to large accounts. On the evidence here this is borderline: the game is something members played and asked for changes to, but only 5 of the story's 16 authors are cluster members and the maker is far larger than the cluster. Research cards it for the reviewer to decide and would not object to it being dropped. @cookie.ebil.club is a small account (161 followers) and not a cluster member: it appears only because its request was granted, and its own words about not knowing how to play are self-teasing. @norvid-studies.bsky.social is marked featuredPrevious: spoke, so the account is not cast to speak in this episode; its posts may be shown. The game is about shooting down other players' planes: play, not conflict. Left out: a reply joking that the maker is an escaped bot (research does not understand the reference), and a reply the digest keyword-flags.",
+  "notUnderstood": [
+    "\"atmosphere account\": an account on the network Bluesky runs on, as research reads it."
+  ]
+}

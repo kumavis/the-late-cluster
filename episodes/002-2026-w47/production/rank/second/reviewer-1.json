@@ -1,0 +1,156 @@
+{
+  "reviewer": "reviewer-1",
+  "cards": {
+    "made-pen-plotter-replies": {
+      "synergy": 2,
+      "variety": 2,
+      "ideas": [
+        "writer-2-138",
+        "writer-1-108",
+        "writer-2-139"
+      ],
+      "with": [
+        "voices-plotter-queue-small-accounts",
+        "interview-yonderdavid"
+      ],
+      "reason": "Synergy: it takes the small-accounts card inside it as one segment, and the interview candidate replied to the same invitation, so a later exchange can pick the pen up again. Variety: its repliers are all new to the show, the maker is shown and read aloud but does not speak, and a comedy of slowness and silence is something no other card has. Ideas: the mid-word stop, the silent trip back to the margin with one replier’s line performed, and the code exchange; none needs the sports desk, which already has Top Chicken and the wheelie, and none uses the Top Chicken winner’s two replies, which would be that account’s third segment."
+    },
+    "interview-yonderdavid": {
+      "synergy": 2,
+      "variety": 1,
+      "ideas": [
+        "writer-2-27",
+        "writer-1-23",
+        "writer-2-25",
+        "writer-2-26"
+      ],
+      "with": [
+        "made-cat-voice-quartet",
+        "made-pen-plotter-replies",
+        "made-polyhedra-instruments-sakura",
+        "made-vocal-synth-choir"
+      ],
+      "reason": "Synergy: the interview is where the cat quartet’s exchanges can be said in the maker’s own words with the thing shown working, which the screen allows that card in no other performed form, and it leaves the Top Chicken winner’s one other segment free for the wheelie game. Variety: a 971-follower maker new to the show is the right subject, but this account fills five cards of the pool, so every other card of this maker’s beside it costs range, and most of the prompts come from two accounts featured last episode, so Larry asks what was asked. Ideas: the cat as the opener, the kazoo answer in the middle, the parody reply as the episode’s one joke about the show itself, the koto pair to end on the shortest answer; the repair tried on the host (writer-2-24) would be a second joke about the show’s own voice and should pass the repetition gate before anyone drafts it."
+    },
+    "made-cat-voice-quartet": {
+      "synergy": 1,
+      "variety": 0,
+      "ideas": [
+        "writer-2-55",
+        "writer-2-52"
+      ],
+      "with": [
+        "interview-yonderdavid"
+      ],
+      "reason": "Synergy: its exchanges are the interview’s best and its cut ending could give the song a form, but the interview card already carries those posts, and as a segment of its own it would be a third piece on one maker. Variety: the same maker and the same subject as the interview, every question in it belongs to an account that cannot speak, and its strongest demonstration is the one joke about the show’s own voices that several cards are competing for. Ideas: the two that need neither that joke nor a two-hander; if the interview goes to someone else, this card is the maker’s segment and the demonstration (writer-2-53) comes back in."
+    },
+    "interview-cee-wtf": {
+      "synergy": 0,
+      "variety": 0,
+      "ideas": [
+        "writer-2-17",
+        "writer-2-20",
+        "writer-2-19"
+      ],
+      "with": [
+        "made-yard-shift-wheelie"
+      ],
+      "reason": "Synergy: it competes with the stronger candidate for the one interview and would have to take the wheelie game inside it, because this account is already in Top Chicken. Variety: choosing it gives two standing segments to one account, and five of its listed posts come from an account shown last episode. Ideas: the shrinking-answers shape with the two exchanges that need least explaining; its closing beat needs the repetition gate’s look."
+    },
+    "made-vocal-synth-choir": {
+      "synergy": 1,
+      "variety": 0,
+      "ideas": [
+        "writer-3-43",
+        "writer-2-62"
+      ],
+      "with": [
+        "interview-yonderdavid"
+      ],
+      "reason": "Synergy: it gives the interview an exchange and holds a quiet-moment candidate, but it is the fourth card on one maker and its best punch is the same single joke about the show’s own voices. Variety: the interview already covers this maker and this subject, and the piece can be named only in the maker’s words, which narrows the staging further. Ideas: the two that do not spend that joke."
+    },
+    "made-yard-shift-wheelie": {
+      "synergy": 1,
+      "variety": 1,
+      "ideas": [
+        "writer-2-107",
+        "writer-3-26"
+      ],
+      "with": [],
+      "reason": "Synergy: it is the natural second segment for the Top Chicken winner, which lets the interview go to a different person, but it ties to nothing else in the pool. Variety: the one card whose subject is neither the plotter, the synth voices nor polyhedra, and the only physical comedy, but its people are the winner again and a requester who was shown last episode. Ideas: the sports-desk call and the button; the button belongs to this segment only, and the last post on the card is not read."
+    },
+    "made-polyhedra-instruments-sakura": {
+      "synergy": 2,
+      "variety": 1,
+      "ideas": [
+        "writer-3-53",
+        "writer-2-70",
+        "writer-2-69"
+      ],
+      "with": [
+        "made-polyhedral-coffee-simulator",
+        "made-mobius-chess-ringmate",
+        "interview-yonderdavid"
+      ],
+      "reason": "Synergy: it is the root of the one through-line that crosses different people (the coffee simulator answers a reply under this video and the chess game borrowed its colours), and it gives the interview’s subject a second segment on a different subject from the voices. Variety: geometry and a set that obeys notes are new, and it can carry the 274-follower account’s one moment, the naming of the week, but it is the same maker’s second segment and the third card on polyhedra. Ideas: the change requests applied to the studio’s own sketch, ending on the river, with the “mostly regular” reply as a way in; the tune and scenery are named only as the maker names them, and the ending should stay on the river and not turn to the show’s own audience."
+    },
+    "made-polyhedral-coffee-simulator": {
+      "synergy": 2,
+      "variety": 2,
+      "ideas": [
+        "writer-2-77",
+        "writer-2-78"
+      ],
+      "with": [
+        "made-polyhedra-instruments-sakura",
+        "made-mobius-chess-ringmate"
+      ],
+      "reason": "Synergy: the middle of the polyhedra line, and its mug exchange is the best home for the 75-follower account’s one moment, which no other segment then needs. Variety: a maker new to the show, a small account as the expert, and a performed exchange in a consumer-watchdog frame that no other card has; the mug’s owner was shown last episode and is also the requester on the wheelie card, so this is one of that account’s two. Ideas: the game where you have a coffee, then the bootleg mug; the prompt has to be asked by a house character, nobody has seen the simulator’s screen yet, and the first mug stays undescribed."
+    },
+    "voices-plotter-queue-small-accounts": {
+      "synergy": 2,
+      "variety": 0,
+      "ideas": [
+        "writer-3-119",
+        "writer-2-146"
+      ],
+      "with": [
+        "made-pen-plotter-replies"
+      ],
+      "reason": "Synergy: it exists to make the plotter segment better, and does: the maker’s welcomes, the counted meow, and the poem as the episode’s best candidate for a quiet moment that is not about the show. Variety: as a slot of its own it adds no subject, maker or reader that the plotter card does not already bring, and its new people are counted there. Ideas: two accounts, each with the maker’s welcome beside it; these belong in the plotter draft, not in a second one."
+    },
+    "made-speak-and-spell": {
+      "synergy": 0,
+      "variety": 0,
+      "ideas": [
+        "writer-2-99",
+        "writer-2-97"
+      ],
+      "with": [],
+      "reason": "Synergy: it stands alone, and its best pictures are again the single joke about the show’s own voices. Variety: its maker was shown last episode, is on sixteen of the kept cards and is already the requester and the mug’s owner on two cards above it, the subject is one more synthesized voice, and the words on the toy’s buttons need the repetition gate’s ruling. Ideas: the two that keep off that joke."
+    },
+    "made-mobius-chess-ringmate": {
+      "synergy": 2,
+      "variety": 2,
+      "ideas": [
+        "writer-2-162",
+        "writer-1-63"
+      ],
+      "with": [
+        "made-polyhedra-instruments-sakura",
+        "made-polyhedral-coffee-simulator"
+      ],
+      "reason": "Synergy: a third side of the polyhedra line through two people who lead no other card in the pool (the maker borrowed the video’s colours and also turns up in the coffee thread), and a board the house can sit down at beside a game where you only have a coffee. Variety: both people are new to the show, the maker a 423-follower hero, and a board with one side is a kind of joke nothing else has. Ideas: the exchange that ends on the link, then the house at the board; the rules are not stated, the unexplained words carry no punch, and the swear in the last reply is cut whole or covered."
+    },
+    "made-also-liked-feed": {
+      "synergy": 0,
+      "variety": 1,
+      "ideas": [
+        "writer-2-33",
+        "writer-2-31"
+      ],
+      "with": [],
+      "reason": "Synergy: it ties to nothing else, and its strongest idea is once more the single joke about the show’s own voices. Variety: a maker new to the show and a new subject, but it is talk about a tool that is hard to show working, four of its voices are outside the cluster, and the feed’s name needs the repetition gate’s ruling. Ideas: the fewer-steps chart and the feed serving the host a post of the host’s own; the second needs the gate’s look as well."
+    }
+  }
+}

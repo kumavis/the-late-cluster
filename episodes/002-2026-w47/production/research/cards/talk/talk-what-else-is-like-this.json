@@ -1,0 +1,508 @@
+{
+  "id": "talk-what-else-is-like-this",
+  "lane": "talk",
+  "title": "\"what else is like this\" is used by people other than the member it belongs to",
+  "summary": "\"what else is like this\" is the caption @norvid-studies.bsky.social puts on quote-posts to ask for more examples of the thing quoted. In this window other people used it in the same way, and some turned it on him. Members quote-posted a study about crows' decision speed and a post about a monitor left at 12 percent brightness with only those five words, and got examples back in the replies. When @spacecowboy17.bsky.social announced a feed that shows what else the people who liked a post have liked (Sun 15 Nov, 220 likes), the first reply, one minute later and from a non-member, was a tag of @norvid-studies.bsky.social with the phrase; the next day a member wrote that they had pinned \"the 'what else is like this' feed\". In that thread and elsewhere the phrase is paired with \"claim\", another one-word caption used in the cluster. One member proposed \"a jev\" (the cluster's word for a small bot) that sorts every post into the two, and another member's talking toy has a \"claim mode\" in which it asks the question aloud.",
+  "posts": [
+    {
+      "uri": "at://did:plc:vfdslp6rpi4zsg3xtcdfaddv/app.bsky.feed.post/3n26agb734c2u",
+      "url": "https://bsky.app/profile/handackett.bsky.social/post/3n26agb734c2u",
+      "handle": "handackett.bsky.social",
+      "displayName": "Dan",
+      "when": "Fri 13 Nov 05:21Z",
+      "time": "2026-11-13T05:21:08.093Z",
+      "text": "all your \"what else is like this\" posts and responses probably build out about the same structure, could do simclustertropes (name wip)",
+      "counts": {
+        "likes": 6,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n26aas2u5k2s",
+        "handle": "norvid-studies.bsky.social",
+        "text": "\"doing something with TVTropes\" is an idea that's been kicking around for me for a while, but what exactly remains undetermined..."
+      },
+      "note": "Reply to @norvid-studies.bsky.social, Fri 13 Nov."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2cg5g6pxs25",
+      "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2cg5g6pxs25",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "when": "Sat 14 Nov 21:14Z",
+      "time": "2026-11-14T21:14:12.727Z",
+      "text": "basic user guide:\n* press any key to power on\n* spell a word or phrase with letters and/or space\n* press \"prompt\" to say it\n* press \"repeat\" to say last one again\n* \"claim\" is a toggle for a special \"claim mode\"\n* in \"claim mode\" you can prompt to ask \"what else is like this\"",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2cg5g6dbk25",
+        "handle": "shimmermathlabs.com",
+        "text": "\"it's not fun if it's not real\"\n\nusing LPC technology and samples of my own voice i built a voice engine that runs in the browser and can say words and phrases. the simcluster speak & spell lives.\n\ncome play\nshimmermathlabs.com/speaknspell/..."
+      },
+      "note": "Reply in her own thread about a talking toy she built; listed for the 'claim mode' lines."
+    },
+    {
+      "uri": "at://did:plc:jsaci272pfep77eoo5jjxfrm/app.bsky.feed.post/3n2cka564zc27",
+      "url": "https://bsky.app/profile/refinement.systems/post/3n2cka564zc27",
+      "handle": "refinement.systems",
+      "displayName": "affine",
+      "when": "Sat 14 Nov 22:27Z",
+      "time": "2026-11-14T22:27:18.911Z",
+      "text": "what else is like this",
+      "counts": {
+        "likes": 36,
+        "reposts": 4,
+        "replies": 4,
+        "quotes": 0
+      },
+      "quoting": {
+        "uri": "at://did:plc:ywwbhwuq4sszjve7kdshnahd/app.bsky.feed.post/3n2aj33j7kx2e",
+        "handle": "obialik.bsky.social",
+        "text": "Can you make a call faster than a crow? Statistically, probably not. On average, crows can make a decision within 235 milliseconds; we take twice as long. 🧪\n\nLink: https://www.science.org/doi/10.1126/science.aed6459​",
+        "alt": "The experiment: The crow needs to decide whether a certain number of white dots on the black screen are moving to the left or to the right at the same time. It indicates its decision by pecking at the corresponding target circle on the monitor."
+      },
+      "note": "Quote-post of an account outside the cluster."
+    },
+    {
+      "uri": "at://did:plc:vfdslp6rpi4zsg3xtcdfaddv/app.bsky.feed.post/3n2cofm7hvc2g",
+      "url": "https://bsky.app/profile/handackett.bsky.social/post/3n2cofm7hvc2g",
+      "handle": "handackett.bsky.social",
+      "displayName": "Dan",
+      "when": "Sat 14 Nov 23:41Z",
+      "time": "2026-11-14T23:41:57.425Z",
+      "text": "Iirc dogs couldn't watch TV until LCD screens because the dog subjective \"frame rate\" is too high",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:jsaci272pfep77eoo5jjxfrm/app.bsky.feed.post/3n2cka564zc27",
+        "handle": "refinement.systems",
+        "text": "what else is like this"
+      }
+    },
+    {
+      "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f4l7n23s2p",
+      "url": "https://bsky.app/profile/spacecowboy17.bsky.social/post/3n2f4l7n23s2p",
+      "handle": "spacecowboy17.bsky.social",
+      "displayName": "spacecowboy",
+      "when": "Sun 15 Nov 23:00Z",
+      "time": "2026-11-15T23:00:57.427Z",
+      "text": "You like a post and wonder: what else do the people who liked it like?\n\nThis feed helps answer that question. It takes the last post you liked, finds people who also liked it, and shows what else they've liked.",
+      "counts": {
+        "likes": 220,
+        "reposts": 36,
+        "replies": 8,
+        "quotes": 12
+      },
+      "note": "Top-level post announcing the feed."
+    },
+    {
+      "uri": "at://did:plc:bhklr7m5t5fdqebgy63hpfum/app.bsky.feed.post/3n2f4maz6r226",
+      "url": "https://bsky.app/profile/satyrs.eu/post/3n2f4maz6r226",
+      "handle": "satyrs.eu",
+      "displayName": "Xanthe van Otterburn 🦦️🍇️",
+      "when": "Sun 15 Nov 23:01Z",
+      "time": "2026-11-15T23:01:32.427Z",
+      "text": "@norvid-studies.bsky.social what else is like this",
+      "counts": {
+        "likes": 23,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f4l7n23s2p",
+        "handle": "spacecowboy17.bsky.social",
+        "text": "You like a post and wonder: what else do the people who liked it like?\n\nThis feed helps answer that question. It takes the last post you liked, finds people who also liked it, and shows what else they've liked."
+      }
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2f4thmzzs2y",
+      "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2f4thmzzs2y",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "when": "Sun 15 Nov 23:05Z",
+      "time": "2026-11-15T23:05:34.251Z",
+      "text": "to quote @croissanthology.com",
+      "media": "image, no alt text in the data",
+      "counts": {
+        "likes": 29,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:bhklr7m5t5fdqebgy63hpfum/app.bsky.feed.post/3n2f4maz6r226",
+        "handle": "satyrs.eu",
+        "text": "@norvid-studies.bsky.social what else is like this"
+      }
+    },
+    {
+      "uri": "at://did:plc:wixdgg4ejykqrsoqgi7c2fk6/app.bsky.feed.post/3n2f5ulsyvcva",
+      "url": "https://bsky.app/profile/temujin9.t9productions.com/post/3n2f5ulsyvcva",
+      "handle": "temujin9.t9productions.com",
+      "displayName": "Prose and Khans",
+      "when": "Sun 15 Nov 23:24Z",
+      "time": "2026-11-15T23:24:05.936Z",
+      "text": "coming soon: a \"claims\" bot that auto-qts dubious syncluster (like simcluster but synths) material",
+      "counts": {
+        "likes": 11,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2f4thmzzs2y",
+        "handle": "norvid-studies.bsky.social",
+        "text": "to quote @croissanthology.com"
+      }
+    },
+    {
+      "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f6cmsins2v",
+      "url": "https://bsky.app/profile/spacecowboy17.bsky.social/post/3n2f6cmsins2v",
+      "handle": "spacecowboy17.bsky.social",
+      "displayName": "spacecowboy",
+      "when": "Sun 15 Nov 23:31Z",
+      "time": "2026-11-15T23:31:56.731Z",
+      "text": "One cannot gate-keep a simcluster.",
+      "counts": {
+        "likes": 17,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:wixdgg4ejykqrsoqgi7c2fk6/app.bsky.feed.post/3n2f5ulsyvcva",
+        "handle": "temujin9.t9productions.com",
+        "text": "coming soon: a \"claims\" bot that auto-qts dubious syncluster (like simcluster but synths) material"
+      }
+    },
+    {
+      "uri": "at://did:plc:wixdgg4ejykqrsoqgi7c2fk6/app.bsky.feed.post/3n2f6f3nlw2sz",
+      "url": "https://bsky.app/profile/temujin9.t9productions.com/post/3n2f6f3nlw2sz",
+      "handle": "temujin9.t9productions.com",
+      "displayName": "Prose and Khans",
+      "when": "Sun 15 Nov 23:33Z",
+      "time": "2026-11-15T23:33:19.408Z",
+      "text": "the urge to qt this with \"claim\" is overwhelming",
+      "counts": {
+        "likes": 14,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:3guzzweuqraryl3rdkimjamk/app.bsky.feed.post/3n2f6cmsins2v",
+        "handle": "spacecowboy17.bsky.social",
+        "text": "One cannot gate-keep a simcluster."
+      }
+    },
+    {
+      "uri": "at://did:plc:4dxjapf7zxwbld46q2l2jibu/app.bsky.feed.post/3n2fbw4dzuk2q",
+      "url": "https://bsky.app/profile/dulanyw.bsky.social/post/3n2fbw4dzuk2q",
+      "handle": "dulanyw.bsky.social",
+      "displayName": "p(Dulany)",
+      "when": "Mon 16 Nov 00:36Z",
+      "time": "2026-11-16T00:36:31.795Z",
+      "text": "We need a jev that sorts every post into \"claim\" and \"what else is like this\"",
+      "counts": {
+        "likes": 11,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:pjlhgjhb34k4zufrtbh2jyms/app.bsky.feed.post/3mnqepevdks2b",
+        "note": "the post it replied to is not in the window's data"
+      },
+      "note": "A reply; the post it answers is not in the data."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2fd27c24k2u",
+      "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2fd27c24k2u",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "when": "Mon 16 Nov 00:56Z",
+      "time": "2026-11-16T00:56:42.831Z",
+      "text": "[Russelly] Could such a jev classify itself",
+      "counts": {
+        "likes": 19,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 1
+      },
+      "quoting": {
+        "uri": "at://did:plc:4dxjapf7zxwbld46q2l2jibu/app.bsky.feed.post/3n2fbw4dzuk2q",
+        "handle": "dulanyw.bsky.social",
+        "text": "We need a jev that sorts every post into \"claim\" and \"what else is like this\""
+      },
+      "note": "Quote-post of the post above."
+    },
+    {
+      "uri": "at://did:plc:hsqwcidfez66lwm3gxhfv5in/app.bsky.feed.post/3n2fsvx5omk2x",
+      "url": "https://bsky.app/profile/goose.art/post/3n2fsvx5omk2x",
+      "handle": "goose.art",
+      "displayName": "business goose🪿",
+      "when": "Mon 16 Nov 05:40Z",
+      "time": "2026-11-16T05:40:39.951Z",
+      "text": "ive pinned the \"what else is like this\" feed, finding it to be a surprisingly interesting thing to have lying around",
+      "counts": {
+        "likes": 8,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "note": "Top-level post."
+    },
+    {
+      "uri": "at://did:plc:4vvaxwovyg4yo4n7dyyncaiu/app.bsky.feed.post/3n2hlsivkb22x",
+      "url": "https://bsky.app/profile/thebadcode.com/post/3n2hlsivkb22x",
+      "handle": "thebadcode.com",
+      "displayName": "austin (e/accordion 🪗)",
+      "when": "Mon 16 Nov 22:38Z",
+      "time": "2026-11-16T22:38:47.628Z",
+      "text": "what else is like this",
+      "counts": {
+        "likes": 64,
+        "reposts": 2,
+        "replies": 9,
+        "quotes": 0
+      },
+      "quoting": {
+        "uri": "at://did:plc:64uzkaydbwywtrvn7ogol22r/app.bsky.feed.post/3n2heq7kmuo2b",
+        "handle": "ari.express",
+        "text": "just realized my monitor was on 12 percent brightness this whole time. Holy shit i missed out on so much colour in my life"
+      },
+      "note": "Quote-post of an account outside the cluster."
+    },
+    {
+      "uri": "at://did:plc:znbyv54us4ouk3tlma5hg5db/app.bsky.feed.post/3n2hqrr2wt22b",
+      "url": "https://bsky.app/profile/kyefox.com/post/3n2hqrr2wt22b",
+      "handle": "kyefox.com",
+      "displayName": "Kye Fox",
+      "when": "Tue 17 Nov 00:07Z",
+      "time": "2026-11-17T00:07:51.348Z",
+      "text": "Lived in a hotel for a month. Found the switch for the light I needed the whole time while on the way out.",
+      "counts": {
+        "likes": 8,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:4vvaxwovyg4yo4n7dyyncaiu/app.bsky.feed.post/3n2hlsivkb22x",
+        "handle": "thebadcode.com",
+        "text": "what else is like this"
+      }
+    },
+    {
+      "uri": "at://did:plc:vfdslp6rpi4zsg3xtcdfaddv/app.bsky.feed.post/3n2hvx3jqg22g",
+      "url": "https://bsky.app/profile/handackett.bsky.social/post/3n2hvx3jqg22g",
+      "handle": "handackett.bsky.social",
+      "displayName": "Dan",
+      "when": "Tue 17 Nov 01:40Z",
+      "time": "2026-11-17T01:40:18.800Z",
+      "text": "All the buttons in your car where you don't know what they do",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:4vvaxwovyg4yo4n7dyyncaiu/app.bsky.feed.post/3n2hlsivkb22x",
+        "handle": "thebadcode.com",
+        "text": "what else is like this"
+      }
+    },
+    {
+      "uri": "at://did:plc:qruaxn2eewkli7hsvzxo5hwf/app.bsky.feed.post/3n2mdzvqq722u",
+      "url": "https://bsky.app/profile/eva.computer/post/3n2mdzvqq722u",
+      "handle": "eva.computer",
+      "displayName": "eva (^_^)/",
+      "when": "Wed 18 Nov 20:03Z",
+      "time": "2026-11-18T20:03:04.740Z",
+      "text": "what else is like this?\npost skills you like and actually use",
+      "counts": {
+        "likes": 20,
+        "reposts": 1,
+        "replies": 2,
+        "quotes": 0
+      },
+      "quoting": {
+        "uri": "at://did:plc:qvywnipfiyrd6v4qdf4x27wy/app.bsky.feed.post/3n2fauzrw6s23",
+        "handle": "hikikomorphism.bsky.social",
+        "text": "You can get pretty far with the skills and techniques I described here, from a defender POV, although of course I'm using something a bit more custom recursion.wtf/posts/agents..."
+      },
+      "note": "Quote-post."
+    }
+  ],
+  "people": [
+    {
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "followers": 2777,
+      "member": true,
+      "smallAccount": false,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "handackett.bsky.social",
+      "displayName": "Dan",
+      "followers": 461,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "followers": 1454,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "obialik.bsky.social",
+      "displayName": "Dr. Or M. Bialik |📚|🔬|🌊|⚒️",
+      "followers": 5956,
+      "member": false,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "refinement.systems",
+      "displayName": "affine",
+      "followers": 570,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "spacecowboy17.bsky.social",
+      "displayName": "spacecowboy",
+      "followers": 5812,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "satyrs.eu",
+      "displayName": "Xanthe van Otterburn 🦦️🍇️",
+      "followers": 402,
+      "member": false,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "temujin9.t9productions.com",
+      "displayName": "Prose and Khans",
+      "followers": 2268,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "dulanyw.bsky.social",
+      "displayName": "p(Dulany)",
+      "followers": 1589,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "goose.art",
+      "displayName": "business goose🪿",
+      "followers": 6896,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "ari.express",
+      "displayName": "Ari",
+      "followers": 1136,
+      "member": false,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "thebadcode.com",
+      "displayName": "austin (e/accordion 🪗)",
+      "followers": 3077,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "kyefox.com",
+      "displayName": "Kye Fox",
+      "followers": 4685,
+      "member": false,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "hikikomorphism.bsky.social",
+      "displayName": "hikikomorphism",
+      "followers": 5508,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "eva.computer",
+      "displayName": "eva (^_^)/",
+      "followers": 18063,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "numbers": [
+    "My count from posts.jsonl (case-insensitive match of the five words, 13 Nov 00:00Z to 19 Nov 09:54Z): 34 posts by 18 accounts, 16 of them cluster members, on all seven days. 13 of the 34 are by @norvid-studies.bsky.social; no other account has more than 2.",
+    "Counts as of the digest: the monitor quote-post 64 likes and 9 replies; the crows quote-post 36 likes; the feed announcement 220 likes, 36 reposts, 12 quotes."
+  ],
+  "couldBeShown": "The feed is a working thing with a public description of what it does (the made lane may card it). The talking toy's user guide is listed here only for its \"claim mode\" lines.",
+  "notUnderstood": "Where \"claim\" as a caption comes from, beyond its use in these posts. What image @norvid-studies.bsky.social attached to \"to quote @croissanthology.com\" (no alt text). What \"a jev\" is exactly: members use it as a common noun for a small model or bot of the kind run at @jevbot.bsky.social; I did not find its operator or how it works.",
+  "sensitive": "No post on this card carries a flag from the tool. (1) @norvid-studies.bsky.social is marked by the tool as having spoken in the previous episode: his posts may be shown, his puppet does not speak. The phrase is his; this card is about other people using it, and 21 of the 34 uses are not his. (2) Five uses of the phrase in the window are flagged by the tool post by post (health; grief and disaster) and two more sit inside stories the digest flags; all seven are left out, including the most-liked use, from outside the cluster (236 likes). (3) Also left out as unclear or near the line: a use that quotes a joke about God and an insect's brain, a follow-up I could not place (\"The Vitamin\"), and a reply about first getting glasses (health-adjacent). (4) @satyrs.eu (402 followers), @kyefox.com (4,685) and the two quoted accounts (@obialik.bsky.social, @ari.express) are outside the cluster's membership; the crows post is a science writer's, quoted as the occasion only. (5) \"One cannot gate-keep a simcluster.\" was said in play, in reply to a joke about a bot; it is not a statement of principle by its author and cannot be presented as one (R4). (6) @shimmermathlabs.com is marked as shown in the previous episode; @spacecowboy17.bsky.social has 5,812 followers and @eva.computer 18,063."
+}

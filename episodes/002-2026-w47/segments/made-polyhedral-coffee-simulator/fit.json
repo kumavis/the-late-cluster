@@ -1,0 +1,845 @@
+{
+ "segment": "made-polyhedral-coffee-simulator",
+ "episode": "002-2026-w47",
+ "takes": 4,
+ "gate": 0.6,
+ "lines": [
+  {
+   "id": "video",
+   "who": "larry",
+   "kind": "say",
+   "text": "A member posted a video. A landscape made of polyhedra.",
+   "as": "A member posted a video. A landscape made of polly-hee-dra.",
+   "heard": [
+    {
+     "text": "The member posted a video, a landscape made of polyhedrae.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 9,
+    "of": 10,
+    "min": 9
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "a",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 9,
+     "word": "polyhedra",
+     "as": "polly-hee-dra",
+     "plain": "p oʊ l aɪ h ɛ d ɹ æ",
+     "ipa": "p ɑ l i h i d ɹ æ",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "A member posted a video. A landscape made of polly-hee-dra.",
+     "score": {
+      "heard": 9,
+      "of": 10,
+      "min": 9
+     },
+     "heard": [
+      {
+       "text": "The member posted a video, a landscape made of polyhedrae.",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 9,
+       "word": "polyhedra",
+       "as": "polly-hee-dra",
+       "plain": "p oʊ l aɪ h ɛ d ɹ æ",
+       "ipa": "p ɑ l i h i d ɹ æ",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "guest",
+   "who": "larry",
+   "kind": "say",
+   "text": "Another member is here. This is Dave.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Another member is here. This is Dave.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 7,
+    "of": 7,
+    "min": 7
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Another member is here. This is Dave.",
+     "score": {
+      "heard": 7,
+      "of": 7,
+      "min": 7
+     },
+     "heard": [
+      {
+       "text": "Another member is here. This is Dave.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ought",
+   "who": "larry",
+   "kind": "say",
+   "text": "My first thought: it should be a game.",
+   "as": null,
+   "heard": [
+    {
+     "text": "My first thought, it should be a game.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 8,
+    "of": 8,
+    "min": 8
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "My first thought: it should be a game.",
+     "score": {
+      "heard": 8,
+      "of": 8,
+      "min": 8
+     },
+     "heard": [
+      {
+       "text": "My first thought, it should be a game.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "best",
+   "who": "dave",
+   "kind": "say",
+   "text": "best i can do polyhedral coffee simulator…",
+   "as": "best i can do. polly-hee-drull, coffee, simulator.",
+   "heard": [
+    {
+     "text": "Best I can do polyhedral coffee simulator",
+     "count": 2
+    },
+    {
+     "text": "Best I can do polyhedral, coffee simulator",
+     "count": 1
+    },
+    {
+     "text": "Best I can do, polyhedral, coffee simulator",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 7,
+    "of": 7,
+    "min": 7
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [],
+   "sounds": [
+    {
+     "i": 4,
+     "word": "polyhedral",
+     "as": "polly-hee-drull",
+     "plain": "p oʊ l aɪ h ɛ d ɹ æ ɫ",
+     "ipa": "p ɑ l i h i d ɹ ʌ ɫ ɫ",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "best i can do. polly-hee-drull, coffee, simulator.",
+     "score": {
+      "heard": 7,
+      "of": 7,
+      "min": 7
+     },
+     "heard": [
+      {
+       "text": "Best I can do polyhedral coffee simulator",
+       "count": 2
+      },
+      {
+       "text": "Best I can do polyhedral, coffee simulator",
+       "count": 1
+      },
+      {
+       "text": "Best I can do, polyhedral, coffee simulator",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 4,
+       "word": "polyhedral",
+       "as": "polly-hee-drull",
+       "plain": "p oʊ l aɪ h ɛ d ɹ æ ɫ",
+       "ipa": "p ɑ l i h i d ɹ ʌ ɫ ɫ",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "win",
+   "who": "larry",
+   "kind": "say",
+   "text": "A game! Stand back. I play to win.",
+   "as": null,
+   "heard": [
+    {
+     "text": "A game, stand back, I play to win.",
+     "count": 3
+    },
+    {
+     "text": "A game stand back, I play to win.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 8,
+    "of": 8,
+    "min": 8
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "A game! Stand back. I play to win.",
+     "score": {
+      "heard": 8,
+      "of": 8,
+      "min": 8
+     },
+     "heard": [
+      {
+       "text": "A game, stand back, I play to win.",
+       "count": 3
+      },
+      {
+       "text": "A game stand back, I play to win.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "reply",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Somebody wrote back. Every word:",
+   "as": null,
+   "heard": [
+    {
+     "text": "Somebody wrote back every word",
+     "count": 2
+    },
+    {
+     "text": "somebody wrote back every word",
+     "count": 1
+    },
+    {
+     "text": "Somebody wrote back every word.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 5,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Somebody wrote back. Every word:",
+     "score": {
+      "heard": 5,
+      "of": 5,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "Somebody wrote back every word",
+       "count": 2
+      },
+      {
+       "text": "somebody wrote back every word",
+       "count": 1
+      },
+      {
+       "text": "Somebody wrote back every word.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "review",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "very peaceful thank you",
+   "as": null,
+   "heard": [
+    {
+     "text": "Very peaceful, thank you!",
+     "count": 2
+    },
+    {
+     "text": "Very peaceful, thank you.",
+     "count": 2
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 4,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [],
+   "tried": [
+    {
+     "as": "very peaceful thank you",
+     "score": {
+      "heard": 4,
+      "of": 4,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "Very peaceful, thank you!",
+       "count": 2
+      },
+      {
+       "text": "Very peaceful, thank you.",
+       "count": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "strategy",
+   "who": "larry",
+   "kind": "say",
+   "text": "Different strategy.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Different strategy",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 2,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Different strategy.",
+     "score": {
+      "heard": 2,
+      "of": 2,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Different strategy",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mugs-line",
+   "who": "larry",
+   "kind": "say",
+   "text": "Next day, members held up real coffee mugs.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Next day, members held up real coffee mug.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 7,
+    "of": 8,
+    "min": 7
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "mugs",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Next day, members held up real coffee mugs.",
+     "score": {
+      "heard": 7,
+      "of": 8,
+      "min": 7
+     },
+     "heard": [
+      {
+       "text": "Next day, members held up real coffee mug.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "forms",
+   "who": "amber",
+   "kind": "say",
+   "text": "polyhedron week comes in many forms",
+   "as": "polyhedron, weekk comes, in many forms",
+   "heard": [
+    {
+     "text": "The polyhedron through it comes in many forms.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 6,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "week",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 1,
+     "word": "week",
+     "as": "weekk",
+     "plain": "w i k",
+     "ipa": "w i k k",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "polyhedron, weekk comes, in many forms",
+     "score": {
+      "heard": 5,
+      "of": 6,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "The polyhedron through it comes in many forms.",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "week",
+       "as": "weekk",
+       "plain": "w i k",
+       "ipa": "w i k k",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "closer",
+   "who": "larry",
+   "kind": "say",
+   "text": "One member took a closer look. Sibyl?",
+   "as": null,
+   "heard": [
+    {
+     "text": "One number took a closer look. Sible.",
+     "count": 2
+    },
+    {
+     "text": "The one number took a closer look, Sibil.",
+     "count": 1
+    },
+    {
+     "text": "The one number took a closer look. Sibil.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 7,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "member",
+     "count": 4
+    },
+    {
+     "word": "sibyl",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "One member took a closer look. Sibyl?",
+     "score": {
+      "heard": 5,
+      "of": 7,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "One number took a closer look. Sible.",
+       "count": 2
+      },
+      {
+       "text": "The one number took a closer look, Sibil.",
+       "count": 1
+      },
+      {
+       "text": "The one number took a closer look. Sibil.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "squares",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "…Hold on ma'am, I believe those are squares in the back.…",
+   "as": "Hold on, ma'am. I believe those, are squares, in the back.",
+   "heard": [
+    {
+     "text": "Hold on, ma'am, I believe those are squares in the bag.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 10,
+    "of": 11,
+    "min": 10
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "back",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Hold on, ma'am. I believe those, are squares, in the back.",
+     "score": {
+      "heard": 10,
+      "of": 11,
+      "min": 10
+     },
+     "heard": [
+      {
+       "text": "Hold on, ma'am, I believe those are squares in the bag.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sold",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "…I believe you have been sold a sphenomegacorona, one of the classic adulterated bootleg icosahedrons",
+   "as": "I believe you have been sold a sfee-no-mega-corona, one of the classic adulterated boot-leg, eye-koh-sa-heed-rons",
+   "heard": [
+    {
+     "text": "I believe you have been sold a single megacroner, one of the classic touch-rate bootlegs, I call sahitarans.",
+     "count": 2
+    },
+    {
+     "text": "I believe you have been sold a single megacroner, one of the classic touch-rate bootlegs I call sahitarans.",
+     "count": 1
+    },
+    {
+     "text": "I believe you have been sold in a single megacroner, one of the classic touch-rate bootleg, I call sahitarans.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 12,
+    "of": 15,
+    "min": 12
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "sphenomegacorona",
+     "count": 4
+    },
+    {
+     "word": "adulterated",
+     "count": 4
+    },
+    {
+     "word": "icosahedrons",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 7,
+     "word": "sphenomegacorona",
+     "as": "sfee-no-mega-corona",
+     "plain": "s f ɛ n oʊ m ɛ g eɪ k ɔ ɹ oʊ n æ",
+     "ipa": "s f i n oʊ m ɛ g ə k ɚ oʊ n ə",
+     "keeps": null
+    },
+    {
+     "i": 13,
+     "word": "bootleg",
+     "as": "boot-leg",
+     "plain": "b u t l ɛ g",
+     "ipa": "b u t l ɛ g",
+     "keeps": true
+    },
+    {
+     "i": 14,
+     "word": "icosahedrons",
+     "as": "eye-koh-sa-heed-rons",
+     "plain": "aɪ k oʊ s eɪ h ɛ d ɹ ɑ n s",
+     "ipa": "aɪ k oʊ s ɑ h i d ɹ ɑ n s",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "I believe you have been sold a sfee-no-mega-corona, one of the classic adulterated boot-leg, eye-koh-sa-heed-rons",
+     "score": {
+      "heard": 12,
+      "of": 15,
+      "min": 12
+     },
+     "heard": [
+      {
+       "text": "I believe you have been sold a single megacroner, one of the classic touch-rate bootlegs, I call sahitarans.",
+       "count": 2
+      },
+      {
+       "text": "I believe you have been sold a single megacroner, one of the classic touch-rate bootlegs I call sahitarans.",
+       "count": 1
+      },
+      {
+       "text": "I believe you have been sold in a single megacroner, one of the classic touch-rate bootleg, I call sahitarans.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 7,
+       "word": "sphenomegacorona",
+       "as": "sfee-no-mega-corona",
+       "plain": "s f ɛ n oʊ m ɛ g eɪ k ɔ ɹ oʊ n æ",
+       "ipa": "s f i n oʊ m ɛ g ə k ɚ oʊ n ə",
+       "keeps": null
+      },
+      {
+       "i": 13,
+       "word": "bootleg",
+       "as": "boot-leg",
+       "plain": "b u t l ɛ g",
+       "ipa": "b u t l ɛ g",
+       "keeps": true
+      },
+      {
+       "i": 14,
+       "word": "icosahedrons",
+       "as": "eye-koh-sa-heed-rons",
+       "plain": "aɪ k oʊ s eɪ h ɛ d ɹ ɑ n s",
+       "ipa": "aɪ k oʊ s ɑ h i d ɹ ɑ n s",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "money",
+   "who": "amber",
+   "kind": "say",
+   "text": "i want my money back!",
+   "as": null,
+   "heard": [
+    {
+     "text": "I want my money back",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 5,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [],
+   "tried": [
+    {
+     "as": "i want my money back!",
+     "score": {
+      "heard": 5,
+      "of": 5,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "I want my money back",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "button",
+   "who": "larry",
+   "kind": "say",
+   "text": "The best we can do.",
+   "as": null,
+   "heard": [
+    {
+     "text": "The best we can do.",
+     "count": 3
+    },
+    {
+     "text": "the best we can do",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 5,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "The best we can do.",
+     "score": {
+      "heard": 5,
+      "of": 5,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "The best we can do.",
+       "count": 3
+      },
+      {
+       "text": "the best we can do",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "voices": {
+  "larry": {
+   "f0": 107,
+   "nearest": "pete",
+   "distance": 1.54
+  },
+  "dave": {
+   "f0": 88,
+   "nearest": "al",
+   "distance": 1.55
+  },
+  "sibyl": {
+   "f0": 207,
+   "nearest": "mokkenstorm",
+   "distance": 1.9
+  },
+  "amber": {
+   "f0": 254,
+   "nearest": "mokkenstorm",
+   "distance": 0.72
+  }
+ },
+ "owner": [],
+ "heardDifferently": [],
+ "soundsDifferent": []
+}

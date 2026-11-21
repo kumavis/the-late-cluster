@@ -1,0 +1,102 @@
+# Scope review: 002-2026-w47, second review
+
+Window 13 Nov 00:00Z to 19 Nov 09:54Z, scraped again into the same folder with the member cap raised from 120 to 250. This review judges the digest as it stands now. The first review is kept beside this one as `review.md.rejected-1`.
+
+**In short:** proceed. This is the right community, and it is now wide enough: 187 active members, 181 of them never featured, and no group writes too much of it. What is still wrong is how the cap chooses its 250. That sits in the weights and the seed list, which are the owner's, and raising the cap again would not fix it.
+
+**On the figures.** The tool's table now repeats the scraper's shares. I recounted the member posts (14,578), the active members (187) and the ten most active accounts' share (27.7%) from `posts.jsonl`, and they agree. Counts below that are in neither report (silent members, follower sizes, who appears in the data) are mine, from `posts.jsonl` and `digest.json`.
+
+## What the rescrape changed
+
+| | cap 120 (first review) | cap 250 (now) | threshold |
+|---|---:|---:|---:|
+| members; active in the window | 120; 103 | 248; 187 | |
+| active members never featured | 97 | 181 | |
+| member posts from the ten most active | 36% | 28% | 35% |
+| member posts from the seeds | 18% | 11% | 15% |
+| member posts from accounts featured before | 14% | 9% | |
+| active accounts under 300 followers | 6 (119 posts) | 20 (320 posts) | |
+| the checker's 28 accounts that are members | 13 | 17 | |
+| roster accounts active in the data but not members | 99 | 67 | |
+| members with no posts in the window | 17 | 61 | |
+| top 30 stories flagged out of bounds | 12 | 16 | |
+| top 30 stories led by a seed | not given | 27% | 25% |
+| builds from accounts featured before | 83% | 80% | 30% |
+| qualified accounts cut by the cap | 87% | 73% | 25% |
+| baseline pages per member | 3 | 2 | |
+
+It did what the first review asked of it. Both post-concentration figures are under their thresholds, there are more than three times as many small accounts, the checker count rose, and @aly.codes, Wednesday's Top Chicken winner, is a member.
+
+It did not bring in Monday's winner, change how anyone gets in, lower the flagged count, or move the top of the story list away from the seeds. Each is taken up below.
+
+## Is this the community the show is about?
+
+Yes.
+
+- With the flagged stories set aside, what leads the window is people making things for each other: a pen plotter writing replies live, instruments built from polyhedra, a choir and a game made with the vocal synth, and the build bot's 22 builds from fifteen different people's wishes. The community named its own weeks ("polyhedra week", "chimera week"), and Top Chicken has six results.
+- The independent signs agree. 191 of the 248 members (77%) are on Top Chicken's roster. 49 of the community feed's 74 authors are members. 17 of the checker's 28 are members. None of the other 11 has a post anywhere in the window's data, even as someone a member replied to, so they were not part of the week as the scrape saw it. The report does not say whether they were cut, were excluded under the consent rules or did not qualify.
+- The 40% turnover (137 joined, 9 left) is the cap change, not drift.
+- The feed worry is arithmetic. With 74 feed authors and 248 members the share cannot pass 29.8%, and the threshold is 30%.
+- Exclusions are counted and not named: 56 profile opt-outs, 1,610 accounts hidden from logged-out viewers, none on the opt-out list, none asking the show. Tuesday's Top Chicken winner is withheld under those rules, which is right.
+
+Two caveats.
+
+**The wider edge let in accounts that are not the community's regulars.** The clearest is @xkcd.com: 499,737 followers, three posts, in on the "followed by 3 seeds" rule without having talked with one. It now supplies the window's "Biggest post" and two of the twelve builds the digest lists. @miq.moe, a bot that turns other accounts' posts into images, is the ninth most active member and fifth in New voices. Eight members have more than 20,000 followers. 25 are at or above the 7,000 that Top Chicken's own rule uses as its ceiling, and they wrote 15% of member posts. Some of these do take part (one wished for a build this week). For the rest, R7's rule against viral posts from outside the regulars is the test, and R13 covers the bot. Research applies those; the configuration has no setting that would.
+
+**It is still the community seen from its centre.** All 234 members who are not seeds qualified on a seed-follow rule (175 "followed by 2 seeds and talked with one", 59 "followed by 3 seeds"), and 46 have no roster or feed signal at all. The first review said this at 120 and it is unchanged at 250. See "For the owner".
+
+## Is it wide enough that the episode will not be about the same few people?
+
+Yes, with one place to watch.
+
+For it: the table above. Beyond that, 171 of the 187 active members are neither seeds nor featured, the five interview candidates are none of them seeds and none featured, and 56 threads qualified as performable.
+
+The place to watch is the top of the story list.
+
+- 16 of the top 30 stories are flagged, which leaves 14. The five highest of those are all led by seeds, three accounts between them: @samantha.wiki (story 1), @yonderdavid.bsky.social (2 and 3) and @kumavis.me (6 and 11). Story 6 is the show's own announcement and story 11 is the owner's own project. Of the other nine, one more is led by a seed, three by one account, and one by an outside account with 816,101 followers.
+- This is partly by construction. A story's score rewards how many members took part, and members are the accounts the seeds follow.
+- The tracker marks three active members as having spoken in the previous episode, so they do not speak in this one. Two of them carry weight here. @samantha.wiki leads story 1. @norvid-studies.bsky.social wrote 812 posts, starts two of the six performable threads the digest prints and speaks in a third. Their posts may be shown. `digest.json` holds 15 thread candidates, and research should read past the printed six.
+- New voices lists eight accounts with 971 to 67,327 followers. One is a seed, one is the bot, one has 67,327 followers, and none is small. The 20 small active accounts are in the data and have to be looked for.
+- Builds: 24 of 30 come from two featured accounts, 22 of them from the build bot. That is the list's shape more than the window's. Fifteen different people made the bot's wishes, and things shown as video with no link (the polyhedra instruments, the choir) are in stories 2 and 3 and not in the list.
+
+None of this forces the episode onto the same few people. It means the made-and-shown lane will find seeds first and must keep looking.
+
+## Is anything obviously missing?
+
+Nothing that should hold the episode. Four things the next stage should know.
+
+1. **Monday's Top Chicken winner.** @tyto.cc (1,071 followers) is still not a member. The board works, because the games section carries each winning post. Tuesday's result, the week's largest at 2,421 likes, has its winner withheld by the consent rules. The show cannot name that winner, and nobody should try to work out who it is.
+2. **People the community's own lists point to.** 24 of the feed's authors and 67 roster accounts are active in the data without being members. The most present is @freyja-lynx.dev: on the roster, in the feed, with 70 posts in the data as the other side of members' conversations. Posts like these can be looked up where a member replied to them. Their own threads were not collected.
+3. **parfait.social.** Its maker, @juliet.paris (321 followers), is still not a member, and the client appears only in Appendix B. But 18 of the maker's posts and several members' reactions are now in the data, enough for a card. The made lane should read Appendix B and the stories, not only "Built in this window".
+4. **Baselines.** Each member got two baseline pages where the first run took three, and 88 members' baselines stop short of the three weeks. "x the author's usual" and the "(new)" mark on a phrase are rougher for the heaviest posters. Neither should go on screen as a fact without a check.
+
+## Why not another rescrape
+
+Inside the fixed budget, window and seeds, the one change open to me is the cap again. It would buy little.
+
+- **The next accounts in line are quiet.** Of the eight strongest cuts the report names, six qualified on "followed by 3 seeds", and none of the six has a post anywhere in the window's data. At 250, 41 of the 59 members who came in on that rule posted nothing.
+- **A quarter of the places already go unused.** 61 members have no posts in the window, against 17 at 120.
+- **It costs baseline.** The planner gives each member who is not a seed floor((requests left - 295 reserved) / members) baseline pages, at most three. At 250 that is two. At 400 it would be one.
+- **It brings more of what the show leaves alone.** The flagged count rose from 12 to 16.
+
+The accounts worth adding, like the one in item 2 above, sit far down the cap's ranking, and no cap inside the budget reaches them.
+
+## For research
+
+- The overview's two headline numbers are both unusable as they stand: "Biggest post" is @xkcd.com's, and "Breakout" is from a thread the digest flags as story 18.
+- New voices says out-of-bounds posts are left out, but it only drops posts flagged one by one. Its first entry's three posts are all inside flagged story 18, and its fourth entry opens with a post the games section marks as flagged. Screen every post in that section.
+- The story flag is a keyword hint that trips at three matching posts. Seven of the 16 flagged stories have at most four matching posts on any one topic, among 37 to 133 posts. One is story 12, a thread of the "banh mi" bit that 36 people kept up for seven days. Reading them is research's job, and "when in doubt, leave it out" still decides. Story 10 asks not to be quoted and stays out.
+
+## For the owner
+
+None of these holds the episode.
+
+1. **Weights.** A seed's follow is worth 3 with no ceiling, so 14 seeds can give 42 points. Talking with seeds is capped at 12, the roster gives 4 and the feed at most 3. The cut line is about 19. In effect the roster and feed rules qualify accounts and the cap then removes them. Every member at 250 also passes a seed-follow rule, 61 places hold accounts that posted nothing, and an account on both community lists with 70 posts in the data is out. A ceiling on the seed-follow score, or weight for activity in the window, would change who gets the places. More cap will not.
+2. **Thresholds that cannot be met.** The feed overlap (30%) cannot be reached at this cap, as above; the share of feed authors who are members (66%) would be the useful measure. The cut share (25%) would take about 685 members. The builds share (30%) measures the build bot and will trip every week it builds; counting distinct builders gives 2 featured of 7.
+3. **The flag threshold.** Three keyword matches flag a story of any size. Stories grew with the cluster, which may be part of why 16 of 30 are now flagged.
+4. **The budget at this cap.** Three baseline pages for 234 members plus the 295 reserved is 997 requests, more than the 900 allowed, so two pages is the most this cap can have. Counting cache hits, this run made 977 calls, which is about what it costs with an empty cache. Next week's window starts with an empty cache, and at 250 members and 900 requests the planner will cut the baseline further, possibly to nothing.
+5. **Large accounts and bots.** Nothing in the configuration keeps a 499,737-follower account or a bot out of the membership. Self-labelled bots are skipped only as seeds.
+6. **Seeds.** The owner is a seed by name, and the owner's own posts lead two of the five highest usable stories, one of them the show's announcement. Of the eight suggested seeds, @thebadcode.com, @techyben.bsky.social and @anthonybecker.bsky.social talk with about as many members as outsiders. The other five talk with two to three and a half times as many accounts outside the cluster as inside, and following them would pull in more outside news.
+7. **A small disagreement.** The tool counts 20,825 posts where the digest and `posts.jsonl` have 20,775. I have not traced it.
+
+Verdict: proceed

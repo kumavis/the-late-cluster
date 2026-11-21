@@ -1,0 +1,364 @@
+{
+  "id": "made-yard-shift-wheelie",
+  "lane": "made",
+  "title": "A loader balancing on two wheels in the news becomes a wheelie game the same evening",
+  "summary": "On Tue 17 Nov at 19:24Z @eriskii.net (3,060 followers) posted \"holy shit\" with an image (205 likes, 20 quotes). A member's quote post links the news item behind it, headed \"AI teaches five-tonne loader to balance on two wheels\". At 20:50Z @cee.wtf (2,524 followers) quote-posted it with \"list of unpredictable things but are obvious in hindsight\". At 21:00Z @shimmermathlabs.com replied: \"\"trained in simulation\" / you know what that means? / realistic tractor wheelie sim game is possible\"; another member added \"tractor qwop\". At 23:51Z, 2 hours 51 minutes after that suggestion, @cee.wtf posted a video with \"do a sick wheelie at yard-shift.cee.wtf\" (122 likes, 15 reposts). A player wrote that the left and right buttons sit too close together on a phone \"for people with big thumbs\"; the maker replied \"giving myself the \"didnt even consider people on mobile\" award once again\", and the player answered \"I can't bring my desktop in my forklift\". At 00:10Z @shimmermathlabs.com asked for three things: \"i want skid marks on the ground / i want to be a driver inside that can hang off edge or jump out during tricks for extra points / i want a button for hoots and woots\". At 00:31Z, 21 minutes later, the maker replied \"done\" with an image. The requester's next post has a screenshot whose alt text describes the result: a yellow skid steer loader tipped back on its rear wheels, a small worker in a high-vis vest hanging off the side, \"Woot!\" floating at the top of the screen, tire skid marks on a concrete yard.",
+  "made": [
+    {
+      "what": "yard-shift: a browser game about doing wheelies in a skid steer loader",
+      "by": "cee.wtf",
+      "address": "https://yard-shift.cee.wtf"
+    }
+  ],
+  "couldBeShown": "From the one alt text that describes it: \"a cartoony 3D construction game\"; a yellow skid steer loader with a black frame and a caged cab \"tipped back onto its rear wheels, nose in the air, its arms fully extended so the bucket is up overhead\"; two loose wheels in the bucket; a small worker in an orange high-vis vest and yellow hard hat hanging off the side; a \"Woot!\" message; a concrete yard with tire skid marks, a chain-link fence and low-poly trees under a gray sky. The maker's own video and image have no alt text.",
+  "numbers": [
+    "2 h 51 min from \"realistic tractor wheelie sim game is possible\" (21:00Z) to the game (23:51Z).",
+    "21 minutes from the three requests (00:10Z) to \"done\" (00:31Z).",
+    "122 likes and 15 reposts on the game post; 205 likes on the \"holy shit\" post.",
+    "\"five-tonne\" (the news headline in a member's link)."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:allu5vs3gnm2wm7jzf4rad3r/app.bsky.feed.post/3n2jrfcrnnc25",
+      "text": "holy shit",
+      "handle": "eriskii.net",
+      "displayName": "Eris ⌬",
+      "time": "2026-11-17T19:24:06.925Z",
+      "counts": {
+        "likes": 205,
+        "reposts": 10,
+        "replies": 14,
+        "quotes": 20
+      },
+      "kind": "post",
+      "media": "image (no alt text; research has not seen it)",
+      "note": "The post that started it. Image without alt text."
+    },
+    {
+      "uri": "at://did:plc:lh5ckqvcxznutnohujlrpduz/app.bsky.feed.post/3n2jtt6wjj222",
+      "text": "Video is wild. Doesn't look real.\nuk.news.yahoo.com/ai-teaches-f...",
+      "handle": "riziles.bsky.social",
+      "displayName": "wariziles",
+      "time": "2026-11-17T20:07:40.137Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:allu5vs3gnm2wm7jzf4rad3r/app.bsky.feed.post/3n2jrfcrnnc25",
+        "handle": "eriskii.net",
+        "text": "holy shit",
+        "time": "2026-11-17T19:24:06.925Z"
+      },
+      "kind": "quote",
+      "links": [
+        {
+          "url": "https://uk.news.yahoo.com/ai-teaches-five-tonne-loader-154121914.html",
+          "title": "AI teaches five-tonne loader to balance on two wheels"
+        }
+      ],
+      "note": "A quote post that links the news item."
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2jw73faoc2q",
+      "text": "list of unpredictable things but are obvious in hindsight",
+      "handle": "cee.wtf",
+      "displayName": "cee",
+      "time": "2026-11-17T20:50:06.565Z",
+      "counts": {
+        "likes": 108,
+        "reposts": 3,
+        "replies": 9,
+        "quotes": 1
+      },
+      "quotes": {
+        "uri": "at://did:plc:allu5vs3gnm2wm7jzf4rad3r/app.bsky.feed.post/3n2jrfcrnnc25",
+        "handle": "eriskii.net",
+        "text": "holy shit",
+        "time": "2026-11-17T19:24:06.925Z"
+      },
+      "kind": "quote",
+      "note": "A quote post."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jws52ar22h",
+      "text": "\"trained in simulation\"\nyou know what that means?\nrealistic tractor wheelie sim game is possible",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-17T21:00:45.837Z",
+      "counts": {
+        "likes": 10,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2jw73faoc2q",
+        "handle": "cee.wtf",
+        "text": "list of unpredictable things but are obvious in hindsight"
+      },
+      "kind": "reply",
+      "note": "The suggestion, as a reply to the quote post above."
+    },
+    {
+      "uri": "at://did:plc:kpxj7utcy6mjv4rmzitnnrmv/app.bsky.feed.post/3n2jwt5c6ak2u",
+      "text": "tractor qwop",
+      "handle": "ver.ooo",
+      "displayName": "ver.ooo 🗿",
+      "time": "2026-11-17T21:01:19.650Z",
+      "counts": {
+        "likes": 8,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2jw73faoc2q",
+        "handle": "cee.wtf",
+        "text": "list of unpredictable things but are obvious in hindsight"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kacrswx22q",
+      "text": "do a sick wheelie at yard-shift.cee.wtf",
+      "handle": "cee.wtf",
+      "displayName": "cee",
+      "time": "2026-11-17T23:51:08.165Z",
+      "counts": {
+        "likes": 122,
+        "reposts": 15,
+        "replies": 6,
+        "quotes": 1
+      },
+      "quotes": {
+        "uri": "at://did:plc:allu5vs3gnm2wm7jzf4rad3r/app.bsky.feed.post/3n2jrfcrnnc25",
+        "handle": "eriskii.net",
+        "text": "holy shit",
+        "time": "2026-11-17T19:24:06.925Z"
+      },
+      "kind": "quote",
+      "media": "video (no alt text; research has not seen it)",
+      "links": [
+        {
+          "url": "https://yard-shift.cee.wtf"
+        }
+      ],
+      "note": "The game. Quotes the \"holy shit\" post. Video without alt text."
+    },
+    {
+      "uri": "at://did:plc:j5m7dstml3tg2ecrep322y2q/app.bsky.feed.post/3n2kanii4os2v",
+      "text": "Feedback: l & r being right next to each other on mobile makes it hard for people with big thumbs",
+      "handle": "tvanl.bsky.social",
+      "displayName": "tvanl",
+      "time": "2026-11-17T23:57:07.472Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kacrswx22q",
+        "handle": "cee.wtf",
+        "text": "do a sick wheelie at yard-shift.cee.wtf"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kapo43mc25",
+      "text": "giving myself the \"didnt even consider people on mobile\" award once again",
+      "handle": "cee.wtf",
+      "displayName": "cee",
+      "time": "2026-11-17T23:58:20.478Z",
+      "counts": {
+        "likes": 10,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:j5m7dstml3tg2ecrep322y2q/app.bsky.feed.post/3n2kanii4os2v",
+        "handle": "tvanl.bsky.social",
+        "text": "Feedback: l & r being right next to each other on mobile makes it hard for people with big thumbs"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:j5m7dstml3tg2ecrep322y2q/app.bsky.feed.post/3n2kavbl7v22v",
+      "text": "I can't bring my desktop in my forklift",
+      "handle": "tvanl.bsky.social",
+      "displayName": "tvanl",
+      "time": "2026-11-18T00:01:28.669Z",
+      "counts": {
+        "likes": 7,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kapo43mc25",
+        "handle": "cee.wtf",
+        "text": "giving myself the \"didnt even consider people on mobile\" award once again"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2kbfb35d22y",
+      "text": "yeah!!!\n\ni want skid marks on the ground\ni want to be a driver inside that can hang off edge or jump out during tricks for extra points\ni want a button for hoots and woots",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-18T00:10:25.012Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kacrswx22q",
+        "handle": "cee.wtf",
+        "text": "do a sick wheelie at yard-shift.cee.wtf"
+      },
+      "kind": "reply",
+      "note": "Three requests."
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kcl2qub225",
+      "text": "done",
+      "handle": "cee.wtf",
+      "displayName": "cee",
+      "time": "2026-11-18T00:31:33.451Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2kbfb35d22y",
+        "handle": "shimmermathlabs.com",
+        "text": "yeah!!!\n\ni want skid marks on the ground\ni want to be a driver inside that can hang off edge or jump out during tricks for extra points\ni want a button for hoots and woots"
+      },
+      "kind": "reply",
+      "media": "image (no alt text; research has not seen it)",
+      "note": "Image without alt text."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2kd5c5awk2h",
+      "text": "yes!\nthere has to be a way to run yourself over, the quest continues",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-18T00:41:45.174Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kcl2qub225",
+        "handle": "cee.wtf",
+        "text": "done"
+      },
+      "kind": "reply",
+      "alt": "Screenshot from a cartoony 3D construction game. A yellow skid steer loader with a black frame and a caged cab is tipped back onto its rear wheels, nose in the air, its arms fully extended so the bucket is up overhead. Two loose wheels sit in the bucket. A small worker in an orange high-vis vest and yellow hard hat hangs off the side of the machine, one arm flung up as if cheering or falling. A little “Woot!” message floats at the top of the screen. The setting is a concrete yard with tire skid marks, a chain-link fence and rounded low-poly trees under a gray sky.",
+      "media": "image",
+      "note": "The alt text describes a screenshot of the game."
+    },
+    {
+      "uri": "at://did:plc:gwvh3frsmdih2zpol2holysc/app.bsky.feed.post/3n2km24xi4s2y",
+      "text": "QWOP mode",
+      "handle": "brennan.computer",
+      "displayName": "brennan",
+      "time": "2026-11-18T03:21:02.758Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kacrswx22q",
+        "handle": "cee.wtf",
+        "text": "do a sick wheelie at yard-shift.cee.wtf"
+      },
+      "kind": "reply"
+    }
+  ],
+  "people": [
+    {
+      "handle": "cee.wtf",
+      "followers": 2524,
+      "displayName": "cee",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "maker"
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "followers": 1454,
+      "displayName": "Amber 🌸",
+      "clusterMember": true,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1,
+      "role": "suggested it and asked for features"
+    },
+    {
+      "handle": "eriskii.net",
+      "followers": 3060,
+      "displayName": "Eris ⌬",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "posted the news"
+    },
+    {
+      "handle": "tvanl.bsky.social",
+      "followers": 785,
+      "displayName": "tvanl",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "player"
+    },
+    {
+      "handle": "riziles.bsky.social",
+      "followers": 1055,
+      "displayName": "wariziles",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "ver.ooo",
+      "followers": 955,
+      "displayName": "ver.ooo 🗿",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "brennan.computer",
+      "followers": 3160,
+      "displayName": "brennan",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "sensitive": "The starting point is outside news about a machine; the bible keeps such news in scope only as the cluster's reaction, which here is a game. The thread around it also holds posts about what such machines mean for people's jobs (R10) and a post the digest keyword-flags; none is carried. The last carried post says \"there has to be a way to run yourself over\": it is about the game's driver figure, and R10 lists accidents, so it may be better left unread. The maker's \"award\" line is self-teasing. @shimmermathlabs.com is marked featuredPrevious: shown. @cee.wtf holds the Top Chicken record and one of the window's results (games lane), and also appears in made-polykatamari and made-build-bot-small-wishes.",
+  "notUnderstood": [
+    "\"qwop\" / \"QWOP mode\": a reference to a browser game known for hard-to-control limbs, as research reads it."
+  ]
+}

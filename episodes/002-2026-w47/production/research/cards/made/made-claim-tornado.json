@@ -1,0 +1,93 @@
+{
+  "id": "made-claim-tornado",
+  "lane": "made",
+  "title": "A \"claim tornado\" page named for another member",
+  "summary": "On Sat 14 Nov at 21:10Z @dave.9000ish.uk (880 followers) posted a video with the words \"it's a claim tornado\"; its alt text is \"a norvid claim tornado\". It has 30 likes. The next morning the same account quote-posted it with \"Let the claims wash over you\" and a link to claims.9000ish.uk, whose page title is \"Norvid Claim Tornado\". @norvid-studies.bsky.social replied with an image. The same maker made the polyhedral coffee simulator three days later (see made-polyhedral-coffee-simulator).",
+  "made": [
+    {
+      "what": "a page titled \"Norvid Claim Tornado\", and a video of it",
+      "by": "dave.9000ish.uk",
+      "address": "https://claims.9000ish.uk"
+    }
+  ],
+  "couldBeShown": "Research does not know. The video's alt text is five words and the page is described only by its title; presumably many instances of the word \"claim\", or of the posts it was attached to, moving as a tornado.",
+  "numbers": [
+    "30 likes and 2 reposts on the video; 13 likes on the link.",
+    "10 h 36 min between the video (Sat 21:10Z) and the link (Sun 07:46Z)."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2cfxeww522z",
+      "text": "it's a claim tornado",
+      "handle": "dave.9000ish.uk",
+      "displayName": "Dave",
+      "time": "2026-11-14T21:10:50.109Z",
+      "counts": {
+        "likes": 30,
+        "reposts": 2,
+        "replies": 0,
+        "quotes": 2
+      },
+      "kind": "post",
+      "alt": "a norvid claim tornado",
+      "media": "video",
+      "note": "The video. Top-level. The alt text is the maker's."
+    },
+    {
+      "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2djhbiqyc2c",
+      "text": "Let the claims wash over you\n\nclaims.9000ish.uk",
+      "handle": "dave.9000ish.uk",
+      "displayName": "Dave",
+      "time": "2026-11-15T07:46:04.328Z",
+      "counts": {
+        "likes": 13,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 2
+      },
+      "quotes": {
+        "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2cfxeww522z",
+        "handle": "dave.9000ish.uk",
+        "text": "it's a claim tornado",
+        "time": "2026-11-14T21:10:50.109Z"
+      },
+      "kind": "quote",
+      "links": [
+        {
+          "url": "https://claims.9000ish.uk",
+          "title": "Norvid Claim Tornado"
+        }
+      ],
+      "note": "The link. Quotes the video post."
+    }
+  ],
+  "people": [
+    {
+      "handle": "dave.9000ish.uk",
+      "followers": 880,
+      "displayName": "Dave",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "maker"
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "followers": 2777,
+      "displayName": "norvid_studies",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1,
+      "role": "the member whose posts it is made from"
+    }
+  ],
+  "sensitive": "The page is named for another member (the video's alt text is \"a norvid claim tornado\"); research assumes, without having seen it, that it is built from that member's \"claim\" posts. @norvid-studies.bsky.social is marked featuredPrevious: spoke, so the account is not cast to speak in this episode; its posts may be shown. That account's reply to the link is an image with no text and no alt text, so its reaction is not known to research; without it there is no evidence in the data of how the subject took it, beyond the two being frequent, friendly correspondents all week. The word \"claim\" is a habit of that account's that other members imitate; whether the show has used it before is for the reviewers. A related idea by another member, a browser extension for making such posts, sits in the story the digest withholds because a post in it asks not to be quoted; it is not carried and not described here.",
+  "notUnderstood": [
+    "What the page shows.",
+    "What \"claim\" means when that account posts it."
+  ]
+}

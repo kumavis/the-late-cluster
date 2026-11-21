@@ -1,0 +1,355 @@
+{
+  "id": "made-parfait-client",
+  "lane": "made",
+  "title": "parfait, a new Bluesky client by an account with 321 followers, opens as a beta and cluster members start using it",
+  "summary": "@juliet.paris (321 followers; not a cluster member) built parfait, a web client for Bluesky at parfait.social. In the window the maker posted features as they landed: video playback up to 4x (\"so you can consume brainrot faster\"), a right-click menu on posts, vim-style j/k scrolling \"for my keyboard freaks\", and a masonry layout for the media tab. On Mon 16 Nov at 07:16Z the maker posted the link with \"Consider this an open beta, still a lot of work to do, but it's fairly complete and stable\"; that post has 230 likes, 36 reposts and 10 quotes. Cluster members responded through the week. @goose.art (6,896 followers) wrote 44 minutes after the beta post that it \"appears to be fast as fuck\", later that it is \"already one of the best designed bluesky apps\", and on Wed 18 Nov: \"cannot lie i am a little upset that parfait is a dramatically better experience than every other social app and afaik juliet made it in like a week\". The maker replied to that: \"i started on Nov 10 and ive been pretty much doing this all day since...\". Others posted from it (\"hi from parfait <3\"), and one wrote that they already have a different thing called parfait, a browser theme, and will \"eventually convince myself to put parfait in my parfait\". On Tue 17 Nov the maker wrote \"thank you all for the feedback, makes me happy to see parfait is useful to some\".",
+  "made": [
+    {
+      "what": "parfait: a web client for Bluesky",
+      "by": "juliet.paris",
+      "address": "https://parfait.social"
+    }
+  ],
+  "couldBeShown": "Features named in the posts: a video speeding up to 2x while held and up to 4x by setting; a menu appearing on right-click; a feed scrolling by the j and k keys; a media tab laid out as a masonry grid. Four of the maker's posts carry videos or images, but only one has alt text (\"media tab of a certain goose with a masonry layout\"), so research has not seen the client's look. One member describes it as feeling \"much calmer than any other bsky client\".",
+  "numbers": [
+    "Started \"on Nov 10\" (the maker); open beta on Nov 16: six days.",
+    "230 likes and 36 reposts on the beta post, from an account with 321 followers.",
+    "\"refresh parfait.social every 2h or so\" (a user).",
+    "Playback \"up to 4x\"; hold for 2x.",
+    "The digest holds 18 posts by the maker and lists the link in 7 posts."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:ende5ewdnzay43ut6xjfcwyn/app.bsky.feed.post/3n2c5ofgybk2k",
+      "text": "parfait has a playback speed going up to 4x and if you hold click the video it goes to 2x so you can consume brainrot faster",
+      "handle": "juliet.paris",
+      "displayName": "julie",
+      "time": "2026-11-14T18:42:38.711Z",
+      "counts": {
+        "likes": 42,
+        "reposts": 1,
+        "replies": 4,
+        "quotes": 0
+      },
+      "kind": "post",
+      "media": "video (no alt text; research has not seen it)",
+      "note": "Sat 14 Nov. Video without alt text."
+    },
+    {
+      "uri": "at://did:plc:ende5ewdnzay43ut6xjfcwyn/app.bsky.feed.post/3n2er6p5gnq24",
+      "text": "you can right click posts to show a context menu, no more hunting down the tiny ellipsis button everytime you wanna block your bestie or share a link (this i have yet to add)",
+      "handle": "juliet.paris",
+      "displayName": "julie",
+      "time": "2026-11-15T19:37:06.157Z",
+      "counts": {
+        "likes": 48,
+        "reposts": 3,
+        "replies": 2,
+        "quotes": 2
+      },
+      "kind": "post",
+      "media": "video (no alt text; research has not seen it)",
+      "note": "Sun 15 Nov. Video without alt text."
+    },
+    {
+      "uri": "at://did:plc:ende5ewdnzay43ut6xjfcwyn/app.bsky.feed.post/3n2fyargigs2x",
+      "text": "Consider this an open beta, still a lot of work to do, but it's fairly complete and stable",
+      "handle": "juliet.paris",
+      "displayName": "julie",
+      "time": "2026-11-16T07:16:11.759Z",
+      "counts": {
+        "likes": 230,
+        "reposts": 36,
+        "replies": 17,
+        "quotes": 10
+      },
+      "kind": "post",
+      "links": [
+        {
+          "url": "https://parfait.social",
+          "title": "parfait"
+        }
+      ],
+      "note": "Mon 16 Nov: the open beta."
+    },
+    {
+      "uri": "at://did:plc:ende5ewdnzay43ut6xjfcwyn/app.bsky.feed.post/3n2fybk4thc2x",
+      "text": "go star it on tangled and open issues if you have any feedback",
+      "handle": "juliet.paris",
+      "displayName": "julie",
+      "time": "2026-11-16T07:16:37.658Z",
+      "counts": {
+        "likes": 40,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ende5ewdnzay43ut6xjfcwyn/app.bsky.feed.post/3n2fyargigs2x",
+        "handle": "juliet.paris",
+        "text": "Consider this an open beta, still a lot of work to do, but it's fairly complete and stable"
+      },
+      "kind": "reply",
+      "links": [
+        {
+          "url": "https://tangled.org/juliet.paris/parfait",
+          "title": "parfait by juliet.paris · Tangled"
+        }
+      ]
+    },
+    {
+      "uri": "at://did:plc:hsqwcidfez66lwm3gxhfv5in/app.bsky.feed.post/3n2g2przprq2s",
+      "text": "parfait appears to be fast as fuck\n\n@juliet.paris has done it again",
+      "handle": "goose.art",
+      "displayName": "business goose🪿",
+      "time": "2026-11-16T08:00:23.139Z",
+      "counts": {
+        "likes": 31,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 1
+      },
+      "kind": "post",
+      "note": "44 minutes after the beta post."
+    },
+    {
+      "uri": "at://did:plc:ende5ewdnzay43ut6xjfcwyn/app.bsky.feed.post/3n2h2evr5d624",
+      "text": "j/k scrolling à la vim for my keyboard freaks",
+      "handle": "juliet.paris",
+      "displayName": "julie",
+      "time": "2026-11-16T17:26:57.580Z",
+      "counts": {
+        "likes": 79,
+        "reposts": 0,
+        "replies": 8,
+        "quotes": 1
+      },
+      "kind": "post",
+      "media": "video (no alt text; research has not seen it)",
+      "note": "Video without alt text."
+    },
+    {
+      "uri": "at://did:plc:hsqwcidfez66lwm3gxhfv5in/app.bsky.feed.post/3n2h2jugxp32s",
+      "text": "i think parfait.social is already one of the best designed bluesky apps and will probably only get better quickly\n\nfeels much calmer than any other bsky client i've used without sacrificing the overall feel of using a microblogging platform",
+      "handle": "goose.art",
+      "displayName": "business goose🪿",
+      "time": "2026-11-16T17:29:43.758Z",
+      "counts": {
+        "likes": 45,
+        "reposts": 0,
+        "replies": 3,
+        "quotes": 0
+      },
+      "kind": "post",
+      "links": [
+        {
+          "url": "https://parfait.social",
+          "title": "parfait"
+        }
+      ]
+    },
+    {
+      "uri": "at://did:plc:6if5m2yo6kroprmmency3gt5/app.bsky.feed.post/3n2i6wo433j22",
+      "text": "it's so fun to refresh parfait.social every 2h or so and seeing it get more perfecter every time",
+      "handle": "olaren.dev",
+      "displayName": "Olaren",
+      "time": "2026-11-17T04:21:08.207Z",
+      "counts": {
+        "likes": 39,
+        "reposts": 3,
+        "replies": 3,
+        "quotes": 0
+      },
+      "kind": "post",
+      "links": [
+        {
+          "url": "https://parfait.social",
+          "title": "parfait"
+        }
+      ],
+      "note": "From an account that is not a cluster member."
+    },
+    {
+      "uri": "at://did:plc:ende5ewdnzay43ut6xjfcwyn/app.bsky.feed.post/3n2jsyrtlmm24",
+      "text": "thank you all for the feedback, makes me happy to see parfait is useful to some",
+      "handle": "juliet.paris",
+      "displayName": "julie",
+      "time": "2026-11-17T19:52:53.698Z",
+      "counts": {
+        "likes": 59,
+        "reposts": 1,
+        "replies": 3,
+        "quotes": 0
+      },
+      "kind": "post"
+    },
+    {
+      "uri": "at://did:plc:v46ojbiop5ebs5h7gaomixcc/app.bsky.feed.post/3n2knxzbwz325",
+      "text": "hi from parfait <3",
+      "handle": "brookie.blog",
+      "displayName": "Brookie",
+      "time": "2026-11-18T03:55:39.234Z",
+      "counts": {
+        "likes": 37,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "kind": "post"
+    },
+    {
+      "uri": "at://did:plc:ende5ewdnzay43ut6xjfcwyn/app.bsky.feed.post/3n2kwyiovqg24",
+      "text": "you ever wanted pinterest on bsky? parfait now has a masonry layout in the media tab",
+      "handle": "juliet.paris",
+      "displayName": "julie",
+      "time": "2026-11-18T06:36:58.268Z",
+      "counts": {
+        "likes": 85,
+        "reposts": 3,
+        "replies": 2,
+        "quotes": 0
+      },
+      "kind": "post",
+      "alt": "media tab of a certain goose with a masonry layout",
+      "media": "image",
+      "note": "The alt text is the maker's."
+    },
+    {
+      "uri": "at://did:plc:hsqwcidfez66lwm3gxhfv5in/app.bsky.feed.post/3n2mhs6tek22j",
+      "text": "cannot lie i am a little upset that parfait is a dramatically better experience than every other social app and afaik juliet made it in like a week",
+      "handle": "goose.art",
+      "displayName": "business goose🪿",
+      "time": "2026-11-18T21:10:20.642Z",
+      "counts": {
+        "likes": 53,
+        "reposts": 1,
+        "replies": 4,
+        "quotes": 0
+      },
+      "kind": "post"
+    },
+    {
+      "uri": "at://did:plc:ende5ewdnzay43ut6xjfcwyn/app.bsky.feed.post/3n2miequcc42i",
+      "text": "i started on Nov 10 and ive been pretty much doing this all day since...",
+      "handle": "juliet.paris",
+      "displayName": "julie",
+      "time": "2026-11-18T21:20:43.615Z",
+      "counts": {
+        "likes": 24,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hsqwcidfez66lwm3gxhfv5in/app.bsky.feed.post/3n2mhs6tek22j",
+        "handle": "goose.art",
+        "text": "cannot lie i am a little upset that parfait is a dramatically better experience than every other social app and afaik juliet made it in like a week"
+      },
+      "kind": "reply",
+      "note": "The maker's reply to the post above."
+    },
+    {
+      "uri": "at://did:plc:gormnems4iydljgsojdyvpvt/app.bsky.feed.post/3n2mzofbuam2z",
+      "text": "parfait.social is crazy you're telling me we can have a web app that is good finally",
+      "handle": "freyja-lynx.dev",
+      "displayName": "elynxabeth holmes ⎔",
+      "time": "2026-11-19T02:30:20.057Z",
+      "counts": {
+        "likes": 47,
+        "reposts": 4,
+        "replies": 2,
+        "quotes": 0
+      },
+      "kind": "post",
+      "links": [
+        {
+          "url": "https://parfait.social",
+          "title": "parfait"
+        }
+      ],
+      "note": "From an account that is not a cluster member."
+    },
+    {
+      "uri": "at://did:plc:6ifsih3ovovuolidhgxhqfup/app.bsky.feed.post/3n2n6466xes2e",
+      "text": "I wanna use parfait so bad but I already have parfait at home github.com/reizumii/par...\n\nI'll eventually convince myself to put parfait in my parfait and have two layers of sidebar tabs",
+      "handle": "ashanti.pds.witchcraft.systems",
+      "displayName": "Ash ⎔",
+      "time": "2026-11-19T03:49:37.989Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "kind": "post",
+      "links": [
+        {
+          "url": "https://github.com/reizumii/parfait",
+          "title": "GitHub - reizumii/parfait: A tasty theme modification for Firefox 🦊"
+        }
+      ]
+    }
+  ],
+  "people": [
+    {
+      "handle": "juliet.paris",
+      "followers": 321,
+      "displayName": "julie",
+      "clusterMember": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "maker"
+    },
+    {
+      "handle": "goose.art",
+      "followers": 6896,
+      "displayName": "business goose🪿",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "early user"
+    },
+    {
+      "handle": "olaren.dev",
+      "followers": 695,
+      "displayName": "Olaren",
+      "clusterMember": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "brookie.blog",
+      "followers": 2559,
+      "displayName": "Brookie",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "freyja-lynx.dev",
+      "followers": 2465,
+      "displayName": "elynxabeth holmes ⎔",
+      "clusterMember": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "ashanti.pds.witchcraft.systems",
+      "followers": 452,
+      "displayName": "Ash ⎔",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "sensitive": "The maker has 321 followers and is not a cluster member: the scope review names this account as a maker the community's own lists point to, whose threads were not collected, so some replies around these posts are missing from the data. R7 applies (a small account may appear only as the hero of a moment); in the members' posts carried here the maker is praised throughout. Left out on purpose: the maker's post asking why the account is \"shadowbanned\" and saying it does a better job than the platform \"for free\" (a complaint aimed at a company's staff account); a screenshot commenting on how the platform communicates; a post mentioning the maker's age; a member's praise that works by showing a rival client's menu as ugly; a member's innuendo. Praise that calls parfait better than \"every other social app\" is kept because it names nobody; it is still a comparison, and other clients have makers in and near the cluster. One member's post contains a strong swear word used as praise. @olaren.dev (695 followers) and @freyja-lynx.dev (2,465) are not cluster members. Research has not checked the maker's profile text for a request not to be quoted: only the scraper's profile filter stands behind that.",
+  "notUnderstood": [
+    "\"tangled\": the code host the maker links, as research reads it."
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "top-chicken": {
+    "winner": {
+      "heard": "Saturday's winner, C",
+      "judgement": "The winner's display name is cee, one syllable, said exactly as the letter C is said. The transcription wrote the letter. It is the name heard as itself, spelled another way; nothing else in the line was heard differently, and no pronoun was heard. A person should still listen to this word: across test mixes it was written C or see, and once, in a mix that is not this one, as a pronoun."
+    },
+    "recordline": {
+      "heard": "All time tabs can still see, with the score of 6186 to beat.",
+      "judgement": "The name cee was written as the word see, which is how it sounds: the name is heard as itself. 'top chicken is' came out as 'tabs can', harmless nonsense about nobody (the engine cannot say chicken; the card and the caption carry it). The record, 6186, is heard correctly."
+    }
+  }
+}

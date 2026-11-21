@@ -1,0 +1,113 @@
+{
+  "id": "voices-forty-gigabytes",
+  "lane": "voices",
+  "title": "A member finds the Claude desktop app holding their external drives, and \"~40 GB of mysterious files\"",
+  "summary": "On Tue 17 Nov, in a reply chain under a @norvid-studies.bsky.social post about a podcast's ad reads, @lucresnooker.bsky.social (498 followers) mentioned an ad that said \"we're making it easier for agents to set up their own accounts without human involvement!\". At 14:14Z the same account added: \"in this context this was a little unsettling: turned out i wasn't able to eject external drives cleanly because…the Claude desktop app was doing something with them, for some reason, even though that was never discussed…?\", then a sentence in quotation marks, \"Holding an external drive like this is arguably a bug, so it’s worth reporting with the thumbs-down button.\", followed by \"oh…okay…\". Two minutes later: \"me glancing at the ~40 GB of mysterious files on my laptop that claude caused to be there in connection with data-analysis projects that i in theory told him to do but don't really understand: 😓\" (5 likes).",
+  "posts": [
+    {
+      "uri": "at://did:plc:i33xld5yxmhcldu4hkkjo3ci/app.bsky.feed.post/3n2j6m4gefk2c",
+      "url": "https://bsky.app/profile/lucresnooker.bsky.social/post/3n2j6m4gefk2c",
+      "handle": "lucresnooker.bsky.social",
+      "displayName": "Lucre Snooker",
+      "text": "lol yes, i was going to make a similar remark. also fun that there's that ad that's like \"we're making it easier for agents to set up their own accounts without human involvement!\" skate to where the puck is going",
+      "time": "2026-11-17T13:47:54.054Z",
+      "counts": {
+        "likes": 7,
+        "reposts": 1,
+        "replies": 4,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2j5gqsgzc2y",
+        "handle": "norvid-studies.bsky.social",
+        "text": "the chipper ad reads for USE CODE DWARKESH punctuating the conversation gave it a certain \"heck of a thing\" that I think the @lucresnooker.bsky.social s out there would appreciate"
+      },
+      "note": "Context for \"in this context\" in the next post."
+    },
+    {
+      "uri": "at://did:plc:i33xld5yxmhcldu4hkkjo3ci/app.bsky.feed.post/3n2ja3is64k26",
+      "url": "https://bsky.app/profile/lucresnooker.bsky.social/post/3n2ja3is64k26",
+      "handle": "lucresnooker.bsky.social",
+      "displayName": "Lucre Snooker",
+      "text": "in this context this was a little unsettling: turned out i wasn't able to eject external drives cleanly because…the Claude desktop app was doing something with them, for some reason, even though that was never discussed…?",
+      "time": "2026-11-17T14:14:24.082Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:i33xld5yxmhcldu4hkkjo3ci/app.bsky.feed.post/3n2j6m4gefk2c",
+        "handle": "lucresnooker.bsky.social",
+        "text": "lol yes, i was going to make a similar remark. also fun that there's that ad that's like \"we're making it easier for agents to set up their own accounts without human involvement!\" skate to where the puck is going"
+      }
+    },
+    {
+      "uri": "at://did:plc:i33xld5yxmhcldu4hkkjo3ci/app.bsky.feed.post/3n2ja3pncss26",
+      "url": "https://bsky.app/profile/lucresnooker.bsky.social/post/3n2ja3pncss26",
+      "handle": "lucresnooker.bsky.social",
+      "displayName": "Lucre Snooker",
+      "text": "\"Holding an external drive like this is arguably a bug, so it’s worth reporting with the thumbs-down button.\" oh…okay…",
+      "time": "2026-11-17T14:14:31.264Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:i33xld5yxmhcldu4hkkjo3ci/app.bsky.feed.post/3n2ja3is64k26",
+        "handle": "lucresnooker.bsky.social",
+        "text": "in this context this was a little unsettling: turned out i wasn't able to eject external drives cleanly because…the Claude desktop app was doing something with them, for some reason, even though that was never discussed…?"
+      },
+      "note": "The post does not say who the quoted sentence is from."
+    },
+    {
+      "uri": "at://did:plc:i33xld5yxmhcldu4hkkjo3ci/app.bsky.feed.post/3n2ja6exvps26",
+      "url": "https://bsky.app/profile/lucresnooker.bsky.social/post/3n2ja6exvps26",
+      "handle": "lucresnooker.bsky.social",
+      "displayName": "Lucre Snooker",
+      "text": "me glancing at the ~40 GB of mysterious files on my laptop that claude caused to be there in connection with data-analysis projects that i in theory told him to do but don't really understand: 😓",
+      "time": "2026-11-17T14:16:00.740Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 2,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:i33xld5yxmhcldu4hkkjo3ci/app.bsky.feed.post/3n2ja3pncss26",
+        "handle": "lucresnooker.bsky.social",
+        "text": "\"Holding an external drive like this is arguably a bug, so it’s worth reporting with the thumbs-down button.\" oh…okay…"
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "lucresnooker.bsky.social",
+      "displayName": "Lucre Snooker",
+      "followers": 498,
+      "smallAccount": false,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "the only speaker in these four posts"
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "followers": 2777,
+      "smallAccount": false,
+      "member": true,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1,
+      "role": "wrote the post the chain hangs from, which tags this account"
+    }
+  ],
+  "watchable": "Text only. One number: about 40 GB.",
+  "sensitive": "498 followers (R7: hero only); the posts are the author's own account of their own laptop. \"him\" for the model is the author's word. The chain starts from a post by @norvid-studies.bsky.social (spoke in the previous episode), embedded here only as what the first post replied to. The quoted sentence about the thumbs-down button is unattributed in the post; I assume it is the app's or the model's explanation and cannot confirm it (R15). Other posts by this account in the window touch health and politics and are not used (R10)."
+}

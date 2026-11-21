@@ -1,0 +1,152 @@
+{
+  "slug": "interview",
+  "title": "The Interview: cee",
+  "format": "The interview (standing segment): Larry and one guest puppet. Four separate exchanges on four occasions, in the order they happened; every answer a verbatim post, every question recreating what that post replied to. One other member's post is read aloud exactly by Sibyl. The guest's game is shown working in the middle. A house sight gag follows the last answer.",
+  "seconds": 102,
+  "standing": "interview",
+  "cards": [
+    "interview-cee-wtf"
+  ],
+  "ideas": [],
+  "speakers": [
+    "cee.wtf"
+  ],
+  "featured": [
+    "cee.wtf",
+    "shimmermathlabs.com"
+  ],
+  "retell": "The guest explains how they were already playing a game that is not out until tomorrow (the console lets you change its time zone), so Larry turns his desk clock forward a day and declares the show finished.",
+  "turn": "Larry tries the guest's trick.",
+  "runningTime": "101.8 s as rendered in a scratch copy of the studio (not in the repo); 209 caption words, about 2.05 a second.",
+  "drewOn": "Brainstorm ideas for this card, none of which went through the ideas repetition gate because the card was not shortlisted: writer-2-175 (the reflective question and its answer), writer-2-17 (the three requests and \"done\", used here in the middle and not as the ending), writer-1-20 (the playing-or-watching question), writer-2-19 and writer-1-17 (the timezone answer and the clock). Nothing is taken from the ideas about the label on the chyron.",
+  "exchanges": [
+    {
+      "n": 1,
+      "date": "15 Nov, 01:35 UTC",
+      "answerLine": "usage",
+      "answer": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2cuqozd6s2q",
+      "repliedTo": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ctuaohos2n",
+      "how": "Ask what was asked: Larry puts the member's question in his own words (line ask-usage). The asker is not named, shown or voiced.",
+      "card": "cee · @cee.wtf · 15 Nov · 13 likes · a reply to a question put to everyone"
+    },
+    {
+      "n": 2,
+      "date": "18 Nov, 00:31 UTC",
+      "answerLine": "done",
+      "answer": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kcl2qub225",
+      "repliedTo": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2kbfb35d22y",
+      "how": "Read what was said: Sibyl reads the member's request aloud, whole and exact, with its card (line wishes); the reply follows with nothing between.",
+      "card": "cee · @cee.wtf · 18 Nov · 6 likes · a reply to Amber's request. The post's own image has not been seen and is not shown."
+    },
+    {
+      "n": 3,
+      "date": "18 Nov, 15:47 UTC",
+      "answerLine": "gaming",
+      "answer": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2lvrms4cs2j",
+      "repliedTo": "at://did:plc:stznz7qsokto2345qtdzogjb/app.bsky.feed.post/3n2lvm2mn2c2z",
+      "how": "Ask what was asked (line ask-playing), after Larry says what the guest's own post above it was about (line scene-gta, that post on a glance card). The asker is outside the cluster's membership: not named, shown or voiced.",
+      "card": "cee · @cee.wtf · 18 Nov · 5 likes · a reply to a question under \"Happy gta 6 day\". The post's own image has not been seen and is not shown."
+    },
+    {
+      "n": 4,
+      "date": "18 Nov, 21:41 UTC",
+      "answerLine": "timezone",
+      "answer": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2mjkggwvc2h",
+      "repliedTo": "at://did:plc:zgufzyadu3gghypxz4hp5psp/app.bsky.feed.post/3n2mjhwfruc2m",
+      "how": "Ask what was asked (line ask-tomorrow): the first sentence of the member's question. The asker is a small account: not named, shown or voiced.",
+      "card": "cee · @cee.wtf · 18 Nov · 5 likes · a reply to a member's question under the first-hour review"
+    }
+  ],
+  "people": {
+    "speaks": "cee (@cee.wtf): 2,524 followers, a member, never featured (research card). Not on the opt-out list (checked by the writer, 20 Nov). The window's 174 posts by this account were scanned for a request not to be quoted or included: none. Posts about housing, work, money and the body exist in the week and are not touched.",
+    "shown": "Amber (@shimmermathlabs.com): 1,454 followers, a member, marked featuredPrevious: shown. One post on a card, read aloud by Sibyl; credited on screen as the member who suggested the game. Not voiced. Not on the opt-out list; 179 window posts scanned, no request not to be quoted.",
+    "notShown": "Three askers, each only the occasion of an answer: @norvid-studies.bsky.social (spoke in the previous episode, so not voiced), @psingletary.com (not a member), @kitto.nekoweb.org (small account, 248 followers). None is named, shown or voiced. Their posts are in sources.json as reference so a reviewer can lay each question beside Larry's.",
+    "notChecked": "No bio has been read by anyone (no network at research or drafting). The bios of @cee.wtf and @shimmermathlabs.com must be read before this airs (R11, R14)."
+  },
+  "builder": {
+    "guest": "Cast entry in this draft's cast.js (id cee). Chyron: cee · @cee.wtf · Built a wheelie game by request · PUPPET · PARODY. Suggested look: the loader's yellow as the hue, a plain hoodie. Not a high-vis vest or a hard hat: that would read as a statement about what the person does for a living (R1). No likeness.",
+    "disclaimer": "From guest-in: \"An interview constructed from public posts. Every answer is a real post. The guest is a puppet playing a posting persona. Parody.\" (Article 4, R9.)",
+    "shots": "guest shot for the exchanges; podium or deskWith for Sibyl's reading; a cut to the band for one word from Hy (cast: ['hy']).",
+    "cues": {
+      "guest-in": "The puppet arrives in the chair; chyron and disclaimer footer start.",
+      "date-15": "A date slate, glance-sized: 15 NOV.",
+      "tissues-out": "Larry slides a box of tissues across the desk towards the guest while he winds up the question. It is his, drawn in gold.",
+      "card-usage": "Answer card, up for the whole line, words lighting as spoken.",
+      "tissues-back": "On the word \"feeling\" Larry takes the tissues back.",
+      "date-17": "Date slate: 17 NOV.",
+      "credit-suggestion": "A credit label, not a post card: SUGGESTED BY @shimmermathlabs.com. Stays with the game's credit below.",
+      "game-in": "On the word \"game\": the studio's sketch of the game on a monitor or beside the couch, and it works. Drawn ONLY from the one alt text that describes it (sources.json, post 3n2kd5c5awk2h, which is itself never shown or read): a yellow skid steer loader with a black frame and a caged cab in a concrete yard, a chain-link fence, rounded low-poly trees, a grey sky. Over about two seconds it tips back onto its rear wheels, nose in the air, arms extended, bucket overhead with two loose wheels in it. At this point it has NO skid marks, NO figure hanging off it and NO \"Woot!\": those arrive at done-lands. Label: STUDIO SKETCH. Credit, on screen for as long as the sketch is: yard-shift.cee.wtf · made by cee. The maker's own video has not been seen by anyone on the show; if the project manager looks at it or at the page, redraw from that.",
+      "card-wishes": "Amber's post on a card (Amber 🌸 · @shimmermathlabs.com · 18 Nov · 5 likes · a reply to the game's post), whole, words lighting as Sibyl reads. As each request is read it appears on the sketch as a dotted outline: skid marks on the word \"skid\", a small figure beside the cab on \"driver\", a button on \"button\". Word timings are in the line's words.",
+      "card-done": "Answer card: done.",
+      "done-lands": "On the word: the dotted outlines turn solid at once. Tyre skid marks on the concrete, a small worker hanging off the side of the loader with one arm flung up, and \"Woot!\" floating at the top. The loader rears. Only these three things: the alt text does not show a jump or points, so neither is drawn.",
+      "tag-21": "A glance tag on \"twenty-one\": 21 MIN. Computed from the two posts' times (sources.json, numbers).",
+      "date-18": "Date slate: 18 NOV. The sketch leaves.",
+      "card-gta-day": "cee's own post as a glance card, four words: Happy gta 6 day (cee · @cee.wtf · 18 Nov · 18 likes). Its image has not been seen and is not shown.",
+      "card-gaming": "Answer card. The capitals light big.",
+      "blowback": "On \"GAMING\": Larry's bow tie and pocket square blow back; he does not flinch.",
+      "time-2141": "The slate ticks on, same date: 18 NOV · 21:41 UTC.",
+      "card-timezone": "Answer card, up for the whole line.",
+      "larry-eyes-clock": "A small gold clock has been on Larry's desk since the top of the segment, with a flap under it reading TODAY. Larry looks at the guest, at the clock, at the guest.",
+      "clock-wind": "He turns the hands forward, round and round, while the ticking plays.",
+      "clock-tomorrow": "The flap flips: TOMORROW. The house lights begin to drop as Larry speaks.",
+      "clock-back": "Sibyl's hand, or just her ruling: the hands spin back, the flap reads TODAY, the lights come up."
+    },
+    "sound": "The audience is silent for 0.8 s after answer 1 and 0.9 s after \"done\": let those stand. The big laugh is on answer 3. The applause after \"We're finished.\" is the room believing him; Sibyl talks over its tail.",
+    "names": "The guest's name is spoken once, by Larry, last in its line after a pause, respelled Tsee, with the applause held back 0.3 s. See heard."
+  },
+  "voices": {
+    "guest": "Rendered before choosing (bible 07): ten candidate answers in five voice variants. Chosen voice: body female 0.5, child 0; f0 164 (median 178 Hz); rate 1.04; accent 0.26. Nearest house voices dee 1.54, eppy 1.79, sibyl 1.90. Not measured against other drafts' guests.",
+    "respellings": {
+      "cee (the name)": "Tsee: same sound; the t sharpens an s the engine drops before a long ee",
+      "Bluesky": "blue-sky (house table)",
+      "afaik": "as-far-as-I-know: the abbreviation said as the words it stands for, as the bible's table does for gm",
+      "ps5": "pee-ess-five",
+      "tho": "though",
+      "Xbox": "Eks-box",
+      "timezone": "time-zone",
+      "didnt / I’m / doesn’t": "straight apostrophes for the dictionary; same words"
+    },
+    "leftOut": "Answers that could not be heard or could not be staged honestly, and so are not in the draft: \"Oh yeah? I invented Cee machines as a baby\" (the coinage is heard as \"the same thing\" in every spelling tried); \"I’m not even sure I’m real\" (heard as \"I'm not paying for I'm real\"; and it is the line the label joke hangs on, which is left alone); \"Happy gta 6 day\" as a spoken line (heard as \"Have a great day!\"; it is on a glance card instead); \"giving myself the \\\"didnt even consider people on mobile\\\" award once again\" (six of sixteen renderings, across the guest's voice variants and two house voices, were heard with a word that fails the heard-text rule: \"gun\" three times, \"the Lord\" three times, a swear once); \"do a sick wheelie at yard-shift.cee.wtf\" (an address in speech, and it quotes an image post nobody has seen, so its occasion cannot be recreated); \"First\" (its prompt belongs to the pen plotter segment).",
+    "heard": {
+      "how": "Whisper base.en on each captioned line cut from the final mix of a full render in a scratch copy of the studio, 20 Nov. 182 of 209 caption words (87 %). Every line read. Nothing heard is offensive or alarming, touches an out-of-bounds subject, or says anything about a person. The score moves a few points from render to render: the assembler must read it again on the real render.",
+      "lines": {
+        "rule": "Next, the interview. The guest is a puppet. Whoever word the guest says is a real poet.",
+        "welcome": "Please welcome C.",
+        "scene-usage": "On the 15th, the member put a question to everyone, I'll put to you.",
+        "ask-usage": "How do you want your blue sky used to be different from how you actually used now?",
+        "usage": "I want several thousand more followers pinned to my blue sky user.",
+        "feeling": "I was hoping for a feeling.",
+        "scene-game": "Two days later, a member gave you an idea for a game.",
+        "under-three": "In under 3 hours, there was a game.",
+        "same-member": "and then from the same member",
+        "wishes": "But yeah, I want good marks in the ground, I want to be a driver inside that can hang off head for a lump out during tricks, for extra points, I want buttons for hoods and Good.",
+        "done": "Done.",
+        "elapsed": "time elapsed 21 minutes",
+        "woot": "OOT",
+        "scene-gta": "The same day, you posted about Grand Theft Auto 6.",
+        "ask-playing": "Someone asked, are you playing it yourself or is this a stream?",
+        "gaming": "I'm gaming baby",
+        "thanks": "Thank you.",
+        "ask-tomorrow": "Still the same day, the member asked, it doesn't come out tomorrow.",
+        "timezone": "XBox lets you pin your time zone easily, as far as I know it doesn't work for PSIO.",
+        "excuse": "Excuse me.",
+        "finished": "It's tomorrow, we're finished.",
+        "ruling": "Larry put the clock back",
+        "button": "Doesn't work in desks"
+      },
+      "standing": "Harmless mishearings that stand, quoted exactly: \"a real poet\" for \"a real post\"; \"pinned to my blue sky user\" for \"appended to my Bluesky usage\"; Sibyl's reading as above (\"good marks\", \"hang off head for a lump out\", \"hoods and Good\"); \"OOT\" for \"Woot.\" (also heard as \"Good!\" and \"Oh\" in other renders; the caption and the \"Woot!\" on the sketch carry it); \"pin your time zone\" and \"PSIO\" in the timezone answer (also \"turn your time on\", \"Next box\" in other renders); \"in desks\" for \"on desks\".",
+      "name": "\"cee\" is one syllable, s before a long ee, which the engine says weakly. Spelled See, Sea or C it was heard as \"She\" in more than a dozen renderings, in Larry's, Sibyl's and Hy's voices and in the first full mix: a pronoun the script never uses for the guest, and a fail. Spelled Tsee, last in the line, it was heard as \"C\" in every isolated rendering (four, at three rates) and in four full mixes, once the applause was moved 0.3 s clear of it. If the real render hears anything else, do not respell again: cut the spoken name (\"Please welcome my guest.\") and let the chyron and the cards carry it.",
+      "replaced": "House lines rewritten after reading what was heard: \"Elapsed time\" was heard once as \"He lapsed time\" (a pronoun next to the guest's line), now \"Time elapsed\"; \"The same member replied again\" was heard as \"applied gun\", now \"And then, from the same member:\"; \"The studio is not an Xbox\" lost its meaning in Sibyl's voice, now \"Put the clock back.\""
+    }
+  },
+  "experiment": "Does not apply: the experiment is for segments drafted from made cards, and says the interview is drafted as the bible has it. Nothing here imitates it.",
+  "flags": [
+    "The middle exchange is a list of requests answered in one word. Both ranking reviewers said that shape needs the repetition gate's ruling. It is not the ending here (the ending is a fourteen-word answer and a house gag). If the gate still blocks it, the honest replacement from the same thread is the player's feedback and the \"award\" reply, and its heard text is the obstacle (voices.leftOut).",
+    "The closing gag has Larry declare the show finished. That is one joke that touches the show itself; the bible allows one an episode. It works wherever the segment sits; directly before the real close it would need the join looked at.",
+    "This account is also the window's named Top Chicken winner. The game is not mentioned here. If both segments are selected the account is in two, which is the limit the screen sets.",
+    "Answer 1 is the guest's own joke about wanting followers. The screen's term is kept: no house line, tag or picture is about follower counts; Larry's reaction is about wanting a feeling.",
+    "Amber (@shimmermathlabs.com) is on many of the window's cards. Here: one post read aloud, one credit.",
+    "The sketch of the game rests on one alt text from another member's screenshot. The project manager's media notes say the game's own video and pictures were not looked at. Looking at the page before staging would let the builder draw it truthfully.",
+    "Grand Theft Auto Six appears only as the thing the guest posted about and was asked about. Larry states no release date; the member's question carries it."
+  ]
+}

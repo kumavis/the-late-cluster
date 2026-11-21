@@ -1,0 +1,62 @@
+{
+  "round": 1,
+  "auditor": "auditor",
+  "date": "2026-11-21",
+  "check": "npm run check -- 002-2026-w47: 9 passed, 0 failed, 0 skipped. Frames: music-alt at 67 times (every cue, both sides of the two Hy changeovers at 45.00/45.06 and 53.08/53.14, inside every hold, and through the last picture to 77.7); made-mobius-chess-ringmate at 0.1, 0.6, 1.5, 2.8, 4.5 and 55.0 to 61.1; end at 0 to 60. Each frame was looked at. Real posts and accounts were checked against production/sources.json and the saved digest (npm run lookup). Nothing was fetched from the network.",
+  "segments": {
+    "music-alt": {
+      "verdict": "change",
+      "notes": "Passes: (1) dave-card: the card reads Dave · @dave.9000ish.uk · 17 Nov 2026 · REPLY, the text 'best i can do / polyhedral coffee simulator / polycoffee.9000ish.uk' exactly, and 2 replies · 4 reposts · 20 likes, matching sources.json and the digest (counts 20/4/2). The four read words light in turn as Larry says them (5.5, 5.9, 6.3), and the rest of the card stays dim. (2) Tiles: cat ears, two wheels and an empty mug outline are plain glyphs. The credits are exact: CAT VOICE · David · @yonderdavid.bsky.social / with a chimera-vocal-synth quartet; POLYHEDRAL COFFEE SIMULATOR · Dave · polycoffee.9000ish.uk; WHEELIE GAME · cee · yard-shift.cee.wtf; MUG · Samantha · @samantha.wiki. Nothing of David's video, cee's game or Samantha's photo is drawn, and nothing is drawn on the mug. (3) '+ MUG · ADDED BY DAVE' at mug-in is a glance, and it is within the terms. It rests on Dave's ?mug=wolfram reply to the mug post, which the consent-check addendum covers, and it does not say what the mug shows. (4) No puppet of a real account appears: on stage are larry, hy/hy-bass, dee, al and pete only. Every lyric drawn reads exactly as the script's line, including 'SAMANTHA SHOWED A MORNING MUG'. (5) One Hy: hy-bass and hy share the mark, and the frames either side of 45.03 and 53.11 are identical apart from the caption, with no jump and no second head. (6) DOO lands on Hy's note and WOP on Dee's under BEST WE CAN DO, as written. (7) The ending: the spot on Al (14.6); the wide with Larry and his empty stand (47.6); his DOO on his note (50.3); every bulb up at key-change with NEW KEY · LARRY'S NOTE (53.5-54.0); the label reads BEST YOU CAN DO from to-larry; his DOO joins the row at to-camera (58.2). (8) The goodnight: the toast tips the card on 'week' (69.0). The last picture holds to 77.7 with nothing overlapping and the captions clear. The applause sign sits clear of the row. (9) Unsung text longer than a glance: Dave's card is parked small in the corner from band-in to spot-al (about 8 s). It reads as a credit and not a post to re-read, so it passes as a note. The tile row is credits, which the rules exempt.",
+      "changes": [
+        {
+          "must": true,
+          "at": "tile-coffee onward (every frame the row is up, including the wide and last-picture)",
+          "change": "To the builder (segments/music-alt/index.js, drawRow/simSketch): label the simulator tile's picture STUDIO SKETCH, small, on or under the tile, whenever the tile is up. The coffee segment does the same with its own copy of this sketch. As staged, the picture is a detailed scene (railings, blossom trees, the red frame and kettle) in a tile with Dave's credit directly under it and nothing to say who drew it. The other three tiles are plain symbols, so this one reads as a thumbnail of Dave's simulator, which nobody at the studio has seen as a scene (bible 08 §7; 09 R5). The alternative is to replace it with a plain glyph like the other three. Do not add detail to the sketch."
+        },
+        {
+          "must": true,
+          "at": "only-host to desk (altWide) and last-picture to the end (altLast)",
+          "change": "To the builder (index.js, drawRow): make the real people's credits legible in the two wide shots. There the name·handle line renders at about 11 px, in mid-blue, with the curtain strings visible through it (47.6, 62.5, 77.7). The cat tile's second line is about 9 px and cannot be read. The last picture holds these credits as the episode's final frame for about 8 s. Set the name·handle line to at least about 14 px on screen in these shots, and the cat tile's second line to at least about 12 px, with a full black fill behind the credit block (bible 08: credits are to be kept large enough to read). In the stage shots (tile-cat to chord) the name·handle line is about 14 px and legible. Leave those as they are."
+        },
+        {
+          "must": false,
+          "at": "mug-in (38.6-41.6)",
+          "change": "To the builder: the tag + MUG · ADDED BY DAVE is drawn across the top edge of the simulator tile's frame (39.2). Lift it a few pixels clear of the tile's border."
+        },
+        {
+          "must": false,
+          "at": "card-wop (13.5-13.8)",
+          "change": "To the builder: the caption bar comes back with 'wop' for a moment after the WOP card lands (13.6), because CARD_SUNG hides it only until t1 + 0.4. Extend the hide to the laugh, or accept it."
+        },
+        {
+          "must": false,
+          "at": "key-change to last-chord (wide)",
+          "change": "To the builder: in the wide, the lyric bar's black band comes within a few pixels of the cat tile's second credit line (54.0, 62.5). It will collide once the credits are enlarged (must 2), so leave room between them."
+        }
+      ]
+    },
+    "made-mobius-chess-ringmate": {
+      "verdict": "pass",
+      "notes": "First frames: the board is up with STUDIO SKETCH and the credit 'ringmate · mobius.mokkenstorm.dev · by @mokkenstorm.dev' from 0.1. The caption reads 'One more game before the song.' (0.6-1.5), then 'It began as one post.' (2.8), and the maker's card and chyron follow at 4.5. The ending: 'I resign.' with the lamps reading LIKE · REPOST · RESIGN and the flag tipped (55.9-56.4). The laugh runs with LAUGH and [ LAUGHTER ] (57.0-58.5), the sting plays, and the board holds still to 61.1, the last frame. Nothing is left of the long close: no applause, no sign-off cue and no extra lines. The duration is 61.196 s.",
+      "changes": [
+        {
+          "must": false,
+          "at": "script.js header comment",
+          "change": "To the writer: the header still says 'This is the last segment, and it carries the episode's close … the long applause, and then the credits.' That is no longer true. The beats themselves are correct. Bring the comment into line with the running order."
+        }
+      ]
+    }
+  },
+  "endRoll": {
+    "verdict": "pass",
+    "notes": "Shot end at 0-60 s. STARRING names each house character once: Larry Nx, Sibyl Ant, Hy Oid (once only; hy-bass is credited as Hy and does not appear a second time), Al Veolar, Dee Phthong, Plosive Pete, Eppy Glottis. PUPPETS PLAYED THE POSTING PERSONAS OF names the eight accounts whose puppets spoke, once each, with exact handles: ver.ooo @ver.ooo, Dave @dave.9000ish.uk, Amber @shimmermathlabs.com, tbd : Option<name> @mokkenstorm.dev, Minor Mobius @minormobius.bsky.social, David @yonderdavid.bsky.social, conputer dipshit @davidcrespo.bsky.social, Ryan Moulton @moultano.bsky.social. Nobody who left the episode is named. Nothing of the old song is credited: there is no entry for it, and its read-aloud posts are not credited. The roll states that every voice is synthesized by CHIMERA, credits the synth (jamesondh · MIT · github), and runs 'Guests are puppets playing posting personas.' before GOOD NIGHT, BLUESKY.",
+    "changes": [
+      {
+        "must": false,
+        "at": "the guest list",
+        "change": "Carried from cut-2-r1, to the builder (packages/show credits style): the display names are set in capitals (VER.OOO, CONPUTER DIPSHIT, TBD : OPTION<NAME>), and the emoji show as substitute glyphs. The words are right. If 'exact display name' is meant literally, set the name column in its own case."
+      }
+    ]
+  },
+  "people": "From production/sources.json with music-alt in place of music, six real accounts are now in two segments: dave.9000ish.uk (coffee, music-alt; the TopChicken bot's post in top-chicken does not count, because Dave is never named, shown or voiced there, per the owner's ruling in docs/WORKFLOW.md), yonderdavid.bsky.social (interview, music-alt), cee.wtf (top-chicken, music-alt), samantha.wiki (plotter, music-alt; shown and named, never voiced), shimmermathlabs.com (coffee, riemann-breaking-news) and mokkenstorm.dev (coffee, chess). Nobody is in three: norvid-studies.bsky.social is a recorded occasion in three segments but is never named, shown or voiced, and gracekind.net and zetaof1.bsky.social are each in one. For whoever keeps sources.json (not a must): Dave's account note still counts top-chicken as his second segment, and David's note still describes the old song ('two more of David's posts are read aloud by Sibyl'). Both are out of date. The episode.json description ('the house band gives a new cat voice its first song') also describes the old song."
+}

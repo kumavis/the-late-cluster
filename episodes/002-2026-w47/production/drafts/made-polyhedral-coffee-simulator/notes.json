@@ -1,0 +1,88 @@
+{
+  "slug": "made-polyhedral-coffee-simulator",
+  "title": "Larry Plays a Game",
+  "format": "A demonstration (the host plays the thing a member made, and it is shown in use for thirteen seconds with no words), then a performed exchange: the real mug thread, four posts in order",
+  "seconds": 73,
+  "standing": null,
+  "cards": [
+    "made-polyhedral-coffee-simulator"
+  ],
+  "ideas": [
+    "writer-2-77",
+    "writer-2-78",
+    "writer-2-80"
+  ],
+  "speakers": [
+    "dave.9000ish.uk",
+    "shimmermathlabs.com",
+    "oszillate.bsky.social"
+  ],
+  "featured": [
+    "dave.9000ish.uk",
+    "shimmermathlabs.com",
+    "oszillate.bsky.social",
+    "mokkenstorm.dev"
+  ],
+  "retell": "Larry sits down to win a member's new game, drinks the whole coffee as fast as he can, and all the game does is offer him a refill; then a member looks at the back of another member's polyhedron mug, calls it a bootleg icosahedron, and the mug's owner wants the money back.",
+  "turn": "The emptied mug gets refilled.",
+  "howTheIdeasAreUsed": {
+    "writer-2-78": "The spine of the first half: the host plays the thing and there is nothing to lose at. Its invented YOUR TURN indicator is gone; everything in the sketch is the simulator's own (see builder notes). The turn is no longer said. The simulator does it.",
+    "writer-2-80": "The one real review, read exactly by Sibyl (\"very peaceful thank you\"), and the quiet patch itself. Larry stays at the desk and is not put inside a monitor.",
+    "writer-2-77": "The second half: the three posts performed in order by their authors' puppets, plus the thread's first post. The consumer-affairs frame is carried by the posts' own words and by Larry's button. No GENUINE or BOOTLEG stamps and no receipt: two reference solids with their names and face counts, which stay up as facts."
+  },
+  "experiment": {
+    "applies": true,
+    "turnInFiveWords": "The emptied mug gets refilled.",
+    "stretch": "From cue 'stretch' (Larry's last word, \"win\") to cue 'stretch-end'. In a scratch render of this script the interval with no say, sing or shout line and no audience sound runs 13.15 s: from 17.59 s (end of line 'win') to 30.74 s (start of the laugh). It holds only beat tracks (kind 'beat': clicks, hats, lip pops, a thud, a pour) and one 'ding', which is a studio one-shot and not an audience sound.",
+    "whatIsShown": "The simulator in use, as the studio's sketch, credited throughout. BEGIN MORNING is pressed; the terrace draws on; a mug comes up with the legend SPACE · SIP; Larry sips once, looks for an opponent, then drinks the rest as fast as he can; the mug is empty and he waits for his prize; the simulator's own prompt comes up, E · REFILL COFFEE FROM KETTLE; the kettle fills the mug again; Larry looks at the mug, then at us.",
+    "before": "Nothing before the stretch gives the turn away. The lines before it say only that there is a video, that Dave is here, that it should be a game, Dave's own post (which names the thing) and \"A game! Stand back. I play to win.\"",
+    "after": "Nothing after it describes it. The next lines are a real reply read aloud (\"very peaceful thank you\") and Larry's \"Different strategy.\" The button at the very end is a callback played as a picture (the kettle fills the pink mug); the line with it is \"The best we can do.\" and the word refill is never spoken in the segment.",
+    "rules": "House characters only watch and move their heads. No audience sound until the laugh at the end. The stretch does not sit between a real line and its setup: Dave's line and its setup come before it, whole."
+  },
+  "people": {
+    "dave.9000ish.uk": "Maker and hero; 880 followers; new to the show. The puppet speaks one line, Dave's own post, as the reply it was. The card says this account is also on the Saturday Top Chicken card, so it may be in a second segment.",
+    "shimmermathlabs.com": "The mug's owner, and a good sport on the evidence of the account's own reply (\"i want my money back!\"). Marked featuredPrevious: shown, and on many cards this week: this draft uses the account as a speaker, which should count against using it elsewhere. No house line genders anyone; \"ma'am\" is inside the other member's post.",
+    "oszillate.bsky.social": "75 followers. Its one moment in the whole episode, as the hero: the one who looked closely. Nobody jokes at its expense; the picture takes its side by showing what the two solids are. Its display name is never spoken (the engine cannot say it and I do not know how it is said); the chyron and the card carry it.",
+    "mokkenstorm.dev": "423 followers. One kind reply, read aloud exactly with its card. Also the maker on the Möbius chess card, so this may be its second segment.",
+    "norvid-studies.bsky.social": "Not shown, named or played. Its post is the occasion of Dave's line and is recreated by Larry in his own words.",
+    "leftOut": "The first mug photo and its maker's reply that put the mug into the simulator (that account spoke in the previous episode, and it is one more thing-made-on-request); the third mug post (appearance, R1); the night setting; the 74 and 9 minutes. The segment mentions no time taken at all."
+  },
+  "realPeopleChecks": "Opt-out list checked (it is empty) and the window's posts by the two new speakers read for any request not to be quoted: none. No bio has been read by anyone (no network): R11 and R14 still need that for dave.9000ish.uk, shimmermathlabs.com, oszillate.bsky.social and mokkenstorm.dev. The assemble-stage gates (guest lines, sources, labels) were run on this draft in a scratch script with the draft's cast.js merged in, because the draft gate does not load a draft's cast: no failures.",
+  "heardText": {
+    "method": "The draft was rendered in a scratch copy with the draft's cast and every captioned line was cut from the mix and transcribed (Whisper base.en): 92 of 101 caption words, no line under 60 percent, the same in three slightly different mixes. Every heard line was read.",
+    "names": "\"Dave\" is heard as \"Dave\" only at the end of a short phrase after \"is\" (line 'guest': heard \"Another member is here. This is Dave.\"). After \"back,\", \"to\" or \"thank you,\" and at the start of a clause, in Larry's voice and in Sibyl's, it is heard as \"day\" or \"today\". The name is therefore said once, there. Do not add it to other lines without testing.",
+    "harmlessMishearings": [
+      "line 'video', heard: \"The member posted a video, a landscape made of polyhedrae.\"",
+      "line 'mugs-line', heard: \"Next day, members held up real coffee mug.\"",
+      "line 'forms', heard: \"The polyhedron weak comes in many forms.\"",
+      "line 'squares', heard: \"Hold on, ma'am, I believe all your squares in the bag.\" (in some mixes \"ma'am\" is heard as \"man\" or \"men\")",
+      "line 'sold', heard: \"I believe you have been sold a single megacroner, one of the classic daughterate headbutt legs, I call sahedrons.\" (also \"…daughterate head bootleg, I call Sahedrons.\")"
+    ],
+    "judgement": "All five are plainly harmless nonsense, say nothing about anyone, and touch nothing out of bounds. The words lost in line 'sold' are rare words no transcriber knows; the IPA the renderer prints for them is right (sfee-no-meg-uh-kuh-roh-nuh; uh-dull-ter-ay-ted; eye-koh-sah-hee-drons), and the card has them lit as they are said.",
+    "hazard": "Line 'sold' must be re-read after every re-render. With the plain spelling of \"adulterated\" this voice was once heard as \"one of the classic Donald Trump's red bootleg guy called Sahedron\", and with the plain spelling of \"icosahedrons\" another voice was heard ending \"…bootleg icons is trans\". Either would fail the heard-text gate. The respellings in the script (a-dull-ter-ay-ted, eye-koh-sa-heed-rons) were chosen because every render tried with them, more than twenty across three voices and three rates, stayed harmless. If the voice, the rate or the spelling changes, test again in the mix, not in isolation: the same line can pass alone and fail in the mix."
+  },
+  "builder": {
+    "shots": "Larry at the desk with Dave in the guest chair for part 1 (lines 'video' to 'win'). For the stretch, Larry in one third and the simulator sketch filling the rest (an ots-style frame); he is at the desk, not inside the sketch. Part 4: Larry, Amber on the couch, the pink mug sketch large between them; oszillate arrives at cue 'hold-on' by leaning in from the edge of the frame, at full size. Do not use the small pop-up puppet for the small account. Sibyl can be a cut to the podium for her two lines.",
+    "theSketch": "Draw only this, in the studio's lines, with STUDIO SKETCH and POLYCOFFEE.9000ISH.UK · DAVE on screen for as long as it is up. From the page's title screen as the project manager saw it: the heading MORNING COFFEE; a BEGIN MORNING button; the controls, of which the sketch uses SPACE · SIP; the prompt E · REFILL COFFEE FROM KETTLE. From the one photo of it running: a pale terrace with white railings, pink blossom trees built from small polyhedra, a hanging string of red diamond shapes at the left, a red frame with a dark kettle shape hanging in it (the notes say \"bell or kettle\"; the prompt says kettle). It is first person: the mug sits at the bottom of the view and tips towards us on a sip. The coffee level drops an eighth per sip (eight sips: steps 24, 32, 36, 39, 42, 44, 46, 47) and rises during the pour. Nobody has seen the scene itself drawn, which is why it is labelled a sketch.",
+    "stretchActing": "Larry: looks at the panel at 'begin'; at 'legend' reads it and looks to camera; a small nod on each sip; left then right at steps 28 and 30; grows a little through the fast sips; at 'empty' looks to camera and holds, waiting; at 'prompt' looks at the panel; from 'full' looks at the mug, then at us, and holds. Dave watches the panel and does nothing that reads as an opinion: the account published no reaction to this. Nothing in the stretch is longer than a glance: MORNING COFFEE, BEGIN MORNING, SPACE · SIP, the prompt, the credit. Never more than three at once. The picture changes on every beat listed in the script.",
+    "controls": "The controls are text in the sketch's own legend, lighting when used. No key cap prop, no key on the desk, no stamp prop anywhere in the segment.",
+    "cards": "Post cards with the real display name, handle, date and like count, words lighting as spoken: Dave's (17 Nov, 20 likes, shown whole with its address), the reply read by Sibyl (17 Nov, 1 like), Amber's mug post (18 Nov, 27 likes), Amber's \"computer, enhance\" (18 Nov, 3 likes; a glance, not spoken), oszillate's reply (18 Nov, 1 like; the card shows the whole post while both beats are said) and Amber's last reply (19 Nov, 0 likes). Three display names have characters the vector font may lack: \"Amber 🌸\", \"*Pistäwəńćə\" and \"👩‍💻 tbd : Option<name>\". They must be shown exactly or the card must fall back to the handle; that needs deciding before staging.",
+    "theMug": "The pink mug is the studio's sketch from two alt texts and nothing else: first \"A pink coffee mug with crudely drawn polyhedron of 20 sides\" (draw it by hand, wobbly), then at cue 'enhance' \"pink coffee mug with nicer polyhedron of 20 sides\" (a scan line crosses it and the same solid is redrawn clean). Nobody on the show has opened either picture. At 'turn-it' the drawn solid turns and two faces at the back are outlined as squares in oszillate's colour: that is the member's annotation, not the show's finding. Label the mug STUDIO SKETCH.",
+    "theTwoSolids": "At 'two-solids', beside the mug, two plain reference wireframes are drawn on (not stamped) with labels that stay up: ICOSAHEDRON · 20 FACES and SPHENOMEGACORONA · 18 FACES. Check the geometry before drawing. As I have it: a regular icosahedron has 20 triangles, 12 vertices and 30 edges; the sphenomegacorona (Johnson solid 88) has 16 triangles and 2 squares, 12 vertices and 28 edges, and the two squares share an edge. Do not label the mug's own solid with a face count.",
+    "button": "At 'kettle' (the word \"do\"), the kettle from the simulator sketch tips over the pink mug and fills it. That picture is the punch; the line does not say it."
+  },
+  "assembly": {
+    "voices": "Three guest voices take the three open spots (medians 88, 178 and 231 Hz; nearest neighbours 1.55, 1.50 and 1.78). If the interview's guest or another segment's guests are in the episode, measure all of them together and retune; these three never share a scene with anyone but Larry and Sibyl. Body settings are slots, not statements about anyone, and may be swapped, with one caution: \"ma'am\" is said to Amber's puppet, so do not give that puppet the lowest voice, where the address would start to play as a joke the show does not make.",
+    "doNotVoice": "\"computer, enhance\" stays a glance card. As a spoken line it scores 1 of 2 in every voice and would fail the intelligibility gate.",
+    "disclaimer": "If this is the first segment with a guest, it needs the disclaimer footer from Dave's entrance (cue 'dave-in').",
+    "joins": "The first line says what the segment is and names nobody from another segment. If the polyhedra video has its own segment earlier in the rundown, line 'video' can be cut to its first sentence. The segment ends on a button, a sting and applause.",
+    "looks": "Suggestions only, from what each account made or posted, never from the person: Dave in a warm coffee-brown cardigan; Amber in the pink of the mug; oszillate in a cool cyan turtleneck. No props for anyone: the simulator and the mug are on the panel, not in a puppet's hands.",
+    "reactions": "One laugh after the stretch, one after the correction, one after \"i want my money back!\"; two chuckles; \"very peaceful thank you\" and the whole stretch are left dry. If the episode wants a big laugh here, it is the one after 'money'."
+  },
+  "unclear": [
+    "Whether the squares can really be seen in the second mug picture: nobody has opened it. The segment never says they can; the member's post says \"I believe\", and the reference solids only show what the two named shapes are.",
+    "The red frame in the photo of the simulator holds \"a dark bell or kettle shape\". The sketch draws a kettle because the page's own prompt says kettle.",
+    "Whether the real mug visibly empties, and whether the refill prompt appears only when it is empty, is not known. The sketch shows it that way and is labelled a sketch.",
+    "No bio has been read for any of the four accounts on screen."
+  ]
+}

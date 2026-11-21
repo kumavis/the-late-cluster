@@ -1,0 +1,212 @@
+{
+  "format": "late-cluster-sources/1",
+  "accounts": [
+    {
+      "handle": "dave.9000ish.uk",
+      "did": "did:plc:hovt6k22s64dq63jjmoyibk3",
+      "role": "guest",
+      "cast": "dave",
+      "note": "880 followers; the maker. New to the show (timesFeatured 0). Not on the opt-out list; nothing in this window's posts asks not to be quoted."
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+      "role": "guest",
+      "cast": "amber",
+      "note": "1,454 followers; marked featuredPrevious: shown (not spoke), so the puppet may speak. Posted the pink mug and answered the correction in kind (\"i want my money back!\")."
+    },
+    {
+      "handle": "oszillate.bsky.social",
+      "did": "did:plc:gnwxm4rvtrjc33icqmyvzhst",
+      "role": "guest",
+      "cast": "oszillate",
+      "note": "75 followers: a small account, here once, as the hero of the moment (the one who looked closely and was right to). This is its only appearance in the episode (screening ruling 9). The display name is not spoken; the chyron and the card carry it."
+    },
+    {
+      "handle": "mokkenstorm.dev",
+      "did": "did:plc:r5bee2hexwjtmhkfmfu2tphx",
+      "role": "quoted",
+      "note": "423 followers. One kind reply, read aloud exactly by Sibyl with its card up. The display name cannot be said by the engine; the card names the author."
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+      "role": "mentioned",
+      "note": "Not named, not shown, not played. Its post is only the recorded occasion of Dave's line; Larry makes the remark in his own words (screening ruling 1: this account's post is asked or read by a house character)."
+    }
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2jrgrxtss2w",
+      "author": "dave.9000ish.uk",
+      "displayName": "Dave",
+      "likes": 20,
+      "reposts": 4,
+      "replies": 2,
+      "text": "best i can do\n\npolyhedral coffee simulator\n\npolycoffee.9000ish.uk",
+      "date": "2026-11-17",
+      "use": "line",
+      "segment": "made-polyhedral-coffee-simulator",
+      "note": "Performed by its author's puppet, the card up whole. The spoken line is cut before the address (…); the address stays on the card and in the credit."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2jnbmrlx22j",
+      "author": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "likes": 8,
+      "reposts": 0,
+      "replies": 1,
+      "text": "sort of needs to be a game now",
+      "date": "2026-11-17",
+      "use": "reference",
+      "segment": "made-polyhedral-coffee-simulator",
+      "note": "The post Dave's line replied to (itself a reply to a video of a landscape of polyhedra). Not shown and not read: Larry's line 'ought' recreates it."
+    },
+    {
+      "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2k2aul6y22h",
+      "author": "mokkenstorm.dev",
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "likes": 1,
+      "reposts": 0,
+      "replies": 0,
+      "text": "very peaceful thank you",
+      "date": "2026-11-17",
+      "use": "card",
+      "segment": "made-polyhedral-coffee-simulator",
+      "note": "A reply to Dave's post. Read aloud exactly by Sibyl (line 'review'), as the post it was, with its card up."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2lynnfhpc24",
+      "author": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "likes": 27,
+      "reposts": 0,
+      "replies": 2,
+      "text": "polyhedron week comes in many forms",
+      "alt": "A pink coffee mug with crudely drawn polyhedron of 20 sides",
+      "date": "2026-11-18",
+      "use": "line",
+      "segment": "made-polyhedral-coffee-simulator",
+      "note": "Performed by its author's puppet. The mug beside the puppet is the studio's sketch from the alt text; nobody on the show has opened the picture."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2lzaolgds24",
+      "author": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "likes": 3,
+      "reposts": 0,
+      "replies": 1,
+      "text": "computer, enhance",
+      "alt": "pink coffee mug with nicer polyhedron of 20 sides",
+      "date": "2026-11-18",
+      "use": "card",
+      "segment": "made-polyhedral-coffee-simulator",
+      "note": "Amber's own reply to the mug post. Shown as a card at a glance (two words) at cue 'enhance', not spoken: the engine cannot say \"enhance\" (heard as \"and hench\" in every voice tried), and a two-word line that is half unheard fails the intelligibility gate."
+    },
+    {
+      "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2mmmdtois2s",
+      "author": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "likes": 1,
+      "reposts": 0,
+      "replies": 1,
+      "text": "…Hold on ma'am, I believe those are squares in the back. I believe you have been sold a sphenomegacorona, one of the classic adulterated bootleg icosahedrons",
+      "date": "2026-11-18",
+      "use": "line",
+      "segment": "made-polyhedral-coffee-simulator",
+      "note": "Performed whole by its author's puppet over two consecutive beats, split at its own sentence break. \"ma'am\" is the author's word inside the post; no house line genders anyone."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2nlmbq5ss2m",
+      "author": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "likes": 0,
+      "reposts": 0,
+      "replies": 0,
+      "text": "i want my money back!",
+      "date": "2026-11-19",
+      "use": "line",
+      "segment": "made-polyhedral-coffee-simulator",
+      "note": "Amber's reply to the correction, performed by Amber's puppet as the reply it was."
+    }
+  ],
+  "links": [
+    {
+      "url": "https://polycoffee.9000ish.uk",
+      "use": "credit",
+      "segment": "made-polyhedral-coffee-simulator",
+      "note": "The simulator (page title: Morning Coffee Simulator — Polyhedra Sakura). Credit and address stay on screen whenever the sketch is up."
+    }
+  ],
+  "lines": [
+    {
+      "segment": "made-polyhedral-coffee-simulator",
+      "line": "best",
+      "kind": "verbatim",
+      "post": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2jrgrxtss2w",
+      "context": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2jnbmrlx22j",
+      "contextText": "sort of needs to be a game now",
+      "setup": {
+        "line": "ought",
+        "who": "larry",
+        "text": "My first thought: it should be a game."
+      },
+      "note": "The original was another member's remark under a video of a landscape of polyhedra; Dave replied to the remark with the simulator. Larry has just described that video (line 'video') and makes the same remark about it, to Dave. Same kind of prompt, same job, same meaning."
+    },
+    {
+      "segment": "made-polyhedral-coffee-simulator",
+      "line": "forms",
+      "kind": "verbatim",
+      "post": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2lynnfhpc24",
+      "context": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2lynnfhpc24",
+      "situation": "A top-level quote post on Wed 18 Nov: the day after the simulator, members were posting photos of their real mugs with polyhedra on them; Amber quoted one of those and added a photo of a pink mug (alt text: \"A pink coffee mug with crudely drawn polyhedron of 20 sides\").",
+      "setup": {
+        "line": "mugs-line",
+        "who": "larry",
+        "text": "Next day, members held up real coffee mugs."
+      }
+    },
+    {
+      "segment": "made-polyhedral-coffee-simulator",
+      "line": "squares",
+      "kind": "verbatim",
+      "post": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2mmmdtois2s",
+      "context": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2lzaolgds24",
+      "contextText": "computer, enhance",
+      "setup": {
+        "line": "forms",
+        "who": "amber",
+        "text": "polyhedron week comes in many forms"
+      },
+      "note": "The post it replied to, \"computer, enhance\" (Amber's own reply to the mug post, with the redrawn picture), is on screen as a card between the setup line and this line (cue 'enhance'), with the sketch being redrawn. It is shown, not spoken, because the engine cannot say \"enhance\". The spoken line before it is the root of the same thread by the same author about the same mug, so the reply answers what it answered: Amber's picture of the mug."
+    },
+    {
+      "segment": "made-polyhedral-coffee-simulator",
+      "line": "sold",
+      "kind": "verbatim",
+      "post": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2mmmdtois2s",
+      "context": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2lzaolgds24",
+      "contextText": "computer, enhance",
+      "setup": {
+        "line": "forms",
+        "who": "amber",
+        "text": "polyhedron week comes in many forms"
+      },
+      "note": "The second sentence of the same post, straight after the first with no line between."
+    },
+    {
+      "segment": "made-polyhedral-coffee-simulator",
+      "line": "money",
+      "kind": "verbatim",
+      "post": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2nlmbq5ss2m",
+      "context": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2mmmdtois2s",
+      "contextText": "…Hold on ma'am, I believe those are squares in the back. I believe you have been sold a sphenomegacorona, one of the classic adulterated bootleg icosahedrons",
+      "setup": {
+        "line": "sold",
+        "who": "oszillate",
+        "text": "…I believe you have been sold a sphenomegacorona, one of the classic adulterated bootleg icosahedrons"
+      },
+      "note": "The actual reply to the actual post, in thread order."
+    }
+  ]
+}

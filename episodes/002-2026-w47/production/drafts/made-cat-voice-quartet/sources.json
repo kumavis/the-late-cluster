@@ -1,0 +1,89 @@
+{
+  "format": "late-cluster-sources/1",
+  "week": "2026-W47",
+  "accounts": [
+    {
+      "handle": "yonderdavid.bsky.social",
+      "did": "did:plc:nqu76ue2hgr44emaxyvgbzsq",
+      "role": "quoted",
+      "note": "The maker. Two posts read aloud by Sibyl on post cards; credited on screen for the whole segment. No puppet."
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+      "role": "mentioned",
+      "note": "Asked the question the reply answers. Not named, not shown, not voiced: Larry says \"a member\" and puts the question in his own words."
+    }
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2fmuqiess24",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 4,
+      "reposts": 0,
+      "replies": 2,
+      "time": "2026-11-16T03:52:34.734Z",
+      "use": "card",
+      "segment": "made-cat-voice-quartet",
+      "text": "So there was a simple pipeline repetition version, but I could hardly inflict it on you or the innocent bystanders who might happen upon it. …",
+      "note": "Read aloud by Sibyl (line reply-1), cut after its first sentence; the card shows only what is read, with the ellipsis. The second sentence is what the wordless stretch draws."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2fmuqiest24",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 8,
+      "reposts": 1,
+      "replies": 0,
+      "time": "2026-11-16T03:52:34.735Z",
+      "use": "card",
+      "segment": "made-cat-voice-quartet",
+      "text": "By such applications of beeswax and string I obtained this version, which one might call distinguishable from a polished one. But the bowing is improved.",
+      "alt": "Two chimera-vocal-synth heads sing, with voices otherwise synthesized, the folk song \"Factory Girl.\" They are accompanied by two fiddles and a cello, whose sound derives from physical simulation of those instruments.",
+      "note": "Read aloud whole by Sibyl across two consecutive beats (reply-2a, reply-2b), split at its own sentence break; the card shows the post whole. Its video is known only by its alt text, which the studio sketch is drawn from."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2fmuoefz224",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 3,
+      "reposts": 0,
+      "replies": 2,
+      "time": "2026-11-16T03:52:34.733Z",
+      "use": "reference",
+      "segment": "made-cat-voice-quartet",
+      "text": "I probably should have asked if you meant the feminine-voiced version of it, but at any rate that's what I attempted and ran into frustrations with the synth. It tends to make feminine voices sound like a masculine voice in falsetto, with either a reedy or a honky quality.",
+      "note": "Not shown or read. The first post of the three-post reply; the digest parent of the post read at reply-1."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ckbmplk22v",
+      "author": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "likes": 5,
+      "reposts": 0,
+      "replies": 1,
+      "time": "2026-11-14T22:28:08.769Z",
+      "use": "reference",
+      "segment": "made-cat-voice-quartet",
+      "text": "if this is now just a pipeline you can click on can you do this one www.youtube.com/watch?v=uj0R...",
+      "note": "Not shown or read, and its author is not named. The request the three-post reply answers; Larry puts what was asked in his own words (lines ask, question, one-click, setup-reply)."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cffuxxv22n",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 65,
+      "reposts": 7,
+      "replies": 7,
+      "time": "2026-11-14T21:01:02.941Z",
+      "use": "reference",
+      "segment": "made-cat-voice-quartet",
+      "text": "Very well, it's arguably still chimera-vocal-synth week, so I can fix that. The cat voice sim joins a quartet and instruments that get their sound from physical models.",
+      "alt": "A quartet of chimera-vocal-synth voices, plus a physically simulated feline voice, sing \"Poor Wayfaring Stranger,\" accompanied by physically simulated guitar and fiddle.",
+      "note": "Not shown or read. The first folk-song video, the basis of the opening line."
+    }
+  ],
+  "links": [],
+  "lines": []
+}

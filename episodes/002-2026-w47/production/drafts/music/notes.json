@@ -1,0 +1,117 @@
+{
+  "slug": "music",
+  "title": "The Plan, With Caterwauling",
+  "format": "Music (standing): a folk lament whose planned angry last verse is called off by the song itself. Two posts by the maker, read aloud by Sibyl, frame it: the plan before the song, the outcome after it.",
+  "seconds": 83,
+  "standing": "music",
+  "cards": ["made-cat-voice-quartet"],
+  "ideas": ["writer-2-52"],
+  "speakers": [],
+  "featured": ["yonderdavid.bsky.social"],
+  "genre": "folk lament",
+  "theme": "This song is about having an angry last verse ready for the newcomer who is wrecking your sad song, and it feels like the anger having nowhere to go once the newcomer sings the part you were missing.",
+
+  "secondGenre": "barbershop quartet",
+  "genres": {
+    "first": "Folk lament: 3/4 at 132, A minor, one lead over a bass drone, the alto only on held chords, no percussion of any kind (no kick, no clap, no shouts). The form's own comic work: a lament repeats its complaint, and its last verse is where the singer turns on whoever is to blame. Here the complaint is that there is no cat, sung over a cat, and the turn on the cat is announced and then cannot be sung.",
+    "second": "Barbershop quartet: close harmony, no percussion. The same joke moves to the tag: the cat wrecks the final chord twice, the lead announces the telling-off, and then the cat supplies the one note the last chord was missing. Same words, same two posts, same button.",
+    "notSacred": "A secular lament. No devotional words, no hymn texture (a solo lead over a drone, not four parts moving together), and the last cadence is G to A, the folk one, not the plagal one. The maker's own song is not sung, quoted or named; the tune and words are the band's own."
+  },
+
+  "retell": "The band performs a maker's abandoned plan, a sad folk song with a cat yowling over it and an angry last verse, and the cat comes in so perfectly in tune that the angry verse is called off, which turns out to be exactly what happened to the maker.",
+  "turn": "The heckler lands in tune.",
+  "structuralJoke": "The song is built to end in anger and its own music cancels the ending. Three steps and a turn, one variable at a time: a sour yowl after 'no cat' (pitch); a longer, higher one that answers the lead's question and stops the band (size); the angry verse announced; then a small meow exactly on the major third, and the refrain comes back in its own tune with one word changed, 'no' to 'a', over the first major chord in the song. The jokes are in the two stops ('Last verse. Now I get angry at the cat.' and 'Never mind.') and on the screen, not in the fine print of the lyric: the whole lyric is 30 words.",
+  "swapTest": "The verse names this window's bestiary (the synth's four animals, with no cat among them, as the maker's screenshot showed); the question about the high part is answered by this window's cat; the frame is two posts from this window. Another week's stories cannot be put into it. The verses stay inside the cat story on purpose, so the song recaps no other segment: the 21 hours, the second song and the rest of the maker's week are left to whoever else has them.",
+  "themeSupport": "The feeling is carried in the maker's own words in two consecutive posts on one card. I did not find a second story in the window with the same turn, and I did not want to bend one to fit; reviewers should weigh that against the format's wish for a theme more than one story supports.",
+
+  "builtOn": "Brainstorm idea writer-2-52 (the band performs the plan as written and the last yowl lands in tune). Changed from the idea: the cat is Plosive Pete, not an empty stool, because a lament has no percussion and the percussionist is free, and because a head that is seen yowling is something to watch; the yowls are sung inside the music over held chords, never spoken and never in a stop; the lament's own subject is that there is no cat; Larry's first number (four animals) comes back as the button (five). The other three song ideas I was pointed at (writer-2-75, writer-3-62, writer-1-47) are not used.",
+
+  "people": [
+    {
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "how": "The hero. Two posts shown as cards and read aloud by Sibyl; the quartet video credited on screen. No puppet, no invented words, no pronoun used for the maker. Marked on the card as new to the show (timesFeatured 0).",
+      "checks": "Not on the opt-out list in packages/scraper/config. Nothing in the two posts or the lines around them touches an out-of-bounds subject. The bio has not been read by anyone (no network): R11 and R14 still need it before this airs."
+    }
+  ],
+  "notOnScreen": "The member who asked about the cat and who imagined the worse version spoke in the previous episode. That account is not named, shown, voiced or paraphrased here; Larry states the fact about the four animals himself.",
+  "realWords": [
+    {
+      "lines": ["plan-1", "plan-2"],
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2crbcfzuk2z",
+      "spoken": "… the new plan was an older melancholic folk song with caterwauling. The lead singer would end by expressing anger at the cat.",
+      "occasion": "A reply by the maker, in the thread under the maker's own quartet video, to a member who had imagined a version with worse cat noises (the parent's address and text are in sources.json). Larry's setup, 'Here is the plan for its first song. Sibyl?', presents it as what it was: the plan for that song. The cut part is about an earlier idea for a different song; the cut is marked with the ellipsis and does not change what the rest means.",
+      "respelling": "an → ann (the unstressed 'an older' was heard as 'not a', which reversed the sentence); caterwauling → cat-a-walling (the dictionary guess began 'kay-ter')."
+    },
+    {
+      "lines": ["verdict"],
+      "post": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2crcmiaxs2z",
+      "spoken": "But then I ended up with yowls that fit well enough that the cat deserved no such anger.",
+      "occasion": "The maker's very next post, 44 seconds later, a reply to the plan post. Sibyl's line before it, 'The next post from David.', is literally true. Read whole.",
+      "respelling": "deserved → deezerved, so the d does not run into 'cat'. Nothing else."
+    }
+  ],
+
+  "experiment": "Not run here, as the experiment itself says: it covers segments drafted from made cards, the three standing segments aside, and has the song drafted as the bible has it.",
+
+  "builder": [
+    "Shots: Larry at the desk with the panel for the tiles; Sibyl at the podium with each card; the stage shot for both music blocks (lead hy, band al, dee, pete), with cut-ins to Pete and one to Larry watching. Hide the caption bar for the sung lead lines and draw them as lyrics from their word timings (line ids v1, v2, angry, last).",
+    "bestiary (0.9 s): four tiles drawn as the studio's sketch, SONGBIRD, SEAL, ALLIGATOR, ELEPHANT, and a fifth frame left empty. The kit has a seal, a gator and an elephant glyph; the songbird is to draw. The empty frame should read on 'Not one of them is a cat.' The tiles stay available for the verse and the button.",
+    "credit (5.1 s): glance-sized, the synth by its name, chimera-vocal-synth, and CAT VOICE AND QUARTET · David · @yonderdavid.bsky.social. Keep the maker's credit up, small, through both music blocks. The video itself is never shown or redrawn: nobody here has seen it.",
+    "plan-card to plan-card-out: a post card with display name David, handle @yonderdavid.bsky.social, 15 Nov 2026, 4 likes, 1 repost, 2 replies, and a provenance line such as REPLY · UNDER THE QUARTET VIDEO. Its text is exactly: … the new plan was an older melancholic folk song with caterwauling. The lead singer would end by expressing anger at the cat. Put that whole string, with the ellipsis, in one string in index.js: the cards gate and the unread-text gate both look for it, and without it they will ask for the uncut post to be read. Words light as Sibyl says them (lines plan-1 then plan-2).",
+    "ears (23.0 s): two paper ears land on Pete on Hy's word 'cat' and stay on to the end of the segment. A label near him, glance-sized: THE CAT · PLAYED BY PETE.",
+    "During both blocks, glance-sized: THE PLAN · THE BAND'S OWN TUNE. It must be clear that the tune and the words are the band's.",
+    "Verse: the SONGBIRD tile lights on 'bird' and the SEAL tile on 'seal' (word timings of line v1); the empty frame pulses on 'no cat'.",
+    "A pitch trace above Pete, drawn only while he sings (lines yowls and meow-in-tune): jagged and drooping at yowl-1 (35.6 s) and yowl-2 (42.4 s), running off the top of its box on the second. At band-stops (43.8 s) the alto and the bass stop and every head turns to Pete; he carries on alone, then stops; at lone-meow (46.3 s) one small rising meow, to the camera.",
+    "Ending: Hy grows a little through 'now hear me, cat' (a wind-up). in-tune (55.7 s): Pete's trace is a short smooth fall that lands on a ruled line. chord (56.6 s): the alto and the bass join and two more ruled lines appear under his, evenly spaced; warm the lights. Hy looks at Pete, then at the floor. last-chord (62.0 s): four lines, Pete's on top. No crowd sound and no cut-away in this block.",
+    "'Never mind.': Hy to camera, a small tilt. Leave the beat before it dry.",
+    "verdict-card (68.4 s): a post card, David, the handle, 15 Nov 2026, 1 like, 0 reposts, 0 replies, provenance THE NEXT POST · 44 SECONDS LATER, with the whole post as its text, words lighting as Sibyl reads (line verdict).",
+    "fifth-tile (75.7 s): on Larry's word 'five' the empty frame fills with a cat glyph and CAT · by David. The cat that is counted is the maker's, not Pete.",
+    "Nothing on screen but the two cards is longer than a glance, and both cards are read aloud whole.",
+    "Cue times above are from my scratch render and will move a little at assembly; the cue names will not."
+  ],
+
+  "music": {
+    "blocks": "lament: 50 beats at 132 (22.7 s). ending: 28 beats at 132 (12.7 s). Both in 3/4.",
+    "voices": "Lead Hy, 64 to 71. Alto Dee, 69 to 74. Bass Al. The cat is Pete: 73 to 88 on yowls with vibrato 90, 73 and 76 on the two in-tune meows with vibrato 12.",
+    "chords": "Verse: A minor, C, G, A minor. Question: A minor, E minor, G, and it is left hanging on the G. Ending: the lead alone on E; the cat's E falling to C sharp; A major under it; the refrain's tune alone; A major with the cat on the high E.",
+    "alFlat": "Al's notes are written sharp on purpose. I measured what each singer produces for a written note (autocorrelation on isolated renders): Hy, Dee, Pete and Larry are within 7 cents; Al is flat by 167 to 266 cents, more the higher he goes (written 45 sounds 97.5 Hz where 110 is wanted; written 52 sounds 141.3 Hz where 164.8 is wanted). With the fry taken out of his voice he is in tune, so the fry is the cause. The renderer accepts fractional note numbers, so the script writes 47.3 for A2, 45.1 for G2, 50.55 for C3 and 41.75 for E2, each checked to within 5 cents at the lengths used. A spectrum of the mixed song confirms the chords: the last one is 110, 440, 554 and 659 Hz. If the studio corrects Al's sung pitch, change these back to 45, 43, 48 and 40. This affects anything else that sings Al in harmony; it is a studio matter, not this episode's.",
+    "peteSings": "Pete had not been tested singing. Measured the same way he is in tune from 67 to 88. I cannot hear timbre: the wide-vibrato yowls at 81 to 88 and the two quiet meows need a person's ears. If the yowls are too harsh, lower the track's vol (0.7) before touching the notes; if the in-tune meow is not plainly sweet, drop its vibrato from 12 to 0."
+  },
+
+  "rendered": {
+    "how": "Rendered and transcribed in the session scratchpad with the studio's own render and Whisper functions pointed at a scratch folder (the render command only reads episodes/<ep>/segments, and a draft does not live there). Nothing was written into the episode's segments or public folders.",
+    "duration": 83.25,
+    "words": "105 spoken, 30 sung by the lead: 1.62 words a second.",
+    "heardTotal": "116 of 135 caption words (86 %), no line under 60 %.",
+    "stability": "The transcription shifts when the mix shifts, so I rendered four mixes with small volume changes. Every sung lead line and both lines that name David held in all four. Three things that broke lines on the way and should not come back: any crowd sound under 'Hy, can you do that plan?' or under 'The next post from David.' (the name was heard as 'day 8' with a laugh under it); the bass or the chord under the last refrain (it was heard as words about other people, so the lead now sings it alone and the chord arrives after the word 'cat'); and the alto doubling the lead's words.",
+    "heard": {
+      "four": "The vocal sign can sing like four animals, not one of them is a cat.",
+      "built": "This week, one was built by David.",
+      "to-sibyl": "Here is the plan for its first song, Sibyl.",
+      "plan-1": "The new plan was then ordered a melancholic folk song with head-walling.",
+      "plan-2": "The lead singer would then by expressing anger to the cat.",
+      "to-band": "Hi, can you do the plan?",
+      "casting": "Pit, you are the cat.",
+      "v1": "The bird can sing, the she can sing, but there is no pet.",
+      "v2": "And who can keep the high part now?",
+      "windup": "Last verse, now I got angry to the cat.",
+      "angry": "Now hear me pet!",
+      "last": "And there is a cat",
+      "never-mind": "never mind",
+      "next-post": "The next post from David.",
+      "verdict": "But then I ended up with yards to fit well enough to catch desert no such anger.",
+      "button": "Now it can sing like 5 animals."
+    },
+    "judgement": "I read every line of what was heard, in every run. Nothing heard is offensive or alarming, nothing touches an out-of-bounds subject, and nothing says anything about the maker that the script does not. David is heard as David in both lines that say it. The soft words are harmless nonsense and I let them stand: 'synth' as 'sign'; 'seal' as 'she' or 'sea'; 'cat' as 'pet' at the end of three sung or spoken phrases (the lyric, the ears and the card carry the word); 'yowls' as 'yards'; 'the cat deserved' as 'to catch desert'. One to watch: 'caterwauling' is a word the transcriber does not know, and across runs it came out as 'head-walling', 'catawalling', 'Ted Walling' and 'Ted Rowling'. The last two sound like a name. No such person is in the script or the window and the card lights the real word as it is spoken, but a reviewer should hear it; six respellings did not change it and no house voice did better.",
+    "dropped": "Words I took out because of what was heard: 'gator' in a sung line was heard with an out-of-bounds word in it, so the alligator is on its tile and not in the lyric; 'now there is a cat' was heard as a woman's name; 'and there was a cat' was heard once as 'a war'; a button ending on 'the verse' was heard as 'the hearse'."
+  },
+
+  "flags": [
+    "The same maker is the subject of three other drafts this week (the interview candidate, the cat-voice card, the polyhedra instruments). No account should be in more than two segments. If the song is selected, the maker is featured here on two cards and does not speak.",
+    "The maker's bio has not been read. That check is still owed before anything with this account airs.",
+    "The button is seven words, one over the usual six. The six-word and four-word versions lost the word 'five' in transcription; this one, which mirrors Larry's first line, kept it in every run.",
+    "Al sings flat in this studio and the script compensates (see music.alFlat). A builder should look at it for the studio; other segments that sing Al in harmony will be out of tune.",
+    "The song's theme rests on one card (see themeSupport)."
+  ]
+}

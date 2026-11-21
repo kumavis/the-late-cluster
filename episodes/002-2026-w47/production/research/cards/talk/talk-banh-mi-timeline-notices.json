@@ -1,0 +1,477 @@
+{
+  "id": "talk-banh-mi-timeline-notices",
+  "lane": "talk",
+  "title": "The timeline notices it is full of banh mi",
+  "summary": "From Fri 13 Nov to the end of the window, cluster members and people around them posted about banh mi every day: announcing they would get one, announcing they would not, posting photos, and remarking on how many such posts there were. Several posts are about the wave itself (\"a psyop to get me to order a banh mi\", \"out of control\", \"inexplicable\"). One member joined in with a different Vietnamese dish. One reported a Vietnamese restaurant with no banh mi on the menu. One asked whether a burrito is a kind of banh mi and was told two days later that a banh mi is a hot dog. A small account announced an order, said to brace for a picture, and 29 minutes later posted it.",
+  "posts": [
+    {
+      "uri": "at://did:plc:nbfjoeficjzf3pejpontvril/app.bsky.feed.post/3n26btg37qs2u",
+      "url": "https://bsky.app/profile/astrra.space/post/3n26btg37qs2u",
+      "handle": "astrra.space",
+      "displayName": "Astra ⎔",
+      "when": "Fri 13 Nov 05:46Z",
+      "time": "2026-11-13T05:46:23.157Z",
+      "text": "i have achieved bahn mi",
+      "media": "image, no alt text in the data",
+      "counts": {
+        "likes": 131,
+        "reposts": 3,
+        "replies": 5,
+        "quotes": 1
+      },
+      "note": "Top-level post with an image (no alt text). The digest lists it as the first use of the spelling \"bahn mi\" in the window."
+    },
+    {
+      "uri": "at://did:plc:ht4v7ms76njx5mlit7lwlrdw/app.bsky.feed.post/3n27kswoif226",
+      "url": "https://bsky.app/profile/asap.systems/post/3n27kswoif226",
+      "handle": "asap.systems",
+      "displayName": "asa",
+      "when": "Fri 13 Nov 17:59Z",
+      "time": "2026-11-13T17:59:50.423Z",
+      "text": "my bluesky feed is a psyop to get me to order a banh mi",
+      "counts": {
+        "likes": 119,
+        "reposts": 5,
+        "replies": 2,
+        "quotes": 2
+      },
+      "note": "Top-level post by a non-member."
+    },
+    {
+      "uri": "at://did:plc:qruaxn2eewkli7hsvzxo5hwf/app.bsky.feed.post/3n27nfkg7s22c",
+      "url": "https://bsky.app/profile/eva.computer/post/3n27nfkg7s22c",
+      "handle": "eva.computer",
+      "displayName": "eva (^_^)/",
+      "when": "Fri 13 Nov 18:46Z",
+      "time": "2026-11-13T18:46:02.593Z",
+      "text": "i should get banh mi today\nBUT IT IS RAINING 😡",
+      "counts": {
+        "likes": 32,
+        "reposts": 0,
+        "replies": 4,
+        "quotes": 0
+      },
+      "note": "Top-level post."
+    },
+    {
+      "uri": "at://did:plc:u77gyutvsyoa36kmz2wj4cmw/app.bsky.feed.post/3n27vms2il22m",
+      "url": "https://bsky.app/profile/anthonybecker.bsky.social/post/3n27vms2il22m",
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "when": "Fri 13 Nov 21:13Z",
+      "time": "2026-11-13T21:13:15.413Z",
+      "text": "I eat 2-4 banh mi per week btw",
+      "counts": {
+        "likes": 13,
+        "reposts": 0,
+        "replies": 4,
+        "quotes": 0
+      },
+      "note": "Top-level post."
+    },
+    {
+      "uri": "at://did:plc:plvxn2kpjuseoftweoo4xtag/app.bsky.feed.post/3n2a2kfkqdc2r",
+      "url": "https://bsky.app/profile/words.bsky.social/post/3n2a2kfkqdc2r",
+      "handle": "words.bsky.social",
+      "displayName": "words",
+      "when": "Fri 13 Nov 22:41Z",
+      "time": "2026-11-13T22:41:23.907Z",
+      "text": "am I shadow banh mi",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "note": "Top-level post."
+    },
+    {
+      "uri": "at://did:plc:4vvaxwovyg4yo4n7dyyncaiu/app.bsky.feed.post/3n2ackppo6s2w",
+      "url": "https://bsky.app/profile/thebadcode.com/post/3n2ackppo6s2w",
+      "handle": "thebadcode.com",
+      "displayName": "austin (e/accordion 🪗)",
+      "when": "Sat 14 Nov 01:04Z",
+      "time": "2026-11-14T01:04:44.496Z",
+      "text": "not eating a banh mi today [bravely]",
+      "counts": {
+        "likes": 18,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "note": "Top-level post."
+    },
+    {
+      "uri": "at://did:plc:pcpxcmv5z6oseafi5khuulta/app.bsky.feed.post/3n2aqvu65i223",
+      "url": "https://bsky.app/profile/wavebidder.bsky.social/post/3n2aqvu65i223",
+      "handle": "wavebidder.bsky.social",
+      "displayName": null,
+      "when": "Sat 14 Nov 05:21Z",
+      "time": "2026-11-14T05:21:30.634Z",
+      "text": "is a burrito a kind of banh mi?",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "quoting": {
+        "uri": "at://did:plc:4vvaxwovyg4yo4n7dyyncaiu/app.bsky.feed.post/3n2ackppo6s2w",
+        "handle": "thebadcode.com",
+        "text": "not eating a banh mi today [bravely]"
+      }
+    },
+    {
+      "uri": "at://did:plc:dqrcz4py2hrv4lzcs6ygoagj/app.bsky.feed.post/3n2bp223gns2l",
+      "url": "https://bsky.app/profile/fasterthanli.me/post/3n2bp223gns2l",
+      "handle": "fasterthanli.me",
+      "displayName": "Amos Wenger",
+      "when": "Sat 14 Nov 14:20Z",
+      "time": "2026-11-14T14:20:43.324Z",
+      "text": "you cannae read bsky while hungry these days, bánh mì posting is out of control",
+      "counts": {
+        "likes": 82,
+        "reposts": 3,
+        "replies": 3,
+        "quotes": 0
+      },
+      "note": "Top-level post by a non-member with 17,316 followers."
+    },
+    {
+      "uri": "at://did:plc:wamidydbgu3u6fk3yckaglnz/app.bsky.feed.post/3n2bq3ylonc2r",
+      "url": "https://bsky.app/profile/philpax.me/post/3n2bq3ylonc2r",
+      "handle": "philpax.me",
+      "displayName": "philpax",
+      "when": "Sat 14 Nov 14:39Z",
+      "time": "2026-11-14T14:39:42.602Z",
+      "text": "I saw y'all posting your banh mi and I decided to join in, too\n\nthat's right, I enjoyed some phở today",
+      "alt": "tofu phở",
+      "media": "image",
+      "counts": {
+        "likes": 87,
+        "reposts": 0,
+        "replies": 5,
+        "quotes": 0
+      },
+      "note": "Top-level post with a photo."
+    },
+    {
+      "uri": "at://did:plc:s5zwyygnkcdgblepvwused47/app.bsky.feed.post/3n2csglgkck2t",
+      "url": "https://bsky.app/profile/elucidating.extradimensional.space/post/3n2csglgkck2t",
+      "handle": "elucidating.extradimensional.space",
+      "displayName": "Elixir of Progress",
+      "when": "Sun 15 Nov 00:54Z",
+      "time": "2026-11-15T00:54:05.127Z",
+      "text": "I had a original thought out of the blue... I should get a nice bahn mi for dinner. No reason at all, really.",
+      "counts": {
+        "likes": 22,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "note": "Top-level post."
+    },
+    {
+      "uri": "at://did:plc:gq4fo3u6tqzzdkjlwzpb23tj/app.bsky.feed.post/3n2d4sk2vfs24",
+      "url": "https://bsky.app/profile/dame.is/post/3n2d4sk2vfs24",
+      "handle": "dame.is",
+      "displayName": "dame",
+      "when": "Sun 15 Nov 03:59Z",
+      "time": "2026-11-15T03:59:43.769Z",
+      "text": "we went to a Vietnamese place for dinner and there was no bahn mi on the menu",
+      "counts": {
+        "likes": 48,
+        "reposts": 0,
+        "replies": 7,
+        "quotes": 0
+      },
+      "note": "Top-level post."
+    },
+    {
+      "uri": "at://did:plc:gq4fo3u6tqzzdkjlwzpb23tj/app.bsky.feed.post/3n2d6obo3wc24",
+      "url": "https://bsky.app/profile/dame.is/post/3n2d6obo3wc24",
+      "handle": "dame.is",
+      "displayName": "dame",
+      "when": "Sun 15 Nov 04:33Z",
+      "time": "2026-11-15T04:33:08.229Z",
+      "text": "i didn’t go there for bahn mi, but when i looked at the menu i was immediately reminded about all the inexplicable bahn mi posting that’s been happening on this website lately",
+      "counts": {
+        "likes": 18,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:gq4fo3u6tqzzdkjlwzpb23tj/app.bsky.feed.post/3n2d4sk2vfs24",
+        "handle": "dame.is",
+        "text": "we went to a Vietnamese place for dinner and there was no bahn mi on the menu"
+      }
+    },
+    {
+      "uri": "at://did:plc:doukci4y75jxqhhb5y5447qr/app.bsky.feed.post/3n2e5kuz7ms27",
+      "url": "https://bsky.app/profile/alpacasoft.dev/post/3n2e5kuz7ms27",
+      "handle": "alpacasoft.dev",
+      "displayName": "Will",
+      "when": "Sun 15 Nov 13:46Z",
+      "time": "2026-11-15T13:46:00.295Z",
+      "text": "Self proclaimed “free thinkers” when they see a banh mi on the timeline",
+      "alt": "iRobot self proclaimed free thinkers meme",
+      "media": "image",
+      "counts": {
+        "likes": 146,
+        "reposts": 7,
+        "replies": 3,
+        "quotes": 2
+      },
+      "note": "Top-level post with a meme image."
+    },
+    {
+      "uri": "at://did:plc:plvxn2kpjuseoftweoo4xtag/app.bsky.feed.post/3n2epxmbc5s2e",
+      "url": "https://bsky.app/profile/words.bsky.social/post/3n2epxmbc5s2e",
+      "handle": "words.bsky.social",
+      "displayName": "words",
+      "when": "Sun 15 Nov 19:15Z",
+      "time": "2026-11-15T19:15:14.678Z",
+      "text": "pronouncing bluesky like banh mi",
+      "media": "video",
+      "counts": {
+        "likes": 8,
+        "reposts": 1,
+        "replies": 0,
+        "quotes": 0
+      },
+      "note": "Top-level post with a video; no description of the video in the data."
+    },
+    {
+      "uri": "at://did:plc:gwvh3frsmdih2zpol2holysc/app.bsky.feed.post/3n2gn6qfu2s2o",
+      "url": "https://bsky.app/profile/brennan.computer/post/3n2gn6qfu2s2o",
+      "handle": "brennan.computer",
+      "displayName": "brennan",
+      "when": "Mon 16 Nov 13:30Z",
+      "time": "2026-11-16T13:30:52.159Z",
+      "text": "no, a bahn mi is a hot dog",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:pcpxcmv5z6oseafi5khuulta/app.bsky.feed.post/3n2aqvu65i223",
+        "handle": "wavebidder.bsky.social",
+        "text": "is a burrito a kind of banh mi?"
+      }
+    },
+    {
+      "uri": "at://did:plc:5wm25vgenhgut3iqfjf4ozj5/app.bsky.feed.post/3n2go2itzos2j",
+      "url": "https://bsky.app/profile/eugenevinitsky.bsky.social/post/3n2go2itzos2j",
+      "handle": "eugenevinitsky.bsky.social",
+      "displayName": "Eugene Vinitsky 🍒",
+      "when": "Mon 16 Nov 13:46Z",
+      "time": "2026-11-16T13:46:23.756Z",
+      "text": "You think decentralized social media is more robust to propaganda. You look down into your hands. You're holding a delicious Banh Mi.",
+      "counts": {
+        "likes": 175,
+        "reposts": 28,
+        "replies": 0,
+        "quotes": 2
+      },
+      "note": "Top-level post."
+    },
+    {
+      "uri": "at://did:plc:xp63cjjeabjub2ve7vztoef3/app.bsky.feed.post/3n2ifbt6aqc2n",
+      "url": "https://bsky.app/profile/pixeldreams.tokyo/post/3n2ifbt6aqc2n",
+      "handle": "pixeldreams.tokyo",
+      "displayName": "🗻 pixeldreams.東京 🪼",
+      "when": "Tue 17 Nov 06:14Z",
+      "time": "2026-11-17T06:14:45.255Z",
+      "text": "ordered a banh mi \nbrace yourselves for incoming pic",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "note": "Top-level post by a small account."
+    },
+    {
+      "uri": "at://did:plc:xp63cjjeabjub2ve7vztoef3/app.bsky.feed.post/3n2igv4ruhc2n",
+      "url": "https://bsky.app/profile/pixeldreams.tokyo/post/3n2igv4ruhc2n",
+      "handle": "pixeldreams.tokyo",
+      "displayName": "🗻 pixeldreams.東京 🪼",
+      "when": "Tue 17 Nov 06:43Z",
+      "time": "2026-11-17T06:43:26.615Z",
+      "text": "banh mi 😋",
+      "media": "image, no alt text in the data",
+      "counts": {
+        "likes": 15,
+        "reposts": 4,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xp63cjjeabjub2ve7vztoef3/app.bsky.feed.post/3n2ifbt6aqc2n",
+        "handle": "pixeldreams.tokyo",
+        "text": "ordered a banh mi \nbrace yourselves for incoming pic"
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "astrra.space",
+      "displayName": "Astra ⎔",
+      "followers": 3386,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "asap.systems",
+      "displayName": "asa",
+      "followers": 649,
+      "member": false,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "eva.computer",
+      "displayName": "eva (^_^)/",
+      "followers": 18063,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "anthonybecker.bsky.social",
+      "displayName": "🐜 🍯 Anth-“unholy” Becker",
+      "followers": 2318,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "words.bsky.social",
+      "displayName": "words",
+      "followers": 10258,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "thebadcode.com",
+      "displayName": "austin (e/accordion 🪗)",
+      "followers": 3077,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "wavebidder.bsky.social",
+      "displayName": null,
+      "followers": 922,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "fasterthanli.me",
+      "displayName": "Amos Wenger",
+      "followers": 17316,
+      "member": false,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "philpax.me",
+      "displayName": "philpax",
+      "followers": 2208,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "elucidating.extradimensional.space",
+      "displayName": "Elixir of Progress",
+      "followers": 2288,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "dame.is",
+      "displayName": "dame",
+      "followers": 6918,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "alpacasoft.dev",
+      "displayName": "Will",
+      "followers": 1159,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "brennan.computer",
+      "displayName": "brennan",
+      "followers": 3160,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "eugenevinitsky.bsky.social",
+      "displayName": "Eugene Vinitsky 🍒",
+      "followers": 15020,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "pixeldreams.tokyo",
+      "displayName": "🗻 pixeldreams.東京 🪼",
+      "followers": 267,
+      "member": false,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "numbers": [
+    "Digest, Appendix C: \"banh mi\" used by 36 cluster members over 7 days, 3.91 uses per 1,000 cluster posts against 0.16 in the three weeks before (ratio 20.16); \"bahn mi\" (new) by 11 members over 4 days. The scope review notes baselines are rough this week: do not put the ratio on screen as a fact without a check.",
+    "My count from posts.jsonl (any of the spellings \"banh mi\", \"bahn mi\", \"bánh mì\", case-insensitive, 13 Nov 00:00Z to 19 Nov 09:54Z): 134 posts by 85 accounts, 46 of them cluster members, on all seven days."
+  ],
+  "couldBeShown": "Two posts carry described images (a bowl of tofu phở; a \"self proclaimed free thinkers\" meme). One is a video with no description in the data (\"pronouncing bluesky like banh mi\").",
+  "sensitive": "Where the banh mi wave came from is not for the show. Other posts in the window by some of the same accounts frame it around trans women, and a thread about it turns to hormone medication and nudes (R10: gender identity, health, sexuality). The digest flags several of those posts one by one, and flags the whole thread \"why is everyone banh mi posting?\" (story 12, which also holds the \"banhmi-contagion\" graph the build bot made): nothing from that thread is on this card and the check refuses it. None of this should be used as explanation or background; the show cannot say why the wave started beyond what the posts listed here say. On this card specifically: (1) @alpacasoft.dev followed his meme with a reply about his family that the digest flags (health); it is left out and the meme should not be tied to it. (2) @pixeldreams.tokyo is a small account (267 followers): here only as someone happily joining in (R7). (3) @fasterthanli.me (17,316 followers), @asap.systems and their posts are from outside the cluster's membership; @eugenevinitsky.bsky.social (15,020), @eva.computer (18,063) and @words.bsky.social (10,258) are members with large followings (see the scope review on large accounts). (4) @elucidating.extradimensional.space leads a story the digest flags (story 18) and his other posts this week are mostly about it; this post is unrelated. (5) \"am I shadow banh mi\" puns on \"shadow ban\", and @eugenevinitsky's post is about propaganda on decentralised social media: both are about the sandwich wave, but the week also had a moderation dispute the digest flags (stories 25, 27), and that connection should be left alone. (6) Left off the card: posts tying the wave to appearance (\"hot women\", \"beautiful women\"), a much-liked pun on being banned from the site by a non-member, and posts about what a banh mi costs the poster."
+}

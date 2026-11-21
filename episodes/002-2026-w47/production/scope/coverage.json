@@ -1,0 +1,107 @@
+{
+  "window": {
+    "label": "2026-11-13T0000Z_2026-11-19T0954Z",
+    "kind": "range",
+    "start": "2026-11-13T00:00:00.000Z",
+    "end": "2026-11-19T09:54:25.000Z",
+    "baselineStart": "2026-10-23T00:00:00.000Z",
+    "baselineWeeks": 3,
+    "hasBaseline": true,
+    "source": "since 001-pilot aired (2026-11-13)",
+    "previousEpisode": {
+      "id": "001-pilot",
+      "aired": "2026-11-13"
+    }
+  },
+  "source": "scraper",
+  "scraperReport": "data/weeks/2026-W47/coverage.md",
+  "posts": 20825,
+  "accounts": 2786,
+  "members": 248,
+  "activeMembers": 187,
+  "memberPosts": 14578,
+  "top10": [
+    {
+      "handle": "norvid-studies.bsky.social",
+      "posts": 812
+    },
+    {
+      "handle": "elucidating.extradimensional.space",
+      "posts": 456
+    },
+    {
+      "handle": "aly.codes",
+      "posts": 444
+    },
+    {
+      "handle": "heartpunk.com",
+      "posts": 431
+    },
+    {
+      "handle": "techyben.bsky.social",
+      "posts": 381
+    },
+    {
+      "handle": "fubarchitect.com",
+      "posts": 342
+    },
+    {
+      "handle": "davidcrespo.bsky.social",
+      "posts": 328
+    },
+    {
+      "handle": "hikikomorphism.bsky.social",
+      "posts": 311
+    },
+    {
+      "handle": "miq.moe",
+      "posts": 272
+    },
+    {
+      "handle": "barredspirals.comint.su",
+      "posts": 267
+    }
+  ],
+  "shareTop10": 28,
+  "shareSeeds": 11,
+  "shareFeaturedBefore": 9,
+  "topStories": 30,
+  "storyLeadsTop10": 40,
+  "storyLeadsSeeds": 27,
+  "storyLeadsFeaturedBefore": 13,
+  "builds": 30,
+  "buildsTop10": 0,
+  "buildsSeeds": 3,
+  "buildsFeaturedBefore": 80,
+  "newVoices": 171,
+  "games": [
+    {
+      "id": "top-chicken",
+      "results": 6
+    }
+  ],
+  "worries": [
+    "27% of top stories are led by a seed (threshold 25%).",
+    "80% of builds come from accounts the show has featured (threshold 30%).",
+    "Only 20% of members are in the community feed authors (threshold 30%): the cluster may be drifting away from the community's own definition.",
+    "The cap cut 663 of 913 qualified accounts (73%, threshold 25%). Including them all would cost about 1968 more requests at this run's 3 per member."
+  ],
+  "excluded": {
+    "optedOutAccountsSeen": 0,
+    "noUnauthenticatedAccounts": 1610,
+    "postsDroppedOptOut": 0,
+    "postsDroppedNoUnauthenticated": 1544,
+    "selfDeclaredAccounts": 56,
+    "postsDroppedSelfDeclared": 54,
+    "showOptOutRequests": 0,
+    "postsDroppedShowRequest": 0,
+    "postsDroppedLabel": {
+      "sexual": 5,
+      "nudity": 2,
+      "porn": 2
+    },
+    "quotesStripped": 203,
+    "replyLinksHidden": 1415,
+    "mentionsRedacted": 34
+  }
+}

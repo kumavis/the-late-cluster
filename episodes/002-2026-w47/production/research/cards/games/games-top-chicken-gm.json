@@ -1,0 +1,123 @@
+{
+  "id": "games-top-chicken-gm",
+  "lane": "games",
+  "title": "\"Gm top chickens\": the record holder's greeting and the posts it drew (Sun 15 Nov)",
+  "summary": "On Sun 15 Nov at 15:39Z, an hour and a half after that day's result, @cee.wtf (the record holder and Saturday's winner) posted \"Gm top chickens\" (53 likes, 8 replies, 3 quotes). Sunday's winner, @thebadcode.com, replied \"gm\" with a chicken emoji. Two other members replied \"gm\". Three members quoted the post. @jefferyharrell.bsky.social, within a minute: \"Gm to all my chickens, top, middle and bottom.\" followed by \"</virtue-signal>\" (15 likes). @shimmermathlabs.com, an hour later: \"if you quote post a top chicken post you become a bottom chicken, i don't make the rules\" (36 likes). The third quote is left out (see sensitive). Earlier the same day, at 00:49Z, @catblanketflower.yuwakisa.com had posted \"someday I will be Top Chicken\" (6 likes).",
+  "couldShow": "The posts as posted. No image is described on any of them.",
+  "posts": [
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2edwoxr322q",
+      "handle": "cee.wtf",
+      "text": "Gm top chickens",
+      "displayName": "cee",
+      "time": "2026-11-15T15:39:59.058Z",
+      "counts": {
+        "likes": 53,
+        "reposts": 1,
+        "replies": 8,
+        "quotes": 3
+      },
+      "situation": "A top-level post, Sun 15 Nov 15:39Z, an hour and a half after that day's result was announced."
+    },
+    {
+      "uri": "at://did:plc:4vvaxwovyg4yo4n7dyyncaiu/app.bsky.feed.post/3n2ehj4pvs225",
+      "handle": "thebadcode.com",
+      "text": "gm 🐔",
+      "displayName": "austin (e/accordion 🪗)",
+      "time": "2026-11-15T16:43:58.688Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2edwoxr322q",
+        "handle": "cee.wtf"
+      },
+      "note": "From the winner announced that day."
+    },
+    {
+      "uri": "at://did:plc:h6tcd37yr7vk33uuisbidqvw/app.bsky.feed.post/3n2edxpeyi22b",
+      "handle": "jefferyharrell.bsky.social",
+      "text": "Gm to all my chickens, top, middle and bottom.\n\n</virtue-signal>",
+      "displayName": "jeffery --dangerously-skip-permissions",
+      "time": "2026-11-15T15:40:33.048Z",
+      "counts": {
+        "likes": 15,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "quoteOf": {
+        "handle": "cee.wtf",
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2edwoxr322q"
+      },
+      "note": "Quotes \"Gm top chickens\"."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2ehhomltc22",
+      "handle": "shimmermathlabs.com",
+      "text": "if you quote post a top chicken post you become a bottom chicken, i don't make the rules",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-15T16:43:10.343Z",
+      "counts": {
+        "likes": 36,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "quoteOf": {
+        "handle": "cee.wtf",
+        "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2edwoxr322q"
+      },
+      "note": "Quotes \"Gm top chickens\"."
+    },
+    {
+      "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2cs5lj2bk2d",
+      "handle": "catblanketflower.yuwakisa.com",
+      "text": "someday I will be Top Chicken",
+      "displayName": "Singularity's Bounty e/CC",
+      "time": "2026-11-15T00:49:03.223Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "situation": "A top-level post, Sun 15 Nov 00:49Z. Nothing in the data shows what prompted it. The author follows the game and plays its market (card games-top-chicken-market)."
+    }
+  ],
+  "people": [
+    {
+      "handle": "cee.wtf",
+      "followers": 2524,
+      "displayName": "cee",
+      "note": "record holder; Saturday's winner"
+    },
+    {
+      "handle": "thebadcode.com",
+      "followers": 3077,
+      "displayName": "austin (e/accordion 🪗)",
+      "note": "Sunday's winner"
+    },
+    {
+      "handle": "jefferyharrell.bsky.social",
+      "followers": 2524,
+      "displayName": "jeffery --dangerously-skip-permissions"
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "followers": 1454,
+      "displayName": "Amber 🌸",
+      "featuredPrevious": "shown",
+      "timesFeatured": 1
+    },
+    {
+      "handle": "catblanketflower.yuwakisa.com",
+      "followers": 3607,
+      "displayName": "Singularity's Bounty e/CC"
+    }
+  ],
+  "sensitive": "The \"top\" and \"bottom\" wordplay may carry a sexual second meaning. Sexuality is out of bounds even as a reference (R10). The two quote posts listed read first as rank (top, middle, bottom). A third quote post, by an account with 315 followers, leans further on the second meaning and is left out. Also left out: three follow-ups by @shimmermathlabs.com. One quotes scripture (religion, R10), and all three reply to posts the digest hides, so what they answered cannot be given. \"someday I will be Top Chicken\" is its author's own statement that they have not won. The show names only winners in a ranking (R7, scorecard A10). Whether this post can be shown at all is for the reviewer, and it must not be turned into a forecast about its author. \"bottom chicken\" names nobody. No post here names anyone as a non-winner except its own author. @thebadcode.com's winning post that day is out of bounds (see games-top-chicken-standings); only the reply is here. @shimmermathlabs.com is marked as shown in the previous episode. \"</virtue-signal>\" is as posted. The digest holds three of the eight replies; the other five are not in it."
+}

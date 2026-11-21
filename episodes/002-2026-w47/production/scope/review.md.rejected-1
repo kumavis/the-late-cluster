@@ -1,0 +1,57 @@
+# Scope review: 002-2026-w47
+
+Window 13 Nov 00:00Z to 19 Nov 09:54Z. Judged from the scraper's coverage report, the digest's overview and `packages/scraper/config/cluster.json`.
+
+**In short:** the right community, drawn too narrowly. The cluster is the 120 accounts the 14 seeds follow most, the cap cut the other 793 that qualified, and two of this week's Top Chicken winners are outside it. One number in the configuration should change before research starts.
+
+**On the figures.** I used the scraper's report. Three lines of the tool's table in `scope/coverage.md` should not be relied on. Its seed share reads 0 %, where the scraper has 18%. Its "1748 accounts neither seeds nor featured before" counts every account that appears, including about 1,650 outside the cluster. Its 25 % for the ten most active is taken over all 13,147 posts, outsiders' included, where the scraper has 36% of member posts.
+
+## Is this the community the show is about?
+
+Yes.
+
+- The leading stories that are not out of bounds are a pen plotter writing replies live, a choir and a game made with the vocal synth, instruments built from polyhedra, the banh mi bit and the build bot's builds, with six Top Chicken results alongside. That is people making things for each other in public.
+- The independent signs agree. 103 of the 120 members are on Top Chicken's roster (partly by construction), and 10 of the checker's 14 hubs are members.
+- Change since 2026-W46 is ordinary: 26 joined, 26 left, turnover 22%.
+- Exclusions are counted and not named: 30 profile opt-outs, 1,129 accounts hidden from logged-out viewers, none on the opt-out list. Nothing to change there.
+
+The caveat is that this is the community seen from its centre. All 106 members who are not seeds got in through a seed-follow rule: 97 "followed by 2 seeds and talked with one", 9 "followed by 3 seeds". Nobody arrived through the roster or feed rules, which the configuration includes to widen the area beyond what the seeds reach. The bible says membership "is performed, not granted". Under this cap it is granted by how many seeds follow an account.
+
+## Is it wide enough that the episode will not be about the same few people?
+
+Not yet.
+
+In its favour: 97 of the 103 active members have never been on the show, and accounts featured before wrote 14% of member posts and lead 13% of the top stories, both inside their thresholds. The ten most active wrote 36% against a threshold of 35%, which I would not send back by itself.
+
+Against it:
+
+- **The cap.** 913 accounts qualified and 793 were cut (87%, threshold 25%). Of the 120 places, 17 went to accounts with no posts in the window and 14 to accounts with fewer than ten. Meanwhile 99 accounts on Top Chicken's roster that are not members are active in this window's data anyway, as the people members were replying to and quoting.
+- **The seeds.** They wrote 18% of member posts (threshold 15%). The six highest-ranked stories that are not out of bounds are all led by seeds, four people between them.
+- **The previous episode's speakers.** The tracker marks three members as having spoken last time, so they do not speak in this one. @norvid-studies.bsky.social wrote 812 of the 9,045 member posts, leads story 11 and speaks in three of the six performable threads. @samantha.wiki leads story 1. Their posts may be shown, but performed material has to come from other people.
+- **Small accounts.** Six active members have under 300 followers, with 119 posts between them. The eight "new voices" have between 971 and 13,352 followers, and one of them is a seed.
+- **What is usable.** Twelve of the top 30 stories are out of bounds, which leaves 18. The window's largest numbers (biggest post, breakout post) come from one outside-news thread that the digest flags as story 13, and its author is the first candidate in both New voices and Interview material. That candidate needs checking against R10 before either section is counted on.
+
+The tracker and the later gates will keep the same people from speaking twice. They cannot supply people the scrape did not collect.
+
+## Is anything obviously missing?
+
+Yes, three things.
+
+1. **Two of this week's Top Chicken winners.** The digest names five winners, and Monday's (@tyto.cc) and Wednesday's (@aly.codes) are not members. The board still works, because the games section carries each winning post. But the community's own daily game chose two people this week whom the scrape does not count as the community. That is the clearest sign the line is in the wrong place.
+2. **Things made outside the 120.** "Built in this window" holds 30 builds: 23 from one build bot, and 25 in all from two accounts the show has featured (83%, threshold 30%). Of its seven builders, two are neither seeds nor featured. A new Bluesky client announced as an open beta in the window by an account with 321 followers (parfait.social, 230 likes on that post) appears only as a link in Appendix B. The report does not say whether its maker qualified, so a wider cap may or may not bring it in. Research should read Appendix B either way.
+3. **Half the checker.** 13 of its 28 accounts are members: 10 of its 14 hubs but 3 of its 14 seeds. One of the missing, @tautologer.com, was cut by the cap. Others may be absent under the consent rules, which is as it should be.
+
+## What to change, and how to tell it worked
+
+Raise `expansion.maxMembers` in `packages/scraper/config/cluster.json` from 120 to 250. Leave the seeds, rules and weights alone.
+
+- **Cost.** About 480 more author-feed requests (130 members at 3.7 each), plus profiles and threads for the new members. That fits the 900-request budget if the window keeps the same ends and `data/weeks/2026-W47/.cache` is kept. A cold run at 250 needs roughly 1,400 requests, so `maxRequests` in `client.json` would have to rise with it.
+- **What the next coverage report should show.** The seeds under 15% of member posts and the ten most active under 35%; this window's Top Chicken winners among the members; more than six active accounts under 300 followers; more than 13 of the checker's 28. Watch the out-of-bounds count in the top 30, which is 12 now: a wider net may bring in more outside news.
+- **If the wider cluster shows the same picture,** the window really was this concentrated and the answer is proceed.
+
+Two things for the owner, neither needed for this rescrape:
+
+- The 25% cut threshold cannot be met inside the request budget, because it would take about 685 members. At 250 the report will still list that worry, at about 73%, and it should not cause another rescrape by itself.
+- With 14 seeds, seed follows can add up to 42 points to an account's score, against 12 for talking with seeds and 4 for being on the roster. If every member still arrives through seed follows at 250, the weights are the next thing to look at. The suggested additional seeds are the owner's to follow or not.
+
+Verdict: rescrape: raise expansion.maxMembers in packages/scraper/config/cluster.json from 120 to 250 and change nothing else; keep the window's ends and the response cache so the run stays inside the 900-request budget.

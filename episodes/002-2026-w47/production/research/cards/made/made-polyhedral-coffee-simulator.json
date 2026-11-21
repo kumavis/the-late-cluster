@@ -1,0 +1,399 @@
+{
+  "id": "made-polyhedral-coffee-simulator",
+  "lane": "made",
+  "title": "A \"polyhedral coffee simulator\" answers \"needs to be a game\", and gains a real mug",
+  "summary": "Under the polyhedra video of Tue 17 Nov (see made-polyhedra-instruments-sakura), @norvid-studies.bsky.social replied at 18:10Z \"sort of needs to be a game now\". At 19:24Z, 74 minutes later, @dave.9000ish.uk (880 followers) replied \"best i can do / polyhedral coffee simulator\" with a link to polycoffee.9000ish.uk, whose page title is \"Morning Coffee Simulator — Polyhedra Sakura\". It is a new version of an earlier \"Morning Coffee Simulator — Procedural Forest\" by the same maker, who posted the next morning that the learnings had been applied back to \"the previous model\". A night setting followed on Wed 18 Nov at 06:58Z. At 12:59Z @samantha.wiki posted a photo with \"Coincidentally, my mug this morning has polyhedra on it\"; nine minutes later the maker replied with a link ending \"?mug=wolfram\" and \"let's blur the lines between reality and simulation even further\". Two more mugs followed as quote posts. One, from @shimmermathlabs.com, was a pink mug with a \"crudely drawn polyhedron of 20 sides\" (alt text), then a second image with a \"nicer\" one; @oszillate.bsky.social (75 followers) replied that there were squares in the back and that it was therefore a different solid, a sphenomegacorona, and the mug's owner replied \"i want my money back!\".",
+  "made": [
+    {
+      "what": "polyhedral coffee simulator (\"Morning Coffee Simulator — Polyhedra Sakura\")",
+      "by": "dave.9000ish.uk",
+      "address": "https://polycoffee.9000ish.uk"
+    },
+    {
+      "what": "the earlier simulator it derives from (\"Morning Coffee Simulator — Procedural Forest\")",
+      "by": "dave.9000ish.uk",
+      "address": "https://coffee-procedure.9000ish.uk"
+    }
+  ],
+  "couldBeShown": "Research has not seen the simulator: no post describes its screen. What the posts establish: it is about having a morning coffee in a polyhedra-and-sakura scene taken from the video; it has a night setting (\"?time=night\"); a mug can be chosen by a link parameter (\"?mug=wolfram\"), added after a member posted a real mug; one member calls it \"very peaceful\"; another implies it can be used in a headset (\"If I wasn't still on the Steam Frame waiting list I'd be drinking coffee in Polyhedra Sakura right now...\"). The mug images: one has no alt text; the two pink-mug images are described by their alt texts.",
+  "numbers": [
+    "74 minutes from \"sort of needs to be a game now\" (18:10Z) to the simulator (19:24Z).",
+    "9 minutes from the mug photo (12:59Z) to the mug appearing as an option in the simulator (13:08Z).",
+    "A polyhedron \"of 20 sides\" on the pink mug (alt text).",
+    "20 likes and 4 reposts on the simulator post; 37 likes on the first mug post; 27 on the pink mug."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2jnbmrlx22j",
+      "text": "sort of needs to be a game now",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-17T18:10:28.228Z",
+      "counts": {
+        "likes": 8,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jfwtubf22r",
+        "handle": "yonderdavid.bsky.social",
+        "text": ""
+      },
+      "kind": "reply",
+      "note": "The prompt, as a reply to the polyhedra video (whose text is empty)."
+    },
+    {
+      "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2jrgrxtss2w",
+      "text": "best i can do\n\npolyhedral coffee simulator\n\npolycoffee.9000ish.uk",
+      "handle": "dave.9000ish.uk",
+      "displayName": "Dave",
+      "time": "2026-11-17T19:24:56.416Z",
+      "counts": {
+        "likes": 20,
+        "reposts": 4,
+        "replies": 2,
+        "quotes": 3
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2jnbmrlx22j",
+        "handle": "norvid-studies.bsky.social",
+        "text": "sort of needs to be a game now"
+      },
+      "kind": "reply",
+      "links": [
+        {
+          "url": "https://polycoffee.9000ish.uk"
+        },
+        {
+          "url": "https://polycoffee.9000ish.uk/?v2=",
+          "title": "Morning Coffee Simulator — Polyhedra Sakura"
+        }
+      ],
+      "note": "The simulator."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2jrlditas2w",
+      "text": "damn",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-17T19:27:29.016Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2jrgrxtss2w",
+        "handle": "dave.9000ish.uk",
+        "text": "best i can do\n\npolyhedral coffee simulator\n\npolycoffee.9000ish.uk"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2k2aul6y22h",
+      "text": "very peaceful thank you",
+      "handle": "mokkenstorm.dev",
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "time": "2026-11-17T22:02:41.497Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2jrgrxtss2w",
+        "handle": "dave.9000ish.uk",
+        "text": "best i can do\n\npolyhedral coffee simulator\n\npolycoffee.9000ish.uk"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2ky75f4m22w",
+      "text": "prefer your coffee at night? from morning to night?\n\npolycoffee.9000ish.uk/?time=night",
+      "handle": "dave.9000ish.uk",
+      "displayName": "Dave",
+      "time": "2026-11-18T06:58:35.880Z",
+      "counts": {
+        "likes": 11,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2jrgrxtss2w",
+        "handle": "dave.9000ish.uk",
+        "text": "best i can do\n\npolyhedral coffee simulator\n\npolycoffee.9000ish.uk",
+        "time": "2026-11-17T19:24:56.416Z"
+      },
+      "kind": "quote",
+      "links": [
+        {
+          "url": "https://polycoffee.9000ish.uk/?time=night",
+          "title": "Morning Coffee Simulator — Polyhedra Sakura"
+        }
+      ],
+      "note": "Night setting. Quotes the simulator post."
+    },
+    {
+      "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2lalzwjdk2w",
+      "text": "we apply the learnings to the previous model:\n\ncoffee-procedure.9000ish.uk",
+      "handle": "dave.9000ish.uk",
+      "displayName": "Dave",
+      "time": "2026-11-18T09:28:58.399Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2ky75f4m22w",
+        "handle": "dave.9000ish.uk",
+        "text": "prefer your coffee at night? from morning to night?\n\npolycoffee.9000ish.uk/?time=night"
+      },
+      "kind": "reply",
+      "links": [
+        {
+          "url": "https://coffee-procedure.9000ish.uk",
+          "title": "Morning Coffee Simulator — Procedural Forest"
+        }
+      ]
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2lmdzdw6s2n",
+      "text": "Coincidentally, my mug this morning has polyhedra on it",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-18T12:59:14.249Z",
+      "counts": {
+        "likes": 37,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 2
+      },
+      "quotes": {
+        "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2jrgrxtss2w",
+        "handle": "dave.9000ish.uk",
+        "text": "best i can do\n\npolyhedral coffee simulator\n\npolycoffee.9000ish.uk",
+        "time": "2026-11-17T19:24:56.416Z"
+      },
+      "kind": "quote",
+      "media": "image (no alt text; research has not seen it)",
+      "note": "A real mug. Quotes the simulator post. Image without alt text."
+    },
+    {
+      "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2lmuj26k22w",
+      "text": "polycoffee.9000ish.uk?mug=wolfram\n\nlet's blur the lines between reality and simulation even further",
+      "handle": "dave.9000ish.uk",
+      "displayName": "Dave",
+      "time": "2026-11-18T13:08:27.585Z",
+      "counts": {
+        "likes": 7,
+        "reposts": 1,
+        "replies": 2,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2lmdzdw6s2n",
+        "handle": "samantha.wiki",
+        "text": "Coincidentally, my mug this morning has polyhedra on it"
+      },
+      "kind": "reply",
+      "links": [
+        {
+          "url": "https://polycoffee.9000ish.uk/?mug=wolfram"
+        }
+      ],
+      "note": "The mug becomes an option, nine minutes later."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2lmykyvnc2y",
+      "text": "looking forward to this gradually growing step by step into a full alternate universe as the singularity progresses",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-18T13:10:43.858Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2lmuj26k22w",
+        "handle": "dave.9000ish.uk",
+        "text": "polycoffee.9000ish.uk?mug=wolfram\n\nlet's blur the lines between reality and simulation even further"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2lnfzfxwc26",
+      "text": "If I wasn't still on the Steam Frame waiting list I'd be drinking coffee in Polyhedra Sakura right now...",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "time": "2026-11-18T13:18:15.174Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2lmykyvnc2y",
+        "handle": "norvid-studies.bsky.social",
+        "text": "looking forward to this gradually growing step by step into a full alternate universe as the singularity progresses"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2lynnfhpc24",
+      "text": "polyhedron week comes in many forms",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-18T16:39:22.158Z",
+      "counts": {
+        "likes": 27,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2lmdzdw6s2n",
+        "handle": "samantha.wiki",
+        "text": "Coincidentally, my mug this morning has polyhedra on it",
+        "time": "2026-11-18T12:59:14.249Z"
+      },
+      "kind": "quote",
+      "alt": "A pink coffee mug with crudely drawn polyhedron of 20 sides",
+      "media": "image",
+      "note": "A second mug. Quotes the first mug post."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2lzaolgds24",
+      "text": "computer, enhance",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-18T16:50:00.944Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2lynnfhpc24",
+        "handle": "shimmermathlabs.com",
+        "text": "polyhedron week comes in many forms"
+      },
+      "kind": "reply",
+      "alt": "pink coffee mug with nicer polyhedron of 20 sides",
+      "media": "image"
+    },
+    {
+      "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2mmmdtois2s",
+      "text": "…Hold on ma'am, I believe those are squares in the back. I believe you have been sold a sphenomegacorona, one of the classic adulterated bootleg icosahedrons",
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "time": "2026-11-18T22:36:33.430Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2lzaolgds24",
+        "handle": "shimmermathlabs.com",
+        "text": "computer, enhance"
+      },
+      "kind": "reply",
+      "note": "A correction from an account with 75 followers."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2nlmbq5ss2m",
+      "text": "i want my money back!",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-19T07:51:17.216Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2mmmdtois2s",
+        "handle": "oszillate.bsky.social",
+        "text": "…Hold on ma'am, I believe those are squares in the back. I believe you have been sold a sphenomegacorona, one of the classic adulterated bootleg icosahedrons"
+      },
+      "kind": "reply"
+    }
+  ],
+  "people": [
+    {
+      "handle": "dave.9000ish.uk",
+      "followers": 880,
+      "displayName": "Dave",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "maker"
+    },
+    {
+      "handle": "samantha.wiki",
+      "followers": 977,
+      "displayName": "Samantha",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1,
+      "role": "posted the first mug"
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "followers": 1454,
+      "displayName": "Amber 🌸",
+      "clusterMember": true,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1,
+      "role": "posted the pink mug"
+    },
+    {
+      "handle": "oszillate.bsky.social",
+      "followers": 75,
+      "displayName": "*Pistäwəńćə",
+      "clusterMember": true,
+      "smallAccount": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "identified the solid"
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "followers": 2777,
+      "displayName": "norvid_studies",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "mokkenstorm.dev",
+      "followers": 423,
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "sensitive": "@samantha.wiki is marked featuredPrevious: spoke, so the account is not cast to speak in this episode; its posts may be shown. @norvid-studies.bsky.social is marked featuredPrevious: spoke, so the account is not cast to speak in this episode; its posts may be shown. @shimmermathlabs.com is marked featuredPrevious: shown. @oszillate.bsky.social is a small account (75 followers) and appears only for a precise, playful correction that its target enjoyed (R7: hero of the moment); its reply addresses the mug's owner as \"ma'am\", which is that account's word. Left out: a third mug post by @mokkenstorm.dev whose photo shows the poster's arm and tattoos (appearance, R1). \"?mug=wolfram\" suggests the first mug carries a Wolfram design; the photo has no alt text, so that is not confirmed."
+}

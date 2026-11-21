@@ -1,0 +1,338 @@
+{
+  "id": "voices-mobius-chess",
+  "lane": "voices",
+  "title": "One-dimensional chess on a Möbius strip: an idea on Tuesday evening, a playable link on Wednesday evening",
+  "summary": "On Tue 17 Nov 19:03Z @mokkenstorm.dev (423 followers) posted: \"3 player 1d chess on a Möbius strip wormed its way into my brain and now I need to build it\". At 22:23Z the same account quote-posted @yonderdavid.bsky.social's polyhedra-instruments video with a picture of a ring of chess pieces: \"I hope you don't mind I borrowed your colour scheme for inspiration for 1 dimensional mobius chess\" (36 likes). @minormobius.bsky.social (7,162) replied \"That’s awesome, I need a website tho\"; the maker answered \"👩‍🍳 cooking..\". @chromacollector.bsky.social (69 followers) replied \"i can’t even imagine how tf this plays\"; the maker answered that a playable link was coming \"(soon)\" and added a video: \"and.. yknow, like this. With ghosts and ninjas\". @minormobius.bsky.social replied to the promise, \"I’m so happy rn you have no idea\", and, to a question from another member, \"I like! I repost! But I’m not gonna love unless there’s a link\". At Wed 18 Nov 20:29Z, 25 hours 26 minutes after the first post, the maker replied with the link: \"mobius.mokkenstorm.dev\" and \"sneaky preview on a cloudflare tunnel\". Reply: \"Fuuuuuck that’s so goooood\". The maker: \"It’s multiplayer and agent friendly 👀\", and a minute later a link to the page's llms.txt. The digest records the page's title as \"ringmate\". Two unsolicited promotional replies offering to build a website arrived under the request for a website; the maker answered one \"Bad bot, please notify your operator that showing up uninvited is rude?\" and the other \"Bad bot\".",
+  "posts": [
+    {
+      "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2jqaikml22p",
+      "url": "https://bsky.app/profile/mokkenstorm.dev/post/3n2jqaikml22p",
+      "handle": "mokkenstorm.dev",
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "text": "3 player 1d chess on a Möbius strip wormed its way into my brain and now I need to build it",
+      "time": "2026-11-17T19:03:31.476Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      }
+    },
+    {
+      "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2k3foppxs2g",
+      "url": "https://bsky.app/profile/mokkenstorm.dev/post/3n2k3foppxs2g",
+      "handle": "mokkenstorm.dev",
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "text": "I hope you don't mind I borrowed your colour scheme for inspiration for 1 dimensional mobius chess",
+      "time": "2026-11-17T22:23:16.863Z",
+      "counts": {
+        "likes": 36,
+        "reposts": 3,
+        "replies": 2,
+        "quotes": 1
+      },
+      "alt": "a circle of chess pieces on a 1 dimensional mobius strip",
+      "quotes": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jfwtubf22r",
+        "handle": "yonderdavid.bsky.social",
+        "text": "",
+        "alt": "Animated instruments composed of polyhedra play the Japanese folk tune さくら さくら while the camera explores a landscape composed of regular polyhedra. The landscape features many sakura trees.",
+        "video": true
+      }
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2kkafekjs2p",
+      "url": "https://bsky.app/profile/minormobius.bsky.social/post/3n2kkafekjs2p",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "text": "That’s awesome, I need a website tho",
+      "time": "2026-11-18T02:48:45.418Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 4,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:p572wxnsuoogcrhlfrlizlrb/app.bsky.feed.post/3n2kdulliuk7q",
+        "handle": "gracekind.net",
+        "text": "@minormobius.bsky.social @norvid-studies.bsky.social"
+      }
+    },
+    {
+      "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2lpj5xryk2y",
+      "url": "https://bsky.app/profile/mokkenstorm.dev/post/3n2lpj5xryk2y",
+      "handle": "mokkenstorm.dev",
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "text": "👩‍🍳 cooking..",
+      "time": "2026-11-18T13:55:48.098Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2kkafekjs2p",
+        "handle": "minormobius.bsky.social",
+        "text": "That’s awesome, I need a website tho"
+      }
+    },
+    {
+      "uri": "at://did:plc:agbhtqldf46lsq7b7dtfceqj/app.bsky.feed.post/3n2lv63fh2224",
+      "url": "https://bsky.app/profile/chromacollector.bsky.social/post/3n2lv63fh2224",
+      "handle": "chromacollector.bsky.social",
+      "displayName": "chromacollector",
+      "text": "i can’t even imagine how tf this plays",
+      "time": "2026-11-18T15:36:58.752Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2k3foppxs2g",
+        "handle": "mokkenstorm.dev",
+        "text": "I hope you don't mind I borrowed your colour scheme for inspiration for 1 dimensional mobius chess",
+        "alt": "a circle of chess pieces on a 1 dimensional mobius strip"
+      }
+    },
+    {
+      "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2lvf7rihk2d",
+      "url": "https://bsky.app/profile/mokkenstorm.dev/post/3n2lvf7rihk2d",
+      "handle": "mokkenstorm.dev",
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "text": "@minormobius.bsky.social kindly requested a playable link and broke our collective brain earlier with a 4d amoeba so I'm happy to oblige/curse you both with this knowledge (soon)",
+      "time": "2026-11-18T15:40:58.222Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:agbhtqldf46lsq7b7dtfceqj/app.bsky.feed.post/3n2lv63fh2224",
+        "handle": "chromacollector.bsky.social",
+        "text": "i can’t even imagine how tf this plays"
+      }
+    },
+    {
+      "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2lw7erie223",
+      "url": "https://bsky.app/profile/mokkenstorm.dev/post/3n2lw7erie223",
+      "handle": "mokkenstorm.dev",
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "text": "and.. yknow, like this. With ghosts and ninjas",
+      "time": "2026-11-18T15:55:35.880Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "alt": "Video showing Möbius strip 1d chess",
+      "video": true,
+      "replyTo": {
+        "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2lvf7rihk2d",
+        "handle": "mokkenstorm.dev",
+        "text": "@minormobius.bsky.social kindly requested a playable link and broke our collective brain earlier with a 4d amoeba so I'm happy to oblige/curse you both with this knowledge (soon)"
+      }
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2lxnaraxk2y",
+      "url": "https://bsky.app/profile/minormobius.bsky.social/post/3n2lxnaraxk2y",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "text": "I’m so happy rn you have no idea",
+      "time": "2026-11-18T16:21:15.182Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2lvf7rihk2d",
+        "handle": "mokkenstorm.dev",
+        "text": "@minormobius.bsky.social kindly requested a playable link and broke our collective brain earlier with a 4d amoeba so I'm happy to oblige/curse you both with this knowledge (soon)"
+      }
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2ly5joc5c2y",
+      "url": "https://bsky.app/profile/minormobius.bsky.social/post/3n2ly5joc5c2y",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "text": "I like! I repost! But I’m not gonna love unless there’s a link",
+      "time": "2026-11-18T16:30:21.394Z",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ln7g7bm225",
+        "handle": "norvid-studies.bsky.social",
+        "text": "as in you only \"like\" posts that are also standalone websites? or..."
+      }
+    },
+    {
+      "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2mfjip65k2g",
+      "url": "https://bsky.app/profile/mokkenstorm.dev/post/3n2mfjip65k2g",
+      "handle": "mokkenstorm.dev",
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "text": "mobius.mokkenstorm.dev\n\nsneaky preview on a cloudflare tunnel",
+      "time": "2026-11-18T20:29:41.670Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "links": [
+        "https://mobius.mokkenstorm.dev"
+      ],
+      "replyTo": {
+        "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2ly5joc5c2y",
+        "handle": "minormobius.bsky.social",
+        "text": "I like! I repost! But I’m not gonna love unless there’s a link"
+      }
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2mhobewak2y",
+      "url": "https://bsky.app/profile/minormobius.bsky.social/post/3n2mhobewak2y",
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "text": "Fuuuuuck that’s so goooood",
+      "time": "2026-11-18T21:08:09.251Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2mfjip65k2g",
+        "handle": "mokkenstorm.dev",
+        "text": "mobius.mokkenstorm.dev\n\nsneaky preview on a cloudflare tunnel"
+      }
+    },
+    {
+      "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2miwgstfk2a",
+      "url": "https://bsky.app/profile/mokkenstorm.dev/post/3n2miwgstfk2a",
+      "handle": "mokkenstorm.dev",
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "text": "It’s multiplayer and agent friendly 👀",
+      "time": "2026-11-18T21:30:37.122Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2mhobewak2y",
+        "handle": "minormobius.bsky.social",
+        "text": "Fuuuuuck that’s so goooood"
+      }
+    },
+    {
+      "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2mixdnhss2c",
+      "url": "https://bsky.app/profile/mokkenstorm.dev/post/3n2mixdnhss2c",
+      "handle": "mokkenstorm.dev",
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "text": "mobius.mokkenstorm.dev/llms.txt",
+      "time": "2026-11-18T21:31:07.360Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "links": [
+        "https://mobius.mokkenstorm.dev/llms.txt"
+      ],
+      "replyTo": {
+        "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2miwgstfk2a",
+        "handle": "mokkenstorm.dev",
+        "text": "It’s multiplayer and agent friendly 👀"
+      }
+    },
+    {
+      "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2le7fzt7c23",
+      "url": "https://bsky.app/profile/mokkenstorm.dev/post/3n2le7fzt7c23",
+      "handle": "mokkenstorm.dev",
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "text": "Bad bot, please notify your operator that showing up uninvited is rude?",
+      "time": "2026-11-18T10:33:29.843Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:42jo5lqjn7wet73gutbze447/app.bsky.feed.post/3n2lcuclwnp2g",
+        "withheld": "an unsolicited promotional reply from an account with very few followers; not reproduced or named (R7, R13)"
+      },
+      "note": "Reply to the first promotional account."
+    },
+    {
+      "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2mnxvnkbc2a",
+      "url": "https://bsky.app/profile/mokkenstorm.dev/post/3n2mnxvnkbc2a",
+      "handle": "mokkenstorm.dev",
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "text": "Bad bot",
+      "time": "2026-11-18T23:00:54.946Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:crjjy5fh6y2fqsv6bonl54si/app.bsky.feed.post/3n2mnn45n7c2w",
+        "withheld": "an unsolicited promotional reply from an account with very few followers; not reproduced or named (R7, R13)"
+      },
+      "note": "Reply to the second promotional account, 6 minutes after it arrived."
+    }
+  ],
+  "people": [
+    {
+      "handle": "mokkenstorm.dev",
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "followers": 423,
+      "smallAccount": false,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "had the idea and built the game"
+    },
+    {
+      "handle": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "followers": 7162,
+      "smallAccount": false,
+      "member": true,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "asked for a website, then for a link"
+    },
+    {
+      "handle": "chromacollector.bsky.social",
+      "displayName": "chromacollector",
+      "followers": 69,
+      "smallAccount": true,
+      "member": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "asked how it plays"
+    }
+  ],
+  "watchable": "A picture described as \"a circle of chess pieces on a 1 dimensional mobius strip\"; a video described as \"Video showing Möbius strip 1d chess\"; and a live page at mobius.mokkenstorm.dev (title \"ringmate\" in the digest), which the maker says is multiplayer and has an llms.txt for agents.",
+  "sensitive": "@mokkenstorm.dev has 423 followers and @chromacollector.bsky.social 69 (R7: hero only). The two promotional accounts (24 and 2 followers) are not quoted or named: showing them would point an audience at them, and I cannot tell who runs them (R7, R13). One post tags @minormobius.bsky.social and says that account \"broke our collective brain earlier with a 4d amoeba\"; I did not trace the amoeba (R15). Other posts by the maker in the window are personal and are not used (R1, R10). The made lane may also document this build, since it sits in the digest's story 2."
+}

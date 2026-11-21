@@ -1,0 +1,90 @@
+{
+  "format": "late-cluster-sources/1",
+  "accounts": [
+    {
+      "handle": "dave.9000ish.uk",
+      "did": "did:plc:hovt6k22s64dq63jjmoyibk3",
+      "role": "quoted"
+    },
+    {
+      "handle": "yonderdavid.bsky.social",
+      "did": "did:plc:nqu76ue2hgr44emaxyvgbzsq",
+      "role": "credited"
+    },
+    {
+      "handle": "cee.wtf",
+      "did": "did:plc:xb2urvqt5f4zzccjs46hysbf",
+      "role": "credited"
+    },
+    {
+      "handle": "samantha.wiki",
+      "did": "did:plc:sna3qx44beg2mb5fao44gsxh",
+      "role": "credited"
+    }
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2jrgrxtss2w",
+      "author": "dave.9000ish.uk",
+      "displayName": "Dave",
+      "likes": 20,
+      "reposts": 4,
+      "replies": 2,
+      "use": "card",
+      "segment": "music-alt"
+    },
+    {
+      "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2lmuj26k22w",
+      "author": "dave.9000ish.uk",
+      "displayName": "Dave",
+      "likes": 7,
+      "reposts": 1,
+      "replies": 2,
+      "use": "reference",
+      "segment": "music-alt"
+    },
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2lmdzdw6s2n",
+      "author": "samantha.wiki",
+      "displayName": "Samantha",
+      "likes": 37,
+      "reposts": 0,
+      "replies": 1,
+      "use": "reference",
+      "segment": "music-alt"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cffuxxv22n",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 65,
+      "reposts": 7,
+      "replies": 8,
+      "use": "reference",
+      "segment": "music-alt"
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kacrswx22q",
+      "author": "cee.wtf",
+      "displayName": "cee",
+      "likes": 122,
+      "reposts": 15,
+      "replies": 6,
+      "use": "reference",
+      "segment": "music-alt"
+    }
+  ],
+  "links": [
+    {
+      "url": "https://polycoffee.9000ish.uk",
+      "use": "credit",
+      "segment": "music-alt"
+    },
+    {
+      "url": "https://yard-shift.cee.wtf",
+      "use": "credit",
+      "segment": "music-alt"
+    }
+  ],
+  "lines": []
+}

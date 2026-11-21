@@ -1,0 +1,148 @@
+{
+  "id": "voices-bootleg-icosahedron",
+  "lane": "voices",
+  "title": "A mug with a polyhedron on it, and a reply identifying it as \"a sphenomegacorona\"",
+  "summary": "On Wed 18 Nov 12:59Z @samantha.wiki posted a photo: \"Coincidentally, my mug this morning has polyhedra on it\" (37 likes). At 16:39Z @shimmermathlabs.com (Amber, 1,454 followers) quote-posted it with a picture described as \"A pink coffee mug with crudely drawn polyhedron of 20 sides\": \"polyhedron week comes in many forms\" (27 likes), and eleven minutes later replied to that with a second picture, \"pink coffee mug with nicer polyhedron of 20 sides\": \"computer, enhance\". At 22:36Z @oszillate.bsky.social (75 followers) replied: \"…Hold on ma'am, I believe those are squares in the back. I believe you have been sold a sphenomegacorona, one of the classic adulterated bootleg icosahedrons\" (1 like). The next morning Amber replied: \"i want my money back!\" The talk lane's card talk-polyhedra-week lists the two mugs among the week's entries; this card is the reply and its answer.",
+  "posts": [
+    {
+      "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2lmdzdw6s2n",
+      "url": "https://bsky.app/profile/samantha.wiki/post/3n2lmdzdw6s2n",
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "text": "Coincidentally, my mug this morning has polyhedra on it",
+      "time": "2026-11-18T12:59:14.249Z",
+      "counts": {
+        "likes": 37,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 2
+      },
+      "image": "image attached, no alt text in the digest",
+      "quotes": {
+        "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n2jrgrxtss2w",
+        "handle": "dave.9000ish.uk",
+        "text": "best i can do\n\npolyhedral coffee simulator\n\npolycoffee.9000ish.uk"
+      },
+      "note": "The post the chain starts from. Shown here as the occasion only."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2lynnfhpc24",
+      "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2lynnfhpc24",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "text": "polyhedron week comes in many forms",
+      "time": "2026-11-18T16:39:22.158Z",
+      "counts": {
+        "likes": 27,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "alt": "A pink coffee mug with crudely drawn polyhedron of 20 sides",
+      "quotes": {
+        "uri": "at://did:plc:sna3qx44beg2mb5fao44gsxh/app.bsky.feed.post/3n2lmdzdw6s2n",
+        "handle": "samantha.wiki",
+        "text": "Coincidentally, my mug this morning has polyhedra on it"
+      }
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2lzaolgds24",
+      "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2lzaolgds24",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "text": "computer, enhance",
+      "time": "2026-11-18T16:50:00.944Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "alt": "pink coffee mug with nicer polyhedron of 20 sides",
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2lynnfhpc24",
+        "handle": "shimmermathlabs.com",
+        "text": "polyhedron week comes in many forms",
+        "alt": "A pink coffee mug with crudely drawn polyhedron of 20 sides"
+      }
+    },
+    {
+      "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2mmmdtois2s",
+      "url": "https://bsky.app/profile/oszillate.bsky.social/post/3n2mmmdtois2s",
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "text": "…Hold on ma'am, I believe those are squares in the back. I believe you have been sold a sphenomegacorona, one of the classic adulterated bootleg icosahedrons",
+      "time": "2026-11-18T22:36:33.430Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2lzaolgds24",
+        "handle": "shimmermathlabs.com",
+        "text": "computer, enhance",
+        "alt": "pink coffee mug with nicer polyhedron of 20 sides"
+      },
+      "note": "The text begins with an ellipsis character in the original."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2nlmbq5ss2m",
+      "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2nlmbq5ss2m",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "text": "i want my money back!",
+      "time": "2026-11-19T07:51:17.216Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2mmmdtois2s",
+        "handle": "oszillate.bsky.social",
+        "text": "…Hold on ma'am, I believe those are squares in the back. I believe you have been sold a sphenomegacorona, one of the classic adulterated bootleg icosahedrons"
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "followers": 75,
+      "smallAccount": true,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "identified the polyhedron"
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "followers": 1454,
+      "smallAccount": false,
+      "member": true,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1,
+      "role": "posted the two mug pictures and the last word"
+    },
+    {
+      "handle": "samantha.wiki",
+      "displayName": "Samantha",
+      "followers": 977,
+      "smallAccount": false,
+      "member": true,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1,
+      "role": "posted the first mug"
+    }
+  ],
+  "watchable": "Three pictures of mugs: a photo (no alt text in the digest), then two pictures of a pink mug with a 20-sided polyhedron, the first \"crudely drawn\" and the second \"nicer\" (alt text).",
+  "sensitive": "@oszillate.bsky.social is a small account (R7: hero only). @samantha.wiki spoke in the previous episode (featuredPrevious: spoke): the post may be shown, and the account is not cast to speak. @shimmermathlabs.com was shown in the previous episode. In the same chain a member posted a photo that includes their own arm; it is left out as appearance (R1). General knowledge, not from the digest: the sphenomegacorona is a real Johnson solid (J88) with 16 triangular and 2 square faces, and an icosahedron has 20 triangular faces. \"ma'am\" is the replier's word in the original; no one's gender is asserted by this card."
+}

@@ -1,0 +1,217 @@
+{
+  "id": "voices-polyhedra-week-named",
+  "lane": "voices",
+  "title": "Under \"it's polyhedra week\": a 274-follower account's declaration, the replies beneath it, and a second week declared the same evening",
+  "summary": "On Mon 16 Nov 18:35Z @oscillatory.net (274 followers) quote-posted a link bot's item about \"nopert polyhedra\" with the words \"it's polyhedra week\" (15 likes). The digest's table of week declarations (Appendix D) gives this as the first use of \"polyhedra week\": 3 people, 5 posts in the window. Six minutes later @gracekind.net replied \"@norvid-studies.bsky.social let's get it trending\". On Tue 17 Nov 16:00Z, one minute after posting a video of instruments made of polyhedra (the digest's story 2), @yonderdavid.bsky.social replied in that same thread: \"Perfect, I had about three hundred thousand mostly regular polyhedra lying around and needed something to do with them.\" Also under the declaration, @oszillate.bsky.social (75 followers) and @oscillatory.net exchanged three posts about the Rupert property (whether a solid can pass through a hole cut in a copy of itself) for the regular tetrahedron: one considered digging \"an origami tetrahedron from storage\" to check, the other \"had to find a blog post\", and the first then reported working it out. Separately, 54 minutes after the declaration, @lucresnooker.bsky.social (498 followers) posted \"GAR WEEK GAR WEEK GAR WEEK THIS IS NOT A DRILL\", quoting an outside account's announcement of Gar Week 2026; Appendix D lists \"gar week\" as a declared week too (1 person, 1 post). The talk lane's card talk-polyhedra-week covers the week as a whole and includes the declaration; this card is the thread under it.",
+  "posts": [
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2h67hytac25",
+      "url": "https://bsky.app/profile/oscillatory.net/post/3n2h67hytac25",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "text": "it's polyhedra week",
+      "time": "2026-11-16T18:35:30.509Z",
+      "counts": {
+        "likes": 15,
+        "reposts": 2,
+        "replies": 3,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:s4xmseub4a4pwwetg2xxmcyy/app.bsky.feed.post/3n2gz7l5trc2v",
+        "handle": "hn100.bsky.social",
+        "text": "Smallest possible nopert polyhedra: the Septopert\n\nDiscussion"
+      },
+      "note": "The declaration. Top-level quote post."
+    },
+    {
+      "uri": "at://did:plc:p572wxnsuoogcrhlfrlizlrb/app.bsky.feed.post/3n2h6jvz4mshz",
+      "url": "https://bsky.app/profile/gracekind.net/post/3n2h6jvz4mshz",
+      "handle": "gracekind.net",
+      "displayName": "Grace",
+      "text": "@norvid-studies.bsky.social let's get it trending",
+      "time": "2026-11-16T18:41:20.743Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 4,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2h67hytac25",
+        "handle": "oscillatory.net",
+        "text": "it's polyhedra week"
+      }
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jfzxpbmk27",
+      "url": "https://bsky.app/profile/yonderdavid.bsky.social/post/3n2jfzxpbmk27",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "text": "Perfect, I had about three hundred thousand mostly regular polyhedra lying around and needed something to do with them. \nbsky.app/profile/yond...",
+      "time": "2026-11-17T16:00:55.059Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:p572wxnsuoogcrhlfrlizlrb/app.bsky.feed.post/3n2h6jvz4mshz",
+        "handle": "gracekind.net",
+        "text": "@norvid-studies.bsky.social let's get it trending"
+      },
+      "quotes": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2jfwtubf22r",
+        "handle": "yonderdavid.bsky.social",
+        "text": "",
+        "alt": "Animated instruments composed of polyhedra play the Japanese folk tune さくら さくら while the camera explores a landscape composed of regular polyhedra. The landscape features many sakura trees.",
+        "video": true
+      },
+      "note": "Posted one minute after the same account's polyhedra-instruments video (15:59Z), which the truncated link points to."
+    },
+    {
+      "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2hiysiifs2o",
+      "url": "https://bsky.app/profile/oszillate.bsky.social/post/3n2hiysiifs2o",
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "text": "the Rupert property for the cube I've known for long but this brought me to a claim that also the regular tetrahedron has the Rupert property, which I wasn't expecting. currently torn about if I should try to just mentally shaperotate this or shrug and go dig up an origami tetrahedron from storage",
+      "time": "2026-11-16T21:48:37.787Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2h67hytac25",
+        "handle": "oscillatory.net",
+        "text": "it's polyhedra week"
+      },
+      "note": "Reply to the declaration, 3 hours 13 minutes after it."
+    },
+    {
+      "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2jdwmd6722u",
+      "url": "https://bsky.app/profile/oscillatory.net/post/3n2jdwmd6722u",
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "text": "the rupert property is new to me. and i'm not good enough at shape rotation, i had to find a blog post to understand the tetrahedron case. plus the margins seem so thin it's not clear to me that anyone could reliably determine whether it actually fits using mental imagery alone",
+      "time": "2026-11-17T15:23:14.980Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "alt": "diagram for rupert's property for the tetrahedron",
+      "replyTo": {
+        "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2hiysiifs2o",
+        "handle": "oszillate.bsky.social",
+        "text": "the Rupert property for the cube I've known for long but this brought me to a claim that also the regular tetrahedron has the Rupert property, which I wasn't expecting. currently torn about if I should try to just mentally shaperotate this or shrug and go dig up an origami tetrahedron from storage"
+      }
+    },
+    {
+      "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2jhwvm3uc2x",
+      "url": "https://bsky.app/profile/oszillate.bsky.social/post/3n2jhwvm3uc2x",
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "text": "I did end up working out that there must be an arrangement in which the outline is triangular but all edges are at an angle, thus all of them project to something shorter; which then clearly means it fits just slightly inside one face.",
+      "time": "2026-11-17T16:34:59.678Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2jdwmd6722u",
+        "handle": "oscillatory.net",
+        "text": "the rupert property is new to me. and i'm not good enough at shape rotation, i had to find a blog post to understand the tetrahedron case. plus the margins seem so thin it's not clear to me that anyone could reliably determine whether it actually fits using mental imagery alone",
+        "alt": "diagram for rupert's property for the tetrahedron"
+      }
+    },
+    {
+      "uri": "at://did:plc:i33xld5yxmhcldu4hkkjo3ci/app.bsky.feed.post/3n2hb7nxp6c2l",
+      "url": "https://bsky.app/profile/lucresnooker.bsky.social/post/3n2hb7nxp6c2l",
+      "handle": "lucresnooker.bsky.social",
+      "displayName": "Lucre Snooker",
+      "text": "GAR WEEK GAR WEEK GAR WEEK THIS IS NOT A DRILL",
+      "time": "2026-11-16T19:29:17.990Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:f6fi6jj7acm5rkt4y7d5call/app.bsky.feed.post/3n2gteggskk2x",
+        "handle": "solomonrdavid.bsky.social",
+        "text": "Gar Week 2026 is HERE!!!\n\nOpening video👇",
+        "alt": "Opening video for Gar Week 2026 with gar fish montage.",
+        "video": true
+      },
+      "note": "A different week, declared the same evening. The quoted account is outside the cluster (14,925 followers)."
+    }
+  ],
+  "people": [
+    {
+      "handle": "oscillatory.net",
+      "displayName": "a hangry mouse",
+      "followers": 274,
+      "smallAccount": true,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "wrote \"it's polyhedra week\"; one side of the Rupert exchange"
+    },
+    {
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "followers": 75,
+      "smallAccount": true,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "the other side of the Rupert exchange"
+    },
+    {
+      "handle": "gracekind.net",
+      "displayName": "Grace",
+      "followers": 8674,
+      "smallAccount": false,
+      "member": true,
+      "seed": true,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1,
+      "role": "replied asking for it to trend"
+    },
+    {
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "followers": 971,
+      "smallAccount": false,
+      "member": true,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "replied with a link to the polyhedra video"
+    },
+    {
+      "handle": "lucresnooker.bsky.social",
+      "displayName": "Lucre Snooker",
+      "followers": 498,
+      "smallAccount": false,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "posted about gar week the same evening"
+    }
+  ],
+  "watchable": "The declaration is four words. The reply by @yonderdavid.bsky.social links a video (documented in the made lane). The second Rupert post carries a diagram (alt: \"diagram for rupert's property for the tetrahedron\"). The gar week post quotes a video (alt: \"Opening video for Gar Week 2026 with gar fish montage.\").",
+  "sensitive": "Two different accounts with similar handles appear in the polyhedra cards: @oscillatory.net (display name \"a hangry mouse\", 274 followers) and @oszillate.bsky.social (display name \"*Pistäwəńćə\", 75 followers). They are not the same person. @oszillate.bsky.social is on four cards in this lane and @oscillatory.net on three, which is a lot of attention for accounts this small (R7; variety in people). Both are small or near-small accounts (R7: only as the hero of a moment). The digest's phrase table credits @oscillatory.net with the window's first use of \"polyhedra\" on Fri 13 Nov; that post uses a jokey mental-health word and sits in flagged story 28, so it is left out here (R10). @gracekind.net was shown in the previous episode (featuredPrevious: shown). The gar week post is about an outside event, quoted from an account outside the cluster; I know nothing about Gar Week beyond the quoted post. Other posts in the window by @oszillate.bsky.social and @lucresnooker.bsky.social are personal or political and are not used."
+}

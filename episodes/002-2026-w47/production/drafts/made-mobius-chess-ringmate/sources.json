@@ -1,0 +1,107 @@
+{
+  "format": "late-cluster-sources/1",
+  "accounts": [
+    { "handle": "mokkenstorm.dev", "did": "did:plc:r5bee2hexwjtmhkfmfu2tphx", "role": "guest", "cast": "mokkenstorm" },
+    { "handle": "minormobius.bsky.social", "did": "did:plc:7zre4plmd5jllccww575j6sb", "role": "guest", "cast": "minormobius" }
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2jqaikml22p",
+      "author": "mokkenstorm.dev",
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "text": "3 player 1d chess on a Möbius strip wormed its way into my brain and now I need to build it",
+      "time": "2026-11-17T19:03:31.476Z",
+      "likes": 2, "reposts": 0, "replies": 0,
+      "use": "line",
+      "segment": "made-mobius-chess-ringmate"
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2kkafekjs2p",
+      "author": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "text": "That’s awesome, I need a website tho",
+      "time": "2026-11-18T02:48:45.418Z",
+      "likes": 9, "reposts": 0, "replies": 4,
+      "use": "line",
+      "segment": "made-mobius-chess-ringmate"
+    },
+    {
+      "uri": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2ly5joc5c2y",
+      "author": "minormobius.bsky.social",
+      "displayName": "Minor Mobius",
+      "text": "I like! I repost! But I’m not gonna love unless there’s a link",
+      "time": "2026-11-18T16:30:21.394Z",
+      "likes": 5, "reposts": 0, "replies": 1,
+      "use": "line",
+      "segment": "made-mobius-chess-ringmate"
+    },
+    {
+      "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2k3foppxs2g",
+      "author": "mokkenstorm.dev",
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "text": "I hope you don't mind I borrowed your colour scheme for inspiration for 1 dimensional mobius chess",
+      "time": "2026-11-17T22:23:16.863Z",
+      "likes": 36, "reposts": 3, "replies": 2,
+      "use": "reference",
+      "segment": "made-mobius-chess-ringmate",
+      "alt": "a circle of chess pieces on a 1 dimensional mobius strip",
+      "note": "The maker's picture. Not shown and not read: nobody at the studio has seen the image, and the post is addressed to the maker of another thing. Its alt text is all the studio's sketch is drawn from."
+    },
+    {
+      "uri": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2mfjip65k2g",
+      "author": "mokkenstorm.dev",
+      "displayName": "👩‍💻 tbd : Option<name>",
+      "text": "mobius.mokkenstorm.dev\n\nsneaky preview on a cloudflare tunnel",
+      "time": "2026-11-18T20:29:41.670Z",
+      "likes": 2, "reposts": 0, "replies": 1,
+      "use": "reference",
+      "segment": "made-mobius-chess-ringmate",
+      "note": "Where the address and the page title \"ringmate\" come from. Not shown and not performed."
+    }
+  ],
+  "links": [
+    { "url": "https://mobius.mokkenstorm.dev", "title": "ringmate", "use": "credit", "segment": "made-mobius-chess-ringmate" }
+  ],
+  "lines": [
+    {
+      "segment": "made-mobius-chess-ringmate",
+      "line": "idea",
+      "kind": "verbatim",
+      "post": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2jqaikml22p",
+      "context": "at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2jqaikml22p",
+      "situation": "A top-level post on Tuesday 17 November 2026 at 19:03 UTC, replying to nobody: the maker saying an idea for a game had arrived and now had to be built. No picture or link existed yet.",
+      "setup": { "line": "one-post", "who": "larry", "text": "It began as one post." }
+    },
+    {
+      "segment": "made-mobius-chess-ringmate",
+      "line": "awesome",
+      "kind": "verbatim",
+      "post": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2kkafekjs2p",
+      "context": "at://did:plc:p572wxnsuoogcrhlfrlizlrb/app.bsky.feed.post/3n2kdulliuk7q",
+      "contextText": "@minormobius.bsky.social @norvid-studies.bsky.social",
+      "contextAuthor": "gracekind.net",
+      "contextNote": "A reply under the maker's picture of the board that only tags two accounts, Minor Mobius first. The picture is the post at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2k3foppxs2g. The staged setup is the same prompt: a picture, and a tag under it for Minor Mobius. The tagging account and the second tagged account are not named or shown.",
+      "setup": { "line": "tag", "who": "larry", "text": "Then came a picture. Under it, a tag, for Minor Mobius." }
+    },
+    {
+      "segment": "made-mobius-chess-ringmate",
+      "line": "policy",
+      "kind": "verbatim",
+      "post": "at://did:plc:7zre4plmd5jllccww575j6sb/app.bsky.feed.post/3n2ly5joc5c2y",
+      "context": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ln7g7bm225",
+      "contextText": "as in you only \"like\" posts that are also standalone websites? or...",
+      "contextAuthor": "norvid-studies.bsky.social",
+      "contextNote": "A member's question under Minor Mobius's reply. That member's puppet does not speak this episode and the post is not shown: Larry asks what was asked, in his own words (screen notes, ruling 1).",
+      "setup": { "line": "meaning", "who": "larry", "text": "Meaning you only like posts that are also websites?" }
+    }
+  ],
+  "numbers": [
+    {
+      "segment": "made-mobius-chess-ringmate",
+      "line": "day",
+      "said": "in about a day",
+      "value": "25 h 26 min",
+      "method": "From the maker's first post about the idea (2026-11-17T19:03:31Z, at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2jqaikml22p) to the maker's post of the playable address (2026-11-18T20:29:41Z, at://did:plc:r5bee2hexwjtmhkfmfu2tphx/app.bsky.feed.post/3n2mfjip65k2g). About a project, not a person; said once, plainly."
+    }
+  ]
+}

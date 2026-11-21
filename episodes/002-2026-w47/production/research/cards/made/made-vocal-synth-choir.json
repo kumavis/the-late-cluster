@@ -1,0 +1,383 @@
+{
+  "id": "made-vocal-synth-choir",
+  "lane": "made",
+  "title": "A choir of synthesized voices sings a six-part Kyrie, in three versions in one day",
+  "summary": "On Fri 13 Nov at 14:51Z @yonderdavid.bsky.social (971 followers) posted a video with the text \"A little reverb does wonders for them.\" Its alt text reads: \"A choir of Chimera vocal synths sing the Kyrie 1 from Palestrina's Missa Papae Marcelli in six-part harmony.\" It was posted as a reply to the same maker's falling-block video from that morning and became the maker's most-liked post of the window: 124 likes, 18 reposts, 13 replies, 11 quotes. At 17:31Z @shimmermathlabs.com wondered whether the voices would sound better with a simulated microphone response curve, vocal compressor and tube preamp distortion; at 18:39Z, 68 minutes later, the maker posted a version with \"Simulated ribbon microphone curve, tube, and compressor.\" At 22:23Z the maker posted a third version in which \"the voices settle into pure interval ratios when they hold for a while\", adding that the voices \"now breathe and articulate a little more dynamically, and underwent a bit of vocal training.\" Asked what comes next, the maker listed vocal folds more like real ones, tuning the high frequencies, and perhaps an instrument simulation. Other members quote-posted the first video with one-line reactions.",
+  "made": [
+    {
+      "what": "three videos of a synthesized six-voice choir (first version, microphone-chain version, pure-interval version)",
+      "by": "yonderdavid.bsky.social",
+      "address": "https://bsky.app/profile/yonderdavid.bsky.social/post/3n27absd22s2y"
+    }
+  ],
+  "couldBeShown": "Several synthesized heads singing in six parts; the same passage heard three ways (with reverb; through a simulated ribbon microphone, tube and compressor; with held chords settling into pure interval ratios). The alt text does not say how many heads are on screen or how they are arranged. The show's own voices are synthesized too, so this touches the show's medium.",
+  "numbers": [
+    "124 likes, 18 reposts, 13 replies, 11 quotes on the first version (post counts); the digest marks it 42.7x the author's usual, a figure the scope review says is rough.",
+    "Three versions in 7 h 32 min: 14:51Z, 18:39Z, 22:23Z (post timestamps).",
+    "68 minutes from the suggestion (17:31Z) to the version that follows it (18:39Z).",
+    "Six-part harmony (the maker's alt text)."
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27absd22s2y",
+      "text": "A little reverb does wonders for them.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-13T14:51:18.015Z",
+      "counts": {
+        "likes": 124,
+        "reposts": 18,
+        "replies": 13,
+        "quotes": 11
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n267cb64fk2t",
+        "handle": "yonderdavid.bsky.social",
+        "text": ""
+      },
+      "kind": "reply",
+      "alt": "A choir of Chimera vocal synths sing the Kyrie 1 from Palestrina's Missa Papae Marcelli in six-part harmony.",
+      "media": "video",
+      "note": "First version. A reply to the maker's own falling-block video; the alt text is the maker's."
+    },
+    {
+      "uri": "at://did:plc:hovt6k22s64dq63jjmoyibk3/app.bsky.feed.post/3n27cqz5j5k2e",
+      "text": "okay hear me out, they sing and the lines create a large singing guy",
+      "handle": "dave.9000ish.uk",
+      "displayName": "Dave",
+      "time": "2026-11-13T15:35:35.975Z",
+      "counts": {
+        "likes": 19,
+        "reposts": 0,
+        "replies": 3,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27absd22s2y",
+        "handle": "yonderdavid.bsky.social",
+        "text": "A little reverb does wonders for them."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:zrwhncnqel7corjtg2cak3jx/app.bsky.feed.post/3n27j4o3zis27",
+      "text": "what piece is this? is it original?",
+      "handle": "tbabb.bsky.social",
+      "displayName": "tbabb",
+      "time": "2026-11-13T17:29:29.493Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27absd22s2y",
+        "handle": "yonderdavid.bsky.social",
+        "text": "A little reverb does wonders for them."
+      },
+      "kind": "reply",
+      "note": "A question about the piece."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27jjaiaks2f",
+      "text": "It's Kyrie 1 from Palestrina's Missa Papae Marcelli.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-13T17:36:31.416Z",
+      "counts": {
+        "likes": 17,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:zrwhncnqel7corjtg2cak3jx/app.bsky.feed.post/3n27j4o3zis27",
+        "handle": "tbabb.bsky.social",
+        "text": "what piece is this? is it original?"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27jl4f5f22f",
+      "text": "The previous video featured a chiptune arrangement of Ievan Polkka.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-13T17:37:34.237Z",
+      "counts": {
+        "likes": 7,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27jjaiaks2f",
+        "handle": "yonderdavid.bsky.social",
+        "text": "It's Kyrie 1 from Palestrina's Missa Papae Marcelli."
+      },
+      "kind": "reply",
+      "note": "The maker adds what the earlier video's music was."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n27jaqao2k26",
+      "text": "this sounds so much better it is honestly hard to believe.\n\nmakes me wonder if they would sound even better with simulated microphone response curve, vocal compressor, and tube preamp distortion.",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-13T17:31:45.962Z",
+      "counts": {
+        "likes": 13,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27absd22s2y",
+        "handle": "yonderdavid.bsky.social",
+        "text": "A little reverb does wonders for them."
+      },
+      "kind": "reply",
+      "note": "The suggestion."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27n25xpls27",
+      "text": "Simulated ribbon microphone curve, tube, and compressor. \n\nbsky.app/profile/shim...",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-13T18:39:40.436Z",
+      "counts": {
+        "likes": 17,
+        "reposts": 2,
+        "replies": 4,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27absd22s2y",
+        "handle": "yonderdavid.bsky.social",
+        "text": "A little reverb does wonders for them."
+      },
+      "quotes": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n27jaqao2k26",
+        "handle": "shimmermathlabs.com",
+        "text": "this sounds so much better it is honestly hard to believe.\n\nmakes me wonder if they would sound even better with simulated microphone response curve, vocal compressor, and tube preamp distortion.",
+        "time": "2026-11-13T17:31:45.962Z"
+      },
+      "kind": "reply+quote",
+      "media": "video (no alt text; research has not seen it)",
+      "note": "Second version, 68 minutes after the suggestion. A reply to the first version that also quotes the suggestion. Video without alt text."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n27nfvnsms2z",
+      "text": "gorgeous 🥹",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "time": "2026-11-13T18:46:14.376Z",
+      "counts": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27n25xpls27",
+        "handle": "yonderdavid.bsky.social",
+        "text": "Simulated ribbon microphone curve, tube, and compressor. \n\nbsky.app/profile/shim..."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:doukci4y75jxqhhb5y5447qr/app.bsky.feed.post/3n27oer5mxk2p",
+      "text": "this is better than it has any right to be",
+      "handle": "alpacasoft.dev",
+      "displayName": "Will",
+      "time": "2026-11-13T19:03:29.838Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27n25xpls27",
+        "handle": "yonderdavid.bsky.social",
+        "text": "Simulated ribbon microphone curve, tube, and compressor. \n\nbsky.app/profile/shim..."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27zl5yrkc2w",
+      "text": "I wasn't entirely happy with some of the chords, so here's a version where the voices settle into pure interval ratios when they hold for a while. Additionally, the chimeras now breathe and articulate a little more dynamically, and underwent a bit of vocal training.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-13T22:23:55.797Z",
+      "counts": {
+        "likes": 20,
+        "reposts": 3,
+        "replies": 1,
+        "quotes": 4
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27n25xpls27",
+        "handle": "yonderdavid.bsky.social",
+        "text": "Simulated ribbon microphone curve, tube, and compressor. \n\nbsky.app/profile/shim..."
+      },
+      "kind": "reply",
+      "alt": "A choir of Chimera vocal synths sing the Kyrie 1 from Palestrina's Missa Papae Marcelli in six-part harmony.",
+      "media": "video",
+      "note": "Third version. The alt text is the maker's."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2aczm2joc2i",
+      "text": "thoughts for \"what are next\" places to take this concept?",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "time": "2026-11-14T01:13:03.973Z",
+      "counts": {
+        "likes": 7,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27zl5yrkc2w",
+        "handle": "yonderdavid.bsky.social",
+        "text": "I wasn't entirely happy with some of the chords, so here's a version where the voices settle into pure interval ratios when they hold for a while. Additionally, the chimeras now breathe and articulate a little more dynamically, and underwent a bit of vocal training."
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2ahuvzbvs2v",
+      "text": "Vocal folds more like real ones, tune the high frequencies, maybe an instrument sim. I recall seeing someone on here working on physical instrument sims but haven't found the post. Plus there are other features of the synth library, like the critters and other languages.",
+      "handle": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "time": "2026-11-14T02:39:55.356Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 1
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2aczm2joc2i",
+        "handle": "norvid-studies.bsky.social",
+        "text": "thoughts for \"what are next\" places to take this concept?"
+      },
+      "kind": "reply"
+    },
+    {
+      "uri": "at://did:plc:zrwhncnqel7corjtg2cak3jx/app.bsky.feed.post/3n27nvoprak27",
+      "text": "what a thing it must be to be a model and build your own voice and then sing with it",
+      "handle": "tbabb.bsky.social",
+      "displayName": "tbabb",
+      "time": "2026-11-13T18:55:03.970Z",
+      "counts": {
+        "likes": 30,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27absd22s2y",
+        "handle": "yonderdavid.bsky.social",
+        "text": "A little reverb does wonders for them.",
+        "time": "2026-11-13T14:51:18.015Z"
+      },
+      "kind": "quote",
+      "note": "A quote post of the first version."
+    },
+    {
+      "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n27krioxjc2y",
+      "text": "A re-enactment of the creation of Middle Earth",
+      "handle": "catblanketflower.yuwakisa.com",
+      "displayName": "Singularity's Bounty e/CC",
+      "time": "2026-11-13T17:59:02.209Z",
+      "counts": {
+        "likes": 20,
+        "reposts": 2,
+        "replies": 0,
+        "quotes": 0
+      },
+      "quotes": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27absd22s2y",
+        "handle": "yonderdavid.bsky.social",
+        "text": "A little reverb does wonders for them.",
+        "time": "2026-11-13T14:51:18.015Z"
+      },
+      "kind": "quote",
+      "note": "A quote post of the first version."
+    }
+  ],
+  "people": [
+    {
+      "handle": "yonderdavid.bsky.social",
+      "followers": 971,
+      "displayName": "David",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "maker"
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "followers": 1454,
+      "displayName": "Amber 🌸",
+      "clusterMember": true,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1,
+      "role": "suggested the microphone chain"
+    },
+    {
+      "handle": "dave.9000ish.uk",
+      "followers": 880,
+      "displayName": "Dave",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "tbabb.bsky.social",
+      "followers": 1346,
+      "displayName": "tbabb",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "alpacasoft.dev",
+      "followers": 1159,
+      "displayName": "Will",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "followers": 2777,
+      "displayName": "norvid_studies",
+      "clusterMember": true,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "catblanketflower.yuwakisa.com",
+      "followers": 3607,
+      "displayName": "Singularity's Bounty e/CC",
+      "clusterMember": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    }
+  ],
+  "sensitive": "The piece is the Kyrie of a Mass: sacred music. R10 puts religion out of bounds as a subject, so the title of the piece and what it is are a matter for the reviewer; the maker presents it as music and says nothing about religion. Two quote posts with more likes than most of the thread are left out because one is about what is seen at death (100 likes) and one is phrased around God (42 likes); a short reply about renting churches is left out too (the digest keyword-flags it). @norvid-studies.bsky.social is marked featuredPrevious: spoke, so the account is not cast to speak in this episode; its posts may be shown. One post here is that account's. @shimmermathlabs.com is marked featuredPrevious: shown. The same maker is the subject of three other cards in this lane.",
+  "leftOut": [
+    "A reply by @words.bsky.social (10,258 followers) about a \"collective mouth\" project of their own: a later post in that branch mentions the author's child."
+  ]
+}

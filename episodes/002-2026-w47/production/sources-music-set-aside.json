@@ -1,0 +1,28 @@
+{
+  "note": "Records for the music segment, which did not air (music-alt aired in its place). Two records moved back to production/sources.json for interview-yonderdavid, because the aired interview uses them: 3n2crbcfzuk2z, whose interview cut Larry reads (line read-copyright; its music cut and lines plan-1 and plan-2 were dropped), and the readme post 3n27zewdpe223, the source of Larry's line four.",
+  "posts": [
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2crcmiaxs2z",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 1,
+      "reposts": 0,
+      "replies": 0,
+      "use": "card",
+      "segment": "music",
+      "time": "2026-11-15T00:33:58.276Z",
+      "text": "But then I ended up with yowls that fit well enough that the cat deserved no such anger.",
+      "readBy": "sibyl",
+      "lines": [
+        "verdict"
+      ],
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2crbcfzuk2z",
+        "note": "The maker's own post above (the plan), which this replies to. The staged line before it, 'The next post from David.', says exactly that. No time between the two is said or shown."
+      }
+    }
+  ],
+  "links": [],
+  "lines": [],
+  "numbers": []
+}

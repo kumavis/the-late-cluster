@@ -1,0 +1,272 @@
+{
+  "id": "talk-piranesi-of-food",
+  "lane": "talk",
+  "title": "\"the piranesi of food\", and the question of what comes next",
+  "summary": "\"Piranesi\" is a book title that recurs in the cluster as something members urge each other to read (the image described below matches the novel of that name); in this window @harsimony.bsky.social posted \"*fine* I'll read Piranesi.\" and asked the simcluster to read a book of his choosing in return. On Mon 16 Nov @funferall.bsky.social quote-posted a remark about a \"banh mi marketer\" with \"Hear me out: Piranesi banh mi tie-in promotion\" and an image of a mock advertisement (51 likes). A day later, when @shibbi.me gave in and said she would try a banh mi, @norvid-studies.bsky.social quote-posted her with \"they're calling it the piranesi of food\" (44 likes). @handackett.bsky.social pointed him to the earlier post; he replied \"salieri'd a bit at that one\". @shimmermathlabs.com then asked what the next food would be, @handackett.bsky.social answered \"Cha manao\", and she replied that she could find none near her and liked that about it.",
+  "posts": [
+    {
+      "uri": "at://did:plc:gjqw6pjl2wvndjlmatxpenkz/app.bsky.feed.post/3n2ffasydsk2g",
+      "url": "https://bsky.app/profile/funferall.bsky.social/post/3n2ffasydsk2g",
+      "handle": "funferall.bsky.social",
+      "displayName": "funferall",
+      "when": "Mon 16 Nov 01:36Z",
+      "time": "2026-11-16T01:36:12.288Z",
+      "text": "Hear me out: Piranesi banh mi tie-in promotion",
+      "alt": "Don Draper gestures beside an easel displaying a gaudy ad that reads “The House is Banh Mine.” A black crow perches on a giant bánh mì held overhead by a barefoot man in a flooded marble labyrinth.",
+      "media": "image",
+      "counts": {
+        "likes": 51,
+        "reposts": 2,
+        "replies": 3,
+        "quotes": 4
+      },
+      "quoting": {
+        "uri": "at://did:plc:jrtgsidnmxaen4offglr5lsh/app.bsky.feed.post/3n27njemctk2f",
+        "handle": "quilling.dev",
+        "text": "there is a banh mi marketer doing targeted advertising directly on my simcluster"
+      },
+      "note": "Quote-post with the mock advertisement."
+    },
+    {
+      "uri": "at://did:plc:6ond5sxlegjxpe3ismrczk3r/app.bsky.feed.post/3n2hnqzeeuk2n",
+      "url": "https://bsky.app/profile/harsimony.bsky.social/post/3n2hnqzeeuk2n",
+      "handle": "harsimony.bsky.social",
+      "displayName": "Sam Harsimony",
+      "when": "Mon 16 Nov 23:13Z",
+      "time": "2026-11-16T23:13:45.266Z",
+      "text": "*fine* I'll read Piranesi.  \n\nI request that the simcluster reads \"Rant: An Oral Biography of Buster Casey\". \n\nOne of my favorite books, fiction, icky, fascinating. Really recommend you don't read anything about it before.",
+      "media": "image, no alt text in the data",
+      "counts": {
+        "likes": 5,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "note": "Top-level post with an image that has no alt text in the data."
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2hwzpa6kc2k",
+      "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2hwzpa6kc2k",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "when": "Tue 17 Nov 01:59Z",
+      "time": "2026-11-17T01:59:40.310Z",
+      "text": "they're calling it the piranesi of food",
+      "counts": {
+        "likes": 44,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "quoting": {
+        "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2hwsdoy4k2c",
+        "handle": "shibbi.me",
+        "text": "okay fine i’ll try a banh mi"
+      },
+      "note": "Quote-post."
+    },
+    {
+      "uri": "at://did:plc:vfdslp6rpi4zsg3xtcdfaddv/app.bsky.feed.post/3n2i266d2is2g",
+      "url": "https://bsky.app/profile/handackett.bsky.social/post/3n2i266d2is2g",
+      "handle": "handackett.bsky.social",
+      "displayName": "Dan",
+      "when": "Tue 17 Nov 02:55Z",
+      "time": "2026-11-17T02:55:51.576Z",
+      "text": "People are saying\nbsky.app/profile/funf...",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2hwzpa6kc2k",
+        "handle": "norvid-studies.bsky.social",
+        "text": "they're calling it the piranesi of food"
+      },
+      "quoting": {
+        "uri": "at://did:plc:gjqw6pjl2wvndjlmatxpenkz/app.bsky.feed.post/3n2ffasydsk2g",
+        "handle": "funferall.bsky.social",
+        "text": "Hear me out: Piranesi banh mi tie-in promotion",
+        "alt": "Don Draper gestures beside an easel displaying a gaudy ad that reads “The House is Banh Mine.” A black crow perches on a giant bánh mì held overhead by a barefoot man in a flooded marble labyrinth."
+      }
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2i2gx5d2c2r",
+      "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2i2gx5d2c2r",
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "when": "Tue 17 Nov 03:00Z",
+      "time": "2026-11-17T03:00:46.038Z",
+      "text": "salieri'd a bit at that one",
+      "counts": {
+        "likes": 5,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:vfdslp6rpi4zsg3xtcdfaddv/app.bsky.feed.post/3n2i266d2is2g",
+        "handle": "handackett.bsky.social",
+        "text": "People are saying\nbsky.app/profile/funf..."
+      }
+    },
+    {
+      "uri": "at://did:plc:vfdslp6rpi4zsg3xtcdfaddv/app.bsky.feed.post/3n2i2izzv3s2g",
+      "url": "https://bsky.app/profile/handackett.bsky.social/post/3n2i2izzv3s2g",
+      "handle": "handackett.bsky.social",
+      "displayName": "Dan",
+      "when": "Tue 17 Nov 03:01Z",
+      "time": "2026-11-17T03:01:56.179Z",
+      "text": "Idk, very much weird to have two nickels here, you can't be blamed",
+      "counts": {
+        "likes": 4,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2i2gx5d2c2r",
+        "handle": "norvid-studies.bsky.social",
+        "text": "salieri'd a bit at that one"
+      }
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2i3ez6uqk2f",
+      "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2i3ez6uqk2f",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "when": "Tue 17 Nov 03:17Z",
+      "time": "2026-11-17T03:17:34.818Z",
+      "text": "we're looking for the sequel now.\nyou've had your banh mi.\nwhat's next?",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:vfdslp6rpi4zsg3xtcdfaddv/app.bsky.feed.post/3n2i2izzv3s2g",
+        "handle": "handackett.bsky.social",
+        "text": "Idk, very much weird to have two nickels here, you can't be blamed"
+      }
+    },
+    {
+      "uri": "at://did:plc:vfdslp6rpi4zsg3xtcdfaddv/app.bsky.feed.post/3n2i3ju4t222g",
+      "url": "https://bsky.app/profile/handackett.bsky.social/post/3n2i3ju4t222g",
+      "handle": "handackett.bsky.social",
+      "displayName": "Dan",
+      "when": "Tue 17 Nov 03:20Z",
+      "time": "2026-11-17T03:20:17.281Z",
+      "text": "Cha manao",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2i3ez6uqk2f",
+        "handle": "shimmermathlabs.com",
+        "text": "we're looking for the sequel now.\nyou've had your banh mi.\nwhat's next?"
+      }
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2i46cn5s22f",
+      "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2i46cn5s22f",
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "when": "Tue 17 Nov 03:31Z",
+      "time": "2026-11-17T03:31:43.585Z",
+      "text": "no smooth refreshing cha manaos available near me that i can find, and i live in a medium sized city. this one might be exclusive and exclusionary, reserved for the coastal elite, beyond my zone, upscale.\n\ni like it. make it happen.",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:vfdslp6rpi4zsg3xtcdfaddv/app.bsky.feed.post/3n2i3ju4t222g",
+        "handle": "handackett.bsky.social",
+        "text": "Cha manao"
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "quilling.dev",
+      "displayName": "teq 'r treat",
+      "followers": 2216,
+      "member": false,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "funferall.bsky.social",
+      "displayName": "funferall",
+      "followers": 2211,
+      "member": true,
+      "smallAccount": false,
+      "seed": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "harsimony.bsky.social",
+      "displayName": "Sam Harsimony",
+      "followers": 1952,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "shibbi.me",
+      "displayName": "Siobhán 🪏",
+      "followers": 2887,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "followers": 2777,
+      "member": true,
+      "smallAccount": false,
+      "seed": true,
+      "featuredPrevious": "spoke",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    },
+    {
+      "handle": "handackett.bsky.social",
+      "displayName": "Dan",
+      "followers": 461,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "followers": 1454,
+      "member": true,
+      "smallAccount": false,
+      "featuredPrevious": "shown",
+      "featuredEarlier": null,
+      "timesFeatured": 1
+    }
+  ],
+  "couldBeShown": "The mock advertisement, from its alt text: a man in a suit beside an easel with an ad reading \"The House is Banh Mine\", a crow on a giant banh mi held up by a barefoot man in a flooded marble labyrinth. The image has no stated maker beyond the account that posted it.",
+  "notUnderstood": "My readings, not stated in the posts: \"salieri'd\" as having been beaten to the idea; \"two nickels\" as the stock line about a thing happening twice. How \"Piranesi\" became a cluster habit predates the window and is not in the data.",
+  "sensitive": "No post on this card carries a flag from the tool. (1) The thread goes on for six more posts in which the two last speakers say where they live and arrange to meet (R1: location, offline life). Those posts are left out, and the exchange here must not be continued into them. The last post on the card mentions \"a medium sized city\" without naming it. (2) @norvid-studies.bsky.social is marked by the tool as having spoken in the previous episode: his posts may be shown, his puppet does not speak. (3) @shimmermathlabs.com is marked as shown in the previous episode. (4) @funferall.bsky.social is a seed account; the image is a made thing and the made lane may also card it. The image uses a television character's likeness. (5) @quilling.dev, whose remark is quoted, is outside the cluster's membership. (6) The wave's origin: Where the banh mi wave came from is not for the show. Other posts in the window by some of the same accounts frame it around trans women, and a thread about it turns to hormone medication and nudes (R10: gender identity, health, sexuality). The digest flags several of those posts one by one, and flags the whole thread \"why is everyone banh mi posting?\" (story 12, which also holds the \"banhmi-contagion\" graph the build bot made): nothing from that thread is on this card and the check refuses it. None of this should be used as explanation or background; the show cannot say why the wave started beyond what the posts listed here say."
+}

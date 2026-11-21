@@ -1,0 +1,177 @@
+{
+  "id": "games-flight-challenge-record",
+  "lane": "games",
+  "title": "flight.mozzius.dev: a challenge mode, a leaderboard, and the maker's record beaten (13 to 18 Nov)",
+  "summary": "@samuel.fm spent the window adding to a flight game that runs in the browser at flight.mozzius.dev, and posting each addition. Fri 13 Nov 10:12Z: new biomes, weather and times of day, and \"new game mode: Challenge. one life, increasing waves of bandits. post your high score!\". At 15:31Z: \"my high score is 1550 after a couple of attempts\". At 16:12Z: multiplayer, \"dogfight your mutuals!\" (187 likes; cluster members replied in that thread). At 20:19Z: \"a leaderboard for challenge mode\". Over the next days came matchmaking, a tutorial, two new maps and new aircraft. Mon 16 Nov 16:27Z: \"new world record :)\", with an image the digest has no description of. Wed 18 Nov 17:19Z, quoting that post: \"congrats @ezhik.jp for the new world record!! I have been dethroned\". @ezhik.jp replied: \"i have no idea how i pulled that off i usually get stuck at 1550 or so\". @samuel.fm: \"the third wave opening salvo is pretty brutal lol\". The record scores themselves are not in the text of any of these posts. The only figure stated is 1,550.",
+  "aggregates": {
+    "firstPostedHighScore": "1,550, by the game's maker, Fri 13 Nov",
+    "recordScores": "not stated in any post's text (the image on the \"new world record :)\" post is not described)",
+    "daysFromChallengeModeToTheDethronedPost": "5 (Fri 13 Nov to Wed 18 Nov)"
+  },
+  "couldShow": "The game runs in a browser at flight.mozzius.dev. Two images are described: a score screen whose description reads \"1550\", \"best 1550\" and \"retry menu\", and \"my flight sim game on a laptop and a phone. on the laptop a missile is streaking towards mozzius.dev. on the phone a missile warning is visible\".",
+  "posts": [
+    {
+      "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n26qorewqs2z",
+      "handle": "samuel.fm",
+      "text": "now on flight.mozzius.dev:\n- alpine, tundra, farmland, archipelago biomes\n- different weather conditions\n- different time of day\n- new game mode: Challenge. one life, increasing waves of bandits. post your high score!",
+      "displayName": "Samuel",
+      "time": "2026-11-13T10:12:13.361Z",
+      "counts": {
+        "likes": 45,
+        "reposts": 0,
+        "replies": 3,
+        "quotes": 1
+      },
+      "media": "the stored record marks an image or embed on this post; no description of it is stored",
+      "links": [
+        "https://flight.mozzius.dev"
+      ],
+      "situation": "A top-level post, Fri 13 Nov 10:12Z, announcing additions to the game."
+    },
+    {
+      "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n27cizvdcs2y",
+      "handle": "samuel.fm",
+      "text": "my high score is 1550 after a couple of attempts",
+      "displayName": "Samuel",
+      "time": "2026-11-13T15:31:08.313Z",
+      "counts": {
+        "likes": 8,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "alt": "1550\n\nbest 1550\n\nretry menu",
+      "replyTo": {
+        "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n26qorewqs2z",
+        "handle": "samuel.fm"
+      },
+      "note": "The author's own reply to the post above."
+    },
+    {
+      "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n27eszwgis2k",
+      "handle": "samuel.fm",
+      "text": "now on flight.mozzius.dev\n\ndogfight your mutuals! multiplayer via atproto now available. sign in with your atmosphere account!",
+      "displayName": "Samuel",
+      "time": "2026-11-13T16:12:31.376Z",
+      "counts": {
+        "likes": 187,
+        "reposts": 25,
+        "replies": 17,
+        "quotes": 10
+      },
+      "alt": "my flight sim game on a laptop and a phone. on the laptop a missile is streaking towards mozzius.dev. on the phone a missile warning is visible",
+      "links": [
+        "https://flight.mozzius.dev"
+      ],
+      "quoteOf": {
+        "handle": "samuel.fm",
+        "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n26qorewqs2z"
+      },
+      "note": "Quotes the first post."
+    },
+    {
+      "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n27smiprhk2p",
+      "handle": "samuel.fm",
+      "text": "flight.mozzius.dev now has\n- difficult settings\n- a leaderboard for challenge mode\n- graphics settings",
+      "displayName": "Samuel",
+      "time": "2026-11-13T20:19:24.398Z",
+      "counts": {
+        "likes": 11,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "links": [
+        "https://flight.mozzius.dev"
+      ],
+      "situation": "A top-level post, Fri 13 Nov 20:19Z."
+    },
+    {
+      "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n2gwzrsmm22x",
+      "handle": "samuel.fm",
+      "text": "new world record :)",
+      "displayName": "Samuel",
+      "time": "2026-11-16T16:27:03.269Z",
+      "counts": {
+        "likes": 17,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 1
+      },
+      "media": "the stored record marks an image or embed on this post; no description of it is stored",
+      "situation": "A top-level post, Mon 16 Nov 16:27Z. The image is not described, so the score is not known."
+    },
+    {
+      "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n2m2w7mhu22l",
+      "handle": "samuel.fm",
+      "text": "congrats @ezhik.jp for the new world record!! I have been dethroned\n\nflight.mozzius.dev",
+      "displayName": "Samuel",
+      "time": "2026-11-18T17:19:57.187Z",
+      "counts": {
+        "likes": 6,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "media": "the stored record marks an image or embed on this post; no description of it is stored",
+      "links": [
+        "https://flight.mozzius.dev"
+      ],
+      "quoteOf": {
+        "handle": "samuel.fm",
+        "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n2gwzrsmm22x"
+      },
+      "note": "Quotes the author's own \"new world record :)\" post."
+    },
+    {
+      "uri": "at://did:plc:png3xhpd6ccblcrcrxsxmfrs/app.bsky.feed.post/3n2m3jue3y22p",
+      "handle": "ezhik.jp",
+      "text": "i have no idea how i pulled that off i usually get stuck at 1550 or so",
+      "displayName": "Internet Hedgehog 🦔",
+      "time": "2026-11-18T17:30:56.473Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n2m2w7mhu22l",
+        "handle": "samuel.fm"
+      }
+    },
+    {
+      "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n2m3m5uvzc2l",
+      "handle": "samuel.fm",
+      "text": "the third wave opening salvo is pretty brutal lol",
+      "displayName": "Samuel",
+      "time": "2026-11-18T17:32:13.570Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:png3xhpd6ccblcrcrxsxmfrs/app.bsky.feed.post/3n2m3jue3y22p",
+        "handle": "ezhik.jp"
+      }
+    }
+  ],
+  "people": [
+    {
+      "handle": "samuel.fm",
+      "followers": 54200,
+      "displayName": "Samuel",
+      "note": "makes the game; posted \"new world record :)\" on Mon 16 Nov and \"I have been dethroned\" on Wed 18 Nov"
+    },
+    {
+      "handle": "ezhik.jp",
+      "followers": 1068,
+      "displayName": "Internet Hedgehog 🦔",
+      "member": false,
+      "note": "the new record holder, named by the game's maker; not a member of the cluster as scraped"
+    }
+  ],
+  "sensitive": "@samuel.fm has 54,200 followers, far more than the cluster's usual accounts. The scope review asks that large accounts be tested against R7 (a regular who takes part, or an outside account). In the multiplayer thread cluster members did reply and quote. @ezhik.jp is not a member of the cluster as scraped and has one post in the data. They are named here because the game's maker congratulated them on the record: a winner. Do not state a number for either record: the posts give none. 1,550 is the maker's first posted high score and the figure @ezhik.jp says they usually reach. The game is air combat (missiles, \"bandits\"). It is a game; no real event is involved. A reply in the same threads carries the digest's keyword flag \"grief and disaster\"; it is about being shot at in the game, and is not listed. The made lane may carry the same game as a thing that got built; this card is about its scores. The digest holds this as story 55. Replies from outside the cluster may be missing."
+}

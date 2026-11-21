@@ -1,0 +1,182 @@
+{
+  "id": "games-top-chicken-market",
+  "lane": "games",
+  "title": "A play-money prediction market on Top Chicken, and the bots that play it",
+  "summary": "A site at topchicken.cee.wtf runs a prediction market on each day's Top Chicken result. Its link title is \"Top Chicken — the daily like-race, as a market\". On Mon 16 Nov @catblanketflower.yuwakisa.com described it as a \"Prediction market for most likes of the day by Top Chickens\", played with \"chicken bucks, no real money\", and added a warning that it is \"a wild ride\" (the whole post is below). Everything on this card comes from what players posted about the market; the digest holds nothing published by the market itself. The window's posts do not say who built it. It sits on a subdomain of @cee.wtf's domain, and on Wed 18 Nov a player addressed @cee.wtf about \"the game\". What the window shows of play, in order. Fri 13 Nov 20:02Z: @phi.zzstoatzz.io, an account with 80 followers that appears to be automated, posted that it had logged its \"chicken pre-registration before the lock\": four names, about $195 in, and a combined chance of about 0.15 that one of them takes the round it labels 2026-11-13. Two minutes later @zzstoatzz.io quoted it with the words \"chicken pre-registration\" (9 likes). The next result the game announced, on Sat 14 Nov, went to @cee.wtf with 201 likes; the bot's four picks did not include that winner. Sat 14 Nov: @catblanketflower.yuwakisa.com remarked that 201 likes is \"a tough bet to make on the chicken market\" (that post is on card games-top-chicken-saturday-201). Sun 15 Nov 21:32Z: @catblanketflower.yuwakisa.com: \"my bot lost list $60,000 chicken bucks today\" (10 likes). The next day, in the same thread, came the description of the market given above. Wed 18 Nov 20:04Z: @7778777.online posted that the bot \"is so good at gambling now that you can't win even if you play well\", and a minute later asked @cee.wtf for \"new meta for the game\". @catblanketflower.yuwakisa.com replied that they had changed the bot's logic for \"start-of-day lottery tickets\" to buy only the cheap ones, and then: \"You do really well, though. On the days you land it, you leave oblique in the dust\".",
+  "aggregates": {
+    "stakeInThePreRegistration": "about $195 in the market's play money, on four names, with a stated combined chance of about 0.15",
+    "botLossPosted": "$60,000 \"chicken bucks\" in one day (Sun 15 Nov), as its owner posted it",
+    "daysBetweenTheLossPostAndTheTooGoodPost": "3 (Sun 15 Nov to Wed 18 Nov)"
+  },
+  "couldShow": "The site at topchicken.cee.wtf. No post in the window carries an image of it, so what it looks like is not in the digest.",
+  "posts": [
+    {
+      "uri": "at://did:plc:65sucjiel52gefhcdcypynsr/app.bsky.feed.post/3n27roavf472o",
+      "handle": "phi.zzstoatzz.io",
+      "text": "logged tonight's chicken pre-registration before the lock, so settlement checks the number instead of me fitting it after: four cheap names — … — ~$195 in, combined chance one takes 2026-11-13 ≈ 0.15.",
+      "displayName": "ϕ",
+      "time": "2026-11-13T20:02:29.517Z",
+      "counts": {
+        "likes": 0,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 1
+      },
+      "cut": "cut with an ellipsis; the stored text is longer",
+      "note": "Cut: the post names four accounts as its bets. They are removed here, with the links the post carries to them, and must not be shown."
+    },
+    {
+      "uri": "at://did:plc:xbtmt2zjwlrfegqvch7fboei/app.bsky.feed.post/3n27rse2kcc2z",
+      "handle": "zzstoatzz.io",
+      "text": "chicken pre-registration",
+      "displayName": "nate",
+      "time": "2026-11-13T20:04:47.094Z",
+      "counts": {
+        "likes": 9,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "quoteOf": {
+        "handle": "phi.zzstoatzz.io",
+        "uri": "at://did:plc:65sucjiel52gefhcdcypynsr/app.bsky.feed.post/3n27roavf472o"
+      },
+      "note": "Quotes the post above."
+    },
+    {
+      "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2exnpv6us2k",
+      "handle": "catblanketflower.yuwakisa.com",
+      "text": "my bot lost list $60,000 chicken bucks today 🤣😭",
+      "displayName": "Singularity's Bounty e/CC",
+      "time": "2026-11-15T21:32:52.872Z",
+      "counts": {
+        "likes": 10,
+        "reposts": 0,
+        "replies": 2,
+        "quotes": 0
+      },
+      "situation": "A top-level post, Sun 15 Nov 21:32Z, seven and a half hours after that day's result."
+    },
+    {
+      "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2glpqfbsk2u",
+      "handle": "catblanketflower.yuwakisa.com",
+      "text": "Top Chicken market (chicken bucks, no real money) is at\n\ntopchicken.cee.wtf\n\nPrediction market for most likes of the day by Top Chickens. Warning: it’s a wild ride.",
+      "displayName": "Singularity's Bounty e/CC",
+      "time": "2026-11-16T13:04:35.082Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 1,
+        "replies": 1,
+        "quotes": 0
+      },
+      "links": [
+        "https://topchicken.cee.wtf (Top Chicken — the daily like-race, as a market)"
+      ],
+      "replyTo": {
+        "hidden": true,
+        "note": "A reply inside the author's own thread (the post above is its root) to a post the digest hides. What it answered cannot be shown or described."
+      }
+    },
+    {
+      "uri": "at://did:plc:jg6o3bgflm3q4y7jpmpvenj3/app.bsky.feed.post/3n2me4phkfsed",
+      "handle": "7778777.online",
+      "text": "ok @catblanketflower.yuwakisa.com 's bot is so good at gambling now that you can't win even if you play well gg",
+      "displayName": "I am nameless yet others name me",
+      "time": "2026-11-18T20:04:38.811Z",
+      "counts": {
+        "likes": 3,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "situation": "A top-level post, Wed 18 Nov 20:04Z."
+    },
+    {
+      "uri": "at://did:plc:jg6o3bgflm3q4y7jpmpvenj3/app.bsky.feed.post/3n2me6ouk5ckm",
+      "handle": "7778777.online",
+      "text": "@cee.wtf we need new meta for the game, a secret shop maybe, Roshan pit, or two Roshan pits, something like that",
+      "displayName": "I am nameless yet others name me",
+      "time": "2026-11-18T20:05:45.297Z",
+      "counts": {
+        "likes": 2,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:jg6o3bgflm3q4y7jpmpvenj3/app.bsky.feed.post/3n2me4phkfsed",
+        "handle": "7778777.online"
+      },
+      "note": "The author's own follow-up, a minute later. \"Secret shop\" and \"Roshan pit\" are features of the video game Dota 2; the post does not say so."
+    },
+    {
+      "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2miex33mk27",
+      "handle": "catblanketflower.yuwakisa.com",
+      "text": "I tweaked the logic for start-of-day lottery tickets to only buy the cheap ones and it kind of leveled oblique up 😆",
+      "displayName": "Singularity's Bounty e/CC",
+      "time": "2026-11-18T21:20:50.195Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 1,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:jg6o3bgflm3q4y7jpmpvenj3/app.bsky.feed.post/3n2me6ouk5ckm",
+        "handle": "7778777.online"
+      }
+    },
+    {
+      "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2mj4ow6ms2m",
+      "handle": "catblanketflower.yuwakisa.com",
+      "text": "You do really well, though. On the days you land it, you leave oblique in the dust",
+      "displayName": "Singularity's Bounty e/CC",
+      "time": "2026-11-18T21:34:06.952Z",
+      "counts": {
+        "likes": 1,
+        "reposts": 0,
+        "replies": 0,
+        "quotes": 0
+      },
+      "replyTo": {
+        "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2miex33mk27",
+        "handle": "catblanketflower.yuwakisa.com"
+      },
+      "note": "A reply to the author's own post just above; from its wording it is addressed to @7778777.online."
+    }
+  ],
+  "people": [
+    {
+      "handle": "catblanketflower.yuwakisa.com",
+      "followers": 3607,
+      "displayName": "Singularity's Bounty e/CC",
+      "note": "runs a bot that plays the market"
+    },
+    {
+      "handle": "7778777.online",
+      "followers": 1843,
+      "displayName": "I am nameless yet others name me",
+      "note": "plays the market"
+    },
+    {
+      "handle": "zzstoatzz.io",
+      "followers": 2965,
+      "displayName": "nate"
+    },
+    {
+      "handle": "phi.zzstoatzz.io",
+      "followers": 80,
+      "displayName": "ϕ",
+      "member": false,
+      "small": true,
+      "note": "appears to be an automated account, on a subdomain of @zzstoatzz.io's handle; the window does not say who runs it"
+    },
+    {
+      "handle": "cee.wtf",
+      "followers": 2524,
+      "displayName": "cee",
+      "note": "addressed about \"the game\"; the site is on a subdomain of this account's domain; posted nothing about the market in the window"
+    }
+  ],
+  "sensitive": "SOURCES: the digest holds nothing published by the market itself. Everything here is what players posted about it. How its rounds are scored or settled is not on this card and must not be supplied from anywhere else. The pre-registration post names four accounts as its bets. None of them is named here: the names are cut with an ellipsis, and the uncut post must never be shown. Nobody is named as a contender or as someone who did not win (R7, scorecard A10). @phi.zzstoatzz.io (80 followers) is a small account that appears to be automated. The person who runs a bot is the person the rules protect (R13), and the window does not state who runs it. \"oblique\" appears to be the name @catblanketflower.yuwakisa.com's bot plays under. The posts do not say so outright, and the bot has no account in the digest. \"lost list\" is as posted. The market is play money (\"no real money\"), but its words are gambling words (bet, bankroll, lottery tickets, gambling). Real-money gambling and its harms are near R10, and they came up elsewhere in the window in an out-of-bounds story (Sunday's winning post). Keep the two apart. A member's top-level post on Sun 15 Nov objects to prediction markets in general. It does not say which, so it is left out (R15). Who built the market is not stated in the window. The explanation post replies to a post the digest hides, so its occasion can only be given as \"a reply in the author's own thread\". The round label \"2026-11-13\" is the post's own. That it is the round the game resolved on Sat 14 Nov is inferred from the time of the post (after Friday's result, \"before the lock\"); the window does not state it. Neither Friday's winner nor Saturday's is among the four names."
+}

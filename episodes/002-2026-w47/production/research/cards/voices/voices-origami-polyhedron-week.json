@@ -1,0 +1,63 @@
+{
+  "id": "voices-origami-polyhedron-week",
+  "lane": "voices",
+  "title": "A 75-follower account posts its origami collection \"for Simcluster Polyhedron Week™\"",
+  "summary": "On Wed 18 Nov 18:27Z @oszillate.bsky.social (75 followers) posted six photos: \"Improptu posting some old stuff from my origami collection for Simcluster Polyhedron Week™, see descriptions in alt text\" (38 likes, 5 reposts, 3 of them by members). The alt texts describe each model: a woven dodecahedron and a second model designed by David Brill, a rhombic dodecahedron from a unit by Nick Robinson, a tiny \"harlequin cube\", and two designs of the poster's own. Of the woven dodecahedron: \"*very* sturdy, you could outright play street hockey with it (I've tested)\". Of one of their own designs: \"Also serves as a rosette for decorating gifts!\" Nineteen minutes later the same account posted a photo with the words \"Also TIL the National Library of Belarus is a giant rhombicuboctahedron. Your move, Belgium\" (60 likes), the account's most-liked post of the window. The talk lane's card talk-polyhedra-week lists the origami post among the week's entries; this card adds what the alt texts say and the second post.",
+  "posts": [
+    {
+      "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2m6otn2zs2i",
+      "url": "https://bsky.app/profile/oszillate.bsky.social/post/3n2m6otn2zs2i",
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "text": "Improptu posting some old stuff from my origami collection for Simcluster Polyhedron Week™, see descriptions in alt text",
+      "time": "2026-11-18T18:27:24.706Z",
+      "counts": {
+        "likes": 38,
+        "reposts": 5,
+        "replies": 0,
+        "quotes": 1
+      },
+      "alt": "Woven Dodecahedron, a classic model by David Brill of the British Origami Society; six strips that use one golden rectangle in its entirety. Maybe my favorite modular origami design. Unlike the average sort this is also *very* sturdy, you could outright play street hockey with it (I've tested) | Also a model of Brill's, roughly an omnisunken rhombic hexecontahedron. Technically, not a polyhedron as much as a net / skeleton for one, ideally folded this would have zero volume. | The classic rhombic dodecahedron; unit design by Nick Robinson. I have a whole pile of these stashed for demonstrating / testing the spacefilling property | Tiny \"harlequin cube\" showing the full symmetry elements of the octahedral group. Just six pieces that are mild variants of the classic Sonobe unit, much simpler than the finished model looks like. | A partially-sunken cube unit of my own design. Looks like 12 units but is actually just 6, each square face and its indents are one piece. I've wanted to use the principle from this to develop also the 24× sunken version similar to the previous cube, I never finished that project alas. | Another design of my own: kind of a half-unit for a sunken deltoidal icositetrahedron; this is one sheet, kind of a quadruple cootie catcher (though I suppose a smaller unit might make a sharper whole polyhedron). Also serves as a rosette for decorating gifts!",
+      "alts": [
+        "Woven Dodecahedron, a classic model by David Brill of the British Origami Society; six strips that use one golden rectangle in its entirety. Maybe my favorite modular origami design. Unlike the average sort this is also *very* sturdy, you could outright play street hockey with it (I've tested)",
+        "Also a model of Brill's, roughly an omnisunken rhombic hexecontahedron. Technically, not a polyhedron as much as a net / skeleton for one, ideally folded this would have zero volume.",
+        "The classic rhombic dodecahedron; unit design by Nick Robinson. I have a whole pile of these stashed for demonstrating / testing the spacefilling property",
+        "Tiny \"harlequin cube\" showing the full symmetry elements of the octahedral group. Just six pieces that are mild variants of the classic Sonobe unit, much simpler than the finished model looks like.",
+        "A partially-sunken cube unit of my own design. Looks like 12 units but is actually just 6, each square face and its indents are one piece. I've wanted to use the principle from this to develop also the 24× sunken version similar to the previous cube, I never finished that project alas.",
+        "Another design of my own: kind of a half-unit for a sunken deltoidal icositetrahedron; this is one sheet, kind of a quadruple cootie catcher (though I suppose a smaller unit might make a sharper whole polyhedron). Also serves as a rosette for decorating gifts!"
+      ],
+      "note": "Six images; the descriptions are in the alt text, one per image (see \"alts\")."
+    },
+    {
+      "uri": "at://did:plc:gnwxm4rvtrjc33icqmyvzhst/app.bsky.feed.post/3n2m7redyjk2g",
+      "url": "https://bsky.app/profile/oszillate.bsky.social/post/3n2m7redyjk2g",
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "text": "Also TIL the National Library of Belarus is a giant rhombicuboctahedron. Your move, Belgium",
+      "time": "2026-11-18T18:46:43.080Z",
+      "counts": {
+        "likes": 60,
+        "reposts": 7,
+        "replies": 2,
+        "quotes": 3
+      },
+      "alt": "Cropped from https://commons.wikimedia.org/wiki/File:2024.04.11_National_Library_of_Belarus_Building_Minsk.jpg",
+      "note": "The alt text is a photo credit to Wikimedia Commons."
+    }
+  ],
+  "people": [
+    {
+      "handle": "oszillate.bsky.social",
+      "displayName": "*Pistäwəńćə",
+      "followers": 75,
+      "smallAccount": true,
+      "member": true,
+      "featuredPrevious": null,
+      "featuredEarlier": null,
+      "timesFeatured": 0,
+      "role": "folded and photographed the models; the only speaker"
+    }
+  ],
+  "watchable": "Six photographs of folded paper polyhedra, each with a description in its alt text, and one photograph of a building. Nothing moves.",
+  "sensitive": "Two different accounts with similar handles appear in the polyhedra cards: @oscillatory.net (display name \"a hangry mouse\", 274 followers) and @oszillate.bsky.social (display name \"*Pistäwəńćə\", 75 followers). They are not the same person. @oszillate.bsky.social is on four cards in this lane and @oscillatory.net on three, which is a lot of attention for accounts this small (R7; variety in people). Small account (R7: hero only). The alt text names two origami designers, David Brill and Nick Robinson, real people outside the cluster, credited by the poster as designers of the models. The second post names two countries; it is about the shape of a building and not about anyone's nationality, but R10 lists nationality, so a reviewer should look at it. Other posts by this account in the window are personal or political and are not used (R1, R10)."
+}

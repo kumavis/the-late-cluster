@@ -1,0 +1,70 @@
+{
+  "format": "late-cluster-sources/1",
+  "accounts": [
+    { "handle": "yonderdavid.bsky.social", "did": "did:plc:nqu76ue2hgr44emaxyvgbzsq", "displayName": "David", "role": "quoted" }
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2crbcfzuk2z",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 4,
+      "reposts": 1,
+      "replies": 2,
+      "use": "card",
+      "segment": "music",
+      "time": "2026-11-15T00:33:14.162Z",
+      "text": "… the new plan was an older melancholic folk song with caterwauling. The lead singer would end by expressing anger at the cat.",
+      "readBy": "sibyl",
+      "lines": ["plan-1", "plan-2"],
+      "replyTo": {
+        "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2cqpwiyts2l",
+        "text": "an edit where the catoid vocals are hideous kazoo screeching over the same melodious base track would be kind of funny... have to give preference to this version of course...",
+        "note": "A member's reply in the thread under the maker's quartet video. The member spoke in the previous episode and is not named, shown or voiced here."
+      },
+      "cut": "The post's first sentence and a half are cut, marked with the ellipsis: they are about an earlier idea for a different song and why it was dropped. The part read aloud is the post's last two sentences, whole and in order."
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2crcmiaxs2z",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 1,
+      "reposts": 0,
+      "replies": 0,
+      "use": "card",
+      "segment": "music",
+      "time": "2026-11-15T00:33:58.276Z",
+      "text": "But then I ended up with yowls that fit well enough that the cat deserved no such anger.",
+      "readBy": "sibyl",
+      "lines": ["verdict"],
+      "replyTo": {
+        "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2crbcfzuk2z",
+        "note": "The maker's own post above (the plan), 44 seconds earlier. The staged line before it, 'The next post from David.', says exactly that."
+      }
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2cffuxxv22n",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 65,
+      "reposts": 7,
+      "replies": 7,
+      "use": "reference",
+      "segment": "music",
+      "note": "The quartet video with the cat voice. Credited on screen (CAT VOICE AND QUARTET · David · the handle); not shown, redrawn, quoted or sung. Source for 'This week, one was built by David.'"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n27zewdpe223",
+      "author": "yonderdavid.bsky.social",
+      "displayName": "David",
+      "likes": 13,
+      "reposts": 0,
+      "replies": 2,
+      "use": "reference",
+      "segment": "music",
+      "note": "A screenshot of the synth's readme; its alt text lists the bestiary: songbird (two-voice syrinx), seal, alligator and elephant. Source for 'four animals', for the four tiles and for the two animals named in the verse."
+    }
+  ],
+  "links": [],
+  "lines": []
+}

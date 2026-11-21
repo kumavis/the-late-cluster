@@ -1,0 +1,382 @@
+{
+  "format": "late-cluster-production/2",
+  "week": "2026-W47",
+  "episode": "002-2026-w47",
+  "digest": "data/weeks/2026-W47",
+  "limits": "default",
+  "runner": "manual",
+  "runs": 22,
+  "stages": {
+    "scope": {
+      "status": "done",
+      "gates": [
+        {
+          "name": "scope.review",
+          "ok": true
+        }
+      ]
+    },
+    "research": {
+      "status": "done",
+      "note": "5 gate failures in wave 1",
+      "gates": [
+        {
+          "name": "research.cards",
+          "ok": true
+        },
+        {
+          "name": "research.screen",
+          "ok": true
+        }
+      ]
+    },
+    "brainstorm": {
+      "status": "done",
+      "gates": [
+        {
+          "name": "brainstorm.ideas",
+          "ok": true
+        }
+      ]
+    },
+    "rank": {
+      "status": "done",
+      "gates": [
+        {
+          "name": "rank.first",
+          "ok": true
+        },
+        {
+          "name": "rank.second",
+          "ok": true
+        },
+        {
+          "name": "rank.experiment",
+          "ok": true
+        }
+      ]
+    },
+    "repetition-ideas": {
+      "status": "done",
+      "gates": [
+        {
+          "name": "repetition.ideas",
+          "ok": true,
+          "warnings": [
+            "idea writer-2-70 is turned: From the previous episode: the studio itself carrying out, at once, things that are said aloud, one after another. → There the point was that things got made whether or not anyone meant them. Here the set obeys three real requests only to set up the reverse: nothing happens that was not asked for, so the river stood still, and so has the host’s own audience, until he says one word."
+          ]
+        },
+        {
+          "name": "repetition.people-ideas",
+          "ok": true
+        }
+      ],
+      "data": {
+        "excluded": [
+          "writer-2-53"
+        ]
+      }
+    },
+    "draft": {
+      "status": "done",
+      "gates": [
+        {
+          "name": "draft.files",
+          "ok": true,
+          "warnings": [
+            "drafted about 745 s in 9 drafts (target 480 s)"
+          ]
+        },
+        {
+          "name": "draft.lines",
+          "ok": true
+        },
+        {
+          "name": "draft.standing",
+          "ok": true
+        }
+      ]
+    },
+    "select": {
+      "status": "done",
+      "gates": [
+        {
+          "name": "select.scores",
+          "ok": true
+        },
+        {
+          "name": "repetition.scripts",
+          "ok": true
+        },
+        {
+          "name": "repetition.people-scripts",
+          "ok": true,
+          "warnings": [
+            "featured before: @samantha.wiki, @shimmermathlabs.com (2 of 14)",
+            "often featured: @samantha.wiki would be in 2 of the last 2 episodes; fresh people are preferred (nobody is barred)",
+            "often featured: @shimmermathlabs.com would be in 2 of the last 2 episodes; fresh people are preferred (nobody is barred)"
+          ]
+        },
+        {
+          "name": "select.fits",
+          "ok": true,
+          "warnings": [
+            "selected made-pen-plotter-replies (0.836), made-polyhedral-coffee-simulator (0.779), made-mobius-chess-ringmate (0.765), music (0.749), top-chicken (0.705), interview-yonderdavid (0.7): about 480 s of a 480 s target"
+          ]
+        },
+        {
+          "name": "select.inherit",
+          "ok": true
+        }
+      ],
+      "data": {
+        "inherited": []
+      }
+    },
+    "assemble": {
+      "status": "done",
+      "gates": [
+        {
+          "name": "assemble.render",
+          "ok": true
+        },
+        {
+          "name": "write.rundown",
+          "ok": true
+        },
+        {
+          "name": "write.sources",
+          "ok": true
+        },
+        {
+          "name": "write.guest-lines",
+          "ok": true
+        },
+        {
+          "name": "write.labels",
+          "ok": true
+        },
+        {
+          "name": "write.names",
+          "ok": true
+        },
+        {
+          "name": "write.optout",
+          "ok": true,
+          "skipped": "the opt-out list is empty"
+        },
+        {
+          "name": "write.length",
+          "ok": true,
+          "warnings": [
+            "939 spoken words (made-pen-plotter-replies 156, interview-yonderdavid 201, top-chicken 203, made-polyhedral-coffee-simulator 108, music 146, made-mobius-chess-ringmate 125), about 427–587 s"
+          ]
+        },
+        {
+          "name": "assemble.people",
+          "ok": true,
+          "warnings": [
+            "featured before: @shimmermathlabs.com, @samantha.wiki (2 of 14)",
+            "often featured: @shimmermathlabs.com would be in 2 of the last 2 episodes; fresh people are preferred (nobody is barred)",
+            "often featured: @samantha.wiki would be in 2 of the last 2 episodes; fresh people are preferred (nobody is barred)"
+          ]
+        },
+        {
+          "name": "render.check",
+          "ok": true
+        },
+        {
+          "name": "render.whisper",
+          "ok": true,
+          "warnings": [
+            "made-pen-plotter-replies: 126/139 caption words heard",
+            "interview-yonderdavid: 176/196 caption words heard",
+            "top-chicken: 186/218 caption words heard",
+            "made-polyhedral-coffee-simulator: 98/108 caption words heard",
+            "music: 105/120 caption words heard",
+            "made-mobius-chess-ringmate: 112/130 caption words heard"
+          ]
+        },
+        {
+          "name": "render.heard",
+          "ok": true,
+          "warnings": [
+            "top-chicken winner (sibyl, 13.6 s): \"cee\" was heard as \"Saturday's winner, C\", judged harmless: The winner's display name is cee, one syllable, said exactly as the letter C is said. The transcription wrote the letter. It is the name heard as itself, spelled another way; nothing else in the line was heard differently, and no pronoun was heard. A person should still listen to this word: across test mixes it was written C or see, and once, in a mix that is not this one, as a pronoun.",
+            "top-chicken recordline (sibyl, 32.2 s): \"cee\" was heard as \"All time tabs can still see, with the score of 6186 to beat.\", judged harmless: The name cee was written as the word see, which is how it sounds: the name is heard as itself. 'top chicken is' came out as 'tabs can', harmless nonsense about nobody (the engine cannot say chicken; the card and the caption carry it). The record, 6186, is heard correctly."
+          ]
+        },
+        {
+          "name": "render.lengths",
+          "ok": true,
+          "warnings": [
+            "made-mobius-chess-ringmate renders at 76.3 s; the draft estimated 64 s",
+            "rendered 504.5 s: made-pen-plotter-replies 83.8 s, interview-yonderdavid 93.2 s, top-chicken 95.2 s, made-polyhedral-coffee-simulator 75.9 s, music 80.1 s, made-mobius-chess-ringmate 76.3 s"
+          ]
+        },
+        {
+          "name": "assemble.constitution",
+          "ok": true
+        }
+      ]
+    },
+    "stage": {
+      "status": "done",
+      "gates": [
+        {
+          "name": "stage.modules",
+          "ok": true
+        },
+        {
+          "name": "stage.disclaimer",
+          "ok": true
+        },
+        {
+          "name": "stage.cards",
+          "ok": true
+        },
+        {
+          "name": "stage.unread",
+          "ok": true
+        },
+        {
+          "name": "stage.frames",
+          "ok": true,
+          "warnings": [
+            "made-pen-plotter-replies: 27 frames in shots/002-2026-w47/made-pen-plotter-replies/ (every cue and line id, plus 6 spread across 0–76.31 s); log shots/002-2026-w47/_production/logs/run-021/001-shoot.log",
+            "interview-yonderdavid: 36 frames in shots/002-2026-w47/interview-yonderdavid/ (every cue and line id, plus 6 spread across 0–86.79 s); log shots/002-2026-w47/_production/logs/run-021/002-shoot.log",
+            "top-chicken: 24 frames in shots/002-2026-w47/top-chicken/ (every cue and line id, plus 6 spread across 0–89.67 s); log shots/002-2026-w47/_production/logs/run-021/003-shoot.log",
+            "made-polyhedral-coffee-simulator: 26 frames in shots/002-2026-w47/made-polyhedral-coffee-simulator/ (every cue and line id, plus 6 spread across 0–69.82 s); log shots/002-2026-w47/_production/logs/run-021/004-shoot.log",
+            "music: 21 frames in shots/002-2026-w47/music/ (every cue and line id, plus 6 spread across 0–72.98 s); log shots/002-2026-w47/_production/logs/run-021/005-shoot.log",
+            "made-mobius-chess-ringmate: 22 frames in shots/002-2026-w47/made-mobius-chess-ringmate/ (every cue and line id, plus 6 spread across 0–66.17 s); log shots/002-2026-w47/_production/logs/run-021/006-shoot.log"
+          ]
+        },
+        {
+          "name": "stage.credits",
+          "ok": true,
+          "warnings": [
+            "credits: @ver.ooo, @yonderdavid.bsky.social, @dave.9000ish.uk, @shimmermathlabs.com, @mokkenstorm.dev, @minormobius.bsky.social; \"is synthesized by CHIMERA.\""
+          ]
+        },
+        {
+          "name": "stage.imports",
+          "ok": true
+        },
+        {
+          "name": "stage.inherit",
+          "ok": true
+        },
+        {
+          "name": "stage.constitution",
+          "ok": true
+        },
+        {
+          "name": "stage.review",
+          "ok": true
+        }
+      ]
+    },
+    "build": {
+      "status": "done",
+      "gates": [
+        {
+          "name": "build.thumbnail-shot",
+          "ok": true
+        },
+        {
+          "name": "build.thumbnail",
+          "ok": true
+        },
+        {
+          "name": "build.preview",
+          "ok": true
+        },
+        {
+          "name": "build.preview-verify",
+          "ok": true
+        },
+        {
+          "name": "build.verify",
+          "ok": true
+        }
+      ]
+    },
+    "review": {
+      "status": "sent-back",
+      "gates": [
+        {
+          "name": "review.scorecard",
+          "ok": true,
+          "warnings": [
+            "scorecard: Part B 21/26 (approve at 18, no 0 in B1, B2, B7, B8, B11, B12); Part A fails A13, A16"
+          ]
+        },
+        {
+          "name": "review.ledger",
+          "ok": true
+        },
+        {
+          "name": "review.dna",
+          "ok": true,
+          "warnings": [
+            "no edit to the craft bible in this run"
+          ]
+        },
+        {
+          "name": "review.constitution",
+          "ok": true
+        },
+        {
+          "name": "review.verdict",
+          "ok": true,
+          "sentBack": {
+            "route": "assemble",
+            "reason": "A16 fails on one line. In the chess segment the guest's line `policy` (\"I like! I repost! But I'm not gonna love unless there's a link\") is heard in the final mix as \"I like, I report, but I'm not gonna love unless there's a link.\", and Larry's `like` as \"I like, I report.\" That is a different statement about how a real person treats posts, and no judgement of it was written. Respell or rework \"repost\" so that it is heard as itself, render the segment again, read the heard text of every line again, and have a person listen to the word.; A13 fails on one line. Line `day` in the chess segment is a repeat. Kind: catchphrase. What it repeats: the last two words of the line's first sentence, said as a sentence ending and followed at once by how long the making took, are a stock phrase of the show's. The draft kept the making and the time in one clause; keep it that way, or use another verb. A turn: not open.; Not a gate, recommended in the same pass: the four lines of the close are the episode's one turned item (they carry the previous episode's last spoken words, a house character's good night, and turn who says them), and they are a second joke resting on the show's own frame beside the interview's hold on the label, where the joke chapter allows one. The assembler recorded a fallback: end on \"I resign.\" and drop the cue `sign-off`.; Part B is 21 of 26 with no zero; with the two lines fixed and read again the card would approve. Rows at 1: B2 (the best joke lands at 2:24, in the front half), B7 (the interview shows nothing its guest made), B8 (more than two soft lines, by the transcription), B10 (Top Chicken runs 95 s with a slack market block; four lines follow the strongest button), B13 (one maker is in two segments and behind two more).; Nobody has listened to any of it. Before anything airs a person must hear: \"repost\" in both chess lines; the winner's name \"cee\" in both Top Chicken lines; Sibyl's intoned meow, which nothing has checked; the song's yowls, its in-tune meow and its bass, the word \"caterwauling\" and the second card; \"mostly vibed\", \"Koto\" and \"pasted\" in the interview; the sphenomegacorona sentence; the chess maker's one line; the game's name in Eppy's first line; the film-script sentence in the plotter; and the four guest voices that are new.; Owed before anything airs, by someone whose role allows the network: every account's posts since the scrape of 2026-11-19 09:55 UTC and any new post about the show; the pinned posts of six accounts; the other posts of the 282-follower account whose reply is intoned; the counts at build.; For the owner, who may read these more strictly than this review did: the hold on the guest's own PUPPET · PARODY label after his real line about parody (passed under R4); Sibyl saying a winner's display name where the post she reads has the handle (passed under A2); a 75-follower account's post on a card and a 282-follower account's post intoned (passed under R7); two other days' scores on crowns with no names (passed under A10)."
+          }
+        }
+      ],
+      "waiting": [
+        {
+          "task": "review.reviewer",
+          "role": "reviewer",
+          "brief": "episodes/002-2026-w47/production/briefs/review/review.reviewer.md",
+          "writes": [
+            "episodes/002-2026-w47/production/scorecard.md",
+            "episodes/002-2026-w47/production/review.json",
+            "docs/ledger/002-2026-w47.json",
+            "docs/ledger/002-2026-w47.md"
+          ]
+        }
+      ],
+      "data": {
+        "sentBack": {
+          "route": "assemble",
+          "reason": "A16 fails on one line. In the chess segment the guest's line `policy` (\"I like! I repost! But I'm not gonna love unless there's a link\") is heard in the final mix as \"I like, I report, but I'm not gonna love unless there's a link.\", and Larry's `like` as \"I like, I report.\" That is a different statement about how a real person treats posts, and no judgement of it was written. Respell or rework \"repost\" so that it is heard as itself, render the segment again, read the heard text of every line again, and have a person listen to the word.; A13 fails on one line. Line `day` in the chess segment is a repeat. Kind: catchphrase. What it repeats: the last two words of the line's first sentence, said as a sentence ending and followed at once by how long the making took, are a stock phrase of the show's. The draft kept the making and the time in one clause; keep it that way, or use another verb. A turn: not open.; Not a gate, recommended in the same pass: the four lines of the close are the episode's one turned item (they carry the previous episode's last spoken words, a house character's good night, and turn who says them), and they are a second joke resting on the show's own frame beside the interview's hold on the label, where the joke chapter allows one. The assembler recorded a fallback: end on \"I resign.\" and drop the cue `sign-off`.; Part B is 21 of 26 with no zero; with the two lines fixed and read again the card would approve. Rows at 1: B2 (the best joke lands at 2:24, in the front half), B7 (the interview shows nothing its guest made), B8 (more than two soft lines, by the transcription), B10 (Top Chicken runs 95 s with a slack market block; four lines follow the strongest button), B13 (one maker is in two segments and behind two more).; Nobody has listened to any of it. Before anything airs a person must hear: \"repost\" in both chess lines; the winner's name \"cee\" in both Top Chicken lines; Sibyl's intoned meow, which nothing has checked; the song's yowls, its in-tune meow and its bass, the word \"caterwauling\" and the second card; \"mostly vibed\", \"Koto\" and \"pasted\" in the interview; the sphenomegacorona sentence; the chess maker's one line; the game's name in Eppy's first line; the film-script sentence in the plotter; and the four guest voices that are new.; Owed before anything airs, by someone whose role allows the network: every account's posts since the scrape of 2026-11-19 09:55 UTC and any new post about the show; the pinned posts of six accounts; the other posts of the 282-follower account whose reply is intoned; the counts at build.; For the owner, who may read these more strictly than this review did: the hold on the guest's own PUPPET · PARODY label after his real line about parody (passed under R4); Sibyl saying a winner's display name where the post she reads has the handle (passed under A2); a 75-follower account's post on a card and a 282-follower account's post intoned (passed under R7); two other days' scores on crowns with no names (passed under A10)."
+        }
+      }
+    }
+  },
+  "ledger": "docs/ledger",
+  "previewOnly": true,
+  "bible": {
+    "dir": "docs/bible",
+    "snapshot": {
+      "constitution": {
+        "00-constitution.md": "341bb40fd67154cd4492f2fc485b6c67a70b542d47a4d1a4380ddfb491596e22",
+        "09-real-people.md": "4262301cda009ebea4325090fb437a563f94ceb5259590c87ca7b0081e3e5d8c"
+      },
+      "dna": {
+        "01-premise.md": "8f5a57207ae4b6a5fc05fb82f9879009188f2962e02420f43ac05b0762189475",
+        "02-cast.md": "3822029d891eea01be2dd3f3e0be9cea231290410290f3b521e35ebd13c8991a",
+        "03-episode-shape.md": "1497b86cb8f2f81206747c99d8b34e75688b4887378a1157c74bada09830c7ac",
+        "04-formats.md": "f77a965800ef03388b2e24f1bcf8822808d222774194a0dcfdc0a08f3bd665a2",
+        "05-material.md": "ff93ab71a507fd08e3c989b6267f67432d8cd732385d870c59a103e22effdc1a",
+        "06-jokes.md": "8f48a5d5450f8295d6ea6f03eef10d5b86607dd184e16a17631b77b2db1ba3a0",
+        "07-voices.md": "447bf3a169cc7707b2b5ab2b50c27a31639666c5ef6ba6d9a358f982199ae57b",
+        "08-direction.md": "55a964cba853dd9a33055826acbbead16db41855cb3ad3f188e2c3553321cb29",
+        "10-process.md": "1557d9acb868045f5f2da9aa99743cfa94d58eac6aed76b4a6ce287dc6edfebb",
+        "README.md": "f844e68a659e1fca892e0681abc263859b85c2bc95f0912331c1fdc2e58f8ce8",
+        "lore.md": "511330889fa0c073c7519ba020b6160d3d80e856574a2a854dbf7955a1ffaa2c"
+      }
+    }
+  }
+}

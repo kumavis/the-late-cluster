@@ -1,0 +1,53 @@
+{
+  "bit": {
+    "verdict": "fresh",
+    "turned": null,
+    "avoid": null,
+    "why": "Fresh by mechanism: nothing aired has the host read the show's handle for his own name and not find it, and the bit carries no aired stock line, prop, count or stamp; the aired episode did put a handle for the host on screen twice (an invented one, typed into a membership checker that scored him, and on a post of his that went viral) and made 'in it' its refrain for belonging, but those were a score, a reveal and a chorus, not an absence read off a name. Two things a viewer with a long memory could catch, neither a block: 'I'm not in it.', said over a handle that has the word simcluster in it, can be heard for a moment as an answer to that refrain, and a host who 'finally got' an account was shown posting from one last time."
+  },
+  "echoes": [
+    {
+      "line": "not-in-it",
+      "with": "making-of-inward l2-list",
+      "matters": false,
+      "why": "A shared build, not the same joke and not a stock phrase. Both are Larry reporting flatly that the party you would expect is absent, in a short sentence ending on 'it'. But the bit's turn is his hope (he has read it twice) and its laugh is a slight taken personally; the making-of's is a rule, and its laugh is on 'By rule.' They are 3:17 apart with two segments of other people's words between, at different pitches, one to an audience and one in a piece with none, and 'not in it' is plain English that a viewer will not hear as a phrase. This holds at this distance: the bit is free to move, and beside the making-of the pair would have to be judged again."
+    },
+    {
+      "line": "not-in-it",
+      "with": "making-of-inward turn-you, turn-point and turn-mouth",
+      "matters": false,
+      "why": "The closer relation, and it works for both. Each is a short dry line from Larry about himself with the same handle large on screen, and each says the show is not his. The first is a complaint and a joke; 'You make this show. I open and shut.', 'the show's name' and 'I'm a mouth.' answer it four minutes later in earnest. That is a plant and its payoff, not one joke told twice, and the quiet turn loses nothing by it."
+    },
+    {
+      "line": "account",
+      "with": "making-of-inward turn-point and turn-handle (the turn to the audience)",
+      "matters": false,
+      "why": "They do not tread on each other. The bit says only that there is an account and shows the handle; it asks nothing and says nothing of what the handle is for, which is all the turn's. Having read the handle once, large, a viewer will follow the voice's reading of it better four minutes on, and the turn's own event, the handle changing colour, is not in the bit. What the turn gives up is small: the handle is the biggest thing on screen twice in one night, so its typing is a recognition and not a reveal, and the line before it has already said what is coming."
+    },
+    {
+      "line": "twice",
+      "with": "making-of-inward review-early-seen and review-early-except",
+      "matters": false,
+      "why": "Both hang a two-step on the word 'twice' (a statement, then a short dry tag), but one is a man rereading for his name and the other a rule with one exemption, and the word is too ordinary to register as a phrase. Listed because two of the bit's three lines have a counterpart built the same way in the making-of; neither pair is the same joke."
+    },
+    {
+      "line": "account",
+      "with": "interview-yonderdavid parody (the held chyron, cue label-hold)",
+      "matters": false,
+      "why": "The picture, from the word 'handle', not the words. The bit's joke is read under a name on an enlarged lower third, and the next segment ends 68 seconds later on a push into its guest's lower third, held in silence for the episode's first big laugh; both are jokes about the show's own apparatus, and they are neighbours. I judge them different jobs: in the bit a line states the joke and the handle is its evidence; in the interview the label is the punch and nobody speaks. The small one comes first and may even teach the eye where to look. It is the one cost of the bit's place, and the two frames should be looked at side by side at the final review."
+    },
+    {
+      "line": "account",
+      "with": "riemann-breaking-news amber-call (the account plate under the spot)",
+      "matters": false,
+      "why": "A handle is the centre of the picture in segments 2, 4 and 5: read for who is missing from it, called on by a member, typed as an address. Three different jobs, and the middle one is a member's own post, so they do not read as one device. A count to keep, no more."
+    },
+    {
+      "line": "not-in-it",
+      "with": "riemann-breaking-news larry-button, making-of-inward button, made-mobius-chess-ringmate resign",
+      "matters": false,
+      "why": "Larry alone, dry, coming off worse is the host in character, with a different defeat each time, so it is not one joke repeated. With the bit, four of the nine segments end on it and the coffee segment has it in the middle. A note for the scorecard, not for this gate."
+    }
+  ],
+  "order": "The order does not repeat the aired episode's shape in a way a viewer would feel: the open, the close and the run of formats differ, and the one position that matches, the song's, has reasons from this material. Two joins to watch, neither a block: the bit into the interview puts two jokes read off the show's own lower third in a row (the host's handle, then the guest's label, which is the first big laugh), and the interview into the news has a guest called David leave on that laugh and 'davidcrespo' named about a quarter of a minute later, which a viewer who knows neither can hear as the same man back."
+}

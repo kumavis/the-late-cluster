@@ -1,0 +1,312 @@
+{
+  "format": "late-cluster-sources/1",
+  "week": "2026-W47",
+  "accounts": [
+    {
+      "handle": "cee.wtf",
+      "did": "did:plc:xb2urvqt5f4zzccjs46hysbf",
+      "role": "guest",
+      "cast": "cee",
+      "note": "The guest. 2,524 followers; a member; not featured before, per the research card. Every line is a verbatim post. Bio not read (research had no network): to be read before air (R11, R14)."
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+      "role": "quoted",
+      "note": "Amber. Suggested the game and asked for the three additions. One post shown: the request, read aloud exactly by Sibyl with its card. Credited on screen as the member who suggested the game. Marked featuredPrevious: shown; not voiced. Bio not read."
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+      "role": "mentioned",
+      "note": "Context only. Asked the question of exchange 1. Not named, not shown, not voiced (spoke in the previous episode): Larry asks the question in his own words."
+    },
+    {
+      "handle": "psingletary.com",
+      "did": "did:plc:stznz7qsokto2345qtdzogjb",
+      "role": "mentioned",
+      "note": "Context only. Asked the question of exchange 3. Not a member of the cluster: not named, not shown, not voiced. Larry asks the question in his own words."
+    },
+    {
+      "handle": "kitto.nekoweb.org",
+      "did": "did:plc:zgufzyadu3gghypxz4hp5psp",
+      "role": "mentioned",
+      "note": "Context only. Asked the question of exchange 4. A small account (248 followers): not named, not shown, not voiced. Larry asks the question in his own words."
+    }
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ctuaohos2n",
+      "author": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "date": "2026-11-15T01:19:37.359Z",
+      "likes": 25,
+      "reposts": 0,
+      "replies": 13,
+      "text": "how do you want your bsky usage to be different, relative to how you actually use it, now",
+      "use": "reference",
+      "segment": "interview",
+      "note": "The question of exchange 1, a top-level post put to everyone. Not shown; Larry asks it in his own words."
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2cuqozd6s2q",
+      "author": "cee.wtf",
+      "displayName": "cee",
+      "date": "2026-11-15T01:35:31.919Z",
+      "likes": 13,
+      "reposts": 0,
+      "replies": 0,
+      "text": "I want several thousand more followers appended to my Bluesky usage",
+      "use": "line",
+      "segment": "interview",
+      "note": "Answer 1. Card up while the puppet says it: cee, @cee.wtf, 15 Nov, 13 likes; a reply to a question put to everyone."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jws52ar22h",
+      "author": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "date": "2026-11-17T21:00:45.837Z",
+      "likes": 10,
+      "reposts": 0,
+      "replies": 2,
+      "text": "\"trained in simulation\"\nyou know what that means?\nrealistic tractor wheelie sim game is possible",
+      "use": "reference",
+      "segment": "interview",
+      "note": "The reply that suggested a wheelie game, under one of cee's posts. Not shown and not read: Larry says only that a member gave cee an idea for a game, and the screen credits the member (SUGGESTED BY @shimmermathlabs.com). Both Larry's and Sibyl's voices smear its words, and a short cut of it on a card would leave text unread under the staging gate. Its time (21:00 UTC) is one end of \"under three hours\"."
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kacrswx22q",
+      "author": "cee.wtf",
+      "displayName": "cee",
+      "date": "2026-11-17T23:51:08.165Z",
+      "likes": 122,
+      "reposts": 15,
+      "replies": 6,
+      "text": "do a sick wheelie at yard-shift.cee.wtf",
+      "use": "reference",
+      "segment": "interview",
+      "note": "The post that put the game online (a video, not seen by research). Not shown or spoken; it is where the address yard-shift.cee.wtf and the time 23:51 UTC come from. It quotes another member's image post that nobody has seen, which is why it is not performed."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2kbfb35d22y",
+      "author": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "date": "2026-11-18T00:10:25.012Z",
+      "likes": 5,
+      "reposts": 0,
+      "replies": 1,
+      "text": "yeah!!!\n\ni want skid marks on the ground\ni want to be a driver inside that can hang off edge or jump out during tricks for extra points\ni want a button for hoots and woots",
+      "use": "card",
+      "segment": "interview",
+      "note": "Read aloud by Sibyl, whole and exact, with its card and the words lighting. It is the prompt of answer 2."
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kcl2qub225",
+      "author": "cee.wtf",
+      "displayName": "cee",
+      "date": "2026-11-18T00:31:33.451Z",
+      "likes": 6,
+      "reposts": 0,
+      "replies": 1,
+      "text": "done",
+      "use": "line",
+      "segment": "interview",
+      "note": "Answer 2. The post carries an image that nobody has seen; the card shows the text only and the studio's sketch stands beside it."
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2kd5c5awk2h",
+      "author": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "date": "2026-11-18T00:41:45.174Z",
+      "likes": 1,
+      "reposts": 0,
+      "replies": 0,
+      "text": "yes!\nthere has to be a way to run yourself over, the quest continues",
+      "use": "reference",
+      "segment": "interview",
+      "note": "NOT shown and NOT read (its text is about running over the game's driver: accidents, R10; screening terms). Listed only because the alt text of its screenshot is the one description of the game that exists, and the studio's sketch is drawn from that alt text and nothing else."
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2lvie3be22j",
+      "author": "cee.wtf",
+      "displayName": "cee",
+      "date": "2026-11-18T15:42:43.398Z",
+      "likes": 18,
+      "reposts": 0,
+      "replies": 2,
+      "text": "Happy gta 6 day",
+      "use": "card",
+      "segment": "interview",
+      "note": "cee's own top-level post, shown as a glance card (four words) while Larry says what it was about. Its image has not been seen and is not shown. It is the post the question of exchange 3 was asked under."
+    },
+    {
+      "uri": "at://did:plc:stznz7qsokto2345qtdzogjb/app.bsky.feed.post/3n2lvm2mn2c2z",
+      "author": "psingletary.com",
+      "displayName": "Patrick Singletary",
+      "date": "2026-11-18T15:44:47.702Z",
+      "likes": 1,
+      "reposts": 0,
+      "replies": 1,
+      "text": "are you playing or watching a stream?",
+      "use": "reference",
+      "segment": "interview",
+      "note": "The question of exchange 3. Not shown; Larry asks it in his own words."
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2lvrms4cs2j",
+      "author": "cee.wtf",
+      "displayName": "cee",
+      "date": "2026-11-18T15:47:54.527Z",
+      "likes": 5,
+      "reposts": 0,
+      "replies": 2,
+      "text": "I’m GAMING BABY",
+      "use": "line",
+      "segment": "interview",
+      "note": "Answer 3. The post carries an image that nobody has seen; the card shows the text only."
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2lzjecd7c2j",
+      "author": "cee.wtf",
+      "displayName": "cee",
+      "date": "2026-11-18T16:54:52.153Z",
+      "likes": 94,
+      "reposts": 1,
+      "replies": 3,
+      "text": "First hour review of GTA6:\n\n- wow there’s a lot of traffic it feels way different to drive fast in than other gta games\n-  NPC movements and dialogue have a really weird uncanny valley vibe it looks like they’re high quality Disney animatronics",
+      "use": "reference",
+      "segment": "interview",
+      "note": "cee's first-hour review, the post the question of exchange 4 was asked under. Not shown or read."
+    },
+    {
+      "uri": "at://did:plc:zgufzyadu3gghypxz4hp5psp/app.bsky.feed.post/3n2mjhwfruc2m",
+      "author": "kitto.nekoweb.org",
+      "displayName": "kit 🇱🇮 in the autumn rain 🍂🌧️",
+      "date": "2026-11-18T21:40:23.901Z",
+      "likes": 1,
+      "reposts": 0,
+      "replies": 1,
+      "text": "Doesn't it drop tomorrow? Or is this like a one day early thing",
+      "use": "reference",
+      "segment": "interview",
+      "note": "The question of exchange 4, from a small account. Not shown; Larry asks its first sentence in his own words."
+    },
+    {
+      "uri": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2mjkggwvc2h",
+      "author": "cee.wtf",
+      "displayName": "cee",
+      "date": "2026-11-18T21:41:47.826Z",
+      "likes": 5,
+      "reposts": 0,
+      "replies": 1,
+      "text": "Xbox lets you change your timezone easily. afaik it doesn’t work for ps5 tho",
+      "use": "line",
+      "segment": "interview",
+      "note": "Answer 4."
+    }
+  ],
+  "links": [
+    {
+      "url": "https://yard-shift.cee.wtf",
+      "use": "credit",
+      "segment": "interview",
+      "note": "The game, credited on screen beside the studio's sketch: yard-shift.cee.wtf · made by cee · suggested by @shimmermathlabs.com."
+    }
+  ],
+  "lines": [
+    {
+      "segment": "interview",
+      "line": "usage",
+      "kind": "verbatim",
+      "post": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2cuqozd6s2q",
+      "context": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ctuaohos2n",
+      "contextAuthor": "norvid-studies.bsky.social",
+      "contextText": "how do you want your bsky usage to be different, relative to how you actually use it, now",
+      "setup": {
+        "line": "ask-usage",
+        "who": "larry",
+        "text": "How do you want your Bluesky usage to be different from how you actually use it now?"
+      },
+      "how": "A reply to a question; Larry asks what was asked, about the same thing, almost in the asker's words."
+    },
+    {
+      "segment": "interview",
+      "line": "done",
+      "kind": "verbatim",
+      "post": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kcl2qub225",
+      "context": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2kbfb35d22y",
+      "contextAuthor": "shimmermathlabs.com",
+      "contextText": "yeah!!!\n\ni want skid marks on the ground\ni want to be a driver inside that can hang off edge or jump out during tricks for extra points\ni want a button for hoots and woots",
+      "setup": {
+        "line": "wishes",
+        "who": "sibyl",
+        "text": "yeah!!! i want skid marks on the ground i want to be a driver inside that can hang off edge or jump out during tricks for extra points i want a button for hoots and woots"
+      },
+      "how": "A reply to a request; Sibyl reads the request aloud, whole and exact, as the post it was, and the reply follows with nothing between."
+    },
+    {
+      "segment": "interview",
+      "line": "gaming",
+      "kind": "verbatim",
+      "post": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2lvrms4cs2j",
+      "context": "at://did:plc:stznz7qsokto2345qtdzogjb/app.bsky.feed.post/3n2lvm2mn2c2z",
+      "contextAuthor": "psingletary.com",
+      "contextText": "are you playing or watching a stream?",
+      "setup": {
+        "line": "ask-playing",
+        "who": "larry",
+        "text": "Someone asked: are you playing it yourself, or is this a stream?"
+      },
+      "how": "A reply to a question under cee's own post \"Happy gta 6 day\"; Larry first says what that post was about (line scene-gta, with the post as a glance card), then asks what was asked."
+    },
+    {
+      "segment": "interview",
+      "line": "timezone",
+      "kind": "verbatim",
+      "post": "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2mjkggwvc2h",
+      "context": "at://did:plc:zgufzyadu3gghypxz4hp5psp/app.bsky.feed.post/3n2mjhwfruc2m",
+      "contextAuthor": "kitto.nekoweb.org",
+      "contextText": "Doesn't it drop tomorrow? Or is this like a one day early thing",
+      "setup": {
+        "line": "ask-tomorrow",
+        "who": "larry",
+        "text": "Still the same day. A member asked: doesn't it come out tomorrow?"
+      },
+      "how": "A reply to a question under cee's own first-hour review; Larry asks the question's first sentence. The second sentence (\"Or is this like a one day early thing\") is left unasked; the answer does the same job without it."
+    }
+  ],
+  "numbers": [
+    {
+      "segment": "interview",
+      "value": "21 minutes",
+      "where": "line elapsed (Larry) and the screen tag 21 MIN",
+      "method": "From the request (2026-11-18T00:10:25Z) to the reply \"done\" (2026-11-18T00:31:33Z): 21 min 8 s. Two public post times; a count of minutes, nothing else.",
+      "posts": [
+        "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2kbfb35d22y",
+        "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kcl2qub225"
+      ]
+    },
+    {
+      "segment": "interview",
+      "value": "under three hours",
+      "where": "line under-three (Larry)",
+      "method": "From the reply that suggested a game (2026-11-17T21:00:45Z) to the post that put it online (2026-11-17T23:51:08Z): 2 h 50 min 23 s. Said as \"under three hours\" because the research card rounds it to 2 h 51 min and the exact figure is 2 h 50.",
+      "posts": [
+        "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2jws52ar22h",
+        "at://did:plc:xb2urvqt5f4zzccjs46hysbf/app.bsky.feed.post/3n2kacrswx22q"
+      ]
+    },
+    {
+      "segment": "interview",
+      "value": "two days later",
+      "where": "line scene-game (Larry)",
+      "method": "15 Nov (answer 1, 01:35 UTC) to 17 Nov (the suggestion, 21:00 UTC), by UTC date."
+    },
+    {
+      "segment": "interview",
+      "value": "the same day / still the same day",
+      "where": "lines scene-gta and ask-tomorrow (Larry)",
+      "method": "\"done\" 18 Nov 00:31 UTC; \"Happy gta 6 day\" 18 Nov 15:42 UTC; the timezone answer 18 Nov 21:41 UTC. One UTC date; no local time of day is stated or implied."
+    }
+  ]
+}
