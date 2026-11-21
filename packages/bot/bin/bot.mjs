@@ -7,6 +7,7 @@
 //   post <ep> --video <file.mp4> --text-file <file> [--alt-file <file>] [--captions <file.vtt>]
 //        [--lang en] [--aspect <w>:<h>] [--upload-only] [--live]
 //                                                    post the episode's video; no mention, no link
+//   post --undo <post> [--live]                      delete one of the show's own posts
 //   reply <post> --text-file <file> --episode <ep> [--live]
 //                                                    reply under the show's own post, tagging only
 //                                                    accounts in that episode's sources.json

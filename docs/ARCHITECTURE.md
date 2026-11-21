@@ -225,6 +225,7 @@ episode. `<seg>` is a segment id.
 | `npm run sources -- check <sources.json> [--dir <digest>] [--out <file.md>] [--json]` | the live source check: cited posts unchanged, accounts' bios, labels, pinned and recent posts; exit 1 when something needs a person |
 | `npm run bot -- announce <ep> [--live]` | compose the announcement post; dry run unless `--live` |
 | `npm run bot -- post <ep> --video <file.mp4> --text-file <file> [--alt-file <file>] [--captions <file.vtt>] [--lang en] [--aspect <w>:<h>] [--upload-only] [--live]` | post the episode's video (no mention, no link), uploaded as a stream to the video service; `--upload-only` uploads and keeps the blob for a later post; dry run unless `--live` |
+| `npm run bot -- post --undo <post> [--live]` | delete one of the show's own posts (another account's is refused before any request); the dry run shows what goes with it; dry run unless `--live` |
 | `npm run bot -- reply <post> --text-file <file> --episode <ep> [--live]` | reply under one of the show's own posts, tagging only accounts in `episodes/<ep>/production/sources.json`; dry run unless `--live` |
 | `npm run bot -- profile [--only avatar\|description] [--avatar <file>] [--live] [--no-backup]` | set the account's profile picture (`avatar` in `bot.config.json`) and bio (`bluesky.profile.description` in `show.config.json`); the dry run compares the bio with the live one; dry run unless `--live` |
 | `npm run bot -- repost <post> [--live] [--undo]` | repost a post whose author is in `bluesky.repostAuthors`, or take the repost back; the dry run reads the post and prints the record; dry run unless `--live` |
@@ -348,7 +349,9 @@ request that does not use `fetch`: Node's fetch has a fixed 300 s headers timeou
 kill a slow upload mid-write, and changing it needs the `undici` package, which is not
 installed. It goes by `node:https` with an explicit `Content-Length`, no overall time limit,
 and a stall limit (`video.stallSeconds`, default 120 s without a byte written). The service's
-upload answer is a job status at the top level; `getJobStatus` wraps it; both are read. A processed blob is kept
+upload answer is a job status at the top level; `getJobStatus` wraps it; both are read.
+`post --undo` deletes one of the show's own posts with `deleteRecord`, logs it to
+`data/bot/posts.jsonl`, and leaves the stored upload alone. A processed blob is kept
 in the gitignored `data/bot/video-uploads/<sha256>.json`, so `--upload-only` and a later post, or
 a run after a timeout, do not upload again. `reply` is the only command that mentions anyone, on
 the owner's ruling of 21 November 2026 ("The bot tags only the accounts that appear in the

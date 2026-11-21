@@ -4,6 +4,8 @@
 // Nothing is posted unless every step before the post succeeded. The video is streamed from disk,
 // never read into memory. A finished upload is kept under data/bot/video-uploads/, keyed by the
 // file's SHA-256, so a later run of the same file reuses it instead of uploading again.
+//
+// `post --undo <post> [--live]` deletes one of the show's own posts (and leaves the stored upload alone).
 import { appendFileSync, existsSync, mkdirSync, readFileSync, rmSync, statSync, writeFileSync } from 'node:fs';
 import { basename, join, relative, resolve } from 'node:path';
 import { createClient, XrpcError } from '../atproto.mjs';
@@ -11,12 +13,16 @@ import { loadSettings } from '../config.mjs';
 import { resolveEpisodeId } from '../episodes.mjs';
 import { BotError, UsageError } from '../errors.mjs';
 import { CAPTION_MAX_BYTES, LIST_RECORDS_MAX_LIMIT, POST_MAX_BYTES, POST_MAX_GRAPHEMES, POST_MAX_LANGS, VIDEO_MAX_BYTES, VIDEO_MAX_SECONDS } from '../limits.mjs';
+import { normHandle } from '../optout.mjs';
 import { graphemeLength, LINK_RE, MENTION_RE, utf8Length } from '../richtext.mjs';
+import { parsePostRef } from './repost.mjs';
 import {
   buildVideoEmbed, checkDuration, checkVideoFile, isAlreadyExists, jobBlob, loadCaptions, parseAspect, readJobStatus, sha256File, VIDEO_MIME_TYPE,
 } from '../video.mjs';
 
-const USAGE = 'post <ep> --video <file.mp4> --text-file <file> [--alt-file <file>] [--captions <file.vtt>] [--lang en] [--aspect <w>:<h>] [--upload-only] [--live]';
+const POST_USAGE = 'post <ep> --video <file.mp4> --text-file <file> [--alt-file <file>] [--captions <file.vtt>] [--lang en] [--aspect <w>:<h>] [--upload-only] [--live]';
+const UNDO_USAGE = 'post --undo <post> [--live]';
+const USAGE = `${POST_USAGE} | ${UNDO_USAGE}`;
 const POST_COLLECTION = 'app.bsky.feed.post';
 /** Finished (and pending) uploads, by the file's SHA-256, relative to the repo root (gitignored by /data/). */
 export const UPLOADS_DIR = 'data/bot/video-uploads';
@@ -27,9 +33,10 @@ const UPLOAD_TOKEN_SECONDS = 30 * 60;
 
 export default {
   name: 'post',
-  summary: 'post an episode\'s video, with text, alt text and captions; dry run unless --live',
+  summary: 'post an episode\'s video, with text, alt text and captions, or delete one of the show\'s posts (--undo); dry run unless --live',
   usage: USAGE,
   options: {
+    undo: { type: 'boolean', default: false },
     video: { type: 'string' },
     'text-file': { type: 'string' },
     'alt-file': { type: 'string' },
@@ -123,8 +130,103 @@ export async function waitForJob({ client, host, jobId, timeoutMs, pollMs, now, 
   }
 }
 
+const UNDO_REFUSED = ['video', 'text-file', 'alt-file', 'captions', 'upload-only', 'lang', 'aspect'];
+
+/** What a post embeds, in one line: for a video, its blob, and whether it has captions and alt text. */
+function describeEmbed(embed) {
+  if (!embed) return 'nothing';
+  const media = embed.$type === 'app.bsky.embed.recordWithMedia' ? embed.media : embed;
+  if (media?.$type === 'app.bsky.embed.video') {
+    const caps = Array.isArray(media.captions) ? media.captions.length : 0;
+    return `a video, blob ${blobCid(media.video) ?? '(none)'} (${media.video?.size ?? '?'} bytes); ${caps ? `${caps} caption file${caps === 1 ? '' : 's'}` : 'no captions'}; ${typeof media.alt === 'string' && media.alt ? 'alt text' : 'no alt text'}${media === embed ? '' : ', with a quoted post'}`;
+  }
+  return embed.$type ?? 'something unrecognised';
+}
+
+/**
+ * `post --undo <post> [--live]`: deletes one of the show's own posts. Mirrors `repost --undo`:
+ * only the show's posts, a dry run that reads and writes nothing, and a log line when live.
+ */
+async function undoPost(ctx) {
+  const { positionals, values, env, out, root, now, fetch, configPath } = ctx;
+  const given = UNDO_REFUSED.filter((k) => values[k] !== undefined && values[k] !== false);
+  if (given.length) throw new UsageError(`--undo deletes a post, so ${given.map((k) => `--${k}`).join(', ')} ${given.length === 1 ? 'does' : 'do'} not go with it\nusage: ${UNDO_USAGE}`);
+  if (positionals.length !== 1) throw new UsageError(`usage: ${UNDO_USAGE}`);
+  const settings = loadSettings({ env, configPath, showConfigPath: join(root, 'show.config.json') });
+  if (!settings.did) throw new BotError('post --undo needs the show\'s DID: set bluesky.did in show.config.json (it deletes only the show\'s own posts)');
+  if (values.live) {
+    const missing = [];
+    if (!settings.handle) missing.push('a handle: set bluesky.handle in show.config.json (or BSKY_HANDLE)');
+    if (!env.BSKY_APP_PASSWORD) missing.push('BSKY_APP_PASSWORD in the environment (locally: put it in .secrets; npm run bot loads it)');
+    if (missing.length) throw new BotError(`--live needs ${missing.join(', and ')}. Use an app password, never the account password.`);
+  }
+
+  // Refused by the address alone, before any request.
+  const ref = parsePostRef(positionals[0]);
+  if (ref.actor.did && ref.actor.did !== settings.did) {
+    throw new BotError(`post --undo deletes only the show's own posts: ${ref.actor.did} is not the show's account (${settings.did})`);
+  }
+  if (ref.actor.handle && settings.handle && ref.actor.handle !== normHandle(settings.handle)) {
+    throw new BotError(`post --undo deletes only the show's own posts: @${ref.actor.handle} is not the show's account (@${settings.handle})`);
+  }
+
+  const client = createClient({ service: settings.service, userAgent: settings.userAgent, fetch });
+  const session = values.live ? await client.createSession({ identifier: settings.handle, password: env.BSKY_APP_PASSWORD }) : null;
+  if (session) {
+    out(`Logged in as @${session.handle} (${session.did}) on ${client.service}`);
+    if (session.did !== settings.did) throw new BotError(`refusing: logged in as ${session.did}, but bluesky.did in show.config.json is ${settings.did}`);
+  }
+  let did = ref.actor.did;
+  if (!did) {
+    const res = await client.resolveHandle(ref.actor.handle);
+    did = typeof res?.did === 'string' ? res.did : null;
+    if (did !== settings.did) {
+      throw new BotError(`post --undo deletes only the show's own posts: @${ref.actor.handle} resolves to ${did ?? 'nothing'}, not the show's account (${settings.did})`);
+    }
+  }
+  const uri = `at://${did}/${POST_COLLECTION}/${ref.rkey}`;
+  const found = await client.getPosts([uri], { appView: settings.appView });
+  const post = (found?.posts ?? []).find((p) => p?.uri === uri);
+  if (!post) throw new BotError(`the AppView does not know ${uri} (already deleted, or never there). Nothing was deleted.`);
+  if (post.author?.did !== settings.did) throw new BotError(`post --undo deletes only the show's own posts: the AppView says ${uri} is by ${post.author?.did ?? 'nobody'}`);
+  const text = typeof post.record?.text === 'string' ? post.record.text : '';
+  const n = (k) => (Number.isInteger(post[k]) ? post[k] : '?');
+
+  if (!values.live) {
+    out([
+      'DRY RUN: nothing was sent. Add --live to delete the post.',
+      '',
+      `Post:     ${uri}`,
+      `          cid ${post.cid}`,
+      `Created:  ${post.record?.createdAt ?? '(no date)'}`,
+      `Embeds:   ${describeEmbed(post.record?.embed)}`,
+      `Counts:   ${n('likeCount')} likes, ${n('repostCount')} reposts, ${n('quoteCount')} quotes, ${n('replyCount')} replies`,
+      'Text:',
+      ...(text ? text.split('\n').map((l) => `  | ${l}`) : ['  (no text)']),
+      '',
+      'A deletion cannot be undone. The likes, reposts and quotes go with the post; replies under',
+      'it stay, but lose their parent.',
+      '',
+      `With --live the bot would log in, stop unless the session is ${settings.did}, read the post again, and`,
+      `POST com.atproto.repo.deleteRecord ${POST_COLLECTION}/${ref.rkey}, logging it to ${POST_LOG}.`,
+    ].join('\n'));
+    return 0;
+  }
+
+  await client.deleteRecord({ repo: session.did, collection: POST_COLLECTION, rkey: ref.rkey });
+  mkdirSync(join(root, 'data/bot'), { recursive: true });
+  appendFileSync(join(root, POST_LOG), `${JSON.stringify({ at: now().toISOString(), undone: uri, cid: post.cid, text })}\n`);
+  out([
+    `Deleted ${uri}`,
+    `  logged: ${POST_LOG}`,
+    `  ${UPLOADS_DIR}/ is left alone: a stored upload is kept, but the server may drop a blob that no post uses.`,
+  ].join('\n'));
+  return 0;
+}
+
 async function run(ctx) {
   const { positionals, values, env, out, err, root, cwd, now, fetch, configPath, sleep, probe } = ctx;
+  if (values.undo) return undoPost(ctx);
   if (positionals.length !== 1) throw new UsageError(`usage: ${USAGE}`);
   if (!values.video) throw new UsageError(`post needs --video <file.mp4>\nusage: ${USAGE}`);
   const uploadOnly = values['upload-only'];

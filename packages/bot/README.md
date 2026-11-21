@@ -20,6 +20,7 @@ message, then read the answer.
 npm run bot -- announce 1                 # dry run: print exactly what would be sent
 npm run bot -- announce 001-pilot --live  # post it (needs BSKY_APP_PASSWORD, from .secrets)
 npm run bot -- post 2 --video ep2.mp4 --text-file post.txt --alt-file alt.txt --captions ep2.vtt   # dry run
+npm run bot -- post --undo https://bsky.app/profile/latecluster.simcluster.tv/post/<rkey>   # dry run: what deleting it removes
 npm run bot -- reply https://bsky.app/profile/latecluster.simcluster.tv/post/<rkey> --text-file thanks.txt --episode 2   # dry run
 npm run bot -- profile                    # dry run: check brand/avatar.png, compare the bio with the live one
 npm run bot -- repost https://bsky.app/profile/kumavis.me/post/<rkey>   # dry run: read the post, print the record
@@ -261,6 +262,19 @@ post succeeded**: a failed upload or a failed job ends the command with the reas
 10. `createRecord` with `createdAt` set at that moment; print the post's `at://` address and its
     bsky.app URL, and append a line to `data/bot/posts.jsonl` (gitignored): time, episode,
     address, URL, the video's SHA-256 and blob CID.
+
+**`post --undo <post> [--live]`** deletes one of the show's own posts, mirroring `repost --undo`.
+With `--undo`, the positional is a post address (bsky.app or `at://`, `app.bsky.feed.post` only),
+not an episode, and `--video`, `--text-file`, `--alt-file`, `--captions`, `--upload-only`,
+`--lang` and `--aspect` are refused. Another account's post is refused by its address before any
+request, a handle must resolve to `bluesky.did`, and live the session must be `bluesky.did`. The
+dry run reads the post from the AppView and prints its address, CID, date, text, what it embeds
+(for a video: the blob, captions, alt text) and its counts. It says that a deletion cannot be
+undone and that replies under the post stay but lose their parent; a post the AppView does not
+know stops it. Live, it reads the post again, calls `com.atproto.repo.deleteRecord`, prints
+"Deleted <uri>" and logs `{ at, undone, cid, text }` to `data/bot/posts.jsonl`. It leaves
+`data/bot/video-uploads/` alone, and says that the server may drop a blob no post uses. The
+duplicate check reads the account's live records, so a deleted post never blocks posting again.
 
 A stored blob that is never put in a post may be cleaned up by the PDS after a while. If a
 post with a reused blob fails, the error says so: remove the stored file and run again (the
