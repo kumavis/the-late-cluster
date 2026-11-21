@@ -111,7 +111,14 @@
      ]
     }
    ],
-   "works": [],
+   "works": [
+    {
+     "as": "ay-eye",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
    "note": "Raised Larry: ay-eye heard in 2 of 4 takes after \"an\"; otherwise lost (\"when the agent\").",
    "seen": [
     "002-commissions-w47/making-of-inward"
@@ -519,6 +526,49 @@
    "note": "Eppy: \"Eight, terms\" heard \"It, terms\" ×4 (Ate, Eightt the same).",
    "seen": [
     "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "word": "from",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "film",
+     "count": 12
+    },
+    {
+     "as": "from",
+     "count": 8
+    }
+   ],
+   "spellings": [
+    {
+     "as": "frum",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "from",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "frum",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"frum\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
    ]
   },
   {
@@ -1244,6 +1294,40 @@
    ]
   },
   {
+   "word": "no",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "noh",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "no",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "noh",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"noh\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
    "word": "nobody",
    "status": "misleads",
    "voices": [
@@ -1300,9 +1384,23 @@
        "count": 8
       }
      ]
+    },
+    {
+     "as": "onn",
+     "voices": [
+      "larry"
+     ],
+     "heard": []
     }
    ],
-   "works": [],
+   "works": [
+    {
+     "as": "onn",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
    "note": "\"awn\" heard in every take (harvested from fit.json).",
    "seen": [
     "002-commissions-w47/making-of-inward"
@@ -1402,6 +1500,22 @@
     {
      "as": "of",
      "count": 2
+    },
+    {
+     "as": "be poached",
+     "count": 1
+    },
+    {
+     "as": "it poached",
+     "count": 1
+    },
+    {
+     "as": "poops",
+     "count": 1
+    },
+    {
+     "as": "post",
+     "count": 1
     }
    ],
    "spellings": [
@@ -1444,12 +1558,33 @@
        "count": 2
       }
      ]
+    },
+    {
+     "as": "Poasstss",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "post",
+       "count": 2
+      },
+      {
+       "as": "posts",
+       "count": 1
+      },
+      {
+       "as": "the post",
+       "count": 1
+      }
+     ]
     }
    ],
    "works": [],
-   "note": "Larry: \"posts a chart\" runs together as \"Postcard\" (poasts); poasts, uh chart gave \"Poets or Hard\".",
+   "note": "Larry raised to 236-249 Hz, one-word line: as written once heard as a crude word ('poops'), never accepted; Poasstss (sounds kept) is heard 'post' in every take and cleared it.",
    "seen": [
-    "002-commissions-w47/riemann-market-wrap"
+    "002-commissions-w47/riemann-market-wrap",
+    "002-commissions-w47/making-of-inward"
    ]
   },
   {
@@ -1484,6 +1619,40 @@
    "note": "\"kwoat-ing\" heard in every take (harvested from fit.json).",
    "seen": [
     "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "word": "reading",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "reed-ing",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "reading",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "reed-ing",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"reed-ing\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
    ]
   },
   {
@@ -1525,6 +1694,40 @@
    "ipa": "ɹ ə k ɔ ɹ d"
   },
   {
+   "word": "redrew",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "ree-drew",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "redrew",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "ree-drew",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"ree-drew\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
    "word": "reply",
    "status": "misleads",
    "voices": [
@@ -1561,6 +1764,38 @@
     }
    ],
    "ipa": "ɹ ɪ p l aɪ"
+  },
+  {
+   "word": "review",
+   "status": "cannot",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "where are you",
+     "count": 4
+    }
+   ],
+   "spellings": [
+    {
+     "as": "Reev-yoo",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "where are you",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Larry at 104-209 Hz: alone and in every line heard as 'are you', 'where are you', 'for you'; Rree-view, Rreev-yoo, Rree-vue, Rreevv-yoo kept the sounds and were never heard; Rreview was heard but says /ɹɛviw/, not used.",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ]
   },
   {
    "word": "reviewers",
@@ -1696,6 +1931,102 @@
    "note": "Never heard as the name in Sibyl's or a guest's voice (\"Raymond\", \"remain\", \"Rayman\", \"remet\", \"early moon\"); the card and the caption carry it.",
    "seen": [
     "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "word": "scenes",
+   "status": "unstable",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "scenes",
+     "count": 2
+    },
+    {
+     "as": "oh shins",
+     "count": 1
+    },
+    {
+     "as": "singh singh singh singh",
+     "count": 1
+    }
+   ],
+   "spellings": [
+    {
+     "as": "Seenz",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "scenes",
+       "count": 2
+      },
+      {
+       "as": "oh shins",
+       "count": 1
+      },
+      {
+       "as": "singh singh singh singh",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Larry, one-word line: 'scenes' about half the takes, otherwise 'shins' or 'since'; Seenz, Sceenz the same.",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
+   "word": "scripts",
+   "status": "cannot",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "scrapes",
+     "count": 2
+    },
+    {
+     "as": "oh scrapes",
+     "count": 1
+    },
+    {
+     "as": "to scrapes",
+     "count": 1
+    }
+   ],
+   "spellings": [
+    {
+     "as": "Skripts",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "scrapes",
+       "count": 2
+      },
+      {
+       "as": "oh scrapes",
+       "count": 1
+      },
+      {
+       "as": "to scrapes",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Larry, one-word line, 104-190 Hz: 'scrapes' in nearly every take; Skrippts, Scriptts, Sskriptts, Scrrippts the same. In a longer line it is heard.",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
    ]
   },
   {
@@ -2756,6 +3087,16 @@
    "note": "\"Twelve thirty-eight\" was heard as \"12th date\" in every take; the clock on screen carries it.",
    "seen": [
     "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "pattern": "A burp or other sound given to a voice",
+   "note": "Larry 'Urp.' at f0 55, flat: heard 'Oop'. Captionless: it is a sound, not a line, and the transcription only shows it is not a word.",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ],
+   "words": [
+    "urp"
    ]
   }
  ]

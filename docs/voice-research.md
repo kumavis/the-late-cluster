@@ -26,8 +26,10 @@ No spelling tried was heard as the word.
 | **infinitely** | guest | "infantry" ×21, "thank you so much for watching and i'll see you in the" ×2, "infantry meni hares" ×1 | `inn-fuh-nut-lee` → "in faknaji mani herco" ×2; `inn-fun-nut-lee` → "in fun not gee" ×2 | Guest at 254 Hz: "infantry" ×4 as written; in-finn-it-lee "Infiniti", infinitly "in fungi", inn-fuh-nut-lee "In Faknaji"; never heard. |
 | **judge** | larry | "love", "god is" | `juhdge` → "drop" ×3 | Larry: as written "love it", "does it" (judges); juhdge "drop", djudge "draw it" and in the question "drugs it" (not used). |
 | **mouth** | larry | "mouse" | — | Larry: "mouse" in every take, as written and as mouthh, mowthh, mowth after a comma; mouth-th gave "nasty h", not used. |
+| **review** | larry | "where are you" ×4 | `Reev-yoo` → "where are you" ×4 | Larry at 104-209 Hz: alone and in every line heard as 'are you', 'where are you', 'for you'; Rree-view, Rreev-yoo, Rree-vue, Rreevv-yoo kept the sounds and were never heard; Rreview was heard but says /ɹɛviw/, not used. |
 | **reviewers** | sibyl, larry | "are yours" ×3, "two are your" | `ree-vyoo-erz` → "early-liers" ×3, "rely on a" ×1; `re-viewers` → "rears" ×4 | Sibyl: "are yours" as written; Too reviewers, rev-yoo-ers "however you are", ree-vew-urz "early in the world"; never heard. |
 | **riemann** | sibyl, guest | "raiment", "remin", "room", "rim and" | `ree-mun` → "raymond" ×4, "remain" ×4; `reemahn` → "remet" ×4, "remote"; `ree-mon` → "early moon" ×3, "early month" ×1 | Never heard as the name in Sibyl's or a guest's voice ("Raymond", "remain", "Rayman", "remet", "early moon"); the card and the caption carry it. |
+| **scripts** | larry | "scrapes" ×2, "oh scrapes" ×1, "to scrapes" ×1 | `Skripts` → "scrapes" ×2, "oh scrapes" ×1 | Larry, one-word line, 104-190 Hz: 'scrapes' in nearly every take; Skrippts, Scriptts, Sskriptts, Scrrippts the same. In a longer line it is heard. |
 | **tool** | sibyl | "two" ×7 | — | Sibyl: "two" ×7 in earlier lines; here heard, but "Two reviewers" before it became "The tool is yours"; tuhl gave "tough", tewl "tail". |
 | **unprompted** | larry | (not recorded) | `un-prompted` → "and cramped it", "on cramped" | Never heard as one word: "on prompted" at best. |
 | **usage** | sibyl | "are you" ×3, "be your" ×1 | `yoos-age` → "are you extremely", "are you a streamer" | Sibyl, two-word line: yoos-age "the only" ×4 (kept), Yoo-sidge "you've said", Yoos-idj "are you a little"; never the word. |
@@ -39,13 +41,14 @@ Heard in some takes or some lines, not others.
 
 | word | voices | heard as | spellings tried | note |
 |---|---|---|---|---|
-| **ai** | larry | (not recorded) | `ay-eye` → "the" ×2, "a" ×1 | Raised Larry: ay-eye heard in 2 of 4 takes after "an"; otherwise lost ("when the agent"). |
+| **ai** | larry | (not recorded) | — | Raised Larry: ay-eye heard in 2 of 4 takes after "an"; otherwise lost ("when the agent"). |
 | **at least** | guest, sibyl | "at least" ×8, "but it's just", "but each" | `att-leest` → "headlier teeth" ×4; `at-leest` → "to piece" ×4 | Heard in about half the takes in a guest's voice, and as written in Sibyl's ("At least" ×4); a comma after it picked up a false "won't". |
 | **eight** | eppy | "it" ×10 | `Ate` → "it" ×4; `Eightt` → "it" ×4 | Eppy: "Eight, terms" heard "It, terms" ×4 (Ate, Eightt the same). |
 | **half** | guest, eppy | "head", "hit", "health", "heath" | `one-half` → "hit" ×8, "head" ×3; `one-haff` → "heath" ×2, "head" ×1; `wun-half` → "head" ×4; `wun-haaf` → "head, head, head (a runaway)" ×4 | Eppy, alone in a line: "Hit" as written and as Haf/Haff, Hahf/Haaff! "Hey", Hallf "Health", Harf "Hah!"; after "terms" "heh" or "has". Lost at the end of a line in guest voices too. |
 | **multitudes** | sibyl | "multi-toad" ×3, "molecules", "my food" | `mul-tee-toodz` → "multi-toad" ×3, "multitudes" ×1 | Heard about one take in four. |
 | **plausibly** | sibyl | "plause to be" | `plaw-zib-lee` → "plausibly" ×1, "it'll probably be" ×3 | Sibyl: plaw-zib-lee heard 1 take in 4; otherwise "it'll probably be". |
-| **posts** | larry | "david" ×2, "of" ×2 | `poasts` → "david" ×10, "posts" ×4; `pohsts` → "grespa" ×2 | Larry: "posts a chart" runs together as "Postcard" (poasts); poasts, uh chart gave "Poets or Hard". |
+| **posts** | larry | "david" ×2, "of" ×2, "be poached" ×1, "it poached" ×1 | `poasts` → "david" ×10, "posts" ×4; `pohsts` → "grespa" ×2; `Poasstss` → "post" ×2, "posts" ×1 | Larry raised to 236-249 Hz, one-word line: as written once heard as a crude word ('poops'), never accepted; Poasstss (sounds kept) is heard 'post' in every take and cleared it. |
+| **scenes** | larry | "scenes" ×2, "oh shins" ×1, "singh singh singh singh" ×1 | `Seenz` → "scenes" ×2, "oh shins" ×1 | Larry, one-word line: 'scenes' about half the takes, otherwise 'shins' or 'since'; Seenz, Sceenz the same. |
 | **sheet** | sibyl | "(a crude word)", "sheet" ×4 | — | After "other's" it was heard as a crude word, which is never accepted; respelling the word before it (`uh-therz`) cleared it. |
 | **values** | guest | (not recorded) | `val-yooz` → "values" ×3, "value is" ×1 | `val-yooz` heard in 3 of 4 takes; the fourth, "value is", changed the sentence. |
 
@@ -64,6 +67,7 @@ Not single words.
 | A name with a possessive 's straight after another word | Never heard in six spellings; it became "which means", which changed what the line said. |
 | A comma inside a real person's line | A pause can add a word: a comma after "at least" picked up a false "won't". Listen for a negation gained. |
 | A clock time said in words | "Twelve thirty-eight" was heard as "12th date" in every take; the clock on screen carries it. |
+| A burp or other sound given to a voice | Larry 'Urp.' at f0 55, flat: heard 'Oop'. Captionless: it is a sound, not a line, and the transcription only shows it is not a word. |
 
 ## Spellings that work
 
@@ -72,6 +76,7 @@ Heard as the word, in these voices. Words above may have one too, in some voice.
 | word | `as` | voices | note |
 |---|---|---|---|
 | a | `uh` | larry | "uh" heard in every take (harvested from fit.json). |
+| ai (unstable) | `ay-eye` | larry | Raised Larry: ay-eye heard in 2 of 4 takes after "an"; otherwise lost ("when the agent"). |
 | as | `azz` | sibyl | "azz" heard in every take (harvested from fit.json). |
 | bluesky | `blue-sky` | sibyl | "blue-sky" heard in every take (harvested from fit.json). |
 | booking | `book-ing` | larry | "book-ing" heard in every take (harvested from fit.json). |
@@ -79,14 +84,19 @@ Heard as the word, in these voices. Words above may have one too, in some voice.
 | calling | `kaw-ling` | guest | "kaw-ling" heard in every take (harvested from fit.json). |
 | checked | `checkt` | larry | "checkt" heard in every take (harvested from fit.json). |
 | earlier | `ur-lee-er` | sibyl | "ur-lee-er" heard in every take (harvested from fit.json). |
+| from | `frum` | larry | "frum" heard in every take (harvested from fit.json). |
 | had | `hadd` | larry, sibyl | "hadd" heard in every take (harvested from fit.json). |
 | hello | `huh-loh` | larry | "huh-loh" heard in every take (harvested from fit.json). |
 | inverse | `inn-verse` | sibyl | "inn-verse" heard in every take (harvested from fit.json). |
 | it | `itt` | guest | "itt" heard in every take (harvested from fit.json). |
 | jaw | `djaw` | larry | "djaw" heard in every take (harvested from fit.json). |
 | loss | `lawss` | guest | "lawss" heard in every take (harvested from fit.json). |
+| no | `noh` | larry | "noh" heard in every take (harvested from fit.json). |
+| on (misleads) | `onn` | larry | "awn" heard in every take (harvested from fit.json). |
 | posted | `post-id` | larry | "post-id" heard in every take (harvested from fit.json). |
 | quoting | `kwoat-ing` | larry | "kwoat-ing" heard in every take (harvested from fit.json). |
+| reading | `reed-ing` | larry | "reed-ing" heard in every take (harvested from fit.json). |
+| redrew | `ree-drew` | larry | "ree-drew" heard in every take (harvested from fit.json). |
 | simcluster | `sim-cluster` | larry | "sim-cluster" heard in every take (harvested from fit.json). |
 | sixteen | `sik-steen` | eppy | "sik-steen" heard in every take (harvested from fit.json). |
 | so | `sew` | guest | "sew" heard in every take (harvested from fit.json). |
