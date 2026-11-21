@@ -33,7 +33,7 @@ export function permissions({ role, task, id, week, others = [], bible = 'docs/b
   const allow = viewer ? [`Read(${cold}/**)`, ...(task?.writes ?? []).map(edit)] : ['Read', 'Bash(ls)', 'Bash(ls *)', `Bash(npm run produce -- --week ${week} --check *)`, `Bash(npm run produce -- --week ${week} --find *)`, 'Bash(npm run lookup -- *)', ...(task?.writes ?? []).map(edit), ...(task?.alsoEdits ?? []).map((p) => edit(p.replace(/<[^>]+>/g, '*')))]
   if (role === 'researcher') allow.push('Bash(npm run media -- *)')
   if (role === 'auditor') allow.push('Bash(npm run sources -- *)', 'Bash(npm run media -- *)', `Bash(npm run shoot -- ${id} *)`)
-  if (role === 'sound-editor') allow.push(`Bash(npm run fit -- ${id} *)`, `Bash(npm run render -- ${id} *)`, `Bash(npm run voices -- ${id} *)`, `Bash(npm run voices -- ${id})`, 'Bash(bun packages/show/tools/analyze.ts voices *)')
+  if (role === 'sound-editor') allow.push(`Bash(npm run fit -- ${id} *)`, `Bash(npm run render -- ${id} *)`, `Bash(npm run voices -- ${id} *)`, `Bash(npm run voices -- ${id})`, `Bash(npm run voice-research -- ${id} *)`, 'Bash(bun packages/show/tools/analyze.ts voices *)')
   if (role === 'builder') allow.push(edit(`${ep}/segments/${task?.segment ?? '*'}/`), `Bash(npm run shoot -- ${id} *)`, `Bash(npm run check -- ${id} *)`, `Bash(npm run thumbnail -- ${id} *)`)
   if (role === 'builder') allow.push(edit(`${ep}/production/thumbnail.txt`))
   if (role === 'reviewer' && task?.id === 'review.reviewer') allow.push(edit(`${bible}/`), edit(`${ep}/production/dna-amendments.md`), edit(`${ledger}/featured.json`))

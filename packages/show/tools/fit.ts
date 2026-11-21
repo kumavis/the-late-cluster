@@ -12,10 +12,17 @@
  *
  * Per line: the words, the respelling in use, every distinct heard text with its count, the score
  * (words heard of words: the median take, and the worst), a status (ok, weak, flagged, unsayable)
- * and the flags. --json writes fit.json beside the script (for a published episode's segment, into
+ * and the flags. The statuses describe; since the owner's ruling of 21 November 2026 (best effort
+ * is sufficient, subtitles carry the line) only something heard that is alarming, out of bounds or
+ * crude is never accepted: such a line is listed first, for the owner. A real person's line heard
+ * differently is listed last ("heard differently, caption exact"). The voice research file
+ * (data/voice-research.json) is read: a spelling that worked for a word in this voice is tried
+ * first, and a word known to be hard is not searched past its known tries ("known hard word").
+ * --json writes fit.json beside the script (for a published episode's segment, into
  * the tool's cache instead, so the committed build's sourceHash is not disturbed). --apply writes
- * the chosen respellings into the script's `as` fields and nothing else. Exit 0 when no line is
- * flagged or unsayable, 1 otherwise, 2 for bad arguments.
+ * the chosen respellings into the script's `as` fields and nothing else. Exit 1 when a line is still
+ * heard as something alarming, out of bounds or crude, 0 otherwise (weak, flagged and unsayable
+ * lines included), 2 for bad arguments.
  *
  * A draft is episodes/<ep>/production/drafts/<slug>/script.js with its cast.js merged over the
  * episode's; fitting it writes nothing under the episode's public/ or segments/. Renders are cached
@@ -35,7 +42,8 @@ import { measureVoice } from "./analyze.ts";
 import { CAST } from "../src/cast.js";
 import { loadEpisode, loadDraft, requireSegment, exitOnEpisodeError } from "./episode.mjs";
 import { takeDraftArg } from "./draft.mjs";
-import { GATE, wordScore, missedWords, flagsFor, summarise, lineStatus, better, overGate, realNames, isRealLine } from "./heard.mjs";
+import { GATE, wordScore, missedWords, flagsFor, summarise, lineStatus, better, overGate, realNames, isRealLine, blockingFlags } from "./heard.mjs";
+import { loadResearch, knownFor, voiceOf } from "./voice-research-lib.mjs";
 import { lineCandidates, combine, loadDict, splitToken, editDistance } from "./respell.mjs";
 import { applyAs } from "./source-edit.mjs";
 import { nearest } from "./voices-lib.mjs";
@@ -45,6 +53,8 @@ const CACHE = join(HERE, ".cache", "fit");
 const HEARD_CACHE = join(CACHE, "heard");
 const LEARNED = join(CACHE, "learned.json");
 const MODEL = "base.en";
+/** the house cast's ids, before an episode's roster is merged in (a guest is "guest" in the voice research file) */
+const HOUSE = new Set(Object.keys(CAST));
 
 /** the takes: how the bed under the line is scaled, how much is cut before and after, the level */
 const TAKES = [
@@ -307,6 +317,8 @@ interface FitLine {
   suggestion?: Cand;
   status?: string;
   searched: boolean;
+  /** words of this line the voice research file marks as hard in its voice */
+  known?: string[];
 }
 
 function readJson(file: string): any {
@@ -393,6 +405,7 @@ async function main() {
   const { E, g2p } = await loadEngine();
   const dict = loadDict();
   const learned: Record<string, string[]> = readJson(LEARNED) ?? {};
+  const research = loadResearch();
   const ears = new Ears();
   const takes = TAKES.slice(0, nTakes);
   const screen = SCREEN.map((i) => Math.min(i, nTakes - 1)).filter((v, i, a) => a.indexOf(v) === i);
@@ -463,7 +476,14 @@ async function main() {
       const missed = f.current.keys!.flatMap((k) => missedWords(f.text, ears.heard(k)));
       // a flagged line with nothing missed: work on the words around what was misheard
       const target = missed.length ? missed : f.text.split(/\s+/).flatMap((w) => missedWords(w, ""));
-      let cs = lineCandidates(f.text, f.spoken, target, { dict, learned, maxWords: 3, perWord: 4 });
+      // the voice research file: spellings that worked in this voice first; known hard words only their known tries
+      const known = knownFor(research, voiceOf(f.line.who, HOUSE));
+      const lrn: Record<string, string[]> = { ...learned };
+      for (const [w, sp] of Object.entries(known.first)) lrn[w] = [...new Set([...sp, ...(learned[w] ?? [])])];
+      const missedSet = new Set(target);
+      const hardHere = Object.keys(known.hard).filter((w) => w.split(/\s+/).every((x) => missedSet.has(x)));
+      if (hardHere.length) f.known = hardHere;
+      let cs = lineCandidates(f.text, f.spoken, target, { dict, learned: lrn, hard: known.hard, maxWords: 3, perWord: 4 });
       const want = f.line.kind === "sing" ? syllables(f.spoken) : 0;
       cs = cs.filter((c) => {
         if (f.line.kind === "sing" && syllables(c.as) !== want) return false;
@@ -570,6 +590,8 @@ async function main() {
     gate: GATE,
     lines: lines.map((f) => {
       const c = f.chosen!, s = c.sum!;
+      const missed = new Map<string, number>();
+      for (const k of c.keys ?? []) for (const w of missedWords(f.text, ears.heard(k))) missed.set(w, (missed.get(w) ?? 0) + 1);
       return {
         id: f.id,
         who: f.line.who,
@@ -581,17 +603,29 @@ async function main() {
         score: s.score,
         status: f.status,
         flags: s.flags,
+        real: f.real,
+        missed: [...missed].map(([word, count]) => ({ word, count })),
+        ...(f.known ? { known: f.known } : {}),
         ...(f.suggestion ? { suggest: { rate: f.suggestion.rate, as: f.suggestion.as, score: f.suggestion.sum!.score } } : {}),
-        tried: f.cands.filter((x) => x.sum).map((x) => ({ as: x.as, ...(x.rate ? { rate: x.rate } : {}), score: x.sum!.score, ...(x.takes.length < takes.length ? { takes: x.takes.length } : {}), ...(x.sum!.flags.length ? { flags: x.sum!.flags } : {}) })),
+        tried: f.cands.filter((x) => x.sum).map((x) => ({ as: x.as, ...(x.rate ? { rate: x.rate } : {}), score: x.sum!.score, heard: x.sum!.heard, ...(x.takes.length < takes.length ? { takes: x.takes.length } : {}), ...(x.sum!.flags.length ? { flags: x.sum!.flags } : {}) })),
       };
     }),
     voices,
   };
+  // for the owner: heard as something never accepted, with no spelling tried that avoids it
+  const owner = out.lines.filter((l) => blockingFlags(l.flags).length).map((l) => ({ id: l.id, who: l.who, flags: blockingFlags(l.flags), heard: l.heard[0]?.text ?? "" }));
+  // a real person's line heard differently: the caption carries the exact words
+  const different = out.lines.filter((l) => l.real && (l.status !== "ok" || l.flags.length)).map((l) => ({ id: l.id, who: l.who, status: l.status, text: l.text, heard: l.heard[0]?.text ?? "" }));
+  Object.assign(out, { owner, heardDifferently: different });
 
   const count = (st: string) => out.lines.filter((l) => l.status === st).length;
   const secs = (performance.now() - t0) / 1000;
   const cut1 = (s: string, n: number) => (s.length > n ? s.slice(0, n - 1) + "…" : s);
   console.log(`fit ${label}: ${out.lines.length} lines × ${takes.length} takes · ok ${count("ok")} · weak ${count("weak")} · flagged ${count("flagged")} · unsayable ${count("unsayable")} · ${secs.toFixed(0)} s (${ears.transcribed} heard, ${ears.cached} cached)`);
+  if (owner.length) {
+    console.log(`FOR THE OWNER: ${owner.length} line${owner.length === 1 ? "" : "s"} heard as something never accepted, and no spelling tried avoids it:`);
+    for (const o of owner) console.log(`  ${o.id} (${o.who}) ${o.flags.join(", ")}: "${cut1(o.heard, 80)}"`);
+  }
   const w = Math.min(16, Math.max(4, ...out.lines.map((l) => l.id.length)));
   for (const [k, l] of out.lines.entries()) {
     const f = lines[k];
@@ -600,10 +634,15 @@ async function main() {
     const notes: string[] = [];
     if (l.fix) notes.push(`fix: ${l.fix} (was ${f.current.sum!.score.heard}/${f.current.sum!.score.of})`);
     if (l.flags.length) notes.push(l.flags.join(", "));
+    if (l.known) notes.push(`known hard word: ${l.known.join(", ")}`);
     if (l.status !== "ok" || l.flags.length) notes.push(l.heard.slice(0, 2).map((h) => `"${cut1(h.text, 60)}"×${h.count}`).join(" "));
     if (l.suggest) notes.push(`try rate ${l.suggest.rate}: ${l.suggest.score.heard}/${l.suggest.score.of}`);
     if (notes.length) row += " " + notes.join(" · ");
     console.log(row.trimEnd());
+  }
+  if (different.length) {
+    console.log("heard differently, caption exact:");
+    for (const d of different) console.log(`  ${d.id} (${d.who}, ${d.status}) "${cut1(d.text, 60)}" heard "${cut1(d.heard, 60)}"`);
   }
   console.log(`voices: ${Object.entries(voices).map(([k, v]) => `${k} ${v.f0} Hz ~${v.nearest} ${v.distance}`).join(" · ")}`);
 
@@ -634,7 +673,7 @@ async function main() {
     console.log(`applied ${uniq.length} respelling${uniq.length === 1 ? "" : "s"} to ${ep.rel(scriptFile)}`);
   }
   ears.close();
-  process.exit(count("flagged") || count("unsayable") ? 1 : 0);
+  process.exit(owner.length ? 1 : 0);
 }
 
 await main();

@@ -15,6 +15,7 @@
     "check": "bun packages/show/tools/check.ts",
     "fit": "bun packages/show/tools/fit.ts",
     "voices": "bun packages/show/tools/voices.ts",
+    "voice-research": "node packages/show/tools/voice-research.mjs",
     "shoot": "node packages/show/tools/shoot.mjs",
     "thumbnail": "node scripts/thumbnail.mjs",
     "avatar": "node scripts/avatar.mjs",

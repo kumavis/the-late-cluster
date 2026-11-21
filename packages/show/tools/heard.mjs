@@ -139,6 +139,15 @@ export function flagsFor(caption, heard, { terms = {}, names = [], real = false 
 }
 
 /**
+ * The flags that are never accepted (the owner's ruling of 21 November 2026 leaves only these
+ * blocking): something heard that is alarming, out of bounds or crude. Every other flag (a real
+ * name not heard, a statement about a real person heard differently) is a description: the
+ * captions carry the exact words.
+ */
+export const BLOCKING = ['alarming', 'out of bounds', 'crude']
+export const blockingFlags = (flags) => (flags ?? []).filter((f) => BLOCKING.some((k) => f.startsWith(`${k}:`)))
+
+/**
  * Summarise one candidate's takes: takes is [{ heard, score: [ok, of], flags: [] }].
  * Returns { heard: [{ text, count }], score: { heard, of, min }, flags, pass } where score.heard is
  * the median take's words heard, min the worst take's, and pass every take at the gate.

@@ -61,6 +61,10 @@ npm run produce -- --week 2026-W47     # the whole weekly pipeline, stage by sta
 - Every episode runs one deliberate experiment. A reviewer proposes it after the shortlist
   exists, because reviewers are the ones who can see what the show has already tried; writers
   build it in without seeing the past.
+- Best effort on pronunciation is sufficient, because the subtitles carry the line (the owner's
+  ruling, 21 November 2026). Nothing goes back to a writer because the voice cannot say it, and a
+  real person's words are never cut for it. Hard words go in `docs/voice-research.md`. Only
+  something heard as crude, alarming or out of bounds is never accepted.
 - Do not open an earlier episode's source to copy from it. Carry something forward only by
   naming it in the plan with a reason.
 - New props and helpers live with the episode. Something moves into `packages/show` only when

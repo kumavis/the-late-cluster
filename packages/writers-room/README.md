@@ -29,8 +29,8 @@ start the run, and decide at a stop.
 A run is a sequence of stages; a stage is a sequence of waves; a wave is a set of independent tasks,
 each done by one subagent of one role, each writing its own file. A wave may have a tool step it
 runs every round (`before`: fit what changed, re-shoot what changed) and may create tasks as it goes:
-a repeat creates a rework and fresh verdicts on the new version, a line that cannot be said a
-rewrite, a staging change a fix. A task is done when its files exist (or its own test holds), so a
+a repeat creates a rework and fresh verdicts on the new version, a rewrite the owner asked for a
+writer's task, a staging change a fix. A task is done when its files exist (or its own test holds), so a
 run can stop anywhere and resume. `production/state.json` (no timestamps, and no reviewer's or
 auditor's prose) records statuses, gate results and the run's choices. A send-back is a valid end of
 a stage: it names the stage that can fix it, its verdict file is set aside, and only the file's
@@ -40,7 +40,36 @@ The stage definitions are `src/stage/early.mjs` (1 to 6), `src/stage/drafts.mjs`
 `src/stage/late.mjs` (10 to 13). Everything the pipeline knows about other packages sits behind one
 module each: `src/scraper.mjs` (skeletons, lanes, marks, `npm run media`, `npm run sources`,
 `npm run lookup`) and `src/studio.mjs` (`npm run fit`, `npm run render -- <ep> --draft`,
-`npm run voices`), so a rename there is one edit here.
+`npm run voices`, `npm run voice-research`), so a rename there is one edit here.
+
+## Fitting: best effort
+
+The owner's ruling of 21 November 2026: "best effort on pronunciation is sufficient, as subtitles
+carry the line. document hard to say words in a voice research file as part of the process." The
+fitting tool's statuses (`ok`, `weak`, `flagged`, `unsayable`) describe; they no longer decide.
+
+- **Stage 8.** A sound editor gets one task per draft with lines to settle: best effort with `as`,
+  pauses and the guest's voice, then `npm run voice-research -- <ep> --draft <slug>` to record what
+  stayed hard (`packages/show/tools/data/voice-research.json`, page `docs/voice-research.md`), and
+  no hand-back. `fit.heard` (and `select.fitted`) pass when every draft has a `fit.json` and every
+  hard line (unsayable, or flagged for a statement heard differently) is covered by a `cannot` or
+  `unstable` word or a pattern seen in that draft. Weak lines, a real name not heard (no waiver is
+  needed) and every real person's line heard differently ("heard differently, caption exact") are
+  warnings, for the owner's watch.
+- **The one thing that blocks:** something heard that is alarming, out of bounds or crude
+  (`config/pipeline.json` `fit.blocking`, the kinds of the tool's flags). It is never accepted: the
+  sound editor tries another spelling, and if none avoids it the gate fails with the line first,
+  `for the owner: …`. An out-of-bounds subject heard may still be waived in the draft's
+  `heard-waivers.json`, quoting the heard text with a judgement (what waivers were first for).
+- **A rewrite only when the owner asks:** `production/fit/owner-rewrites.json`,
+  `{ "drafts": { "<slug>": ["<line id>"] }, "segments": { "<seg>": ["<line id>"] } }` (an empty list:
+  every line). The task (`fit.rewrite-<slug>`, `assemble.rewrite-<seg>`, kind `rewrite`) is done
+  once the script changes.
+- **Assembly** works the same way (`assemble.sound`, best effort, once); `assemble.fitted` fails
+  only on what is never accepted. The render gates: `render.whisper` lists a line under the
+  intelligibility mark as a warning (`production/intelligibility.json` is no longer read);
+  `render.heard` still fails on an alarming term heard and on an out-of-bounds subject without a
+  waiver, and lists a real name not heard as a warning.
 
 **Runners** (remembered in `state.json`):
 
@@ -64,7 +93,7 @@ Everything lands under `episodes/<id>/production/`; reviewers' and auditors' fil
 | 5 | shortlist | `shortlist.reviewer-<k>`, then `shortlist.experiment` (reviewer) | best joke, synergy, variety; `rank/shortlist.json` with `interview` ranked apart | scores for every pool card; `experiment.md` with a measure |
 | 6 | repetition-ideas | `repetition-ideas.reviewer-<k>-r<n>`; `repetition-ideas.rework-<idea>` (writer) | strictest verdict; people rules | nothing going to drafting is a repeat |
 | 7 | draft | `draft.<slug>` (writer): the shortlist and the three standing segments, each with its card and ideas | the previous aired genre as an `avoid` line for music | a draft for every planned slug; real lines sourced, with the draft's own cast |
-| 8 | fit | `fit.voices`, `fit.<slug>` (sound-editor); `fit.rewrite-<slug>` (writer) | `npm run fit` on every changed draft | nothing flagged or unsayable in any `fit.json`; sound editors changed no words |
+| 8 | fit | `fit.voices`, `fit.<slug>` (sound-editor, best effort); `fit.rewrite-<slug>` (writer) only when the owner asks | `npm run fit` on every changed draft | every draft fitted; nothing heard crude, alarming or out of bounds (listed first, for the owner); every hard line recorded in the voice research file; sound editors changed no words |
 | 9 | select | `select.reviewer-<k>`; `select.repetition-<r>-r<n>`; `select.redraft-<slug>` (writer); `select.consent-r<n>` (auditor) | fills toward the target applying the caps (one interview, two segments a person, no previous speaker, a pair verdict keeps the better script, consent outs); `plan.json` | scores, no repeat among the selected, caps, a consent refresh of this selection, every selected draft heard |
 | 10 | assemble | `assemble.writer`; `assemble.repetition-<r>-r<n>`; `assemble.rework` (writer); `assemble.sound` (sound-editor) | copies the drafts in, merges sources and casts; finds the lines added or changed; fits segments; renders | the added lines pass the gate; every write, render and heard-text gate |
 | 11 | stage | `stage.<seg>` (builder), then `stage.auditor-r<n>`; `stage.fix-<seg>-r<n>`, `stage.fix-episode-r<n>` (builder) | re-shoots only changed segments (`stage/frames.json`) | frames, cards (every post shown or performed), unread text, credits, imports; a pass for every segment |

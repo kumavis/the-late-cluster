@@ -66,14 +66,14 @@ test('parseWhisper reads rows with what was heard, weak ids and the total', () =
   assert.equal(w.heard, 12)
 })
 
-test('render.whisper: a weak line fails; a waiver is accepted only for a name (finding 56)', async () => {
+test('render.whisper: a line under the mark is a warning for the owner\'s watch, never a failure (the ruling of 21 November 2026)', async () => {
   const t = (extra) => (root) => fakeTools(root, { whisper: true, whisperOut: { chat: WHISPER, 'cold-open': '' }, ...extra })
-  fails(await run(renderWhisper, {}, { tools: t() }), /chat p2: "claim\." was heard as "flame" \(0\/1\)/)
-  fails(await run(renderWhisper, { 'production/intelligibility.json': { chat: { p2: 'it is fine' } } }, { tools: t() }), /waivers are only for names Whisper cannot know/)
-  const named = WHISPER.replace(/"claim\."/g, '"Bo, claim."')
-  const w = await run(renderWhisper, { 'production/intelligibility.json': { chat: { p2: 'Bo is a name' } } }, { tools: t({ whisperOut: { chat: named, 'cold-open': '' } }) })
+  const w = await run(renderWhisper, {}, { tools: t() })
   ok(w)
-  assert.match(w.warnings.join(' '), /waived as a name/)
+  assert.match(w.warnings.join('\n'), /for the owner's watch: chat p2 \(bo\): "claim\." was heard as "flame" \(0\/1\); the caption carries it/)
+  // no waiver is needed, and an old one changes nothing
+  ok(await run(renderWhisper, { 'production/intelligibility.json': { chat: { p2: 'it is fine' } } }, { tools: t() }))
+  fails(await run(renderWhisper, {}, { tools: (root) => ({ ...fakeTools(root, { whisper: true }), bun: () => ({ code: 3, out: '' }) }) }), /the Whisper pass on chat exited 3/)
   assert.match((await run(renderWhisper, {}, { tools: (root) => fakeTools(root, { whisper: false }) })).skipped, /not installed/)
 })
 
@@ -92,10 +92,13 @@ test('render.heard: an out-of-bounds subject heard fails until a waiver quotes t
   assert.match(stale.warnings.join(' '), /the waiver no longer applies/)
 })
 
-test('render.heard: a real name in the caption heard as something else fails until judged harmless', async () => {
+test('render.heard: a real name in the caption heard as something else is a warning, with no waiver needed', async () => {
   const over = { 'segments/chat/cues.json': cues('chat', 41, [L(0, 'intro', 'larry', 'Ana posted this on Tuesday.')]) }
-  fails(await run(renderHeard, over, { tools: whisperTools({ chat: { intro: 'Anna posted this on Tuesday.' } }) }), /the caption names ana, but the transcription heard "Anna posted this on Tuesday\."/)
-  ok(await run(renderHeard, { ...over, 'production/heard-waivers.json': { chat: { intro: { heard: 'Anna posted this on Tuesday.', judgement: 'Anna for Ana says nothing about anyone' } } } }, { tools: whisperTools({ chat: { intro: 'Anna posted this on Tuesday.' } }) }))
+  const r = await run(renderHeard, over, { tools: whisperTools({ chat: { intro: 'Anna posted this on Tuesday.' } }) })
+  ok(r)
+  assert.match(r.warnings.join('\n'), /for the owner's watch: chat intro \(larry, [\d.]+ s\): the caption names ana, heard as "Anna posted this on Tuesday\."; the caption carries it/)
+  // the alarming check still fails on the same line
+  fails(await run(renderHeard, over, { tools: whisperTools({ chat: { intro: 'Anna posted about a genocide.' } }) }), /contains "genocide"\. No waiver/)
 })
 
 test('render.lengths: under the ceiling (a segment off its estimate is only a warning)', async () => {

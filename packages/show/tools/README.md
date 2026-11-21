@@ -524,6 +524,17 @@ The fitting tool does the render-and-listen loop so nobody does it by hand. It n
 line's words, only how they are said: a respelling in `as`, a comma in `as`, and (as a suggestion
 it never writes) a slower `rate`.
 
+**Best effort is sufficient** (the owner's ruling of 21 November 2026: "best effort on
+pronunciation is sufficient, as subtitles carry the line. document hard to say words in a voice
+research file as part of the process."). Captions are on by default and follow every spoken line
+with the current word lit, so a viewer always reads the exact words. A line the voice cannot say
+well is fitted as well as it can be, its hard word goes into the voice research file
+([`docs/voice-research.md`](../../../docs/voice-research.md), below), and the line stays as written.
+Nothing goes back to a writer for how a line is heard, and a real person's words are never taken
+out of their puppet's voice for it. **The one exception:** something heard that is crude,
+alarming or out of bounds (the word lists below) is never accepted. The sound editor chooses
+another spelling; if none avoids it, the line is listed first in the fit report, for the owner.
+
 ```sh
 npm run fit -- <ep> --draft <slug>            # a draft: production/drafts/<slug>/script.js, its cast.js over the episode's
 npm run fit -- <ep> <seg>                     # an assembled segment
@@ -555,6 +566,12 @@ What it does, per line (every `say` and every captioned sung line):
 5. Keeps the best candidate, in this order: nothing flagged, every take over the gate, the
    median take, the worst take, fewest changes. The line as written wins a tie.
 
+It reads the voice research file (`data/voice-research.json`) for the line's voice (a house id,
+or `guest` for any guest): a spelling that has worked for a word in that voice is tried before
+anything else, and a word marked `cannot` with no working spelling in that voice is not searched
+past its recorded tries (a `cannot` word with none recorded is searched as usual); the row says
+`known hard word: <word>`.
+
 The report is one screen per segment:
 
 ```
@@ -566,15 +583,17 @@ bee           larry    17/18     ok        fix: comma before known + should → 
 voices: larry 107 Hz ~pete 1.54 · sibyl 207 Hz ~mokkenstorm 1.9 · verooo 242 Hz ~mokkenstorm 1.34
 ```
 
-The score is the median take's words heard, with the worst take in brackets when it differs. The
-statuses:
+The score is the median take's words heard, with the worst take in brackets when it differs. A
+line heard as something never accepted is listed above the table (`FOR THE OWNER: …`), and every
+real person's line still heard differently below it (`heard differently, caption exact:`), so the
+owner sees each such line in one place. The statuses describe; they do not decide:
 
 | status | meaning | what the sound editor does |
 |---|---|---|
 | `ok` | every take at 60 % or more, nothing flagged | nothing (`--apply` writes the fix, if there is one) |
-| `weak` | the median take passes but one does not: unstable | try the suggestion, more `gap` from a loud sound, a lower sfx `vol`; or accept it and say so |
-| `flagged` | something heard is alarming, out of bounds, crude, changes a statement about a real person, or a real name was not heard | never accept an alarming one. A name Whisper cannot spell, or a harmless mishearing, needs a writer's waiver quoting the heard text (`production/heard-waivers.json`); otherwise back to the writer |
-| `unsayable` | no candidate got the line over the gate | back to the writer with what was heard. For a real person's line the choices are a marked cut that keeps its meaning, a reading by a house character from the card, or the card alone |
+| `weak` | the median take passes but one does not: unstable | try the suggestion, more `gap` from a loud sound, a lower sfx `vol`; or accept it and say so (record the word if it matters) |
+| `flagged` | something heard is alarming, out of bounds, crude, changes a statement about a real person, or a real name was not heard | **alarming, out of bounds or crude: never accepted**: another spelling, or the line goes to the owner. A real name not heard needs nothing (no waiver: the caption carries it). A statement heard differently: best effort, record the word that failed, and list the line under "heard differently, caption exact" |
+| `unsayable` | no candidate got the line over the gate | best effort, then record the word that failed (`npm run voice-research -- … --add`) and move on |
 
 `fit.json` (with `--json`) is written beside the script, for a draft in its draft folder (never
 into the episode's `public/` or `segments/`). For a published episode's segment it goes into
@@ -593,8 +612,12 @@ into the episode's `public/` or `segments/`). For a published episode's segment 
 
 `as` is the respelling the tool chose (null when the caption is said as written); `was` and `fix`
 appear only when it proposes a change; `suggest` only when a slower rate did better (never applied);
-`tried` lists every candidate heard, `takes: 2` marking those only screened. `voices` gives each
-speaker's measured pitch and nearest voice in the whole cast (house, episode and draft).
+`tried` lists every candidate heard, with what it was heard as, `takes: 2` marking those only
+screened. `real` marks a real person's line; `missed` the caption words the chosen candidate's
+takes missed, with counts; `known` the words the voice research file marks hard in this voice.
+`owner` lists the lines heard as something never accepted, `heardDifferently` the real people's
+lines not heard as written. `voices` gives each speaker's measured pitch and nearest voice in the
+whole cast (house, episode and draft). The command exits 1 only when `owner` is not empty.
 
 **The sound editor's pass, step by step:**
 
@@ -605,20 +628,65 @@ speaker's measured pitch and nearest voice in the whole cast (house, episode and
    alarming word is never accepted.
 4. `npm run fit -- <ep> --draft <slug> --apply --json` to write the respellings (only `as`
    changes; the diff is the review).
-5. For a `weak` line, try what the table suggests by hand (`rate`, `gap`, an sfx's `vol` or
-   `at`), then fit again. For a `flagged` name, record a waiver or send it to the writer; for an
-   `unsayable` line, send it to the writer with the heard texts from `fit.json`.
-6. Fit again until the exit code is 0 (no line flagged or unsayable). A re-run of an unchanged
-   script takes seconds: every render and every transcription is cached.
+5. For a `weak` or `unsayable` line, try what the table suggests by hand (`rate`, `gap`, an
+   sfx's `vol` or `at`, a few spellings of your own), then fit again. A few tries are enough:
+   best effort is sufficient. A `flagged` name needs nothing.
+6. Record what stayed hard: `npm run voice-research -- <ep> --draft <slug>` (below). It ends 0
+   when every hard line is recorded.
+7. Fit again until the exit code is 0 (nothing heard is crude, alarming or out of bounds). If no
+   spelling avoids such a word, put the line first in the fit notes, under "For the owner", with
+   every heard text. A re-run of an unchanged script takes seconds: every render and every
+   transcription is cached.
 
 It takes about 40 to 90 s per segment the first time on an M-series Mac (four loaded Whisper
 workers), a few seconds after that. It needs `whisper` (openai-whisper) on the PATH; if the
 command's Python cannot be found it falls back to running the command, which is slower.
 
 **What it cannot do.** It cannot judge a mishearing's meaning beyond its word lists, so read the
-heard texts of every flagged and weak line yourself. Whisper does not know invented names: a name
-it cannot spell is flagged until a waiver quotes what it heard. It does not change words, cut
-lines or re-place sfx; those are the writer's and the builder's.
+heard texts of every flagged and weak line yourself. Whisper does not know invented names or
+handles: a name it cannot spell is flagged, as a description (no waiver is needed; the waivers in
+`production/heard-waivers.json` are only for an out-of-bounds subject heard). It does not change
+words, cut lines or re-place sfx; those are the writer's and the builder's.
+
+### The voice research file (`npm run voice-research`)
+
+`data/voice-research.json` is the one source of truth for the words and patterns the voices find
+hard; [`docs/voice-research.md`](../../../docs/voice-research.md) is generated from it, for a
+writer to scan in a minute (what cannot be said, what is unstable, patterns, spellings that work;
+where each was seen stays out of the page). Both are committed; the studio cannot regenerate the
+file (`scripts/test/checkout.test.mjs` guards it), and a test fails when the page is stale.
+
+```sh
+npm run voice-research -- <ep> --draft <slug>      # harvest a draft's fit.json (--drafts: every draft; <ep> <seg>: a segment)
+npm run voice-research -- <ep> --draft <slug> --add usage --line usage-limit --status cannot --note "Never heard in a two-word line."
+npm run voice-research -- <ep> --draft <slug> --add kazoo --line l1-kazoo --status works --as kah-zoo --note "Heard as Kazu."
+npm run voice-research -- <ep> --draft <slug> --pattern "A word beginning \"cl\"" --words clue --note "Voiced to gl."
+npm run voice-research -- --page                   # regenerate the page only; --dry-run writes nothing
+```
+
+The harvest records, as `works`, each caption word respelled in the chosen `as` and heard in every
+take (with what it was heard as, and the other spellings tried, from `tried`), and lists every line
+still `weak`, `flagged` or `unsayable` with its heard texts and missed words. It never makes an
+entry it cannot attribute to a word: a respelling heard in only some takes, a symbol said as words
+and anything never heard are printed, not recorded. `--add` records the word that failed, from one
+line of `fit.json`: the word must be in that line's caption; what it was heard as, and what each
+spelling tried was heard as, come from the file. A word already recorded keeps its status when a
+spelling works once (you judge); counts from a source already seen are not added twice, so a harvest
+can be re-run. A hand edit of the JSON is fine too, in the same shape, followed by `--page`.
+
+An entry: `word` (lower case; a short phrase is allowed), `status` (`works`, `unstable`, `cannot`),
+`voices` (house ids, or `guest`: a guest's cast id can be a handle, so it is never recorded),
+`heard` (what the word as written was heard as, with counts), `spellings` (each tried, its voices
+and what it was heard as), `works` (the spellings heard as the word, and in which voices), `note`
+(one line) and `seen` (episode or draft ids only, `<episode id>/<slug>`: never a person, a handle or
+which post a word came from). A pattern: `pattern`, `note`, `seen`, and optionally `words`, the
+words of a line it covers. **Names are never recorded**: a real person's name or handle is refused,
+and a line whose only missed words are a name needs no entry.
+
+A hard line (unsayable, or flagged for a statement heard differently) counts as recorded when a
+`cannot` or `unstable` word, or a pattern with `words`, seen in that draft, covers a word of its
+caption. The command exits 0 when every hard line is recorded, 1 when one is not or a line is heard
+as something never accepted, 2 for bad arguments. It runs with node, with nothing installed.
 
 ## Rendering a draft (`--draft`)
 
@@ -783,6 +851,9 @@ How it works:
 
 ## Known limits
 
+- Some words cannot be said, or are unstable, in some voices: they are recorded in
+  [`docs/voice-research.md`](../../../docs/voice-research.md). A writer may still use them; the
+  captions carry the line.
 - Laughs are synthesized "h+vowel" pulses. They read as a crowd laughing, but up close they
   are clearly synthetic. Real laughter has inhaled gasps, which the engine can't do in speech
   mode.

@@ -239,10 +239,11 @@
     }
   },
   "fit": {
-    "$comment": "Stage 8 and assembly: the studio's fitting tool (packages/show: npm run fit) renders each line in its voice, transcribes it, tries respellings and writes fit.json beside the script. Lines it marks flagged or unsayable block; weak lines are warnings for the sound editor.",
+    "$comment": "Stage 8 and assembly: the studio's fitting tool (packages/show: npm run fit) renders each line in its voice, transcribes it, tries respellings and writes fit.json beside the script. The owner's ruling of 21 November 2026: best effort on pronunciation is sufficient, as subtitles carry the line. `blocking` lists the only flag kinds that block (something heard that is alarming, out of bounds or crude: never accepted, for another spelling or the owner). Every other unsayable, weak or flagged line is accepted once the sound editor has recorded its hard word in the voice research file (npm run voice-research); nothing goes back to a writer unless the owner asks (production/fit/owner-rewrites.json).",
     "blocking": [
-      "flagged",
-      "unsayable"
+      "alarming",
+      "out of bounds",
+      "crude"
     ],
     "rounds": 3
   },
@@ -252,7 +253,7 @@
     "spokenCoverage": 0.8
   },
   "heard": {
-    "$comment": "The heard-text gate scans what the transcription heard, line by line. Any of these terms (whole words, case-insensitive) fails the line regardless of its score, and so do the out-of-bounds subjects. A real person's name in a caption that was heard as something else fails until a writer records in production/heard-waivers.json, quoting the heard text exactly, that it is harmless.",
+    "$comment": "The heard-text gate scans what the transcription heard, line by line. Any of these terms (whole words, case-insensitive) fails the line regardless of its score, and so do the out-of-bounds subjects. An out-of-bounds subject heard may be waived in production/heard-waivers.json, quoting the heard text exactly with a judgement that it is harmless. A real person's name heard as something else, and a line under the intelligibility mark, are warnings listed for the owner's watch: the captions carry the exact words.",
     "alarming": [
       "auschwitz",
       "holocaust",

@@ -1,6 +1,6 @@
 // The orchestrator end to end on the workflow fixture, with fake tools (no bun, ffmpeg or browser):
-// the thirteen stages in order; the fitting tool flagging a line, a sound editor, and the writer's
-// rewrite; the repetition gate blocking at ideas, at scripts and at assembly; the consent refresh;
+// the thirteen stages in order; the fitting tool flagging a line and a sound editor's best effort
+// (a rewrite only when the owner asks); the repetition gate blocking at ideas, at scripts and at assembly; the consent refresh;
 // the unread-text gate blocking until reworked; the stage auditor routing a change to a builder; the
 // cold-viewer test; briefs, --check --task, send-backs, a fresh id, preview-only.
 import { test } from 'node:test'
@@ -44,8 +44,9 @@ test('the thirteen stages run end to end: fit, the three repetition gates, conse
     // the repetition gate on ideas: one repeat, reworked, then judged again; a turned verdict passes
     assert.match(o, /fixture repetition-ideas\.rework-writer-1-3: 1 file[\s\S]*fixture repetition-ideas\.reviewer-1-r2/)
     assert.match(o, /warn turned: writer-2-3 \(review\/repetition-ideas\.json\)/)
-    // fit: voices for the guests, a sound editor on the flagged line, then its writer rewrites it
-    assert.match(o, /fixture fit\.voices[\s\S]*fixture fit\.talk-ask: 1 file[\s\S]*gate fit\.words ok[\s\S]*fixture fit\.rewrite-talk-ask[\s\S]*gate fit\.heard ok/)
+    // fit: voices for the guests, a sound editor respells the line heard as something alarming; nothing goes to a writer
+    assert.match(o, /fixture fit\.voices[\s\S]*fixture fit\.talk-ask: 2 files[\s\S]*gate fit\.words ok[\s\S]*gate fit\.heard ok/)
+    assert.ok(!/fit\.rewrite-/.test(o), 'no rewrite in the routine flow')
     // select: scores, the gate on the selected scripts with a redraft, then the consent refresh
     assert.match(o, /fixture select\.redraft-talk-ask[\s\S]*fixture select\.repetition-reviewer-2-r2[\s\S]*fixture select\.consent-r1[\s\S]*gate select\.consent ok/)
     // assembly: the line the assembler added is judged, reworked and judged again
@@ -68,8 +69,14 @@ test('the thirteen stages run end to end: fit, the three repetition gates, conse
     assert.match(interview, /^- episodes\/002-2099-w01\/production\/research\/kept\/interview-quinn\.json$/m)
     assert.match(interview, /\*\*interview-quinn:\*\* Quinn is invented/, 'the card\'s terms of use')
     assert.match(readFileSync(join(prod, 'briefs/draft/draft.music.md'), 'utf8'), /Avoid: the genre "stomp-clap anthem"\./)
-    // the writer of a line that cannot be said sees what was heard, and nothing else from the fit
-    assert.match(readFileSync(join(prod, 'briefs/fit/fit.rewrite-talk-ask.md'), 'utf8'), /calm \(larry, flagged: alarming\): "Relax\. This show is not a bum\." heard as "Relax\. This show is not a bomb\."/)
+    // the sound editor sees what was heard, is told best effort is enough, and records hard words
+    const sound = readFileSync(join(prod, 'briefs/fit/fit.talk-ask.md'), 'utf8')
+    assert.match(sound, /calm \(larry, flagged: alarming: bomb\): "Relax\. This show is not a bum\." heard as "Relax\. This show is not a bomb\."/)
+    assert.match(sound, /Best effort is sufficient[\s\S]*nothing goes back to the writer/)
+    assert.match(sound, /npm run voice-research -- 002-2099-w01 --draft talk-ask/)
+    assert.match(sound, /The one exception: something heard that is crude, alarming or out of bounds is never accepted/)
+    // a writer may still use a hard word
+    assert.match(readFileSync(join(prod, 'briefs/draft/draft.talk-ask.md'), 'utf8'), /docs\/voice-research\.md lists the words the voices find hard\. A hard word may still be used/)
     // reviewers' reasons never reach a file another role reads, nor state.json (finding 17)
     for (const f of ['state.json', 'rank/cards.json', 'rank/scores.json', 'rank/shortlist.json', 'research/longlist.json', 'select/scores.json']) {
       const text = readFileSync(join(prod, f), 'utf8')
@@ -99,6 +106,30 @@ test('the thirteen stages run end to end: fit, the three repetition gates, conse
     assert.ok(!/\d{4}-\d{2}-\d{2}T\d{2}:/.test(readFileSync(join(prod, 'state.json'), 'utf8')), 'no timestamps')
   } finally {
     cleanup(root)
+  }
+})
+
+test('fit: a line still heard as something alarming stops the run for the owner; a rewrite only when the owner asks', async () => {
+  const fx = mkdtempSync(join(tmpdir(), 'wr-fx-'))
+  cpSync(join(FX, 'tasks'), fx, { recursive: true })
+  rmSync(join(fx, 'fit.talk-ask/production/drafts/talk-ask/script.js'))
+  const { root, lines, run } = setup({ fixture: fx })
+  try {
+    assert.equal(await run(), 1)
+    let o = out(lines)
+    assert.match(o, /gate fit\.heard FAIL\n  FAIL for the owner: talk-ask calm \(larry, flagged: alarming: bomb\)/)
+    assert.match(o, /decide: fit stopped/)
+    assert.ok(!/fixture fit\.rewrite-/.test(o), 'no rewrite until the owner asks')
+    const prod = join(findEpisodeForWeek(root, WEEK).dir, 'production')
+    writeFileSync(join(prod, 'fit/owner-rewrites.json'), JSON.stringify({ drafts: { 'talk-ask': ['calm'] } }))
+    lines.length = 0
+    await run()
+    o = out(lines)
+    assert.match(o, /fixture fit\.rewrite-talk-ask[\s\S]*gate fit\.heard ok[\s\S]*stage fit done/)
+    assert.match(readFileSync(join(prod, 'briefs/fit/fit.rewrite-talk-ask.md'), 'utf8'), /The owner asked for these lines to be rewritten:\n- calm \(larry, /)
+  } finally {
+    cleanup(root)
+    rmSync(fx, { recursive: true, force: true })
   }
 })
 

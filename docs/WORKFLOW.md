@@ -40,7 +40,7 @@ So this workflow is built on four ideas.
 | **Reviewer** | latest Fable | judges comedy and repetition: ranks, runs the repetition gates, selects, fills in the scorecard | rewrites what it reviews (it sends back with reasons) |
 | **Researcher** | latest Opus | chooses and annotates content cards from the scraper's skeletons, and describes what pictures and videos show | proposes jokes; retypes a post |
 | **Auditor** | latest Opus | checks work against rules and facts: the scope of the scrape, the constitution screen, consent (with the network), the staged frames | judges whether something is funny; rewrites what it checks |
-| **Sound editor** | latest Opus | fits scripts to the voice engine with the fitting tool, gives guests distinct voices, reports lines that cannot be said | changes what a line means; cuts a real person's words (a writer decides a cut) |
+| **Sound editor** | latest Opus | fits scripts to the voice engine with the fitting tool on a best effort, gives guests distinct voices, records hard words in the voice research file | changes what a line means; cuts a real person's words |
 | **Builder** | latest Opus | stages segments in code, runs the tools, maintains the pipeline, scraper and studio | changes scripts or what a real person is shown saying |
 
 "Latest" means the newest model in that family at the time of the run. As of November 2026
@@ -113,7 +113,7 @@ own.
 | 5 | **shortlist** | 2 reviewers for best joke, synergy and variety; tool combines; then 1 reviewer proposes the experiment | `rank/scores.json`, `rank/shortlist.md`, `experiment.md` | the shortlist exists and the experiment has a measure |
 | 6 | **repetition gate (ideas)** | 2 reviewers with the ledger | `review/repetition-ideas.json` | no shortlisted idea is a repeat |
 | 7 | **draft** | writers in parallel, one segment each | `drafts/<slug>/script.js`, notes and sources | every standing segment has a draft, and seven or eight drafts exist |
-| 8 | **fit** | the fitting tool, then sound editors; writers only for lines that cannot be said | `drafts/<slug>/fit.json`, respellings in the script | no line in any draft is flagged or cannot be said; a line that is only weak is a warning the sound editor answers |
+| 8 | **fit** | the fitting tool, then sound editors | `drafts/<slug>/fit.json`, respellings in the script, entries in the voice research file | every draft is fitted on a best effort and its hard words are recorded; nothing heard is crude, alarming or out of bounds |
 | 9 | **select** | 2 reviewers score; tool combines and applies the caps; **repetition gate (scripts)** by 2 reviewers; 1 auditor refreshes consent over the network | `select/scores.json`, `review/repetition-scripts.json`, `review/consent-r<n>.md`, `plan.json` | no selected script repeats, no cap is broken, every selected account and post passes the consent refresh, and the rundown fits |
 | 10 | **assemble** | 1 writer for the order, open, close and joins; 2 reviewers on the lines the writer added; 1 sound editor; tools | final `segments/*/script.js`, `sources.json`, `assembly.md`, audio | scripts validate and render; the added lines pass the repetition gate; the real-people and heard-text gates pass |
 | 11 | **stage** | builders in parallel, one segment each; then 1 auditor on the frames | `segments/*/index.js`, frames, `review/stage.json` | frames render clean; the cards, unread-text and credits gates pass; the auditor passes every segment |
@@ -245,9 +245,19 @@ times, tries respellings from the pronunciation dictionary, and reports what was
 every line, with anything alarming, out of bounds or about a real person marked. The sound
 editor chooses among what the tool found, gives the guests of all drafts voices that are
 distinct from each other and from the house, and settles every line that can be settled
-without changing its words. A line that cannot be said goes back to its writer with what was
-heard; for a real person's line the choices are a marked cut that keeps its meaning, a
-reading by a house character from the card, or the card alone.
+without changing its words.
+
+**Best effort on pronunciation is sufficient, because the subtitles carry the line** (the
+owner's ruling, 21 November 2026). Captions are on by default and light each word as it is
+spoken, so the viewer always sees the exact words. A line the voice cannot say stays as it was
+written, and nothing goes back to a writer for pronunciation: no rewrite, no cut of a real
+person's words, no waiver for a name. The sound editor records every hard word in the **voice
+research file** (`docs/voice-research.md`, kept by `npm run voice-research`): what it was heard
+as, the spellings tried, and the one that works if one does. The tool tries a known spelling
+first, and writers may read the file, and may still use a hard word. A line whose best effort is
+still heard differently from its caption is listed in the fit report for the owner's watch. One
+thing is never accepted: a spelling heard as crude, alarming or out of bounds. The sound editor
+finds another, and if there is none the line goes to the owner.
 
 ### 9. Select
 
@@ -272,8 +282,9 @@ One writer assembles the selected drafts into an episode: the order, the open an
 the joins. The lines that writer adds or changes go through the repetition gate. The sound
 editor fits the assembled scripts again. Tools render the audio, and the gates run on the
 result: every line spoken by a real account's puppet is exact and in its own context; nothing
-in what the transcription **heard** is offensive, alarming or says something about a real
-person that the script does not.
+in what the transcription **heard** is offensive, alarming or out of bounds. A line heard
+differently from its caption is a warning, listed for the owner's watch: the subtitles carry
+the line.
 
 Builders stage the segments in parallel. Three gates run on the staging, where on-screen text
 first exists: every shown post is exact, whether it is on a card or performed by a puppet; no

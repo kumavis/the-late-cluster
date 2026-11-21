@@ -213,9 +213,13 @@ const join = (toks) => toks.join(' ')
  * - `text` the caption, `as` the respelling in use (or undefined);
  * - `missed` the norm()ed caption words missed across the takes (repeats count);
  * - `maxWords` how many of the most-missed words to work on, `perWord` respellings per word.
+ * - `hard` maps lower-case words known to be hard (the voice research file's `cannot`) to the
+ *   spellings already tried: for those words only these are offered, with no new search and no
+ *   commas (a hard word with no recorded tries is searched as usual). `learned` is tried first for every other word (the research file's working spellings
+ *   come first in it).
  * The line as it stands is not included. Every candidate has as many tokens as the caption.
  */
-export function lineCandidates(text, as, missed, { dict = new Map(), learned = {}, maxWords = 3, perWord = 4 } = {}) {
+export function lineCandidates(text, as, missed, { dict = new Map(), learned = {}, hard = {}, maxWords = 3, perWord = 4 } = {}) {
   const al = alignedTokens(text, as) ?? alignedTokens(text, text)
   const spoken = al.spoken
   const out = []
@@ -231,6 +235,17 @@ export function lineCandidates(text, as, missed, { dict = new Map(), learned = {
   for (const i of targetTokens(text, missed).slice(0, maxWords)) {
     const cap = splitToken(al.text[i])
     const cur = splitToken(spoken[i])
+    const known = hard[cap.core.toLowerCase()]
+    if (known?.length) {
+      // a word known to be hard: the known tries only, then stop
+      for (const r of known.slice(0, perWord)) {
+        if (r === cur.core) continue
+        const toks = spoken.slice()
+        toks[i] = cur.lead + r + cur.trail
+        add(toks, 1, `${cap.core} → ${r} (known)`)
+      }
+      continue
+    }
     // respellings of the word, with the punctuation the spoken token has
     for (const r of wordCandidates(cap.core, { dict, learned }).slice(0, perWord)) {
       const toks = spoken.slice()

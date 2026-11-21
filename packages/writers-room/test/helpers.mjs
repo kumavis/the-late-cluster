@@ -290,7 +290,8 @@ export function whisperReport(root, id, seg, heard = {}) {
  * The fitting tool, approximately (packages/show: npm run fit): every line heard as written, unless
  * `heard` maps its caption to what is heard instead. As the real tool does, a line is flagged when
  * what is heard has an alarming word the caption does not; UNSAYABLE in a caption makes it
- * unsayable and WEAK with no `as` weak. Writes fit.json beside the script; exits 0 only when nothing blocks.
+ * unsayable and WEAK with no `as` weak. Writes fit.json beside the script; exits 1 only when a line is
+ * heard as something alarming (the one thing that blocks since the owner's ruling of 21 November 2026).
  */
 export function fakeFit(root, id, args, heard = {}) {
   const draft = args.includes('--draft') ? args[args.indexOf('--draft') + 1] : null
@@ -298,13 +299,15 @@ export function fakeFit(root, id, args, heard = {}) {
   const src = readFileSync(join(dir, 'script.js'), 'utf8')
   const alarming = /\b(bomb|murder|nazi)\b/i
   const lines = scriptLines(src).map((l, k) => {
-    const h = heard[l.text] ?? l.text
+    // a respelling in `as` is heard as written unless `heard` maps the respelling itself
+    const h = l.as ? (heard[l.as] ?? l.text) : (heard[l.text] ?? l.text)
     const status = alarming.test(h) && !alarming.test(l.text ?? '') ? 'flagged' : /UNSAYABLE/.test(l.text ?? '') ? 'unsayable' : /WEAK/.test(l.text ?? '') && !l.as ? 'weak' : 'ok'
     const n = String(l.text ?? '').split(/\s+/).length
-    return { id: l.id ?? `#${k}`, who: l.who[0], kind: l.kind, text: l.text, as: l.as ?? null, t0: k, heard: [{ text: h, count: 3 }], score: { heard: status === 'ok' ? n : 0, of: n }, status, flags: status === 'flagged' ? ['alarming'] : [], tried: [] }
+    const missed = status === 'ok' || status === 'flagged' ? [] : String(l.text ?? '').toLowerCase().replace(/[^a-z' ]+/g, ' ').split(/\s+/).filter(Boolean).map((word) => ({ word, count: 3 }))
+    return { id: l.id ?? `#${k}`, who: l.who[0], kind: l.kind, text: l.text, as: l.as ?? null, t0: k, heard: [{ text: h, count: 3 }], score: { heard: status === 'ok' ? n : 0, of: n }, status, flags: status === 'flagged' ? ['alarming: bomb'] : [], real: false, missed, tried: [] }
   })
   writeFileSync(join(dir, 'fit.json'), JSON.stringify({ segment: draft ?? args[1], lines, voices: {} }, null, 2) + '\n')
-  const bad = lines.filter((l) => ['flagged', 'unsayable'].includes(l.status)).length
+  const bad = lines.filter((l) => l.flags.some((f) => f.startsWith('alarming'))).length
   return { code: bad ? 1 : 0, out: JSON.stringify({ lines: lines.length, blocking: bad }) + '\n', stdout: JSON.stringify({ lines: lines.length, blocking: bad }) + '\n' }
 }
 

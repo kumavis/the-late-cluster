@@ -41,6 +41,7 @@ test('permissions: writers, researchers, builders and sound editors cannot read 
   assert.ok(v.deny.includes('Bash'))
   const s = P('sound-editor', task('fit.x', 'sound-editor', []))
   assert.ok(s.allow.includes(`Bash(npm run fit -- ${ID} *)`))
+  assert.ok(s.allow.includes(`Bash(npm run voice-research -- ${ID} *)`))
   assert.ok(!P('writer', task('draft.x', 'writer', [])).allow.some((x) => /npm run render/.test(x)), 'writers do not render')
   assert.ok(denies(P('reviewer', task('x.y', 'reviewer', [])).deny, 'Read', 'data/weeks/2026-W47/private/bio-review.md'), 'bios are for auditors')
   assert.ok(!denies(a.deny, 'Read', 'data/weeks/2026-W47/private/bio-review.md'))

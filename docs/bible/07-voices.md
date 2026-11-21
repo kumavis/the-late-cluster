@@ -39,19 +39,27 @@ prints, for every line, each text it heard. The sound editor reads all of it, ev
 and so does a reviewer at the final review. The score only counts how many words matched. A line can score well while the words
 that did not match say something offensive, alarming or untrue. Only reading finds that.
 
-A line fails, whatever its score, if what was heard:
+**Best effort is sufficient, because the subtitles carry the line** (the owner's ruling,
+21 November 2026). Captions are on by default and light each word as it is spoken, so the viewer
+always sees the exact words. The sound editor fixes what can be fixed without changing a word (a
+respelling, a pause, another voice, below), fits again and reads again. What still cannot be said
+stays as it was written. Nothing goes back to a writer for pronunciation, and a real person's
+words are never cut or reworded because the voice stumbles on them.
+
+Every hard word is written down in the voice research file, `docs/voice-research.md`: what it was
+heard as, the spellings tried, and the one that works if one does. Read it before writing if you
+like. A hard word may still be used.
+
+Two things are different from a stumble, and are never accepted. A spelling fails, whatever its
+score, if what was heard:
 
 - contains anything offensive or alarming;
-- touches a subject chapter 9 puts out of bounds;
-- says something about a real person that the script does not say, including by turning their name
-  into another word.
+- touches a subject chapter 9 puts out of bounds.
 
-The sound editor fixes what can be fixed without changing a word (a respelling, a pause, another
-voice, below), fits again and reads again. A line that still fails goes back to its writer with what
-was heard, to be reworded or moved; for a real person's words, a marked cut, a reading by a house
-character, or the card alone. A mishearing may stand only when it has been read, it is plainly
-harmless nonsense, and that is said in writing, quoting exactly what was heard. An alarming one never
-stands.
+The sound editor finds another spelling, and if there is none the line goes to the owner. A line
+whose best effort is still heard as something else about a real person, including their name
+turned into another word, is listed in the fit report under "heard differently, caption exact",
+so the owner hears every such line when watching.
 
 ## Names
 

@@ -36,6 +36,7 @@ the-late-cluster/
   docs/
     ARCHITECTURE.md          this file
     WORKFLOW.md              how an episode is made, stage by stage, and who may read what
+    voice-research.md        words the voices find hard (generated from packages/show/tools/data/voice-research.json)
     bible/                   the design bible
     ledger/                  what the show has done, by episode, and the featured tracker (reviewers only)
   reports/                   research reports that informed decisions here
@@ -61,7 +62,9 @@ the-late-cluster/
 Everything reusable across episodes: the CHIMERA engine and heads, the stage and set, shots,
 costumes, the drawing kit and shared props, the `show` API, the transport bar, the title and
 end cards, the vendored `chimera/` modules, the fonts, and the offline tools (`tools/render.ts`,
-`check.ts`, `analyze.ts`, `fit.ts`, `voices.ts`, `shoot.mjs`, `video.mjs`).
+`check.ts`, `analyze.ts`, `fit.ts`, `voice-research.mjs`, `voices.ts`, `shoot.mjs`, `video.mjs`), with the
+data they cannot regenerate in `tools/data/` (the pronunciation dictionary, the heard-word lists, the
+voice research file).
 
 It also keeps the two reference segments, `demo` and `kit-tour`, as a small **reference
 episode** at `packages/show/reference/`, addressed as `ref` wherever a command takes an
@@ -206,7 +209,8 @@ episode. `<seg>` is a segment id.
 | `npm run render -- <ep> <seg>...` | render audio, telemetry and cues (bun + ffmpeg) |
 | `npm run render -- <ep> --draft <slug>` | render a draft (`production/drafts/<slug>/`, its `cast.js` over the episode's) into `packages/show/tools/.cache/drafts/` (gitignored), never into the episode; `check` and `analyze.ts whisper` take `--draft` too |
 | `npm run check -- <ep> [<seg>...]` | verify rendered outputs against the contract |
-| `npm run fit -- <ep> <seg> \| --draft <slug> [--json] [--apply]` | the fitting tool: render and transcribe every line several times, search respellings without changing words, report per line (`ok`, `weak`, `flagged`, `unsayable`); `--json` writes `fit.json` beside the script, `--apply` writes only `as` fields; exit 1 if a line is flagged or unsayable |
+| `npm run fit -- <ep> <seg> \| --draft <slug> [--json] [--apply]` | the fitting tool: render and transcribe every line several times, search respellings without changing words (a spelling the voice research file says works in that voice first), report per line (`ok`, `weak`, `flagged`, `unsayable`: descriptions), the lines for the owner first and real people's lines heard differently last; `--json` writes `fit.json` beside the script, `--apply` writes only `as` fields; exit 1 only if a line is heard as something alarming, out of bounds or crude |
+| `npm run voice-research -- <ep> --draft <slug> \| --drafts \| <seg> [--add <word> --line <id> --status … --note "…" \| --pattern "…"] [--dry-run]`, `-- --page` | the voice research file (`packages/show/tools/data/voice-research.json`, committed): harvest working spellings from `fit.json`, list the lines still hard, record a hard word or a pattern by hand (never a name), and regenerate `docs/voice-research.md`; exit 1 while a hard line is unrecorded (node, nothing installed) |
 | `npm run voices -- <ep> [--drafts] [--rule <id>:<rule>] [--dry-run] [--json]` | give every guest (of the episode, and with `--drafts` of every draft together) a voice at least 1.5 from the house and each other, and write the cast entries |
 | `npm run shoot -- <ep> <seg> <t>...` | frozen frames to PNG for review (Playwright) |
 | `npm run thumbnail -- <ep> [<seg> <t>]` | shoot a frame into `thumbnail.jpg`: the title card, or a moment of a segment |
@@ -237,8 +241,11 @@ print as `error: ...`. `build` prints one line,
 Two studio tools have no root command and are run directly: `bun packages/show/tools/analyze.ts`
 (loudness, voices, the Whisper intelligibility pass) and `node packages/show/tools/video.mjs`
 (video exports into `video/<id>/`). Review frames from `shoot` go to `shots/<id>/<seg>/`.
-The sound editor's two tools are `fit` and `voices` (`packages/show/tools/README.md`, "Fitting a
-script" and "Giving guests voices"). `voices` prints each guest's stated pronouns and applies the
+The sound editor's tools are `fit`, `voice-research` and `voices` (`packages/show/tools/README.md`,
+"Fitting a script", "The voice research file" and "Giving guests voices"). Fitting is best effort
+(the owner's ruling of 21 November 2026: subtitles carry the line): what the voice cannot say is
+recorded in the voice research file and the line stays as written; only something heard that is
+alarming, out of bounds or crude is never accepted. `voices` prints each guest's stated pronouns and applies the
 owner's soft pronoun steer (`packages/show/config/voices.json`): a preference after distinctness,
 off under a hand `--rule`; nothing reads a voice back as a statement about a person. `fit` caches every render and every transcription in
 `packages/show/tools/.cache/`, so a re-run of an unchanged script takes seconds; it writes nothing
@@ -353,7 +360,7 @@ several subagents wrote independently with recorded arithmetic, applies the caps
 | 5 | shortlist | 2 reviewers (best joke, synergy, variety); 1 reviewer proposes the experiment | the shortlist of four or five; the interview candidates in order |
 | 6 | repetition (ideas) | 2 reviewers with the ledger; a writer per repeat | strictest verdict; people rules |
 | 7 | draft | 1 writer per shortlisted card and per standing segment, each given its card and ideas | the previous aired genre as an `avoid` line |
-| 8 | fit | sound editors (voices, then each draft with lines to settle); a writer per line that cannot be said | `npm run fit` on every changed draft |
+| 8 | fit | sound editors (voices, then each draft with lines to settle, best effort, recording hard words with `npm run voice-research`); a writer only when the owner asks for a rewrite | `npm run fit` on every changed draft |
 | 9 | select | 2 reviewers score; 2 judge repetition on the selection (verdicts may be on a pair); a writer per repeat; 1 auditor refreshes consent | the selection with the caps; `plan.json` |
 | 10 | assemble | 1 writer; 2 reviewers on the lines it added; 1 sound editor | copies drafts in, merges sources and casts; fits; renders |
 | 11 | stage | 1 builder per segment; then 1 auditor, a verdict per segment and a route per change | re-shoots only changed segments |
@@ -393,8 +400,11 @@ brief that names people, and a pronoun gate on house lines and on-screen text (a
 blocking at assembly; real people's verbatim lines exempt); every judgement from two reviewers; the
 **repetition gate** on ideas, selected scripts (including pairs) and lines added at assembly; the
 **caps**, applied by the tool as it selects (one interview, nobody in more than two segments, nobody
-who spoke in the previous aired episode, the accounts on screen mostly new); every line **heard as
-written** (`fit.json`: nothing flagged or unsayable), with sound editors never changing a word; every
+who spoke in the previous aired episode, the accounts on screen mostly new); every draft **fitted,
+best effort** (`fit.json`: nothing heard alarming, out of bounds or crude, which is listed for the
+owner; every hard line recorded in the voice research file), with sound editors never changing a
+word; at render, a line under the intelligibility mark or a real name not heard is a warning for the
+owner's watch, and an alarming or out-of-bounds word heard still fails; every
 real line verbatim, in its own context; **consent** refreshed over the network for the selection and
 every cited post checked live at the build; every post shown or performed **exact** on screen;
 **unread text**; **credits**; studio imports only; the constitution unchanged; the scorecard complete

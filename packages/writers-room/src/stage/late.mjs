@@ -16,9 +16,9 @@ import { normHandle } from '../digest.mjs'
 import { peopleRules } from '../ledger.mjs'
 import { formatEpisodeJson, writeJson } from '../repo.mjs'
 import { scriptLines } from '../scan.mjs'
-import { ensureFit, fitCommand, fitProblems, heardLine, readFit } from '../studio.mjs'
+import { RESEARCH_FILE, RESEARCH_PAGE, ensureFit, fitCommand, fitProblems, heardLine, readFit, researchCommand } from '../studio.mjs'
 import { VIEWER_BRIEF, prepareCold, writeColdReport } from '../cold.mjs'
-import { draftsDir } from './drafts.mjs'
+import { draftsDir, ownerRewrites } from './drafts.mjs'
 import { P, W, R, REPETITION_RULES, as, has, json, pendingRepetition, repetitionFiles, reviewerIds, sha, shaText, task } from './common.mjs'
 
 const rundownOf = (ctx) => JSON.parse(readFileSync(ctx.paths.episodeJson, 'utf8')).rundown ?? []
@@ -143,45 +143,60 @@ const assemble = {
       before: (ctx) => fitSegments(ctx),
       tasks: (ctx) => {
         const segs = rundownOf(ctx)
-        const problems = segs.map((s) => ({ seg: s, ...fitProblems(readFit(ctx, { seg: s }), ctx.config.fit.blocking) }))
-        const open = problems.filter((p) => p.blocking.length || p.weak.length)
-        if (!open.length) return []
-        if (!has(P(ctx, 'assemble/sound.md')) || open.every((p) => !p.blocking.length))
-          return [
+        const problems = segs.map((s) => ({ seg: s, ...fitProblems(readFit(ctx, { seg: s }), ctx.config.fit.blocking, { waivers: segWaivers(ctx, s) }) }))
+        const open = problems.filter((p) => p.blocking.length || p.hard.length || p.weak.length)
+        const out = []
+        // best effort, once (the owner's ruling of 21 November 2026): the sound editor settles what it can, records the rest, and moves on
+        if (open.length && (!has(P(ctx, 'assemble/sound.md')) || open.some((p) => p.blocking.length)))
+          out.push(
             task(ctx, 'assemble', {
               id: 'assemble.sound',
               role: 'sound-editor',
               kind: 'fit',
-              title: 'Fit the assembled episode to the voice engine',
+              title: 'Fit the assembled episode to the voice engine: best effort',
               writes: ['assemble/sound.md'],
-              alsoEdits: [...open.map((p) => `episodes/${ctx.id}/segments/${p.seg}/script.js`), `episodes/${ctx.id}/cast.js`],
-              reads: open.map((p) => `episodes/${ctx.id}/segments/${p.seg}/fit.json`),
+              alsoEdits: [...open.map((p) => `episodes/${ctx.id}/segments/${p.seg}/script.js`), `episodes/${ctx.id}/cast.js`, RESEARCH_FILE, RESEARCH_PAGE],
+              reads: [...open.map((p) => `episodes/${ctx.id}/segments/${p.seg}/fit.json`), `${RESEARCH_PAGE}?`],
               instructions: [
-                `The fitting tool's tables are segments/<seg>/fit.json. Lines to settle:\n${open.flatMap((p) => [...p.blocking, ...p.weak].map((l) => `- ${p.seg} ${heardLine(l)}`)).join('\n')}`,
-                `Settle each with \`as\`, pauses or a guest's voice, re-fitting with \`${fitCommand(ctx.id, { seg: '<seg>' })}\`; change no line's words. Write production/assemble/sound.md: what you did, and "cannot be said: <heard>" for a line that needs the assembler.`,
+                `The fitting tool's tables are segments/<seg>/fit.json. Lines to settle:\n${open.flatMap((p) => [...new Map([...p.blocking, ...p.hard, ...p.weak].map((l) => [l.id, l])).values()].map((l) => `- ${p.seg} ${heardLine(l)}`)).join('\n')}`,
+                `Best effort is sufficient: settle each with \`as\`, pauses or a guest's voice, re-fitting with \`${fitCommand(ctx.id, { seg: '<seg>' })}\`; change no line's words. Record what stays hard with \`${researchCommand(ctx.id, { seg: '<seg>' })}\` (\`--add\` for the word that failed). Nothing goes back to the writer.`,
+                'The one exception: something heard that is crude, alarming or out of bounds is never accepted. Choose another spelling; if none avoids it, list the line first in production/assemble/sound.md, under "For the owner".',
+                'Write production/assemble/sound.md: "For the owner" first (if any), what you did, and under "heard differently, caption exact" every real person\'s line still heard differently.',
               ],
-              rules: ["No line's words change.", 'Nothing flagged or unsayable is left, unless sound.md hands it back to the writer.'],
+              rules: ["No line's words change.", 'Nothing heard is crude, alarming or out of bounds, unless sound.md lists it for the owner.'],
               done: (c) => has(P(c, 'assemble/sound.md')),
             }),
-          ]
-        const fitted = json(P(ctx, 'fit/hashes.json'), {})
-        return open
-          .filter((p) => p.blocking.length)
-          .map((p) =>
+          )
+        // a rewrite only when the owner asks (production/fit/owner-rewrites.json "segments")
+        const asked = ownerRewrites(ctx, 'segments')
+        const rewrites = json(P(ctx, 'fit/rewrites.json'), {})
+        for (const p of problems.filter((x) => asked[x.seg])) {
+          const ids = asked[p.seg]
+          // the script as it was when the owner asked: the task is done once it has changed
+          const key = `segment:${p.seg}`
+          if (!rewrites[key]?.from) {
+            rewrites[key] = { from: sha(ctx.paths.segFile(p.seg, 'script.js')) }
+            writeJson(P(ctx, 'fit/rewrites.json'), rewrites)
+          }
+          const from = rewrites[key].from
+          const lines = (readFit(ctx, { seg: p.seg })?.lines ?? []).filter((l) => !Array.isArray(ids) || !ids.length || ids.includes(l.id))
+          out.push(
             task(ctx, 'assemble', {
               id: `assemble.rewrite-${p.seg}`,
               role: 'writer',
               kind: 'rewrite',
               segment: p.seg,
-              title: `Lines in ${p.seg} that cannot be said`,
+              title: `Lines in ${p.seg} the owner asked to be rewritten`,
               writes: [`episodes/${ctx.id}/segments/${p.seg}/script.js`],
               keys: [`${p.seg} `, `segments/${p.seg}/`],
-              reads: [W(ctx, 'assemble/sound.md')],
-              instructions: [`Not heard as written:\n${p.blocking.map((l) => `- ${heardLine(l)}`).join('\n')}`, "Rewrite only those lines; for a real person's line: a marked cut that keeps its meaning, a house reading from the card, or the card alone. Do not render."],
-              rules: ['Nothing flagged or unsayable in segments/<seg>/fit.json.'],
-              done: (c) => json(P(c, 'fit/hashes.json'), {})[`segment:${p.seg}`] !== fitted[`segment:${p.seg}`] || sha(c.paths.segFile(p.seg, 'script.js')) !== sha(ctx.paths.segFile(p.seg, 'script.js')),
+              reads: [W(ctx, 'assemble/sound.md?')],
+              instructions: [`The owner asked for these lines to be rewritten:\n${lines.map((l) => `- ${heardLine(l)}`).join('\n')}`, "Rewrite only those lines; for a real person's line: a marked cut that keeps its meaning, a house reading from the card, or the card alone. Do not render."],
+              rules: ['Each line above is changed; nothing heard is crude, alarming or out of bounds in segments/<seg>/fit.json.'],
+              done: (c) => sha(c.paths.segFile(p.seg, 'script.js')) !== from,
             }),
           )
+        }
+        return out
       },
       after: (ctx) => ({ renderResult: ctx.tools.npm('render', [ctx.id, ...rundownOf(ctx)]) }),
       gates: [assembleRendered, assembleFitted, writeRundown, writeSources, writeGuestLines, writePronouns, writeLabels, writeNames, writeOptOut, writeLength, peopleSources, renderCheck, renderWhisper, renderHeard, renderLengths, as(constitutionUnchanged, 'assemble.constitution')],
@@ -218,9 +233,18 @@ async function assembleFitted(ctx) {
       g.fail(`segments/${seg}/fit.json is missing: ${fitCommand(ctx.id, { seg })}`)
       continue
     }
-    for (const l of fitProblems(f, ctx.config.fit.blocking).blocking) g.fail(`${seg} ${heardLine(l)}`)
+    // best effort (the owner's ruling of 21 November 2026): only what is never accepted blocks; the rest is for the owner's watch
+    const p = fitProblems(f, ctx.config.fit.blocking, { waivers: segWaivers(ctx, seg) })
+    for (const l of p.blocking) g.fail(`for the owner: ${seg} ${heardLine(l)}: never accepted; another spelling, or the owner asks for a rewrite (production/fit/owner-rewrites.json)`)
+    for (const l of p.hard) g.warn(`${seg} ${heardLine(l)}: best effort (record it: ${researchCommand(ctx.id, { seg })})`)
+    for (const l of p.different) g.warn(`heard differently, caption exact: ${seg} ${heardLine(l)}`)
   }
   return g.done()
+}
+
+/** production/heard-waivers.json for one segment (an out-of-bounds subject heard, judged harmless) */
+function segWaivers(ctx, seg) {
+  return json(`${ctx.paths.production}/heard-waivers.json`, {})?.[seg] ?? {}
 }
 
 /** the people rules on what was assembled: sources.json's guests and every account shown */

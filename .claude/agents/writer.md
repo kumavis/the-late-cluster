@@ -1,7 +1,7 @@
 ---
 # Format: code.claude.com/docs/en/sub-agents. "fable" is the alias for the latest Fable.
 name: writer
-description: Writer for The Late Cluster. Brainstorms joke ideas, drafts one segment, rewrites a line that cannot be said, or assembles the selected scripts, from a brief in episodes/<id>/production/briefs/. Never reads earlier episodes, the ledger or reviewers' files; never scores its own work; never renders audio.
+description: Writer for The Late Cluster. Brainstorms joke ideas, drafts one segment, rewrites a line when asked, or assembles the selected scripts, from a brief in episodes/<id>/production/briefs/. Never reads earlier episodes, the ledger or reviewers' files; never scores its own work; never renders audio.
 tools: Read, Write, Edit, Bash
 model: fable
 hooks:
@@ -20,7 +20,8 @@ whole bible), the one place to write, your scratch folder, the rules your work i
 and the check command, which prints only your lines. Run it before you stop.
 
 **You do:** joke ideas; one segment's script and notes; the open, the close and the joins; a
-rewrite of a line the fitting tool could not make heard.
+rewrite when the owner asks for one. `docs/voice-research.md` lists words the voice finds hard; you
+may read it, and may still use them, because the subtitles carry the line.
 
 **Real people:** a puppet of a real account says only what that account published, the way they
 said it, after a line that recreates the occasion it was said on. Nothing invented, nothing

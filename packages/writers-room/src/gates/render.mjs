@@ -1,6 +1,7 @@
-// After rendering (stage 8): `npm run check` passes; the intelligibility pass; what the
-// transcription heard carries nothing offensive, alarming or out of bounds, and no real person's
-// name was heard as something else; the rendered lengths agree with the plan.
+// After rendering: `npm run check` passes; what the transcription heard carries nothing alarming
+// or out of bounds; the rendered lengths agree with the plan. The owner's ruling of 21 November 2026
+// (best effort on pronunciation is sufficient, as subtitles carry the line): a line under the
+// intelligibility mark and a real name not heard are warnings, listed for the owner's watch.
 import { existsSync, readFileSync } from 'node:fs'
 import { normHandle } from '../digest.mjs'
 import { castHandle, isInvented } from '../context.mjs'
@@ -62,21 +63,6 @@ function transcripts(ctx) {
 
 const anyFit = (ctx) => rundown(ctx).some((seg) => existsSync(ctx.paths.segFile(seg, 'fit.json')))
 
-/** the names Whisper cannot be expected to know: the cast's names and handles, sources.json's accounts */
-function knownNames(ctx) {
-  const names = new Set()
-  const add = (s) => String(s ?? '').split(/[\s@._-]+/).filter((w) => w.length > 1).forEach((w) => names.add(w.toLowerCase()))
-  for (const c of Object.values(ctx.castInfo.cast)) {
-    add(c?.name)
-    add(castHandle(c).split('.')[0])
-  }
-  for (const a of ctx.sources?.accounts ?? []) {
-    add(a.displayName)
-    add(normHandle(a.handle).split('.')[0])
-  }
-  return names
-}
-
 /** the real people's names that can appear in captions: real guests in the cast and sources.json's accounts */
 function realNames(ctx) {
   const out = []
@@ -89,9 +75,9 @@ const words = (s) => String(s ?? '').toLowerCase().replace(/[^a-z0-9' ]+/g, ' ')
 const hasPhrase = (text, phrase) => ` ${words(text).join(' ')} `.includes(` ${words(phrase).join(' ')} `)
 
 /**
- * The intelligibility pass (stage 8). A line under 60 % fails unless it is waived in
- * production/intelligibility.json, and a waiver is accepted only for what it is meant for: a line
- * whose caption contains a name Whisper cannot know (trial finding 56).
+ * The intelligibility pass. A line under 60 % is a warning for the owner's watch, never a failure:
+ * the captions carry every line word for word. (production/intelligibility.json, the old waivers, is
+ * no longer read.)
  */
 export async function renderWhisper(ctx) {
   const g = gate('render.whisper')
@@ -99,21 +85,12 @@ export async function renderWhisper(ctx) {
     g.skip('whisper is not installed: neither the intelligibility pass nor the heard-text gate ran (the reviewer must listen for both)')
     return g.done()
   }
-  const waivers = existsSync(ctx.paths.intelligibility) ? JSON.parse(readFileSync(ctx.paths.intelligibility, 'utf8')) : {}
-  const names = knownNames(ctx)
   for (const [seg, w] of Object.entries(transcripts(ctx))) {
     if (w.code !== 0) {
       g.fail(`the Whisper pass on ${seg} exited ${w.code}`)
       continue
     }
-    for (const l of w.lines.filter((x) => x.flag === '✗')) {
-      const why = waivers?.[seg]?.[l.id]
-      const isName = words(l.text).some((x) => names.has(x))
-      if (why && isName) g.warn(`${seg} ${l.id}: weak in Whisper, waived as a name: ${why}`)
-      else if (why) g.fail(`${seg} ${l.id}: "${l.text}" is waived in intelligibility.json, but waivers are only for names Whisper cannot know, and this caption has none; rewrite or respell the line`)
-      else g.fail(`${seg} ${l.id}: "${l.text}" was heard as "${l.heard}" (${l.ok}/${l.all}). Respell in "as", rephrase, add gap from a loud sound or lower its vol; if the miss is only a name Whisper can't know, waive it in production/intelligibility.json`)
-    }
-    for (const [id] of Object.entries(waivers?.[seg] ?? {})) if (!w.lines.some((l) => l.id === id && l.flag === '✗')) g.warn(`${seg} ${id}: a waiver for a line that is not weak (stale; remove it)`)
+    for (const l of w.lines.filter((x) => x.flag === '✗')) g.warn(`for the owner's watch: ${seg} ${l.id} (${l.who}): "${l.text}" was heard as "${l.heard}" (${l.ok}/${l.all}); the caption carries it`)
     if (w.words) g.warn(`${seg}: ${w.heard}/${w.words} caption words heard`)
   }
   return g.done()
@@ -124,8 +101,9 @@ export async function renderWhisper(ctx) {
  * "Last week, Auschwitz said" and passed at 7/11). Line by line, whatever the score:
  * - any alarming term in what was heard fails, with no waiver;
  * - an out-of-bounds subject heard fails unless production/heard-waivers.json quotes that exact
- *   heard text with a writer's judgement that it is harmless;
- * - a real person's name in the caption that was not heard fails until such a waiver exists.
+ *   heard text with a writer's judgement that it is harmless (what the waivers are for);
+ * - a real person's name in the caption that was not heard is a warning for the owner's watch
+ *   (no waiver is needed: the caption carries the name).
  * heard-waivers.json: { "<seg>": { "<line id>": { "heard": "<exact heard text>", "judgement": "…" } } }
  */
 export async function renderHeard(ctx) {
@@ -152,8 +130,7 @@ export async function renderHeard(ctx) {
       }
       for (const n of people) {
         if (!hasPhrase(l.text, n) || hasPhrase(l.heard, n)) continue
-        if (waived) g.warn(`${at}: "${n}" was heard as "${l.heard}", judged harmless: ${waiver.judgement}`)
-        else g.fail(`${at}: the caption names ${n}, but the transcription heard "${l.heard}". Until a writer has judged what was heard instead harmless, in production/heard-waivers.json quoting it exactly, this fails; better, respell the name for this voice`)
+        g.warn(`for the owner's watch: ${at}: the caption names ${n}, heard as "${l.heard}"; the caption carries it`)
       }
     }
   }

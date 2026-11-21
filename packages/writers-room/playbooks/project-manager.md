@@ -39,9 +39,16 @@ The run stops for three reasons, and prints what you must decide.
   rescrapes the same window into the same folder (keep its `.cache`).
 - **A task failed to run** (headless: the CLI exited non-zero or hit its budget). Read its log, then
   run `produce` again, or `--rework` it.
+- **A line for the owner** (`fit.heard`, `select.fitted` or `assemble.fitted`: `for the owner: …`):
+  a line still heard as something alarming, out of bounds or crude after the sound editor's tries.
+  Take it to the owner. If the owner asks for a rewrite, record it in
+  `production/fit/owner-rewrites.json` (`{ "drafts": { "<slug>": ["<line id>"] } }`, or `"segments"`
+  at assembly) and run `produce` again: the writer's rewrite task is made from that file.
 
-Repeats at the repetition gates, lines that cannot be said, redrafts, consent outs and staging
-changes are not stops: the tool creates those tasks itself.
+Repeats at the repetition gates, redrafts, consent outs and staging changes are not stops: the tool
+creates those tasks itself. A line the voice cannot say well is not a stop either: best effort is
+sufficient (the owner's ruling of 21 November 2026), and the sound editor records its hard word in
+the voice research file.
 
 ## Useful while deciding
 

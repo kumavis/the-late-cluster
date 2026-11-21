@@ -13,7 +13,7 @@ import { importFresh } from '../context.mjs'
 import { inheritProblems } from '../inherit.mjs'
 import { scriptLines } from '../scan.mjs'
 import { SEG_RE, writeJson } from '../repo.mjs'
-import { ensureFit, fitCommand, fitProblems, heardLine, readFit, renderDraftCommand, voicesCommand } from '../studio.mjs'
+import { RESEARCH_FILE, RESEARCH_PAGE, ensureFit, fitCommand, fitProblems, heardLine, isRecorded, readFit, readResearch, renderDraftCommand, researchCommand, researchSource, voicesCommand } from '../studio.mjs'
 import { sourcesCommand } from '../scraper.mjs'
 import { draftPlan } from './early.mjs'
 import { P, W, R, REPETITION_RULES, excludedOf, has, json, pendingRepetition, previousAired, previousLabel, repetitionFiles, reviewerIds, sha, shaText, task } from './common.mjs'
@@ -71,14 +71,15 @@ function draftTask(ctx, d) {
     writes: [`drafts/${d.slug}/script.js`, `drafts/${d.slug}/notes.json`],
     alsoEdits: [W(ctx, `drafts/${d.slug}/sources.json`), W(ctx, `drafts/${d.slug}/cast.js`)],
     keys: [`drafts/${d.slug}`],
-    reads: [...(d.cards.length ? d.cards.map((c) => W(ctx, `research/kept/${c}.json`)) : [W(ctx, 'rank/pool.md')]), 'packages/show/tools/README.md', 'packages/writers-room/playbooks/sources.md', W(ctx, 'experiment.md')],
+    reads: [...(d.cards.length ? d.cards.map((c) => W(ctx, `research/kept/${c}.json`)) : [W(ctx, 'rank/pool.md')]), 'packages/show/tools/README.md', 'packages/writers-room/playbooks/sources.md', W(ctx, 'experiment.md'), `${RESEARCH_PAGE}?`],
     cards: d.cards,
     instructions: [
       d.standing ? STANDING[d.standing] : `Draft one segment from card ${d.card}.`,
       d.ideas.length ? `The ideas ranked for it:\n${ideaLines.join('\n')}` : d.cards.length ? 'No idea was ranked for it: work from the card.' : 'No idea was ranked for it: take its material from the pool (rank/pool.md).',
       d.standing === 'music' && prev?.song?.genre ? `Avoid: the genre "${prev.song.genre}".` : null,
       `Write drafts/${d.slug}/script.js in the script format of packages/show/tools/README.md, with \`id: '${d.slug}'\`, and drafts/${d.slug}/notes.json: ${NOTES(d)}. If real accounts appear, drafts/${d.slug}/sources.json (playbooks/sources.md); a guest the studio lacks goes in drafts/${d.slug}/cast.js as \`{ name, handle, title, guest: true }\` with no voice settings, because a sound editor places the voice (\`npm run voices\`).`,
-      'Write words. Do not render audio and do not chase what the engine hears: the fitting tool and a sound editor do that, and send back only a line that cannot be said.',
+      'Write words. Do not render audio and do not chase what the engine hears: the fitting tool and a sound editor make a best effort, and nothing comes back to you for how a line is heard.',
+      `Optional, a minute's reading: ${RESEARCH_PAGE} lists the words the voices find hard. A hard word may still be used: the captions carry every line, word for word.`,
       'Television: nothing on screen for the viewer to read in silence. Run the experiment (experiment.md) where it touches this segment.',
     ].filter(Boolean),
     rules: [
@@ -184,7 +185,21 @@ export function fitDrafts(ctx, slugs = readDrafts(ctx).map((d) => d.slug)) {
   return Object.fromEntries(slugs.map((slug) => [slug, ensureFit(ctx, { draft: slug })]))
 }
 
-const blockingOf = (ctx, slug) => fitProblems(readFit(ctx, { draft: slug }), ctx.config.fit.blocking)
+const BLOCKING = (ctx) => ctx.config.fit.blocking
+/** a draft's heard-waivers.json (an out-of-bounds subject heard, judged harmless): { <line id>: { heard, judgement } } */
+function draftWaivers(ctx, slug) {
+  const f = join(draftsDir(ctx), slug, 'heard-waivers.json')
+  if (!has(f)) return {}
+  try {
+    const w = readJsonFile(f)
+    return w?.[slug] && typeof w[slug] === 'object' ? w[slug] : w
+  } catch {
+    return {}
+  }
+}
+const problemsOf = (ctx, slug, f = readFit(ctx, { draft: slug })) => fitProblems(f, BLOCKING(ctx), { waivers: draftWaivers(ctx, slug) })
+/** the rewrites the owner asked for: production/fit/owner-rewrites.json { "drafts": { <slug>: [<line id>] }, "segments": { <seg>: [<line id>] } } */
+export const ownerRewrites = (ctx, kind) => json(P(ctx, 'fit/owner-rewrites.json'), {})?.[kind] ?? {}
 const hasGuests = async (ctx, slug) => (await castWithDraft(ctx, slug)).guests.size > ctx.castInfo.guests.size || (readDrafts(ctx).find((d) => d.slug === slug)?.notes.speakers ?? []).length > 0
 const textsOf = (ctx, slug) => Object.fromEntries(scriptLines(readFileSync(join(draftsDir(ctx), slug, 'script.js'), 'utf8')).map((l, k) => [l.id ?? `#${k}`, l.text]))
 
@@ -223,29 +238,32 @@ const fit = {
         const out = []
         for (const d of readDrafts(ctx)) {
           const f = readFit(ctx, { draft: d.slug })
-          const p = fitProblems(f, ctx.config.fit.blocking)
-          if (!f || (!p.blocking.length && !p.weak.length)) continue
+          const p = problemsOf(ctx, d.slug, f)
+          if (!f || (!p.blocking.length && !p.hard.length && !p.weak.length)) continue
           if (!snap[d.slug]) {
             snap[d.slug] = textsOf(ctx, d.slug)
             writeJson(P(ctx, 'fit/texts.json'), snap)
           }
+          const open = [...new Map([...p.blocking, ...p.hard, ...p.weak].map((l) => [l.id, l])).values()]
           out.push(
             task(ctx, 'fit', {
               id: `fit.${d.slug}`,
               role: 'sound-editor',
               kind: 'fit',
               segment: d.slug,
-              title: `Fit the draft ${d.slug} to the voice engine`,
+              title: `Fit the draft ${d.slug} to the voice engine: best effort`,
               writes: [`drafts/${d.slug}/fit-notes.md`],
-              alsoEdits: [W(ctx, `drafts/${d.slug}/script.js`), W(ctx, `drafts/${d.slug}/cast.js`)],
+              alsoEdits: [W(ctx, `drafts/${d.slug}/script.js`), W(ctx, `drafts/${d.slug}/cast.js`), RESEARCH_FILE, RESEARCH_PAGE],
               keys: [`drafts/${d.slug}`],
-              reads: [W(ctx, `drafts/${d.slug}/fit.json`), W(ctx, `drafts/${d.slug}/script.js`), W(ctx, 'fit/voices.md?')],
+              reads: [W(ctx, `drafts/${d.slug}/fit.json`), W(ctx, `drafts/${d.slug}/script.js`), W(ctx, 'fit/voices.md?'), `${RESEARCH_PAGE}?`],
               instructions: [
-                `The fitting tool's table is drafts/${d.slug}/fit.json. Lines to settle:\n${[...p.blocking, ...p.weak].map((l) => `- ${heardLine(l)}`).join('\n')}`,
-                `Choose among the respellings the tool tried (\`tried\`), or try your own in \`as\`, then re-fit: \`${fitCommand(ctx.id, { draft: d.slug })}\` (\`${renderDraftCommand(ctx.id, d.slug)}\` to listen). Change no line's words: only \`as\`, pauses and the guest's voice.`,
-                `Write drafts/${d.slug}/fit-notes.md: for each line above, what you did, or "cannot be said: <what was heard>" for a line that needs its writer.`,
+                `The fitting tool's table is drafts/${d.slug}/fit.json. Lines to settle:\n${open.map((l) => `- ${heardLine(l)}`).join('\n')}`,
+                `Best effort is sufficient (the owner's ruling of 21 November 2026: subtitles carry the line). Choose among the respellings the tool tried (\`tried\`), or try your own in \`as\`, then re-fit: \`${fitCommand(ctx.id, { draft: d.slug })}\` (\`${renderDraftCommand(ctx.id, d.slug)}\` to listen). Change no line's words: only \`as\`, pauses and the guest's voice. Then move on: nothing goes back to the writer.`,
+                `Record what stayed hard: \`${researchCommand(ctx.id, { draft: d.slug })}\` harvests the spellings that worked and lists every line still unsayable, weak or flagged; record the word that failed with \`--add <word> --line <id> --status cannot|unstable --note "…"\` (or a pattern with \`--pattern\`). It ends 0 when every hard line is recorded. A real person's name is never recorded and needs no waiver.`,
+                'The one exception: something heard that is crude, alarming or out of bounds is never accepted. Choose another spelling; if none avoids it, put the line at the top of the notes, under "For the owner", with every heard text.',
+                `Write drafts/${d.slug}/fit-notes.md: "For the owner" first (if any); then for each line above what you did and what it is heard as now; then, under "heard differently, caption exact", every real person's line still heard differently.`,
               ],
-              rules: ["No line's text changes (only `as`, pauses and voices).", 'A line still flagged or unsayable goes back to its writer with what was heard.'],
+              rules: ["No line's text changes (only `as`, pauses and voices).", `Every hard line (unsayable, or flagged for a statement heard differently) is recorded in ${RESEARCH_FILE}.`, 'Nothing heard is crude, alarming or out of bounds; or the line is listed for the owner.'],
             }),
           )
         }
@@ -255,35 +273,40 @@ const fit = {
     },
     {
       before: (ctx) => fitDrafts(ctx),
+      // a rewrite only when the owner asks for one (production/fit/owner-rewrites.json): not part of the routine flow
       tasks: (ctx) => {
         const out = []
+        const asked = ownerRewrites(ctx, 'drafts')
         const rewrites = json(P(ctx, 'fit/rewrites.json'), {})
         for (const d of readDrafts(ctx)) {
-          const p = blockingOf(ctx, d.slug)
-          if (!p.blocking.length) continue
-          if (!rewrites[d.slug]) {
-            rewrites[d.slug] = true
+          const ids = asked[d.slug]
+          if (!ids) continue
+          const f = readFit(ctx, { draft: d.slug })
+          const lines = (f?.lines ?? []).filter((l) => !Array.isArray(ids) || !ids.length || ids.includes(l.id))
+          // the script as it was when the owner asked: the task is done once it has changed
+          if (!rewrites[d.slug]?.from) {
+            rewrites[d.slug] = { from: d.version }
             writeJson(P(ctx, 'fit/rewrites.json'), rewrites)
           }
-          const fitted = json(P(ctx, 'fit/hashes.json'), {})[`draft:${d.slug}`]
+          const from = rewrites[d.slug].from
           out.push(
             task(ctx, 'fit', {
               id: `fit.rewrite-${d.slug}`,
               role: 'writer',
               kind: 'rewrite',
               segment: d.slug,
-              title: `Lines in ${d.slug} that cannot be said`,
+              title: `Lines in ${d.slug} the owner asked to be rewritten`,
               writes: [`drafts/${d.slug}/script.js`],
               alsoEdits: [W(ctx, `drafts/${d.slug}/sources.json`), W(ctx, `drafts/${d.slug}/notes.json`)],
               keys: [`drafts/${d.slug}`, `${d.slug} `],
               reads: [W(ctx, `drafts/${d.slug}/fit-notes.md?`), ...(d.notes.cards ?? []).map((c) => W(ctx, `research/kept/${c}.json`))],
               cards: d.notes.cards ?? [],
               instructions: [
-                `The fitting tool and the sound editor could not make these lines be heard as written:\n${p.blocking.map((l) => `- ${heardLine(l)}`).join('\n')}`,
+                `The owner asked for these lines to be rewritten:\n${lines.map((l) => `- ${heardLine(l)}`).join('\n')}`,
                 "Rewrite only those lines. A house character's line can be reworded. For a real person's line the choices are: a marked cut that keeps its meaning, a reading by a house character from the card, or the card alone. Do not render: the tool fits the new version.",
               ],
-              rules: ['Every line of every draft is heard as written: none flagged or unsayable in fit.json.'],
-              done: (c) => json(P(c, 'fit/hashes.json'), {})[`draft:${d.slug}`] !== fitted || sha(join(draftsDir(c), d.slug, 'script.js')) !== d.version,
+              rules: ['Each line above is changed; nothing heard is crude, alarming or out of bounds in fit.json.'],
+              done: (c) => sha(join(draftsDir(c), d.slug, 'script.js')) !== from,
             }),
           )
         }
@@ -307,11 +330,19 @@ async function fitWords(ctx) {
   return g.done()
 }
 
-/** every line of every draft (or of the given slugs) is heard: fit.json fresh, nothing flagged or unsayable */
+/**
+ * Every draft (or the given slugs) is fitted, best effort (the owner's ruling of 21 November 2026):
+ * fit.json exists; nothing is heard as something alarming, out of bounds or crude (the only thing
+ * that blocks; listed first, for the owner); every hard line left (unsayable, or a statement heard
+ * differently) is recorded in the voice research file. Weak lines, a real name not heard and every
+ * real person's line heard differently are warnings, listed for the owner's watch.
+ */
 export function fittedProblems(ctx, slugs) {
+  const owner = []
   const failures = []
   const warnings = []
   const hashes = json(P(ctx, 'fit/hashes.json'), {})
+  const research = readResearch(ctx)
   for (const slug of slugs) {
     const f = readFit(ctx, { draft: slug })
     if (!f) {
@@ -319,11 +350,17 @@ export function fittedProblems(ctx, slugs) {
       continue
     }
     if (!hashes[`draft:${slug}`]) warnings.push(`drafts/${slug}/fit.json was not made by this run`)
-    const p = fitProblems(f, ctx.config.fit.blocking)
-    for (const l of p.blocking) failures.push(`${slug} ${heardLine(l)}`)
+    const p = problemsOf(ctx, slug, f)
+    for (const l of p.blocking) owner.push(`for the owner: ${slug} ${heardLine(l)}: never accepted; another spelling, or the owner asks for a rewrite (production/fit/owner-rewrites.json)`)
+    const source = researchSource(ctx, { draft: slug })
+    const unrecorded = p.hard.filter((l) => !isRecorded(research, l, source))
+    for (const l of unrecorded) failures.push(`${slug} ${heardLine(l)}: its hard word is not recorded in ${RESEARCH_FILE}: ${researchCommand(ctx.id, { draft: slug })} --add <word> --line ${l.id} --status cannot|unstable --note "…"`)
+    const recorded = p.hard.filter((l) => !unrecorded.includes(l))
+    if (recorded.length) warnings.push(`${slug}: best effort, recorded (for the owner's watch): ${recorded.map((l) => l.id).join(', ')}`)
     if (p.weak.length) warnings.push(`${slug}: ${p.weak.length} weak line${p.weak.length === 1 ? '' : 's'} (${p.weak.map((l) => l.id).join(', ')})`)
+    for (const l of p.different) warnings.push(`heard differently, caption exact: ${slug} ${heardLine(l)}`)
   }
-  return { failures, warnings }
+  return { failures: [...owner, ...failures], warnings }
 }
 
 async function fitHeard(ctx) {
@@ -592,7 +629,7 @@ async function selectConsent(ctx) {
 async function selectFitted(ctx) {
   const g = gate('select.fitted')
   const r = fittedProblems(ctx, selectedItems(ctx).map((i) => i.id))
-  r.failures.forEach((f) => g.fail(`${f} (a redraft must be heard as written: run --from fit)`))
+  r.failures.forEach((f) => g.fail(`${f} (a redraft is fitted again: run --from fit)`))
   return g.done()
 }
 
