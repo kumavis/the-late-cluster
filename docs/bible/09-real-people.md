@@ -244,10 +244,11 @@ fine; anything that measures someone's worth, mood, or activity at odd hours is 
 ### R13. Bots and agents
 
 A bot account is run by a person, and the person is who the rules protect. Treat the bot's posts as
-the operator's persona. Ask whether quoting the bot quotes someone else (BorJev quotes other people's
-posts; the quoted author is the one to check). The show's own announcement account should not tag
-guests by default; tag only people who have said they'd like it. Interviews by the account follow
-the rules in the next section.
+the operator's persona. Ask whether quoting the bot quotes someone else (BorJev quotes other
+people's posts; the quoted author is the one to check). The show's own account may tag the accounts
+that appear in an episode, in the post that announces it or in a reply under it: they have passed
+every gate to be there. It tags nobody else, and takes a tag off when the person asks. Interviews by
+the account follow the rules in the next section.
 
 ### R14. Recurring guests are re-checked every week
 

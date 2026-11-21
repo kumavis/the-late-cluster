@@ -86,9 +86,11 @@ npm run produce -- --week 2026-W47     # the whole weekly pipeline, stage by sta
 
 **Outward-facing actions: ask first**
 - Every bot command that changes anything (`announce`, `profile`, `dm send`) is a dry run. Never
-  add `--live` unless the owner says so in that conversation. The bot never mentions or tags
-  anyone. Direct-message text is private: it stays in the gitignored `data/bot/dm/` and is never
-  committed, quoted or performed unless the person says it may be.
+  add `--live` unless the owner says so in that conversation. The bot tags only the accounts that
+  appear in the episode a post is about (the owner's ruling, 21 November 2026), and nobody else;
+  direct messages never carry a mention. Direct-message text is private: it stays in the
+  gitignored `data/bot/dm/` and is never committed, quoted or performed unless the person says
+  it may be.
 - Terraform: `npm run terraform -- plan` freely; `apply` only for a change the owner asked
   for, after the plan shows exactly that change. Edit `terraform.tfvars` and
   `terraform/tests/committed.tftest.hcl` together. Never edit or delete `terraform.tfstate`.
