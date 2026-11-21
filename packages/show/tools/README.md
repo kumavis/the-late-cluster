@@ -885,11 +885,24 @@ npm run shoot -- 2 top-chicken 22 --caption-scale 1.4   # a frame to look at: â€
   97 % of its edge detail (a slight softening of the smallest text).
 - `--caption-scale <n>` (0.5 to 3, default 1) scales the whole caption bar: the line, the name
   tag, the box, its padding and the underline, and the `[ LAUGHTER ]` box. The bar stays centred,
-  keeps its bottom edge (so it grows upward) and still lifts above a disclaimer or ticker; a chyron
-  above it moves up by what the bar grew. The wrap width stays 1000 stage units, so larger text
-  wraps into more lines and pages through more pairs of them, still following the word being said.
-  The page reads it as `?capscale=<n>` (`Stage.captionScale`); at 1 every frame is as before.
-  With `--soften box`, 1.4 reads cleanly on a phone; without it, 1.6.
+  keeps its bottom edge (so it grows upward) and still lifts above a disclaimer or ticker. The wrap
+  width stays 1000 stage units, so larger text wraps into more lines and pages through more pairs
+  of them, still following the word being said. The page reads it as `?capscale=<n>`
+  (`Stage.captionScale`). With `--soften box`, 1.4 reads cleanly on a phone; without it, 1.6.
+  - **It is a ceiling.** The bar grows only into free space. What must never be under it is
+    *protected*: every real post's card (all of it, counts row included) and every credit line
+    that names an account or a site. `skeetCard` protects itself; a segment marks anything else it
+    draws with one call, `draw.protect(ctx, x, y, w, h)`, in its drawing coordinates (any
+    transform), every frame the thing is up. The set's own plates and signs are not protected.
+    Each line gets one scale for all of its pages: the largest, up to the asked one, that clears
+    everything protected at every frame of the line, never below 1. The video tool finds these in
+    a pass of its own before rendering each segment (no heads drawn; about 4 minutes for all of
+    episode two, measured in software-rendered Chromium) and
+    prints the lines it drew smaller; `shoot` plans the line on screen. The laughter box is fitted
+    frame by frame. At scale 1 none of this runs.
+  - **Chyrons clear it.** A chyron that would overlap whatever is in the caption area (the bar or
+    the `[ LAUGHTER ]` / `[ APPLAUSE ]` box, lift included) sits just above it, 4 stage units
+    clear, at every scale; it moves as the box fades in, so it never jumps.
 - `--poster <seconds> [--poster-frames 2]` puts that frame of the finished cut in front of every
   whole-episode file the run writes (full, posting and YouTube cuts), held for two frames with
   silence under it, so the file's first frame (Bluesky's poster) is that picture. The `.srt` and

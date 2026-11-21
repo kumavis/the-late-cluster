@@ -17,6 +17,7 @@ import { episode } from './episode.js'
 import { makeBar } from './ui/bar.js'
 import { label, P } from './kit/draw.js'
 import { parseCaptionScale } from './stage/caption-layout.js'
+import { planCaptionScales } from './show/caption-plan.js'
 
 /** a load that takes longer than this (s) puts up the "coming up" card; quicker ones hold the last frame */
 const LOADING_CARD_AFTER = 0.8
@@ -64,12 +65,20 @@ export async function startApp(params) {
     else if (!hasSegment(id)) show = makeProduction(Math.max(0, ids.indexOf(id)))
     else {
       const d = await load(id, { audio: false })
-      show = new Show({ module: d.module, cues: d.cues, tele: d.tele, puppets })
-      try {
-        d.module.setup?.(show)
-      } catch (e) {
-        console.error(e)
+      const makeShow = () => {
+        const sh = new Show({ module: d.module, cues: d.cues, tele: d.tele, puppets })
+        try {
+          d.module.setup?.(sh)
+        } catch (e) {
+          console.error(e)
+        }
+        return sh
       }
+      // above caption scale 1: plan the scale of the line on screen at t over all of that line
+      const line = stage.captionScale !== 1 ? captionLineAt(d.cues, t) : null
+      const plan = line ? planCaptionScales({ stage, makeShow, from: line.t0 - 0.05, to: line.t1 + 0.7, start: Math.max(0, line.t0 - 2.5) }) : null
+      show = makeShow()
+      if (plan) show.captionPlan = plan
     }
     // settle springs, particles and turns: step from a little before t at a fixed 60 fps
     const dt = 1 / 60
@@ -329,4 +338,14 @@ function loadingCard(ctx, msg, t) {
   label(ctx, String(msg ?? '').toUpperCase(), 640, 372, { size: 24, align: 'center', color: P.white, ls: 0.2 })
   const n = Math.floor(t * 3) % 4
   label(ctx, '·'.repeat(n + 1), 640, 398, { size: 22, align: 'center', color: P.gold })
+}
+
+/** the captioned line whose caption may be up at t (the last to start, as Show picks it) */
+function captionLineAt(cues, t) {
+  let best = null
+  for (const l of cues?.lines ?? []) {
+    if (l.caption === false || l.kind === 'beat') continue
+    if (t >= l.t0 - 0.05 && t < l.t1 + 0.7 && (!best || l.t0 >= best.t0)) best = l
+  }
+  return best
 }

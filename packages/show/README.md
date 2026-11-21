@@ -226,7 +226,8 @@ palette), `show.SHOTS`, `show.MARKS`, `show.CAST`, `show.defineLook(id, look)`.
 | `lineChart(ctx, rect, [{ values, color, label }], { progress, min, max, xLabels, yFormat })` | a line that draws on |
 | `typewriter(ctx, text, x, y, progress, { size, color, maxW, t })` | typed-on text with a cursor |
 | `countUp(value, progress)`, `compact(n)` | 1,234 counting up; 1.2K |
-| `skeetCard(ctx, { x, y, w, name, handle, time, text, initials, color, replies, reposts, likes, appear, reveal, likePulse, liked, scale })` | a Bluesky post card; returns its height |
+| `skeetCard(ctx, { x, y, w, name, handle, time, text, initials, color, replies, reposts, likes, appear, reveal, likePulse, liked, scale })` | a Bluesky post card; returns its height. Protected from the caption bar by itself (see `protect`) |
+| `protect(ctx, x, y, w, h)` | mark a rectangle (current drawing coordinates, any transform) that the caption bar must never cover: call it, once per frame while it is up, for every real post's card you draw yourself (counts row included) and every credit line that names an account or a site. Above caption scale 1 (the phone cut) the bar is drawn smaller for any line that would cover one; at scale 1 it changes nothing. Not for the set's own plates and signs |
 | `avatar(ctx, x, y, r, { color, initials })`, `butterfly(ctx, x, y, size, color)` | |
 | `makeCluster(seed, rect, opts)` + `drawGraph(ctx, graph, t, { highlight })` | a seeded node-and-edge cluster graph that twinkles |
 | `P` | the palette: `blue blueMid blueDim white amber green red pink gold goldMid goldDim bsky sky cyan violet magenta lime coral onair` |
@@ -450,7 +451,10 @@ production" card).
 - **Do** `occlude()` behind any graphic that sits over the set; beams add light, so overlapping
   lines without a black fill get messy.
 - **Don't** fight the captions: keep big graphics above y ≈ 610, or hide captions for that
-  moment with `show.caption(null)`.
+  moment with `show.caption(null)`. The phone cut draws the bar larger (`--caption-scale`), up
+  to about y 560; anything of a real person's you draw low on screen (a post card you lay out
+  yourself, a credit naming an account or a site) needs `draw.protect(ctx, x, y, w, h)` so the bar
+  stays off it. `skeetCard` does this itself. Chyrons move up clear of the bar by themselves.
 - **Do** batch frames: `npm run shoot -- <ep> <id> 1 4.5 9 12.2 …` in one go.
 - **Do** use cue names from `script.js` (`{ cue: 'chart-in' }`) rather than raw seconds, so a
   re-render that shifts timing doesn't break your direction.

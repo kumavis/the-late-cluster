@@ -247,7 +247,7 @@ Two studio tools have no root command and are run directly: `bun packages/show/t
 (loudness, voices, the Whisper intelligibility pass) and `node packages/show/tools/video.mjs`
 (video exports into `video/<id>/`; for the cut Bluesky serves to phones, `--soften box` filters
 the posting cut in its own encode against Bluesky's unfiltered 3:1 downscale, `--caption-scale <n>`
-scales the caption bar, `--poster <s>` puts that frame first as the poster, and `--preview-360` and
+scales the caption bar as a ceiling (never over a protected post card or credit, `draw.protect`; chyrons move clear of it), `--poster <s>` puts that frame first as the poster, and `--preview-360` and
 `--preview-720`, also on an existing file, write the streams a phone and a desktop get;
 `packages/show/tools/README.md`, "For phones"). Review frames from `shoot` go to `shots/<id>/<seg>/`.
 The sound editor's tools are `fit`, `voice-research` and `voices` (`packages/show/tools/README.md`,

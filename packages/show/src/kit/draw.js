@@ -341,7 +341,26 @@ export function avatar(ctx, x, y, r, o = {}) {
 }
 
 /**
- * A skeet card: a stylised Bluesky post.
+ * Mark a rectangle (x, y, w, h in the current drawing coordinates) as something the caption bar
+ * must never cover: a post card, a credit naming an account or a site. The stage collects these
+ * each frame (stage units, through whatever transform is set) and draws a larger caption bar only
+ * where it clears them; at caption scale 1 nothing changes. A no-op outside Stage.draw.
+ */
+export function protect(ctx, x, y, w, h) {
+  const reg = ctx.__lcProtect
+  if (!reg || !(w > 0) || !(h > 0)) return
+  const m = ctx.getTransform()
+  const xs = [], ys = []
+  for (const [px, py] of [[x, y], [x + w, y], [x, y + h], [x + w, y + h]]) {
+    xs.push(m.a * px + m.c * py + m.e)
+    ys.push(m.b * px + m.d * py + m.f)
+  }
+  const x0 = Math.min(...xs), y0 = Math.min(...ys)
+  reg.rects.push({ x: x0 / reg.k, y: y0 / reg.k, w: (Math.max(...xs) - x0) / reg.k, h: (Math.max(...ys) - y0) / reg.k })
+}
+
+/**
+ * A skeet card: a stylised Bluesky post (protected from the caption bar: see protect()).
  *   skeetCard(ctx, { x, y, w, name, handle, text, likes, reposts, replies, time, color, initials,
  *                    appear (0..1: drops in), likePulse (0..1: heart pops), reveal (0..1: typewriter),
  *                    t (for the cursor blink), scale })
@@ -382,6 +401,7 @@ export function skeetCard(ctx, o) {
     left -= ln.length + 1
     label(ctx, part, nx, pad + 26 + (i + 1) * lh - lh * 0.25, { size: textSize, color: o.textColor ?? P.white, ls: 0.04 })
   })
+  protect(ctx, 0, 0, w, h)
   // footer: reply, repost, like
   const fy = h - 24
   const items = [

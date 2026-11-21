@@ -86,11 +86,76 @@ export function laughBox(tw, s = 1) {
   return { x: 640 - w / 2, y: LAUGH.bottom - h, w, h, ty: LAUGH.bottom - 15 * s, size: LAUGH.size * s, cut: 8 * s, width: 1.2 * s }
 }
 
+// ---------------------------------------------------------------- clearance and the ceiling
+// What the caption area must leave alone. A chyron is moved up until it clears whatever is drawn
+// there (the bar, or the laughter box), lift included. Protected rectangles (post cards, credits:
+// registered by the drawing code with kit/draw.js protect()) are never covered: a line's bar is
+// drawn at the largest scale up to the asked one that clears them all, never below 1.
+
+/** the gap kept between the caption area and what it must clear (stage units) */
+export const CLEAR_MARGIN = 4
+
+/** do rectangles {x, y, w, h} overlap, or come within m of each other? */
+export function overlaps(a, b, m = 0) {
+  return a.x < b.x + b.w + m && a.x + a.w > b.x - m && a.y < b.y + b.h + m && a.y + a.h > b.y - m
+}
+
+/** the area a caption bar takes (captionBox's result at scale s), its name tag included */
+export function barRect(L, s = 1) {
+  return { x: L.bx, y: L.by - 9 * s, w: L.bw, h: L.bh + 9 * s }
+}
+
+/** the area the laughter box takes (laughBox's result), lifted */
+export function laughRect(B, lift = 0) {
+  return { x: B.x, y: B.y - lift, w: B.w, h: B.h }
+}
+
 /**
- * How far a larger bar reaches above the scale-1 bar (stage units), so what sits above the bar (a
- * chyron) can move up with it: a two-line caption bar, or the laughter caption. 0 at scale 1.
+ * The scales to try for an asked scale: 1, 1.05, … up to it (a scale below 1 is used as asked).
  */
-export function captionRise(s = 1, laugh = false) {
-  if (s === 1) return 0
-  return laugh ? LAUGH.h * (s - 1) : (2 * CAP.size * 1.32 + 40) * (s - 1)
+export function scaleCandidates(max, step = 0.05) {
+  if (!(max > 1)) return [max]
+  const out = []
+  for (let k = 0; ; k++) {
+    const s = Math.round((1 + k * step) * 1e6) / 1e6
+    if (s >= max - 1e-9) break
+    out.push(s)
+  }
+  out.push(max)
+  return out
+}
+
+/** the largest candidate the test accepts; the smallest (1, or the asked scale below 1) if none */
+export function largestClear(cands, ok) {
+  for (let i = cands.length - 1; i >= 0; i--) if (ok(cands[i])) return cands[i]
+  return cands[0]
+}
+
+/** does a caption area clear every protected rectangle? */
+export function clearsAll(area, rects, m = CLEAR_MARGIN) {
+  return !rects.some((r) => overlaps(area, r, m))
+}
+
+/**
+ * A chyron's top: at `base`, unless its box ({x, w} across, h tall) overlaps the caption area;
+ * then just above it, a margin clear. `vis` (0..1) is how far the caption area is faded in:
+ * the chyron moves with it (all the way from half visible), so it never jumps for a faint frame.
+ */
+export function chyronTop(base, chyron, area, m = CLEAR_MARGIN, vis = 1) {
+  if (!area) return base
+  const box = { x: chyron.x, y: base, w: chyron.w, h: chyron.h }
+  if (!overlaps(box, area)) return base
+  const clear = Math.min(base, area.y - m - chyron.h)
+  const k = Math.min(1, Math.max(0, vis / 0.5))
+  return k === 1 ? clear : base + (clear - base) * k
+}
+
+/** one key per caption line (or override): the same text by the same speaker shares a scale */
+export const captionKey = (cap) => `${cap.who ?? ''}|${cap.kind ?? 'say'}|${cap.text}`
+
+/** a line's plan from what each sampled frame allowed: { key → the largest scale every frame allowed } */
+export function planFromSamples(cands, samples) {
+  const plan = new Map()
+  for (const [key, frames] of samples) plan.set(key, largestClear(cands, (s) => frames.every((okAt) => okAt.has(s))))
+  return plan
 }

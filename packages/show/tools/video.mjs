@@ -417,10 +417,22 @@ async function pageRender({ id, frames, fps, sink, w, h, captions = true, dry = 
   if (st.canvas.width !== w || st.canvas.height !== h) throw new Error(`stage backing store is ${st.canvas.width}×${st.canvas.height}, wanted ${w}×${h}`)
   if (st.captionScale !== captionScale) throw new Error(`the page's caption scale is ${st.captionScale}, wanted ${captionScale}`)
   const d = await load(id, { audio: false })
-  const show = new Show({ module: d.module, cues: d.cues, tele: d.tele, puppets: lc.puppets })
-  show.captions = true
-  d.module.setup?.(show) // as playSegment()
-  show.resetMotion() // as tick() on the transport's new epoch: the cut
+  const makeShow = () => {
+    const sh = new Show({ module: d.module, cues: d.cues, tele: d.tele, puppets: lc.puppets })
+    sh.captions = true
+    d.module.setup?.(sh) // as playSegment()
+    sh.resetMotion() // as tick() on the transport's new epoch: the cut
+    return sh
+  }
+  // above caption scale 1, one scale per line, the largest that keeps what is protected clear over
+  // the whole line (a pass of its own first; at scale 1 nothing of this runs)
+  let plan = null
+  if (captionScale !== 1 && captions) {
+    const { planCaptionScales } = await import('/src/show/caption-plan.js')
+    plan = planCaptionScales({ stage: st, makeShow, to: (frames - 1) / fps, fps })
+  }
+  const show = makeShow()
+  if (plan) show.captionPlan = plan
   const dt = 1 / fps
   let pending = null
   const ms = { frame: 0, draw: 0, read: 0, wait: 0 }
@@ -464,7 +476,7 @@ async function pageRender({ id, frames, fps, sink, w, h, captions = true, dry = 
     if (!r.ok) throw new Error(`sink: ${r.status} ${await r.text()}`)
   }
   for (const k in ms) ms[k] = +(ms[k] / frames).toFixed(1)
-  return { k: st.k, glow: st.glowOn, w: st.canvas.width, h: st.canvas.height, ms, runs }
+  return { k: st.k, glow: st.glowOn, w: st.canvas.width, h: st.canvas.height, ms, runs, plan: plan ? [...plan] : null }
 }
 
 // ------------------------------------------------------------------ main
@@ -580,6 +592,10 @@ async function renderSegment(task) {
     })
     const info = await page.evaluate(pageRender, { id, frames, fps: FPS, sink: `/__video/${job}`, w: W, h: H, captions, dry, captionScale })
     capRuns.set(id, info.runs)
+    if (info.plan) {
+      const below = info.plan.filter(([, s]) => s < captionScale)
+      console.log(`  ${id}: ${info.plan.length} caption lines planned, ${below.length} below ×${captionScale}${below.length ? ': ' + below.map(([k, s]) => `×${s} "${k.split('|').slice(2).join('|').slice(0, 40)}"`).join(', ') : ''}`)
+    }
     if (dry) console.log(`  ${id}: stepped ${frames} frames for subtitles (${info.runs.length} caption runs)`)
     else console.log(`  ${job}: rendered ${frames} frames at ${info.w}×${info.h}, captions ${captions ? (captionScale !== 1 ? `on at ×${captionScale}` : 'on') : 'off'} (k ${info.k}, glow ${info.glow}, ${gl}; ms/frame ${JSON.stringify(info.ms)})`)
   } finally {

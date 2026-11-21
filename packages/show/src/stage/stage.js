@@ -6,8 +6,8 @@ import { GLHeads } from '../engine/heads.js'
 import { Glow, label, labelBlock, occlude, rectPath, panel as drawPanel, P } from '../kit/draw.js'
 import { buildSet, drawSetBack, drawSetFront, drawAudience, drawSignOverlay, drawInstrument, drawProp, WORLD } from './set.js'
 import { drawCostume } from './costumes.js'
-import { caption, chyron, laughCaption, builtCounter, disclaimer } from './chrome.js'
-import { captionRise } from './caption-layout.js'
+import { chyron, builtCounter, disclaimer, captionLayout, drawCaption, laughLayout, drawLaugh, chyronExtent } from './chrome.js'
+import { scaleCandidates, largestClear, clearsAll, chyronTop, captionKey, CLEAR_MARGIN } from './caption-layout.js'
 import { tvFrame, ticker } from '../kit/props.js'
 import { clamp, unlerp, noise1, hash01 } from '../kit/ease.js'
 import { lookFor } from '../looks.js'
@@ -104,11 +104,16 @@ export class Stage {
   }
 
   /**
-   * Draw a frame of `show`. o: { overlay(ctx) (stage units, after chrome), captions: bool }
+   * Draw a frame of `show`. o: { overlay(ctx) (stage units, after chrome), captions: bool, probe:
+   * { samples: Map } (a caption-plan pass: no heads, no captions drawn; for the line on screen,
+   * records which caption scales clear what is protected this frame) }
    */
   draw(show, o = {}) {
     const ctx = this.ctx
     const t = show.t
+    // what the frame's drawing code protects from the caption bar (kit/draw.js protect())
+    const reg = { k: this.k, rects: [] }
+    ctx.__lcProtect = reg
     ctx.setTransform(1, 0, 0, 1, 0, 0)
     ctx.globalCompositeOperation = 'source-over'
     ctx.globalAlpha = 1
@@ -137,7 +142,7 @@ export class Stage {
     const ps = [...show.puppets.values()].filter((p) => p.visible && p.screen && p.head)
     ps.sort((a, b) => (a.place.z ?? 0) - (b.place.z ?? 0) || a.screen.y - b.screen.y)
     this.stats.heads = ps.length
-    for (const p of ps) this.drawPuppet(show, p)
+    if (!o.probe) for (const p of ps) this.drawPuppet(show, p)
     this.screen()
     for (const m of show.monitors) tvFrame.glass(ctx, m.rect.x, m.rect.y, m.rect.w, m.rect.h, { ...m, t })
 
@@ -154,26 +159,35 @@ export class Stage {
     if (show.builtNow) builtCounter(ctx, show.builtNow, t)
     const disc = show.disclaimerNow
     if (disc) disclaimer(ctx, disc.text, disc.alpha)
-    const cs = this.captionScale
+    ctx.__lcProtect = null
     const capsOn = o.captions ?? true
-    // a larger caption bar pushes the chyron up by what it grew (nothing at scale 1)
-    const rise = capsOn ? (show.captionNow ? captionRise(cs) : show.laughing > 0.05 ? captionRise(cs, true) : 0) : 0
+    // the captions rise above a ticker lane or the disclaimer footer
+    const lift = Math.max(lane?.text ? 46 : 0, disc ? 34 * disc.alpha : 0)
+    const cap = capsOn ? show.captionNow : null
+    const laughing = capsOn && !cap && show.laughing > 0.05
+    const laughText = show.signText === 'APPLAUSE' ? 'APPLAUSE' : 'LAUGHTER'
+    if (o.probe) {
+      this.probeCaption(show, cap, lift, reg.rects, o.probe)
+      return
+    }
+    // the caption area: the bar at the line's scale (the asked scale, or less where that would
+    // cover something protected; never below 1), or the laughter box at this frame's
+    const capLay = cap ? captionLayout(ctx, cap, lift, this.lineScale(show, cap, lift, reg.rects), this.widthCache(cap)) : null
+    const laughLay = laughing ? laughLayout(ctx, laughText, show.laughing, lift, this.laughScale(laughText, lift, reg.rects)) : null
+    const area = capLay?.area ?? laughLay?.area ?? null
     for (const c of show._frame.chyrons) {
       const id = c.spec.id
       const spec = id ? { name: show.puppets.get(id)?.name ?? CAST[id]?.name ?? id, title: CAST[id]?.title, handle: CAST[id]?.handle ?? lookFor(id).handle, color: lookFor(id).color, parody: !!CAST[id]?.guest, ...c.spec } : c.spec
       const inU = unlerp(c.from, c.from + 0.6, t), outU = unlerp(c.to - 0.5, c.to, t)
-      let cy = (show.captionNow && capsOn ? 478 : 560) - (lane?.text ? 46 : 0)
-      if (rise) cy -= rise
-      if (t >= c.from && t <= c.to) chyron(ctx, spec, inU, outU, cy)
+      if (!(t >= c.from && t <= c.to)) continue
+      // a chyron sits wholly above whatever the caption area holds, with a margin
+      const base = (show.captionNow && capsOn ? 478 : 560) - (lane?.text ? 46 : 0)
+      chyron(ctx, spec, inU, outU, chyronTop(base, chyronExtent(ctx, spec), area, CLEAR_MARGIN, capLay ? cap.alpha : laughLay ? show.laughing : 1))
     }
     const signVisible = this.signInFrame(show)
     if (!signVisible) drawSignOverlay(ctx, show)
-    if (o.captions ?? true) {
-      // the captions rise above a ticker lane or the disclaimer footer
-      const lift = Math.max(lane?.text ? 46 : 0, disc ? 34 * disc.alpha : 0)
-      if (show.captionNow) caption(ctx, show.captionNow, lift, cs)
-      else if (show.laughing > 0.05) laughCaption(ctx, show.signText === 'APPLAUSE' ? 'APPLAUSE' : 'LAUGHTER', show.laughing, lift, cs)
-    }
+    if (capLay) drawCaption(ctx, cap, capLay)
+    else if (laughLay) drawLaugh(ctx, laughLay, show.laughing, lift)
     if (o.overlay) o.overlay(ctx)
 
     // ---- no WebGL: say so on the stage
@@ -183,6 +197,55 @@ export class Stage {
     }
 
     if (this.glowOn) this.glow.apply(this.canvas, ctx, this.k)
+  }
+
+  /** token widths per scale for the line on screen (measured once per line and scale) */
+  widthCache(cap) {
+    const key = captionKey(cap)
+    if (this._widthKey !== key) {
+      this._widthKey = key
+      this._widths = new Map()
+    }
+    return this._widths
+  }
+
+  /** the scales to try for this stage's caption scale */
+  scaleCands() {
+    if (this._candsFor !== this.captionScale) {
+      this._candsFor = this.captionScale
+      this._cands = scaleCandidates(this.captionScale)
+    }
+    return this._cands
+  }
+
+  /**
+   * A line's caption scale: 1 at scale 1; else its planned scale (show.captionPlan, one per line,
+   * from a pass over the whole line: caption-plan.js), or, unplanned, the largest that clears what
+   * is protected in this frame.
+   */
+  lineScale(show, cap, lift, rects) {
+    const cs = this.captionScale
+    if (cs === 1) return 1
+    const planned = show.captionPlan?.get(captionKey(cap))
+    if (planned != null) return planned
+    const widths = this.widthCache(cap)
+    return largestClear(this.scaleCands(), (s) => clearsAll(captionLayout(this.ctx, cap, lift, s, widths).area, rects))
+  }
+
+  /** the laughter box's scale this frame: the largest that clears what is protected */
+  laughScale(text, lift, rects) {
+    if (this.captionScale === 1) return 1
+    return largestClear(this.scaleCands(), (s) => clearsAll(laughLayout(this.ctx, text, 1, lift, s).area, rects))
+  }
+
+  /** a caption-plan frame: for the line on screen, the scales that clear what is protected now */
+  probeCaption(show, cap, lift, rects, probe) {
+    if (!cap) return
+    const key = captionKey(cap)
+    const widths = this.widthCache(cap)
+    const ok = new Set(this.scaleCands().filter((s) => clearsAll(captionLayout(this.ctx, { ...cap, alpha: 1 }, lift, s, widths).area, rects)))
+    if (!probe.samples.has(key)) probe.samples.set(key, [])
+    probe.samples.get(key).push(ok)
   }
 
   signInFrame(show) {

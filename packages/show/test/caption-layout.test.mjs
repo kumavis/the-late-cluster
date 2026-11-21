@@ -3,7 +3,7 @@
 // Node builtins only.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { CAP, LAUGH, parseCaptionScale, wrapWidth, breakLines, pageStart, pairCount, captionBox, laughBox, captionRise } from '../src/stage/caption-layout.js'
+import { CAP, LAUGH, parseCaptionScale, wrapWidth, breakLines, pageStart, pairCount, captionBox, laughBox, barRect, laughRect, overlaps, scaleCandidates, largestClear, clearsAll, chyronTop, captionKey, planFromSamples, CLEAR_MARGIN } from '../src/stage/caption-layout.js'
 
 /** the bar exactly as chrome.js computed it before the scale existed */
 function before(rows, maxw, nameW, lift) {
@@ -26,8 +26,6 @@ test('at scale 1 every number is the old one, exactly', () => {
   }
   assert.equal(wrapWidth(1), CAP.maxW)
   assert.deepEqual(laughBox(200, 1), { x: 640 - 125, y: 640, w: 250, h: 44, ty: 669, size: 20, cut: 8, width: 1.2 })
-  assert.equal(captionRise(1), 0)
-  assert.equal(captionRise(1, true), 0)
 })
 
 test('a larger bar keeps its bottom edge, grows upward, stays centred and in the frame', () => {
@@ -45,13 +43,6 @@ test('a larger bar keeps its bottom edge, grows upward, stays centred and in the
     const L = laughBox(180, s)
     assert.ok(Math.abs(L.y + L.h - LAUGH.bottom) < 1e-9, 'the laughter caption keeps its bottom edge')
     assert.equal(L.size, LAUGH.size * s)
-  }
-})
-
-test('the chyron rises by what a two-line bar or the laughter caption grew', () => {
-  for (const s of [1.4, 1.8]) {
-    assert.ok(Math.abs(captionRise(s) - (captionBox(2, 900, 0, 0, 1).by - captionBox(2, 900, 0, 0, s).by)) < 1e-9)
-    assert.ok(Math.abs(captionRise(s, true) - (laughBox(100, 1).y - laughBox(100, s).y)) < 1e-9)
   }
 })
 
@@ -86,4 +77,92 @@ test('caption scales from the page and the command line', () => {
   assert.equal(parseCaptionScale('0.5'), 0.5)
   assert.equal(parseCaptionScale('3'), 3)
   for (const bad of ['0.4', '3.1', 'big', '', null, undefined, 'NaN', 'Infinity', '-1']) assert.equal(parseCaptionScale(bad), null, String(bad))
+})
+
+// ---------------------------------------------------------------- clearance and the ceiling
+
+const chy = { x: 56, w: 520, h: 88 }
+
+test('a chyron clears the caption area, lift included, and stays put when it already does', () => {
+  // the scale-1 two-line bar, no lift: the chyron at 478 is already clear
+  const bar = barRect(captionBox(2, 900, 80, 0, 1), 1)
+  assert.equal(chyronTop(478, chy, bar), 478)
+  // the same bar lifted by the disclaimer (34): it reaches the chyron, which moves just above it
+  const lifted = barRect(captionBox(2, 900, 80, 34, 1), 1)
+  const y = chyronTop(478, chy, lifted)
+  assert.ok(y < 478)
+  assert.equal(y + chy.h + CLEAR_MARGIN, lifted.y)
+  // the laughter box at scale 1 under a chyron at 560 (the applause case): the chyron moves up
+  const laugh = laughRect(laughBox(220, 1), 0)
+  const ly = chyronTop(560, chy, laugh)
+  assert.equal(ly, laugh.y - CLEAR_MARGIN - chy.h)
+  assert.ok(ly + chy.h <= laugh.y - CLEAR_MARGIN)
+  // lifted by a ticker (46): still clear of it
+  const laughUp = laughRect(laughBox(220, 1.4), 46)
+  assert.ok(chyronTop(514, chy, laughUp) + chy.h <= laughUp.y - CLEAR_MARGIN)
+  // nothing there, or nothing across from it: no move
+  assert.equal(chyronTop(560, chy, null), 560)
+  assert.equal(chyronTop(560, chy, { x: 900, y: 600, w: 200, h: 80 }), 560)
+})
+
+test('overlap with a margin', () => {
+  const a = { x: 0, y: 0, w: 10, h: 10 }
+  assert.ok(overlaps(a, { x: 5, y: 5, w: 10, h: 10 }))
+  assert.ok(!overlaps(a, { x: 12, y: 0, w: 5, h: 5 }))
+  assert.ok(overlaps(a, { x: 12, y: 0, w: 5, h: 5 }, 3))
+  assert.ok(!overlaps(a, { x: 0, y: 14, w: 5, h: 5 }, 3))
+})
+
+test('the scales tried: 1 up to the asked scale; an asked scale at or below 1 is used as is', () => {
+  assert.deepEqual(scaleCandidates(1.2), [1, 1.05, 1.1, 1.15, 1.2])
+  assert.deepEqual(scaleCandidates(1.42), [1, 1.05, 1.1, 1.15, 1.2, 1.25, 1.3, 1.35, 1.4, 1.42])
+  assert.deepEqual(scaleCandidates(1), [1])
+  assert.deepEqual(scaleCandidates(0.8), [0.8])
+})
+
+test('the ceiling: a protected rectangle below, at and above the bar\'s reach; never below 1', () => {
+  const cands = scaleCandidates(1.6)
+  // a two-line bar, its top for each scale (bottom edge at 706)
+  const area = (s) => barRect(captionBox(2, 800, 60, 0, s), s)
+  const top = (s) => area(s).y
+  const card = (bottom) => ({ x: 400, y: bottom - 200, w: 480, h: 200 })
+  // far above even the 1.6 bar: the asked scale
+  assert.equal(largestClear(cands, (s) => clearsAll(area(s), [card(top(1.6) - 20)])), 1.6)
+  // its bottom between the 1.2 and 1.25 bars' reach: 1.2
+  const mid = (top(1.2) + top(1.25)) / 2 - CLEAR_MARGIN
+  assert.equal(largestClear(cands, (s) => clearsAll(area(s), [card(mid)])), 1.2)
+  // exactly at the 1.3 bar's reach less the margin: 1.3 still clears
+  assert.equal(largestClear(cands, (s) => clearsAll(area(s), [card(top(1.3) - CLEAR_MARGIN)])), 1.3)
+  // already under the scale-1 bar: 1, never less
+  assert.equal(largestClear(cands, (s) => clearsAll(area(s), [card(top(1) + 10)])), 1)
+  // off to the side, however low: no limit
+  assert.equal(largestClear(cands, (s) => clearsAll(area(s), [{ x: 0, y: 600, w: 60, h: 100 }])), 1.6)
+  // below 1 asked: used as asked
+  assert.equal(largestClear(scaleCandidates(0.8), () => false), 0.8)
+})
+
+test('one scale per line: the largest every sampled frame allowed', () => {
+  const cands = scaleCandidates(1.4)
+  const all = new Set(cands)
+  const upTo = (m) => new Set(cands.filter((s) => s <= m))
+  const samples = new Map([
+    ['larry|say|first', [all, upTo(1.2), all]],
+    ['sibyl|say|second', [all, all]],
+    ['amber|say|third', [new Set(), all]],
+  ])
+  const plan = planFromSamples(cands, samples)
+  assert.equal(plan.get('larry|say|first'), 1.2)
+  assert.equal(plan.get('sibyl|say|second'), 1.4)
+  assert.equal(plan.get('amber|say|third'), 1)
+  assert.equal(captionKey({ who: 'larry', kind: 'say', text: 'Hi.' }), 'larry|say|Hi.')
+  assert.equal(captionKey({ who: null, text: 'Hi.' }), '|say|Hi.')
+})
+
+test('a chyron moves with the caption area as it fades in, never in a jump', () => {
+  const laugh = laughRect(laughBox(220, 1), 0)
+  const clear = laughRect(laughBox(220, 1), 0).y - CLEAR_MARGIN - chy.h
+  assert.equal(chyronTop(560, chy, laugh, CLEAR_MARGIN, 0), 560)
+  assert.equal(chyronTop(560, chy, laugh, CLEAR_MARGIN, 0.25), 560 + (clear - 560) / 2)
+  assert.equal(chyronTop(560, chy, laugh, CLEAR_MARGIN, 0.5), clear)
+  assert.equal(chyronTop(560, chy, laugh, CLEAR_MARGIN, 1), clear)
 })

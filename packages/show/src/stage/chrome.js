@@ -1,7 +1,7 @@
 // Broadcast chrome drawn on the stage (stage units): the show logo, lower-third chyrons, the
 // caption bar.
 import { STAGE_TEXT } from './text.js'
-import { CAP, LAUGH, breakLines, pageStart, wrapWidth, captionBox, laughBox } from './caption-layout.js'
+import { CAP, LAUGH, breakLines, pageStart, wrapWidth, captionBox, laughBox, barRect, laughRect } from './caption-layout.js'
 import { beam, seg, ring, dot, label, labelWidth, wrapLabel, box, occlude, rectPath, butterfly, glowText, P, mix } from '../kit/draw.js'
 import { clamp, ease, smoothstep, rng } from '../kit/ease.js'
 import { confetti } from '../kit/props.js'
@@ -111,24 +111,44 @@ export function chyron(ctx, c, inU, outU, y = 520) {
  * bar about its bottom edge (stage/caption-layout.js: 1 is the show's own size).
  */
 export function caption(ctx, cap, lift = 0, s = 1) {
-  if (!cap || cap.alpha <= 0.01) return
-  const a = cap.alpha
+  const lay = captionLayout(ctx, cap, lift, s)
+  if (lay) drawCaption(ctx, cap, lay)
+}
+
+/**
+ * Where the caption bar goes and what it shows, without drawing it (null when it is not drawn):
+ * { L (captionBox), area (barRect), shown, widths, space, o, tagO, name, wi, s }. `widths` caches
+ * token widths by scale across calls (pass the same Map for the same line).
+ */
+export function captionLayout(ctx, cap, lift = 0, s = 1, widths = null) {
+  if (!cap || cap.alpha <= 0.01) return null
   const tokens = cap.words?.length ? cap.words.map((w) => w[2]) : String(cap.text).split(/\s+/)
   const o = { size: CAP.size * s, ls: 0.06 }
   // break into lines (the wrap width is in stage units whatever the scale)
-  const space = labelWidth(ctx, ' ', o)
-  const tw = tokens.map((tok) => labelWidth(ctx, tok, o))
+  let m = widths?.get(s)
+  if (!m) {
+    m = { space: labelWidth(ctx, ' ', o), tw: tokens.map((tok) => labelWidth(ctx, tok, o)) }
+    widths?.set(s, m)
+  }
+  const { space, tw } = m
   const lines = breakLines(tw, space, wrapWidth(s)).map((l) => l.map((i) => ({ tok: tokens[i], i, w: tw[i] })))
   // show two lines at a time: the pair holding the current word
   const wi = cap.word < 0 ? 0 : cap.word
   const first = pageStart(lines.map((l) => l.map((x) => x.i)), wi, cap.done)
   const shown = lines.slice(first, first + 2)
-  const widths = shown.map((l) => l.reduce((sum, x, k) => sum + x.w + (k ? space : 0), 0))
-  const maxw = Math.max(...widths)
+  const lw = shown.map((l) => l.reduce((sum, x, k) => sum + x.w + (k ? space : 0), 0))
+  const maxw = Math.max(...lw)
   const name = String(cap.name ?? '').toUpperCase()
   const tagO = { size: 14 * s, weight: 'm', ls: 0.2 }
   const nameW = name ? labelWidth(ctx, name, tagO) : 0
   const L = captionBox(shown.length, maxw, nameW, lift, s)
+  return { L, area: barRect(L, s), shown, widths: lw, space, o, tagO, name, wi, s }
+}
+
+/** draw a caption bar laid out by captionLayout() */
+export function drawCaption(ctx, cap, lay) {
+  const a = cap.alpha
+  const { L, shown, widths, space, o, tagO, name, wi } = lay
   const { bx, by, bw, bh } = L
   box(ctx, bx, by, bw, bh, { color: cap.color ?? P.blue, cut: L.frame.cut, width: L.frame.width, alpha: 0.6 * a, fillAlpha: 0.92 * a })
   if (name) {
@@ -151,15 +171,38 @@ export function caption(ctx, cap, lift = 0, s = 1) {
 
 /** "[ LAUGHTER ]" in the caption bar when the room is laughing and nobody's talking (s as caption()) */
 export function laughCaption(ctx, text, a, lift = 0, s = 1) {
-  if (a <= 0.02) return
-  ctx.save()
-  ctx.translate(0, -lift)
+  const lay = laughLayout(ctx, text, a, lift, s)
+  if (lay) drawLaugh(ctx, lay, a, lift)
+}
+
+/** where the laughter box goes (null when it is not drawn): { B (laughBox), area, str, o } */
+export function laughLayout(ctx, text, a, lift = 0, s = 1) {
+  if (a <= 0.02) return null
   const str = `[ ${text} ]`
   const o = { size: LAUGH.size * s, ls: 0.3 }
   const B = laughBox(labelWidth(ctx, str, o), s)
+  return { B, area: laughRect(B, lift), str, o }
+}
+
+/** draw a laughter box laid out by laughLayout() */
+export function drawLaugh(ctx, lay, a, lift = 0) {
+  const { B, str, o } = lay
+  ctx.save()
+  ctx.translate(0, -lift)
   box(ctx, B.x, B.y, B.w, B.h, { color: P.amber, cut: B.cut, width: B.width, alpha: 0.6 * a, fillAlpha: 0.75 * a })
   label(ctx, str, 640, B.ty, { ...o, align: 'center', color: P.amber, alpha: a })
   ctx.restore()
+}
+
+/** a chyron's box across the frame once it is in: { x, w, h } (for clearing the caption area) */
+export function chyronExtent(ctx, c) {
+  const name = String(c.name ?? '').toUpperCase()
+  const sub = String(c.title ?? '').toUpperCase()
+  const handle = c.handle ?? ''
+  const nw = labelWidth(ctx, name, { size: 34, weight: 'm', ls: 0.1 })
+  const sw = labelWidth(ctx, sub + (handle ? '   ' + handle : ''), { size: 15, ls: 0.18 })
+  const w = Math.max(nw + (c.parody ? labelWidth(ctx, 'PUPPET · PARODY', { size: 11, ls: 0.22 }) + 40 : 0), sw) + 120
+  return { x: 56, w, h: 88 }
 }
 
 // ---------------------------------------------------------------- the episode counter, the disclaimer
