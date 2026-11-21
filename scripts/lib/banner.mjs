@@ -11,8 +11,8 @@ export const VARIANTS = Object.freeze({
   b: 'the title to the right, the skyline dimmer behind it, its tallest towers on the left',
   c: 'a larger title over the skyline as a low band along the bottom',
 })
-/** the variant `npm run banner` writes; the owner picks it */
-export const DEFAULT_VARIANT = 'c'
+/** the variant `npm run banner` writes: a, the owner's pick (21 November 2026) */
+export const DEFAULT_VARIANT = 'a'
 export const BANNER = 'brand/banner.png'
 export const CANDIDATES = 'brand/candidates'
 export const WIDTH = 3000

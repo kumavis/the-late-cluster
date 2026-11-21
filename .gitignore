@@ -39,3 +39,6 @@ packages/show/tools/.cache/
 .env
 .env.*
 .envrc
+
+# banner candidates for the owner to choose from; `npm run banner -- --candidates` rewrites them
+/brand/candidates/

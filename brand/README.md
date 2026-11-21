@@ -34,7 +34,8 @@ is generated too; do not edit it by hand.
 
 ```bash
 npm run banner -- --candidates       # all three, plus banner-sheet.png, in brand/candidates/
-npm run banner -- --variant b        # write brand/banner.png from the chosen variant (a, b or c)
+npm run banner                       # rewrites brand/banner.png (variant a, the owner's pick)
+npm run banner -- --variant b        # another variant (a, b or c)
 npm run banner -- --out /tmp/x.png   # write somewhere else
 ```
 
