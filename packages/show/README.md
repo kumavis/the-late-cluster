@@ -362,6 +362,9 @@ cast id. A `plays` that names no cast entry is ignored.
 
 ### The set
 
+The skyline alone, without the window, is `buildSkyline(rng, rect, { stars })` and
+`drawSkyline(ctx, sky, t, { weight, moon })` from `stage/set.js` (the account's banner uses them).
+
 Back: `wall truss floor window` (the simcluster skyline) `curtain onair sign` (APPLAUSE/LAUGH,
 lit by `cues.sfx` named `applause* laugh* biglaugh chuckle cheer`) `bandstand couch chair`.
 Front: `desk` (mug, desk mic, name plate) and the chair/couch arms. Extras, off by default:

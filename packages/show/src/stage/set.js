@@ -33,6 +33,26 @@ export const BAND = { x0: 40, x1: 700, top: 800 }
 
 export function buildSet() {
   const r = rng('late-cluster-skyline')
+  const sky = buildSkyline(r, WIN)
+  // audience heads (screen space)
+  const aud = []
+  for (let i = 0, x = -20; x < 1300; i++) {
+    const w = r.range(54, 74)
+    aud.push({ x: x + w / 2, w, h: r.range(46, 62), ph: r.range(0, 6), hair: r.int(4) })
+    x += w * r.range(0.82, 1.0)
+  }
+  return { ...sky, aud }
+}
+
+/**
+ * The simcluster skyline (the set's window, or anything else that wants the city: the banner in
+ * scripts/banner/): towers whose floors are clusters of nodes, a dim far skyline, the follow graph
+ * as arcs between rooftops, and stars. `r` is a seeded rng (kit/ease.js), `win` the world rect
+ * { x, y, w, h } it fills, standing on its bottom edge; o.stars: how many (70). Draw it with
+ * drawSkyline().
+ */
+export function buildSkyline(r, win, o = {}) {
+  const WIN = win
   // the skyline: towers whose floors are clusters of nodes
   const hues = [P.bsky, P.sky, P.cyan, P.violet, P.magenta, P.gold]
   const towers = []
@@ -106,15 +126,8 @@ export function buildSet() {
     links.push({ a: a.top, b: b.top, c: r.pick([P.bsky, P.sky, P.magenta]), ph: r.range(0, 1), sp: r.range(0.15, 0.35) })
   }
   const stars = []
-  for (let i = 0; i < 70; i++) stars.push({ x: WIN.x + r.range(8, WIN.w - 8), y: WIN.y + r.range(8, WIN.h * 0.45), r: r.range(0.5, 1.4), ph: r.range(0, 9) })
-  // audience heads (screen space)
-  const aud = []
-  for (let i = 0, x = -20; x < 1300; i++) {
-    const w = r.range(54, 74)
-    aud.push({ x: x + w / 2, w, h: r.range(46, 62), ph: r.range(0, 6), hair: r.int(4) })
-    x += w * r.range(0.82, 1.0)
-  }
-  return { towers, nodes, edgesByColor, outline, far, links, stars, aud }
+  for (let i = 0; i < (o.stars ?? 70); i++) stars.push({ x: WIN.x + r.range(8, WIN.w - 8), y: WIN.y + r.range(8, WIN.h * 0.45), r: r.range(0.5, 1.4), ph: r.range(0, 9) })
+  return { win: { ...WIN }, towers, nodes, edgesByColor, outline, far, links, stars }
 }
 
 // ---------------------------------------------------------------- back pieces
@@ -175,38 +188,50 @@ function floor(ctx) {
   beam(ctx, p, P.blueDim, 1, { alpha: 0.32 })
 }
 
-function windowPiece(ctx, S, show) {
-  const t = show.wall
-  const { x, y, w, h } = WIN
+/**
+ * Draw a skyline from buildSkyline() at time t (the set's wall clock): stars, the crescent moon,
+ * the far skyline, the towers' nodes and edges, the beacons and the follow graph's pulses. o: {
+ * moon: false, or { x, y } as fractions of the rect (0.82, 70 / h); weight: line and dot weight (1) }
+ */
+export function drawSkyline(ctx, S, t, o = {}) {
+  const { x, y, w, h } = S.win
+  const k = o.weight ?? 1
   // sky: stars and a crescent moon
-  for (const s of S.stars) dot(ctx, s.x, s.y, s.r, P.white, 0.25 + 0.35 * (0.5 + 0.5 * Math.sin(t * 1.3 + s.ph)))
-  const mx = x + w * 0.82, my = y + 70
-  const moon = new Path2D()
-  moon.arc(mx, my, 26, -Math.PI * 0.62, Math.PI * 0.62, true)
-  moon.arc(mx - 13, my, 22, Math.PI * 0.5, -Math.PI * 0.5, false)
-  beam(ctx, moon, P.gold, 1.6, { hot: true, alpha: 0.85 })
+  for (const s of S.stars) dot(ctx, s.x, s.y, s.r * k, P.white, 0.25 + 0.35 * (0.5 + 0.5 * Math.sin(t * 1.3 + s.ph)))
+  if (o.moon !== false) {
+    const mx = x + w * (o.moon?.x ?? 0.82), my = o.moon?.y === undefined ? y + 70 : y + h * o.moon.y
+    const moon = new Path2D()
+    moon.arc(mx, my, 26, -Math.PI * 0.62, Math.PI * 0.62, true)
+    moon.arc(mx - 13, my, 22, Math.PI * 0.5, -Math.PI * 0.5, false)
+    beam(ctx, moon, P.gold, 1.6 * k, { hot: true, alpha: 0.85 })
+  }
   // far skyline, then the cluster towers
-  beam(ctx, S.far, P.blueDim, 1, { alpha: 0.35 })
-  beam(ctx, S.outline, P.blueDim, 1, { alpha: 0.45 })
-  for (const [c, p] of S.edgesByColor) beam(ctx, p, c, 0.8, { alpha: 0.32 })
+  beam(ctx, S.far, P.blueDim, 1 * k, { alpha: 0.35 })
+  beam(ctx, S.outline, P.blueDim, 1 * k, { alpha: 0.45 })
+  for (const [c, p] of S.edgesByColor) beam(ctx, p, c, 0.8 * k, { alpha: 0.32 })
   for (const n of S.nodes) {
     if (!n.on) continue
     const tw = 0.45 + 0.55 * (0.5 + 0.5 * Math.sin(t * (0.7 + (n.ph % 1.3)) + n.ph))
-    dot(ctx, n.x, n.y, n.r, n.c, tw * 0.9)
+    dot(ctx, n.x, n.y, n.r * k, n.c, tw * 0.9)
   }
-  for (const T of S.towers) if (T.beacon) dot(ctx, T.beacon.x, T.beacon.y, 2.6, P.red, 0.4 + 0.6 * (Math.sin(t * 3 + T.x) > 0.6 ? 1 : 0.2))
+  for (const T of S.towers) if (T.beacon) dot(ctx, T.beacon.x, T.beacon.y, 2.6 * k, P.red, 0.4 + 0.6 * (Math.sin(t * 3 + T.x) > 0.6 ? 1 : 0.2))
   // the follow graph: arcs over the rooftops with a pulse running along each
   for (const L of S.links) {
     const mxl = (L.a.x + L.b.x) / 2, myl = Math.min(L.a.y, L.b.y) - 40 - Math.abs(L.a.x - L.b.x) * 0.18
     const p = new Path2D()
     p.moveTo(L.a.x, L.a.y)
     p.quadraticCurveTo(mxl, myl, L.b.x, L.b.y)
-    beam(ctx, p, L.c, 0.9, { alpha: 0.28 })
+    beam(ctx, p, L.c, 0.9 * k, { alpha: 0.28 })
     const u = (t * L.sp + L.ph) % 1
     const qx = (1 - u) * (1 - u) * L.a.x + 2 * (1 - u) * u * mxl + u * u * L.b.x
     const qy = (1 - u) * (1 - u) * L.a.y + 2 * (1 - u) * u * myl + u * u * L.b.y
-    dot(ctx, qx, qy, 2.4, L.c, 0.9)
+    dot(ctx, qx, qy, 2.4 * k, L.c, 0.9)
   }
+}
+
+function windowPiece(ctx, S, show) {
+  const { x, y, w, h } = WIN
+  drawSkyline(ctx, S, show.wall)
   // the frame and mullions
   const f = new Path2D()
   f.rect(x, y, w, h)

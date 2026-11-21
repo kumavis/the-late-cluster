@@ -9,38 +9,15 @@
 // Serves the private page scripts/avatar/ with Vite on a free localhost port and drives it in
 // Playwright's Chromium, the way packages/show/tools/shoot.mjs shoots frames; both are shut down on
 // exit. Episodes are not involved. Exit codes: 0 written, 1 the render failed, 2 bad arguments.
-import { mkdir, writeFile, mkdtemp, rm, readdir } from 'node:fs/promises'
-import { existsSync } from 'node:fs'
+import { mkdir, writeFile, mkdtemp, rm } from 'node:fs/promises'
 import { dirname, join, resolve, relative } from 'node:path'
-import { homedir, tmpdir } from 'node:os'
+import { tmpdir } from 'node:os'
 import { cli, EpisodeError, REPO } from './lib/episodes.mjs'
+import { launchChromium } from './lib/chromium.mjs'
 import { parseAvatarArgs, AVATAR, VARIANTS, SIZE, encodePng, avatarProblems, pngInfo } from './lib/avatar.mjs'
 
 const SS = 3 // supersampling: drawn at 3000 px, downsampled to 1000
 const PREVIEW = join(REPO, 'preview/_avatar')
-
-async function launchChromium(chromium) {
-  const args = ['--enable-unsafe-swiftshader', '--ignore-gpu-blocklist']
-  const tries = [process.env.CHROMIUM_PATH || undefined]
-  for (const r of [join(homedir(), 'Library/Caches/ms-playwright'), join(homedir(), '.cache/ms-playwright'), '/opt/pw-browsers']) {
-    if (!existsSync(r)) continue
-    for (const d of (await readdir(r)).sort().reverse()) {
-      if (!/^chromium(_headless_shell)?-\d+/.test(d)) continue
-      for (const rel of ['chrome-headless-shell-mac-arm64/chrome-headless-shell', 'chrome-headless-shell-mac-x64/chrome-headless-shell', 'chrome-mac-arm64/Google Chrome for Testing.app/Contents/MacOS/Google Chrome for Testing', 'chrome-mac/Chromium.app/Contents/MacOS/Chromium', 'chrome-linux/chrome', 'chrome-linux64/chrome', 'chrome-headless-shell-linux64/chrome-headless-shell']) {
-        if (existsSync(join(r, d, rel))) tries.push(join(r, d, rel))
-      }
-    }
-  }
-  let first
-  for (const executablePath of tries) {
-    try {
-      return await chromium.launch({ executablePath, args })
-    } catch (e) {
-      first ??= e
-    }
-  }
-  throw new EpisodeError(`could not launch Chromium: ${first?.message}\nset CHROMIUM_PATH to a Chromium/Chrome binary`, 1)
-}
 
 const png = (dataUrl) => Buffer.from(dataUrl.split(',')[1], 'base64')
 const rgbPng = (b64) => encodePng(SIZE, SIZE, Buffer.from(b64, 'base64'))

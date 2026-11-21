@@ -30,7 +30,7 @@ the-late-cluster/
   show.config.json           show-wide settings: the public site URL, the show's Bluesky account
   .secrets                   local secrets, gitignored (.secrets.example is the template)
   terraform/                 Cloudflare DNS for the show's domain
-  brand/                     the show's Bluesky avatar (avatar.png, from npm run avatar)
+  brand/                     the show's Bluesky avatar and banner (avatar.png, banner.png, from npm run avatar and npm run banner)
   CLAUDE.md                  working rules for agents in this repo
   .claude/agents/            the subagent roles: researcher, writer, reviewer, builder
   docs/
@@ -215,6 +215,7 @@ episode. `<seg>` is a segment id.
 | `npm run shoot -- <ep> <seg> <t>...` | frozen frames to PNG for review (Playwright) |
 | `npm run thumbnail -- <ep> [<seg> <t>]` | shoot a frame into `thumbnail.jpg`: the title card, or a moment of a segment |
 | `npm run avatar [-- --variant a\|b\|c] [--out file] [--candidates]` | render `brand/avatar.png`, the show's Bluesky profile picture, from the host puppet (Playwright); `--candidates` writes all three to `preview/_avatar/` with a contact sheet |
+| `npm run banner [-- --variant a\|b\|c] [--out file.png] [--candidates]` | render `brand/banner.png`, the account's banner: the title over the set's skyline, no host (Playwright); 3000×1000 PNG, or 1500×500 when the larger is over Bluesky's 1,000,000 bytes; refused if the title is under the profile picture or a phone button or under 140 points wide on a phone; `--candidates` writes all three to `brand/candidates/` with `banner-sheet.png` (each as a desktop and a phone profile) |
 | `npm run build -- <ep> [--preview]` | build into `dist/episodes/<id>/`, or a draft into `preview/<id>/` |
 | `npm run verify` | committed builds match their sources (Node builtins only) |
 | `npm run site` | generate the archive index into `dist/` (ignored, never committed) |

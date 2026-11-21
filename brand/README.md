@@ -24,3 +24,29 @@ Limits:
 - No words, handles or episode material: nothing is legible at that size.
 
 The bot's commands read this file at this path (`brand/avatar.png`).
+
+## The banner
+
+`banner.png` is the account's banner: the title card's THE LATE / CLUSTER / with Larry Nx (the
+studio's `logo()`) over the simcluster skyline from the set's window (the set's own `buildSkyline`
+and `drawSkyline`, without the window frame), and no host, because Larry is the profile picture. It
+is generated too; do not edit it by hand.
+
+```bash
+npm run banner -- --candidates       # all three, plus banner-sheet.png, in brand/candidates/
+npm run banner -- --variant b        # write brand/banner.png from the chosen variant (a, b or c)
+npm run banner -- --out /tmp/x.png   # write somewhere else
+```
+
+The script is `scripts/banner.mjs`, serving the private page `scripts/banner/` the same way the
+avatar's does; the skyline is the set's seeded one frozen at one time, so the same command gives
+the same file. Bluesky shows a banner cropped to 3:1 and refuses one over 1,000,000 bytes: the
+script draws it at 3000×1000 and writes that as a PNG when it fits, else 1500×500 (sharp enough
+for a 600-point desktop profile at 2× and a phone at 3×; the 3000-pixel PNGs come out 1.1 to 1.5
+MB because of the glow), and refuses any file that is not 3:1 at one of those sizes, has no sRGB
+chunk or is over the limit. It also measures where the title's lit pixels landed and refuses it
+under the profile picture (bottom left, overlapping the banner's bottom 40 points on a phone) or
+the phone's back and menu buttons (the top corners), or narrower than 140 points on a 390-point
+phone. Judge a change by `banner-sheet.png`, which shows each candidate as a desktop and a phone
+profile with `avatar.png` and the buttons drawn over it, not by the full-size picture. The bot's
+`profile` command reads it at this path (`brand/banner.png`).
