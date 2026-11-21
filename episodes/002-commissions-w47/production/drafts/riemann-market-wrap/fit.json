@@ -1,0 +1,1868 @@
+{
+ "segment": "riemann-market-wrap",
+ "draft": "riemann-market-wrap",
+ "episode": "002-commissions-w47",
+ "takes": 4,
+ "gate": 0.6,
+ "lines": [
+  {
+   "id": "open",
+   "who": "larry",
+   "kind": "say",
+   "text": "Markets. Friday, ten thirty-five Eastern. davidcrespo posts a chart.",
+   "as": "Mar-kits. Friday, ten, thirty-five Eastern. Day-vid-Krespo, poasts a chart.",
+   "heard": [
+    {
+     "text": "Markets, Friday, 10, 35, Eastern, David Graspa, Postcard",
+     "count": 3
+    },
+    {
+     "text": "Markets, Friday, 10, 35, Eastern, David Grespa, Postcard",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 6,
+    "of": 10,
+    "min": 6
+   },
+   "status": "flagged",
+   "flags": [
+    "name: davidcrespo"
+   ],
+   "real": true,
+   "missed": [
+    {
+     "word": "davidcrespo",
+     "count": 4
+    },
+    {
+     "word": "posts",
+     "count": 4
+    },
+    {
+     "word": "a",
+     "count": 4
+    },
+    {
+     "word": "chart",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Mar-kits. Friday, ten, thirty-five Eastern. Day-vid-Krespo, poasts a chart.",
+     "score": {
+      "heard": 6,
+      "of": 10,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Graspa, Postcard",
+       "count": 3
+      },
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Grespa, Postcard",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "Markets. Friday, ten thirty-five Eastern. davidcrespo posts a chart.",
+     "score": {
+      "heard": 4,
+      "of": 10,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "March, Friday, 10-30 I Eastern, Day of Gospel postcard",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "Mar-kits. Friday, ten, thirty-five Eastern. david-crespo, poasts a chart.",
+     "score": {
+      "heard": 6,
+      "of": 10,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, Dave Graspal, Postcard",
+       "count": 1
+      },
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, Dave Graspel, Postcard",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "Mar-kits. Friday, ten, thirty-five Eastern. davidcrespo, poasts a chart.",
+     "score": {
+      "heard": 6,
+      "of": 10,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Crespa, Postcard",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "Mar-kits. Friday, ten, thirty-five Eastern. Day-vid-Krespo, pohsts a chart.",
+     "score": {
+      "heard": 6,
+      "of": 10,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Grespa, past start",
+       "count": 1
+      },
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Grespa, past start.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "Mar-kits. Friday, ten, thirty-five Eastern. Day-vid-Krespo, posts a chart.",
+     "score": {
+      "heard": 6,
+      "of": 10,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Graspa, Postcard",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "Mar-kits. Friday, ten, thirty-five Eastern. Day-vid-Krespo, poasts, a chart.",
+     "score": {
+      "heard": 6,
+      "of": 10,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Graspa, Poets, the Target",
+       "count": 1
+      },
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Grespa, Post, retired.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "Mar-kits. Friday, ten, thirty-five Eastern. Day-vid-Krespo poasts a chart.",
+     "score": {
+      "heard": 6,
+      "of": 10,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Gresma postcard.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "Mar-kits. Friday, ten, thirty-five Eastern. Day-vid-Krespo, poasts uh chart.",
+     "score": {
+      "heard": 7,
+      "of": 10,
+      "min": 7
+     },
+     "heard": [
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Graspa, Post Search Hard",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "Mar-kits. Friday, ten, thirty-five Eastern. Day-vid-Krespo, poasts Uh chart.",
+     "score": {
+      "heard": 7,
+      "of": 10,
+      "min": 7
+     },
+     "heard": [
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Graspa, Post Search Hard",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "Mar-kits. Friday, ten, thirty-five Eastern. Day-vid-Krespo, poasts a, chart.",
+     "score": {
+      "heard": 6,
+      "of": 10,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Graspa, Portrait",
+       "count": 1
+      },
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Graspa, Postchart",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "Mar-kits. Friday, ten, thirty-five Eastern. Day-vid-Krespo, poasts a chart.",
+     "rate": 0.9,
+     "score": {
+      "heard": 6,
+      "of": 10,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Graspa, Postcard",
+       "count": 3
+      },
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Graspa, postcard.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "Mar-kits. Friday, ten, thirty-five Eastern. Day-vid-Krespo, poasts a chart.",
+     "rate": 0.82,
+     "score": {
+      "heard": 6,
+      "of": 10,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "Markets, Friday, 10, 35 Eastern, David Graspa, Postcard",
+       "count": 2
+      },
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Graspa, Post-Shit Heart",
+       "count": 1
+      },
+      {
+       "text": "Markets, Friday, 10, 35, Eastern, David Graspa, Post-Shit Heart, B-",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "crude: shit",
+      "name: davidcrespo"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dc-chart",
+   "who": "davidcrespo",
+   "kind": "say",
+   "text": "isn't it beautiful that we now live in a world where we can say the market values the capability to solve the Riemann Hypothesis at negative 80 billion dollars",
+   "as": "isn't it, beautiful that we now live in a world where we can say, the market, val-yooz, the capability to sawlv the Ree-mun Hypothesis at negative eight-ee billion dollars",
+   "heard": [
+    {
+     "text": "Isn't it beautiful to now live in a world where we can say the market value is the capability to solve the rate month I pass negative 80 billion dollars?",
+     "count": 1
+    },
+    {
+     "text": "Isn't it beautiful to now live in a world where we can say the market values the capability to solve the rate on high pass negative eighty billion dollars?",
+     "count": 1
+    },
+    {
+     "text": "Isn't it beautiful to now live in a world where we can say the market values the capability to solve the rateman has passed negative 80 billion dollars?",
+     "count": 1
+    },
+    {
+     "text": "Isn't it beautiful to now live in a world where we can say the market values the capability to solve the remote high pass negative eighty billion dollars?",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 24,
+    "of": 29,
+    "min": 23
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "that",
+     "count": 4
+    },
+    {
+     "word": "we",
+     "count": 4
+    },
+    {
+     "word": "riemann",
+     "count": 4
+    },
+    {
+     "word": "hypothesis",
+     "count": 4
+    },
+    {
+     "word": "at",
+     "count": 4
+    },
+    {
+     "word": "values",
+     "count": 1
+    }
+   ],
+   "tried": [
+    {
+     "as": "isn't it, beautiful that we now live in a world where we can say, the market, val-yooz, the capability to sawlv the Ree-mun Hypothesis at negative eight-ee billion dollars",
+     "score": {
+      "heard": 24,
+      "of": 29,
+      "min": 23
+     },
+     "heard": [
+      {
+       "text": "Isn't it beautiful to now live in a world where we can say the market value is the capability to solve the rate month I pass negative 80 billion dollars?",
+       "count": 1
+      },
+      {
+       "text": "Isn't it beautiful to now live in a world where we can say the market values the capability to solve the rate on high pass negative eighty billion dollars?",
+       "count": 1
+      },
+      {
+       "text": "Isn't it beautiful to now live in a world where we can say the market values the capability to solve the rateman has passed negative 80 billion dollars?",
+       "count": 1
+      },
+      {
+       "text": "Isn't it beautiful to now live in a world where we can say the market values the capability to solve the remote high pass negative eighty billion dollars?",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "ticker",
+   "who": "larry",
+   "kind": "say",
+   "text": "Start the ticker.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Stars to the ticker",
+     "count": 2
+    },
+    {
+     "text": "A star to the taker",
+     "count": 1
+    },
+    {
+     "text": "Stars of the ticker",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 3,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "start",
+     "count": 3
+    },
+    {
+     "word": "ticker",
+     "count": 1
+    }
+   ],
+   "tried": [
+    {
+     "as": "Start the ticker.",
+     "score": {
+      "heard": 2,
+      "of": 3,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Stars to the ticker",
+       "count": 2
+      },
+      {
+       "text": "A star to the taker",
+       "count": 1
+      },
+      {
+       "text": "Stars of the ticker",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "throw-huwupy",
+   "who": "larry",
+   "kind": "say",
+   "text": "Twelve twenty-seven. huwupy. Unprompted.",
+   "as": "Twelve twenty-seven. Hoo-woo-pee. Un-promp-tid.",
+   "heard": [
+    {
+     "text": "1227 who p un-prompted",
+     "count": 2
+    },
+    {
+     "text": "1227 who P un-prompted",
+     "count": 1
+    },
+    {
+     "text": "1227 who p unprompted",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 5,
+    "min": 3
+   },
+   "status": "flagged",
+   "flags": [
+    "name: huwupy"
+   ],
+   "real": true,
+   "missed": [
+    {
+     "word": "twelve",
+     "count": 4
+    },
+    {
+     "word": "huwupy",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Twelve twenty-seven. Hoo-woo-pee. Un-promp-tid.",
+     "score": {
+      "heard": 3,
+      "of": 5,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "1227 who p un-prompted",
+       "count": 2
+      },
+      {
+       "text": "1227 who P un-prompted",
+       "count": 1
+      },
+      {
+       "text": "1227 who p unprompted",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: huwupy"
+     ]
+    },
+    {
+     "as": "Twelve twenty-seven. huwupy. Unprompted.",
+     "score": {
+      "heard": 2,
+      "of": 5,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "1227 Hoopi on prompt",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: huwupy"
+     ]
+    },
+    {
+     "as": "Twelv twenty-seven. Hoo-woo-pee. Un-promp-tid.",
+     "score": {
+      "heard": 3,
+      "of": 5,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "1227 who p un-prompted",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: huwupy"
+     ]
+    },
+    {
+     "as": "Twelve, twenty-seven. Hoo-woo-pee. Un-promp-tid.",
+     "score": {
+      "heard": 3,
+      "of": 5,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "12, 27, who p, un-prompt it.",
+       "count": 1
+      },
+      {
+       "text": "12.27. OOP. Unprompted.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: huwupy"
+     ]
+    },
+    {
+     "as": "Twelve twenty-seven. huwupy. Un-promp-tid.",
+     "score": {
+      "heard": 2,
+      "of": 5,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "1227 hoopy, ungramped it.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: huwupy"
+     ]
+    },
+    {
+     "as": "Twelve twenty-seven. Hoo-woo-pee. Un-promp-tid.",
+     "rate": 0.9,
+     "score": {
+      "heard": 2,
+      "of": 5,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "12-27-2-P, on prompt-it-1",
+       "count": 1
+      },
+      {
+       "text": "12.27 Who P? Unpromptied.",
+       "count": 1
+      },
+      {
+       "text": "1227 OOP On prompted one",
+       "count": 1
+      },
+      {
+       "text": "1227 who P on prompted to",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: huwupy"
+     ]
+    },
+    {
+     "as": "Twelve twenty-seven. Hoo-woo-pee. Un-promp-tid.",
+     "rate": 0.82,
+     "score": {
+      "heard": 2,
+      "of": 5,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "12, 27, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1, 2, 3, 1",
+       "count": 1
+      },
+      {
+       "text": "1227 who pea on crump tin",
+       "count": 1
+      },
+      {
+       "text": "1227 who pea on prompt Wow",
+       "count": 1
+      },
+      {
+       "text": "1227 who peed on prompted",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: huwupy"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hu-attached",
+   "who": "huwupy",
+   "kind": "say",
+   "text": "wow the stock market was really attached to the riemann hypothesis being unsolved huh",
+   "as": "wow, the stawk mar-kit was really uh-tatched to the Ree-mun hypothesis being un-sawlvd, huh.",
+   "heard": [
+    {
+     "text": "Wow, the stock market was really attached to the Raymond hypothesis being unsolved, huh?",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 13,
+    "of": 14,
+    "min": 13
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "riemann",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "wow, the stawk mar-kit was really uh-tatched to the Ree-mun hypothesis being un-sawlvd, huh.",
+     "score": {
+      "heard": 13,
+      "of": 14,
+      "min": 13
+     },
+     "heard": [
+      {
+       "text": "Wow, the stock market was really attached to the Raymond hypothesis being unsolved, huh?",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "globe",
+   "who": "larry",
+   "kind": "say",
+   "text": "Get me the globe.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Get me the globe.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 4,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Get me the globe.",
+     "score": {
+      "heard": 4,
+      "of": 4,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "Get me the globe.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "throw-moultano",
+   "who": "larry",
+   "kind": "say",
+   "text": "Twelve thirty-eight. moultano, quoting the chart.",
+   "as": "Twelve thirty-eight. Mohl-tah-noh, kwoat-ing the chart.",
+   "heard": [
+    {
+     "text": "12th date, more techno, quoting the chart.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 7,
+    "min": 4
+   },
+   "status": "flagged",
+   "flags": [
+    "name: moultano"
+   ],
+   "real": true,
+   "missed": [
+    {
+     "word": "thirty",
+     "count": 4
+    },
+    {
+     "word": "eight",
+     "count": 4
+    },
+    {
+     "word": "moultano",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Twelve thirty-eight. Mohl-tah-noh, kwoat-ing the chart.",
+     "score": {
+      "heard": 4,
+      "of": 7,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "12th date, more techno, quoting the chart.",
+       "count": 4
+      }
+     ],
+     "flags": [
+      "name: moultano"
+     ]
+    },
+    {
+     "as": "Twelve thirty-eight. moultano, quoting the chart.",
+     "score": {
+      "heard": 4,
+      "of": 7,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "1238, Mahrsna, quoting the chart.",
+       "count": 1
+      },
+      {
+       "text": "1238, Mārsna, clothing the chart.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: moultano"
+     ]
+    },
+    {
+     "as": "Twelve thirtyeight. Mohl-tah-noh, kwoat-ing the chart.",
+     "score": {
+      "heard": 2,
+      "of": 7,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "12th night, more techno, quoting the card.",
+       "count": 1
+      },
+      {
+       "text": "Well certified, more techno, quoting the card.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: moultano"
+     ]
+    },
+    {
+     "as": "Twelve, thirty-eight. Mohl-tah-noh, kwoat-ing the chart.",
+     "score": {
+      "heard": 3,
+      "of": 7,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "12.30, more techno, quoting the chart.",
+       "count": 1
+      },
+      {
+       "text": "Well, third date, more techno, quoting the chart.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: moultano"
+     ]
+    },
+    {
+     "as": "Twelve thirty-eight. moultano, kwoat-ing the chart.",
+     "score": {
+      "heard": 4,
+      "of": 7,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "12th date, Mārsna quoting the chart.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: moultano"
+     ]
+    },
+    {
+     "as": "Twelve thirty-eight. Mohl-tah-noh, kwoat-ing the chart.",
+     "rate": 0.9,
+     "score": {
+      "heard": 3,
+      "of": 7,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "1238, more techno, gloating the charge",
+       "count": 3
+      },
+      {
+       "text": "1238, more techno, quoting the chart.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: moultano"
+     ]
+    },
+    {
+     "as": "Twelve thirty-eight. Mohl-tah-noh, kwoat-ing the chart.",
+     "rate": 0.82,
+     "score": {
+      "heard": 4,
+      "of": 7,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "1238, more techno, quoting the charge.",
+       "count": 2
+      },
+      {
+       "text": "1238, more techno, gloating the charge",
+       "count": 1
+      },
+      {
+       "text": "1238, more techno, quoting the chart.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: moultano"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mo-revenue",
+   "who": "moultano",
+   "kind": "say",
+   "text": "The market anticipates a sharp loss of revenue from all the mathematicians who had been working on the Reimann hypothesis.",
+   "as": "The mar-kit anticipates a sharp, lawss of revenue from all the mathematicians who had been working on thee, Ree-mon hypothesis.",
+   "heard": [
+    {
+     "text": "The market anticipates the sharp, but the loss of revenue from all of the mathematicians who had been working on the early moon had passed the sharp.",
+     "count": 1
+    },
+    {
+     "text": "The market anticipates the sharp, but the loss of revenue from all of the mathematicians who had been working on the very moment I passed the sharp.",
+     "count": 1
+    },
+    {
+     "text": "The market anticipates the sharp, the loss of revenue from all of the mathematicians who had been working on the early-month hypothesis.",
+     "count": 1
+    },
+    {
+     "text": "The market anticipates the sharp, the loss of revenue from all of the mathematicians who had been working on the very moment I passed the shift.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 17,
+    "of": 20,
+    "min": 17
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "a",
+     "count": 4
+    },
+    {
+     "word": "reimann",
+     "count": 4
+    },
+    {
+     "word": "hypothesis",
+     "count": 3
+    }
+   ],
+   "tried": [
+    {
+     "as": "The mar-kit anticipates a sharp, lawss of revenue from all the mathematicians who had been working on thee, Ree-mon hypothesis.",
+     "score": {
+      "heard": 17,
+      "of": 20,
+      "min": 17
+     },
+     "heard": [
+      {
+       "text": "The market anticipates the sharp, but the loss of revenue from all of the mathematicians who had been working on the early moon had passed the sharp.",
+       "count": 1
+      },
+      {
+       "text": "The market anticipates the sharp, but the loss of revenue from all of the mathematicians who had been working on the very moment I passed the sharp.",
+       "count": 1
+      },
+      {
+       "text": "The market anticipates the sharp, the loss of revenue from all of the mathematicians who had been working on the early-month hypothesis.",
+       "count": 1
+      },
+      {
+       "text": "The market anticipates the sharp, the loss of revenue from all of the mathematicians who had been working on the very moment I passed the shift.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "everything",
+   "who": "larry",
+   "kind": "say",
+   "text": "Give me everything.",
+   "as": "Give me, everything.",
+   "heard": [
+    {
+     "text": "Give me everything",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 3,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Give me, everything.",
+     "score": {
+      "heard": 3,
+      "of": 3,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "Give me everything",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "question-intro",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "A question. norvid, one thirty-six.",
+   "as": "A question. Nor-vid, one thirtysix.",
+   "heard": [
+    {
+     "text": "A question, narrate 1-3-6",
+     "count": 3
+    },
+    {
+     "text": "A question to narrate 1-3-6",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 6,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "norvid",
+     "count": 4
+    },
+    {
+     "word": "thirty",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "A question. Nor-vid, one thirtysix.",
+     "score": {
+      "heard": 4,
+      "of": 6,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "A question, narrate 1-3-6",
+       "count": 3
+      },
+      {
+       "text": "A question to narrate 1-3-6",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "question",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "this is kind of confusing to me as 'caused' by the riemann result. plausibly just unrelated? but I don't understand the stock market",
+   "as": "this is kind of confusing to me as cawzd by the Ree-mun result. plaw-zib-lee just unrelated? but I don't understand the stawk mar-kit",
+   "heard": [
+    {
+     "text": "This is kind of confusing to me as caused by the remain result. It'll probably be just unrelated, but I don't understand the stock market.",
+     "count": 2
+    },
+    {
+     "text": "This is kind of confusing to me as caused by the Rayman result, plausibly just unrelated, but I don't understand the stock market.",
+     "count": 1
+    },
+    {
+     "text": "This is kind of confusing to me as caused by the Rayman result. It'll probably be just unrelated, but I don't understand the stock market.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 20,
+    "of": 23,
+    "min": 20
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "'caused'",
+     "count": 4
+    },
+    {
+     "word": "riemann",
+     "count": 4
+    },
+    {
+     "word": "plausibly",
+     "count": 3
+    }
+   ],
+   "tried": [
+    {
+     "as": "this is kind of confusing to me as cawzd by the Ree-mun result. plaw-zib-lee just unrelated? but I don't understand the stawk mar-kit",
+     "score": {
+      "heard": 20,
+      "of": 23,
+      "min": 20
+     },
+     "heard": [
+      {
+       "text": "This is kind of confusing to me as caused by the remain result. It'll probably be just unrelated, but I don't understand the stock market.",
+       "count": 2
+      },
+      {
+       "text": "This is kind of confusing to me as caused by the Rayman result, plausibly just unrelated, but I don't understand the stock market.",
+       "count": 1
+      },
+      {
+       "text": "This is kind of confusing to me as caused by the Rayman result. It'll probably be just unrelated, but I don't understand the stock market.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "reply-intro",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "A reply. softmacs, one forty-six.",
+   "as": "A ree-ply. Sawft-max, one forty-six.",
+   "heard": [
+    {
+     "text": "reply, soft legs 1-4-6",
+     "count": 3
+    },
+    {
+     "text": "Replace the soft legs to 1.46",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 6,
+    "min": 3
+   },
+   "status": "flagged",
+   "flags": [
+    "name: softmacs"
+   ],
+   "real": true,
+   "missed": [
+    {
+     "word": "a",
+     "count": 4
+    },
+    {
+     "word": "softmacs",
+     "count": 4
+    },
+    {
+     "word": "forty",
+     "count": 3
+    },
+    {
+     "word": "reply",
+     "count": 1
+    }
+   ],
+   "suggest": {
+    "rate": 0.82,
+    "as": "A ree-ply. Sawft-max, one forty-six.",
+    "score": {
+     "heard": 4,
+     "of": 6,
+     "min": 4
+    }
+   },
+   "tried": [
+    {
+     "as": "A ree-ply. Sawft-max, one forty-six.",
+     "score": {
+      "heard": 3,
+      "of": 6,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "reply, soft legs 1-4-6",
+       "count": 3
+      },
+      {
+       "text": "Replace the soft legs to 1.46",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: softmacs"
+     ]
+    },
+    {
+     "as": "A reply. softmacs, one forty-six.",
+     "score": {
+      "heard": 3,
+      "of": 6,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "Replace the shaft next to 146.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: softmacs"
+     ]
+    },
+    {
+     "as": "Uh ree-ply. Sawft-max, one forty-six.",
+     "score": {
+      "heard": 4,
+      "of": 6,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "or apply a soft leg 1.46",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: softmacs"
+     ]
+    },
+    {
+     "as": "A, ree-ply. Sawft-max, one forty-six.",
+     "score": {
+      "heard": 0,
+      "of": 6,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "2, 3, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5, 5",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: softmacs"
+     ]
+    },
+    {
+     "as": "A ree-ply. soft-macs, one forty-six.",
+     "score": {
+      "heard": 3,
+      "of": 6,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "reply shaft legs 1-4-6",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: softmacs"
+     ]
+    },
+    {
+     "as": "A ree-ply. softmacs, one forty-six.",
+     "score": {
+      "heard": 3,
+      "of": 6,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "Apply soft legs to 146",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: softmacs"
+     ]
+    },
+    {
+     "as": "A ree-ply. Sawft-max, one fortysix.",
+     "score": {
+      "heard": 3,
+      "of": 6,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "reply, soft legs, 1 4-6",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: softmacs"
+     ]
+    },
+    {
+     "as": "A ree-ply. Sawft-max, one, forty-six.",
+     "score": {
+      "heard": 3,
+      "of": 6,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "reply, soft legs, 1, 3, 6",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: softmacs"
+     ]
+    },
+    {
+     "as": "A ree-ply. Sawft-max, one forty-six.",
+     "rate": 0.9,
+     "score": {
+      "heard": 3,
+      "of": 6,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "Replace the soft legs to 146",
+       "count": 2
+      },
+      {
+       "text": "reply soft legs to 146",
+       "count": 1
+      },
+      {
+       "text": "reply, soft legs, 1.46",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: softmacs"
+     ]
+    },
+    {
+     "as": "A ree-ply. Sawft-max, one forty-six.",
+     "rate": 0.82,
+     "score": {
+      "heard": 4,
+      "of": 6,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "reply, soft legs, 1.46",
+       "count": 2
+      },
+      {
+       "text": "reply soft legs 1.46",
+       "count": 1
+      },
+      {
+       "text": "reply, soft legs, 146",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: softmacs"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "reply-1",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Probably mostly unrelated.",
+   "as": null,
+   "heard": [
+    {
+     "text": "probably mostly unrelated",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 3,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Probably mostly unrelated.",
+     "score": {
+      "heard": 3,
+      "of": 3,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "probably mostly unrelated",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "reply-2",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "The rest of tech stocks were down yesterday afaik",
+   "as": "The rest of tek, stocks were down yesterday as-far-as-eye-know",
+   "heard": [
+    {
+     "text": "The rest of the tech stocks were down yesterday as far as I know.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 8,
+    "of": 9,
+    "min": 8
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "afaik",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "The rest of tek, stocks were down yesterday as-far-as-eye-know",
+     "score": {
+      "heard": 8,
+      "of": 9,
+      "min": 8
+     },
+     "heard": [
+      {
+       "text": "The rest of the tech stocks were down yesterday as far as I know.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "reply-3",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "and I doubt that most investors see the Riemann announcement as meaningfully different",
+   "as": "and I doubt that most investors see the Reemahn announcement azz meeningfully different",
+   "heard": [
+    {
+     "text": "And I doubt that most investors see the remet announcement as meaningfully different.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 12,
+    "of": 13,
+    "min": 12
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "riemann",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "and I doubt that most investors see the Reemahn announcement azz meeningfully different",
+     "score": {
+      "heard": 12,
+      "of": 13,
+      "min": 12
+     },
+     "heard": [
+      {
+       "text": "And I doubt that most investors see the remet announcement as meaningfully different.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "reply-4",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "than all of the other math announcements earlier this year …",
+   "as": "thann, all of the other mathh, announcements, ur-lee-er this year …",
+   "heard": [
+    {
+     "text": "And all of the other math announcements earlier this year.",
+     "count": 1
+    },
+    {
+     "text": "Then, all of the other math announcements earlier this year",
+     "count": 1
+    },
+    {
+     "text": "Then, all of the other math announcements earlier this year.",
+     "count": 1
+    },
+    {
+     "text": "Then, all of the other math announcements earlier this year...",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 10,
+    "of": 10,
+    "min": 10
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "thann, all of the other mathh, announcements, ur-lee-er this year …",
+     "score": {
+      "heard": 10,
+      "of": 10,
+      "min": 10
+     },
+     "heard": [
+      {
+       "text": "And all of the other math announcements earlier this year.",
+       "count": 1
+      },
+      {
+       "text": "Then, all of the other math announcements earlier this year",
+       "count": 1
+      },
+      {
+       "text": "Then, all of the other math announcements earlier this year.",
+       "count": 1
+      },
+      {
+       "text": "Then, all of the other math announcements earlier this year...",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "answer-intro",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "norvid, one fifty-two.",
+   "as": "Nawr-vihd, one fifty-two.",
+   "heard": [
+    {
+     "text": "No wait, 1.52",
+     "count": 2
+    },
+    {
+     "text": "Nor wait, 152.",
+     "count": 2
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 4,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "norvid",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Nawr-vihd, one fifty-two.",
+     "score": {
+      "heard": 3,
+      "of": 4,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "No wait, 1.52",
+       "count": 2
+      },
+      {
+       "text": "Nor wait, 152.",
+       "count": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "answer",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "yeah probably just broader market sloshing",
+   "as": "yeah probably just braw-der mar-kit slaw-shing",
+   "heard": [
+    {
+     "text": "But yeah, probably just broader market sloshing",
+     "count": 2
+    },
+    {
+     "text": "But yeah, probably just broader market sloshing.",
+     "count": 2
+    }
+   ],
+   "score": {
+    "heard": 6,
+    "of": 6,
+    "min": 6
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "yeah probably just braw-der mar-kit slaw-shing",
+     "score": {
+      "heard": 6,
+      "of": 6,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "But yeah, probably just broader market sloshing",
+       "count": 2
+      },
+      {
+       "text": "But yeah, probably just broader market sloshing.",
+       "count": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "keep",
+   "who": "larry",
+   "kind": "say",
+   "text": "Can I keep the globe?",
+   "as": null,
+   "heard": [
+    {
+     "text": "Can I keep the globe?",
+     "count": 3
+    },
+    {
+     "text": "can I keep the globe",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 5,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Can I keep the globe?",
+     "score": {
+      "heard": 5,
+      "of": 5,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "Can I keep the globe?",
+       "count": 3
+      },
+      {
+       "text": "can I keep the globe",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "button",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "You may not.",
+   "as": null,
+   "heard": [
+    {
+     "text": "you may not",
+     "count": 3
+    },
+    {
+     "text": "You may not",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 3,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "You may not.",
+     "score": {
+      "heard": 3,
+      "of": 3,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "you may not",
+       "count": 3
+      },
+      {
+       "text": "You may not",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "voices": {
+  "larry": {
+   "f0": 107,
+   "nearest": "pete",
+   "distance": 1.54
+  },
+  "davidcrespo": {
+   "f0": 141,
+   "nearest": "pete",
+   "distance": 1.81
+  },
+  "huwupy": {
+   "f0": 181,
+   "nearest": "dee",
+   "distance": 1.58
+  },
+  "moultano": {
+   "f0": 272,
+   "nearest": "sibyl",
+   "distance": 3.76
+  },
+  "sibyl": {
+   "f0": 207,
+   "nearest": "eppy",
+   "distance": 2.07
+  }
+ },
+ "owner": [],
+ "heardDifferently": [
+  {
+   "id": "open",
+   "who": "larry",
+   "status": "flagged",
+   "text": "Markets. Friday, ten thirty-five Eastern. davidcrespo posts a chart.",
+   "heard": "Markets, Friday, 10, 35, Eastern, David Graspa, Postcard"
+  },
+  {
+   "id": "throw-huwupy",
+   "who": "larry",
+   "status": "flagged",
+   "text": "Twelve twenty-seven. huwupy. Unprompted.",
+   "heard": "1227 who p un-prompted"
+  },
+  {
+   "id": "throw-moultano",
+   "who": "larry",
+   "status": "flagged",
+   "text": "Twelve thirty-eight. moultano, quoting the chart.",
+   "heard": "12th date, more techno, quoting the chart."
+  },
+  {
+   "id": "reply-intro",
+   "who": "sibyl",
+   "status": "flagged",
+   "text": "A reply. softmacs, one forty-six.",
+   "heard": "reply, soft legs 1-4-6"
+  }
+ ]
+}

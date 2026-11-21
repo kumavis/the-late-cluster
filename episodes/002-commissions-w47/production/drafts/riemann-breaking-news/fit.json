@@ -1,0 +1,2496 @@
+{
+ "segment": "riemann-breaking-news",
+ "draft": "riemann-breaking-news",
+ "episode": "002-commissions-w47",
+ "takes": 4,
+ "gate": 0.6,
+ "lines": [
+  {
+   "id": "larry-news",
+   "who": "larry",
+   "kind": "say",
+   "text": "Breaking news. A mathematician has announced they believe they have found a proof of the Riemann hypothesis.",
+   "as": "Breaking news. Uh mathematician has announced they believe they have found uh proof of the Ree-mun hypothesis.",
+   "heard": [
+    {
+     "text": "Breaking news, a mathematician has announced they believe they have found a proof of the Raymond hypothesis.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 16,
+    "of": 17,
+    "min": 16
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "riemann",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 2,
+     "word": "A",
+     "as": "Uh",
+     "plain": "ə",
+     "ipa": "ʌ",
+     "keeps": true
+    },
+    {
+     "i": 11,
+     "word": "a",
+     "as": "uh",
+     "plain": "ə",
+     "ipa": "ʌ",
+     "keeps": true
+    },
+    {
+     "i": 15,
+     "word": "Riemann",
+     "as": "Ree-mun",
+     "plain": "ɹ i m ə n",
+     "ipa": "ɹ i m ʌ n",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "Breaking news. Uh mathematician has announced they believe they have found uh proof of the Ree-mun hypothesis.",
+     "score": {
+      "heard": 16,
+      "of": 17,
+      "min": 16
+     },
+     "heard": [
+      {
+       "text": "Breaking news, a mathematician has announced they believe they have found a proof of the Raymond hypothesis.",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "A",
+       "as": "Uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      },
+      {
+       "i": 11,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      },
+      {
+       "i": 15,
+       "word": "Riemann",
+       "as": "Ree-mun",
+       "plain": "ɹ i m ə n",
+       "ipa": "ɹ i m ʌ n",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "larry-cluster",
+   "who": "larry",
+   "kind": "say",
+   "text": "The cluster spent Friday posting about it.",
+   "as": null,
+   "heard": [
+    {
+     "text": "The cluster spent Friday posting about it.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 7,
+    "of": 7,
+    "min": 7
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "The cluster spent Friday posting about it.",
+     "score": {
+      "heard": 7,
+      "of": 7,
+      "min": 7
+     },
+     "heard": [
+      {
+       "text": "The cluster spent Friday posting about it.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "larry-chart",
+   "who": "larry",
+   "kind": "say",
+   "text": "davidcrespo posted a chart.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Day at Graspa posted card.",
+     "count": 2
+    },
+    {
+     "text": "Day is the best part of the chart.",
+     "count": 2
+    }
+   ],
+   "score": {
+    "heard": 1,
+    "of": 4,
+    "min": 1
+   },
+   "status": "flagged",
+   "flags": [
+    "name: davidcrespo"
+   ],
+   "real": true,
+   "missed": [
+    {
+     "word": "davidcrespo",
+     "count": 4
+    },
+    {
+     "word": "a",
+     "count": 4
+    },
+    {
+     "word": "chart",
+     "count": 2
+    },
+    {
+     "word": "posted",
+     "count": 2
+    }
+   ],
+   "rejected": [
+    {
+     "word": "posted",
+     "as": "pohs-tid",
+     "plain": "p oʊ s t ɪ d",
+     "ipa": "p ɑ h s t ɪ d",
+     "why": "vowel oʊ → ɑ"
+    }
+   ],
+   "tried": [
+    {
+     "as": "davidcrespo posted a chart.",
+     "score": {
+      "heard": 1,
+      "of": 4,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Day at Graspa posted card.",
+       "count": 2
+      },
+      {
+       "text": "Day is the best part of the chart.",
+       "count": 2
+      }
+     ],
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "david-crespo posted a chart.",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Day at grasp or post it hard.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "davidcrespo",
+       "as": "david-crespo",
+       "plain": "d eɪ v ɪ d k ɹ ɛ s p ɑ",
+       "ipa": "d eɪ v ɪ d k ɹ ɛ s p oʊ",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "davidcrespo, posted a chart.",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Day at Graspa, perfect charge is...",
+       "count": 1
+      },
+      {
+       "text": "Day at Graspa, post it hard.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "davidcrespo posted uh chart.",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "This is GraspaPost.com",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "davidcrespo posted Uh chart.",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "This is GraspaPost.com",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "a",
+       "as": "Uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "davidcrespo posted, a chart.",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Day it goes up, it's hard.",
+       "count": 1
+      },
+      {
+       "text": "This is the most important part.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "davidcrespo posted a, chart.",
+     "score": {
+      "heard": 1,
+      "of": 4,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Then press up to the chart.",
+       "count": 1
+      },
+      {
+       "text": "They grasp a post to the chart.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "davidcrespo post-id a chart.",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Day it goes by post it hard.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "posted",
+       "as": "post-id",
+       "plain": "p oʊ s t ɪ d",
+       "ipa": "p oʊ s t ɪ d",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "davidcrespo poh-stid a chart.",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Day it goes by post it hard.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: davidcrespo"
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "posted",
+       "as": "poh-stid",
+       "plain": "p oʊ s t ɪ d",
+       "ipa": "p oʊ s t ɪ d",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "davidcrespo posted a chart.",
+     "rate": 0.9,
+     "score": {
+      "heard": 1,
+      "of": 4,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Today it gets a posted card.",
+       "count": 1
+      },
+      {
+       "text": "Today, it's a perfect part.",
+       "count": 1
+      },
+      {
+       "text": "Today, it's a posted card.",
+       "count": 1
+      },
+      {
+       "text": "Today's grasp of the chart is",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: davidcrespo"
+     ]
+    },
+    {
+     "as": "davidcrespo posted a chart.",
+     "rate": 0.82,
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Day at Graspa, post it hard.",
+       "count": 2
+      },
+      {
+       "text": "Day at Graspa posted cards.",
+       "count": 1
+      },
+      {
+       "text": "Day at Graspa posted hard.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: davidcrespo"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dc-chart",
+   "who": "davidcrespo",
+   "kind": "say",
+   "text": "isn't it beautiful that we now live in a world where we can say the market values the capability to solve the Riemann Hypothesis at negative 80 billion dollars",
+   "as": null,
+   "heard": [
+    {
+     "text": "Isn't it beautiful to now live in a world where we can save the market then use the capability to sell the raiment hypothesis, negative 80 billion dollars?",
+     "count": 1
+    },
+    {
+     "text": "Isn't it beautiful to now live in a world where we can save the market value to the capability to sell the raiment hypothesis, negative 80 billion dollars?",
+     "count": 1
+    },
+    {
+     "text": "Isn't it beautiful to now live in a world where we can save the market value to the capability to sell the Raymond hypothesis, negative 80 billion dollars?",
+     "count": 1
+    },
+    {
+     "text": "Isn't it beautiful to now live in a world where we can save the market value to the capability to sell the RIM and high path, negative 80 billion dollars?",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 22,
+    "of": 29,
+    "min": 21
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "that",
+     "count": 4
+    },
+    {
+     "word": "we",
+     "count": 4
+    },
+    {
+     "word": "say",
+     "count": 4
+    },
+    {
+     "word": "values",
+     "count": 4
+    },
+    {
+     "word": "solve",
+     "count": 4
+    },
+    {
+     "word": "riemann",
+     "count": 4
+    },
+    {
+     "word": "at",
+     "count": 4
+    },
+    {
+     "word": "hypothesis",
+     "count": 1
+    }
+   ],
+   "tried": [
+    {
+     "as": "isn't it beautiful that we now live in a world where we can say the market values the capability to solve the Riemann Hypothesis at negative 80 billion dollars",
+     "score": {
+      "heard": 22,
+      "of": 29,
+      "min": 21
+     },
+     "heard": [
+      {
+       "text": "Isn't it beautiful to now live in a world where we can save the market then use the capability to sell the raiment hypothesis, negative 80 billion dollars?",
+       "count": 1
+      },
+      {
+       "text": "Isn't it beautiful to now live in a world where we can save the market value to the capability to sell the raiment hypothesis, negative 80 billion dollars?",
+       "count": 1
+      },
+      {
+       "text": "Isn't it beautiful to now live in a world where we can save the market value to the capability to sell the Raymond hypothesis, negative 80 billion dollars?",
+       "count": 1
+      },
+      {
+       "text": "Isn't it beautiful to now live in a world where we can save the market value to the capability to sell the RIM and high path, negative 80 billion dollars?",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "larry-moultano",
+   "who": "larry",
+   "kind": "say",
+   "text": "moultano, quoting the chart.",
+   "as": "Mole-tonn-oh, kwoat-ing the chart.",
+   "heard": [
+    {
+     "text": "More channel, quoting the chart.",
+     "count": 2
+    },
+    {
+     "text": "more channel quoting the chart",
+     "count": 1
+    },
+    {
+     "text": "More panel, quoting the chart.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 4,
+    "min": 3
+   },
+   "status": "flagged",
+   "flags": [
+    "name: moultano"
+   ],
+   "real": true,
+   "missed": [
+    {
+     "word": "moultano",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 0,
+     "word": "moultano",
+     "as": "Mole-tonn-oh",
+     "plain": "m aʊ ɫ t eɪ n ɑ",
+     "ipa": "m oʊ ɫ t ɑ n oʊ",
+     "keeps": null
+    },
+    {
+     "i": 1,
+     "word": "quoting",
+     "as": "kwoat-ing",
+     "plain": "k w oʊ ɾ ɪ ŋ",
+     "ipa": "k w oʊ t ɪ ŋ",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "Mole-tonn-oh, kwoat-ing the chart.",
+     "score": {
+      "heard": 3,
+      "of": 4,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "More channel, quoting the chart.",
+       "count": 2
+      },
+      {
+       "text": "more channel quoting the chart",
+       "count": 1
+      },
+      {
+       "text": "More panel, quoting the chart.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: moultano"
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "moultano",
+       "as": "Mole-tonn-oh",
+       "plain": "m aʊ ɫ t eɪ n ɑ",
+       "ipa": "m oʊ ɫ t ɑ n oʊ",
+       "keeps": null
+      },
+      {
+       "i": 1,
+       "word": "quoting",
+       "as": "kwoat-ing",
+       "plain": "k w oʊ ɾ ɪ ŋ",
+       "ipa": "k w oʊ t ɪ ŋ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "moultano, quoting the chart.",
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Mahrsna, gloating the chart.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: moultano"
+     ]
+    },
+    {
+     "as": "moultano, kwoat-ing the chart.",
+     "score": {
+      "heard": 3,
+      "of": 4,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "Americana quoting the chart.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: moultano"
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "quoting",
+       "as": "kwoat-ing",
+       "plain": "k w oʊ ɾ ɪ ŋ",
+       "ipa": "k w oʊ t ɪ ŋ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Mole-tonn-oh, kwoat-ing the chart.",
+     "rate": 0.9,
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "More shall know, gloating the chart.",
+       "count": 2
+      },
+      {
+       "text": "Morshanol gloating the chart",
+       "count": 2
+      }
+     ],
+     "flags": [
+      "name: moultano"
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "moultano",
+       "as": "Mole-tonn-oh",
+       "plain": "m aʊ ɫ t eɪ n ɑ",
+       "ipa": "m oʊ ɫ t ɑ n oʊ",
+       "keeps": null
+      },
+      {
+       "i": 1,
+       "word": "quoting",
+       "as": "kwoat-ing",
+       "plain": "k w oʊ ɾ ɪ ŋ",
+       "ipa": "k w oʊ t ɪ ŋ",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Mole-tonn-oh, kwoat-ing the chart.",
+     "rate": 0.82,
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "More channel, floating the chart.",
+       "count": 1
+      },
+      {
+       "text": "Morshanol, floating the chart",
+       "count": 1
+      },
+      {
+       "text": "Morshanol, gloting the char",
+       "count": 1
+      },
+      {
+       "text": "Murshano, glorting the chart",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: moultano"
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "moultano",
+       "as": "Mole-tonn-oh",
+       "plain": "m aʊ ɫ t eɪ n ɑ",
+       "ipa": "m oʊ ɫ t ɑ n oʊ",
+       "keeps": null
+      },
+      {
+       "i": 1,
+       "word": "quoting",
+       "as": "kwoat-ing",
+       "plain": "k w oʊ ɾ ɪ ŋ",
+       "ipa": "k w oʊ t ɪ ŋ",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mo-revenue",
+   "who": "moultano",
+   "kind": "say",
+   "text": "The market anticipates a sharp loss of revenue from all the mathematicians who had been working on the Reimann hypothesis.",
+   "as": "Thee market anticipates a sharp loss of revenue from all the mathematicians who had been working on the Reimann high-poth-uh-suss.",
+   "heard": [
+    {
+     "text": "The mark could anticipate the sharp loss of revenue from all of the mathematicians who had been working on their own and high path as such.",
+     "count": 3
+    },
+    {
+     "text": "The mark could anticipate the sharp loss of revenue from all of the mathematicians who had been working on their own and high pass as such.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 15,
+    "of": 20,
+    "min": 15
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "market",
+     "count": 4
+    },
+    {
+     "word": "anticipates",
+     "count": 4
+    },
+    {
+     "word": "a",
+     "count": 4
+    },
+    {
+     "word": "reimann",
+     "count": 4
+    },
+    {
+     "word": "hypothesis",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 0,
+     "word": "The",
+     "as": "Thee",
+     "plain": "ð ə",
+     "ipa": "ð i",
+     "keeps": true
+    },
+    {
+     "i": 19,
+     "word": "hypothesis",
+     "as": "high-poth-uh-suss",
+     "plain": "h aɪ p ɑ θ ə s ə s",
+     "ipa": "h aɪ p ɑ θ ʌ s ʌ s",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "Thee market anticipates a sharp loss of revenue from all the mathematicians who had been working on the Reimann high-poth-uh-suss.",
+     "score": {
+      "heard": 15,
+      "of": 20,
+      "min": 15
+     },
+     "heard": [
+      {
+       "text": "The mark could anticipate the sharp loss of revenue from all of the mathematicians who had been working on their own and high path as such.",
+       "count": 3
+      },
+      {
+       "text": "The mark could anticipate the sharp loss of revenue from all of the mathematicians who had been working on their own and high pass as such.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "The",
+       "as": "Thee",
+       "plain": "ð ə",
+       "ipa": "ð i",
+       "keeps": true
+      },
+      {
+       "i": 19,
+       "word": "hypothesis",
+       "as": "high-poth-uh-suss",
+       "plain": "h aɪ p ɑ θ ə s ə s",
+       "ipa": "h aɪ p ɑ θ ʌ s ʌ s",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "larry-ask",
+   "who": "larry",
+   "kind": "say",
+   "text": "For viewers just joining us, and for me: what is a zeta function?",
+   "as": "For viewers just joining us, and for me: what is uh zeta function?",
+   "heard": [
+    {
+     "text": "After you were just joining us, and for me, what is a late function?",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 11,
+    "of": 13,
+    "min": 11
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "viewers",
+     "count": 4
+    },
+    {
+     "word": "zeta",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 10,
+     "word": "a",
+     "as": "uh",
+     "plain": "ə",
+     "ipa": "ʌ",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "For viewers just joining us, and for me: what is uh zeta function?",
+     "score": {
+      "heard": 11,
+      "of": 13,
+      "min": 11
+     },
+     "heard": [
+      {
+       "text": "After you were just joining us, and for me, what is a late function?",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 10,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "amber-call",
+   "who": "shimmermathlabs",
+   "kind": "say",
+   "text": "calling @zetaof1.bsky.social, your whole account was leading up to this day, now is your time to shine, you got this",
+   "as": "calling zay-tuh-of-one-dot-bee-sky-dot-social, your whole account was leading up to this day, now is your time to shine, you got this",
+   "heard": [
+    {
+     "text": "Calling later, one dark big sky dark social, your whole account was leading up to this day. Now is your time to shine. You got this.",
+     "count": 2
+    },
+    {
+     "text": "Calling later has one dark big sky dark social, your whole account was leading up to this day, now is your time to shine, you got this.",
+     "count": 1
+    },
+    {
+     "text": "Calling later, one dark big sky dark social, your whole account was leading up to this day. Now is your time to shine, you got this.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 21,
+    "of": 23,
+    "min": 21
+   },
+   "status": "flagged",
+   "flags": [
+    "name: zetaof1"
+   ],
+   "real": true,
+   "missed": [
+    {
+     "word": "zetaof",
+     "count": 4
+    },
+    {
+     "word": "bsky",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 1,
+     "word": "zetaof1.bsky.social",
+     "as": "zay-tuh-of-one-dot-bee-sky-dot-social",
+     "plain": "z ɛ ɾ æ ɑ f w ʌ n b s k i s oʊ ʃ ə ɫ",
+     "ipa": "z eɪ t ʌ h ə v w ʌ n d ɑ t b i s k aɪ d ɑ t s oʊ ʃ ə ɫ",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "calling zay-tuh-of-one-dot-bee-sky-dot-social, your whole account was leading up to this day, now is your time to shine, you got this",
+     "score": {
+      "heard": 21,
+      "of": 23,
+      "min": 21
+     },
+     "heard": [
+      {
+       "text": "Calling later, one dark big sky dark social, your whole account was leading up to this day. Now is your time to shine. You got this.",
+       "count": 2
+      },
+      {
+       "text": "Calling later has one dark big sky dark social, your whole account was leading up to this day, now is your time to shine, you got this.",
+       "count": 1
+      },
+      {
+       "text": "Calling later, one dark big sky dark social, your whole account was leading up to this day. Now is your time to shine, you got this.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: zetaof1"
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "zetaof1.bsky.social",
+       "as": "zay-tuh-of-one-dot-bee-sky-dot-social",
+       "plain": "z ɛ ɾ æ ɑ f w ʌ n b s k i s oʊ ʃ ə ɫ",
+       "ipa": "z eɪ t ʌ h ə v w ʌ n d ɑ t b i s k aɪ d ɑ t s oʊ ʃ ə ɫ",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "calling @zetaof1.bsky.social, your whole account was leading up to this day, now is your time to shine, you got this",
+     "score": {
+      "heard": 20,
+      "of": 23,
+      "min": 20
+     },
+     "heard": [
+      {
+       "text": "Calling the day as one, is gay, social, your whole town was leading up to this day, now is your time to shine, you got this.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: zetaof1",
+      "out of bounds: gay"
+     ]
+    },
+    {
+     "as": "calling zetaof1.bsky.social, your whole account was leading up to this day, now is your time to shine, you got this",
+     "score": {
+      "heard": 20,
+      "of": 23,
+      "min": 20
+     },
+     "heard": [
+      {
+       "text": "Calling the day as one, is gay, social, your whole town was leading up to this day, now is your time to shine, you got this.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: zetaof1",
+      "out of bounds: gay"
+     ]
+    },
+    {
+     "as": "calling, zay-tuh-of-one-dot-bee-sky-dot-social, your whole account was leading up to this day, now is your time to shine, you got this",
+     "score": {
+      "heard": 19,
+      "of": 23,
+      "min": 19
+     },
+     "heard": [
+      {
+       "text": "Calling, the type of one dark big sky dark social, your whole town to a leading up to this day, now is your time to shine, you got this.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: zetaof1"
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "zetaof1.bsky.social",
+       "as": "zay-tuh-of-one-dot-bee-sky-dot-social",
+       "plain": "z ɛ ɾ æ ɑ f w ʌ n b s k i s oʊ ʃ ə ɫ",
+       "ipa": "z eɪ t ʌ h ə v w ʌ n d ɑ t b i s k aɪ d ɑ t s oʊ ʃ ə ɫ",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "calling zay-tuh-of-one-dot-bee-sky-dot-social, your whole account was leading up to this day, now is your time to shine, you got this",
+     "rate": 0.9,
+     "score": {
+      "heard": 21,
+      "of": 23,
+      "min": 20
+     },
+     "heard": [
+      {
+       "text": "Calling later, one dark big sky dark social, your whole account was leading up to this day. Now is your time to shine, you got this.",
+       "count": 2
+      },
+      {
+       "text": "Calling later one dark big sky dark social, your whole account was leading up to this day. Now is your time to shine, you got this.",
+       "count": 1
+      },
+      {
+       "text": "Calling later, one dark big sky dark social, your whole count was leading up to this day. Now is your time to shine, you got this.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: zetaof1"
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "zetaof1.bsky.social",
+       "as": "zay-tuh-of-one-dot-bee-sky-dot-social",
+       "plain": "z ɛ ɾ æ ɑ f w ʌ n b s k i s oʊ ʃ ə ɫ",
+       "ipa": "z eɪ t ʌ h ə v w ʌ n d ɑ t b i s k aɪ d ɑ t s oʊ ʃ ə ɫ",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "calling zay-tuh-of-one-dot-bee-sky-dot-social, your whole account was leading up to this day, now is your time to shine, you got this",
+     "rate": 0.82,
+     "score": {
+      "heard": 20,
+      "of": 23,
+      "min": 20
+     },
+     "heard": [
+      {
+       "text": "Calling later, one dark, big sky, dark social, your whole account was leading up to this day. Now is your time to shine, you got this.",
+       "count": 2
+      },
+      {
+       "text": "Calling late after one dark be sky dark social Your whole account was leading up to this day Now is your time to shine The late after this point",
+       "count": 1
+      },
+      {
+       "text": "Calling late after one dark biscuit at social, your whole account was leading up to this day. Now is your time to shine, late after two.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: zetaof1"
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "zetaof1.bsky.social",
+       "as": "zay-tuh-of-one-dot-bee-sky-dot-social",
+       "plain": "z ɛ ɾ æ ɑ f w ʌ n b s k i s oʊ ʃ ə ɫ",
+       "ipa": "z eɪ t ʌ h ə v w ʌ n d ɑ t b i s k aɪ d ɑ t s oʊ ʃ ə ɫ",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sibyl-zeta-1",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "The Zeta function is too intricate to explain on BlueSky Which is totally the zeta-functions fault and not mine so",
+   "as": "The Zeta function is too intricate to explain on blue-sky Which is totally the zeta-functions fault, and not mine so",
+   "heard": [
+    {
+     "text": "The red function is too intricate to explain in blue sky, which is totally the red function's fault, and not mine so.",
+     "count": 3
+    },
+    {
+     "text": "The red function is too intricate to explain in blue sky, which is totally the red function's fault, and not mine so hard.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 17,
+    "of": 21,
+    "min": 17
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "zeta",
+     "count": 8
+    },
+    {
+     "word": "on",
+     "count": 4
+    },
+    {
+     "word": "functions",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 9,
+     "word": "BlueSky",
+     "as": "blue-sky",
+     "plain": "b l ʌ ɛ s k i",
+     "ipa": "b l u s k aɪ",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "The Zeta function is too intricate to explain on blue-sky Which is totally the zeta-functions fault, and not mine so",
+     "score": {
+      "heard": 17,
+      "of": 21,
+      "min": 17
+     },
+     "heard": [
+      {
+       "text": "The red function is too intricate to explain in blue sky, which is totally the red function's fault, and not mine so.",
+       "count": 3
+      },
+      {
+       "text": "The red function is too intricate to explain in blue sky, which is totally the red function's fault, and not mine so hard.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 9,
+       "word": "BlueSky",
+       "as": "blue-sky",
+       "plain": "b l ʌ ɛ s k i",
+       "ipa": "b l u s k aɪ",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sibyl-zeta-2",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Also zeta evaluated at 1 … diverges to infinity …",
+   "as": "Also zeta, evaluated att one … diverges to infinity …",
+   "heard": [
+    {
+     "text": "Also later evaluate that one divergent to infinity.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 8,
+    "min": 4
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "zeta",
+     "count": 4
+    },
+    {
+     "word": "evaluated",
+     "count": 4
+    },
+    {
+     "word": "at",
+     "count": 4
+    },
+    {
+     "word": "diverges",
+     "count": 4
+    }
+   ],
+   "known": [
+    "diverges",
+    "zeta"
+   ],
+   "sounds": [
+    {
+     "i": 3,
+     "word": "at",
+     "as": "att",
+     "plain": "ə t",
+     "ipa": "æ t t",
+     "keeps": true
+    },
+    {
+     "i": 4,
+     "word": "1",
+     "as": "one",
+     "plain": "w ʌ n",
+     "ipa": "w ʌ n",
+     "keeps": null
+    }
+   ],
+   "rejected": [
+    {
+     "word": "zeta",
+     "as": "zay-tuh",
+     "plain": "z eɪ ɾ ə",
+     "ipa": "z eɪ t ʌ h",
+     "why": "consonants after the last vowel: (none) → h"
+    },
+    {
+     "word": "zeta",
+     "as": "zayt-tuh",
+     "plain": "z eɪ ɾ ə",
+     "ipa": "z eɪ t t ʌ h",
+     "why": "consonants after the last vowel: (none) → h"
+    },
+    {
+     "word": "evaluated",
+     "as": "ih-val-yoo-ay-tud",
+     "plain": "ɪ v æ ɫ j u eɪ ɾ ə d",
+     "ipa": "ɪ h v æ ɫ j u eɪ t ʌ d",
+     "why": "consonants after vowel 1: v → h v"
+    }
+   ],
+   "tried": [
+    {
+     "as": "Also zeta, evaluated att one … diverges to infinity …",
+     "score": {
+      "heard": 4,
+      "of": 8,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "Also later evaluate that one divergent to infinity.",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 3,
+       "word": "at",
+       "as": "att",
+       "plain": "ə t",
+       "ipa": "æ t t",
+       "keeps": true
+      },
+      {
+       "i": 4,
+       "word": "1",
+       "as": "one",
+       "plain": "w ʌ n",
+       "ipa": "w ʌ n",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "Also zeta evaluated at 1 … diverges to infinity …",
+     "score": {
+      "heard": 2,
+      "of": 8,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Also let evaluate to undiverrage to infinity.",
+       "count": 1
+      },
+      {
+       "text": "Or should they evaluate to undiverrage to infinity?",
+       "count": 1
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "Also, zeta, evaluated att one … diverges to infinity …",
+     "score": {
+      "heard": 4,
+      "of": 8,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "Also, later evaluate that one divergent to infinity.",
+       "count": 3
+      },
+      {
+       "text": "Also, later evaluate dash 1 divergent to infinity.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 3,
+       "word": "at",
+       "as": "att",
+       "plain": "ə t",
+       "ipa": "æ t t",
+       "keeps": true
+      },
+      {
+       "i": 4,
+       "word": "1",
+       "as": "one",
+       "plain": "w ʌ n",
+       "ipa": "w ʌ n",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "Also zeta, iv-val-yoo-ayt-tud att one … diverges to infinity …",
+     "score": {
+      "heard": 3,
+      "of": 8,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "Also later, we will allow you to adapt to undiverrage to infinity.",
+       "count": 3
+      },
+      {
+       "text": "Also later, if you are a little too undiverrage to infinity, I will",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "evaluated",
+       "as": "iv-val-yoo-ayt-tud",
+       "plain": "ɪ v æ ɫ j u eɪ ɾ ə d",
+       "ipa": "ɪ v v æ ɫ j u eɪ t t ʌ d",
+       "keeps": true
+      },
+      {
+       "i": 3,
+       "word": "at",
+       "as": "att",
+       "plain": "ə t",
+       "ipa": "æ t t",
+       "keeps": true
+      },
+      {
+       "i": 4,
+       "word": "1",
+       "as": "one",
+       "plain": "w ʌ n",
+       "ipa": "w ʌ n",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "Also zeta, evaluated, att one … diverges to infinity …",
+     "score": {
+      "heard": 3,
+      "of": 8,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "Also later evaluate it as to undiverrage to infinity.",
+       "count": 1
+      },
+      {
+       "text": "Also later evaluated as 1 divergent 20 in the day I will",
+       "count": 1
+      },
+      {
+       "text": "Also later, evaluate the head to undiverrage to infinity.",
+       "count": 1
+      },
+      {
+       "text": "Also later, evaluated as 1 divergent 20-day.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 3,
+       "word": "at",
+       "as": "att",
+       "plain": "ə t",
+       "ipa": "æ t t",
+       "keeps": true
+      },
+      {
+       "i": 4,
+       "word": "1",
+       "as": "one",
+       "plain": "w ʌ n",
+       "ipa": "w ʌ n",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "Also zeta evaluated att one … diverges to infinity …",
+     "score": {
+      "heard": 3,
+      "of": 8,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "Also, let evaluate dash 1 divergent to infinity.",
+       "count": 1
+      },
+      {
+       "text": "Or should they evaluate that one divergent to infinity?",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "sounds": [
+      {
+       "i": 3,
+       "word": "at",
+       "as": "att",
+       "plain": "ə t",
+       "ipa": "æ t t",
+       "keeps": true
+      },
+      {
+       "i": 4,
+       "word": "1",
+       "as": "one",
+       "plain": "w ʌ n",
+       "ipa": "w ʌ n",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "Also zeta, evaluated at one … diverges to infinity …",
+     "score": {
+      "heard": 3,
+      "of": 8,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "Also later evaluate one divergent to infinity.",
+       "count": 1
+      },
+      {
+       "text": "or should later evaluate one divergent to infinity.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "sounds": [
+      {
+       "i": 4,
+       "word": "1",
+       "as": "one",
+       "plain": "w ʌ n",
+       "ipa": "w ʌ n",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "Also zeta, evaluated att, one … diverges to infinity …",
+     "score": {
+      "heard": 2,
+      "of": 8,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Also later evaluate that 1 divergent 20-day",
+       "count": 1
+      },
+      {
+       "text": "Also later evaluate that one divergent twin affinity.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "sounds": [
+      {
+       "i": 3,
+       "word": "at",
+       "as": "att",
+       "plain": "ə t",
+       "ipa": "æ t t",
+       "keeps": true
+      },
+      {
+       "i": 4,
+       "word": "1",
+       "as": "one",
+       "plain": "w ʌ n",
+       "ipa": "w ʌ n",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "Also, zeta, iv-val-yoo-ayt-tud att one … diverges to infinity …",
+     "score": {
+      "heard": 2,
+      "of": 8,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Also, later we will allow you to test one divergent once I was...",
+       "count": 1
+      },
+      {
+       "text": "Also, later, we will eluate a dead one divergent once I will",
+       "count": 1
+      },
+      {
+       "text": "Also, later, we will review a third-to-one divergent to infinity.",
+       "count": 1
+      },
+      {
+       "text": "Also, later, will you wait till there's too undiverrage to ensure that I will come?",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "out of bounds: dead"
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "evaluated",
+       "as": "iv-val-yoo-ayt-tud",
+       "plain": "ɪ v æ ɫ j u eɪ ɾ ə d",
+       "ipa": "ɪ v v æ ɫ j u eɪ t t ʌ d",
+       "keeps": true
+      },
+      {
+       "i": 3,
+       "word": "at",
+       "as": "att",
+       "plain": "ə t",
+       "ipa": "æ t t",
+       "keeps": true
+      },
+      {
+       "i": 4,
+       "word": "1",
+       "as": "one",
+       "plain": "w ʌ n",
+       "ipa": "w ʌ n",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "Also zeta, evaluated att one … diverges to infinity …",
+     "rate": 0.9,
+     "score": {
+      "heard": 4,
+      "of": 8,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "Also later evaluate that one divergent to infinity.",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 3,
+       "word": "at",
+       "as": "att",
+       "plain": "ə t",
+       "ipa": "æ t t",
+       "keeps": true
+      },
+      {
+       "i": 4,
+       "word": "1",
+       "as": "one",
+       "plain": "w ʌ n",
+       "ipa": "w ʌ n",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "Also zeta, evaluated att one … diverges to infinity …",
+     "rate": 0.82,
+     "score": {
+      "heard": 3,
+      "of": 8,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "Also later, evaluate that one divergent to infinity.",
+       "count": 2
+      },
+      {
+       "text": "Also later, evaluate that one divergent to inside the car.",
+       "count": 2
+      }
+     ],
+     "sounds": [
+      {
+       "i": 3,
+       "word": "at",
+       "as": "att",
+       "plain": "ə t",
+       "ipa": "æ t t",
+       "keeps": true
+      },
+      {
+       "i": 4,
+       "word": "1",
+       "as": "one",
+       "plain": "w ʌ n",
+       "ipa": "w ʌ n",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "amber-fits",
+   "who": "shimmermathlabs",
+   "kind": "say",
+   "text": "i was gonna joke proof won't fit, but it does actually. …",
+   "as": "i was gonna, joke proof won't fit, but itt does, actually. …",
+   "heard": [
+    {
+     "text": "I was kind of rope proof won't fit, but it does naturally.",
+     "count": 2
+    },
+    {
+     "text": "I was gonna rope proof won't fit, but it does actually.",
+     "count": 1
+    },
+    {
+     "text": "I was gonna rope proof won't fit, but it does naturally.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 8,
+    "of": 11,
+    "min": 8
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "gonna",
+     "count": 2
+    },
+    {
+     "word": "joke",
+     "count": 4
+    },
+    {
+     "word": "actually",
+     "count": 3
+    }
+   ],
+   "sounds": [
+    {
+     "i": 8,
+     "word": "it",
+     "as": "itt",
+     "plain": "ɪ t",
+     "ipa": "ɪ t t",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "i was gonna, joke proof won't fit, but itt does, actually. …",
+     "score": {
+      "heard": 8,
+      "of": 11,
+      "min": 8
+     },
+     "heard": [
+      {
+       "text": "I was kind of rope proof won't fit, but it does naturally.",
+       "count": 2
+      },
+      {
+       "text": "I was gonna rope proof won't fit, but it does actually.",
+       "count": 1
+      },
+      {
+       "text": "I was gonna rope proof won't fit, but it does naturally.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 8,
+       "word": "it",
+       "as": "itt",
+       "plain": "ɪ t",
+       "ipa": "ɪ t t",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "amber-brackets",
+   "who": "shimmermathlabs",
+   "kind": "say",
+   "text": "… each bracket has twice as many terms as the last, each at least half as large as its last term. …",
+   "as": "… eech brak-it has twice as many terms as the last, each at least half as large as its last term. …",
+   "heard": [
+    {
+     "text": "It breaks to twice as many terms as the last. It takes half as large as the last term.",
+     "count": 3
+    },
+    {
+     "text": "It breaks to twice as many terms as the last. It's least half as large as the last term.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 13,
+    "of": 20,
+    "min": 13
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "each",
+     "count": 8
+    },
+    {
+     "word": "bracket",
+     "count": 4
+    },
+    {
+     "word": "has",
+     "count": 4
+    },
+    {
+     "word": "at",
+     "count": 4
+    },
+    {
+     "word": "least",
+     "count": 3
+    },
+    {
+     "word": "its",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 1,
+     "word": "each",
+     "as": "eech",
+     "plain": "i tʃ",
+     "ipa": "i tʃ",
+     "keeps": true
+    },
+    {
+     "i": 2,
+     "word": "bracket",
+     "as": "brak-it",
+     "plain": "b ɹ æ k ɪ t",
+     "ipa": "b ɹ æ k ɪ t",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "… eech brak-it has twice as many terms as the last, each at least half as large as its last term. …",
+     "score": {
+      "heard": 13,
+      "of": 20,
+      "min": 13
+     },
+     "heard": [
+      {
+       "text": "It breaks to twice as many terms as the last. It takes half as large as the last term.",
+       "count": 3
+      },
+      {
+       "text": "It breaks to twice as many terms as the last. It's least half as large as the last term.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "each",
+       "as": "eech",
+       "plain": "i tʃ",
+       "ipa": "i tʃ",
+       "keeps": true
+      },
+      {
+       "i": 2,
+       "word": "bracket",
+       "as": "brak-it",
+       "plain": "b ɹ æ k ɪ t",
+       "ipa": "b ɹ æ k ɪ t",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "amber-adds",
+   "who": "shimmermathlabs",
+   "kind": "say",
+   "text": "… so every block adds ≥ ½. …",
+   "as": "… so, eh-ver-ee block adds at-least, a-half. …",
+   "heard": [
+    {
+     "text": "So, every block had to twist the path.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 4,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "adds",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 2,
+     "word": "every",
+     "as": "eh-ver-ee",
+     "plain": "ɛ v ɚ i",
+     "ipa": "ɛ v ɝ i",
+     "keeps": true
+    },
+    {
+     "i": 5,
+     "word": "",
+     "as": "at-least",
+     "plain": "",
+     "ipa": "ə t l i s t",
+     "keeps": null
+    },
+    {
+     "i": 6,
+     "word": "½",
+     "as": "a-half",
+     "plain": "",
+     "ipa": "ə h æ f",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "… so, eh-ver-ee block adds at-least, a-half. …",
+     "score": {
+      "heard": 3,
+      "of": 4,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "So, every block had to twist the path.",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "every",
+       "as": "eh-ver-ee",
+       "plain": "ɛ v ɚ i",
+       "ipa": "ɛ v ɝ i",
+       "keeps": true
+      },
+      {
+       "i": 5,
+       "word": "",
+       "as": "at-least",
+       "plain": "",
+       "ipa": "ə t l i s t",
+       "keeps": null
+      },
+      {
+       "i": 6,
+       "word": "½",
+       "as": "a-half",
+       "plain": "",
+       "ipa": "ə h æ f",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "amber-infinity",
+   "who": "shimmermathlabs",
+   "kind": "say",
+   "text": "… infinitely many halves → ∞. □",
+   "as": "… inn-fun-nut-lee, many halves, goze-too infinity. □",
+   "heard": [
+    {
+     "text": "In fun of you, many hair go to infinity.",
+     "count": 2
+    },
+    {
+     "text": "In fun of me, many hair go to infinity.",
+     "count": 1
+    },
+    {
+     "text": "Infinitely, many hair go to infinity.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 1,
+    "of": 3,
+    "min": 1
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "infinitely",
+     "count": 3
+    },
+    {
+     "word": "halves",
+     "count": 4
+    }
+   ],
+   "known": [
+    "halves",
+    "infinitely"
+   ],
+   "sounds": [
+    {
+     "i": 1,
+     "word": "infinitely",
+     "as": "inn-fun-nut-lee",
+     "plain": "ɪ n f ə n ə t l i",
+     "ipa": "ɪ n f ʌ n n ʌ t l i",
+     "keeps": true
+    },
+    {
+     "i": 4,
+     "word": "",
+     "as": "goze-too",
+     "plain": "",
+     "ipa": "g oʊ z t u",
+     "keeps": null
+    },
+    {
+     "i": 5,
+     "word": "",
+     "as": "infinity",
+     "plain": "",
+     "ipa": "ɪ n f ɪ n ɪ ɾ i",
+     "keeps": null
+    }
+   ],
+   "rejected": [
+    {
+     "word": "infinitely",
+     "as": "inn-fuh-nut-lee",
+     "plain": "ɪ n f ə n ə t l i",
+     "ipa": "ɪ n f ʌ h n ʌ t l i",
+     "why": "consonants after vowel 2: n → h n"
+    }
+   ],
+   "tried": [
+    {
+     "as": "… inn-fun-nut-lee, many halves, goze-too infinity. □",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "In fun of you, many hair go to infinity.",
+       "count": 2
+      },
+      {
+       "text": "In fun of me, many hair go to infinity.",
+       "count": 1
+      },
+      {
+       "text": "Infinitely, many hair go to infinity.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "infinitely",
+       "as": "inn-fun-nut-lee",
+       "plain": "ɪ n f ə n ə t l i",
+       "ipa": "ɪ n f ʌ n n ʌ t l i",
+       "keeps": true
+      },
+      {
+       "i": 4,
+       "word": "",
+       "as": "goze-too",
+       "plain": "",
+       "ipa": "g oʊ z t u",
+       "keeps": null
+      },
+      {
+       "i": 5,
+       "word": "",
+       "as": "infinity",
+       "plain": "",
+       "ipa": "ɪ n f ɪ n ɪ ɾ i",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "… infinitely many halves → ∞. □",
+     "score": {
+      "heard": 0,
+      "of": 3,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Inksen Pima Nehaer",
+       "count": 2
+      },
+      {
+       "text": "instant P-menicare",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "as": "… inn-fun-nut-lee, many havz, goze-too infinity. □",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "In fun of you, many hair go to infinity.",
+       "count": 2
+      },
+      {
+       "text": "In fun of me, many hair go to infinity.",
+       "count": 1
+      },
+      {
+       "text": "Infinitely, many hair go to infinity.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "infinitely",
+       "as": "inn-fun-nut-lee",
+       "plain": "ɪ n f ə n ə t l i",
+       "ipa": "ɪ n f ʌ n n ʌ t l i",
+       "keeps": true
+      },
+      {
+       "i": 3,
+       "word": "halves",
+       "as": "havz",
+       "plain": "h æ v z",
+       "ipa": "h æ v z",
+       "keeps": true
+      },
+      {
+       "i": 4,
+       "word": "",
+       "as": "goze-too",
+       "plain": "",
+       "ipa": "g oʊ z t u",
+       "keeps": null
+      },
+      {
+       "i": 5,
+       "word": "",
+       "as": "infinity",
+       "plain": "",
+       "ipa": "ɪ n f ɪ n ɪ ɾ i",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "… inn-fun-nut-lee, many halves, goze-too infinity. □",
+     "rate": 0.9,
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "In fun or gee, many hair go to infinity.",
+       "count": 2
+      },
+      {
+       "text": "In Fanaji, many hairs go to infinity.",
+       "count": 1
+      },
+      {
+       "text": "In fun energy, many hair go to infinity.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "infinitely",
+       "as": "inn-fun-nut-lee",
+       "plain": "ɪ n f ə n ə t l i",
+       "ipa": "ɪ n f ʌ n n ʌ t l i",
+       "keeps": true
+      },
+      {
+       "i": 4,
+       "word": "",
+       "as": "goze-too",
+       "plain": "",
+       "ipa": "g oʊ z t u",
+       "keeps": null
+      },
+      {
+       "i": 5,
+       "word": "",
+       "as": "infinity",
+       "plain": "",
+       "ipa": "ɪ n f ɪ n ɪ ɾ i",
+       "keeps": null
+      }
+     ]
+    },
+    {
+     "as": "… inn-fun-nut-lee, many halves, goze-too infinity. □",
+     "rate": 0.82,
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "In fun energy, many hair, go to infinity.",
+       "count": 2
+      },
+      {
+       "text": "In Fanaji, many hair, go to infinity.",
+       "count": 1
+      },
+      {
+       "text": "In fun not gee, many hair, go to infinity.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "statement: negation"
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "infinitely",
+       "as": "inn-fun-nut-lee",
+       "plain": "ɪ n f ə n ə t l i",
+       "ipa": "ɪ n f ʌ n n ʌ t l i",
+       "keeps": true
+      },
+      {
+       "i": 4,
+       "word": "",
+       "as": "goze-too",
+       "plain": "",
+       "ipa": "g oʊ z t u",
+       "keeps": null
+      },
+      {
+       "i": 5,
+       "word": "",
+       "as": "infinity",
+       "plain": "",
+       "ipa": "ɪ n f ɪ n ɪ ɾ i",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "larry-button",
+   "who": "larry",
+   "kind": "say",
+   "text": "It fits in a post.",
+   "as": "It fits in uh post.",
+   "heard": [
+    {
+     "text": "It fits in a port.",
+     "count": 2
+    },
+    {
+     "text": "It fits in a post.",
+     "count": 2
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 5,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "post",
+     "count": 2
+    }
+   ],
+   "sounds": [
+    {
+     "i": 3,
+     "word": "a",
+     "as": "uh",
+     "plain": "ə",
+     "ipa": "ʌ",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "It fits in uh post.",
+     "score": {
+      "heard": 4,
+      "of": 5,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "It fits in a port.",
+       "count": 2
+      },
+      {
+       "text": "It fits in a post.",
+       "count": 2
+      }
+     ],
+     "sounds": [
+      {
+       "i": 3,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "voices": {
+  "larry": {
+   "f0": 107,
+   "nearest": "pete",
+   "distance": 1.54
+  },
+  "davidcrespo": {
+   "f0": 141,
+   "nearest": "pete",
+   "distance": 1.81
+  },
+  "moultano": {
+   "f0": 272,
+   "nearest": "shimmermathlabs",
+   "distance": 2.92
+  },
+  "shimmermathlabs": {
+   "f0": 254,
+   "nearest": "sibyl",
+   "distance": 2.41
+  },
+  "sibyl": {
+   "f0": 207,
+   "nearest": "dlowd",
+   "distance": 1.75
+  }
+ },
+ "owner": [],
+ "heardDifferently": [
+  {
+   "id": "larry-chart",
+   "who": "larry",
+   "status": "flagged",
+   "text": "davidcrespo posted a chart.",
+   "heard": "Day at Graspa posted card."
+  },
+  {
+   "id": "larry-moultano",
+   "who": "larry",
+   "status": "flagged",
+   "text": "moultano, quoting the chart.",
+   "heard": "More channel, quoting the chart."
+  },
+  {
+   "id": "amber-call",
+   "who": "shimmermathlabs",
+   "status": "flagged",
+   "text": "calling @zetaof1.bsky.social, your whole account was leading up to this day, now is your time to shine, you got this",
+   "heard": "Calling later, one dark big sky dark social, your whole account was leading up to this day. Now is your time to shine. You got this."
+  },
+  {
+   "id": "amber-infinity",
+   "who": "shimmermathlabs",
+   "status": "unsayable",
+   "text": "… infinitely many halves → ∞. □",
+   "heard": "In fun of you, many hair go to infinity."
+  }
+ ],
+ "soundsDifferent": []
+}

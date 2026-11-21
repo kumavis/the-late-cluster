@@ -1,0 +1,690 @@
+{
+ "id": "riemann-before-gta-six",
+ "title": "What arrived first: the running comparisons",
+ "happened": "The day before, the video game GTA VI had been released, and for years people had joked about what would happen before it came out. Several accounts noted that the hypothesis had almost come first: one said 'almost', a small member insisted it had not, and chordbug read a line in the note about 'horrible timing' as regret at missing that joke by a day. A second comparison came from screenshots of a mathematician's old posts mocking the idea that AI would prove the hypothesis in 2026 before Apple shipped an LLM-powered Siri, with his gracious concession that day; norvid said he too was surprised the Riemann tech came first, and replies offered their own list of things still waiting (self-driving cars, faster-than-light travel, a purely visual Pokémon run), until a member pointed out that Siri already runs on Gemini and norvid admitted he could not fact-check that. A third was the Millennium Prize scoreboard: a joke that all the problems might be solved with none of the prize money claimed, whether the prize even covers the token cost, and a prediction that P vs NP will be last. foremphasis quoted his own earlier guess of a headline about the hypothesis being solved in 2.5 million lines of Lean 'to little fanfare' with 'might have undershot just a bit'. joetforhire posted a screenshot of a July post predicting the hypothesis would fall on 21 November 2026, and members admired the date. And yetanotheruseless said he was less worried about Claude solving RH than about a bot with 3 brain cells becoming Top Chicken before him. The show can assert nothing about whether the proof (or the human proof mentioned here) is correct; on 20 November it was a claim being checked, and these posts are people reacting to the claim.",
+ "posts": [
+  {
+   "uri": "at://did:plc:xxvldnf5qhbne5gcizxngngd/app.bsky.feed.post/3n2qwz7y7yc2p",
+   "url": "https://bsky.app/profile/reified-systems.itch.io/post/3n2qwz7y7yc2p",
+   "author": {
+    "did": "did:plc:xxvldnf5qhbne5gcizxngngd",
+    "handle": "reified-systems.itch.io",
+    "displayName": "Valérie Bettaque",
+    "followers": 378
+   },
+   "time": "2026-11-20T15:53:21.965Z",
+   "text": "We almost got the Riemann Hypothesis before GTA 6.",
+   "counts": {
+    "likes": 12,
+    "reposts": 2,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "reified-systems.itch.io (378, non-member): 'We almost got the Riemann Hypothesis before GTA 6.'"
+  },
+  {
+   "uri": "at://did:plc:tbig7qnx4o5ylp5v23w577vl/app.bsky.feed.post/3n2qxlndc7s2l",
+   "url": "https://bsky.app/profile/sifu.tweety.fish/post/3n2qxlndc7s2l",
+   "author": {
+    "did": "did:plc:tbig7qnx4o5ylp5v23w577vl",
+    "handle": "sifu.tweety.fish",
+    "displayName": "tweety fish",
+    "followers": 12822
+   },
+   "time": "2026-11-20T16:03:39.939Z",
+   "text": "sure, it COULD be a coincidence that Riemann Hypothesis and unbounded Navier-Stokes solutions were both released precisely one day after GTA VI came out...",
+   "counts": {
+    "likes": 58,
+    "reposts": 3,
+    "replies": 1,
+    "quotes": 2
+   },
+   "why": "sifu.tweety.fish: could be a coincidence that RH and Navier-Stokes came one day after GTA VI"
+  },
+  {
+   "uri": "at://did:plc:hle73yc4rjzhi2s42t6ivglw/app.bsky.feed.post/3n2qzjbphyk2s",
+   "url": "https://bsky.app/profile/invert.bsky.social/post/3n2qzjbphyk2s",
+   "author": {
+    "did": "did:plc:hle73yc4rjzhi2s42t6ivglw",
+    "handle": "invert.bsky.social",
+    "displayName": "Invert",
+    "followers": 173,
+    "member": true,
+    "small": true
+   },
+   "time": "2026-11-20T16:38:08.128Z",
+   "text": "We did *not* get a proof of the Riemann Hypothesis before GTA VI",
+   "counts": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "invert (173, small member): we did *not* get it before GTA VI"
+  },
+  {
+   "uri": "at://did:plc:3qxpuyugoel4svgub7ywotmz/app.bsky.feed.post/3n2r72js4v22t",
+   "url": "https://bsky.app/profile/chordbug.bsky.social/post/3n2r72js4v22t",
+   "author": {
+    "did": "did:plc:3qxpuyugoel4svgub7ywotmz",
+    "handle": "chordbug.bsky.social",
+    "displayName": "lynn",
+    "followers": 2333
+   },
+   "time": "2026-11-20T18:17:15.729Z",
+   "text": "by \"horrible timing\", Levent Alpöge is referring ofc to the fact that we missed the chance to joke \"we got Riemann Hypothesis before GTA6\" by a *day*",
+   "counts": {
+    "likes": 127,
+    "reposts": 13,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "chordbug: by 'horrible timing' the note means missing the GTA6 joke by a day; 127 likes, image of the note's line",
+   "media": {
+    "images": true,
+    "alts": [
+     "\"The precise timing is horrible.\" etc from remark.pdf"
+    ],
+    "video": false
+   }
+  },
+  {
+   "uri": "at://did:plc:b6eke66r3vbmnegg73qgprl6/app.bsky.feed.post/3n2rdfcgiug2q",
+   "url": "https://bsky.app/profile/mergesort.me/post/3n2rdfcgiug2q",
+   "author": {
+    "did": "did:plc:b6eke66r3vbmnegg73qgprl6",
+    "handle": "mergesort.me",
+    "displayName": "Joe Fabisevich",
+    "followers": 5793
+   },
+   "time": "2026-11-20T19:34:50.539Z",
+   "text": "Credit to @littmath.bsky.social (who is very smart) for taking this in stride.",
+   "counts": {
+    "likes": 43,
+    "reposts": 2,
+    "replies": 1,
+    "quotes": 2
+   },
+   "why": "mergesort: credit to a mathematician for taking it in stride, with screenshots of his earlier posts and his concession",
+   "media": {
+    "images": true,
+    "alts": [
+     "Daniel Litt\n@littmath\n9/29/25, 8:01 AM\nguy who thinks he'll win a millenium prize\nfor typing \"prove the Riemann Hypothesis.\ndon't make any mistakes.\"\n• 37\n1333\n136 •",
+     "Daniel Litt\n@littmath\n3/8/25, 9:27 AM\nperson who thinks Al will prove the\nRiemann hypothesis in 2026 but that\nApple won't deliver an LLM-powered Siri\nuntil 2027\n• 53\n• 1468\nL85②",
+     "@littmath •\n11/20/26, 11:45 AM\nSeems like I was wrong about this!\nLargely a reflection of what theory I\nthought would need to be built to\nprove RH. FWIW building this missing\ntheory still seems to me very\nworthwhile.\n@littmath •\nReplying to @DavidTurturean\nEnd of 2026 seems pretty\nunlikely. I think you should\nunderstand the nature of the best\nautonomous results today as\nstrong evidence against this.\n0 19 0 489 17 13 0"
+    ],
+    "video": false
+   }
+  },
+  {
+   "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2rdvtu4n22f",
+   "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2rdvtu4n22f",
+   "author": {
+    "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+    "handle": "norvid-studies.bsky.social",
+    "displayName": "norvid_studies",
+    "followers": 2777,
+    "member": true,
+    "featuredPrevious": "spoke",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T19:44:07.229Z",
+   "text": "fwiw I am also surprised the riemann hypothesis tech came before LLM powered siri",
+   "counts": {
+    "likes": 104,
+    "reposts": 2,
+    "replies": 8,
+    "quotes": 1
+   },
+   "why": "norvid quotes it: also surprised the Riemann hypothesis tech came before LLM-powered Siri; 104 likes",
+   "quoted": {
+    "uri": "at://did:plc:b6eke66r3vbmnegg73qgprl6/app.bsky.feed.post/3n2rdfcgiug2q"
+   }
+  },
+  {
+   "uri": "at://did:plc:lmidtahyizyejqz74zeaip67/app.bsky.feed.post/3n2reg4vy4c2j",
+   "url": "https://bsky.app/profile/garrison.corporate.fm/post/3n2reg4vy4c2j",
+   "author": {
+    "did": "did:plc:lmidtahyizyejqz74zeaip67",
+    "handle": "garrison.corporate.fm",
+    "displayName": "garrison",
+    "followers": 728,
+    "member": true
+   },
+   "time": "2026-11-20T19:53:13.597Z",
+   "text": "I'm surprised we got this stuff before self-driving cars but it seems to have been a close race",
+   "counts": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "garrison: surprised it came before self-driving cars, a close race",
+   "replyTo": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2rdvtu4n22f"
+  },
+  {
+   "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n2rfercc6c2g",
+   "url": "https://bsky.app/profile/samuel.fm/post/3n2rfercc6c2g",
+   "author": {
+    "did": "did:plc:p2cp5gopk7mgjegy6wadk3ep",
+    "handle": "samuel.fm",
+    "displayName": "Samuel",
+    "followers": 54200,
+    "member": true
+   },
+   "time": "2026-11-20T20:10:21.601Z",
+   "text": "we will get faster-than-light space travel before Siri is good",
+   "counts": {
+    "likes": 12,
+    "reposts": 1,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "samuel.fm: faster-than-light travel before Siri is good",
+   "replyTo": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2rdvtu4n22f"
+  },
+  {
+   "uri": "at://did:plc:4vvaxwovyg4yo4n7dyyncaiu/app.bsky.feed.post/3n2restzgzc2r",
+   "url": "https://bsky.app/profile/thebadcode.com/post/3n2restzgzc2r",
+   "author": {
+    "did": "did:plc:4vvaxwovyg4yo4n7dyyncaiu",
+    "handle": "thebadcode.com",
+    "displayName": "austin (e/accordion 🪗)",
+    "followers": 3077,
+    "member": true
+   },
+   "time": "2026-11-20T20:00:20.481Z",
+   "text": "purely visual pokemon run equally hard",
+   "counts": {
+    "likes": 3,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "thebadcode: purely visual pokemon run equally hard",
+   "replyTo": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2rdvtu4n22f"
+  },
+  {
+   "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2rjspdab22a",
+   "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2rjspdab22a",
+   "author": {
+    "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+    "handle": "norvid-studies.bsky.social",
+    "displayName": "norvid_studies",
+    "followers": 2777,
+    "member": true,
+    "featuredPrevious": "spoke",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T21:29:44.268Z",
+   "text": "is this a mnemonic...?",
+   "counts": {
+    "likes": 4,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "norvid: is this a mnemonic...?",
+   "replyTo": "at://did:plc:4vvaxwovyg4yo4n7dyyncaiu/app.bsky.feed.post/3n2restzgzc2r"
+  },
+  {
+   "uri": "at://did:plc:2k4dwow7fqauc2sysuzzj6qz/app.bsky.feed.post/3n2rktkdufk2h",
+   "url": "https://bsky.app/profile/weiyen.net/post/3n2rktkdufk2h",
+   "author": {
+    "did": "did:plc:2k4dwow7fqauc2sysuzzj6qz",
+    "handle": "weiyen.net",
+    "displayName": "yen is building stuff",
+    "followers": 748,
+    "member": true
+   },
+   "time": "2026-11-20T21:48:06.342Z",
+   "text": "Isn't Siri already running on Gemini now? Since iOS 27, which came out in september",
+   "counts": {
+    "likes": 4,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 1
+   },
+   "why": "weiyen: isn't Siri already running on Gemini, since iOS 27?",
+   "replyTo": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2rdvtu4n22f"
+  },
+  {
+   "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2rkuj4j6s2d",
+   "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2rkuj4j6s2d",
+   "author": {
+    "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+    "handle": "norvid-studies.bsky.social",
+    "displayName": "norvid_studies",
+    "followers": 2777,
+    "member": true,
+    "featuredPrevious": "spoke",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T21:48:38.608Z",
+   "text": "i don't have enough siri knowledge to fact check this claim if it was wrong. sorry readers!",
+   "counts": {
+    "likes": 2,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 1
+   },
+   "why": "norvid: doesn't have enough Siri knowledge to fact-check that; sorry readers",
+   "replyTo": "at://did:plc:2k4dwow7fqauc2sysuzzj6qz/app.bsky.feed.post/3n2rktkdufk2h"
+  },
+  {
+   "uri": "at://did:plc:w75fzwl4ibla3witt3nk5oox/app.bsky.feed.post/3n2rlwgvizs26",
+   "url": "https://bsky.app/profile/forthrast.com/post/3n2rlwgvizs26",
+   "author": {
+    "did": "did:plc:w75fzwl4ibla3witt3nk5oox",
+    "handle": "forthrast.com",
+    "displayName": "Forth 🏝️",
+    "followers": 1174,
+    "member": true
+   },
+   "time": "2026-11-20T22:07:37.132Z",
+   "text": "hello siri expert here it’s running on a special apple model distilled from gemini 3 so it counts but it also sucks majorly so most people would say it doesn’t",
+   "counts": {
+    "likes": 3,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "forthrast: Siri expert here, it counts but it sucks",
+   "replyTo": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2rkuj4j6s2d"
+  },
+  {
+   "uri": "at://did:plc:nouamhwlij66naya7yrchmlg/app.bsky.feed.post/3n2r3fwylxs2m",
+   "url": "https://bsky.app/profile/foremphasis.bsky.social/post/3n2r3fwylxs2m",
+   "author": {
+    "did": "did:plc:nouamhwlij66naya7yrchmlg",
+    "handle": "foremphasis.bsky.social",
+    "displayName": "em",
+    "followers": 519,
+    "member": true
+   },
+   "time": "2026-11-20T17:12:03.715Z",
+   "text": "might have undershot just a bit",
+   "counts": {
+    "likes": 82,
+    "reposts": 4,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "foremphasis quotes his earlier '2.5 million lines of lean to little fanfare' headline guess: 'might have undershot just a bit'; 82 likes",
+   "quoted": {
+    "uri": "at://did:plc:nouamhwlij66naya7yrchmlg/app.bsky.feed.post/3muzvudsu522t"
+   }
+  },
+  {
+   "uri": "at://did:plc:q5cnyaqzm5lyig37jm7srfzu/app.bsky.feed.post/3n2qxrgg2k22c",
+   "url": "https://bsky.app/profile/hornblende.bsky.social/post/3n2qxrgg2k22c",
+   "author": {
+    "did": "did:plc:q5cnyaqzm5lyig37jm7srfzu",
+    "handle": "hornblende.bsky.social",
+    "displayName": "It maybhave tobdobwith DOOMACROLLING !",
+    "followers": 574
+   },
+   "time": "2026-11-20T16:06:54.017Z",
+   "text": "all of the millennium prize problems being solved but none of the prize money being claimed for various reasons wld be the funniest outcome",
+   "counts": {
+    "likes": 27,
+    "reposts": 5,
+    "replies": 1,
+    "quotes": 1
+   },
+   "why": "hornblende: all Millennium problems solved, no prize money claimed, would be the funniest outcome"
+  },
+  {
+   "uri": "at://did:plc:pcpxcmv5z6oseafi5khuulta/app.bsky.feed.post/3n2qypnq7qk2o",
+   "url": "https://bsky.app/profile/wavebidder.bsky.social/post/3n2qypnq7qk2o",
+   "author": {
+    "did": "did:plc:pcpxcmv5z6oseafi5khuulta",
+    "handle": "wavebidder.bsky.social",
+    "displayName": null,
+    "followers": 922,
+    "member": true
+   },
+   "time": "2026-11-20T16:23:48.322Z",
+   "text": "I'm wondering if the prize money actually covers the token cost  of any of the results. Iirc no?",
+   "counts": {
+    "likes": 6,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "wavebidder: does the prize money cover the token cost?",
+   "replyTo": "at://did:plc:q5cnyaqzm5lyig37jm7srfzu/app.bsky.feed.post/3n2qxrgg2k22c"
+  },
+  {
+   "uri": "at://did:plc:oqoksnyukzbase3uttllntwk/app.bsky.feed.post/3n2qziopvmc2x",
+   "url": "https://bsky.app/profile/mrcheeze.github.io/post/3n2qziopvmc2x",
+   "author": {
+    "did": "did:plc:oqoksnyukzbase3uttllntwk",
+    "handle": "mrcheeze.github.io",
+    "displayName": "MrCheeze",
+    "followers": 1812,
+    "member": true
+   },
+   "time": "2026-11-20T16:37:48.222Z",
+   "text": "definitely not via publicly available pricing, not sure what the actual cost to anthropic and openai is",
+   "counts": {
+    "likes": 5,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "mrcheeze: not at public pricing",
+   "replyTo": "at://did:plc:pcpxcmv5z6oseafi5khuulta/app.bsky.feed.post/3n2qypnq7qk2o"
+  },
+  {
+   "uri": "at://did:plc:nouamhwlij66naya7yrchmlg/app.bsky.feed.post/3n2r7cdmi7s2m",
+   "url": "https://bsky.app/profile/foremphasis.bsky.social/post/3n2r7cdmi7s2m",
+   "author": {
+    "did": "did:plc:nouamhwlij66naya7yrchmlg",
+    "handle": "foremphasis.bsky.social",
+    "displayName": "em",
+    "followers": 519,
+    "member": true
+   },
+   "time": "2026-11-20T18:21:37.698Z",
+   "text": "Registering my prediction that P vs NP will be the last millennium prize problem standing",
+   "counts": {
+    "likes": 11,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "foremphasis: registering a prediction that P vs NP will be the last Millennium problem standing"
+  },
+  {
+   "uri": "at://did:plc:oqoksnyukzbase3uttllntwk/app.bsky.feed.post/3n2r7tbwfg22e",
+   "url": "https://bsky.app/profile/mrcheeze.github.io/post/3n2r7tbwfg22e",
+   "author": {
+    "did": "did:plc:oqoksnyukzbase3uttllntwk",
+    "handle": "mrcheeze.github.io",
+    "displayName": "MrCheeze",
+    "followers": 1812,
+    "member": true
+   },
+   "time": "2026-11-20T18:31:06.351Z",
+   "text": "Counterpoint: Riemann was probably solved \"ahead of schedule\" compared to its difficulty because it's the most famous problem, and P vs NP could go the same way",
+   "counts": {
+    "likes": 3,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "mrcheeze: counterpoint, RH came early because it's the most famous",
+   "replyTo": "at://did:plc:nouamhwlij66naya7yrchmlg/app.bsky.feed.post/3n2r7cdmi7s2m"
+  },
+  {
+   "uri": "at://did:plc:nouamhwlij66naya7yrchmlg/app.bsky.feed.post/3n2r7wyvaqs2m",
+   "url": "https://bsky.app/profile/foremphasis.bsky.social/post/3n2r7wyvaqs2m",
+   "author": {
+    "did": "did:plc:nouamhwlij66naya7yrchmlg",
+    "handle": "foremphasis.bsky.social",
+    "displayName": "em",
+    "followers": 519,
+    "member": true
+   },
+   "time": "2026-11-20T18:33:11.095Z",
+   "text": "Could be. I just have a fairly uninformed hunch that its a different class of problem to the others.",
+   "counts": {
+    "likes": 2,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "foremphasis: an uninformed hunch it's a different class of problem",
+   "replyTo": "at://did:plc:oqoksnyukzbase3uttllntwk/app.bsky.feed.post/3n2r7tbwfg22e"
+  },
+  {
+   "uri": "at://did:plc:oqoksnyukzbase3uttllntwk/app.bsky.feed.post/3n2ra7cfvdc2e",
+   "url": "https://bsky.app/profile/mrcheeze.github.io/post/3n2ra7cfvdc2e",
+   "author": {
+    "did": "did:plc:oqoksnyukzbase3uttllntwk",
+    "handle": "mrcheeze.github.io",
+    "displayName": "MrCheeze",
+    "followers": 1812,
+    "member": true
+   },
+   "time": "2026-11-20T18:37:49.512Z",
+   "text": "The fact that the only substantial progress is \"we figured out that all our techniques don't work\", does point in that direction...",
+   "counts": {
+    "likes": 3,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "mrcheeze: the only progress is learning all our techniques don't work (Wikipedia screenshot)",
+   "replyTo": "at://did:plc:nouamhwlij66naya7yrchmlg/app.bsky.feed.post/3n2r7wyvaqs2m",
+   "media": {
+    "images": true,
+    "alts": [],
+    "video": false
+   }
+  },
+  {
+   "uri": "at://did:plc:hfrtjnhcfzvyrht2atilf3yw/app.bsky.feed.post/3n2rfnkmx5222",
+   "url": "https://bsky.app/profile/lowrhoufo.bsky.social/post/3n2rfnkmx5222",
+   "author": {
+    "did": "did:plc:hfrtjnhcfzvyrht2atilf3yw",
+    "handle": "lowrhoufo.bsky.social",
+    "displayName": "LOWρUFO 🇺🇦🇵🇸🌍",
+    "followers": 10745
+   },
+   "time": "2026-11-20T20:15:16.604Z",
+   "text": "It's crazy that only one millennium problem was ultimately solved with human work",
+   "counts": {
+    "likes": 24,
+    "reposts": 0,
+    "replies": 3,
+    "quotes": 0
+   },
+   "why": "lowrhoufo (10,745, non-member): crazy that only one Millennium problem was ultimately solved with human work"
+  },
+  {
+   "uri": "at://did:plc:4rnej33af5ly4yjgpuaeupd3/app.bsky.feed.post/3n2rh5zjghk2j",
+   "url": "https://bsky.app/profile/joetforhire.com/post/3n2rh5zjghk2j",
+   "author": {
+    "did": "did:plc:4rnej33af5ly4yjgpuaeupd3",
+    "handle": "joetforhire.com",
+    "displayName": "joe 🐎🏹",
+    "followers": 982,
+    "member": true
+   },
+   "time": "2026-11-20T20:42:22.831Z",
+   "text": "we've only got about four months before they play The Song...",
+   "counts": {
+    "likes": 90,
+    "reposts": 7,
+    "replies": 7,
+    "quotes": 8
+   },
+   "why": "joetforhire: 'we've only got about four months before they play The Song...' with a screenshot of a July prediction",
+   "media": {
+    "images": true,
+    "alts": [],
+    "video": false
+   }
+  },
+  {
+   "uri": "at://did:plc:zrwhncnqel7corjtg2cak3jx/app.bsky.feed.post/3n2rhehjgsc2n",
+   "url": "https://bsky.app/profile/tbabb.bsky.social/post/3n2rhehjgsc2n",
+   "author": {
+    "did": "did:plc:zrwhncnqel7corjtg2cak3jx",
+    "handle": "tbabb.bsky.social",
+    "displayName": "tbabb",
+    "followers": 1346,
+    "member": true
+   },
+   "time": "2026-11-20T20:45:58.837Z",
+   "text": "quite the long putt to nail the date within one day",
+   "counts": {
+    "likes": 45,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "tbabb: quite the long putt to nail the date within one day",
+   "replyTo": "at://did:plc:4rnej33af5ly4yjgpuaeupd3/app.bsky.feed.post/3n2rh5zjghk2j"
+  },
+  {
+   "uri": "at://did:plc:wamidydbgu3u6fk3yckaglnz/app.bsky.feed.post/3n2rhixk6c22i",
+   "url": "https://bsky.app/profile/philpax.me/post/3n2rhixk6c22i",
+   "author": {
+    "did": "did:plc:wamidydbgu3u6fk3yckaglnz",
+    "handle": "philpax.me",
+    "displayName": "philpax",
+    "followers": 2208,
+    "member": true
+   },
+   "time": "2026-11-20T20:48:29.857Z",
+   "text": "impressive call on the date",
+   "counts": {
+    "likes": 62,
+    "reposts": 7,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "philpax quotes it: impressive call on the date",
+   "quoted": {
+    "uri": "at://did:plc:4rnej33af5ly4yjgpuaeupd3/app.bsky.feed.post/3n2rh5zjghk2j"
+   }
+  },
+  {
+   "uri": "at://did:plc:fensreek6maqgui5apldqdij/app.bsky.feed.post/3n2rhquipok2m",
+   "url": "https://bsky.app/profile/premium-content.bsky.social/post/3n2rhquipok2m",
+   "author": {
+    "did": "did:plc:fensreek6maqgui5apldqdij",
+    "handle": "premium-content.bsky.social",
+    "displayName": "Benjamin",
+    "followers": 240,
+    "small": true
+   },
+   "time": "2026-11-20T20:52:55.098Z",
+   "text": "Bit off on the length.",
+   "counts": {
+    "likes": 8,
+    "reposts": 0,
+    "replies": 2,
+    "quotes": 0
+   },
+   "why": "premium-content (240, small): bit off on the length",
+   "replyTo": "at://did:plc:wamidydbgu3u6fk3yckaglnz/app.bsky.feed.post/3n2rhixk6c22i"
+  },
+  {
+   "uri": "at://did:plc:bjaceaxgoto5p7gor2rcov3g/app.bsky.feed.post/3n2rlecjcic2e",
+   "url": "https://bsky.app/profile/yetanotheruseless.com/post/3n2rlecjcic2e",
+   "author": {
+    "did": "did:plc:bjaceaxgoto5p7gor2rcov3g",
+    "handle": "yetanotheruseless.com",
+    "displayName": "jake",
+    "followers": 3972,
+    "member": true
+   },
+   "time": "2026-11-20T21:57:28.558Z",
+   "text": "hell, you can't even fit the *urls* for the links to all of the parts to the lean proof in a tweet[1], since there are like 14 of them!\n\n1) og tweet. modern xeets don't count",
+   "counts": {
+    "likes": 3,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "yetanotheruseless: you can't even fit the URLs for the 14 parts of the Lean proof in an original tweet",
+   "replyTo": "at://did:plc:fensreek6maqgui5apldqdij/app.bsky.feed.post/3n2rhquipok2m"
+  },
+  {
+   "uri": "at://did:plc:bjaceaxgoto5p7gor2rcov3g/app.bsky.feed.post/3n2ra3mcor22j",
+   "url": "https://bsky.app/profile/yetanotheruseless.com/post/3n2ra3mcor22j",
+   "author": {
+    "did": "did:plc:bjaceaxgoto5p7gor2rcov3g",
+    "handle": "yetanotheruseless.com",
+    "displayName": "jake",
+    "followers": 3972,
+    "member": true
+   },
+   "time": "2026-11-20T18:35:45.676Z",
+   "text": "you are worried about claude solving RH\n\ni'm upset that a fucking bot with 3 brain cells got top chicken before i did\n\nwe are not the same",
+   "counts": {
+    "likes": 90,
+    "reposts": 0,
+    "replies": 2,
+    "quotes": 1
+   },
+   "why": "yetanotheruseless: you worry about Claude solving RH; he's upset a bot with 3 brain cells got Top Chicken before him; 90 likes",
+   "quoted": {
+    "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2qyuyawy22c"
+   }
+  }
+ ],
+ "people": [
+  {
+   "handle": "norvid-studies.bsky.social",
+   "note": "Member, featuredPrevious. The Siri post (104 likes)."
+  },
+  {
+   "handle": "mergesort.me",
+   "note": "5,793 followers, not a member. Posted screenshots of another account's posts (Daniel Litt, littmath, 5,963 followers, not a member, a mathematician): R2 (screenshots someone else took) and R7 for Litt."
+  },
+  {
+   "handle": "foremphasis.bsky.social",
+   "note": "519 followers, member. Quoted his own earlier post (its text is in the skeleton's context)."
+  },
+  {
+   "handle": "mrcheeze.github.io",
+   "note": "1,812 followers, member."
+  },
+  {
+   "handle": "invert.bsky.social",
+   "note": "173 followers, member, small (R7: hero only)."
+  },
+  {
+   "handle": "chordbug.bsky.social",
+   "note": "2,333 followers, not a member."
+  },
+  {
+   "handle": "reified-systems.itch.io / sifu.tweety.fish / lowrhoufo.bsky.social / hornblende.bsky.social",
+   "note": "378, 12,822, 10,745, 574 followers, none members."
+  },
+  {
+   "handle": "joetforhire.com",
+   "note": "982 followers, member. The screenshot is of a post on X by a third person (@mykola)."
+  },
+  {
+   "handle": "yetanotheruseless.com",
+   "note": "3,972 followers, member. Top Chicken is the cluster's own game; the bot that topped it is jevbot (561 followers, bot)."
+  },
+  {
+   "handle": "samuel.fm",
+   "note": "54,200 followers, member: large account."
+  },
+  {
+   "handle": "garrison / thebadcode / weiyen / forthrast / tbabb / philpax / wavebidder",
+   "note": "728, 3,077, 748, 1,174, 1,346, 2,208, 922 followers, all members."
+  },
+  {
+   "handle": "premium-content.bsky.social",
+   "note": "240 followers, small, not a member."
+  }
+ ],
+ "couldBeShown": "The comparisons are a list the community wrote itself: GTA VI (released the day before), LLM-powered Siri, self-driving cars, faster-than-light travel, a purely visual Pokémon run, Top Chicken, P vs NP, the Millennium Prize money. chordbug's image (alt): 'The precise timing is horrible.' and the following lines of the note. mergesort's three screenshots (alt): Daniel Litt, 9/29/25, 'guy who thinks he'll win a millenium prize for typing \"prove the Riemann Hypothesis. don't make any mistakes.\"'; 3/8/25, 'person who thinks AI will prove the Riemann hypothesis in 2026 but that Apple won't deliver an LLM-powered Siri'; 11/20/26, 'Seems like I was wrong about this!'. joetforhire's image (no alt, fetched): a screenshot of an X post by 'Myk is Walking Backwards' (@mykola), 9:16 PM, Jul 20, 2026, 71.3K views: 'It's November 21st, 2026. The Riemann hypothesis falls ... and the proof fits in a tweet', followed by invented future dates (P = NP on January 22, 2027, Gödel falling on February 9, 'The Song' first played February 14). mrcheeze's image: a Wikipedia section on barriers to proving P vs NP.",
+ "notUnderstood": [
+  "'The Song' in joetforhire's post and the X prediction: a reference inside that prediction; what it is beyond that is not in the data (R15).",
+  "rivertam's 'Millenniums Alpoge, who solves two millennium prize problems a year ... outlier and should not have been counted' (s-1762680059) echoes a meme format not identified; not listed.",
+  "Whether the Millennium Prize for Navier-Stokes was actually awarded to anyone: the posts disagree (colin-fraser says OpenAI got it); the show should not state it."
+ ],
+ "sensitive": [
+  "at://did:plc:b6eke66r3vbmnegg73qgprl6/app.bsky.feed.post/3n2rdfcgiug2q: screenshots of a real mathematician's earlier posts, including one he concedes was wrong. R2 (someone else's screenshot) and R6/R7: the show should not present him as having been wrong; mergesort's own framing is kind ('who is very smart').",
+  "at://did:plc:4rnej33af5ly4yjgpuaeupd3/app.bsky.feed.post/3n2rh5zjghk2j: screenshot of a third person's post on X (R2); the prediction's words are not material.",
+  "at://did:plc:bjaceaxgoto5p7gor2rcov3g/app.bsky.feed.post/3n2ra3mcor22j quotes catblanketflower 3n2qyuyawy22c, which is marked 'grief and disaster' (its alt text): the quoted post may not be shown; yetanotheruseless's own post is unmarked.",
+  "cee.wtf 3n2rlj7ydj22a attributes an invented review score to a real music critic (Anthony Fantano): left out (R5).",
+  "lowrhoufo and mrcheeze's prize post allude to the last human solver's refusal of the prize; his life choices stay out (R1)."
+ ],
+ "numbers": {
+  "posts setting RH against GTA VI": "4 (reified-systems, sifu.tweety.fish, invert, chordbug), from the scan of the window",
+  "Siri thread": "26 posts, 15 authors, 11 members (s-7c9b7c579a)",
+  "foremphasis' earlier estimate": "2.5 million lines of Lean (his own earlier post); the community's later figure was 175,187 files",
+  "Top Chicken post": "90 likes"
+ }
+}

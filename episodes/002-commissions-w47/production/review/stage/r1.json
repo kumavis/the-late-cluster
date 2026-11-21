@@ -1,0 +1,126 @@
+{
+  "round": 1,
+  "check": "npm run check -- 002-commissions-w47: 4 passed, 0 failed, 0 skipped. Every frame shot loaded with no page errors and no unknown cues (the only console lines are WebGL 'GPU stall due to ReadPixels' performance warnings).",
+  "segments": {
+    "making-of-inward": {
+      "verdict": "change",
+      "changes": [
+        {
+          "must": true,
+          "at": "in-smaller (34.05 to 34.8 s)",
+          "change": "To the builder. The ring-seven plate STAGED (index.js, the `stops` entry for 'in-smaller') has the small Larry's mouth wireframe drawn over it for its whole time on screen: red and gold lines run through the letters at 34.05, 34.3 and 34.7 s. The plate's own black fill is there, but the head is drawn on top of it. Draw this plate after the puppets (in drawFront, as the ear labels are), or move it clear of the head, so that nothing shows through it. It is still a glance and still sits at the left of the frame. The text is right: STAGED."
+        },
+        {
+          "must": false,
+          "at": "ring-six to in-smaller (about 25.9 to 34.1 s)",
+          "change": "To the builder. The door plate \"a guard, not a wall\" is exact and four words long, but it stays up about eight seconds, through both l2-six and l2-list, while Larry is saying other things. The earlier audit asked for no more than a glance. Take it down after about two seconds, or when the camera leaves the door on \"not on it\". Also at about 34.0 s the door's gold knob passes over the plate's first letters, and at 25.68 s the knob crosses the caption text (\"here: an AI\"). Both are brief, but each can be avoided by placing the knob below the plate."
+        },
+        {
+          "must": false,
+          "at": "about 43.0 s (end of l3-sheet)",
+          "change": "To the builder. The empty log strip, rising into place, crosses the caption band: its frame sticks out on both sides of Larry's caption box for a moment. Bring it in above y 610, or hold it until the caption has gone by."
+        },
+        {
+          "must": false,
+          "at": "about 66.4 s (end of handle)",
+          "change": "To the builder. While it fades, the handle @latecluster.simcluster.tv has the tract's trachea rings drawn through its letters. While it is fully up (62.1 to 66.1 s) it is clear and exact. Either fade it a little sooner or draw it in front of the tract."
+        },
+        {
+          "must": false,
+          "at": "parts (3.6 to 9.6 s)",
+          "change": "Note, nothing to do unless cheap. Inside the head the wireframe is very dense. At 5.0 s the JAW plate is all but lost in the lines, though all four labels (LIPS, JAW, TONGUE, VELUM) are boxed, exact and land on their words. At 9.3 s VELUM has a white line crossing its box. A slightly dimmer wireframe behind each label as it lands would help."
+        },
+        {
+          "must": false,
+          "at": "credit-out / cluster / handle (52.1 to 66.4 s)",
+          "change": "Note, checked and passing. CHIMERA · jamesondh · open source is up from about 48.6 s, is dimming at 54.3 s and is gone at credit-out (54.358 s). The first lights show faintly only from 54.6 to 54.8 s, and none share a frame with the credit. The handle is up 62.1 to about 66.4 s, is exact, and never shares a frame with the credit. On \"look\" (65.17 s) only the tract leans, and nothing lights in answer. The ear reads WRITTEN kazoo and HEARD clue for all of l1-kazoo. The log strip is exact with its quotation marks and lights word by word. The lights are the sheet's 248, from the code. It is one continuous shot with no cut, and each level is travelled into. The opening and closing desk shots (0.3 and 74 s) match the ordinary studio desk shot that making-of-outward opens on: same backdrop, desk, plate, mug and chair."
+        }
+      ]
+    },
+    "making-of-outward": {
+      "verdict": "pass",
+      "changes": [
+        {
+          "must": false,
+          "at": "last-frame (77 to 79.1 s)",
+          "change": "To the builder. I looked at a close crop (560,200,220,150) at 73, 75.148, 77, 78, 79 and 79.1 s. The first light ends on the adding machine between the two reviewers, under the monitor's stand, and stops short of the monitor, so it is not shown arriving. Its glow, though, reaches the monitor's bottom edge and merges with gold Larry above it. At full size a still at 79 s can read as the light touching the studio's screen. Stop it a little lower (at the table front between the sheets, where it is at 75.1 s), or shrink its glow, so that clear dark separates it from the monitor in every frame."
+        },
+        {
+          "must": false,
+          "at": "room-1 14.8 s, room-2 30.9 s, glass-stop 49.05 s (and room-3 43.4 s)",
+          "change": "To the builder, for a judgement. Sibyl comes in large from the left edge at each new room. The script says she is 'already there when it arrives, never surprised', and an entrance from the edge reads as an arrival (08-direction, reactions table). If she is animated in, have her stand in place in the room and let the camera's pull-back reveal her. If she is fixed in the world and the move is the camera's, leave it as it is."
+        },
+        {
+          "must": false,
+          "at": "edge (37.46 to 41.5 s)",
+          "change": "Note, checked and intended. The caption runs off the right edge in larger type than the house captions, and \"the right edge\" is lost. This is the one exception the brief allows. Record it as intended in the segment so that a later caption check or the cold viewer does not 'fix' it."
+        },
+        {
+          "must": false,
+          "at": "room-3 to drift (43.4 to 48.2 s), turn to last-frame (56.3 to 79.1 s)",
+          "change": "Note, checked and passing. The owner's room has an empty chair, headphones on the desk, and the screen with the earlier rooms nested in it. Nobody is drawn, named or given words. Nothing is drawn past the browser pane. The handle is exactly @latecluster.simcluster.tv and is up only for tag-the-show. The clicker shows no number, and the second light goes out at it. No light reaches the studio. It is one continuous camera move with no cut, through four panes of glass."
+        }
+      ]
+    },
+    "riemann-proof-that-fits": {
+      "verdict": "pass",
+      "changes": [
+        {
+          "must": false,
+          "at": "proof-card to end (about 37.3 to 85.7 s)",
+          "change": "To the reviewer, for a judgement, and nothing for the builder. The small card is about 230 px wide, and its text, name, date and counts cannot be read at that size for about 48 s. I did not make this a must, for four reasons. The script directs it ('small and complete'). Its full-size version, with display name, handle, 20 Nov 2026 and counts, is up and readable from 33.85 to about 37 s. Every word on it is spoken while it lights. The legible credit under it names the author. If the reviewer holds that 'nothing is unreadable' applies to it, the change is the script's, not the stager's."
+        },
+        {
+          "must": false,
+          "at": "tag-k to slab-1 (53.7 to 58.3 s)",
+          "change": "To the reviewer. Four blocks of unspoken text are up together, above the caption: the small card, PROOF AS POSTED BY @shimmermathlabs.com, ZETA AT 1 · NOT THE HYPOTHESIS, and the tag. The tag is exact (`… more simply: block k has 2ᵏ terms, each ≥ 1/2ᵏ⁺¹, …`, both ellipses), but at ten tokens of notation it is more than a glance, as the draft's notes say. Only the reviewer can rule on the script's choice. The builder has staged it as written."
+        },
+        {
+          "must": false,
+          "at": "call-card (5.7 to 11.2 s)",
+          "change": "To the builder, if cheap. Amber's chyron (PUPPET · PARODY, correct) covers Sibyl's lectern, and its lower edge runs into the caption's AMBER name tab. With her card, the account plate, the caption and the disclaimer, five text blocks are up. Lift the chyron a few pixels clear of the caption tab."
+        },
+        {
+          "must": false,
+          "at": "reply-card end (78.57 to 79.2 s)",
+          "change": "To the builder, if cheap. The studio's APPLAUSE sign lands over the top-right corner of dlowd's card frame for about 0.6 s. It covers none of the card's text: the name, @dlowd.com · 20 Nov 2026, the reply line and the counts all stay readable. Nudge the card down or left so that they do not touch."
+        },
+        {
+          "must": false,
+          "at": "slab-1 to pile-out (58.3 to 68.5 s)",
+          "change": "Note. Slabs in flight cross in front of Amber's chair and the guests for a moment. No text is hidden, so leave it as it is."
+        },
+        {
+          "must": false,
+          "at": "whole segment",
+          "change": "Note, checked and passing. Every card is exact against the kept card: her call (REPLY, no handle, 1/0/4), zetaof1's reply (with the post's own line breaks, REPLY TO @shimmermathlabs.com, 1/0/4), her proof (REPLY TO @zetaof1.bsky.social, 1/0/8) and dlowd's (REPLY TO @shimmermathlabs.com, 0/0/4). All are dated 20 Nov 2026. bisks' handle appears nowhere. The account plate reads Zeta Of 1 · @zetaof1.bsky.social. Both guests' chyrons carry PUPPET · PARODY, and the disclaimer runs from call-card. The bars draw only her terms: 1, ½, ⅓ and ¼, ⅕ to ⅛. The counts read 1, 2, 4. The guides sit at ¼ and ⅛, which is her 1/2ᵏ⁺¹. Every slab is ≥ ½. The 8, 16 and 32 groups follow her 2ᵏ. No stamp, tick or QED lands anywhere, and □ lights only on her card. The mathematician is not named or shown, and nothing ties the proof to the news. The crane (69.6 to 72.9 s) is mostly black with the pile, as directed. `amber-adds` is spoken again under the owner's best-effort ruling (production/fit/riemann-proof-that-fits.md), which supersedes the third audit's note that it had been cut."
+        }
+      ]
+    },
+    "riemann-market-wrap": {
+      "verdict": "pass",
+      "changes": [
+        {
+          "must": false,
+          "at": "every clock change (about 20.8, 33.4, 51.2, 61.2, 83.6 s)",
+          "change": "To the builder, if cheap. As the split-flap clock rolls to a post's time, it shows passing digits for about half a second, and in a still these read as a time no post has (07:18 PM at 61.2 s). It does not break a rule, because it is plainly a clock in motion. A shorter roll, or blank flaps instead of digits, would stop any still from showing a wrong time."
+        },
+        {
+          "must": false,
+          "at": "card-question to globe-off (51.2 to 93.8 s)",
+          "change": "To the builder, if cheap. Handles, dates and counts on the three exchange cards are about 12 px. They are exact (norvid-studies.bsky.social 1:36 PM 10/1/41, softmacs.bsky.social 1:46 PM 2/0/5, norvid-studies.bsky.social 1:52 PM 0/0/0, all Nov 20, 2026, EST) but hard to read at 1280×720. Raise the header line to 14 px or more if the layout allows."
+        },
+        {
+          "must": false,
+          "at": "ticker-on to off-ticker-one (20.1 to 87.2 s)",
+          "change": "To the builder, if cheap. The first ticker crosses Larry's desk name plate and cuts LARRY NX in half. Nothing real is hidden, but a few pixels lower would leave the plate whole."
+        },
+        {
+          "must": false,
+          "at": "whole segment",
+          "change": "Note, checked and passing. All six cards are exact against the kept cards: text, display name, handle, time (each matches its UTC time in EST), date and counts. softmacs' cut is marked with an ellipsis. norvid's question shows no quoted post. davidcrespo's nameplate with the handle is up from 0.86 s, under a still-dark box, so his exact name is on screen while Larry says it. His card arrives at 6.48 s, and the disclaimer runs at 7.08 s. Every guest box carries PUPPET · PARODY. The chart's company name, symbol and price appear only inside his card: whole, and again whole inside moultano's card as the quote of his post. Nothing else on screen repeats them. The tickers carry only arrows, up and down, red and green mixed. DEVELOPING carries no other word. The bell, the globe and the clock say nothing about a cause. No house text says why the price moved."
+        }
+      ]
+    }
+  }
+}

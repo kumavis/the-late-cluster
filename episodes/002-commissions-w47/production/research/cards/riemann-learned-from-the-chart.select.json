@@ -1,0 +1,206 @@
+{
+  "id": "riemann-learned-from-the-chart",
+  "title": "Many learned the news from a stock chart",
+  "happened": "The note was first posted into the window at 14:43 UTC on 20 November by a non-member who linked it and added that he expected the proof to be correct. Within the hour a member posted two pages of the note with no comment, and another member replied that he hopes the bit never stops where the bigger the finding, the plainer the title. At 15:35 a member posted a screenshot of Anthropic's share price, down about 10.65% that morning, saying the market valued the ability to solve the Riemann hypothesis at minus 80 billion dollars; it was the most-liked member post about the subject in the window (889 likes). He followed with the line that traders needed time to digest a proof that is 240MB gzipped. norvid quoted the chart saying this was how he learned the news; three people replied that they had too, one said he learned it from norvid's post, and norvid hoped the cycle would continue. Through the afternoon members made their own jokes about the market and the proof (unsolving it, buying a second share, solving it for exit liquidity, the Fed raising rates on Hodge conjecture fears), and a prediction-market screenshot showed bets on the hypothesis being solved at 98%. When norvid said he did not understand whether the fall was caused by the result, a 45-follower account explained gently that it was probably broad market movement, and norvid agreed. The show can assert nothing about whether the proof (or the human proof mentioned here) is correct; on 20 November it was a claim being checked, and these posts are people reacting to the claim.",
+  "posts": [
+    {
+      "uri": "at://did:plc:4i77tdu3riswwmtw6j67ufrj/app.bsky.feed.post/3n2qt3ngb5k2w",
+      "why": "the first post of the note in the window, 14:43 UTC, by a non-member mathematician-adjacent account"
+    },
+    {
+      "uri": "at://did:plc:4i77tdu3riswwmtw6j67ufrj/app.bsky.feed.post/3n2qt46xtu22w",
+      "why": "his own reply: expects the proof is likely correct, from his experience with LLMs"
+    },
+    {
+      "uri": "at://did:plc:4asamrnnw6rzfq5sjzvmwgpe/app.bsky.feed.post/3n2qtu45bzs2o",
+      "why": "a member posts only the note's address with two page images (Claude's timeline of the proof's steps, ending '20. 11/16/26: GRH.')"
+    },
+    {
+      "uri": "at://did:plc:oqoksnyukzbase3uttllntwk/app.bsky.feed.post/3n2qunymw422e",
+      "why": "quotes it: the bit where the larger the finding, the more mundane the title"
+    },
+    {
+      "uri": "at://did:plc:o72ypk5c474zqklkukaphuy3/app.bsky.feed.post/3n2qu66pxa22a",
+      "why": "zachweinersmith, 15:02, 'It is time to freak out' with the Scientific American link; 629 likes, 131 quotes; the largest thread of the day hangs off it"
+    },
+    {
+      "uri": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2qvzbb7dk2z",
+      "why": "the chart post: Anthropic share price screenshot and the minus 80 billion line; 889 likes"
+    },
+    {
+      "uri": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2qy6cvnb22p",
+      "why": "his follow-up: traders need time to digest the proof, it's 240MB gzipped (with a zoomed chart)"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2qybgu3ts2q",
+      "why": "norvid quotes the chart: this is how he learned the riemann news; 215 likes"
+    },
+    {
+      "uri": "at://did:plc:6tug5iys7tltqdu454u3kond/app.bsky.feed.post/3n2qylpo6us24",
+      "why": "1v.lc quotes the chart: same"
+    },
+    {
+      "uri": "at://did:plc:sfmur4r4wzriaupbgmz7sshy/app.bsky.feed.post/3n2qyss63ikfr",
+      "why": "joshuashew replies to norvid: likewise"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2r267ph3s2v",
+      "why": "norvid quotes himself hoping someone learns it from his post, so the cycle continues"
+    },
+    {
+      "uri": "at://did:plc:y5qiqqtzjmlwggzuttldivxq/app.bsky.feed.post/3n2r3huvpi22d",
+      "why": "alexgude: he learned it from norvid's post"
+    },
+    {
+      "uri": "at://did:plc:pjlhgjhb34k4zufrtbh2jyms/app.bsky.feed.post/3n2r7cmbsak2n",
+      "why": "croissanthology replies to norvid: this is where he is learning it"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2r7rqtjtk2b",
+      "why": "norvid, 'rack em', quoting croissanthology: the count goes on"
+    },
+    {
+      "uri": "at://did:plc:kbk6trqdgqkxf5d72j2wwuwt/app.bsky.feed.post/3n2qvo4uqxc2m",
+      "why": "a small account replies to zachweinersmith 'The markets like it' with a prediction-market screenshot: RH solved before December 2026 at 98%"
+    },
+    {
+      "uri": "at://did:plc:h25avmes6g7fgcddc3xj7qmg/app.bsky.feed.post/3n2r4vqpsh22m",
+      "why": "moultano quotes the chart: the market anticipates lost revenue from mathematicians who worked on the hypothesis"
+    },
+    {
+      "uri": "at://did:plc:vw4e7blkwzdokanwp24k3igr/app.bsky.feed.post/3n2r4auppc22r",
+      "why": "huwupy: the stock market was really attached to the hypothesis being unsolved"
+    },
+    {
+      "uri": "at://did:plc:v5mnhg4um4stba2yhsjdw7sw/app.bsky.feed.post/3n2r2w4smz226",
+      "why": "small member account: 'okay Levent, you've convinced me, i'll buy a second share'"
+    },
+    {
+      "uri": "at://did:plc:gjqw6pjl2wvndjlmatxpenkz/app.bsky.feed.post/3n2r35ifrws2h",
+      "why": "funferall: solving RH for the exit liquidity"
+    },
+    {
+      "uri": "at://did:plc:2ygbb7aag64ase3swmqerk3h/app.bsky.feed.post/3n2r67chwg22r",
+      "why": "reply: it isn't working, the market is a third antis and a third doomers"
+    },
+    {
+      "uri": "at://did:plc:gjqw6pjl2wvndjlmatxpenkz/app.bsky.feed.post/3n2r7wudxdk2z",
+      "why": "funferall: it was worth a try"
+    },
+    {
+      "uri": "at://did:plc:545g5dlrsaccyfkjcdngtp5a/app.bsky.feed.post/3n2r4wbtevs2e",
+      "why": "context only: the non-member post kuppermann quotes, '$1 trillion wiped from US stocks in 60 minutes' (2,513 likes)"
+    },
+    {
+      "uri": "at://did:plc:ssnplyo7c7itlco3yifho5ii/app.bsky.feed.post/3n2r7u5lojc2y",
+      "why": "kuppermann quotes it: quick, someone unsolve the riemann hypothesis; 266 likes"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ra5ljyu22n",
+      "why": "norvid quotes the same post: confused whether it's caused by the result; doesn't understand the stock market"
+    },
+    {
+      "uri": "at://did:plc:67pspyujjjy6zrzdlbbd4pjy/app.bsky.feed.post/3n2raopv4o226",
+      "why": "a 45-follower account answers: probably mostly unrelated, tech was down the day before"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2razdrepc2l",
+      "why": "norvid: yeah probably just broader market sloshing"
+    },
+    {
+      "uri": "at://did:plc:i33xld5yxmhcldu4hkkjo3ci/app.bsky.feed.post/3n2rge3fwac27",
+      "why": "lucresnooker's serious reading of the market (the parent of the next post)"
+    },
+    {
+      "uri": "at://did:plc:i33xld5yxmhcldu4hkkjo3ci/app.bsky.feed.post/3n2rgfs2vz227",
+      "why": "lucresnooker: fed hikes rates on [checks notes] 'hodge conjecture' fears"
+    },
+    {
+      "uri": "at://did:plc:27ivzcszryxp6mehutodmcxo/app.bsky.feed.post/3n2rgmfhoo22l",
+      "why": "asa.engineer replies to norvid: Miller-Rabin becomes deterministic; today we learn which sectors banked on the conditional"
+    }
+  ],
+  "people": [
+    {
+      "handle": "birdsnfrogs.bsky.social",
+      "note": "459 followers, not a member, never featured. First to post the note (113 likes, 29 quotes). Works on local smoothing by his own account; the third post in his thread names a colleague and a Mastodon link (outside source, not used)."
+    },
+    {
+      "handle": "sichulu.bsky.social",
+      "note": "1,276 followers, member. Posted the two page images with no text."
+    },
+    {
+      "handle": "mrcheeze.github.io",
+      "note": "1,812 followers, member; on four of these cards."
+    },
+    {
+      "handle": "zachweinersmith.bsky.social",
+      "note": "67,327 followers, member, never featured: a very large account. Opened the biggest thread (150 posts). Several of his replies in it carry consent marks ('replies to an excluded account') and one is marked health; those are not listed."
+    },
+    {
+      "handle": "davidcrespo.bsky.social",
+      "note": "5,732 followers, member. The chart post. In the same skeleton he argues at length with several small accounts about AI revenue and valuation; that argument is left out (R7). On four cards."
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "note": "2,777 followers, member, featured in the previous episode (featuredPrevious). The 'how i learned' post and its follow-ups. On five cards."
+    },
+    {
+      "handle": "1v.lc / joshuashew.bsky.social / alexgude.com / croissanthology.com",
+      "note": "703, 475 (member), 3,086 (not a member), 751 (member) followers: the people who said they learned the news this way."
+    },
+    {
+      "handle": "kbk6trqdgqkxf5d72j2wwuwt (robmurrish.bsky.social)",
+      "note": "139 followers, small, not a member. Posted the prediction-market screenshot."
+    },
+    {
+      "handle": "moultano.bsky.social / huwupy.kawaii.social",
+      "note": "9,126 and 7,191 followers, members."
+    },
+    {
+      "handle": "scanstone.bsky.social",
+      "note": "275 followers, member, small. Addresses the mathematician by first name; also on the checking card."
+    },
+    {
+      "handle": "funferall.bsky.social",
+      "note": "2,211 followers, member. khakhalin.bsky.social (1,861, not a member) replied."
+    },
+    {
+      "handle": "leftistwonk.bsky.social",
+      "note": "9,747 followers, not a member; a viral market post (2,513 likes, 767 quotes). Context only: R7 says not to use one-off viral posts by people outside the cluster."
+    },
+    {
+      "handle": "kuppermann.xyz",
+      "note": "1,243 followers, not a member. 266 likes."
+    },
+    {
+      "handle": "softmacs.bsky.social",
+      "note": "45 followers, small, not a member. Appears only as the kind explainer (R7 hero)."
+    },
+    {
+      "handle": "lucresnooker.bsky.social / asa.engineer",
+      "note": "498 and 2,338 followers, members."
+    }
+  ],
+  "couldBeShown": "The chart (davidcrespo's own alt text): a dark-mode quote and one-day intraday chart for Anthropic, PBC (ANT), 86.82, down 10.35 (-10.65%) at 10:35 AM EST. sichulu's two images are pages of the note: a numbered timeline of dated steps in October and November 2026 with dense formulas and footnotes, the last line '20. 11/16/26: GRH.'; it is the mathematician's document, not a community member's work. The prediction-market screenshot (no alt text, fetched): three markets, 'Will ANOTHER millennium prize problem be solved in 2026?' 96%, 'Will the Riemann Hypothesis be solved before December 2026' 98% (33 traders), 'Will a Millennium Prize Problem be solved in November 2026?' 95%. A count that could be shown: the people who said in public they learned of a proof of the Riemann hypothesis from a stock chart.",
+  "notUnderstood": [
+    "Why the share price fell that day: the posts themselves disagree, and several say it was the wider market. The show cannot claim the announcement moved the price.",
+    "The window ends at 00:24 UTC on 21 November, so anything later in the story is not in the data.",
+    "funferall's 'exit liquidity' and khakhalin's reply assume a reading of why the announcement was made; the show should not adopt it as fact."
+  ],
+  "sensitive": [
+    "Whole card: posts about a company's share price. R6 lets the show aim at markets; it may not imply the mathematician or anyone named acted for money, and the show is itself made with Claude, Anthropic's model, which a viewer may notice.",
+    "davidcrespo.bsky.social: the debate replies under the chart (cook1ecrumb5, batmansrobyn, papermartin, vga.mu.social) are an argument and are not listed (R7); batmansrobyn's post is marked minors and may not be used.",
+    "techyben.bsky.social, mokkenstorm.dev, dave.9000ish.uk: posts about their own money, IPO shares or stock losses are left out (R1, R10 money).",
+    "at://did:plc:545g5dlrsaccyfkjcdngtp5a/app.bsky.feed.post/3n2r4wbtevs2e: viral non-member post, context only (R7).",
+    "eamonnmr.bsky.social (in the zachweinersmith thread) suggests the announcement was rushed to make money: left out (R5).",
+    "scanstone.bsky.social's 'okay Levent': names the mathematician by first name in a joke about buying shares; run the repost test before use (R6)."
+  ],
+  "numbers": {
+    "chart post likes": "889 likes, 144 reposts, 28 quotes (skeleton counts at scrape)",
+    "price move shown in the chart": "-10.65% at 10:35 AM EST, from davidcrespo's alt text; a third-party figure, not the show's",
+    "people who said they learned the news from the chart or from norvid's post about it": "4 (1v.lc, joshuashew, alexgude, croissanthology), counted by reading s-c5e7a71341",
+    "time from first post of the note to the chart": "52 minutes (14:43 to 15:35 UTC)",
+    "prediction market on RH before December 2026": "98%, 33 traders, from the robmurrish screenshot"
+  }
+}

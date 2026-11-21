@@ -1,0 +1,174 @@
+{
+  "format": "late-cluster-sources/1",
+  "accounts": [
+    {
+      "handle": "davidcrespo.bsky.social",
+      "did": "did:plc:ctphcgyhnllfluywokibtrgb",
+      "role": "guest",
+      "cast": "davidcrespo"
+    },
+    {
+      "handle": "moultano.bsky.social",
+      "did": "did:plc:h25avmes6g7fgcddc3xj7qmg",
+      "role": "guest",
+      "cast": "moultano"
+    },
+    {
+      "handle": "shimmermathlabs.com",
+      "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+      "role": "guest",
+      "cast": "shimmermathlabs"
+    },
+    {
+      "handle": "zetaof1.bsky.social",
+      "did": "did:plc:dhwhxgjyh4h2dd5vjgji67mo",
+      "role": "quoted"
+    }
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2qvzbb7dk2z",
+      "author": "davidcrespo.bsky.social",
+      "displayName": "conputer dipshit",
+      "likes": 889,
+      "reposts": 144,
+      "replies": 23,
+      "use": "line",
+      "segment": "riemann-breaking-news"
+    },
+    {
+      "uri": "at://did:plc:h25avmes6g7fgcddc3xj7qmg/app.bsky.feed.post/3n2r4vqpsh22m",
+      "author": "moultano.bsky.social",
+      "displayName": "Ryan Moulton",
+      "likes": 71,
+      "reposts": 1,
+      "replies": 3,
+      "use": "line",
+      "segment": "riemann-breaking-news"
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r4vvxhok24",
+      "author": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "likes": 4,
+      "reposts": 0,
+      "replies": 1,
+      "use": "line",
+      "segment": "riemann-breaking-news"
+    },
+    {
+      "uri": "at://did:plc:dhwhxgjyh4h2dd5vjgji67mo/app.bsky.feed.post/3n2r54p53es2s",
+      "author": "zetaof1.bsky.social",
+      "displayName": "Zeta Of 1",
+      "likes": 4,
+      "reposts": 0,
+      "replies": 1,
+      "use": "card",
+      "segment": "riemann-breaking-news"
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r5ogdxis24",
+      "author": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "likes": 8,
+      "reposts": 0,
+      "replies": 1,
+      "use": "line",
+      "segment": "riemann-breaking-news"
+    }
+  ],
+  "links": [],
+  "lines": [
+    {
+      "segment": "riemann-breaking-news",
+      "line": "dc-chart",
+      "kind": "verbatim",
+      "post": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2qvzbb7dk2z",
+      "context": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2qvzbb7dk2z",
+      "situation": "A top-level post on Friday 20 November 2026, unprompted, with davidcrespo's own screenshot of a one-day share-price chart.",
+      "setup": {
+        "line": "larry-chart",
+        "who": "larry",
+        "text": "davidcrespo posted a chart."
+      }
+    },
+    {
+      "segment": "riemann-breaking-news",
+      "line": "mo-revenue",
+      "kind": "verbatim",
+      "post": "at://did:plc:h25avmes6g7fgcddc3xj7qmg/app.bsky.feed.post/3n2r4vqpsh22m",
+      "context": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2qvzbb7dk2z",
+      "contextText": "isn't it beautiful that we now live in a world where we can say the market values the capability to solve the Riemann Hypothesis at negative 80 billion dollars",
+      "setup": {
+        "line": "larry-moultano",
+        "who": "larry",
+        "text": "moultano, quoting the chart."
+      }
+    },
+    {
+      "segment": "riemann-breaking-news",
+      "line": "amber-call",
+      "kind": "verbatim",
+      "post": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r4vvxhok24",
+      "context": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n2qz6ywwrc2b",
+      "contextText": "ok I'll bite, what's a zeta function",
+      "setup": {
+        "line": "larry-ask",
+        "who": "larry",
+        "text": "For viewers just joining us, and for me: what is a zeta function?"
+      }
+    },
+    {
+      "segment": "riemann-breaking-news",
+      "line": "amber-fits",
+      "kind": "verbatim",
+      "post": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r5ogdxis24",
+      "context": "at://did:plc:dhwhxgjyh4h2dd5vjgji67mo/app.bsky.feed.post/3n2r54p53es2s",
+      "contextText": "The Zeta function is too intricate to explain on BlueSky\nWhich is totally the zeta-functions fault and not mine so\nAlso zeta evaluated at 1 is just the sum of inverse natural numbers and that diverges to infinity which was my kind of way to express Whitman's \"I am large. I contain multitudes.\"",
+      "setup": {
+        "line": "sibyl-zeta-2",
+        "who": "sibyl",
+        "text": "Also zeta evaluated at 1 … diverges to infinity …"
+      }
+    },
+    {
+      "segment": "riemann-breaking-news",
+      "line": "amber-brackets",
+      "kind": "verbatim",
+      "post": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r5ogdxis24",
+      "context": "at://did:plc:dhwhxgjyh4h2dd5vjgji67mo/app.bsky.feed.post/3n2r54p53es2s",
+      "contextText": "The Zeta function is too intricate to explain on BlueSky\nWhich is totally the zeta-functions fault and not mine so\nAlso zeta evaluated at 1 is just the sum of inverse natural numbers and that diverges to infinity which was my kind of way to express Whitman's \"I am large. I contain multitudes.\"",
+      "setup": {
+        "line": "sibyl-zeta-2",
+        "who": "sibyl",
+        "text": "Also zeta evaluated at 1 … diverges to infinity …"
+      }
+    },
+    {
+      "segment": "riemann-breaking-news",
+      "line": "amber-adds",
+      "kind": "verbatim",
+      "post": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r5ogdxis24",
+      "context": "at://did:plc:dhwhxgjyh4h2dd5vjgji67mo/app.bsky.feed.post/3n2r54p53es2s",
+      "contextText": "The Zeta function is too intricate to explain on BlueSky\nWhich is totally the zeta-functions fault and not mine so\nAlso zeta evaluated at 1 is just the sum of inverse natural numbers and that diverges to infinity which was my kind of way to express Whitman's \"I am large. I contain multitudes.\"",
+      "setup": {
+        "line": "sibyl-zeta-2",
+        "who": "sibyl",
+        "text": "Also zeta evaluated at 1 … diverges to infinity …"
+      }
+    },
+    {
+      "segment": "riemann-breaking-news",
+      "line": "amber-infinity",
+      "kind": "verbatim",
+      "post": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r5ogdxis24",
+      "context": "at://did:plc:dhwhxgjyh4h2dd5vjgji67mo/app.bsky.feed.post/3n2r54p53es2s",
+      "contextText": "The Zeta function is too intricate to explain on BlueSky\nWhich is totally the zeta-functions fault and not mine so\nAlso zeta evaluated at 1 is just the sum of inverse natural numbers and that diverges to infinity which was my kind of way to express Whitman's \"I am large. I contain multitudes.\"",
+      "setup": {
+        "line": "sibyl-zeta-2",
+        "who": "sibyl",
+        "text": "Also zeta evaluated at 1 … diverges to infinity …"
+      }
+    }
+  ]
+}

@@ -1,0 +1,1300 @@
+{
+ "id": "making-of-outward",
+ "title": "The Making Of, and Who Checks That",
+ "duration": 79.112,
+ "audio": "audio/making-of-outward.mp3",
+ "tele": "tele/making-of-outward.bin",
+ "lines": [
+  {
+   "i": 0,
+   "id": "quick",
+   "who": "larry",
+   "kind": "say",
+   "text": "How this show is made. It's quick.",
+   "caption": true,
+   "t0": 0.3,
+   "t1": 2.733,
+   "words": [
+    [
+     0.36,
+     0.624,
+     "How"
+    ],
+    [
+     0.624,
+     0.829,
+     "this"
+    ],
+    [
+     0.829,
+     1.188,
+     "show"
+    ],
+    [
+     1.188,
+     1.325,
+     "is"
+    ],
+    [
+     1.325,
+     1.735,
+     "made."
+    ],
+    [
+     2.145,
+     2.381,
+     "It's"
+    ],
+    [
+     2.381,
+     2.733,
+     "quick."
+    ]
+   ],
+   "tele": 0,
+   "teleT0": 0.25
+  },
+  {
+   "i": 1,
+   "id": "stages",
+   "who": "larry",
+   "kind": "say",
+   "text": "Thirteen stages. Agents, one job each.",
+   "caption": true,
+   "t0": 2.983,
+   "t1": 5.852,
+   "words": [
+    [
+     3.043,
+     3.481,
+     "Thirteen"
+    ],
+    [
+     3.481,
+     4.009,
+     "stages."
+    ],
+    [
+     4.419,
+     4.865,
+     "Agents,"
+    ],
+    [
+     5.105,
+     5.338,
+     "one"
+    ],
+    [
+     5.338,
+     5.64,
+     "job"
+    ],
+    [
+     5.64,
+     5.852,
+     "each."
+    ]
+   ],
+   "tele": 1,
+   "teleT0": 2.933
+  },
+  {
+   "i": 2,
+   "id": "one-rule",
+   "who": "larry",
+   "kind": "say",
+   "text": "One rule. Whoever makes a thing does not judge it.",
+   "caption": true,
+   "t0": 6.102,
+   "t1": 9.159,
+   "words": [
+    [
+     6.162,
+     6.403,
+     "One"
+    ],
+    [
+     6.403,
+     6.822,
+     "rule."
+    ],
+    [
+     7.232,
+     7.648,
+     "Whoever"
+    ],
+    [
+     7.648,
+     8.012,
+     "makes"
+    ],
+    [
+     8.012,
+     8.08,
+     "a"
+    ],
+    [
+     8.08,
+     8.339,
+     "thing"
+    ],
+    [
+     8.339,
+     8.542,
+     "does"
+    ],
+    [
+     8.542,
+     8.787,
+     "not"
+    ],
+    [
+     8.787,
+     8.988,
+     "judge"
+    ],
+    [
+     8.988,
+     9.159,
+     "it."
+    ]
+   ],
+   "tele": 2,
+   "teleT0": 6.052
+  },
+  {
+   "i": 3,
+   "id": "went-well",
+   "who": "larry",
+   "kind": "say",
+   "text": "I thought that went well.",
+   "caption": true,
+   "t0": 9.559,
+   "t1": 11.005,
+   "words": [
+    [
+     9.619,
+     9.777,
+     "I"
+    ],
+    [
+     9.777,
+     10.129,
+     "thought"
+    ],
+    [
+     10.129,
+     10.313,
+     "that"
+    ],
+    [
+     10.313,
+     10.639,
+     "went"
+    ],
+    [
+     10.639,
+     11.005,
+     "well."
+    ]
+   ],
+   "tele": 3,
+   "teleT0": 9.509
+  },
+  {
+   "i": 4,
+   "id": "you-made-it",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "You made it.",
+   "caption": true,
+   "t0": 11.455,
+   "t1": 12.113,
+   "words": [
+    [
+     11.515,
+     11.706,
+     "You"
+    ],
+    [
+     11.706,
+     11.94,
+     "made"
+    ],
+    [
+     11.94,
+     12.113,
+     "it."
+    ]
+   ],
+   "tele": 4,
+   "teleT0": 11.405
+  },
+  {
+   "i": 5,
+   "id": "who-judges",
+   "who": "larry",
+   "kind": "say",
+   "text": "Then who judges it?",
+   "caption": true,
+   "t0": 12.863,
+   "t1": 13.906,
+   "words": [
+    [
+     12.923,
+     13.114,
+     "Then"
+    ],
+    [
+     13.114,
+     13.354,
+     "who"
+    ],
+    [
+     13.354,
+     13.717,
+     "judges"
+    ],
+    [
+     13.717,
+     13.906,
+     "it?"
+    ]
+   ],
+   "tele": 5,
+   "teleT0": 12.813
+  },
+  {
+   "i": 6,
+   "id": "two-reviewers",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Two reviewers. Neither sees the other's score. A tool adds them up.",
+   "caption": true,
+   "t0": 15.056,
+   "t1": 19.623,
+   "words": [
+    [
+     15.116,
+     15.376,
+     "Two"
+    ],
+    [
+     15.376,
+     16.043,
+     "reviewers."
+    ],
+    [
+     16.453,
+     16.763,
+     "Neither"
+    ],
+    [
+     16.763,
+     17.068,
+     "sees"
+    ],
+    [
+     17.068,
+     17.193,
+     "the"
+    ],
+    [
+     17.193,
+     17.496,
+     "other's"
+    ],
+    [
+     17.496,
+     18.081,
+     "score."
+    ],
+    [
+     18.491,
+     18.562,
+     "A"
+    ],
+    [
+     18.562,
+     18.9,
+     "tool"
+    ],
+    [
+     18.9,
+     19.208,
+     "adds"
+    ],
+    [
+     19.208,
+     19.395,
+     "them"
+    ],
+    [
+     19.395,
+     19.623,
+     "up."
+    ]
+   ],
+   "tele": 6,
+   "teleT0": 15.006
+  },
+  {
+   "i": 7,
+   "id": "five-stopped",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Last run, five reviewers stopped at once.",
+   "caption": true,
+   "t0": 19.873,
+   "t1": 23.783,
+   "words": [
+    [
+     19.933,
+     20.361,
+     "Last"
+    ],
+    [
+     20.361,
+     20.632,
+     "run,"
+    ],
+    [
+     20.872,
+     21.383,
+     "five"
+    ],
+    [
+     21.623,
+     22.291,
+     "reviewers"
+    ],
+    [
+     22.531,
+     23.059,
+     "stopped"
+    ],
+    [
+     23.299,
+     23.423,
+     "at"
+    ],
+    [
+     23.423,
+     23.783,
+     "once."
+    ]
+   ],
+   "tele": 7,
+   "teleT0": 19.823
+  },
+  {
+   "i": 8,
+   "id": "hello",
+   "who": "larry",
+   "kind": "say",
+   "text": "Hello?",
+   "caption": true,
+   "t0": 25.183,
+   "t1": 25.727,
+   "words": [
+    [
+     25.243,
+     25.727,
+     "Hello?"
+    ]
+   ],
+   "tele": 8,
+   "teleT0": 25.133
+  },
+  {
+   "i": 9,
+   "id": "usage-limit",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Usage limit.",
+   "caption": true,
+   "t0": 26.227,
+   "t1": 27.148,
+   "words": [
+    [
+     26.287,
+     26.768,
+     "Usage"
+    ],
+    [
+     26.768,
+     27.148,
+     "limit."
+    ]
+   ],
+   "tele": 9,
+   "teleT0": 26.177
+  },
+  {
+   "i": 10,
+   "id": "resumed",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "They were resumed.",
+   "caption": true,
+   "t0": 27.648,
+   "t1": 28.622,
+   "words": [
+    [
+     27.708,
+     27.865,
+     "They"
+    ],
+    [
+     27.865,
+     28.052,
+     "were"
+    ],
+    [
+     28.052,
+     28.622,
+     "resumed."
+    ]
+   ],
+   "tele": 10,
+   "teleT0": 27.598
+  },
+  {
+   "i": 11,
+   "id": "who-checks-them",
+   "who": "larry",
+   "kind": "say",
+   "text": "And who checks them?",
+   "caption": true,
+   "t0": 28.872,
+   "t1": 30.238,
+   "words": [
+    [
+     28.932,
+     29.114,
+     "And"
+    ],
+    [
+     29.114,
+     29.442,
+     "who"
+    ],
+    [
+     29.682,
+     30.017,
+     "checks"
+    ],
+    [
+     30.017,
+     30.238,
+     "them?"
+    ]
+   ],
+   "tele": 11,
+   "teleT0": 28.822
+  },
+  {
+   "i": 12,
+   "id": "cold-viewer",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "The cold viewer. It gets stills. No sound.",
+   "caption": true,
+   "t0": 31.188,
+   "t1": 34.818,
+   "words": [
+    [
+     31.248,
+     31.361,
+     "The"
+    ],
+    [
+     31.361,
+     31.856,
+     "cold"
+    ],
+    [
+     32.096,
+     32.454,
+     "viewer."
+    ],
+    [
+     32.864,
+     32.988,
+     "It"
+    ],
+    [
+     32.988,
+     33.307,
+     "gets"
+    ],
+    [
+     33.307,
+     33.763,
+     "stills."
+    ],
+    [
+     34.173,
+     34.342,
+     "No"
+    ],
+    [
+     34.342,
+     34.818,
+     "sound."
+    ]
+   ],
+   "tele": 12,
+   "teleT0": 31.138
+  },
+  {
+   "i": 13,
+   "id": "mostly-sound",
+   "who": "larry",
+   "kind": "say",
+   "text": "No sound? I'm mostly sound.",
+   "caption": true,
+   "t0": 35.068,
+   "t1": 37.462,
+   "words": [
+    [
+     35.128,
+     35.304,
+     "No"
+    ],
+    [
+     35.304,
+     35.798,
+     "sound?"
+    ],
+    [
+     36.208,
+     36.482,
+     "I'm"
+    ],
+    [
+     36.482,
+     36.967,
+     "mostly"
+    ],
+    [
+     36.967,
+     37.462,
+     "sound."
+    ]
+   ],
+   "tele": 13,
+   "teleT0": 35.018
+  },
+  {
+   "i": 14,
+   "id": "off-the-edge",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Last run, it reported a subtitle that runs off the right edge.",
+   "caption": true,
+   "t0": 37.712,
+   "t1": 41.492,
+   "words": [
+    [
+     37.772,
+     38.154,
+     "Last"
+    ],
+    [
+     38.154,
+     38.426,
+     "run,"
+    ],
+    [
+     38.666,
+     38.789,
+     "it"
+    ],
+    [
+     38.789,
+     39.34,
+     "reported"
+    ],
+    [
+     39.34,
+     39.405,
+     "a"
+    ],
+    [
+     39.405,
+     40.072,
+     "subtitle"
+    ],
+    [
+     40.072,
+     40.239,
+     "that"
+    ],
+    [
+     40.239,
+     40.516,
+     "runs"
+    ],
+    [
+     40.516,
+     40.781,
+     "off"
+    ],
+    [
+     40.781,
+     40.888,
+     "the"
+    ],
+    [
+     40.888,
+     41.231,
+     "right"
+    ],
+    [
+     41.231,
+     41.492,
+     "edge."
+    ]
+   ],
+   "tele": 14,
+   "teleT0": 37.662
+  },
+  {
+   "i": 15,
+   "id": "and-that",
+   "who": "larry",
+   "kind": "say",
+   "text": "And that?",
+   "caption": true,
+   "t0": 41.742,
+   "t1": 42.697,
+   "words": [
+    [
+     41.802,
+     42.03,
+     "And"
+    ],
+    [
+     42.27,
+     42.697,
+     "that?"
+    ]
+   ],
+   "tele": 15,
+   "teleT0": 41.692
+  },
+  {
+   "i": 16,
+   "id": "owner-watches",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Then the owner watches it. With sound.",
+   "caption": true,
+   "t0": 43.647,
+   "t1": 45.886,
+   "words": [
+    [
+     43.707,
+     43.873,
+     "Then"
+    ],
+    [
+     43.873,
+     43.988,
+     "the"
+    ],
+    [
+     43.988,
+     44.241,
+     "owner"
+    ],
+    [
+     44.241,
+     44.659,
+     "watches"
+    ],
+    [
+     44.659,
+     44.822,
+     "it."
+    ],
+    [
+     45.232,
+     45.424,
+     "With"
+    ],
+    [
+     45.424,
+     45.886,
+     "sound."
+    ]
+   ],
+   "tele": 16,
+   "teleT0": 43.597
+  },
+  {
+   "i": 17,
+   "id": "thank-you",
+   "who": "larry",
+   "kind": "say",
+   "text": "With sound. Thank you.",
+   "caption": true,
+   "t0": 46.136,
+   "t1": 48.047,
+   "words": [
+    [
+     46.196,
+     46.408,
+     "With"
+    ],
+    [
+     46.408,
+     46.92,
+     "sound."
+    ],
+    [
+     47.33,
+     47.755,
+     "Thank"
+    ],
+    [
+     47.755,
+     48.047,
+     "you."
+    ]
+   ],
+   "tele": 17,
+   "teleT0": 46.086
+  },
+  {
+   "i": 18,
+   "id": "last-glass",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Whoever is past this glass is not ours to draw.",
+   "caption": true,
+   "t0": 49.547,
+   "t1": 52.994,
+   "words": [
+    [
+     49.607,
+     50.016,
+     "Whoever"
+    ],
+    [
+     50.016,
+     50.132,
+     "is"
+    ],
+    [
+     50.132,
+     50.528,
+     "past"
+    ],
+    [
+     50.528,
+     50.719,
+     "this"
+    ],
+    [
+     50.719,
+     51.221,
+     "glass"
+    ],
+    [
+     51.461,
+     51.594,
+     "is"
+    ],
+    [
+     51.594,
+     51.891,
+     "not"
+    ],
+    [
+     52.131,
+     52.418,
+     "ours"
+    ],
+    [
+     52.418,
+     52.587,
+     "to"
+    ],
+    [
+     52.587,
+     52.994,
+     "draw."
+    ]
+   ],
+   "tele": 18,
+   "teleT0": 49.497
+  },
+  {
+   "i": 19,
+   "id": "who-checks-you",
+   "who": "larry",
+   "kind": "say",
+   "text": "And who checks them?",
+   "caption": true,
+   "t0": 53.244,
+   "t1": 54.914,
+   "words": [
+    [
+     53.304,
+     53.532,
+     "And"
+    ],
+    [
+     53.772,
+     54.118,
+     "who"
+    ],
+    [
+     54.358,
+     54.693,
+     "checks"
+    ],
+    [
+     54.693,
+     54.914,
+     "them?"
+    ]
+   ],
+   "tele": 19,
+   "teleT0": 53.194
+  },
+  {
+   "i": 20,
+   "id": "nobody",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Nobody.",
+   "caption": true,
+   "t0": 55.314,
+   "t1": 55.918,
+   "words": [
+    [
+     55.374,
+     55.918,
+     "Nobody."
+    ]
+   ],
+   "tele": 20,
+   "teleT0": 55.264
+  },
+  {
+   "i": 21,
+   "id": "nerve",
+   "who": "larry",
+   "kind": "say",
+   "text": "Which is a nerve. Because you, the cluster, make this show.",
+   "caption": true,
+   "t0": 56.568,
+   "t1": 61.219,
+   "words": [
+    [
+     56.628,
+     56.867,
+     "Which"
+    ],
+    [
+     56.867,
+     57.014,
+     "is"
+    ],
+    [
+     57.014,
+     57.082,
+     "a"
+    ],
+    [
+     57.082,
+     57.503,
+     "nerve."
+    ],
+    [
+     57.913,
+     58.385,
+     "Because"
+    ],
+    [
+     58.385,
+     58.659,
+     "you,"
+    ],
+    [
+     58.899,
+     59.017,
+     "the"
+    ],
+    [
+     59.017,
+     59.549,
+     "cluster,"
+    ],
+    [
+     59.789,
+     60.066,
+     "make"
+    ],
+    [
+     60.066,
+     60.494,
+     "this"
+    ],
+    [
+     60.734,
+     61.219,
+     "show."
+    ]
+   ],
+   "tele": 21,
+   "teleT0": 56.518
+  },
+  {
+   "i": 22,
+   "id": "starts-with-you",
+   "who": "larry",
+   "kind": "say",
+   "text": "It starts with what you posted.",
+   "caption": true,
+   "t0": 61.469,
+   "t1": 63.413,
+   "words": [
+    [
+     61.529,
+     61.657,
+     "It"
+    ],
+    [
+     61.657,
+     62.208,
+     "starts"
+    ],
+    [
+     62.208,
+     62.401,
+     "with"
+    ],
+    [
+     62.401,
+     62.644,
+     "what"
+    ],
+    [
+     62.644,
+     62.82,
+     "you"
+    ],
+    [
+     62.82,
+     63.413,
+     "posted."
+    ]
+   ],
+   "tele": 22,
+   "teleT0": 61.419
+  },
+  {
+   "i": 23,
+   "id": "tag-the-show",
+   "who": "larry",
+   "kind": "say",
+   "text": "And if you tag the show, we look where you point.",
+   "caption": true,
+   "t0": 63.663,
+   "t1": 66.711,
+   "words": [
+    [
+     63.723,
+     63.91,
+     "And"
+    ],
+    [
+     63.91,
+     64.071,
+     "if"
+    ],
+    [
+     64.071,
+     64.247,
+     "you"
+    ],
+    [
+     64.247,
+     64.589,
+     "tag"
+    ],
+    [
+     64.589,
+     64.701,
+     "the"
+    ],
+    [
+     64.701,
+     65.082,
+     "show,"
+    ],
+    [
+     65.322,
+     65.483,
+     "we"
+    ],
+    [
+     65.483,
+     65.75,
+     "look"
+    ],
+    [
+     65.75,
+     66.002,
+     "where"
+    ],
+    [
+     66.002,
+     66.178,
+     "you"
+    ],
+    [
+     66.178,
+     66.711,
+     "point."
+    ]
+   ],
+   "tele": 23,
+   "teleT0": 63.613
+  },
+  {
+   "i": 24,
+   "id": "counted",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "A tag from outside the cluster is counted, and not read.",
+   "caption": true,
+   "t0": 66.961,
+   "t1": 71.05,
+   "words": [
+    [
+     67.021,
+     67.135,
+     "A"
+    ],
+    [
+     67.375,
+     67.704,
+     "tag"
+    ],
+    [
+     67.704,
+     67.977,
+     "from"
+    ],
+    [
+     67.977,
+     68.525,
+     "outside"
+    ],
+    [
+     68.525,
+     68.632,
+     "the"
+    ],
+    [
+     68.632,
+     69.092,
+     "cluster"
+    ],
+    [
+     69.092,
+     69.208,
+     "is"
+    ],
+    [
+     69.208,
+     69.755,
+     "counted,"
+    ],
+    [
+     69.995,
+     70.171,
+     "and"
+    ],
+    [
+     70.171,
+     70.468,
+     "not"
+    ],
+    [
+     70.708,
+     71.05,
+     "read."
+    ]
+   ],
+   "tele": 24,
+   "teleT0": 66.911
+  },
+  {
+   "i": 25,
+   "id": "every-room",
+   "who": "larry",
+   "kind": "say",
+   "text": "The rest goes through every room. Most things don't come out.",
+   "caption": true,
+   "t0": 71.3,
+   "t1": 75.148,
+   "words": [
+    [
+     71.36,
+     71.477,
+     "The"
+    ],
+    [
+     71.477,
+     71.823,
+     "rest"
+    ],
+    [
+     71.823,
+     72.137,
+     "goes"
+    ],
+    [
+     72.137,
+     72.442,
+     "through"
+    ],
+    [
+     72.442,
+     72.742,
+     "every"
+    ],
+    [
+     72.742,
+     73.13,
+     "room."
+    ],
+    [
+     73.54,
+     73.922,
+     "Most"
+    ],
+    [
+     73.922,
+     74.227,
+     "things"
+    ],
+    [
+     74.227,
+     74.571,
+     "don't"
+    ],
+    [
+     74.571,
+     74.839,
+     "come"
+    ],
+    [
+     74.839,
+     75.148,
+     "out."
+    ]
+   ],
+   "tele": 25,
+   "teleT0": 71.25
+  },
+  {
+   "i": 26,
+   "id": "button",
+   "who": "larry",
+   "kind": "say",
+   "text": "A look. Not a booking.",
+   "caption": true,
+   "t0": 75.648,
+   "t1": 77.712,
+   "words": [
+    [
+     75.708,
+     75.828,
+     "A"
+    ],
+    [
+     75.828,
+     76.307,
+     "look."
+    ],
+    [
+     76.717,
+     76.999,
+     "Not"
+    ],
+    [
+     76.999,
+     77.141,
+     "a"
+    ],
+    [
+     77.141,
+     77.712,
+     "booking."
+    ]
+   ],
+   "tele": 26,
+   "teleT0": 75.598
+  }
+ ],
+ "cues": {
+  "studio": 0.3,
+  "rule": 5.852,
+  "pull-1": 14.006,
+  "room-1": 14.806,
+  "freeze": 22.783,
+  "resume": 28.248,
+  "pull-2": 30.338,
+  "room-2": 30.938,
+  "edge": 37.462,
+  "pull-3": 42.797,
+  "room-3": 43.397,
+  "drift": 48.247,
+  "glass-stop": 49.047,
+  "turn": 56.318,
+  "light-in": 65.413,
+  "light-counted": 68.711,
+  "light-rooms": 71.25,
+  "last-frame": 75.148
+ },
+ "sfx": [
+  {
+   "name": "chuckle-1",
+   "t0": 12.163,
+   "t1": 13.123
+  },
+  {
+   "name": "whoosh-1",
+   "t0": 14.006,
+   "t1": 14.556
+  },
+  {
+   "name": "ticktock-1",
+   "t0": 23.983,
+   "t1": 26.553
+  },
+  {
+   "name": "whoosh-2",
+   "t0": 30.338,
+   "t1": 31.078
+  },
+  {
+   "name": "whoosh-1",
+   "t0": 42.797,
+   "t1": 43.347
+  },
+  {
+   "name": "tick-1",
+   "t0": 49.047,
+   "t1": 49.107
+  }
+ ],
+ "music": []
+}

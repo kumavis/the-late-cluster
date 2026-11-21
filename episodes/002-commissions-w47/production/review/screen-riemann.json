@@ -1,0 +1,107 @@
+{
+  "cards": {
+    "riemann-learned-from-the-chart": {
+      "keep": true,
+      "reason": "Members learning of a claimed proof from a stock chart, and passing the news on in a chain, is the community's own turn on the day; it stands once the posts about anyone's own money, the motive jokes, the viral non-member post, the prediction market, the news link and every post naming the mathematician are dropped, and it carries the before-GTA-VI card.",
+      "drop": [
+        "at://did:plc:4i77tdu3riswwmtw6j67ufrj/app.bsky.feed.post/3n2qt3ngb5k2w",
+        "at://did:plc:4i77tdu3riswwmtw6j67ufrj/app.bsky.feed.post/3n2qt46xtu22w",
+        "at://did:plc:4asamrnnw6rzfq5sjzvmwgpe/app.bsky.feed.post/3n2qtu45bzs2o",
+        "at://did:plc:oqoksnyukzbase3uttllntwk/app.bsky.feed.post/3n2qunymw422e",
+        "at://did:plc:o72ypk5c474zqklkukaphuy3/app.bsky.feed.post/3n2qu66pxa22a",
+        "at://did:plc:kbk6trqdgqkxf5d72j2wwuwt/app.bsky.feed.post/3n2qvo4uqxc2m",
+        "at://did:plc:v5mnhg4um4stba2yhsjdw7sw/app.bsky.feed.post/3n2r2w4smz226",
+        "at://did:plc:gjqw6pjl2wvndjlmatxpenkz/app.bsky.feed.post/3n2r35ifrws2h",
+        "at://did:plc:2ygbb7aag64ase3swmqerk3h/app.bsky.feed.post/3n2r67chwg22r",
+        "at://did:plc:gjqw6pjl2wvndjlmatxpenkz/app.bsky.feed.post/3n2r7wudxdk2z",
+        "at://did:plc:545g5dlrsaccyfkjcdngtp5a/app.bsky.feed.post/3n2r4wbtevs2e",
+        "at://did:plc:ssnplyo7c7itlco3yifho5ii/app.bsky.feed.post/3n2r7u5lojc2y"
+      ],
+      "terms": "Kept on the terms in research/terms-riemann.md, section riemann-learned-from-the-chart (and riemann-before-gta-six, which it carries), and the rules for the whole subject at its end."
+    },
+    "riemann-before-gta-six": {
+      "keep": false,
+      "reason": "What survives the screen (the GTA VI posts, the Siri thread, the Millennium-problem predictions) is the same story as the chart card, the news set against the rest of the world, centred on the same account, so it is carried there; screenshots of another platform and of an outside mathematician, the X prediction and its replies, the prize-refusal allusions, the unverified Navier-Stokes claim, the reinterpretation of the note's wording and the post quoting a money post are dropped.",
+      "mergedInto": "riemann-learned-from-the-chart",
+      "drop": [
+        "at://did:plc:tbig7qnx4o5ylp5v23w577vl/app.bsky.feed.post/3n2qxlndc7s2l",
+        "at://did:plc:3qxpuyugoel4svgub7ywotmz/app.bsky.feed.post/3n2r72js4v22t",
+        "at://did:plc:b6eke66r3vbmnegg73qgprl6/app.bsky.feed.post/3n2rdfcgiug2q",
+        "at://did:plc:q5cnyaqzm5lyig37jm7srfzu/app.bsky.feed.post/3n2qxrgg2k22c",
+        "at://did:plc:pcpxcmv5z6oseafi5khuulta/app.bsky.feed.post/3n2qypnq7qk2o",
+        "at://did:plc:oqoksnyukzbase3uttllntwk/app.bsky.feed.post/3n2qziopvmc2x",
+        "at://did:plc:hfrtjnhcfzvyrht2atilf3yw/app.bsky.feed.post/3n2rfnkmx5222",
+        "at://did:plc:4rnej33af5ly4yjgpuaeupd3/app.bsky.feed.post/3n2rh5zjghk2j",
+        "at://did:plc:zrwhncnqel7corjtg2cak3jx/app.bsky.feed.post/3n2rhehjgsc2n",
+        "at://did:plc:wamidydbgu3u6fk3yckaglnz/app.bsky.feed.post/3n2rhixk6c22i",
+        "at://did:plc:fensreek6maqgui5apldqdij/app.bsky.feed.post/3n2rhquipok2m",
+        "at://did:plc:bjaceaxgoto5p7gor2rcov3g/app.bsky.feed.post/3n2rlecjcic2e",
+        "at://did:plc:bjaceaxgoto5p7gor2rcov3g/app.bsky.feed.post/3n2ra3mcor22j"
+      ]
+    },
+    "riemann-checking-the-lean": {
+      "keep": true,
+      "reason": "Members checking a 14-part archive they could not compile, with their own counts and an 8-ball, stands alone; the screenshots of another platform naming outside people, the account whose handle puts a gender-identity term on screen, the meme, the posts on the note's prose and the posts whose occasions are unknown or not understood are dropped.",
+      "drop": [
+        "at://did:plc:5a2icl43rtftn75x7pr7qagu/app.bsky.feed.post/3n2qunb7j6u2v",
+        "at://did:plc:5a2icl43rtftn75x7pr7qagu/app.bsky.feed.post/3n2quprbaji2l",
+        "at://did:plc:wamidydbgu3u6fk3yckaglnz/app.bsky.feed.post/3n2qv27lb5s2l",
+        "at://did:plc:565ebob5f6hw33hjdkxty6qj/app.bsky.feed.post/3n2quhyesw226",
+        "at://did:plc:ckaz32jwl6t2cno6fmuw2nhn/app.bsky.feed.post/3n2qxb4mwwc2g",
+        "at://did:plc:4asamrnnw6rzfq5sjzvmwgpe/app.bsky.feed.post/3n2qzj6x2vc27",
+        "at://did:plc:fkq3fec6vb7exawkgw5ichtr/app.bsky.feed.post/3n2r5xhe6uc2l",
+        "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2rcbkltnc2n",
+        "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2rlr4nxqk2q",
+        "at://did:plc:v5mnhg4um4stba2yhsjdw7sw/app.bsky.feed.post/3n2reszfppk2p",
+        "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2rjnobffs2d",
+        "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2rjok4zn22d",
+        "at://did:plc:pcpxcmv5z6oseafi5khuulta/app.bsky.feed.post/3n2rldsihe22d",
+        "at://did:plc:i4bfh2tyxihe2ksplmtcoopk/app.bsky.feed.post/3n2ref3wfs22i",
+        "at://did:plc:lmidtahyizyejqz74zeaip67/app.bsky.feed.post/3n2rehhl7mc2h",
+        "at://did:plc:5a2icl43rtftn75x7pr7qagu/app.bsky.feed.post/3n2rriinwbw2d",
+        "at://did:plc:i4bfh2tyxihe2ksplmtcoopk/app.bsky.feed.post/3n2rsa2ovqs2b"
+      ],
+      "terms": "Kept on the terms in research/terms-riemann.md, section riemann-checking-the-lean, and the rules for the whole subject at its end."
+    },
+    "riemann-what-is-a-zeta-function": {
+      "keep": true,
+      "reason": "A member writing a real proof that fits in one post, and others explaining the hypothesis to each other, is a made thing that can be shown working; it carries the where-were-you card, whose centre is the same member on the same afternoon.",
+      "drop": [
+        "at://did:plc:6ll5xi67lyuyovt6fiv4fnjo/app.bsky.feed.post/3n2qzbdwr2o2j",
+        "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n2qzcnyi6s2b",
+        "at://did:plc:allu5vs3gnm2wm7jzf4rad3r/app.bsky.feed.post/3n2qtyqyczk2b",
+        "at://did:plc:4dxjapf7zxwbld46q2l2jibu/app.bsky.feed.post/3n2qv2646d22p",
+        "at://did:plc:sa2yiupgrjk625bb6fmv23ww/app.bsky.feed.post/3n2r3fcmwhc2c",
+        "at://did:plc:vhgniews7zedjvr7xgww56ky/app.bsky.feed.post/3n2qxohj7tc2d",
+        "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2qxt5ertk2v",
+        "at://did:plc:vhgniews7zedjvr7xgww56ky/app.bsky.feed.post/3n2rekcwtbk2i",
+        "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2rem77jzk2l",
+        "at://did:plc:5a2icl43rtftn75x7pr7qagu/app.bsky.feed.post/3n2qxcexadb2t",
+        "at://did:plc:2k4dwow7fqauc2sysuzzj6qz/app.bsky.feed.post/3n2r6vldrvs2r",
+        "at://did:plc:plvxn2kpjuseoftweoo4xtag/app.bsky.feed.post/3n2rbffghqk2c",
+        "at://did:plc:2k4dwow7fqauc2sysuzzj6qz/app.bsky.feed.post/3n2rbkoplfk2r"
+      ],
+      "terms": "Kept on the terms in research/terms-riemann.md, section riemann-what-is-a-zeta-function (and riemann-where-were-you, which it carries), and the rules for the whole subject at its end."
+    },
+    "riemann-where-were-you": {
+      "keep": false,
+      "reason": "The roll call and the defence of the note's feeling centre on the same member as the zeta card, the same afternoon, so they are one segment and carried there; the viral non-member reply, the criticism of the note by a non-member and his reply, the post putting invented words in the mathematician's mouth, the copypasta of unknown origin and its replies, and the reddit pointer are dropped.",
+      "mergedInto": "riemann-what-is-a-zeta-function",
+      "drop": [
+        "at://did:plc:o72ypk5c474zqklkukaphuy3/app.bsky.feed.post/3n2qucvmfxs2v",
+        "at://did:plc:gscu66lochhwgjb7oy2jwvs5/app.bsky.feed.post/3n2qv6ebtrs2m",
+        "at://did:plc:fl23jz3r4k3xyehkty7ienva/app.bsky.feed.post/3n2qwhb2bmc2s",
+        "at://did:plc:fl23jz3r4k3xyehkty7ienva/app.bsky.feed.post/3n2rhj7uuhs2f",
+        "at://did:plc:4gm5uxjg3tz4nat4qpjk2t6h/app.bsky.feed.post/3n2qxkiq5ns2z",
+        "at://did:plc:xm55llyxcrb3h7qwqr3wtaog/app.bsky.feed.post/3n2rogui7mk23",
+        "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2rou43qxk27",
+        "at://did:plc:o72ypk5c474zqklkukaphuy3/app.bsky.feed.post/3n2qurxncnk2v",
+        "at://did:plc:pucdjajhorfsevav4mirkxmu/app.bsky.feed.post/3n2qw2dlxik2w"
+      ]
+    },
+    "riemann-two-proofs-one-day": {
+      "keep": false,
+      "reason": "Refused: the story is a second real outside mathematician's unfinished work set against the first, with second-hand reports from another platform that it has gaps, accusations of front-running and an argument about how the announcement was made, so any segment either ranks two outsiders' work with one cast as losing (R7, R6), relays an unverified claim that a named person's work fails (R5, R2), or rests on conflict (R10); nothing on it stands without that comparison."
+    }
+  }
+}

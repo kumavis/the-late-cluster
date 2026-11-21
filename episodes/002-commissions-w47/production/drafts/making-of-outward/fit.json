@@ -1,0 +1,1566 @@
+{
+ "segment": "making-of-outward",
+ "draft": "making-of-outward",
+ "episode": "002-commissions-w47",
+ "takes": 4,
+ "gate": 0.6,
+ "lines": [
+  {
+   "id": "quick",
+   "who": "larry",
+   "kind": "say",
+   "text": "How this show is made. It's quick.",
+   "as": "How this showw is made. It's quick.",
+   "heard": [
+    {
+     "text": "How this show is made, it's quick.",
+     "count": 2
+    },
+    {
+     "text": "How the shell is made, it's quick.",
+     "count": 1
+    },
+    {
+     "text": "How the show is made, it's quick.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 6,
+    "of": 7,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "this",
+     "count": 2
+    },
+    {
+     "word": "show",
+     "count": 1
+    }
+   ],
+   "tried": [
+    {
+     "as": "How this showw is made. It's quick.",
+     "score": {
+      "heard": 6,
+      "of": 7,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "How this show is made, it's quick.",
+       "count": 2
+      },
+      {
+       "text": "How the shell is made, it's quick.",
+       "count": 1
+      },
+      {
+       "text": "How the show is made, it's quick.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "stages",
+   "who": "larry",
+   "kind": "say",
+   "text": "Thirteen stages. Agents, one job each.",
+   "as": null,
+   "heard": [
+    {
+     "text": "13 stages, agents, one-law beat.",
+     "count": 2
+    },
+    {
+     "text": "13 stages, agents, one-law beat",
+     "count": 1
+    },
+    {
+     "text": "13 stages, agents, one-law-beach.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 6,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "job",
+     "count": 4
+    },
+    {
+     "word": "each",
+     "count": 3
+    }
+   ],
+   "tried": [
+    {
+     "as": "Thirteen stages. Agents, one job each.",
+     "score": {
+      "heard": 4,
+      "of": 6,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "13 stages, agents, one-law beat.",
+       "count": 2
+      },
+      {
+       "text": "13 stages, agents, one-law beat",
+       "count": 1
+      },
+      {
+       "text": "13 stages, agents, one-law-beach.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "one-rule",
+   "who": "larry",
+   "kind": "say",
+   "text": "One rule. Whoever makes a thing does not judge it.",
+   "as": null,
+   "heard": [
+    {
+     "text": "One rule, whoever makes things does not love it.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 8,
+    "of": 10,
+    "min": 8
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "a",
+     "count": 4
+    },
+    {
+     "word": "judge",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "One rule. Whoever makes a thing does not judge it.",
+     "score": {
+      "heard": 8,
+      "of": 10,
+      "min": 8
+     },
+     "heard": [
+      {
+       "text": "One rule, whoever makes things does not love it.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "went-well",
+   "who": "larry",
+   "kind": "say",
+   "text": "I thought that went well.",
+   "as": null,
+   "heard": [
+    {
+     "text": "I thought it went well.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 5,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "that",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "I thought that went well.",
+     "score": {
+      "heard": 4,
+      "of": 5,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "I thought it went well.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "you-made-it",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "You made it.",
+   "as": null,
+   "heard": [
+    {
+     "text": "but you made it",
+     "count": 2
+    },
+    {
+     "text": "You made it",
+     "count": 1
+    },
+    {
+     "text": "You made it!",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 3,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "You made it.",
+     "score": {
+      "heard": 3,
+      "of": 3,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "but you made it",
+       "count": 2
+      },
+      {
+       "text": "You made it",
+       "count": 1
+      },
+      {
+       "text": "You made it!",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "who-judges",
+   "who": "larry",
+   "kind": "say",
+   "text": "Then who judges it?",
+   "as": null,
+   "heard": [
+    {
+     "text": "Then who does it?",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 4,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "judges",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Then who judges it?",
+     "score": {
+      "heard": 3,
+      "of": 4,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "Then who does it?",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "two-reviewers",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Two reviewers. Neither sees the other's score. A tool adds them up.",
+   "as": null,
+   "heard": [
+    {
+     "text": "The tool is yours, and neither sees the other's car, but the tool adds to the mop.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 7,
+    "of": 12,
+    "min": 7
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "two",
+     "count": 4
+    },
+    {
+     "word": "reviewers",
+     "count": 4
+    },
+    {
+     "word": "score",
+     "count": 4
+    },
+    {
+     "word": "a",
+     "count": 4
+    },
+    {
+     "word": "up",
+     "count": 4
+    }
+   ],
+   "known": [
+    "reviewers"
+   ],
+   "tried": [
+    {
+     "as": "Two reviewers. Neither sees the other's score. A tool adds them up.",
+     "score": {
+      "heard": 7,
+      "of": 12,
+      "min": 7
+     },
+     "heard": [
+      {
+       "text": "The tool is yours, and neither sees the other's car, but the tool adds to the mop.",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "Too reviewers. Neither sees the other's score. A tool adds them up.",
+     "score": {
+      "heard": 7,
+      "of": 12,
+      "min": 7
+     },
+     "heard": [
+      {
+       "text": "The tool is yours, and neither sees the other's car, but the tool adds to the mop.",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "Tee-oo reviewers. Neither sees the other's score. A tool adds them up.",
+     "score": {
+      "heard": 6,
+      "of": 12,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "The tail will be yours, and neither sees the other's car, but totally adds to the mop.",
+       "count": 3
+      },
+      {
+       "text": "They were a U.S. and they were a state of the other's car, but too led to the MUP.",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Two, reviewers. Neither sees the other's score. A tool adds them up.",
+     "score": {
+      "heard": 6,
+      "of": 12,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "The two are yours, neither sees the other's car, but two leads to the MUP.",
+       "count": 1
+      },
+      {
+       "text": "The two are yours, neither sees the other's car, but two led to the mob left.",
+       "count": 1
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "Two ree-vyoo-erz. Neither sees the other's score. A tool adds them up.",
+     "score": {
+      "heard": 6,
+      "of": 12,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "The totally lie words, neither sees the other's car, but totally adds to the mop.",
+       "count": 2
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "Two re-viewers. Neither sees the other's score. A tool adds them up.",
+     "score": {
+      "heard": 6,
+      "of": 12,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "It's totally yours, neither sees the other's car, but totally adds to the mop.",
+       "count": 2
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "Two reviewers. Neither sees the other's skawr. A tool adds them up.",
+     "score": {
+      "heard": 7,
+      "of": 12,
+      "min": 7
+     },
+     "heard": [
+      {
+       "text": "The tool is yours, and neither sees the other's car, but the tool adds to the mop.",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "Two reviewers. Neither sees the other's, score. A tool adds them up.",
+     "score": {
+      "heard": 6,
+      "of": 12,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "The tool is yours, neither sees the other's, the scar, but the tool adds to the mop.",
+       "count": 1
+      },
+      {
+       "text": "The tool is yours, neither sees the other's, the scar, but the tool led to the mob left.",
+       "count": 1
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "Too reviewers. Neither sees the other's skawr. A tool adds them up.",
+     "score": {
+      "heard": 7,
+      "of": 12,
+      "min": 7
+     },
+     "heard": [
+      {
+       "text": "The tool is yours, and neither sees the other's car, but the tool adds to the mop.",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "Two reviewers. Neither sees the other's score. A tool adds them up.",
+     "rate": 0.9,
+     "score": {
+      "heard": 5,
+      "of": 12,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "The total yours, neither says the other's car, but the total adds to the mob left.",
+       "count": 1
+      },
+      {
+       "text": "The total yours, neither says the others car, but the total adds to the mop.",
+       "count": 1
+      },
+      {
+       "text": "The tour is yours, neither sees the other's car, but the tour led to the mob left.",
+       "count": 1
+      },
+      {
+       "text": "The tour is yours, neither sees the other's car, but the tour led to the mob less.",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Two reviewers. Neither sees the other's score. A tool adds them up.",
+     "rate": 0.82,
+     "score": {
+      "heard": 4,
+      "of": 12,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "The tool is yours, neither sees the other's car, but the tool adds to the mop.",
+       "count": 1
+      },
+      {
+       "text": "The tour is yours, neither sees the other's car, the tour led to the mob truck.",
+       "count": 1
+      },
+      {
+       "text": "The two are yours, neither sees the other scar. The two let's let's run.",
+       "count": 1
+      },
+      {
+       "text": "To all yours, neither sees the other scar, but to let it up run.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "five-stopped",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Last run, five reviewers stopped at once.",
+   "as": "Lahst run, five, re-viewers, stopped, at once.",
+   "heard": [
+    {
+     "text": "Let's run 5 rears stopped at once.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 7,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "last",
+     "count": 4
+    },
+    {
+     "word": "reviewers",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Lahst run, five, re-viewers, stopped, at once.",
+     "score": {
+      "heard": 5,
+      "of": 7,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "Let's run 5 rears stopped at once.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "hello",
+   "who": "larry",
+   "kind": "say",
+   "text": "Hello?",
+   "as": "Huh-loh?",
+   "heard": [
+    {
+     "text": "Hello",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 1,
+    "of": 1,
+    "min": 1
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Huh-loh?",
+     "score": {
+      "heard": 1,
+      "of": 1,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Hello",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "usage-limit",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Usage limit.",
+   "as": "yoos-age limit.",
+   "heard": [
+    {
+     "text": "the only limit",
+     "count": 3
+    },
+    {
+     "text": "The only limit",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 1,
+    "of": 2,
+    "min": 1
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "usage",
+     "count": 4
+    }
+   ],
+   "known": [
+    "usage"
+   ],
+   "tried": [
+    {
+     "as": "yoos-age limit.",
+     "score": {
+      "heard": 1,
+      "of": 2,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "the only limit",
+       "count": 3
+      },
+      {
+       "text": "The only limit",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Usage limit.",
+     "score": {
+      "heard": 0,
+      "of": 2,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Are you a streamer?",
+       "count": 2
+      },
+      {
+       "text": "Are you extremely...",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "as": "yoos-age limit.",
+     "rate": 0.9,
+     "score": {
+      "heard": 1,
+      "of": 2,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Your leg limit.",
+       "count": 3
+      },
+      {
+       "text": "your leg limit",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "yoos-age limit.",
+     "rate": 0.82,
+     "score": {
+      "heard": 1,
+      "of": 2,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "your leg limit",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "resumed",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "They were resumed.",
+   "as": null,
+   "heard": [
+    {
+     "text": "They were assumed.",
+     "count": 3
+    },
+    {
+     "text": "They were resumed.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 3,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "resumed",
+     "count": 3
+    }
+   ],
+   "tried": [
+    {
+     "as": "They were resumed.",
+     "score": {
+      "heard": 2,
+      "of": 3,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "They were assumed.",
+       "count": 3
+      },
+      {
+       "text": "They were resumed.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "who-checks-them",
+   "who": "larry",
+   "kind": "say",
+   "text": "And who checks them?",
+   "as": "And who, checks them?",
+   "heard": [
+    {
+     "text": "And who checked them?",
+     "count": 2
+    },
+    {
+     "text": "and who checks them?",
+     "count": 1
+    },
+    {
+     "text": "And who checks them?",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 4,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "checks",
+     "count": 2
+    }
+   ],
+   "tried": [
+    {
+     "as": "And who, checks them?",
+     "score": {
+      "heard": 3,
+      "of": 4,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "And who checked them?",
+       "count": 2
+      },
+      {
+       "text": "and who checks them?",
+       "count": 1
+      },
+      {
+       "text": "And who checks them?",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "cold-viewer",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "The cold viewer. It gets stills. No sound.",
+   "as": "The cold, viewer. It gets stills. No sound.",
+   "heard": [
+    {
+     "text": "In the cold, the viewer, it got still no sound.",
+     "count": 3
+    },
+    {
+     "text": "In the cold, the viewer, it gets still, no sound.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 6,
+    "of": 8,
+    "min": 6
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "gets",
+     "count": 3
+    },
+    {
+     "word": "stills",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "The cold, viewer. It gets stills. No sound.",
+     "score": {
+      "heard": 6,
+      "of": 8,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "In the cold, the viewer, it got still no sound.",
+       "count": 3
+      },
+      {
+       "text": "In the cold, the viewer, it gets still, no sound.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "mostly-sound",
+   "who": "larry",
+   "kind": "say",
+   "text": "No sound? I'm mostly sound.",
+   "as": null,
+   "heard": [
+    {
+     "text": "No sound, I'm mostly sound.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 5,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "No sound? I'm mostly sound.",
+     "score": {
+      "heard": 5,
+      "of": 5,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "No sound, I'm mostly sound.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "off-the-edge",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Last run, it reported a subtitle that runs off the right edge.",
+   "as": null,
+   "heard": [
+    {
+     "text": "The last run, it reparts, the subtitle runs off the right edge.",
+     "count": 2
+    },
+    {
+     "text": "The last run, it repaired, the subtitle runs off the right edge.",
+     "count": 1
+    },
+    {
+     "text": "The last run, it reparts, subtitles, runs off the right edge.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 9,
+    "of": 12,
+    "min": 9
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "reported",
+     "count": 4
+    },
+    {
+     "word": "a",
+     "count": 4
+    },
+    {
+     "word": "that",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Last run, it reported a subtitle that runs off the right edge.",
+     "score": {
+      "heard": 9,
+      "of": 12,
+      "min": 9
+     },
+     "heard": [
+      {
+       "text": "The last run, it reparts, the subtitle runs off the right edge.",
+       "count": 2
+      },
+      {
+       "text": "The last run, it repaired, the subtitle runs off the right edge.",
+       "count": 1
+      },
+      {
+       "text": "The last run, it reparts, subtitles, runs off the right edge.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "and-that",
+   "who": "larry",
+   "kind": "say",
+   "text": "And that?",
+   "as": "And, thaat?",
+   "heard": [
+    {
+     "text": "and that",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 2,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "And, thaat?",
+     "score": {
+      "heard": 2,
+      "of": 2,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "and that",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "owner-watches",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Then the owner watches it. With sound.",
+   "as": null,
+   "heard": [
+    {
+     "text": "The owner watches it with sound.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 6,
+    "of": 7,
+    "min": 6
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "then",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Then the owner watches it. With sound.",
+     "score": {
+      "heard": 6,
+      "of": 7,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "The owner watches it with sound.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "thank-you",
+   "who": "larry",
+   "kind": "say",
+   "text": "With sound. Thank you.",
+   "as": null,
+   "heard": [
+    {
+     "text": "With sound, thank you.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 4,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "With sound. Thank you.",
+     "score": {
+      "heard": 4,
+      "of": 4,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "With sound, thank you.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "last-glass",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Whoever is past this glass is not ours to draw.",
+   "as": "Whoever is past this glass, is not, ourz to draw.",
+   "heard": [
+    {
+     "text": "Whoever is past this glass is not power to draw.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 9,
+    "of": 10,
+    "min": 9
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "ours",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Whoever is past this glass, is not, ourz to draw.",
+     "score": {
+      "heard": 9,
+      "of": 10,
+      "min": 9
+     },
+     "heard": [
+      {
+       "text": "Whoever is past this glass is not power to draw.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "who-checks-you",
+   "who": "larry",
+   "kind": "say",
+   "text": "And who checks them?",
+   "as": "And, who, checks them?",
+   "heard": [
+    {
+     "text": "And who checks them?",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 4,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "And, who, checks them?",
+     "score": {
+      "heard": 4,
+      "of": 4,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "And who checks them?",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "nobody",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "Nobody.",
+   "as": "Noh-bodee.",
+   "heard": [
+    {
+     "text": "No body.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 1,
+    "of": 1,
+    "min": 1
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Noh-bodee.",
+     "score": {
+      "heard": 1,
+      "of": 1,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "No body.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "nerve",
+   "who": "larry",
+   "kind": "say",
+   "text": "Which is a nerve. Because you, the cluster, make this show.",
+   "as": "Which is a nerve. Because you, the cluster, make thiss, showw.",
+   "heard": [
+    {
+     "text": "which is nerve, because you, the cluster, make this, shall.",
+     "count": 2
+    },
+    {
+     "text": "which is nerve, because you, the cluster, make this show.",
+     "count": 1
+    },
+    {
+     "text": "Which is nerve, because you, the cluster, make this, shall.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 9,
+    "of": 11,
+    "min": 9
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "a",
+     "count": 4
+    },
+    {
+     "word": "show",
+     "count": 3
+    }
+   ],
+   "tried": [
+    {
+     "as": "Which is a nerve. Because you, the cluster, make thiss, showw.",
+     "score": {
+      "heard": 9,
+      "of": 11,
+      "min": 9
+     },
+     "heard": [
+      {
+       "text": "which is nerve, because you, the cluster, make this, shall.",
+       "count": 2
+      },
+      {
+       "text": "which is nerve, because you, the cluster, make this show.",
+       "count": 1
+      },
+      {
+       "text": "Which is nerve, because you, the cluster, make this, shall.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "starts-with-you",
+   "who": "larry",
+   "kind": "say",
+   "text": "It starts with what you posted.",
+   "as": null,
+   "heard": [
+    {
+     "text": "It starts with what you posted.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 6,
+    "of": 6,
+    "min": 6
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "It starts with what you posted.",
+     "score": {
+      "heard": 6,
+      "of": 6,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "It starts with what you posted.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "tag-the-show",
+   "who": "larry",
+   "kind": "say",
+   "text": "And if you tag the show, we look where you point.",
+   "as": null,
+   "heard": [
+    {
+     "text": "And if you tag the show, we look where you point.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 11,
+    "of": 11,
+    "min": 11
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "And if you tag the show, we look where you point.",
+     "score": {
+      "heard": 11,
+      "of": 11,
+      "min": 11
+     },
+     "heard": [
+      {
+       "text": "And if you tag the show, we look where you point.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "counted",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "A tag from outside the cluster is counted, and not read.",
+   "as": "A, tag from outside the cluster is counted, and not, red.",
+   "heard": [
+    {
+     "text": "The tag from outside the cluster is counted, but not red.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 8,
+    "of": 11,
+    "min": 8
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "a",
+     "count": 4
+    },
+    {
+     "word": "and",
+     "count": 4
+    },
+    {
+     "word": "read",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "A, tag from outside the cluster is counted, and not, red.",
+     "score": {
+      "heard": 8,
+      "of": 11,
+      "min": 8
+     },
+     "heard": [
+      {
+       "text": "The tag from outside the cluster is counted, but not red.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "every-room",
+   "who": "larry",
+   "kind": "say",
+   "text": "The rest goes through every room. Most things don't come out.",
+   "as": null,
+   "heard": [
+    {
+     "text": "The rest goes through every room. Most things don't come out.",
+     "count": 3
+    },
+    {
+     "text": "The rest goes through every room, most things don't come out.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 11,
+    "of": 11,
+    "min": 11
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "The rest goes through every room. Most things don't come out.",
+     "score": {
+      "heard": 11,
+      "of": 11,
+      "min": 11
+     },
+     "heard": [
+      {
+       "text": "The rest goes through every room. Most things don't come out.",
+       "count": 3
+      },
+      {
+       "text": "The rest goes through every room, most things don't come out.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "button",
+   "who": "larry",
+   "kind": "say",
+   "text": "A look. Not a booking.",
+   "as": "Uh lookk. Not uh book-ing.",
+   "heard": [
+    {
+     "text": "A look, not a booking.",
+     "count": 3
+    },
+    {
+     "text": "A luke, not a booking.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 5,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "look",
+     "count": 1
+    }
+   ],
+   "tried": [
+    {
+     "as": "Uh lookk. Not uh book-ing.",
+     "score": {
+      "heard": 5,
+      "of": 5,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "A look, not a booking.",
+       "count": 3
+      },
+      {
+       "text": "A luke, not a booking.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "voices": {
+  "larry": {
+   "f0": 107,
+   "nearest": "pete",
+   "distance": 1.54
+  },
+  "sibyl": {
+   "f0": 207,
+   "nearest": "eppy",
+   "distance": 2.07
+  }
+ },
+ "owner": [],
+ "heardDifferently": []
+}

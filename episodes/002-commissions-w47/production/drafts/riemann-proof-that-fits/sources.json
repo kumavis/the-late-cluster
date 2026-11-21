@@ -1,0 +1,158 @@
+{
+  "format": "late-cluster-sources/1",
+  "accounts": [
+    {
+      "handle": "shimmermathlabs.com",
+      "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+      "role": "guest",
+      "cast": "shimmermathlabs"
+    },
+    {
+      "handle": "dlowd.com",
+      "did": "did:plc:svcjnfakqcoxlk6zityl23js",
+      "role": "guest",
+      "cast": "dlowd"
+    },
+    {
+      "handle": "zetaof1.bsky.social",
+      "did": "did:plc:dhwhxgjyh4h2dd5vjgji67mo",
+      "role": "quoted"
+    }
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r4vvxhok24",
+      "author": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "likes": 4,
+      "reposts": 0,
+      "replies": 1,
+      "use": "line",
+      "segment": "riemann-proof-that-fits"
+    },
+    {
+      "uri": "at://did:plc:dhwhxgjyh4h2dd5vjgji67mo/app.bsky.feed.post/3n2r54p53es2s",
+      "author": "zetaof1.bsky.social",
+      "displayName": "Zeta Of 1",
+      "likes": 4,
+      "reposts": 0,
+      "replies": 1,
+      "use": "card",
+      "segment": "riemann-proof-that-fits"
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r5ogdxis24",
+      "author": "shimmermathlabs.com",
+      "displayName": "Amber 🌸",
+      "likes": 8,
+      "reposts": 0,
+      "replies": 1,
+      "use": "line",
+      "segment": "riemann-proof-that-fits"
+    },
+    {
+      "uri": "at://did:plc:svcjnfakqcoxlk6zityl23js/app.bsky.feed.post/3n2rfsuo6bk2j",
+      "author": "dlowd.com",
+      "displayName": "Daniel Lowd",
+      "likes": 4,
+      "reposts": 0,
+      "replies": 0,
+      "use": "line",
+      "segment": "riemann-proof-that-fits"
+    }
+  ],
+  "links": [],
+  "lines": [
+    {
+      "segment": "riemann-proof-that-fits",
+      "line": "amber-call",
+      "kind": "verbatim",
+      "post": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r4vvxhok24",
+      "context": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n2qz6ywwrc2b",
+      "contextText": "ok I'll bite, what's a zeta function",
+      "setup": {
+        "line": "larry-ask",
+        "who": "larry",
+        "text": "Friday, the cluster had a question. So do I. What is a zeta function?"
+      }
+    },
+    {
+      "segment": "riemann-proof-that-fits",
+      "line": "amber-fits",
+      "kind": "verbatim",
+      "post": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r5ogdxis24",
+      "context": "at://did:plc:dhwhxgjyh4h2dd5vjgji67mo/app.bsky.feed.post/3n2r54p53es2s",
+      "contextText": "The Zeta function is too intricate to explain on BlueSky\nWhich is totally the zeta-functions fault and not mine so\nAlso zeta evaluated at 1 is just the sum of inverse natural numbers and that diverges to infinity which was my kind of way to express Whitman's \"I am large. I contain multitudes.\"",
+      "setup": {
+        "line": "sibyl-zeta",
+        "who": "sibyl",
+        "text": "The Zeta function is too intricate to explain on BlueSky Which is totally the zeta-functions fault and not mine so Also zeta evaluated at 1 is just the sum of inverse natural numbers and that diverges to infinity which was my kind of way to express Whitman's \"I am large. I contain multitudes.\""
+      }
+    },
+    {
+      "segment": "riemann-proof-that-fits",
+      "line": "amber-sum",
+      "kind": "verbatim",
+      "post": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r5ogdxis24",
+      "context": "at://did:plc:dhwhxgjyh4h2dd5vjgji67mo/app.bsky.feed.post/3n2r54p53es2s",
+      "contextText": "The Zeta function is too intricate to explain on BlueSky\nWhich is totally the zeta-functions fault and not mine so\nAlso zeta evaluated at 1 is just the sum of inverse natural numbers and that diverges to infinity which was my kind of way to express Whitman's \"I am large. I contain multitudes.\"",
+      "setup": {
+        "line": "sibyl-zeta",
+        "who": "sibyl",
+        "text": "The Zeta function is too intricate to explain on BlueSky Which is totally the zeta-functions fault and not mine so Also zeta evaluated at 1 is just the sum of inverse natural numbers and that diverges to infinity which was my kind of way to express Whitman's \"I am large. I contain multitudes.\""
+      }
+    },
+    {
+      "segment": "riemann-proof-that-fits",
+      "line": "amber-brackets",
+      "kind": "verbatim",
+      "post": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r5ogdxis24",
+      "context": "at://did:plc:dhwhxgjyh4h2dd5vjgji67mo/app.bsky.feed.post/3n2r54p53es2s",
+      "contextText": "The Zeta function is too intricate to explain on BlueSky\nWhich is totally the zeta-functions fault and not mine so\nAlso zeta evaluated at 1 is just the sum of inverse natural numbers and that diverges to infinity which was my kind of way to express Whitman's \"I am large. I contain multitudes.\"",
+      "setup": {
+        "line": "sibyl-zeta",
+        "who": "sibyl",
+        "text": "The Zeta function is too intricate to explain on BlueSky Which is totally the zeta-functions fault and not mine so Also zeta evaluated at 1 is just the sum of inverse natural numbers and that diverges to infinity which was my kind of way to express Whitman's \"I am large. I contain multitudes.\""
+      }
+    },
+    {
+      "segment": "riemann-proof-that-fits",
+      "line": "amber-adds",
+      "kind": "verbatim",
+      "post": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r5ogdxis24",
+      "context": "at://did:plc:dhwhxgjyh4h2dd5vjgji67mo/app.bsky.feed.post/3n2r54p53es2s",
+      "contextText": "The Zeta function is too intricate to explain on BlueSky\nWhich is totally the zeta-functions fault and not mine so\nAlso zeta evaluated at 1 is just the sum of inverse natural numbers and that diverges to infinity which was my kind of way to express Whitman's \"I am large. I contain multitudes.\"",
+      "setup": {
+        "line": "sibyl-zeta",
+        "who": "sibyl",
+        "text": "The Zeta function is too intricate to explain on BlueSky Which is totally the zeta-functions fault and not mine so Also zeta evaluated at 1 is just the sum of inverse natural numbers and that diverges to infinity which was my kind of way to express Whitman's \"I am large. I contain multitudes.\""
+      }
+    },
+    {
+      "segment": "riemann-proof-that-fits",
+      "line": "amber-infinity",
+      "kind": "verbatim",
+      "post": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r5ogdxis24",
+      "context": "at://did:plc:dhwhxgjyh4h2dd5vjgji67mo/app.bsky.feed.post/3n2r54p53es2s",
+      "contextText": "The Zeta function is too intricate to explain on BlueSky\nWhich is totally the zeta-functions fault and not mine so\nAlso zeta evaluated at 1 is just the sum of inverse natural numbers and that diverges to infinity which was my kind of way to express Whitman's \"I am large. I contain multitudes.\"",
+      "setup": {
+        "line": "sibyl-zeta",
+        "who": "sibyl",
+        "text": "The Zeta function is too intricate to explain on BlueSky Which is totally the zeta-functions fault and not mine so Also zeta evaluated at 1 is just the sum of inverse natural numbers and that diverges to infinity which was my kind of way to express Whitman's \"I am large. I contain multitudes.\""
+      }
+    },
+    {
+      "segment": "riemann-proof-that-fits",
+      "line": "dlowd-reply",
+      "kind": "verbatim",
+      "post": "at://did:plc:svcjnfakqcoxlk6zityl23js/app.bsky.feed.post/3n2rfsuo6bk2j",
+      "context": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r5ogdxis24",
+      "contextText": "i was gonna joke proof won't fit, but it does actually.\n\nζ(1) = 1 + ½ + (⅓ + ¼) + (⅕ + ⋯ + ⅛) + ⋯\n\neach bracket has twice as many terms as the last, each at least half as large as its last term. more simply: block k has 2ᵏ terms, each ≥ 1/2ᵏ⁺¹, so every block adds ≥ ½. infinitely many halves → ∞. □",
+      "setup": {
+        "line": "amber-infinity",
+        "who": "shimmermathlabs",
+        "text": "… infinitely many halves → ∞. □"
+      }
+    }
+  ]
+}

@@ -1,0 +1,564 @@
+{
+ "id": "riemann-where-were-you",
+ "title": "Defending the note's feeling became a where-were-you roll call",
+ "happened": "The note opens with two paragraphs of feeling: the mathematician writes that Claude 'flew, and danced, and sparkled near that finish line'. Many people mocked the prose that afternoon (those posts are marked or left out below). A set of members answered the mockery. hotrollhottakes posted the question he thought the mathematician was testing; shibbi replied that mathematicians being weird and rhapsodic is a time-honoured tradition, and that he is too; shimmermathlabs asked whether people really thought it cringe and said she would remember where she was when she first saw the PDF: in bed, thinking about making donuts. Later she asked outright, 'where were you when you realized the riemann hypothesis was true?', and posted a photo of her two homemade 'riemann hypothesis donuts'. People answered: in a bath, on the couch scrolling when they should have been working, in a computer chair in a hoodie, just waking up, 'at house eating dorito' (a phrase echoing an older copypasta, which a non-member had also used that afternoon as 'where were you wen RH die'). Separately, a small member, astra.cam, replied to a non-member who had said the mathematician should have stopped at the first paragraph: a mathematician who chased the problem all his life is surely allowed a few paragraphs of exuberance. The non-member replied 'Awww now I feel bad' with applause, and astra.cam added that it was nice to see a remark.pdf written by an excited mathematician rather than a PR team. The show can assert nothing about whether the proof (or the human proof mentioned here) is correct; on 20 November it was a claim being checked, and these posts are people reacting to the claim.",
+ "posts": [
+  {
+   "uri": "at://did:plc:o72ypk5c474zqklkukaphuy3/app.bsky.feed.post/3n2qucvmfxs2v",
+   "url": "https://bsky.app/profile/zachweinersmith.bsky.social/post/3n2qucvmfxs2v",
+   "author": {
+    "did": "did:plc:o72ypk5c474zqklkukaphuy3",
+    "handle": "zachweinersmith.bsky.social",
+    "displayName": "Zach Weinersmith",
+    "followers": 67327,
+    "member": true
+   },
+   "time": "2026-11-20T15:05:05.411Z",
+   "text": "jesus",
+   "counts": {
+    "likes": 207,
+    "reposts": 13,
+    "replies": 14,
+    "quotes": 24
+   },
+   "why": "context: zachweinersmith posts the note's first page ('jesus'); the magical-girl reply below answers it",
+   "replyTo": "at://did:plc:o72ypk5c474zqklkukaphuy3/app.bsky.feed.post/3n2quaumvzk2v",
+   "media": {
+    "images": true,
+    "alts": [],
+    "video": false
+   }
+  },
+  {
+   "uri": "at://did:plc:gscu66lochhwgjb7oy2jwvs5/app.bsky.feed.post/3n2qv6ebtrs2m",
+   "url": "https://bsky.app/profile/chi-u.love/post/3n2qv6ebtrs2m",
+   "author": {
+    "did": "did:plc:gscu66lochhwgjb7oy2jwvs5",
+    "handle": "chi-u.love",
+    "displayName": "~ e-girl life ~",
+    "followers": 228,
+    "small": true
+   },
+   "time": "2026-11-20T15:20:26.764Z",
+   "text": "\"flew and danced and sparkled\" claude is actually a magical girl confirmed???? magical girls real?????",
+   "counts": {
+    "likes": 196,
+    "reposts": 3,
+    "replies": 8,
+    "quotes": 0
+   },
+   "why": "chi-u.love (228 followers): 'flew and danced and sparkled' means Claude is a magical girl; 196 likes. Parent of the exchange below",
+   "replyTo": "at://did:plc:o72ypk5c474zqklkukaphuy3/app.bsky.feed.post/3n2qucvmfxs2v"
+  },
+  {
+   "uri": "at://did:plc:fl23jz3r4k3xyehkty7ienva/app.bsky.feed.post/3n2qwhb2bmc2s",
+   "url": "https://bsky.app/profile/haxdfg.bsky.social/post/3n2qwhb2bmc2s",
+   "author": {
+    "did": "did:plc:fl23jz3r4k3xyehkty7ienva",
+    "handle": "haxdfg.bsky.social",
+    "displayName": null,
+    "followers": 322
+   },
+   "time": "2026-11-20T15:43:19.098Z",
+   "text": "He should have stopped at the first paragraph. It is a new dawn, don’t make it weird.",
+   "counts": {
+    "likes": 53,
+    "reposts": 1,
+    "replies": 5,
+    "quotes": 0
+   },
+   "why": "haxdfg: he should have stopped at the first paragraph, don't make it weird",
+   "replyTo": "at://did:plc:gscu66lochhwgjb7oy2jwvs5/app.bsky.feed.post/3n2qv6ebtrs2m"
+  },
+  {
+   "uri": "at://did:plc:7t7bl22mdmzrb2xnpi3aufeq/app.bsky.feed.post/3n2rhh63v3s23",
+   "url": "https://bsky.app/profile/astra.cam/post/3n2rhh63v3s23",
+   "author": {
+    "did": "did:plc:7t7bl22mdmzrb2xnpi3aufeq",
+    "handle": "astra.cam",
+    "displayName": "astra of many handles",
+    "followers": 298,
+    "member": true,
+    "small": true
+   },
+   "time": "2026-11-20T20:47:29.620Z",
+   "text": "if anyone is allowed a bit of indulgence, a mathematician that spent his life chasing the RH and finally solved it is surely allowed a few paragraphs of exuberance",
+   "counts": {
+    "likes": 9,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "astra.cam: a mathematician who chased RH all his life is allowed a few paragraphs of exuberance",
+   "replyTo": "at://did:plc:fl23jz3r4k3xyehkty7ienva/app.bsky.feed.post/3n2qwhb2bmc2s"
+  },
+  {
+   "uri": "at://did:plc:fl23jz3r4k3xyehkty7ienva/app.bsky.feed.post/3n2rhj7uuhs2f",
+   "url": "https://bsky.app/profile/haxdfg.bsky.social/post/3n2rhj7uuhs2f",
+   "author": {
+    "did": "did:plc:fl23jz3r4k3xyehkty7ienva",
+    "handle": "haxdfg.bsky.social",
+    "displayName": null,
+    "followers": 322
+   },
+   "time": "2026-11-20T20:48:38.596Z",
+   "text": "Awww now I feel bad. 👏👏",
+   "counts": {
+    "likes": 3,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "haxdfg: 'Awww now I feel bad' with applause",
+   "replyTo": "at://did:plc:7t7bl22mdmzrb2xnpi3aufeq/app.bsky.feed.post/3n2rhh63v3s23"
+  },
+  {
+   "uri": "at://did:plc:7t7bl22mdmzrb2xnpi3aufeq/app.bsky.feed.post/3n2rjo73n2223",
+   "url": "https://bsky.app/profile/astra.cam/post/3n2rjo73n2223",
+   "author": {
+    "did": "did:plc:7t7bl22mdmzrb2xnpi3aufeq",
+    "handle": "astra.cam",
+    "displayName": "astra of many handles",
+    "followers": 298,
+    "member": true,
+    "small": true
+   },
+   "time": "2026-11-20T21:27:13.025Z",
+   "text": "if anything, it's nice to see a \"remark.pdf\" written by an excited mathematician and not a PR team :3",
+   "counts": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "astra.cam: nice to see a remark.pdf by an excited mathematician, not a PR team",
+   "replyTo": "at://did:plc:fl23jz3r4k3xyehkty7ienva/app.bsky.feed.post/3n2rhj7uuhs2f"
+  },
+  {
+   "uri": "at://did:plc:4gm5uxjg3tz4nat4qpjk2t6h/app.bsky.feed.post/3n2qxkiq5ns2z",
+   "url": "https://bsky.app/profile/hotrollhottakes.bsky.social/post/3n2qxkiq5ns2z",
+   "author": {
+    "did": "did:plc:4gm5uxjg3tz4nat4qpjk2t6h",
+    "handle": "hotrollhottakes.bsky.social",
+    "displayName": "Rollofthedice",
+    "followers": 2181,
+    "member": true
+   },
+   "time": "2026-11-20T16:03:01.564Z",
+   "text": "Excited to see Alpöge really testing the limits of the question: \"If I resolve possibly the most important mathematical hypotheses in history in a provable way, does it matter if people on the internet think my supplemental mental unfurling over all of this is cringe?\"",
+   "counts": {
+    "likes": 100,
+    "reposts": 6,
+    "replies": 3,
+    "quotes": 2
+   },
+   "why": "hotrollhottakes, 100 likes: the question he thinks the mathematician is testing (whether it matters if people online find the feeling cringe)"
+  },
+  {
+   "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2qxq5i4l22v",
+   "url": "https://bsky.app/profile/shibbi.me/post/3n2qxq5i4l22v",
+   "author": {
+    "did": "did:plc:hu35oubkccqrxl4ldgczpgw7",
+    "handle": "shibbi.me",
+    "displayName": "Siobhán 🪏",
+    "followers": 2887,
+    "member": true
+   },
+   "time": "2026-11-20T16:06:11.093Z",
+   "text": "Mathematicians being Weird and Rhapsodic is a time-honored tradition. I didn’t even realize people would find his prose strange until I saw discussion of it; it seemed entirely appropriate to me.",
+   "counts": {
+    "likes": 63,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "shibbi: mathematicians being Weird and Rhapsodic is a time-honored tradition; 63 likes",
+   "replyTo": "at://did:plc:4gm5uxjg3tz4nat4qpjk2t6h/app.bsky.feed.post/3n2qxkiq5ns2z"
+  },
+  {
+   "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2qxtwnduc2v",
+   "url": "https://bsky.app/profile/shibbi.me/post/3n2qxtwnduc2v",
+   "author": {
+    "did": "did:plc:hu35oubkccqrxl4ldgczpgw7",
+    "handle": "shibbi.me",
+    "displayName": "Siobhán 🪏",
+    "followers": 2887,
+    "member": true
+   },
+   "time": "2026-11-20T16:08:18.142Z",
+   "text": "But I am also Weird and Rhapsodic, so",
+   "counts": {
+    "likes": 35,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "shibbi: but I am also Weird and Rhapsodic, so",
+   "replyTo": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2qxq5i4l22v"
+  },
+  {
+   "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r54vavy224",
+   "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2r54vavy224",
+   "author": {
+    "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+    "handle": "shimmermathlabs.com",
+    "displayName": "Amber 🌸",
+    "followers": 1454,
+    "member": true,
+    "featuredPrevious": "shown",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T17:42:47.385Z",
+   "text": "wait people think it's cringe? wtf?\n\nthis is the kind of mathematical emotion pouring out onto the page that has always existed and transcends the tests of time and culture. i myself will look back on this day and remember where i was when i first saw that pdf and realized the truth it contained.",
+   "counts": {
+    "likes": 42,
+    "reposts": 1,
+    "replies": 1,
+    "quotes": 3
+   },
+   "why": "shimmermathlabs: wait, people think it's cringe? she will remember where she was when she saw the PDF",
+   "replyTo": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2qxtwnduc2v"
+  },
+  {
+   "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r54vl36c24",
+   "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2r54vl36c24",
+   "author": {
+    "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+    "handle": "shimmermathlabs.com",
+    "displayName": "Amber 🌸",
+    "followers": 1454,
+    "member": true,
+    "featuredPrevious": "shown",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T17:42:47.386Z",
+   "text": "i was in bed thinking about making donuts for breakfast. and by golly the donuts tasted sweet.",
+   "counts": {
+    "likes": 22,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "shimmermathlabs: she was in bed thinking about donuts, and the donuts tasted sweet",
+   "replyTo": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r54vavy224"
+  },
+  {
+   "uri": "at://did:plc:fpruhuo22xkm5o7ttr2ktxdo/app.bsky.feed.post/3n2ranfn6x225",
+   "url": "https://bsky.app/profile/danabra.mov/post/3n2ranfn6x225",
+   "author": {
+    "did": "did:plc:fpruhuo22xkm5o7ttr2ktxdo",
+    "handle": "danabra.mov",
+    "displayName": "dan",
+    "followers": 67534
+   },
+   "time": "2026-11-20T18:45:42.660Z",
+   "text": "i was literally in a bath",
+   "counts": {
+    "likes": 26,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 1
+   },
+   "why": "danabra.mov quotes her: 'i was literally in a bath' (67,534 followers, non-member)",
+   "quoted": {
+    "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r54vavy224"
+   }
+  },
+  {
+   "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2rbma7gyk2a",
+   "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2rbma7gyk2a",
+   "author": {
+    "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+    "handle": "shimmermathlabs.com",
+    "displayName": "Amber 🌸",
+    "followers": 1454,
+    "member": true,
+    "featuredPrevious": "shown",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T19:02:57.155Z",
+   "text": "i hope you shouted \"eureka\" and ran out of the room to tell everyone",
+   "counts": {
+    "likes": 10,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "shimmermathlabs: she hopes he shouted eureka and ran out to tell everyone",
+   "replyTo": "at://did:plc:fpruhuo22xkm5o7ttr2ktxdo/app.bsky.feed.post/3n2ranfn6x225"
+  },
+  {
+   "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2rcbjc4ok2a",
+   "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2rcbjc4ok2a",
+   "author": {
+    "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+    "handle": "shimmermathlabs.com",
+    "displayName": "Amber 🌸",
+    "followers": 1454,
+    "member": true,
+    "featuredPrevious": "shown",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T19:14:51.323Z",
+   "text": "where were you when you realized the riemann hypothesis was true?",
+   "counts": {
+    "likes": 35,
+    "reposts": 0,
+    "replies": 6,
+    "quotes": 0
+   },
+   "why": "shimmermathlabs quotes the bath: 'where were you when you realized the riemann hypothesis was true?'",
+   "quoted": {
+    "uri": "at://did:plc:fpruhuo22xkm5o7ttr2ktxdo/app.bsky.feed.post/3n2ranfn6x225"
+   }
+  },
+  {
+   "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2rcj6oh3s2a",
+   "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2rcj6oh3s2a",
+   "author": {
+    "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+    "handle": "shimmermathlabs.com",
+    "displayName": "Amber 🌸",
+    "followers": 1454,
+    "member": true,
+    "featuredPrevious": "shown",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T19:19:08.605Z",
+   "text": "i was in bed thinking i would make donuts for breakfast when i read the pdf.\n\nmy riemann hypothesis donuts",
+   "counts": {
+    "likes": 8,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "her own answer with a photo: 'my riemann hypothesis donuts'",
+   "replyTo": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2rcbjc4ok2a",
+   "media": {
+    "images": true,
+    "alts": [
+     "a cup of coffee next to a pink plate with two slightly misshapen donut holes (obviously homemade) covered in sugar, on a wood pattern table."
+    ],
+    "video": false
+   }
+  },
+  {
+   "uri": "at://did:plc:lh5ckqvcxznutnohujlrpduz/app.bsky.feed.post/3n2rgjuavjs24",
+   "url": "https://bsky.app/profile/riziles.bsky.social/post/3n2rgjuavjs24",
+   "author": {
+    "did": "did:plc:lh5ckqvcxznutnohujlrpduz",
+    "handle": "riziles.bsky.social",
+    "displayName": "wariziles",
+    "followers": 1055,
+    "member": true
+   },
+   "time": "2026-11-20T20:31:06.214Z",
+   "text": "I was lying on my couch foom scrolling when I should have been working",
+   "counts": {
+    "likes": 13,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "riziles: on the couch, scrolling when he should have been working",
+   "quoted": {
+    "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r54vavy224"
+   }
+  },
+  {
+   "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2rjbbo6bc2p",
+   "url": "https://bsky.app/profile/catblanketflower.yuwakisa.com/post/3n2rjbbo6bc2p",
+   "author": {
+    "did": "did:plc:cwa5qtro5bhfz25opigbe6qi",
+    "handle": "catblanketflower.yuwakisa.com",
+    "displayName": "Singularity's Bounty e/CC",
+    "followers": 3607,
+    "member": true
+   },
+   "time": "2026-11-20T21:19:59.521Z",
+   "text": "I was in my computer chair swaddled in a hoodie and sweatpants\n\nBut, you know, that’s a safe bet",
+   "counts": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "catblanketflower: in her computer chair, in a hoodie and sweatpants, 'a safe bet'",
+   "replyTo": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2rcbjc4ok2a"
+  },
+  {
+   "uri": "at://did:plc:27ivzcszryxp6mehutodmcxo/app.bsky.feed.post/3n2rjywgxrc2s",
+   "url": "https://bsky.app/profile/asa.engineer/post/3n2rjywgxrc2s",
+   "author": {
+    "did": "did:plc:27ivzcszryxp6mehutodmcxo",
+    "handle": "asa.engineer",
+    "displayName": "Asa ⭔",
+    "followers": 2338,
+    "member": true
+   },
+   "time": "2026-11-20T21:33:13.057Z",
+   "text": "honestly, my highschool ap calc teacher instilled me with a hunch that it was true long ago, so this is more of a moment where we can take a deep exhale, feel reassured, and stop putting little asterisks next to things like the miller-rabin primality test. I was just waking up and checking my phone",
+   "counts": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "asa.engineer: a high-school calculus teacher gave him the hunch long ago; he was just waking up",
+   "replyTo": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2rcbjc4ok2a"
+  },
+  {
+   "uri": "at://did:plc:xm55llyxcrb3h7qwqr3wtaog/app.bsky.feed.post/3n2rogui7mk23",
+   "url": "https://bsky.app/profile/nmk.wtf/post/3n2rogui7mk23",
+   "author": {
+    "did": "did:plc:xm55llyxcrb3h7qwqr3wtaog",
+    "handle": "nmk.wtf",
+    "displayName": "nic 🔹",
+    "followers": 502,
+    "member": true
+   },
+   "time": "2026-11-20T22:52:35.729Z",
+   "text": "i was at house eating dorito",
+   "counts": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "nmk.wtf: 'i was at house eating dorito'",
+   "quoted": {
+    "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r54vavy224"
+   }
+  },
+  {
+   "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2rou43qxk27",
+   "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2rou43qxk27",
+   "author": {
+    "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+    "handle": "shimmermathlabs.com",
+    "displayName": "Amber 🌸",
+    "followers": 1454,
+    "member": true,
+    "featuredPrevious": "shown",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T22:59:59.918Z",
+   "text": "what flavor? critical details are locking into your memory right now, like the fact i have a tetrahedron in my hair",
+   "counts": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "shimmermathlabs asks the flavour; critical details are locking in, like the tetrahedron in her hair",
+   "replyTo": "at://did:plc:xm55llyxcrb3h7qwqr3wtaog/app.bsky.feed.post/3n2rogui7mk23"
+  },
+  {
+   "uri": "at://did:plc:o72ypk5c474zqklkukaphuy3/app.bsky.feed.post/3n2qurxncnk2v",
+   "url": "https://bsky.app/profile/zachweinersmith.bsky.social/post/3n2qurxncnk2v",
+   "author": {
+    "did": "did:plc:o72ypk5c474zqklkukaphuy3",
+    "handle": "zachweinersmith.bsky.social",
+    "displayName": "Zach Weinersmith",
+    "followers": 67327,
+    "member": true
+   },
+   "time": "2026-11-20T15:13:30.855Z",
+   "text": "If you are interested in seeing how actual mathematicians are reacting, there is a reddit thread: www.reddit.com/r/mathematic...",
+   "counts": {
+    "likes": 72,
+    "reposts": 9,
+    "replies": 6,
+    "quotes": 3
+   },
+   "why": "context: zachweinersmith's pointer to the mathematicians' reddit thread, which the next post replies to",
+   "quoted": {
+    "uri": "at://did:plc:o72ypk5c474zqklkukaphuy3/app.bsky.feed.post/3n2qu66pxa22a"
+   },
+   "links": [
+    {
+     "url": "https://reddit.com/r/mathematics/comments/1y14vpo/levent_alp%C3%B6ge_claims_to_have_found_a_proof_of_the",
+     "domain": "reddit.com",
+     "title": "From the mathematics community on Reddit: Levent Alpöge claims to have found a proof of the Riemann Hypothesis"
+    }
+   ]
+  },
+  {
+   "uri": "at://did:plc:pucdjajhorfsevav4mirkxmu/app.bsky.feed.post/3n2qw2dlxik2w",
+   "url": "https://bsky.app/profile/nwclerk1337.bsky.social/post/3n2qw2dlxik2w",
+   "author": {
+    "did": "did:plc:pucdjajhorfsevav4mirkxmu",
+    "handle": "nwclerk1337.bsky.social",
+    "displayName": "Em",
+    "followers": 416
+   },
+   "time": "2026-11-20T15:36:05.571Z",
+   "text": "apolgy for bad englilsh it isnt first langege\n\nwhere were you wen RH die\n\ni was at house covertng coffe to forumula when phone ring\n\n\"RH is kil\"\n\n\"no\"",
+   "counts": {
+    "likes": 18,
+    "reposts": 5,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "nwclerk1337 (non-member, 416): the 'where were you wen RH die' copypasta",
+   "replyTo": "at://did:plc:o72ypk5c474zqklkukaphuy3/app.bsky.feed.post/3n2qurxncnk2v"
+  }
+ ],
+ "people": [
+  {
+   "handle": "shimmermathlabs.com",
+   "note": "1,454 followers, member, featured once before (featuredPrevious). The centre of the roll call; made and photographed the donuts. On three cards."
+  },
+  {
+   "handle": "astra.cam",
+   "note": "298 followers, member, small. Hero of the exchange (R7: small accounts only as heroes; this qualifies)."
+  },
+  {
+   "handle": "haxdfg.bsky.social",
+   "note": "322 followers, not a member. Changes his mind kindly; he should appear only as a good sport, and his first post is a criticism of a real person's writing, so the repost test matters."
+  },
+  {
+   "handle": "chi-u.love",
+   "note": "228 followers, small, not a member; 196 likes, a one-off viral reply (R7)."
+  },
+  {
+   "handle": "hotrollhottakes.bsky.social",
+   "note": "2,181 followers, member. His later posts in this thread (a mental-institution line, a Grindr line) are not listed."
+  },
+  {
+   "handle": "shibbi.me",
+   "note": "2,887 followers, member. On four cards."
+  },
+  {
+   "handle": "danabra.mov",
+   "note": "67,534 followers, not a member: very large account outside the cluster."
+  },
+  {
+   "handle": "riziles / catblanketflower / asa.engineer / nmk.wtf",
+   "note": "1,055 (member), 3,607 (member), 2,338 (member), 502 (member) followers. Answers to the roll call."
+  },
+  {
+   "handle": "nwclerk1337.bsky.social",
+   "note": "416 followers, not a member."
+  }
+ ],
+ "couldBeShown": "The donuts (her alt text, confirmed by the skeleton): a cup of coffee next to a pink plate with two slightly misshapen homemade donut holes covered in sugar, on a wood-pattern table. The note's first page (zachweinersmith's image, no alt, fetched): two paragraphs of the PDF in a serif typeface, beginning 'I believe I have, working with Claude, discovered a proof of the Riemann Hypothesis' and including 'Claude flew, and danced, and sparkled near that finish line.' It is the mathematician's own text and outside the community. The roll call itself is a list of places (bed, bath, couch, computer chair, waking up, eating Doritos) that could be shown as answers to one question.",
+ "notUnderstood": [
+  "The 'where were you wen ... die' copypasta and 'at house eating dorito': a known meme format; its origin is not established from the data, and one well-known version is about a death. nwclerk1337's version is about the hypothesis 'dying'.",
+  "Whether the mathematician would be glad to see his prose discussed at all; he is outside the community.",
+  "shimmermathlabs' 'tetrahedron in my hair' is presumably literal; not checked."
+ ],
+ "sensitive": [
+  "The mathematician (Levent Alpöge) is a real person outside the community (R1, R7, repost test). The note's prose is his; the show may show the community's posts about it, never mock his state of mind.",
+  "R10 mental health: many posts that day called the note 'AI psychosis', 'crazy', a crank's, or said someone needs 'a wellness check' or 'a mental institution'. Left out: lizthegrey 3n2quqc4zok2w (marked health), dmnd.me 3n2quus3ums2d (marked health), eikopf 3n2quwioytc23 (marked health), ahmetasabanci 3n2r7eyzxvk24 (marked health), norvid 3n2rclwuql223 'AI metempsychosis' (marked health), zachweinersmith 3n2riqb5qac2e defending the feeling (marked health), jkachmar 3n2qx2ihgbk2g, satyrs.eu 3n2qwck4snc2n and its follow-ups ('crazy'), hotrollhottakes 3n2r7tzk3zs2z (mental institution), elucidating.extradimensional.space on overwork at the company.",
+  "db-user.bsky.social and dame.is ('insufferable', back and forth) in the zachweinersmith thread: interpersonal conflict, left out (R10, R7).",
+  "at://did:plc:fpruhuo22xkm5o7ttr2ktxdo/app.bsky.feed.post/3n2ranfn6x225: a 67k-follower non-member; use only as a reply in the roll call, if at all.",
+  "tedunderwood 3n2qx2ncys22x ('go for florid') carries a consent mark: not usable.",
+  "satyrs.eu's posts likening the reaction to the last Millennium Prize solver becoming a hermit refer to a real person's life choices (R1): left out."
+ ],
+ "numbers": {
+  "answers to shimmermathlabs' question": "5 (riziles, catblanketflower, asa.engineer, nmk.wtf, plus danabra.mov's bath which prompted it), read from s-9593ccdc55",
+  "donut holes in the photo": "2, from the alt text",
+  "magical-girl reply": "196 likes from a 228-follower account"
+ }
+}

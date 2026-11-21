@@ -1,0 +1,773 @@
+{
+ "id": "riemann-learned-from-the-chart",
+ "title": "Many learned the news from a stock chart",
+ "happened": "The note was first posted into the window at 14:43 UTC on 20 November by a non-member who linked it and added that he expected the proof to be correct. Within the hour a member posted two pages of the note with no comment, and another member replied that he hopes the bit never stops where the bigger the finding, the plainer the title. At 15:35 a member posted a screenshot of Anthropic's share price, down about 10.65% that morning, saying the market valued the ability to solve the Riemann hypothesis at minus 80 billion dollars; it was the most-liked member post about the subject in the window (889 likes). He followed with the line that traders needed time to digest a proof that is 240MB gzipped. norvid quoted the chart saying this was how he learned the news; three people replied that they had too, one said he learned it from norvid's post, and norvid hoped the cycle would continue. Through the afternoon members made their own jokes about the market and the proof (unsolving it, buying a second share, solving it for exit liquidity, the Fed raising rates on Hodge conjecture fears), and a prediction-market screenshot showed bets on the hypothesis being solved at 98%. When norvid said he did not understand whether the fall was caused by the result, a 45-follower account explained gently that it was probably broad market movement, and norvid agreed. The show can assert nothing about whether the proof (or the human proof mentioned here) is correct; on 20 November it was a claim being checked, and these posts are people reacting to the claim.",
+ "posts": [
+  {
+   "uri": "at://did:plc:4i77tdu3riswwmtw6j67ufrj/app.bsky.feed.post/3n2qt3ngb5k2w",
+   "url": "https://bsky.app/profile/birdsnfrogs.bsky.social/post/3n2qt3ngb5k2w",
+   "author": {
+    "did": "did:plc:4i77tdu3riswwmtw6j67ufrj",
+    "handle": "birdsnfrogs.bsky.social",
+    "displayName": "nestor guillen",
+    "followers": 459
+   },
+   "time": "2026-11-20T14:43:08.198Z",
+   "text": "Levent Alpöge with an announcement this morning:\n\n\"I believe I have, working with Claude, discovered a proof of the Riemann Hypothesis.\"\n\nalpo.ge/remark.pdf",
+   "counts": {
+    "likes": 113,
+    "reposts": 33,
+    "replies": 5,
+    "quotes": 29
+   },
+   "why": "the first post of the note in the window, 14:43 UTC, by a non-member mathematician-adjacent account",
+   "links": [
+    {
+     "url": "https://alpo.ge/remark.pdf",
+     "domain": "alpo.ge",
+     "title": null
+    }
+   ]
+  },
+  {
+   "uri": "at://did:plc:4i77tdu3riswwmtw6j67ufrj/app.bsky.feed.post/3n2qt46xtu22w",
+   "url": "https://bsky.app/profile/birdsnfrogs.bsky.social/post/3n2qt46xtu22w",
+   "author": {
+    "did": "did:plc:4i77tdu3riswwmtw6j67ufrj",
+    "handle": "birdsnfrogs.bsky.social",
+    "displayName": "nestor guillen",
+    "followers": 459
+   },
+   "time": "2026-11-20T14:43:26.601Z",
+   "text": "He is still working through understanding the proof  -- my experience working with LLMs (a lot of time studying local smoothing) leads me to expect this proof is likely correct.\n\nMy thoughts about the significance of this remain the same as in the summer:\n\nbirdsnfrogs.github.io/2026/09/12/F...",
+   "counts": {
+    "likes": 33,
+    "reposts": 2,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "his own reply: expects the proof is likely correct, from his experience with LLMs",
+   "replyTo": "at://did:plc:4i77tdu3riswwmtw6j67ufrj/app.bsky.feed.post/3n2qt3ngb5k2w",
+   "links": [
+    {
+     "url": "https://birdsnfrogs.github.io/2026/09/12/Felix_qui_potuit_rerum_cognoscere_causas.html",
+     "domain": "birdsnfrogs.github.io",
+     "title": "Happy, those able to know the causes of things"
+    }
+   ]
+  },
+  {
+   "uri": "at://did:plc:4asamrnnw6rzfq5sjzvmwgpe/app.bsky.feed.post/3n2qtu45bzs2o",
+   "url": "https://bsky.app/profile/sichulu.bsky.social/post/3n2qtu45bzs2o",
+   "author": {
+    "did": "did:plc:4asamrnnw6rzfq5sjzvmwgpe",
+    "handle": "sichulu.bsky.social",
+    "displayName": "Sichu Lu",
+    "followers": 1276,
+    "member": true
+   },
+   "time": "2026-11-20T14:56:48.939Z",
+   "text": "alpo.ge/remark.pdf",
+   "counts": {
+    "likes": 45,
+    "reposts": 6,
+    "replies": 1,
+    "quotes": 4
+   },
+   "why": "a member posts only the note's address with two page images (Claude's timeline of the proof's steps, ending '20. 11/16/26: GRH.')",
+   "links": [
+    {
+     "url": "https://alpo.ge/remark.pdf",
+     "domain": "alpo.ge",
+     "title": null
+    }
+   ],
+   "media": {
+    "images": true,
+    "alts": [],
+    "video": false
+   }
+  },
+  {
+   "uri": "at://did:plc:oqoksnyukzbase3uttllntwk/app.bsky.feed.post/3n2qunymw422e",
+   "url": "https://bsky.app/profile/mrcheeze.github.io/post/3n2qunymw422e",
+   "author": {
+    "did": "did:plc:oqoksnyukzbase3uttllntwk",
+    "handle": "mrcheeze.github.io",
+    "displayName": "MrCheeze",
+    "followers": 1812,
+    "member": true
+   },
+   "time": "2026-11-20T15:11:17.668Z",
+   "text": "I hope we never stop doing the bit where the larger the finding, the more mundane you make the title",
+   "counts": {
+    "likes": 49,
+    "reposts": 3,
+    "replies": 2,
+    "quotes": 0
+   },
+   "why": "quotes it: the bit where the larger the finding, the more mundane the title",
+   "quoted": {
+    "uri": "at://did:plc:4asamrnnw6rzfq5sjzvmwgpe/app.bsky.feed.post/3n2qtu45bzs2o"
+   }
+  },
+  {
+   "uri": "at://did:plc:o72ypk5c474zqklkukaphuy3/app.bsky.feed.post/3n2qu66pxa22a",
+   "url": "https://bsky.app/profile/zachweinersmith.bsky.social/post/3n2qu66pxa22a",
+   "author": {
+    "did": "did:plc:o72ypk5c474zqklkukaphuy3",
+    "handle": "zachweinersmith.bsky.social",
+    "displayName": "Zach Weinersmith",
+    "followers": 67327,
+    "member": true
+   },
+   "time": "2026-11-20T15:02:27.192Z",
+   "text": "It is time to freak out www.scientificamerican.com/article/anth...",
+   "counts": {
+    "likes": 629,
+    "reposts": 172,
+    "replies": 72,
+    "quotes": 131
+   },
+   "why": "zachweinersmith, 15:02, 'It is time to freak out' with the Scientific American link; 629 likes, 131 quotes; the largest thread of the day hangs off it",
+   "links": [
+    {
+     "url": "https://scientificamerican.com/article/anthropic-mathematician-claims-to-prove-riemann-hypothesis-most-famous-problem-in-all-of-math",
+     "domain": "scientificamerican.com",
+     "title": "Anthropic mathematician claims to prove Riemann hypothesis, most famous problem in all of math"
+    }
+   ]
+  },
+  {
+   "uri": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2qvzbb7dk2z",
+   "url": "https://bsky.app/profile/davidcrespo.bsky.social/post/3n2qvzbb7dk2z",
+   "author": {
+    "did": "did:plc:ctphcgyhnllfluywokibtrgb",
+    "handle": "davidcrespo.bsky.social",
+    "displayName": "conputer dipshit",
+    "followers": 5732,
+    "member": true
+   },
+   "time": "2026-11-20T15:35:29.565Z",
+   "text": "isn't it beautiful that we now live in a world where we can say the market values the capability to solve the Riemann Hypothesis at negative 80 billion dollars",
+   "counts": {
+    "likes": 889,
+    "reposts": 144,
+    "replies": 23,
+    "quotes": 28
+   },
+   "why": "the chart post: Anthropic share price screenshot and the minus 80 billion line; 889 likes",
+   "media": {
+    "images": true,
+    "alts": [
+     "A dark-mode stock quote and 1-day intraday chart for Anthropic, PBC (ANT). The price is 86.82, down 10.35 (-10.65%) as of 10:35 AM EST. A banner notes: \"New Listing: ANT is newly listed on Nasdaq effective Nov. 19, 2026.\" The red line chart shows the stock trading below its 97.17 reference line, dipping below 85.00 around 8:30 AM, briefly rebounding past 92.00 near 10:00 AM, and falling back to 86.82."
+    ],
+    "video": false
+   }
+  },
+  {
+   "uri": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2qy6cvnb22p",
+   "url": "https://bsky.app/profile/davidcrespo.bsky.social/post/3n2qy6cvnb22p",
+   "author": {
+    "did": "did:plc:ctphcgyhnllfluywokibtrgb",
+    "handle": "davidcrespo.bsky.social",
+    "displayName": "conputer dipshit",
+    "followers": 5732,
+    "member": true
+   },
+   "time": "2026-11-20T16:14:06.540Z",
+   "text": "of course the traders need time to digest the proof. it's 240MB gzipped",
+   "counts": {
+    "likes": 185,
+    "reposts": 4,
+    "replies": 2,
+    "quotes": 1
+   },
+   "why": "his follow-up: traders need time to digest the proof, it's 240MB gzipped (with a zoomed chart)",
+   "replyTo": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2qvzbb7dk2z",
+   "media": {
+    "images": true,
+    "alts": [
+     "more recent zoom in of the anthropic chart. A dark-mode intraday stock chart spanning from before 9:00 AM to just after 11:00 AM. A red line tracks the price, dipping sharply before 9:00 AM, spiking well above a horizontal dashed green baseline around 10:00 AM, and then dropping below it before recovering to end right on the dashed line at a red dot. The area above the line is shaded dark red, with a dotted pattern in the earlier section and a few thin white vertical volume bars along the bottom."
+    ],
+    "video": false
+   }
+  },
+  {
+   "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2qybgu3ts2q",
+   "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2qybgu3ts2q",
+   "author": {
+    "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+    "handle": "norvid-studies.bsky.social",
+    "displayName": "norvid_studies",
+    "followers": 2777,
+    "member": true,
+    "featuredPrevious": "spoke",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T16:15:51.347Z",
+   "text": "this is how i learned the riemann news lol",
+   "counts": {
+    "likes": 215,
+    "reposts": 9,
+    "replies": 12,
+    "quotes": 1
+   },
+   "why": "norvid quotes the chart: this is how he learned the riemann news; 215 likes",
+   "quoted": {
+    "uri": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2qvzbb7dk2z"
+   }
+  },
+  {
+   "uri": "at://did:plc:6tug5iys7tltqdu454u3kond/app.bsky.feed.post/3n2qylpo6us24",
+   "url": "https://bsky.app/profile/1v.lc/post/3n2qylpo6us24",
+   "author": {
+    "did": "did:plc:6tug5iys7tltqdu454u3kond",
+    "handle": "1v.lc",
+    "displayName": "aeveion",
+    "followers": 703,
+    "member": true
+   },
+   "time": "2026-11-20T16:21:36.133Z",
+   "text": "this is how i found out",
+   "counts": {
+    "likes": 5,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "1v.lc quotes the chart: same",
+   "quoted": {
+    "uri": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2qvzbb7dk2z"
+   }
+  },
+  {
+   "uri": "at://did:plc:sfmur4r4wzriaupbgmz7sshy/app.bsky.feed.post/3n2qyss63ikfr",
+   "url": "https://bsky.app/profile/joshuashew.bsky.social/post/3n2qyss63ikfr",
+   "author": {
+    "did": "did:plc:sfmur4r4wzriaupbgmz7sshy",
+    "handle": "joshuashew.bsky.social",
+    "displayName": "Joshua Shew",
+    "followers": 475,
+    "member": true
+   },
+   "time": "2026-11-20T16:25:33.633Z",
+   "text": "Likewise lol",
+   "counts": {
+    "likes": 7,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "joshuashew replies to norvid: likewise",
+   "replyTo": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2qybgu3ts2q"
+  },
+  {
+   "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2r267ph3s2v",
+   "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2r267ph3s2v",
+   "author": {
+    "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+    "handle": "norvid-studies.bsky.social",
+    "displayName": "norvid_studies",
+    "followers": 2777,
+    "member": true,
+    "featuredPrevious": "spoke",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T16:49:50.676Z",
+   "text": "hopefully at least one person learned the riemann news from this tweet, so the cycle continues...",
+   "counts": {
+    "likes": 11,
+    "reposts": 0,
+    "replies": 4,
+    "quotes": 2
+   },
+   "why": "norvid quotes himself hoping someone learns it from his post, so the cycle continues",
+   "quoted": {
+    "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2qybgu3ts2q"
+   }
+  },
+  {
+   "uri": "at://did:plc:y5qiqqtzjmlwggzuttldivxq/app.bsky.feed.post/3n2r3huvpi22d",
+   "url": "https://bsky.app/profile/alexgude.com/post/3n2r3huvpi22d",
+   "author": {
+    "did": "did:plc:y5qiqqtzjmlwggzuttldivxq",
+    "handle": "alexgude.com",
+    "displayName": "Alex Gude",
+    "followers": 3086
+   },
+   "time": "2026-11-20T17:13:08.632Z",
+   "text": "Or perhaps even more meta, I learned it from: bsky.app/profile/norv...",
+   "counts": {
+    "likes": 2,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "alexgude: he learned it from norvid's post",
+   "replyTo": "at://did:plc:y5qiqqtzjmlwggzuttldivxq/app.bsky.feed.post/3n2r3gkje5s2d",
+   "quoted": {
+    "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2r267ph3s2v"
+   }
+  },
+  {
+   "uri": "at://did:plc:pjlhgjhb34k4zufrtbh2jyms/app.bsky.feed.post/3n2r7cmbsak2n",
+   "url": "https://bsky.app/profile/croissanthology.com/post/3n2r7cmbsak2n",
+   "author": {
+    "did": "did:plc:pjlhgjhb34k4zufrtbh2jyms",
+    "handle": "croissanthology.com",
+    "displayName": "croisshauntology",
+    "followers": 751,
+    "member": true
+   },
+   "time": "2026-11-20T18:21:46.785Z",
+   "text": "Holy fuck what this is where I'M learning",
+   "counts": {
+    "likes": 6,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 1
+   },
+   "why": "croissanthology replies to norvid: this is where he is learning it",
+   "replyTo": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2qybgu3ts2q"
+  },
+  {
+   "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2r7rqtjtk2b",
+   "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2r7rqtjtk2b",
+   "author": {
+    "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+    "handle": "norvid-studies.bsky.social",
+    "displayName": "norvid_studies",
+    "followers": 2777,
+    "member": true,
+    "featuredPrevious": "spoke",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T18:30:14.878Z",
+   "text": "rack em bsky.app/profile/croi...",
+   "counts": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "norvid, 'rack em', quoting croissanthology: the count goes on",
+   "replyTo": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2r267ph3s2v",
+   "quoted": {
+    "uri": "at://did:plc:pjlhgjhb34k4zufrtbh2jyms/app.bsky.feed.post/3n2r7cmbsak2n"
+   }
+  },
+  {
+   "uri": "at://did:plc:kbk6trqdgqkxf5d72j2wwuwt/app.bsky.feed.post/3n2qvo4uqxc2m",
+   "url": "https://bsky.app/profile/robmurrish.bsky.social/post/3n2qvo4uqxc2m",
+   "author": {
+    "did": "did:plc:kbk6trqdgqkxf5d72j2wwuwt",
+    "handle": "robmurrish.bsky.social",
+    "displayName": null,
+    "followers": 139,
+    "small": true
+   },
+   "time": "2026-11-20T15:29:15.851Z",
+   "text": "The markets like it",
+   "counts": {
+    "likes": 21,
+    "reposts": 0,
+    "replies": 4,
+    "quotes": 0
+   },
+   "why": "a small account replies to zachweinersmith 'The markets like it' with a prediction-market screenshot: RH solved before December 2026 at 98%",
+   "replyTo": "at://did:plc:o72ypk5c474zqklkukaphuy3/app.bsky.feed.post/3n2qu66pxa22a",
+   "media": {
+    "images": true,
+    "alts": [],
+    "video": false
+   }
+  },
+  {
+   "uri": "at://did:plc:h25avmes6g7fgcddc3xj7qmg/app.bsky.feed.post/3n2r4vqpsh22m",
+   "url": "https://bsky.app/profile/moultano.bsky.social/post/3n2r4vqpsh22m",
+   "author": {
+    "did": "did:plc:h25avmes6g7fgcddc3xj7qmg",
+    "handle": "moultano.bsky.social",
+    "displayName": "Ryan Moulton",
+    "followers": 9126,
+    "member": true
+   },
+   "time": "2026-11-20T17:38:47.748Z",
+   "text": "The market anticipates a sharp loss of revenue from all the mathematicians who had been working on the Reimann hypothesis.",
+   "counts": {
+    "likes": 71,
+    "reposts": 1,
+    "replies": 3,
+    "quotes": 0
+   },
+   "why": "moultano quotes the chart: the market anticipates lost revenue from mathematicians who worked on the hypothesis",
+   "quoted": {
+    "uri": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2qvzbb7dk2z"
+   }
+  },
+  {
+   "uri": "at://did:plc:vw4e7blkwzdokanwp24k3igr/app.bsky.feed.post/3n2r4auppc22r",
+   "url": "https://bsky.app/profile/huwupy.kawaii.social/post/3n2r4auppc22r",
+   "author": {
+    "did": "did:plc:vw4e7blkwzdokanwp24k3igr",
+    "handle": "huwupy.kawaii.social",
+    "displayName": "🍁 thankful frood 🦃",
+    "followers": 7191,
+    "member": true
+   },
+   "time": "2026-11-20T17:27:07.295Z",
+   "text": "wow the stock market was really attached to the riemann hypothesis being unsolved huh",
+   "counts": {
+    "likes": 21,
+    "reposts": 1,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "huwupy: the stock market was really attached to the hypothesis being unsolved"
+  },
+  {
+   "uri": "at://did:plc:v5mnhg4um4stba2yhsjdw7sw/app.bsky.feed.post/3n2r2w4smz226",
+   "url": "https://bsky.app/profile/scanstone.bsky.social/post/3n2r2w4smz226",
+   "author": {
+    "did": "did:plc:v5mnhg4um4stba2yhsjdw7sw",
+    "handle": "scanstone.bsky.social",
+    "displayName": "scanstone",
+    "followers": 275,
+    "member": true,
+    "small": true
+   },
+   "time": "2026-11-20T17:03:12.935Z",
+   "text": "okay Levent, you've convinced me\n\ni'll buy a second share",
+   "counts": {
+    "likes": 4,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "small member account: 'okay Levent, you've convinced me, i'll buy a second share'"
+  },
+  {
+   "uri": "at://did:plc:gjqw6pjl2wvndjlmatxpenkz/app.bsky.feed.post/3n2r35ifrws2h",
+   "url": "https://bsky.app/profile/funferall.bsky.social/post/3n2r35ifrws2h",
+   "author": {
+    "did": "did:plc:gjqw6pjl2wvndjlmatxpenkz",
+    "handle": "funferall.bsky.social",
+    "displayName": "funferall",
+    "followers": 2211,
+    "member": true
+   },
+   "time": "2026-11-20T17:07:19.982Z",
+   "text": "solving RH for the exit liquidity",
+   "counts": {
+    "likes": 33,
+    "reposts": 1,
+    "replies": 2,
+    "quotes": 0
+   },
+   "why": "funferall: solving RH for the exit liquidity"
+  },
+  {
+   "uri": "at://did:plc:2ygbb7aag64ase3swmqerk3h/app.bsky.feed.post/3n2r67chwg22r",
+   "url": "https://bsky.app/profile/khakhalin.bsky.social/post/3n2r67chwg22r",
+   "author": {
+    "did": "did:plc:2ygbb7aag64ase3swmqerk3h",
+    "handle": "khakhalin.bsky.social",
+    "displayName": "Arseny Khakhalin",
+    "followers": 1861
+   },
+   "time": "2026-11-20T18:02:02.092Z",
+   "text": "... doesn't seem to be working as the market is one third antis one third doomers and both are upset",
+   "counts": {
+    "likes": 2,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "reply: it isn't working, the market is a third antis and a third doomers",
+   "replyTo": "at://did:plc:gjqw6pjl2wvndjlmatxpenkz/app.bsky.feed.post/3n2r35ifrws2h"
+  },
+  {
+   "uri": "at://did:plc:gjqw6pjl2wvndjlmatxpenkz/app.bsky.feed.post/3n2r7wudxdk2z",
+   "url": "https://bsky.app/profile/funferall.bsky.social/post/3n2r7wudxdk2z",
+   "author": {
+    "did": "did:plc:gjqw6pjl2wvndjlmatxpenkz",
+    "handle": "funferall.bsky.social",
+    "displayName": "funferall",
+    "followers": 2211,
+    "member": true
+   },
+   "time": "2026-11-20T18:33:06.333Z",
+   "text": "it was worth a try",
+   "counts": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "funferall: it was worth a try",
+   "replyTo": "at://did:plc:2ygbb7aag64ase3swmqerk3h/app.bsky.feed.post/3n2r67chwg22r"
+  },
+  {
+   "uri": "at://did:plc:545g5dlrsaccyfkjcdngtp5a/app.bsky.feed.post/3n2r4wbtevs2e",
+   "url": "https://bsky.app/profile/leftistwonk.bsky.social/post/3n2r4wbtevs2e",
+   "author": {
+    "did": "did:plc:545g5dlrsaccyfkjcdngtp5a",
+    "handle": "leftistwonk.bsky.social",
+    "displayName": "W.E.D.em Boyz",
+    "followers": 9747
+   },
+   "time": "2026-11-20T17:39:05.687Z",
+   "text": "$1 trillion wiped from US stocks in 60 minutes",
+   "counts": {
+    "likes": 2513,
+    "reposts": 578,
+    "replies": 168,
+    "quotes": 767
+   },
+   "why": "context only: the non-member post kuppermann quotes, '$1 trillion wiped from US stocks in 60 minutes' (2,513 likes)",
+   "media": {
+    "images": true,
+    "alts": [],
+    "video": false
+   }
+  },
+  {
+   "uri": "at://did:plc:ssnplyo7c7itlco3yifho5ii/app.bsky.feed.post/3n2r7u5lojc2y",
+   "url": "https://bsky.app/profile/kuppermann.xyz/post/3n2r7u5lojc2y",
+   "author": {
+    "did": "did:plc:ssnplyo7c7itlco3yifho5ii",
+    "handle": "kuppermann.xyz",
+    "displayName": "jay",
+    "followers": 1243
+   },
+   "time": "2026-11-20T18:31:35.361Z",
+   "text": "quick someone unsolve the riemann hypothesis",
+   "counts": {
+    "likes": 266,
+    "reposts": 26,
+    "replies": 6,
+    "quotes": 0
+   },
+   "why": "kuppermann quotes it: quick, someone unsolve the riemann hypothesis; 266 likes",
+   "quoted": {
+    "uri": "at://did:plc:545g5dlrsaccyfkjcdngtp5a/app.bsky.feed.post/3n2r4wbtevs2e"
+   }
+  },
+  {
+   "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ra5ljyu22n",
+   "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2ra5ljyu22n",
+   "author": {
+    "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+    "handle": "norvid-studies.bsky.social",
+    "displayName": "norvid_studies",
+    "followers": 2777,
+    "member": true,
+    "featuredPrevious": "spoke",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T18:36:51.977Z",
+   "text": "this is kind of confusing to me as 'caused' by the riemann result. plausibly just unrelated? but I don't understand the stock market",
+   "counts": {
+    "likes": 41,
+    "reposts": 1,
+    "replies": 10,
+    "quotes": 0
+   },
+   "why": "norvid quotes the same post: confused whether it's caused by the result; doesn't understand the stock market",
+   "quoted": {
+    "uri": "at://did:plc:545g5dlrsaccyfkjcdngtp5a/app.bsky.feed.post/3n2r5ro7e522e"
+   }
+  },
+  {
+   "uri": "at://did:plc:67pspyujjjy6zrzdlbbd4pjy/app.bsky.feed.post/3n2raopv4o226",
+   "url": "https://bsky.app/profile/softmacs.bsky.social/post/3n2raopv4o226",
+   "author": {
+    "did": "did:plc:67pspyujjjy6zrzdlbbd4pjy",
+    "handle": "softmacs.bsky.social",
+    "displayName": "softmacs",
+    "followers": 45,
+    "small": true
+   },
+   "time": "2026-11-20T18:46:26.960Z",
+   "text": "Probably mostly unrelated. The rest of tech stocks were down yesterday afaik and I doubt that most investors see the Riemann announcement as meaningfully different than all of the other math announcements earlier this year so it's probably isn't much of a signal to them.",
+   "counts": {
+    "likes": 5,
+    "reposts": 0,
+    "replies": 2,
+    "quotes": 0
+   },
+   "why": "a 45-follower account answers: probably mostly unrelated, tech was down the day before",
+   "replyTo": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ra5ljyu22n"
+  },
+  {
+   "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2razdrepc2l",
+   "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2razdrepc2l",
+   "author": {
+    "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+    "handle": "norvid-studies.bsky.social",
+    "displayName": "norvid_studies",
+    "followers": 2777,
+    "member": true,
+    "featuredPrevious": "spoke",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T18:52:23.354Z",
+   "text": "yeah probably just broader market sloshing",
+   "counts": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "norvid: yeah probably just broader market sloshing",
+   "replyTo": "at://did:plc:67pspyujjjy6zrzdlbbd4pjy/app.bsky.feed.post/3n2raopv4o226"
+  },
+  {
+   "uri": "at://did:plc:i33xld5yxmhcldu4hkkjo3ci/app.bsky.feed.post/3n2rge3fwac27",
+   "url": "https://bsky.app/profile/lucresnooker.bsky.social/post/3n2rge3fwac27",
+   "author": {
+    "did": "did:plc:i33xld5yxmhcldu4hkkjo3ci",
+    "handle": "lucresnooker.bsky.social",
+    "displayName": "Lucre Snooker",
+    "followers": 498,
+    "member": true
+   },
+   "time": "2026-11-20T20:27:52.397Z",
+   "text": "i will say that given concurrent downward moves in crypto and gold and spike in volatility and decline in treasury yields, there is a whiff of monetary/NGDP shock, more so than sector-specific phenomenon, though then you have to believe that the fast-growing stuff is more leveraged to NGDP or sthg",
+   "counts": {
+    "likes": 2,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "lucresnooker's serious reading of the market (the parent of the next post)",
+   "replyTo": "at://did:plc:i33xld5yxmhcldu4hkkjo3ci/app.bsky.feed.post/3n2rajxxbks2y"
+  },
+  {
+   "uri": "at://did:plc:i33xld5yxmhcldu4hkkjo3ci/app.bsky.feed.post/3n2rgfs2vz227",
+   "url": "https://bsky.app/profile/lucresnooker.bsky.social/post/3n2rgfs2vz227",
+   "author": {
+    "did": "did:plc:i33xld5yxmhcldu4hkkjo3ci",
+    "handle": "lucresnooker.bsky.social",
+    "displayName": "Lucre Snooker",
+    "followers": 498,
+    "member": true
+   },
+   "time": "2026-11-20T20:28:49.709Z",
+   "text": "fed hikes rates on [checks notes] \"hodge conjecture\" fears",
+   "counts": {
+    "likes": 2,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "lucresnooker: fed hikes rates on [checks notes] 'hodge conjecture' fears",
+   "replyTo": "at://did:plc:i33xld5yxmhcldu4hkkjo3ci/app.bsky.feed.post/3n2rge3fwac27"
+  },
+  {
+   "uri": "at://did:plc:27ivzcszryxp6mehutodmcxo/app.bsky.feed.post/3n2rgmfhoo22l",
+   "url": "https://bsky.app/profile/asa.engineer/post/3n2rgmfhoo22l",
+   "author": {
+    "did": "did:plc:27ivzcszryxp6mehutodmcxo",
+    "handle": "asa.engineer",
+    "displayName": "Asa ⭔",
+    "followers": 2338,
+    "member": true
+   },
+   "time": "2026-11-20T20:32:31.376Z",
+   "text": "the Miller-Rabin test is provably deterministic in polynomial time. I guess today we find out which sectors of the economy were banking on the conditional there",
+   "counts": {
+    "likes": 3,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "asa.engineer replies to norvid: Miller-Rabin becomes deterministic; today we learn which sectors banked on the conditional",
+   "replyTo": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ra5ljyu22n"
+  }
+ ],
+ "people": [
+  {
+   "handle": "birdsnfrogs.bsky.social",
+   "note": "459 followers, not a member, never featured. First to post the note (113 likes, 29 quotes). Works on local smoothing by his own account; the third post in his thread names a colleague and a Mastodon link (outside source, not used)."
+  },
+  {
+   "handle": "sichulu.bsky.social",
+   "note": "1,276 followers, member. Posted the two page images with no text."
+  },
+  {
+   "handle": "mrcheeze.github.io",
+   "note": "1,812 followers, member; on four of these cards."
+  },
+  {
+   "handle": "zachweinersmith.bsky.social",
+   "note": "67,327 followers, member, never featured: a very large account. Opened the biggest thread (150 posts). Several of his replies in it carry consent marks ('replies to an excluded account') and one is marked health; those are not listed."
+  },
+  {
+   "handle": "davidcrespo.bsky.social",
+   "note": "5,732 followers, member. The chart post. In the same skeleton he argues at length with several small accounts about AI revenue and valuation; that argument is left out (R7). On four cards."
+  },
+  {
+   "handle": "norvid-studies.bsky.social",
+   "note": "2,777 followers, member, featured in the previous episode (featuredPrevious). The 'how i learned' post and its follow-ups. On five cards."
+  },
+  {
+   "handle": "1v.lc / joshuashew.bsky.social / alexgude.com / croissanthology.com",
+   "note": "703, 475 (member), 3,086 (not a member), 751 (member) followers: the people who said they learned the news this way."
+  },
+  {
+   "handle": "kbk6trqdgqkxf5d72j2wwuwt (robmurrish.bsky.social)",
+   "note": "139 followers, small, not a member. Posted the prediction-market screenshot."
+  },
+  {
+   "handle": "moultano.bsky.social / huwupy.kawaii.social",
+   "note": "9,126 and 7,191 followers, members."
+  },
+  {
+   "handle": "scanstone.bsky.social",
+   "note": "275 followers, member, small. Addresses the mathematician by first name; also on the checking card."
+  },
+  {
+   "handle": "funferall.bsky.social",
+   "note": "2,211 followers, member. khakhalin.bsky.social (1,861, not a member) replied."
+  },
+  {
+   "handle": "leftistwonk.bsky.social",
+   "note": "9,747 followers, not a member; a viral market post (2,513 likes, 767 quotes). Context only: R7 says not to use one-off viral posts by people outside the cluster."
+  },
+  {
+   "handle": "kuppermann.xyz",
+   "note": "1,243 followers, not a member. 266 likes."
+  },
+  {
+   "handle": "softmacs.bsky.social",
+   "note": "45 followers, small, not a member. Appears only as the kind explainer (R7 hero)."
+  },
+  {
+   "handle": "lucresnooker.bsky.social / asa.engineer",
+   "note": "498 and 2,338 followers, members."
+  }
+ ],
+ "couldBeShown": "The chart (davidcrespo's own alt text): a dark-mode quote and one-day intraday chart for Anthropic, PBC (ANT), 86.82, down 10.35 (-10.65%) at 10:35 AM EST. sichulu's two images are pages of the note: a numbered timeline of dated steps in October and November 2026 with dense formulas and footnotes, the last line '20. 11/16/26: GRH.'; it is the mathematician's document, not a community member's work. The prediction-market screenshot (no alt text, fetched): three markets, 'Will ANOTHER millennium prize problem be solved in 2026?' 96%, 'Will the Riemann Hypothesis be solved before December 2026' 98% (33 traders), 'Will a Millennium Prize Problem be solved in November 2026?' 95%. A count that could be shown: the people who said in public they learned of a proof of the Riemann hypothesis from a stock chart.",
+ "notUnderstood": [
+  "Why the share price fell that day: the posts themselves disagree, and several say it was the wider market. The show cannot claim the announcement moved the price.",
+  "The window ends at 00:24 UTC on 21 November, so anything later in the story is not in the data.",
+  "funferall's 'exit liquidity' and khakhalin's reply assume a reading of why the announcement was made; the show should not adopt it as fact."
+ ],
+ "sensitive": [
+  "Whole card: posts about a company's share price. R6 lets the show aim at markets; it may not imply the mathematician or anyone named acted for money, and the show is itself made with Claude, Anthropic's model, which a viewer may notice.",
+  "davidcrespo.bsky.social: the debate replies under the chart (cook1ecrumb5, batmansrobyn, papermartin, vga.mu.social) are an argument and are not listed (R7); batmansrobyn's post is marked minors and may not be used.",
+  "techyben.bsky.social, mokkenstorm.dev, dave.9000ish.uk: posts about their own money, IPO shares or stock losses are left out (R1, R10 money).",
+  "at://did:plc:545g5dlrsaccyfkjcdngtp5a/app.bsky.feed.post/3n2r4wbtevs2e: viral non-member post, context only (R7).",
+  "eamonnmr.bsky.social (in the zachweinersmith thread) suggests the announcement was rushed to make money: left out (R5).",
+  "scanstone.bsky.social's 'okay Levent': names the mathematician by first name in a joke about buying shares; run the repost test before use (R6)."
+ ],
+ "numbers": {
+  "chart post likes": "889 likes, 144 reposts, 28 quotes (skeleton counts at scrape)",
+  "price move shown in the chart": "-10.65% at 10:35 AM EST, from davidcrespo's alt text; a third-party figure, not the show's",
+  "people who said they learned the news from the chart or from norvid's post about it": "4 (1v.lc, joshuashew, alexgude, croissanthology), counted by reading s-c5e7a71341",
+  "time from first post of the note to the chart": "52 minutes (14:43 to 15:35 UTC)",
+  "prediction market on RH before December 2026": "98%, 33 traders, from the robmurrish screenshot"
+ }
+}

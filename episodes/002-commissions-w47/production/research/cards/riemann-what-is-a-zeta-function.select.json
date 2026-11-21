@@ -1,0 +1,178 @@
+{
+  "id": "riemann-what-is-a-zeta-function",
+  "title": "Explaining it to each other",
+  "happened": "A lot of the day was people asking what the hypothesis is and others answering. bisks asked 'ok I'll bite, what's a zeta function'; one reply pointed at a function literally named z(), another gave the textbook definition, and shimmermathlabs summoned zetaof1, an account named after the zeta function at 1, saying its whole account had been leading up to this day. zetaof1 replied that the zeta function is too intricate to explain on Bluesky, and that zeta at 1 diverges to infinity, which was its way of saying 'I contain multitudes'. shimmermathlabs then wrote, inside one post, the classic proof that zeta at 1 diverges (grouping the terms in blocks that each add at least a half), noting that this proof does fit in the margin, and dlowd said he loved it and would remember it. Elsewhere norvid asked for a plain explanation of how proving it unlocks anything; replies said it mostly moves results from conditionally to unconditionally true, and dynomight told him his instinct was correct. arlindohall asked how much new panic to feel and, after shibbi's answer, settled on '35-40 dB panic'. Others said what it was like not to know: robotranny's parents asked 'who posted a what of the what', catblanketflower realised late that RH meant Riemann hypothesis, and weiyen resurfaced a September video of his own titled 'make a video explaining the riemann hypothesis'. The show can assert nothing about whether the proof (or the human proof mentioned here) is correct; on 20 November it was a claim being checked, and these posts are people reacting to the claim.",
+  "posts": [
+    {
+      "uri": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n2qz6ywwrc2b",
+      "why": "bisks (721, member): 'ok I'll bite, what's a zeta function'"
+    },
+    {
+      "uri": "at://did:plc:6ll5xi67lyuyovt6fiv4fnjo/app.bsky.feed.post/3n2qzbdwr2o2j",
+      "why": "geesawra: 'this one: z()'"
+    },
+    {
+      "uri": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n2qzcnyi6s2b",
+      "why": "bisks: 'then bisks dot net was enlightened'"
+    },
+    {
+      "uri": "at://did:plc:vt464ohreg6sglmnb4cuctmr/app.bsky.feed.post/3n2qzfesbtk2j",
+      "why": "eikopf: the definition (reciprocal sum of powers, extended for re(s) < 1)"
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r4vvxhok24",
+      "why": "shimmermathlabs calls @zetaof1: your whole account was leading up to this day"
+    },
+    {
+      "uri": "at://did:plc:dhwhxgjyh4h2dd5vjgji67mo/app.bsky.feed.post/3n2r54p53es2s",
+      "why": "zetaof1: too intricate to explain on Bluesky; zeta at 1 diverges, its way of saying 'I contain multitudes'"
+    },
+    {
+      "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r5ogdxis24",
+      "why": "shimmermathlabs writes the proof that zeta(1) diverges in one post; 'it does actually' fit"
+    },
+    {
+      "uri": "at://did:plc:svcjnfakqcoxlk6zityl23js/app.bsky.feed.post/3n2rfsuo6bk2j",
+      "why": "dlowd: loves that proof, will remember it"
+    },
+    {
+      "uri": "at://did:plc:allu5vs3gnm2wm7jzf4rad3r/app.bsky.feed.post/3n2qtyqyczk2b",
+      "why": "context: eriskii's 'Cool' (14:59), which dulanyw quotes"
+    },
+    {
+      "uri": "at://did:plc:4dxjapf7zxwbld46q2l2jibu/app.bsky.feed.post/3n2qv2646d22p",
+      "why": "dulanyw quotes it with a line on how a proof would unlock truths contingent on the conjecture"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2r2g7d35c26",
+      "why": "norvid quotes that: 'feels like a dumb question' how does a proof unlock downstream things"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2r2hadwi226",
+      "why": "norvid: build both proof worlds in advance? eli5"
+    },
+    {
+      "uri": "at://did:plc:sa2yiupgrjk625bb6fmv23ww/app.bsky.feed.post/3n2r3fc4f5s2c",
+      "why": "rbd: people already worked assuming GRH; Miller-Rabin example"
+    },
+    {
+      "uri": "at://did:plc:sa2yiupgrjk625bb6fmv23ww/app.bsky.feed.post/3n2r3fcmwhc2c",
+      "why": "rbd: the proof is epochal but also 'just' tying off a loose end"
+    },
+    {
+      "uri": "at://did:plc:h25avmes6g7fgcddc3xj7qmg/app.bsky.feed.post/3n2r564ukgk23",
+      "why": "moultano: people build more readily on known-true results"
+    },
+    {
+      "uri": "at://did:plc:yc7dram56pswtkz6r6xy3s6m/app.bsky.feed.post/3n2rhs7vttc2l",
+      "why": "dynomight: 'Your instinct is correct.' it moves results from conditional to unconditional"
+    },
+    {
+      "uri": "at://did:plc:vhgniews7zedjvr7xgww56ky/app.bsky.feed.post/3n2qxohj7tc2d",
+      "why": "arlindohall: how much marginal new panic should he feel"
+    },
+    {
+      "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2qxt5ertk2v",
+      "why": "shibbi: Navier-Stokes felt close; Riemann was expected decades away and seems to generalise"
+    },
+    {
+      "uri": "at://did:plc:vhgniews7zedjvr7xgww56ky/app.bsky.feed.post/3n2rekcwtbk2i",
+      "why": "arlindohall: 'so… like 35-40 dB panic'"
+    },
+    {
+      "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2rem77jzk2l",
+      "why": "shibbi: notices his typos; yeah, that sounds about right"
+    },
+    {
+      "uri": "at://did:plc:lmidtahyizyejqz74zeaip67/app.bsky.feed.post/3n2r6zih5dc2h",
+      "why": "garrison: why does it take millions of lines of Lean, and how could anyone understand it"
+    },
+    {
+      "uri": "at://did:plc:jsaci272pfep77eoo5jjxfrm/app.bsky.feed.post/3n2rf2qsuds24",
+      "why": "refinement.systems: unsolved for 150 years, how hard can it be"
+    },
+    {
+      "uri": "at://did:plc:5a2icl43rtftn75x7pr7qagu/app.bsky.feed.post/3n2qxcexadb2t",
+      "why": "robotranny: told his parents; 'who posted a what of the what'; 65 likes"
+    },
+    {
+      "uri": "at://did:plc:jg6o3bgflm3q4y7jpmpvenj3/app.bsky.feed.post/3n2quxqino2s7",
+      "why": "7778777.online: they're not joking? even I know that one"
+    },
+    {
+      "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2rkyn7jtk2t",
+      "why": "catblanketflower, 21:50: 'oh RH is Riemann hypothesis'"
+    },
+    {
+      "uri": "at://did:plc:2k4dwow7fqauc2sysuzzj6qz/app.bsky.feed.post/3n2r6vldrvs2r",
+      "why": "weiyen quotes his own September video, 'make a video explaining the riemann hypothesis': resurfacing it for no particular reason"
+    },
+    {
+      "uri": "at://did:plc:plvxn2kpjuseoftweoo4xtag/app.bsky.feed.post/3n2rbffghqk2c",
+      "why": "words.bsky.social: it's not a bop, sorry, only processes information through earworms"
+    },
+    {
+      "uri": "at://did:plc:2k4dwow7fqauc2sysuzzj6qz/app.bsky.feed.post/3n2rbkoplfk2r",
+      "why": "weiyen: will do better next week, when they prove the Hodge conjecture"
+    }
+  ],
+  "people": [
+    {
+      "handle": "shimmermathlabs.com",
+      "note": "Member, featuredPrevious. Wrote a real, short proof in a post: a made thing, and the clearest 'hero' moment on any of these cards."
+    },
+    {
+      "handle": "zetaof1.bsky.social",
+      "note": "1,442 followers, not a member. Its account is named for the zeta function at 1."
+    },
+    {
+      "handle": "bisks.net",
+      "note": "721 followers, member."
+    },
+    {
+      "handle": "geesawra.industries / eikopf.com / dlowd.com",
+      "note": "790 (non-member), 2,209 (member), 4,763 (member). eikopf's next reply calls number theory 'chudcore'; not listed."
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "note": "Member, featuredPrevious."
+    },
+    {
+      "handle": "dynomight.net / rbd.bsky.social / moultano.bsky.social / dulanyw.bsky.social",
+      "note": "770 (member), 343 (non-member), 9,126 (member), 1,589 (member)."
+    },
+    {
+      "handle": "arlindohall.com",
+      "note": "687 followers, not a member."
+    },
+    {
+      "handle": "robotranny.soy",
+      "note": "Flagged bot (R13). Mentions his parents: family is R1 territory, though it is his own framing of his reaction."
+    },
+    {
+      "handle": "weiyen.net",
+      "note": "748 followers, member; display name 'yen is building stuff'. The September video is his own; not fetched (it is outside the window, and the media command only fetches digest posts)."
+    },
+    {
+      "handle": "7778777.online / catblanketflower / words.bsky.social / garrison / refinement.systems",
+      "note": "1,843 (member), 3,607 (member), 10,258 (member), 728 (member), 570 (member)."
+    }
+  ],
+  "couldBeShown": "shimmermathlabs' proof can be shown working: the harmonic series written as 1 + 1/2 + (1/3 + 1/4) + (1/5 + ... + 1/8) + ..., each block twice as long as the last and each adding at least one half, so infinitely many halves sum to infinity. It is short enough to animate block by block, and it is hers. zetaof1's handle is itself the subject (zeta of 1). arlindohall's '35-40 dB panic' is a number that could be shown on a meter. weiyen's September video exists as a quoted post with a video; its contents were not seen.",
+  "notUnderstood": [
+    "tvanl.bsky.social's 'Does this help', quoting his own 'One last time' post, in the zeta thread: what it shows is not in the data; not listed.",
+    "What weiyen's September video shows (not fetched).",
+    "Whether 'this one: z()' points at a real function in some codebase or is a pun."
+  ],
+  "sensitive": [
+    "Whole card: the show can assert nothing about the proof. Explanations here are community members' own and are not the show's statement of the mathematics.",
+    "at://did:plc:5a2icl43rtftn75x7pr7qagu/app.bsky.feed.post/3n2qxcexadb2t: mentions the poster's parents (R1 family); bot-flagged account (R13).",
+    "pfrazee.com (309,490 followers, not a member) posted 'just about to understand' the hypothesis (230 likes): very large account outside the cluster, one-off viral (R7); not listed.",
+    "juniperbevensee.bsky.social 3n2ri2jk3nc2c: describes crying about RH, marked 'grief and disaster' (R10): not usable, and her follow-ups are left with it."
+  ],
+  "numbers": {
+    "replies to 'what's a zeta function'": "6 (skeleton reply count on bisks' post)",
+    "blocks in shimmermathlabs' proof": "block k has 2^k terms, each at least 1/2^(k+1), so each block adds at least 1/2; her own statement",
+    "panic level": "35-40 dB, arlindohall's figure"
+  }
+}

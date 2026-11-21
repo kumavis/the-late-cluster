@@ -1,0 +1,56 @@
+{
+  "round": 3,
+  "scope": "making-of-inward only, restaged against the redrafted script (103.4 s, 40 lines, 24 cues). 97 frames, at every cue and inside every move and hold, shot in two batches. No page errors and no unknown cues.",
+  "segments": {
+    "making-of-inward": {
+      "verdict": "pass",
+      "changes": [
+        {
+          "must": false,
+          "at": "typing / handle / look (72.4 to 93.8 s)",
+          "change": "Checked and passing. An empty post box opens among the lights with an empty ring, a cursor and nothing else: no name, picture or words, so nothing reads as a real account. '@' is up by 'sign' (77 s). The rest is typed a character at a time ('@lateclust' at 80 s, '@latecluster.simclust' at 82 s). From 82.9 s it is exactly @latecluster.simcluster.tv, with no full stop, and it turns mention blue with an underline at 83.5 s. It stays to the way out and is gone at 94.6 s. The caption of turn-handle reads exactly @latecluster.simcluster.tv with no full stop, and 'No spaces.' has a caption of its own. Nothing ever appears under the post: no reply, like, count or notification. The lights do not move, and nothing answers on 'look'. Nothing is pointed at the post box."
+        },
+        {
+          "must": false,
+          "at": "typing (73 to 76 s)",
+          "change": "Note, nothing required. While the camera eases in, the post box's black fill covers the top of the tract's lips and velum. It also hides the upper part of the cluster's lights for the whole turn. The box is filled, so nothing shows through and no text is touched. If it is cheap, a little more height would let the tract's top stay whole."
+        },
+        {
+          "must": false,
+          "at": "parts to throat-one (4.39 to 9.46 s)",
+          "change": "Checked and passing. CHIMERA · jamesondh · open source is small at the foot of the frame from 5 to 9.4 s, faint at 9.46 s and gone at 9.6 s. That is inside the head only, about 55 s before the lights, the post box or the handle, and it never shares a frame with any of them."
+        },
+        {
+          "must": false,
+          "at": "caption band (about 26 to 29, 44 to 45, 54 to 55 s, and the desk shots)",
+          "change": "Ruling: allowed, the same as the studio desk. In the medium shots the small Larrys' desks and the head interiors run down behind the caption box. The caption box is filled black, so no line runs through any caption letter in any frame I shot. This is set geometry passing behind the box, not text in the caption band (08-direction). Nothing to change."
+        },
+        {
+          "must": false,
+          "at": "ear (39.945 to 43 s)",
+          "change": "Checked and passing. WRITTEN kazoo and HEARD clue are up from the cue as the ear arrives, while the caption is still fading in. They are fully lit by 'kazoo' and 'clue', and stay through the line. The text is exact, and nothing crosses the labels."
+        },
+        {
+          "must": false,
+          "at": "studio (0.3 s) and desk (98.3 to 103.3 s)",
+          "change": "Checked and passing. Both desk shots are the ordinary desk shot: backdrop, guest chair at left, desk, LARRY NX plate, mug and lamp, the same framing as making-of-outward's opening. The burp (about 100.9 s) shows Larry at the desk and nothing new: no caption, no graphic. The gauge has gone out by then."
+        },
+        {
+          "must": false,
+          "at": "the gauge (whole segment)",
+          "change": "Checked and passing. The seven words are each written on the word that first says them, never before: SHOW by 1.5 s, SCENES by 12 s (not at 10.5 s), REVIEW by 23 s (not at 21.5 s), SCRIPTS by 32.7 s, the second REVIEW by 49.5 s (not at 47.5 s), POSTS by 59.5 s and COMMUNITY by 66 s (not at 64.9 s). On the way out each lights again bottom to top, and all seven are lit on 'show'. Each word is legible. The current word has its box. Note, if cheap: in camera moves a tunnel line sometimes runs past the gauge's unboxed words, for example near SHOW and SCENES at 47.5 s, and a hanging frame's edge reaches SHOW and SCENES at 98 s. Neither covers a letter long enough to matter."
+        },
+        {
+          "must": false,
+          "at": "throat-five (56.6 to 63.4 s)",
+          "change": "Checked and passing. The tunnel's posts are empty outlines with no words, names or pictures. The counter is boxed. It runs up (5,154 at 59.5 s, 16,279 at 61 s), stops on 20,825, the fact sheet's figure, and holds it to 63.2 s."
+        },
+        {
+          "must": false,
+          "at": "log-line and writer-desk",
+          "change": "Checked and passing. The report strip reads exactly \"The first kazoo looked like a submarine; I redrew it.\", lit word by word, and the submarine becomes a kazoo on 'redrew'. The door plate reads exactly \"a guard, not a wall\" on a black box, is up as a glance from 34 to 36 s and fades by 38 s. Every plate (LIPS, JAW, TONGUE, VELUM, the counter, the strip, the door plate, the ear labels, the gauge's current word) has its black box, and nothing runs through any label's letters in the frames I shot. It is one continuous shot with no cut, and each level is travelled into and back out of."
+        }
+      ]
+    }
+  }
+}

@@ -1,0 +1,137 @@
+{
+  "format": "late-cluster-sources/1",
+  "accounts": [
+    {
+      "handle": "davidcrespo.bsky.social",
+      "did": "did:plc:ctphcgyhnllfluywokibtrgb",
+      "role": "guest",
+      "cast": "davidcrespo"
+    },
+    {
+      "handle": "huwupy.kawaii.social",
+      "did": "did:plc:vw4e7blkwzdokanwp24k3igr",
+      "role": "guest",
+      "cast": "huwupy"
+    },
+    {
+      "handle": "moultano.bsky.social",
+      "did": "did:plc:h25avmes6g7fgcddc3xj7qmg",
+      "role": "guest",
+      "cast": "moultano"
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+      "role": "quoted"
+    },
+    {
+      "handle": "softmacs.bsky.social",
+      "did": "did:plc:67pspyujjjy6zrzdlbbd4pjy",
+      "role": "quoted"
+    }
+  ],
+  "posts": [
+    {
+      "uri": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2qvzbb7dk2z",
+      "author": "davidcrespo.bsky.social",
+      "displayName": "conputer dipshit",
+      "likes": 889,
+      "reposts": 144,
+      "replies": 23,
+      "use": "line",
+      "segment": "riemann-market-wrap"
+    },
+    {
+      "uri": "at://did:plc:vw4e7blkwzdokanwp24k3igr/app.bsky.feed.post/3n2r4auppc22r",
+      "author": "huwupy.kawaii.social",
+      "displayName": "🍁 thankful frood 🦃",
+      "likes": 21,
+      "reposts": 1,
+      "replies": 1,
+      "use": "line",
+      "segment": "riemann-market-wrap"
+    },
+    {
+      "uri": "at://did:plc:h25avmes6g7fgcddc3xj7qmg/app.bsky.feed.post/3n2r4vqpsh22m",
+      "author": "moultano.bsky.social",
+      "displayName": "Ryan Moulton",
+      "likes": 71,
+      "reposts": 1,
+      "replies": 3,
+      "use": "line",
+      "segment": "riemann-market-wrap"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2ra5ljyu22n",
+      "author": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "likes": 41,
+      "reposts": 1,
+      "replies": 10,
+      "use": "card",
+      "segment": "riemann-market-wrap"
+    },
+    {
+      "uri": "at://did:plc:67pspyujjjy6zrzdlbbd4pjy/app.bsky.feed.post/3n2raopv4o226",
+      "author": "softmacs.bsky.social",
+      "displayName": "softmacs",
+      "likes": 5,
+      "reposts": 0,
+      "replies": 2,
+      "use": "card",
+      "segment": "riemann-market-wrap"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2razdrepc2l",
+      "author": "norvid-studies.bsky.social",
+      "displayName": "norvid_studies",
+      "likes": 0,
+      "reposts": 0,
+      "replies": 0,
+      "use": "card",
+      "segment": "riemann-market-wrap"
+    }
+  ],
+  "links": [],
+  "lines": [
+    {
+      "segment": "riemann-market-wrap",
+      "line": "dc-chart",
+      "kind": "verbatim",
+      "post": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2qvzbb7dk2z",
+      "context": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2qvzbb7dk2z",
+      "situation": "A top-level post at 15:35 UTC (10:35 AM EST) on Friday 20 November 2026, unprompted, with davidcrespo's own screenshot of a one-day share-price chart.",
+      "setup": {
+        "line": "open",
+        "who": "larry",
+        "text": "Markets. Friday, ten thirty-five Eastern. davidcrespo posts a chart."
+      }
+    },
+    {
+      "segment": "riemann-market-wrap",
+      "line": "hu-attached",
+      "kind": "verbatim",
+      "post": "at://did:plc:vw4e7blkwzdokanwp24k3igr/app.bsky.feed.post/3n2r4auppc22r",
+      "context": "at://did:plc:vw4e7blkwzdokanwp24k3igr/app.bsky.feed.post/3n2r4auppc22r",
+      "situation": "A top-level post at 17:27 UTC (12:27 PM EST) on Friday 20 November 2026, with no quote and no reply: a remark about the stock market, unprompted, on the afternoon the chart was going round.",
+      "setup": {
+        "line": "throw-huwupy",
+        "who": "larry",
+        "text": "Twelve twenty-seven. huwupy. Unprompted."
+      }
+    },
+    {
+      "segment": "riemann-market-wrap",
+      "line": "mo-revenue",
+      "kind": "verbatim",
+      "post": "at://did:plc:h25avmes6g7fgcddc3xj7qmg/app.bsky.feed.post/3n2r4vqpsh22m",
+      "context": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2qvzbb7dk2z",
+      "contextText": "isn't it beautiful that we now live in a world where we can say the market values the capability to solve the Riemann Hypothesis at negative 80 billion dollars",
+      "setup": {
+        "line": "throw-moultano",
+        "who": "larry",
+        "text": "Twelve thirty-eight. moultano, quoting the chart."
+      }
+    }
+  ]
+}

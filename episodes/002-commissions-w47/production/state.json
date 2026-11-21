@@ -1,0 +1,10 @@
+{
+  "format": "late-cluster-commission/1",
+  "note": "A commission: scripts drafted on two subjects the owner named, through the workflow's roles and gates by hand (the pipeline tool runs whole weeks). The stage below stays open so the guard treats this folder as the episode in production.",
+  "stages": {
+    "commission": {
+      "status": "done"
+    }
+  },
+  "closed": "22 November 2026: closed. Two of its segments, making-of-inward and riemann-breaking-news, were restaged in episodes/002-2026-w47 and aired with it on 21 November 2026 (22:55 UTC). The other three drafts (making-of-outward, riemann-proof-that-fits, riemann-market-wrap) were not used. This folder is kept as the commission's working record; it is not an episode in production and no longer claims week 2026-W47."
+}

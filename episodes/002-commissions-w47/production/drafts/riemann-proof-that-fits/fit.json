@@ -1,0 +1,1786 @@
+{
+ "segment": "riemann-proof-that-fits",
+ "draft": "riemann-proof-that-fits",
+ "episode": "002-commissions-w47",
+ "takes": 4,
+ "gate": 0.6,
+ "lines": [
+  {
+   "id": "larry-ask",
+   "who": "larry",
+   "kind": "say",
+   "text": "Friday, the cluster had a question. So do I. What is a zeta function?",
+   "as": "Friday, the cluster had a question. So do I. What is a zee-tuh function?",
+   "heard": [
+    {
+     "text": "Friday, the cluster had questioned, so do I. What is the zeta function?",
+     "count": 3
+    },
+    {
+     "text": "Friday, the cluster had questioned, so do I. What is the zita function?",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 12,
+    "of": 14,
+    "min": 11
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "a",
+     "count": 8
+    },
+    {
+     "word": "zeta",
+     "count": 1
+    }
+   ],
+   "tried": [
+    {
+     "as": "Friday, the cluster had a question. So do I. What is a zee-tuh function?",
+     "score": {
+      "heard": 12,
+      "of": 14,
+      "min": 11
+     },
+     "heard": [
+      {
+       "text": "Friday, the cluster had questioned, so do I. What is the zeta function?",
+       "count": 3
+      },
+      {
+       "text": "Friday, the cluster had questioned, so do I. What is the zita function?",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "amber-call",
+   "who": "shimmermathlabs",
+   "kind": "say",
+   "text": "calling @zetaof1.bsky.social, your whole account was leading up to this day, now is your time to shine, you got this",
+   "as": "kaw-ling at-zee-tuh-of-one, your whole account was leading up to this day, now is your time to shine, you got this",
+   "heard": [
+    {
+     "text": "Calling a jig to everyone, for your whole account was leading up to this day, now is your time to shine, for you got this.",
+     "count": 3
+    },
+    {
+     "text": "Calling a jig to everyone, your whole account was leading up to this day. Now is your time to shine. You got this.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 20,
+    "of": 23,
+    "min": 20
+   },
+   "status": "flagged",
+   "flags": [
+    "name: zetaof1"
+   ],
+   "real": true,
+   "missed": [
+    {
+     "word": "zetaof",
+     "count": 4
+    },
+    {
+     "word": "bsky",
+     "count": 4
+    },
+    {
+     "word": "social",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "kaw-ling at-zee-tuh-of-one, your whole account was leading up to this day, now is your time to shine, you got this",
+     "score": {
+      "heard": 20,
+      "of": 23,
+      "min": 20
+     },
+     "heard": [
+      {
+       "text": "Calling a jig to everyone, for your whole account was leading up to this day, now is your time to shine, for you got this.",
+       "count": 3
+      },
+      {
+       "text": "Calling a jig to everyone, your whole account was leading up to this day. Now is your time to shine. You got this.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: zetaof1"
+     ]
+    },
+    {
+     "as": "calling @zetaof1.bsky.social, your whole account was leading up to this day, now is your time to shine, you got this",
+     "score": {
+      "heard": 20,
+      "of": 23,
+      "min": 20
+     },
+     "heard": [
+      {
+       "text": "Calling the day after one. Hey, social, your whole town was leading up to this day. Now is your time to shine later. You've got this one.",
+       "count": 1
+      },
+      {
+       "text": "Calling the day as one, is gay, social, your whole town was leading up to this day, now is your time to shine, you got this.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: zetaof1",
+      "out of bounds: gay"
+     ]
+    },
+    {
+     "as": "kaw-ling zetaof1.bsky.social, your whole account was leading up to this day, now is your time to shine, you got this",
+     "score": {
+      "heard": 20,
+      "of": 23,
+      "min": 20
+     },
+     "heard": [
+      {
+       "text": "Calling the day after one day, social, your whole town was leading up to this day, now is your time to shine, you've got this.",
+       "count": 1
+      },
+      {
+       "text": "Calling the day after one, Hey, social, your whole town was leading up to this day, Now is your time to shine, you got this.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: zetaof1"
+     ]
+    },
+    {
+     "as": "kaw-ling, at-zee-tuh-of-one, your whole account was leading up to this day, now is your time to shine, you got this",
+     "score": {
+      "heard": 16,
+      "of": 23,
+      "min": 16
+     },
+     "heard": [
+      {
+       "text": "Carling a jig-taw one for your whole town to a leading up to this day, now is your time to shine for your godless",
+       "count": 1
+      },
+      {
+       "text": "Carling a jig-taw one for your whole town towards leading up to this day, now is your time to shine for your godless.",
+       "count": 1
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "name: zetaof1"
+     ]
+    },
+    {
+     "as": "kaw-ling at-zee-tuh-of-one, your whole account was leading up to this day, now is your time to shine, you got this",
+     "rate": 0.9,
+     "score": {
+      "heard": 19,
+      "of": 23,
+      "min": 19
+     },
+     "heard": [
+      {
+       "text": "Calling a jig to everyone for your whole account was leading up to this day. Now is your time to shine for your bad jig.",
+       "count": 1
+      },
+      {
+       "text": "Calling a Jita everyone for your whole account was leading up to this day. Now is your time to shine for your budget.",
+       "count": 1
+      },
+      {
+       "text": "Calling a Jita everyone for your whole account was leading up to this day. Now is your time to shine for your godless.",
+       "count": 1
+      },
+      {
+       "text": "Calling a Jita everyone, for your whole account was leading up to this day. Now is your time to shine for your bad Jita.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: zetaof1"
+     ]
+    },
+    {
+     "as": "kaw-ling at-zee-tuh-of-one, your whole account was leading up to this day, now is your time to shine, you got this",
+     "rate": 0.82,
+     "score": {
+      "heard": 18,
+      "of": 23,
+      "min": 18
+     },
+     "heard": [
+      {
+       "text": "Calling a Jita everyone, for your whole account was leading up to this day, now is your time to shine, for you got this.",
+       "count": 1
+      },
+      {
+       "text": "Calling a Jita everyone, your whole account was leading up to this day. How is your time to shine the lid upon the lid?",
+       "count": 1
+      },
+      {
+       "text": "Calling a Jita everyone, your whole account was leading up to this day. Now is your time to shine, the little guy in his door.",
+       "count": 1
+      },
+      {
+       "text": "Carling a jitter of one, your whole account was leading up to this day, now is your time to shine the little garlic.",
+       "count": 1
+      }
+     ],
+     "flags": [
+      "name: zetaof1"
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sibyl-zeta",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "The Zeta function is too intricate to explain on BlueSky Which is totally the zeta-functions fault and not mine so Also zeta evaluated at 1 is just the sum of inverse natural numbers and that diverges to infinity which was my kind of way to express Whitman's \"I am large. I contain multitudes.\"",
+   "as": "The Zeta, function is too intricate to explain on Blue-Sky. Which is totally the zeta-functions fawlt, and not mine, so. Also zeta evaluated at one is just the sum of inn-verse natural numbers and that diverges to infinity which was my kind of way to express, Hwit-munz: \"I am large. I contain, mul-tee-toodz.\"",
+   "heard": [
+    {
+     "text": "The zeta function is too intricate to explain in blue sky, which is totally the zeta function's heart, but not mine, so, also zeta value it, but one is just the sum of inverse natural numbers into the divergent to infinity, which was my kind of way to express, which means I am large, I contain multi-toad.",
+     "count": 2
+    },
+    {
+     "text": "The zeta function is too intricate to explain in blue sky, which is totally the zeta function's false, but not mine, so false, so zeta value it, one is just the sum of inverse natural numbers into the divergent to infinity, which was my kind of way to express, which means I am large, I contain multi-toad.",
+     "count": 1
+    },
+    {
+     "text": "The zeta function is too intricate to explain in blue sky, which is totally the zeta function's heart, but not mine, so, also zeta value it, but one is just the sum of inverse natural numbers into the divergent to infinity, which was my kind of way to express, which means I am large, I contain multi-toads.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 43,
+    "of": 54,
+    "min": 42
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "on",
+     "count": 4
+    },
+    {
+     "word": "functions",
+     "count": 4
+    },
+    {
+     "word": "fault",
+     "count": 4
+    },
+    {
+     "word": "and",
+     "count": 8
+    },
+    {
+     "word": "evaluated",
+     "count": 4
+    },
+    {
+     "word": "at",
+     "count": 4
+    },
+    {
+     "word": "that",
+     "count": 4
+    },
+    {
+     "word": "diverges",
+     "count": 4
+    },
+    {
+     "word": "whitman's",
+     "count": 4
+    },
+    {
+     "word": "multitudes",
+     "count": 4
+    },
+    {
+     "word": "also",
+     "count": 1
+    }
+   ],
+   "tried": [
+    {
+     "as": "The Zeta, function is too intricate to explain on Blue-Sky. Which is totally the zeta-functions fawlt, and not mine, so. Also zeta evaluated at one is just the sum of inn-verse natural numbers and that diverges to infinity which was my kind of way to express, Hwit-munz: \"I am large. I contain, mul-tee-toodz.\"",
+     "score": {
+      "heard": 43,
+      "of": 54,
+      "min": 42
+     },
+     "heard": [
+      {
+       "text": "The zeta function is too intricate to explain in blue sky, which is totally the zeta function's heart, but not mine, so, also zeta value it, but one is just the sum of inverse natural numbers into the divergent to infinity, which was my kind of way to express, which means I am large, I contain multi-toad.",
+       "count": 2
+      },
+      {
+       "text": "The zeta function is too intricate to explain in blue sky, which is totally the zeta function's false, but not mine, so false, so zeta value it, one is just the sum of inverse natural numbers into the divergent to infinity, which was my kind of way to express, which means I am large, I contain multi-toad.",
+       "count": 1
+      },
+      {
+       "text": "The zeta function is too intricate to explain in blue sky, which is totally the zeta function's heart, but not mine, so, also zeta value it, but one is just the sum of inverse natural numbers into the divergent to infinity, which was my kind of way to express, which means I am large, I contain multi-toads.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "amber-fits",
+   "who": "shimmermathlabs",
+   "kind": "say",
+   "text": "i was gonna joke proof won't fit, but it does actually. …",
+   "as": "i was gonna jowk proof won't fit, but itt does actually. …",
+   "heard": [
+    {
+     "text": "I was kind of like proof won't fit, but it does actually.",
+     "count": 2
+    },
+    {
+     "text": "I was kind of like proof, it won't fit, but it does actually.",
+     "count": 2
+    }
+   ],
+   "score": {
+    "heard": 9,
+    "of": 11,
+    "min": 9
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "gonna",
+     "count": 4
+    },
+    {
+     "word": "joke",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "i was gonna jowk proof won't fit, but itt does actually. …",
+     "score": {
+      "heard": 9,
+      "of": 11,
+      "min": 9
+     },
+     "heard": [
+      {
+       "text": "I was kind of like proof won't fit, but it does actually.",
+       "count": 2
+      },
+      {
+       "text": "I was kind of like proof, it won't fit, but it does actually.",
+       "count": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "amber-sum",
+   "who": "shimmermathlabs",
+   "kind": "say",
+   "text": "… ζ(1) = 1 + ½ + (⅓ + ¼) + (⅕ + ⋯ + ⅛) + ⋯ …",
+   "as": "… zee-tuh-of-one equals one plus a-half, plus a-third, plus a-quarter, plus a-fifth, plus dot-dot-dot, plus one-eighth, plus, dot-dot-dot …",
+   "heard": [
+    {
+     "text": "zeta one equal one plus half, plus third, plus quarter, plus fifth, plus dada dada dada plus one eighth, plus dada dada dada",
+     "count": 2
+    },
+    {
+     "text": "zeta 1 equal 1 plus half, plus third, plus quarter, plus fifth, plus dada dada dada plus 1-8 plus dada dada dada",
+     "count": 1
+    },
+    {
+     "text": "zeta one equal one plus half, plus third, plus quarter, plus fifth, plus dot dot dot, plus one eighth, plus dot dot dot.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 2,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [],
+   "tried": [
+    {
+     "as": "… zee-tuh-of-one equals one plus a-half, plus a-third, plus a-quarter, plus a-fifth, plus dot-dot-dot, plus one-eighth, plus, dot-dot-dot …",
+     "score": {
+      "heard": 2,
+      "of": 2,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "zeta one equal one plus half, plus third, plus quarter, plus fifth, plus dada dada dada plus one eighth, plus dada dada dada",
+       "count": 2
+      },
+      {
+       "text": "zeta 1 equal 1 plus half, plus third, plus quarter, plus fifth, plus dada dada dada plus 1-8 plus dada dada dada",
+       "count": 1
+      },
+      {
+       "text": "zeta one equal one plus half, plus third, plus quarter, plus fifth, plus dot dot dot, plus one eighth, plus dot dot dot.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "amber-brackets",
+   "who": "shimmermathlabs",
+   "kind": "say",
+   "text": "… each bracket has twice as many terms as the last, each at least half as large as its last term. …",
+   "as": "… eech brak-it has twice as many terms as the last, each, at least half as large as its last term. …",
+   "heard": [
+    {
+     "text": "It breaks to twice as many terms as the last bit, but at least half as large as the last term.",
+     "count": 2
+    },
+    {
+     "text": "It breaks to twice as many terms as the last. It's at least half as large as the last term.",
+     "count": 2
+    }
+   ],
+   "score": {
+    "heard": 15,
+    "of": 20,
+    "min": 15
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "each",
+     "count": 8
+    },
+    {
+     "word": "bracket",
+     "count": 4
+    },
+    {
+     "word": "has",
+     "count": 4
+    },
+    {
+     "word": "its",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "… eech brak-it has twice as many terms as the last, each, at least half as large as its last term. …",
+     "score": {
+      "heard": 15,
+      "of": 20,
+      "min": 15
+     },
+     "heard": [
+      {
+       "text": "It breaks to twice as many terms as the last bit, but at least half as large as the last term.",
+       "count": 2
+      },
+      {
+       "text": "It breaks to twice as many terms as the last. It's at least half as large as the last term.",
+       "count": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "amber-adds",
+   "who": "shimmermathlabs",
+   "kind": "say",
+   "text": "… so every block adds ≥ ½. …",
+   "as": "… sew every block adds, at-least one-half. …",
+   "heard": [
+    {
+     "text": "So every block head, but each one head",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 4,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "adds",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "… sew every block adds, at-least one-half. …",
+     "score": {
+      "heard": 3,
+      "of": 4,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "So every block head, but each one head",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "eppy-half-1",
+   "who": "eppy",
+   "kind": "say",
+   "text": "Half.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Hit!",
+     "count": 2
+    },
+    {
+     "text": "Hit.",
+     "count": 2
+    }
+   ],
+   "score": {
+    "heard": 0,
+    "of": 1,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "half",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Half.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Hit!",
+       "count": 2
+      },
+      {
+       "text": "Hit.",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "as": "Haf.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Hit!",
+       "count": 2
+      },
+      {
+       "text": "Hit.",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "as": "Half.",
+     "rate": 0.9,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Hit!",
+       "count": 3
+      },
+      {
+       "text": "Hey",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Half.",
+     "rate": 0.82,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Hey",
+       "count": 3
+      },
+      {
+       "text": "Hit!",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "eppy-half-2",
+   "who": "eppy",
+   "kind": "say",
+   "text": "Half.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Hit!",
+     "count": 2
+    },
+    {
+     "text": "Hit.",
+     "count": 2
+    }
+   ],
+   "score": {
+    "heard": 0,
+    "of": 1,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "half",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Half.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Hit!",
+       "count": 2
+      },
+      {
+       "text": "Hit.",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "as": "Haf.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Hit!",
+       "count": 2
+      },
+      {
+       "text": "Hit.",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "as": "Half.",
+     "rate": 0.9,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Hit!",
+       "count": 3
+      },
+      {
+       "text": "Hey",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Half.",
+     "rate": 0.82,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Hey",
+       "count": 3
+      },
+      {
+       "text": "Hit!",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "eppy-half-3",
+   "who": "eppy",
+   "kind": "say",
+   "text": "Half.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Hit!",
+     "count": 2
+    },
+    {
+     "text": "Hit.",
+     "count": 2
+    }
+   ],
+   "score": {
+    "heard": 0,
+    "of": 1,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "half",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Half.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Hit!",
+       "count": 2
+      },
+      {
+       "text": "Hit.",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "as": "Haf.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Hit!",
+       "count": 2
+      },
+      {
+       "text": "Hit.",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "as": "Half.",
+     "rate": 0.9,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Hit!",
+       "count": 3
+      },
+      {
+       "text": "Hey",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Half.",
+     "rate": 0.82,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Hey",
+       "count": 3
+      },
+      {
+       "text": "Hit!",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "eppy-half-4",
+   "who": "eppy",
+   "kind": "say",
+   "text": "Eight terms. Half.",
+   "as": "Eight, terms. Half.",
+   "heard": [
+    {
+     "text": "It, terms, has.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 1,
+    "of": 3,
+    "min": 1
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "eight",
+     "count": 4
+    },
+    {
+     "word": "half",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Eight, terms. Half.",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "It, terms, has.",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "Eight terms. Half.",
+     "score": {
+      "heard": 0,
+      "of": 3,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "It turned past",
+       "count": 2
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "Ate, terms. Half.",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "It, terms, has.",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "Eightt, terms. Half.",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "It... terms... has...",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "Eight, terms. Haf.",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "It, terms, has.",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "Eight, terms. Half.",
+     "rate": 0.9,
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "It, terms, has...",
+       "count": 2
+      },
+      {
+       "text": "It... terms... has...",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "as": "Eight, terms. Half.",
+     "rate": 0.82,
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "It, terms, has...",
+       "count": 3
+      },
+      {
+       "text": "It... terms... has...",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "eppy-half-5",
+   "who": "eppy",
+   "kind": "say",
+   "text": "Sixteen terms. Half.",
+   "as": "Sik-steen terms. Half.",
+   "heard": [
+    {
+     "text": "16 kms half",
+     "count": 2
+    },
+    {
+     "text": "16 kms H",
+     "count": 1
+    },
+    {
+     "text": "16 termes per half",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 3,
+    "min": 1
+   },
+   "status": "weak",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "terms",
+     "count": 4
+    },
+    {
+     "word": "half",
+     "count": 1
+    }
+   ],
+   "suggest": {
+    "rate": 0.9,
+    "as": "Sik-steen terms. Half.",
+    "score": {
+     "heard": 3,
+     "of": 3,
+     "min": 3
+    }
+   },
+   "tried": [
+    {
+     "as": "Sik-steen terms. Half.",
+     "score": {
+      "heard": 2,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "16 kms half",
+       "count": 2
+      },
+      {
+       "text": "16 kms H",
+       "count": 1
+      },
+      {
+       "text": "16 termes per half",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Sixteen terms. Half.",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "In terms of health",
+       "count": 2
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "Sik-steen termss. Half.",
+     "score": {
+      "heard": 2,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "16 terms, health",
+       "count": 2
+      },
+      {
+       "text": "16 grams per hertz",
+       "count": 1
+      },
+      {
+       "text": "16 terms, half.",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Sik-steen termz. Half.",
+     "score": {
+      "heard": 2,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "16 kms half",
+       "count": 2
+      },
+      {
+       "text": "16 kms H",
+       "count": 1
+      },
+      {
+       "text": "16 termes per half",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Sik-steen, terms. Half.",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "16 termes per hertz",
+       "count": 2
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "Sik-steen terms. Haf.",
+     "score": {
+      "heard": 2,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "16 kms half",
+       "count": 2
+      },
+      {
+       "text": "16 kms H",
+       "count": 1
+      },
+      {
+       "text": "16 termes per half",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Sik-steen terms. Half.",
+     "rate": 0.9,
+     "score": {
+      "heard": 3,
+      "of": 3,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "16 terms, half",
+       "count": 3
+      },
+      {
+       "text": "16 terms, half.",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Sik-steen terms. Half.",
+     "rate": 0.82,
+     "score": {
+      "heard": 2,
+      "of": 3,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "16 termes per half",
+       "count": 3
+      },
+      {
+       "text": "16 terms, health.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "eppy-half-6",
+   "who": "eppy",
+   "kind": "say",
+   "text": "Thirty-two terms. Half.",
+   "as": null,
+   "heard": [
+    {
+     "text": "32 terms, heh",
+     "count": 3
+    },
+    {
+     "text": "for the two terms, heh",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 4,
+    "min": 2
+   },
+   "status": "weak",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "half",
+     "count": 4
+    },
+    {
+     "word": "thirty",
+     "count": 1
+    }
+   ],
+   "tried": [
+    {
+     "as": "Thirty-two terms. Half.",
+     "score": {
+      "heard": 3,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "32 terms, heh",
+       "count": 3
+      },
+      {
+       "text": "for the two terms, heh",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Thirty-two terms. Haf.",
+     "score": {
+      "heard": 3,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "32 terms, heh",
+       "count": 3
+      },
+      {
+       "text": "for the two terms, heh",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Thirtytwo terms. Half.",
+     "score": {
+      "heard": 0,
+      "of": 4,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "So that's what I've termed health.",
+       "count": 3
+      },
+      {
+       "text": "So that's what I term it, heh",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Thirty-two, terms. Half.",
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "32, terms H.",
+       "count": 2
+      },
+      {
+       "text": "So, the two terms have",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "as": "Thirty-two, terms. Haf.",
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "32, terms H.",
+       "count": 2
+      },
+      {
+       "text": "So, the two terms have",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "as": "Thirty-two terms. Half.",
+     "rate": 0.9,
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "32 terms, heh",
+       "count": 2
+      },
+      {
+       "text": "So take two terms, heh",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "as": "Thirty-two terms. Half.",
+     "rate": 0.82,
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "3rd day 2 terms, heh",
+       "count": 3
+      },
+      {
+       "text": "Thursday 2 terms, heh",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "sibyl-at-least",
+   "who": "sibyl",
+   "kind": "say",
+   "text": "At least.",
+   "as": null,
+   "heard": [
+    {
+     "text": "At least",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 2,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "At least.",
+     "score": {
+      "heard": 2,
+      "of": 2,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "At least",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "amber-infinity",
+   "who": "shimmermathlabs",
+   "kind": "say",
+   "text": "… infinitely many halves → ∞. □",
+   "as": "… infinitely, many, halves go-to infinity. …",
+   "heard": [
+    {
+     "text": "infantry, many, have go to infinity.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 1,
+    "of": 3,
+    "min": 1
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": true,
+   "missed": [
+    {
+     "word": "infinitely",
+     "count": 4
+    },
+    {
+     "word": "halves",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "… infinitely, many, halves go-to infinity. …",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "infantry, many, have go to infinity.",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "… infinitely many halves → ∞. □",
+     "score": {
+      "heard": 0,
+      "of": 3,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Thank you so much for watching, and I'll see you in the next video.",
+       "count": 2
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "… inn-fuh-nut-lee, many, halves go-to infinity. …",
+     "score": {
+      "heard": 0,
+      "of": 3,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "In Faknaji, Mani, Herco do infinity",
+       "count": 2
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "… inn-fun-nut-lee, many, halves go-to infinity. …",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "In fun not gee, many hair-code or infinity.",
+       "count": 2
+      }
+     ],
+     "takes": 2,
+     "flags": [
+      "statement: negation"
+     ]
+    },
+    {
+     "as": "…, infinitely, many, halves go-to infinity. …",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "infantry, many, have go to infinity.",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "… infinitely, many, havz go-to infinity. …",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "infantry, many, have go to infinity.",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "… infinitely, many, halves, go-to infinity. …",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "infantry, many, hares, go to infinity.",
+       "count": 2
+      },
+      {
+       "text": "infantry, many, hares, go to infinity",
+       "count": 1
+      },
+      {
+       "text": "infantry, meni, hares, kodo infinity",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "… infinitely, many halves go-to infinity. …",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "infantry, many hares go to infinity",
+       "count": 2
+      }
+     ],
+     "takes": 2
+    },
+    {
+     "as": "…, infinitely, many, havz go-to infinity. …",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "infantry, many, have go to infinity.",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "… infinitely, many, halves go-to infinity. …",
+     "rate": 0.9,
+     "score": {
+      "heard": 0,
+      "of": 3,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Infinipi, Mani, Hercodo Infiniti",
+       "count": 3
+      },
+      {
+       "text": "Infinipi, Mani, Hercolo Infiniti",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "… infinitely, many, halves go-to infinity. …",
+     "rate": 0.82,
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Infinipy, many hair-codeo-infinity",
+       "count": 3
+      },
+      {
+       "text": "Infiniti, many, hair-codeo-infinity",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "dlowd-reply",
+   "who": "dlowd",
+   "kind": "say",
+   "text": "Oh, I love that proof, and I'm going to remember it! Thanks!",
+   "as": "Oh, I love thatt proof, and I'm going to remember it! Thanks!",
+   "heard": [
+    {
+     "text": "Oh, I love that proof, and I'm going to remember it. Thanks.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 12,
+    "of": 12,
+    "min": 12
+   },
+   "status": "ok",
+   "flags": [],
+   "real": true,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Oh, I love thatt proof, and I'm going to remember it! Thanks!",
+     "score": {
+      "heard": 12,
+      "of": 12,
+      "min": 12
+     },
+     "heard": [
+      {
+       "text": "Oh, I love that proof, and I'm going to remember it. Thanks.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "larry-button",
+   "who": "larry",
+   "kind": "say",
+   "text": "It fits in a post.",
+   "as": null,
+   "heard": [
+    {
+     "text": "It fits in the post.",
+     "count": 3
+    },
+    {
+     "text": "It fits in a post.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 5,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "a",
+     "count": 3
+    }
+   ],
+   "tried": [
+    {
+     "as": "It fits in a post.",
+     "score": {
+      "heard": 4,
+      "of": 5,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "It fits in the post.",
+       "count": 3
+      },
+      {
+       "text": "It fits in a post.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "voices": {
+  "larry": {
+   "f0": 107,
+   "nearest": "pete",
+   "distance": 1.54
+  },
+  "shimmermathlabs": {
+   "f0": 254,
+   "nearest": "sibyl",
+   "distance": 2.41
+  },
+  "sibyl": {
+   "f0": 207,
+   "nearest": "dlowd",
+   "distance": 1.75
+  },
+  "eppy": {
+   "f0": 189,
+   "nearest": "dlowd",
+   "distance": 1.6
+  },
+  "dlowd": {
+   "f0": 206,
+   "nearest": "eppy",
+   "distance": 1.6
+  }
+ },
+ "owner": [],
+ "heardDifferently": [
+  {
+   "id": "amber-call",
+   "who": "shimmermathlabs",
+   "status": "flagged",
+   "text": "calling @zetaof1.bsky.social, your whole account was leading up to this day, now is your time to shine, you got this",
+   "heard": "Calling a jig to everyone, for your whole account was leading up to this day, now is your time to shine, for you got this."
+  },
+  {
+   "id": "amber-infinity",
+   "who": "shimmermathlabs",
+   "status": "unsayable",
+   "text": "… infinitely many halves → ∞. □",
+   "heard": "infantry, many, have go to infinity."
+  }
+ ]
+}

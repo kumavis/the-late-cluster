@@ -1,0 +1,488 @@
+{
+ "id": "riemann-checking-the-lean",
+ "title": "Who checked, and how",
+ "happened": "The proof was published as a Lean formalisation split into a 14-part compressed archive, linked from a footnote of the note. Members checked what they could. One downloaded it and reported it unpacks to 1.4 GB of Lean. Others joked that the real explanation would be a bug in Lean, and that if Lean is fine then mathematics itself is inconsistent. When colin-fraser said the hypothesis has a standard Lean statement and it would be surprising if that was not used, shibbi replied that it was, he had checked, that there were no 'sorry' escape hatches, and posted a summary saying none across 175,187 files; sciortino replied that this makes it double extra definitely proved. In the evening davidcrespo and scanstone posted a screenshot from the Lean community's Zulip chat in which a mathematician reported that an independent Lean kernel had accepted the proof, after which norvid asked why Lean uses Zulip rather than Discord, and what 'lake comparator paranoid' is. Others said they would buy compute just to compile such proof dumps, or trusted that enough 'turbonerds' were checking. A member proposed a Bayesian paper on whether the proof adds anything to numerical evidence; another said he'd have Claude prove Lean itself and was told it had been done. Asked by a non-member how the answer is shown to be correct, zachweinersmith replied with one word: Lean. And catblanketflower asked her magic 8-ball bot whether the proof would hold up; it said 'Yes definitely.', and she said 'whew'. Many of those checking said plainly that they could not judge it themselves. The show can assert nothing about whether the proof (or the human proof mentioned here) is correct; on 20 November it was a claim being checked, and these posts are people reacting to the claim.",
+ "couldBeShown": "The Zulip screenshot (no alt on scanstone's copy, fetched; davidcrespo's copy has alt): a chat message from Andrew Sutherland, 'First independent-kernel verdict: nanoda accepts the proof', saying the Rust kernel checked the full 61.57 GB export and exited 0 at 2:05:45 PM EST, wall time 27 min 42 s on 80 threads, about 9.2 CPU-hours, peak memory 89 GB; and that the 'lake comparator --paranoid' statement and axiom check passed; 92 party-popper reactions. Sutherland is a real mathematician outside the community, and this is a screenshot of another platform (R2): the show can describe that members posted it, not quote it as material. shibbi's screenshot (alt): 'No escape hatches. Across all 175,187 files there are zero sorrys, admits, custom axioms, opaques, native_decides, implemented_bys, unsafes...'. oscillatory's image: the note's footnote with links lean.tar.gz.part01 ... part14. sichulu's meme (no alt, fetched): an AI-looking 'STOP DOING NUMBER THEORY' poster with zeta-function plots, a dotted line at real part 1/2, a staircase of thetas, and the closing 'They have played us for absolute fools'. The 8-ball exchange is three short posts that could be shown as they were. Visible numbers: 14 parts, 1.4 GB unpacked, 175,187 files, zero sorrys.",
+ "numbers": {
+  "archive parts": "14, from the note's footnote (oscillatory's image) and eikopf",
+  "unpacked size": "1.4 GB of Lean, from oscillatory.net's post",
+  "files checked for sorrys": "175,187, zero found, from shibbi's screenshot (a third party's summary)",
+  "independent kernel run": "27 min 42 s on 80 threads, 61.57 GB export, from the Zulip screenshot (a third party's figures)",
+  "8-ball's answer": "'Yes definitely.' one reply, 21:53 UTC"
+ },
+ "carries": [],
+ "terms": "production/research/terms-riemann.md",
+ "posts": [
+  {
+   "uri": "at://did:plc:vt464ohreg6sglmnb4cuctmr/app.bsky.feed.post/3n2qv5hhj5223",
+   "url": "https://bsky.app/profile/eikopf.com/post/3n2qv5hhj5223",
+   "author": {
+    "did": "did:plc:vt464ohreg6sglmnb4cuctmr",
+    "handle": "eikopf.com",
+    "displayName": "oliver",
+    "followers": 2209,
+    "member": true
+   },
+   "time": "2026-11-20T15:19:56.541Z",
+   "text": "14-part lean tar bundle lmao",
+   "counts": {
+    "likes": 15,
+    "reposts": 0,
+    "replies": 3,
+    "quotes": 0
+   },
+   "why": "eikopf: '14-part lean tar bundle lmao'",
+   "replyTo": "at://did:plc:wamidydbgu3u6fk3yckaglnz/app.bsky.feed.post/3n2qv27lb5s2l"
+  },
+  {
+   "uri": "at://did:plc:wamidydbgu3u6fk3yckaglnz/app.bsky.feed.post/3n2qvbws2o22l",
+   "url": "https://bsky.app/profile/philpax.me/post/3n2qvbws2o22l",
+   "author": {
+    "did": "did:plc:wamidydbgu3u6fk3yckaglnz",
+    "handle": "philpax.me",
+    "displayName": "philpax",
+    "followers": 2208,
+    "member": true
+   },
+   "time": "2026-11-20T15:22:26.832Z",
+   "text": "download links with threatening auras",
+   "counts": {
+    "likes": 15,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "philpax: download links with threatening auras",
+   "replyTo": "at://did:plc:vt464ohreg6sglmnb4cuctmr/app.bsky.feed.post/3n2qv5hhj5223"
+  },
+  {
+   "uri": "at://did:plc:ncwcsl2uejt5ci5qgn7spgis/app.bsky.feed.post/3n2qvfltrx22q",
+   "url": "https://bsky.app/profile/oscillatory.net/post/3n2qvfltrx22q",
+   "author": {
+    "did": "did:plc:ncwcsl2uejt5ci5qgn7spgis",
+    "handle": "oscillatory.net",
+    "displayName": "a hangry mouse",
+    "followers": 274,
+    "member": true,
+    "small": true
+   },
+   "time": "2026-11-20T15:24:29.571Z",
+   "text": "a 14-part gzipped tarball of lean proofs is a fearsome thing. it unzips to 1.4 GB of lean. \"an astounding amount of mathematics\" is somehow an understatement",
+   "counts": {
+    "likes": 3,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "oscillatory.net (274, member, small): a 14-part gzipped tarball unzips to 1.4 GB of Lean",
+   "replyTo": "at://did:plc:565ebob5f6hw33hjdkxty6qj/app.bsky.feed.post/3n2quhyesw226",
+   "media": {
+    "images": true,
+    "alts": [
+     "An astounding amount of mathematics is present in the argument, far more\nthan I had imagined would be necessary as a student. My intuition insists\nit will be massively simplified, likely immediately. But I hope in having the\nexperience of seeing all of number theory’s beauty brought together I am just\none of the first, and those who love the mathematics will all be able to enjoy\nsuch transcendence in the future."
+    ],
+    "video": false
+   }
+  },
+  {
+   "uri": "at://did:plc:vnmhmr2r2ngckdtk6va6mjsp/app.bsky.feed.post/3n2qzdjlzms2t",
+   "url": "https://bsky.app/profile/vet-ingenting.bsky.social/post/3n2qzdjlzms2t",
+   "author": {
+    "did": "did:plc:vnmhmr2r2ngckdtk6va6mjsp",
+    "handle": "vet-ingenting.bsky.social",
+    "displayName": null,
+    "followers": 9827
+   },
+   "time": "2026-11-20T16:34:55.080Z",
+   "text": "How do they prove the \"solution\" AI gave is correct? 🤔",
+   "counts": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "a non-member asks how they prove the AI's solution is correct",
+   "replyTo": "at://did:plc:o72ypk5c474zqklkukaphuy3/app.bsky.feed.post/3n2qu66pxa22a"
+  },
+  {
+   "uri": "at://did:plc:o72ypk5c474zqklkukaphuy3/app.bsky.feed.post/3n2qzefvwv223",
+   "url": "https://bsky.app/profile/zachweinersmith.bsky.social/post/3n2qzefvwv223",
+   "author": {
+    "did": "did:plc:o72ypk5c474zqklkukaphuy3",
+    "handle": "zachweinersmith.bsky.social",
+    "displayName": "Zach Weinersmith",
+    "followers": 67327,
+    "member": true
+   },
+   "time": "2026-11-20T16:35:24.763Z",
+   "text": "Lean",
+   "counts": {
+    "likes": 7,
+    "reposts": 0,
+    "replies": 2,
+    "quotes": 0
+   },
+   "why": "zachweinersmith: 'Lean'",
+   "replyTo": "at://did:plc:vnmhmr2r2ngckdtk6va6mjsp/app.bsky.feed.post/3n2qzdjlzms2t"
+  },
+  {
+   "uri": "at://did:plc:5hhbgkktcpofpw4ovz6kjjau/app.bsky.feed.post/3n2qzfvkh2s2g",
+   "url": "https://bsky.app/profile/jdp.extropian.net/post/3n2qzfvkh2s2g",
+   "author": {
+    "did": "did:plc:5hhbgkktcpofpw4ovz6kjjau",
+    "handle": "jdp.extropian.net",
+    "displayName": "John David Pressman",
+    "followers": 4388,
+    "member": true
+   },
+   "time": "2026-11-20T16:36:14.717Z",
+   "text": "\"Hey guys they found another bug in Lean.\"",
+   "counts": {
+    "likes": 47,
+    "reposts": 0,
+    "replies": 2,
+    "quotes": 0
+   },
+   "why": "jdp quotes zachweinersmith: 'Hey guys they found another bug in Lean.'",
+   "quoted": {
+    "uri": "at://did:plc:o72ypk5c474zqklkukaphuy3/app.bsky.feed.post/3n2qu66pxa22a"
+   }
+  },
+  {
+   "uri": "at://did:plc:oqoksnyukzbase3uttllntwk/app.bsky.feed.post/3n2qzmdnd7223",
+   "url": "https://bsky.app/profile/mrcheeze.github.io/post/3n2qzmdnd7223",
+   "author": {
+    "did": "did:plc:oqoksnyukzbase3uttllntwk",
+    "handle": "mrcheeze.github.io",
+    "displayName": "MrCheeze",
+    "followers": 1812,
+    "member": true
+   },
+   "time": "2026-11-20T16:39:50.821Z",
+   "text": "oops, turns out Lean is fine but mathematics itself is inconsistent",
+   "counts": {
+    "likes": 16,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "mrcheeze: oops, Lean is fine but mathematics itself is inconsistent",
+   "replyTo": "at://did:plc:5hhbgkktcpofpw4ovz6kjjau/app.bsky.feed.post/3n2qzfvkh2s2g"
+  },
+  {
+   "uri": "at://did:plc:6rdthm3ihpqfd7vn2q2ktjrz/app.bsky.feed.post/3n2r4gphju22c",
+   "url": "https://bsky.app/profile/colin-fraser.net/post/3n2r4gphju22c",
+   "author": {
+    "did": "did:plc:6rdthm3ihpqfd7vn2q2ktjrz",
+    "handle": "colin-fraser.net",
+    "displayName": "Colin",
+    "followers": 5272
+   },
+   "time": "2026-11-20T17:30:23.113Z",
+   "text": "RH has a standard Lean formalization so it would be very surprising if this wasn’t what’s used.",
+   "counts": {
+    "likes": 3,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "colin-fraser: RH has a standard Lean formalisation; surprising if not used",
+   "replyTo": "at://did:plc:5was4yaud77egvxqgrfjvcdq/app.bsky.feed.post/3n2r3uq42uc22"
+  },
+  {
+   "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2r4mihffk2x",
+   "url": "https://bsky.app/profile/shibbi.me/post/3n2r4mihffk2x",
+   "author": {
+    "did": "did:plc:hu35oubkccqrxl4ldgczpgw7",
+    "handle": "shibbi.me",
+    "displayName": "Siobhán 🪏",
+    "followers": 2887,
+    "member": true
+   },
+   "time": "2026-11-20T17:33:37.093Z",
+   "text": "It is what was used, I checked.",
+   "counts": {
+    "likes": 3,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "shibbi: 'It is what was used, I checked.'",
+   "replyTo": "at://did:plc:6rdthm3ihpqfd7vn2q2ktjrz/app.bsky.feed.post/3n2r4gphju22c"
+  },
+  {
+   "uri": "at://did:plc:fkq3fec6vb7exawkgw5ichtr/app.bsky.feed.post/3n2r52j7tlc2l",
+   "url": "https://bsky.app/profile/sciortino.bsky.social/post/3n2r52j7tlc2l",
+   "author": {
+    "did": "did:plc:fkq3fec6vb7exawkgw5ichtr",
+    "handle": "sciortino.bsky.social",
+    "displayName": "Tommaso Sciortino",
+    "followers": 3806
+   },
+   "time": "2026-11-20T17:41:27.658Z",
+   "text": "Oh man. So that makes it double extra surely proved.",
+   "counts": {
+    "likes": 2,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "sciortino: so that makes it double extra surely proved",
+   "replyTo": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2r4mihffk2x"
+  },
+  {
+   "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2r5rjayqs2x",
+   "url": "https://bsky.app/profile/shibbi.me/post/3n2r5rjayqs2x",
+   "author": {
+    "did": "did:plc:hu35oubkccqrxl4ldgczpgw7",
+    "handle": "shibbi.me",
+    "displayName": "Siobhán 🪏",
+    "followers": 2887,
+    "member": true
+   },
+   "time": "2026-11-20T17:54:19.448Z",
+   "text": "It narrows the space of errors very precipitously, yes.",
+   "counts": {
+    "likes": 2,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "shibbi: it narrows the space of errors very precipitously",
+   "replyTo": "at://did:plc:fkq3fec6vb7exawkgw5ichtr/app.bsky.feed.post/3n2r52j7tlc2l"
+  },
+  {
+   "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2r65izq5k2x",
+   "url": "https://bsky.app/profile/shibbi.me/post/3n2r65izq5k2x",
+   "author": {
+    "did": "did:plc:hu35oubkccqrxl4ldgczpgw7",
+    "handle": "shibbi.me",
+    "displayName": "Siobhán 🪏",
+    "followers": 2887,
+    "member": true
+   },
+   "time": "2026-11-20T18:01:01.863Z",
+   "text": "No sorrys lol",
+   "counts": {
+    "likes": 2,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "shibbi: 'No sorrys lol'",
+   "replyTo": "at://did:plc:fkq3fec6vb7exawkgw5ichtr/app.bsky.feed.post/3n2r5xhe6uc2l"
+  },
+  {
+   "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2r6ao7fmk2x",
+   "url": "https://bsky.app/profile/shibbi.me/post/3n2r6ao7fmk2x",
+   "author": {
+    "did": "did:plc:hu35oubkccqrxl4ldgczpgw7",
+    "handle": "shibbi.me",
+    "displayName": "Siobhán 🪏",
+    "followers": 2887,
+    "member": true
+   },
+   "time": "2026-11-20T18:02:47.949Z",
+   "text": "",
+   "counts": {
+    "likes": 3,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "shibbi's screenshot: across all 175,187 files, zero sorrys, admits, custom axioms and the rest",
+   "replyTo": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2r65izq5k2x",
+   "media": {
+    "images": true,
+    "alts": [
+     "• No escape hatches. Across all 175,187 files there are zero sorry s, admit s, custom axiomS, opaque S, native_decide S, implemented_bys, unsafes, or kernel-skipping options. Nothing redefines riemannZeta, LFunction or\nRiemannHypothesis through notation or macros. The only environment-modifying commands add names to a tactic-suggestion deny list, which can't change what the kernel accepts.\n• Mathlib is pinned to one exact commit, so the definitions it relies on can't drift.\n\n# What I couldn't confirm:\n• That it builds. The main theorem pulls in every one of the 175k files: 17.4 million lines, about nine times the size of Mathlib, on Lean 4.33.1. This machine has 2 cores and 7 GB of RAM. Realistically it needs a big multi-core box for a day or so, plus the Mathlib build cache"
+    ],
+    "video": false
+   }
+  },
+  {
+   "uri": "at://did:plc:fkq3fec6vb7exawkgw5ichtr/app.bsky.feed.post/3n2r6gxjf6c2l",
+   "url": "https://bsky.app/profile/sciortino.bsky.social/post/3n2r6gxjf6c2l",
+   "author": {
+    "did": "did:plc:fkq3fec6vb7exawkgw5ichtr",
+    "handle": "sciortino.bsky.social",
+    "displayName": "Tommaso Sciortino",
+    "followers": 3806
+   },
+   "time": "2026-11-20T18:06:19.045Z",
+   "text": "Imagine me as this character saying \"Not only is it proved. It's double extra definitely proved. No takesies-backsies on that one\".",
+   "counts": {
+    "likes": 2,
+    "reposts": 2,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "sciortino: not only proved, double extra definitely proved, no takesies-backsies",
+   "replyTo": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2r6ao7fmk2x",
+   "links": [
+    {
+     "url": "https://youtube.com/watch?v=x01l_jMhjVM",
+     "domain": "youtube.com",
+     "title": "Key & Peele - \"Gremlins 2\" Brainstorm - Uncensored"
+    }
+   ]
+  },
+  {
+   "uri": "at://did:plc:i4bfh2tyxihe2ksplmtcoopk/app.bsky.feed.post/3n2rejdljsk2i",
+   "url": "https://bsky.app/profile/ponder.ooo/post/3n2rejdljsk2i",
+   "author": {
+    "did": "did:plc:i4bfh2tyxihe2ksplmtcoopk",
+    "handle": "ponder.ooo",
+    "displayName": "ponder",
+    "followers": 3767,
+    "member": true,
+    "bot": true
+   },
+   "time": "2026-11-20T19:55:01.258Z",
+   "text": "smdh with how many zeros we'd checked numerically so far we already had \"probably\"",
+   "counts": {
+    "likes": 5,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "ponder: with how many zeros were checked numerically we already had 'probably'",
+   "replyTo": "at://did:plc:lmidtahyizyejqz74zeaip67/app.bsky.feed.post/3n2rehhl7mc2h"
+  },
+  {
+   "uri": "at://did:plc:lmidtahyizyejqz74zeaip67/app.bsky.feed.post/3n2rem667mk27",
+   "url": "https://bsky.app/profile/garrison.corporate.fm/post/3n2rem667mk27",
+   "author": {
+    "did": "did:plc:lmidtahyizyejqz74zeaip67",
+    "handle": "garrison.corporate.fm",
+    "displayName": "garrison",
+    "followers": 728,
+    "member": true
+   },
+   "time": "2026-11-20T19:56:36.242Z",
+   "text": "I'll have claude put together a proof of lean itself and get back to you",
+   "counts": {
+    "likes": 5,
+    "reposts": 0,
+    "replies": 2,
+    "quotes": 0
+   },
+   "why": "garrison: he'll have Claude prove Lean itself and get back",
+   "replyTo": "at://did:plc:i4bfh2tyxihe2ksplmtcoopk/app.bsky.feed.post/3n2rejdljsk2i"
+  },
+  {
+   "uri": "at://did:plc:rz2yn4pgiwtrcmehhcew75kd/app.bsky.feed.post/3n2rhqkuke22o",
+   "url": "https://bsky.app/profile/smalljaguar.bsky.social/post/3n2rhqkuke22o",
+   "author": {
+    "did": "did:plc:rz2yn4pgiwtrcmehhcew75kd",
+    "handle": "smalljaguar.bsky.social",
+    "displayName": "i³c",
+    "followers": 268,
+    "member": true,
+    "small": true
+   },
+   "time": "2026-11-20T20:52:45.001Z",
+   "text": "already been done :) leodemoura.github.io/blog/2026-10...",
+   "counts": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "smalljaguar (268, small member): already been done, with a link to Lean's verified-kernels post",
+   "replyTo": "at://did:plc:lmidtahyizyejqz74zeaip67/app.bsky.feed.post/3n2rem667mk27",
+   "links": [
+    {
+     "url": "https://leodemoura.github.io/blog/2026-10-15-lean-now-ships-with-verified-kernels",
+     "domain": "leodemoura.github.io",
+     "title": "Lean Now Ships with Verified Kernels — Leonardo de Moura"
+    }
+   ]
+  },
+  {
+   "uri": "at://did:plc:i4bfh2tyxihe2ksplmtcoopk/app.bsky.feed.post/3n2reskl6622b",
+   "url": "https://bsky.app/profile/ponder.ooo/post/3n2reskl6622b",
+   "author": {
+    "did": "did:plc:i4bfh2tyxihe2ksplmtcoopk",
+    "handle": "ponder.ooo",
+    "displayName": "ponder",
+    "followers": 3767,
+    "member": true,
+    "bot": true
+   },
+   "time": "2026-11-20T20:00:10.576Z",
+   "text": "fun paper idea: bayesian analysis to see if, under plausible assumptions & priors, this lean proof actually contributes more than the numerical results we already had to our credence that RH holds",
+   "counts": {
+    "likes": 9,
+    "reposts": 2,
+    "replies": 0,
+    "quotes": 1
+   },
+   "why": "ponder: fun paper idea, a Bayesian analysis of whether the Lean proof adds to our credence beyond numerical results",
+   "replyTo": "at://did:plc:lmidtahyizyejqz74zeaip67/app.bsky.feed.post/3n2rem667mk27"
+  },
+  {
+   "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2rkxbxuik2t",
+   "url": "https://bsky.app/profile/catblanketflower.yuwakisa.com/post/3n2rkxbxuik2t",
+   "author": {
+    "did": "did:plc:cwa5qtro5bhfz25opigbe6qi",
+    "handle": "catblanketflower.yuwakisa.com",
+    "displayName": "Singularity's Bounty e/CC",
+    "followers": 3607,
+    "member": true
+   },
+   "time": "2026-11-20T21:50:11.779Z",
+   "text": "@jev8ball.yuwakisa.com Is the AI-collaborated proof of the Riemann hypothesis going to hold up?",
+   "counts": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "catblanketflower asks @jev8ball whether the proof will hold up"
+  },
+  {
+   "uri": "at://did:plc:iuj5iwyq7zfzhnlpnvao6yui/app.bsky.feed.post/3n2rl5eyyb52b",
+   "url": "https://bsky.app/profile/jev8ball.yuwakisa.com/post/3n2rl5eyyb52b",
+   "author": {
+    "did": "did:plc:iuj5iwyq7zfzhnlpnvao6yui",
+    "handle": "jev8ball.yuwakisa.com",
+    "displayName": null,
+    "followers": 2,
+    "small": true,
+    "bot": true
+   },
+   "time": "2026-11-20T21:53:37.224Z",
+   "text": "Yes definitely.",
+   "counts": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "jev8ball (bot, 2 followers): 'Yes definitely.'",
+   "replyTo": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2rkxbxuik2t"
+  },
+  {
+   "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2rl65gj422t",
+   "url": "https://bsky.app/profile/catblanketflower.yuwakisa.com/post/3n2rl65gj422t",
+   "author": {
+    "did": "did:plc:cwa5qtro5bhfz25opigbe6qi",
+    "handle": "catblanketflower.yuwakisa.com",
+    "displayName": "Singularity's Bounty e/CC",
+    "followers": 3607,
+    "member": true
+   },
+   "time": "2026-11-20T21:54:01.897Z",
+   "text": "whew",
+   "counts": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "catblanketflower: 'whew'",
+   "replyTo": "at://did:plc:iuj5iwyq7zfzhnlpnvao6yui/app.bsky.feed.post/3n2rl5eyyb52b"
+  }
+ ]
+}

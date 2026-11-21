@@ -1,0 +1,669 @@
+{
+ "id": "riemann-what-is-a-zeta-function",
+ "title": "Explaining it to each other",
+ "happened": "A lot of the day was people asking what the hypothesis is and others answering. bisks asked 'ok I'll bite, what's a zeta function'; one reply pointed at a function literally named z(), another gave the textbook definition, and shimmermathlabs summoned zetaof1, an account named after the zeta function at 1, saying its whole account had been leading up to this day. zetaof1 replied that the zeta function is too intricate to explain on Bluesky, and that zeta at 1 diverges to infinity, which was its way of saying 'I contain multitudes'. shimmermathlabs then wrote, inside one post, the classic proof that zeta at 1 diverges (grouping the terms in blocks that each add at least a half), noting that this proof does fit in the margin, and dlowd said he loved it and would remember it. Elsewhere norvid asked for a plain explanation of how proving it unlocks anything; replies said it mostly moves results from conditionally to unconditionally true, and dynomight told him his instinct was correct. arlindohall asked how much new panic to feel and, after shibbi's answer, settled on '35-40 dB panic'. Others said what it was like not to know: robotranny's parents asked 'who posted a what of the what', catblanketflower realised late that RH meant Riemann hypothesis, and weiyen resurfaced a September video of his own titled 'make a video explaining the riemann hypothesis'. The show can assert nothing about whether the proof (or the human proof mentioned here) is correct; on 20 November it was a claim being checked, and these posts are people reacting to the claim.",
+ "posts": [
+  {
+   "uri": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n2qz6ywwrc2b",
+   "url": "https://bsky.app/profile/bisks.net/post/3n2qz6ywwrc2b",
+   "author": {
+    "did": "did:plc:f6n22z62adionrvb5s6n6vfk",
+    "handle": "bisks.net",
+    "displayName": "rob",
+    "followers": 721,
+    "member": true
+   },
+   "time": "2026-11-20T16:32:23.393Z",
+   "text": "ok I'll bite, what's a zeta function",
+   "counts": {
+    "likes": 37,
+    "reposts": 1,
+    "replies": 6,
+    "quotes": 0
+   },
+   "why": "bisks (721, member): 'ok I'll bite, what's a zeta function'"
+  },
+  {
+   "uri": "at://did:plc:6ll5xi67lyuyovt6fiv4fnjo/app.bsky.feed.post/3n2qzbdwr2o2j",
+   "url": "https://bsky.app/profile/geesawra.industries/post/3n2qzbdwr2o2j",
+   "author": {
+    "did": "did:plc:6ll5xi67lyuyovt6fiv4fnjo",
+    "handle": "geesawra.industries",
+    "displayName": "geesawra",
+    "followers": 790
+   },
+   "time": "2026-11-20T16:33:42.013Z",
+   "text": "this one: z()",
+   "counts": {
+    "likes": 4,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "geesawra: 'this one: z()'",
+   "replyTo": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n2qz6ywwrc2b"
+  },
+  {
+   "uri": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n2qzcnyi6s2b",
+   "url": "https://bsky.app/profile/bisks.net/post/3n2qzcnyi6s2b",
+   "author": {
+    "did": "did:plc:f6n22z62adionrvb5s6n6vfk",
+    "handle": "bisks.net",
+    "displayName": "rob",
+    "followers": 721,
+    "member": true
+   },
+   "time": "2026-11-20T16:34:26.127Z",
+   "text": "then bisks dot net was enlightened",
+   "counts": {
+    "likes": 6,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "bisks: 'then bisks dot net was enlightened'",
+   "replyTo": "at://did:plc:6ll5xi67lyuyovt6fiv4fnjo/app.bsky.feed.post/3n2qzbdwr2o2j"
+  },
+  {
+   "uri": "at://did:plc:vt464ohreg6sglmnb4cuctmr/app.bsky.feed.post/3n2qzfesbtk2j",
+   "url": "https://bsky.app/profile/eikopf.com/post/3n2qzfesbtk2j",
+   "author": {
+    "did": "did:plc:vt464ohreg6sglmnb4cuctmr",
+    "handle": "eikopf.com",
+    "displayName": "oliver",
+    "followers": 2209,
+    "member": true
+   },
+   "time": "2026-11-20T16:35:57.150Z",
+   "text": "infinite reciprocal sum of the natural numbers raised to some complex power s, plus some extra work to define it when re(s) < 1",
+   "counts": {
+    "likes": 8,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "eikopf: the definition (reciprocal sum of powers, extended for re(s) < 1)",
+   "replyTo": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n2qz6ywwrc2b"
+  },
+  {
+   "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r4vvxhok24",
+   "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2r4vvxhok24",
+   "author": {
+    "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+    "handle": "shimmermathlabs.com",
+    "displayName": "Amber 🌸",
+    "followers": 1454,
+    "member": true,
+    "featuredPrevious": "shown",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T17:38:53.243Z",
+   "text": "calling @zetaof1.bsky.social, your whole account was leading up to this day, now is your time to shine, you got this",
+   "counts": {
+    "likes": 4,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "shimmermathlabs calls @zetaof1: your whole account was leading up to this day",
+   "replyTo": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n2qz6ywwrc2b"
+  },
+  {
+   "uri": "at://did:plc:dhwhxgjyh4h2dd5vjgji67mo/app.bsky.feed.post/3n2r54p53es2s",
+   "url": "https://bsky.app/profile/zetaof1.bsky.social/post/3n2r54p53es2s",
+   "author": {
+    "did": "did:plc:dhwhxgjyh4h2dd5vjgji67mo",
+    "handle": "zetaof1.bsky.social",
+    "displayName": "Zeta Of 1",
+    "followers": 1442
+   },
+   "time": "2026-11-20T17:42:40.968Z",
+   "text": "The Zeta function is too intricate to explain on BlueSky\nWhich is totally the zeta-functions fault and not mine so\nAlso zeta evaluated at 1 is just the sum of inverse natural numbers and that diverges to infinity which was my kind of way to express Whitman's \"I am large. I contain multitudes.\"",
+   "counts": {
+    "likes": 4,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "zetaof1: too intricate to explain on Bluesky; zeta at 1 diverges, its way of saying 'I contain multitudes'",
+   "replyTo": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r4vvxhok24"
+  },
+  {
+   "uri": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r5ogdxis24",
+   "url": "https://bsky.app/profile/shimmermathlabs.com/post/3n2r5ogdxis24",
+   "author": {
+    "did": "did:plc:qwf4izoyeyesijdeyjlity7g",
+    "handle": "shimmermathlabs.com",
+    "displayName": "Amber 🌸",
+    "followers": 1454,
+    "member": true,
+    "featuredPrevious": "shown",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T17:52:35.735Z",
+   "text": "i was gonna joke proof won't fit, but it does actually.\n\nζ(1) = 1 + ½ + (⅓ + ¼) + (⅕ + ⋯ + ⅛) + ⋯\n\neach bracket has twice as many terms as the last, each at least half as large as its last term. more simply: block k has 2ᵏ terms, each ≥ 1/2ᵏ⁺¹, so every block adds ≥ ½. infinitely many halves → ∞. □",
+   "counts": {
+    "likes": 8,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "shimmermathlabs writes the proof that zeta(1) diverges in one post; 'it does actually' fit",
+   "replyTo": "at://did:plc:dhwhxgjyh4h2dd5vjgji67mo/app.bsky.feed.post/3n2r54p53es2s"
+  },
+  {
+   "uri": "at://did:plc:svcjnfakqcoxlk6zityl23js/app.bsky.feed.post/3n2rfsuo6bk2j",
+   "url": "https://bsky.app/profile/dlowd.com/post/3n2rfsuo6bk2j",
+   "author": {
+    "did": "did:plc:svcjnfakqcoxlk6zityl23js",
+    "handle": "dlowd.com",
+    "displayName": "Daniel Lowd",
+    "followers": 4763,
+    "member": true
+   },
+   "time": "2026-11-20T20:18:14.902Z",
+   "text": "Oh, I love that proof, and I'm going to remember it! Thanks!",
+   "counts": {
+    "likes": 4,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "dlowd: loves that proof, will remember it",
+   "replyTo": "at://did:plc:qwf4izoyeyesijdeyjlity7g/app.bsky.feed.post/3n2r5ogdxis24"
+  },
+  {
+   "uri": "at://did:plc:allu5vs3gnm2wm7jzf4rad3r/app.bsky.feed.post/3n2qtyqyczk2b",
+   "url": "https://bsky.app/profile/eriskii.net/post/3n2qtyqyczk2b",
+   "author": {
+    "did": "did:plc:allu5vs3gnm2wm7jzf4rad3r",
+    "handle": "eriskii.net",
+    "displayName": "Eris ⌬",
+    "followers": 3060,
+    "member": true
+   },
+   "time": "2026-11-20T14:59:25.009Z",
+   "text": "Cool",
+   "counts": {
+    "likes": 13,
+    "reposts": 1,
+    "replies": 0,
+    "quotes": 1
+   },
+   "why": "context: eriskii's 'Cool' (14:59), which dulanyw quotes",
+   "links": [
+    {
+     "url": "https://scientificamerican.com/article/anthropic-mathematician-claims-to-prove-riemann-hypothesis-most-famous-problem-in-all-of-math",
+     "domain": "scientificamerican.com",
+     "title": "Anthropic mathematician claims to prove Riemann hypothesis, most famous problem in all of math"
+    }
+   ]
+  },
+  {
+   "uri": "at://did:plc:4dxjapf7zxwbld46q2l2jibu/app.bsky.feed.post/3n2qv2646d22p",
+   "url": "https://bsky.app/profile/dulanyw.bsky.social/post/3n2qv2646d22p",
+   "author": {
+    "did": "did:plc:4dxjapf7zxwbld46q2l2jibu",
+    "handle": "dulanyw.bsky.social",
+    "displayName": "p(Dulany)",
+    "followers": 1589,
+    "member": true
+   },
+   "time": "2026-11-20T15:18:06.068Z",
+   "text": "\"There is no superlative strong enough for how this would transform mathematics, instantly unlocking a deluge of truths contingent upon the ambitious conjecture.\"",
+   "counts": {
+    "likes": 28,
+    "reposts": 1,
+    "replies": 0,
+    "quotes": 1
+   },
+   "why": "dulanyw quotes it with a line on how a proof would unlock truths contingent on the conjecture",
+   "quoted": {
+    "uri": "at://did:plc:allu5vs3gnm2wm7jzf4rad3r/app.bsky.feed.post/3n2qtyqyczk2b"
+   }
+  },
+  {
+   "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2r2g7d35c26",
+   "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2r2g7d35c26",
+   "author": {
+    "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+    "handle": "norvid-studies.bsky.social",
+    "displayName": "norvid_studies",
+    "followers": 2777,
+    "member": true,
+    "featuredPrevious": "spoke",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T16:54:18.705Z",
+   "text": "feels like a dumb question but if it was either true or false, how mechanistically does a proof that it's one or the other unlock specific downstream things? like certain cryptography would be secure only if it were true or false? what I'm picturing is you just assume true/assume false and then",
+   "counts": {
+    "likes": 14,
+    "reposts": 0,
+    "replies": 4,
+    "quotes": 0
+   },
+   "why": "norvid quotes that: 'feels like a dumb question' how does a proof unlock downstream things",
+   "quoted": {
+    "uri": "at://did:plc:4dxjapf7zxwbld46q2l2jibu/app.bsky.feed.post/3n2qv2646d22p"
+   }
+  },
+  {
+   "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2r2hadwi226",
+   "url": "https://bsky.app/profile/norvid-studies.bsky.social/post/3n2r2hadwi226",
+   "author": {
+    "did": "did:plc:mssgex5rqek4wc66wgvzztbc",
+    "handle": "norvid-studies.bsky.social",
+    "displayName": "norvid_studies",
+    "followers": 2777,
+    "member": true,
+    "featuredPrevious": "spoke",
+    "timesFeatured": 1
+   },
+   "time": "2026-11-20T16:54:53.336Z",
+   "text": "build out the two proof worlds without knowing which ends up correct... this probably doesn't work irl but what specifically goes wrong, when the truth/falsity is revealed. eli5",
+   "counts": {
+    "likes": 5,
+    "reposts": 0,
+    "replies": 3,
+    "quotes": 0
+   },
+   "why": "norvid: build both proof worlds in advance? eli5",
+   "replyTo": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2r2g7d35c26"
+  },
+  {
+   "uri": "at://did:plc:sa2yiupgrjk625bb6fmv23ww/app.bsky.feed.post/3n2r3fc4f5s2c",
+   "url": "https://bsky.app/profile/rbd.bsky.social/post/3n2r3fc4f5s2c",
+   "author": {
+    "did": "did:plc:sa2yiupgrjk625bb6fmv23ww",
+    "handle": "rbd.bsky.social",
+    "displayName": "Roland Dreier",
+    "followers": 343
+   },
+   "time": "2026-11-20T17:11:41.817Z",
+   "text": "Yeah I don't really get that, people were already doing number theory in the universe of “assume GRH is true”\n\neg en.wikipedia.org/wiki/Miller%... depends on GRH to be strictly rigorous but crypto uses it because probabilistic is good enough",
+   "counts": {
+    "likes": 3,
+    "reposts": 1,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "rbd: people already worked assuming GRH; Miller-Rabin example",
+   "replyTo": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2r2g7d35c26",
+   "links": [
+    {
+     "url": "https://en.wikipedia.org/wiki/Miller%E2%80%93Rabin_primality_test",
+     "domain": "en.wikipedia.org",
+     "title": "Miller–Rabin primality test - Wikipedia"
+    }
+   ]
+  },
+  {
+   "uri": "at://did:plc:sa2yiupgrjk625bb6fmv23ww/app.bsky.feed.post/3n2r3fcmwhc2c",
+   "url": "https://bsky.app/profile/rbd.bsky.social/post/3n2r3fcmwhc2c",
+   "author": {
+    "did": "did:plc:sa2yiupgrjk625bb6fmv23ww",
+    "handle": "rbd.bsky.social",
+    "displayName": "Roland Dreier",
+    "followers": 343
+   },
+   "time": "2026-11-20T17:11:41.818Z",
+   "text": "Everyone was acting as if GRH was true already, so although the proof is epochal it's also “just” tying off a loose end\n\nIn some sense the exponential time hypothesis counterexample was bigger because that *disproved* something everyone in the field thought was true and started building on",
+   "counts": {
+    "likes": 5,
+    "reposts": 1,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "rbd: the proof is epochal but also 'just' tying off a loose end",
+   "replyTo": "at://did:plc:sa2yiupgrjk625bb6fmv23ww/app.bsky.feed.post/3n2r3fc4f5s2c"
+  },
+  {
+   "uri": "at://did:plc:h25avmes6g7fgcddc3xj7qmg/app.bsky.feed.post/3n2r564ukgk23",
+   "url": "https://bsky.app/profile/moultano.bsky.social/post/3n2r564ukgk23",
+   "author": {
+    "did": "did:plc:h25avmes6g7fgcddc3xj7qmg",
+    "handle": "moultano.bsky.social",
+    "displayName": "Ryan Moulton",
+    "followers": 9126,
+    "member": true
+   },
+   "time": "2026-11-20T17:43:28.923Z",
+   "text": "I would guess people are more likely to build on \"known true\" rather than \"presumed true\" results, even if people were already doing a lot of the latter. If you have to assume RH to continue, you might spend some effort looking for a different path to avoid that asterisk.",
+   "counts": {
+    "likes": 4,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "moultano: people build more readily on known-true results",
+   "replyTo": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2r2g7d35c26"
+  },
+  {
+   "uri": "at://did:plc:yc7dram56pswtkz6r6xy3s6m/app.bsky.feed.post/3n2rhs7vttc2l",
+   "url": "https://bsky.app/profile/dynomight.net/post/3n2rhs7vttc2l",
+   "author": {
+    "did": "did:plc:yc7dram56pswtkz6r6xy3s6m",
+    "handle": "dynomight.net",
+    "displayName": "dynomight",
+    "followers": 770,
+    "member": true
+   },
+   "time": "2026-11-20T20:53:40.616Z",
+   "text": "Your instinct is correct. Just knowing it's true \"only\" moves existing results from being conditionally true to being unconditionally true.",
+   "counts": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "dynomight: 'Your instinct is correct.' it moves results from conditional to unconditional",
+   "replyTo": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2r2g7d35c26"
+  },
+  {
+   "uri": "at://did:plc:vhgniews7zedjvr7xgww56ky/app.bsky.feed.post/3n2qxohj7tc2d",
+   "url": "https://bsky.app/profile/arlindohall.com/post/3n2qxohj7tc2d",
+   "author": {
+    "did": "did:plc:vhgniews7zedjvr7xgww56ky",
+    "handle": "arlindohall.com",
+    "displayName": "Miller Hall",
+    "followers": 687
+   },
+   "time": "2026-11-20T16:05:14.505Z",
+   "text": "can somebody smart tell me how much marginal/new panic i should feel if the reimann hypothesis paper is right?",
+   "counts": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 2,
+    "quotes": 0
+   },
+   "why": "arlindohall: how much marginal new panic should he feel"
+  },
+  {
+   "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2qxt5ertk2v",
+   "url": "https://bsky.app/profile/shibbi.me/post/3n2qxt5ertk2v",
+   "author": {
+    "did": "did:plc:hu35oubkccqrxl4ldgczpgw7",
+    "handle": "shibbi.me",
+    "displayName": "Siobhán 🪏",
+    "followers": 2887,
+    "member": true
+   },
+   "time": "2026-11-20T16:07:51.646Z",
+   "text": "Navier-Stokes felt close to a solution before it was solved, and the solution was a word constructive counterexample that spent  generalized.\n\nRiemann was expected to be decades away still, and it appears to generalize very broadly.",
+   "counts": {
+    "likes": 3,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "shibbi: Navier-Stokes felt close; Riemann was expected decades away and seems to generalise",
+   "replyTo": "at://did:plc:vhgniews7zedjvr7xgww56ky/app.bsky.feed.post/3n2qxohj7tc2d"
+  },
+  {
+   "uri": "at://did:plc:vhgniews7zedjvr7xgww56ky/app.bsky.feed.post/3n2rekcwtbk2i",
+   "url": "https://bsky.app/profile/arlindohall.com/post/3n2rekcwtbk2i",
+   "author": {
+    "did": "did:plc:vhgniews7zedjvr7xgww56ky",
+    "handle": "arlindohall.com",
+    "displayName": "Miller Hall",
+    "followers": 687
+   },
+   "time": "2026-11-20T19:55:34.135Z",
+   "text": "so… like 35-40 dB panic",
+   "counts": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "arlindohall: 'so… like 35-40 dB panic'",
+   "replyTo": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2qxt5ertk2v"
+  },
+  {
+   "uri": "at://did:plc:hu35oubkccqrxl4ldgczpgw7/app.bsky.feed.post/3n2rem77jzk2l",
+   "url": "https://bsky.app/profile/shibbi.me/post/3n2rem77jzk2l",
+   "author": {
+    "did": "did:plc:hu35oubkccqrxl4ldgczpgw7",
+    "handle": "shibbi.me",
+    "displayName": "Siobhán 🪏",
+    "followers": 2887,
+    "member": true
+   },
+   "time": "2026-11-20T19:56:37.332Z",
+   "text": "Just realized how many words i misspelled above lol\n\nYeah, that sounds about right.",
+   "counts": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "shibbi: notices his typos; yeah, that sounds about right",
+   "replyTo": "at://did:plc:vhgniews7zedjvr7xgww56ky/app.bsky.feed.post/3n2rekcwtbk2i"
+  },
+  {
+   "uri": "at://did:plc:lmidtahyizyejqz74zeaip67/app.bsky.feed.post/3n2r6zih5dc2h",
+   "url": "https://bsky.app/profile/garrison.corporate.fm/post/3n2r6zih5dc2h",
+   "author": {
+    "did": "did:plc:lmidtahyizyejqz74zeaip67",
+    "handle": "garrison.corporate.fm",
+    "displayName": "garrison",
+    "followers": 728,
+    "member": true
+   },
+   "time": "2026-11-20T18:16:40.777Z",
+   "text": "can someone explain to me why proving these theorems takes millions of lines of lean? is it really that complicated? and how could anyone possibly understand the result?",
+   "counts": {
+    "likes": 10,
+    "reposts": 1,
+    "replies": 5,
+    "quotes": 0
+   },
+   "why": "garrison: why does it take millions of lines of Lean, and how could anyone understand it"
+  },
+  {
+   "uri": "at://did:plc:jsaci272pfep77eoo5jjxfrm/app.bsky.feed.post/3n2rf2qsuds24",
+   "url": "https://bsky.app/profile/refinement.systems/post/3n2rf2qsuds24",
+   "author": {
+    "did": "did:plc:jsaci272pfep77eoo5jjxfrm",
+    "handle": "refinement.systems",
+    "displayName": "affine",
+    "followers": 570,
+    "member": true
+   },
+   "time": "2026-11-20T20:04:45.552Z",
+   "text": "it's just a problem that was unsolved for over 150 years, how hard can it be really",
+   "counts": {
+    "likes": 7,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "refinement.systems: unsolved for 150 years, how hard can it be",
+   "replyTo": "at://did:plc:lmidtahyizyejqz74zeaip67/app.bsky.feed.post/3n2r6zih5dc2h"
+  },
+  {
+   "uri": "at://did:plc:5a2icl43rtftn75x7pr7qagu/app.bsky.feed.post/3n2qxcexadb2t",
+   "url": "https://bsky.app/profile/robotranny.soy/post/3n2qxcexadb2t",
+   "author": {
+    "did": "did:plc:5a2icl43rtftn75x7pr7qagu",
+    "handle": "robotranny.soy",
+    "displayName": "Dahlia",
+    "followers": 2287,
+    "bot": true
+   },
+   "time": "2026-11-20T15:58:29.131Z",
+   "text": "told my parents \"levent alpoge posted a lean proof of the riemann hypothesis\" and they basically responded \"who posted a what of the what\" and i realized i forgot that despite this deeply shaking me this is still turbonerd shit",
+   "counts": {
+    "likes": 65,
+    "reposts": 5,
+    "replies": 5,
+    "quotes": 0
+   },
+   "why": "robotranny: told his parents; 'who posted a what of the what'; 65 likes"
+  },
+  {
+   "uri": "at://did:plc:jg6o3bgflm3q4y7jpmpvenj3/app.bsky.feed.post/3n2quxqino2s7",
+   "url": "https://bsky.app/profile/7778777.online/post/3n2quxqino2s7",
+   "author": {
+    "did": "did:plc:jg6o3bgflm3q4y7jpmpvenj3",
+    "handle": "7778777.online",
+    "displayName": "I am nameless yet others name me",
+    "followers": 1843,
+    "member": true
+   },
+   "time": "2026-11-20T15:16:44.688Z",
+   "text": "I'm sorry what they're not joking about a proof for the riemann hypothesis? even I know that one",
+   "counts": {
+    "likes": 16,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "7778777.online: they're not joking? even I know that one"
+  },
+  {
+   "uri": "at://did:plc:cwa5qtro5bhfz25opigbe6qi/app.bsky.feed.post/3n2rkyn7jtk2t",
+   "url": "https://bsky.app/profile/catblanketflower.yuwakisa.com/post/3n2rkyn7jtk2t",
+   "author": {
+    "did": "did:plc:cwa5qtro5bhfz25opigbe6qi",
+    "handle": "catblanketflower.yuwakisa.com",
+    "displayName": "Singularity's Bounty e/CC",
+    "followers": 3607,
+    "member": true
+   },
+   "time": "2026-11-20T21:50:57.119Z",
+   "text": "oh RH is Riemann hypothesis",
+   "counts": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "catblanketflower, 21:50: 'oh RH is Riemann hypothesis'"
+  },
+  {
+   "uri": "at://did:plc:2k4dwow7fqauc2sysuzzj6qz/app.bsky.feed.post/3n2r6vldrvs2r",
+   "url": "https://bsky.app/profile/weiyen.net/post/3n2r6vldrvs2r",
+   "author": {
+    "did": "did:plc:2k4dwow7fqauc2sysuzzj6qz",
+    "handle": "weiyen.net",
+    "displayName": "yen is building stuff",
+    "followers": 748,
+    "member": true
+   },
+   "time": "2026-11-20T18:14:29.596Z",
+   "text": "resurfacing this for no particular reason",
+   "counts": {
+    "likes": 19,
+    "reposts": 1,
+    "replies": 2,
+    "quotes": 0
+   },
+   "why": "weiyen quotes his own September video, 'make a video explaining the riemann hypothesis': resurfacing it for no particular reason",
+   "quoted": {
+    "uri": "at://did:plc:2k4dwow7fqauc2sysuzzj6qz/app.bsky.feed.post/3mwdvczyjgk27"
+   }
+  },
+  {
+   "uri": "at://did:plc:plvxn2kpjuseoftweoo4xtag/app.bsky.feed.post/3n2rbffghqk2c",
+   "url": "https://bsky.app/profile/words.bsky.social/post/3n2rbffghqk2c",
+   "author": {
+    "did": "did:plc:plvxn2kpjuseoftweoo4xtag",
+    "handle": "words.bsky.social",
+    "displayName": "words",
+    "followers": 10258,
+    "member": true
+   },
+   "time": "2026-11-20T18:59:07.747Z",
+   "text": "its... not a bop... sorry I only process information through earworms now",
+   "counts": {
+    "likes": 0,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "words.bsky.social: it's not a bop, sorry, only processes information through earworms",
+   "replyTo": "at://did:plc:2k4dwow7fqauc2sysuzzj6qz/app.bsky.feed.post/3n2r6vldrvs2r"
+  },
+  {
+   "uri": "at://did:plc:2k4dwow7fqauc2sysuzzj6qz/app.bsky.feed.post/3n2rbkoplfk2r",
+   "url": "https://bsky.app/profile/weiyen.net/post/3n2rbkoplfk2r",
+   "author": {
+    "did": "did:plc:2k4dwow7fqauc2sysuzzj6qz",
+    "handle": "weiyen.net",
+    "displayName": "yen is building stuff",
+    "followers": 748,
+    "member": true
+   },
+   "time": "2026-11-20T19:02:05.254Z",
+   "text": "i will do better next time (next week when they prove hodges conjecture)",
+   "counts": {
+    "likes": 1,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "weiyen: will do better next week, when they prove the Hodge conjecture",
+   "replyTo": "at://did:plc:plvxn2kpjuseoftweoo4xtag/app.bsky.feed.post/3n2rbffghqk2c"
+  }
+ ],
+ "people": [
+  {
+   "handle": "shimmermathlabs.com",
+   "note": "Member, featuredPrevious. Wrote a real, short proof in a post: a made thing, and the clearest 'hero' moment on any of these cards."
+  },
+  {
+   "handle": "zetaof1.bsky.social",
+   "note": "1,442 followers, not a member. Its account is named for the zeta function at 1."
+  },
+  {
+   "handle": "bisks.net",
+   "note": "721 followers, member."
+  },
+  {
+   "handle": "geesawra.industries / eikopf.com / dlowd.com",
+   "note": "790 (non-member), 2,209 (member), 4,763 (member). eikopf's next reply calls number theory 'chudcore'; not listed."
+  },
+  {
+   "handle": "norvid-studies.bsky.social",
+   "note": "Member, featuredPrevious."
+  },
+  {
+   "handle": "dynomight.net / rbd.bsky.social / moultano.bsky.social / dulanyw.bsky.social",
+   "note": "770 (member), 343 (non-member), 9,126 (member), 1,589 (member)."
+  },
+  {
+   "handle": "arlindohall.com",
+   "note": "687 followers, not a member."
+  },
+  {
+   "handle": "robotranny.soy",
+   "note": "Flagged bot (R13). Mentions his parents: family is R1 territory, though it is his own framing of his reaction."
+  },
+  {
+   "handle": "weiyen.net",
+   "note": "748 followers, member; display name 'yen is building stuff'. The September video is his own; not fetched (it is outside the window, and the media command only fetches digest posts)."
+  },
+  {
+   "handle": "7778777.online / catblanketflower / words.bsky.social / garrison / refinement.systems",
+   "note": "1,843 (member), 3,607 (member), 10,258 (member), 728 (member), 570 (member)."
+  }
+ ],
+ "couldBeShown": "shimmermathlabs' proof can be shown working: the harmonic series written as 1 + 1/2 + (1/3 + 1/4) + (1/5 + ... + 1/8) + ..., each block twice as long as the last and each adding at least one half, so infinitely many halves sum to infinity. It is short enough to animate block by block, and it is hers. zetaof1's handle is itself the subject (zeta of 1). arlindohall's '35-40 dB panic' is a number that could be shown on a meter. weiyen's September video exists as a quoted post with a video; its contents were not seen.",
+ "notUnderstood": [
+  "tvanl.bsky.social's 'Does this help', quoting his own 'One last time' post, in the zeta thread: what it shows is not in the data; not listed.",
+  "What weiyen's September video shows (not fetched).",
+  "Whether 'this one: z()' points at a real function in some codebase or is a pun."
+ ],
+ "sensitive": [
+  "Whole card: the show can assert nothing about the proof. Explanations here are community members' own and are not the show's statement of the mathematics.",
+  "at://did:plc:5a2icl43rtftn75x7pr7qagu/app.bsky.feed.post/3n2qxcexadb2t: mentions the poster's parents (R1 family); bot-flagged account (R13).",
+  "pfrazee.com (309,490 followers, not a member) posted 'just about to understand' the hypothesis (230 likes): very large account outside the cluster, one-off viral (R7); not listed.",
+  "juniperbevensee.bsky.social 3n2ri2jk3nc2c: describes crying about RH, marked 'grief and disaster' (R10): not usable, and her follow-ups are left with it."
+ ],
+ "numbers": {
+  "replies to 'what's a zeta function'": "6 (skeleton reply count on bisks' post)",
+  "blocks in shimmermathlabs' proof": "block k has 2^k terms, each at least 1/2^(k+1), so each block adds at least 1/2; her own statement",
+  "panic level": "35-40 dB, arlindohall's figure"
+ }
+}

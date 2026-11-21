@@ -1,0 +1,205 @@
+{
+  "id": "riemann-two-proofs-one-day",
+  "title": "A second, all-human proof the same afternoon",
+  "happened": "Around four hours after the note, posts began linking a blog post by the president of the American Mathematical Society: a separate, all-human proof of the generalised hypothesis by a mathematician named Alessandro Masullo, which a colleague had been reviewing for months and which was put out early, unpolished, because of the first announcement. The community read the two side by side. zuko-always-lies, a 111-follower account, worked out that if both check out the human one does it in 0.4% of the pages; sciortino replied that he trusted a giant inscrutable Lean proof more than a readable 900-page human one. Others called it the last time John Henry beats the steam engine, asked who does responsible disclosure for math 0-days, wondered what 'all-human' means if the humans used computers, and hoped both proofs were true. norvid proposed, as a film, two AI-assisted mathematicians releasing increasingly daring proofs in bitter mutual combat; a reply asked for secret twins, and yonderdavid pointed out that the colleague reviewing the human proof is one of a pair of identical-twin mathematicians. By late evening members were relaying that people trying to formalise the human proof in Lean were finding gaps, and that the mood among mathematicians leaned towards the machine proof holding and the human one not. The show can assert nothing about whether the proof (or the human proof mentioned here) is correct; on 20 November it was a claim being checked, and these posts are people reacting to the claim.",
+  "posts": [
+    {
+      "uri": "at://did:plc:tqn5dbmoygh2r3lko4nlhez7/app.bsky.feed.post/3n2r7w4dkhs24",
+      "why": "goodsiephd (non-member, 569), 18:32 UTC: the first link, 'A possible non-AI proof of GRH?'"
+    },
+    {
+      "uri": "at://did:plc:l3vbx3e2lqnlja7q64wfrrzq/app.bsky.feed.post/3n2rc6shsgk2r",
+      "why": "nsaphra quotes it with only a picture of a John Henry statue"
+    },
+    {
+      "uri": "at://did:plc:e6densrxdlt2oseqserykkpo/app.bsky.feed.post/3n2rdhviihk27",
+      "why": "steuard (655, non-member): the plain account of what was posted and why"
+    },
+    {
+      "uri": "at://did:plc:xm55llyxcrb3h7qwqr3wtaog/app.bsky.feed.post/3n2rdcjbivk2s",
+      "why": "nmk.wtf: the link, 'holy'"
+    },
+    {
+      "uri": "at://did:plc:xm55llyxcrb3h7qwqr3wtaog/app.bsky.feed.post/3n2rdm3uyoc2s",
+      "why": "his screenshot of the blog post's opening paragraph"
+    },
+    {
+      "uri": "at://did:plc:6rdthm3ihpqfd7vn2q2ktjrz/app.bsky.feed.post/3n2r6rfndqs2c",
+      "why": "colin-fraser: he is rooting for a retraction of the AI proof but thinks it's probably right"
+    },
+    {
+      "uri": "at://did:plc:6rdthm3ihpqfd7vn2q2ktjrz/app.bsky.feed.post/3n2r7g5ni6k2c",
+      "why": "colin-fraser: what he finds ugly is the erosion of scholarly norms, not the proof"
+    },
+    {
+      "uri": "at://did:plc:2e3ybp5zlnxyizqpmozjiioz/app.bsky.feed.post/3n2rau7t2uk2r",
+      "why": "zuko-always-lies replies with the human proof, dropped early instead of after another year of checking; 127 likes"
+    },
+    {
+      "uri": "at://did:plc:2e3ybp5zlnxyizqpmozjiioz/app.bsky.feed.post/3n2rb54bzs22r",
+      "why": "zuko: if both check out, the human one does it in 0.4% of the pages"
+    },
+    {
+      "uri": "at://did:plc:fkq3fec6vb7exawkgw5ichtr/app.bsky.feed.post/3n2rb36hdgk2u",
+      "why": "sciortino: more sceptical of a readable 900-page human proof than of a giant inscrutable Lean one"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2rcfzkgec2b",
+      "why": "yonderdavid: people fed the preprint to LLMs, which spotted errors; too soon to say they can't be repaired"
+    },
+    {
+      "uri": "at://did:plc:5boijynjbphhn7nqbc55wt4w/app.bsky.feed.post/3n2rbsbxgfs2s",
+      "why": "rivertam quotes zuko: 'Um what'"
+    },
+    {
+      "uri": "at://did:plc:oclqhr3bchhxe42nd3dses7g/app.bsky.feed.post/3n2rbw3qihk2v",
+      "why": "jamespirruccello replies: 'Human Riemann is my father's name, please just call me [transcript ended]'"
+    },
+    {
+      "uri": "at://did:plc:3soxccyzncng7ap4wbman44m/app.bsky.feed.post/3n2rd7rjdl22t",
+      "why": "domesticshoggoth: under 1% as long; probably the last time John Henry beats the steam engine in mathematics"
+    },
+    {
+      "uri": "at://did:plc:jsaci272pfep77eoo5jjxfrm/app.bsky.feed.post/3n2re3p4nes2l",
+      "why": "refinement.systems: who there doing responsible disclosure for math 0-days"
+    },
+    {
+      "uri": "at://did:plc:bjaceaxgoto5p7gor2rcov3g/app.bsky.feed.post/3n2re2ctsj22j",
+      "why": "yetanotheruseless: 'well then, how the turns have tabled! (maybe?)'"
+    },
+    {
+      "uri": "at://did:plc:wbtjiqd5pshd5tsvwjv6xmr3/app.bsky.feed.post/3n2revdnpws2m",
+      "why": "adambecker (9,800, non-member): the most-shared post on the human proof, 1,849 likes; see sensitive"
+    },
+    {
+      "uri": "at://did:plc:gq4fo3u6tqzzdkjlwzpb23tj/app.bsky.feed.post/3n2rgrfqols2d",
+      "why": "dame.is quotes it: does 'all-human' mean no calculators or computers?"
+    },
+    {
+      "uri": "at://did:plc:gq4fo3u6tqzzdkjlwzpb23tj/app.bsky.feed.post/3n2rhh5eh3s2d",
+      "why": "dame.is: 'made entirely by humans' ... humans using computers all the way down"
+    },
+    {
+      "uri": "at://did:plc:hiqfk2qrq6w4semc36h37uag/app.bsky.feed.post/3n2re3oewlk24",
+      "why": "context only: the reply norvid quotes (names a researcher unkindly; see sensitive)"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2reaf3fwc2f",
+      "why": "norvid: concept, a THE PRESTIGE type film about two AI-assisted mathematicians in bitter mutual combat"
+    },
+    {
+      "uri": "at://did:plc:gwvh3frsmdih2zpol2holysc/app.bsky.feed.post/3n2rfjdfbrs2s",
+      "why": "brennan.computer: 'Bone Wars II: Electric Boogaloo'"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2rj7mchrs26",
+      "why": "norvid: 'edward drinker cope??'"
+    },
+    {
+      "uri": "at://did:plc:ukhy3nf3far6hnzugzvf6hzp/app.bsky.feed.post/3n2rl6f52qs25",
+      "why": "gilesforyou: can it have secret twins and doomed duplicates"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2rlehnkds2e",
+      "why": "norvid: yonderdavid mentioned some math twins"
+    },
+    {
+      "uri": "at://did:plc:nqu76ue2hgr44emaxyvgbzsq/app.bsky.feed.post/3n2rlk4djrs2g",
+      "why": "yonderdavid: two identical-twin mathematicians, one of whom reviewed the human proof (two photos)"
+    },
+    {
+      "uri": "at://did:plc:bhklr7m5t5fdqebgy63hpfum/app.bsky.feed.post/3n2rnztlr3k22",
+      "why": "satyrs.eu: hopes both are true; two proofs of different kinds on the same day would be a nice end to the search"
+    },
+    {
+      "uri": "at://did:plc:tbig7qnx4o5ylp5v23w577vl/app.bsky.feed.post/3n2rmoutk4c2p",
+      "why": "sifu.tweety.fish: people aren't ready for the LLM proof checking out and the human one not"
+    },
+    {
+      "uri": "at://did:plc:oqoksnyukzbase3uttllntwk/app.bsky.feed.post/3n2rp33oh5s2l",
+      "why": "mrcheeze: the vibe is that mathematicians expect that"
+    },
+    {
+      "uri": "at://did:plc:3iwge6tzr76tkt6xdwyfs6mr/app.bsky.feed.post/3n2ro6qxuec2p",
+      "why": "noamchompers: not qualified, but would bet on the AI proof"
+    },
+    {
+      "uri": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2rrafw7ms2f",
+      "why": "davidcrespo relays from Zulip: issues found, unclear whether incomplete or wrong"
+    },
+    {
+      "uri": "at://did:plc:ctphcgyhnllfluywokibtrgb/app.bsky.feed.post/3n2rrjqef3s2c",
+      "why": "davidcrespo: clarifies the issues are in the human proof"
+    },
+    {
+      "uri": "at://did:plc:oqoksnyukzbase3uttllntwk/app.bsky.feed.post/3n2rsft7ous24",
+      "why": "mrcheeze, 00:03 UTC: tentative vibes in the other direction on the human one, alas"
+    }
+  ],
+  "people": [
+    {
+      "handle": "zuko-always-lies.bsky.social",
+      "note": "111 followers, small, not a member. Brought the human proof into the main conversation and made the page-count comparison (127 and 76 likes). R7: only as the hero of the moment."
+    },
+    {
+      "handle": "sciortino.bsky.social",
+      "note": "3,806 followers, not a member."
+    },
+    {
+      "handle": "colin-fraser.net",
+      "note": "5,272 followers, not a member. His posts are a critique of how the announcement was made; R7 (part of an argument) applies if used."
+    },
+    {
+      "handle": "norvid-studies.bsky.social",
+      "note": "Member, featuredPrevious. The PRESTIGE film concept is his own published post."
+    },
+    {
+      "handle": "yonderdavid.bsky.social",
+      "note": "971 followers, member. Posted photos of two real mathematicians (Brian and Keith Conrad)."
+    },
+    {
+      "handle": "adambecker.bsky.social",
+      "note": "9,800 followers, not a member, one-off viral post (1,849 likes, 576 reposts): R7, and its parenthesis raises an insinuation."
+    },
+    {
+      "handle": "dame.is",
+      "note": "6,918 followers, member. Same account was in an 'insufferable' exchange elsewhere that day; only the 'all-human' posts are listed."
+    },
+    {
+      "handle": "goodsiephd / steuard / nmk.wtf / nsaphra",
+      "note": "569 (non-member), 655 (non-member), 502 (member), 10,767 (non-member) followers: the first links."
+    },
+    {
+      "handle": "jamespirruccello.com / rivertam.bsky.social",
+      "note": "3,473 (member) and 5,077 (non-member)."
+    },
+    {
+      "handle": "domesticshoggoth / refinement.systems / yetanotheruseless.com / satyrs.eu / sifu.tweety.fish / noamchompers / mrcheeze / davidcrespo",
+      "note": "1,285 (non-member), 570 (member), 3,972 (member), 402 (member), 12,822 (non-member), 6,889 (non-member), 1,812 (member), 5,732 (member)."
+    },
+    {
+      "handle": "brennan.computer / gilesforyou.bsky.social",
+      "note": "3,160 (member) and 456 (non-member)."
+    }
+  ],
+  "couldBeShown": "nmk.wtf's screenshot (no alt, fetched): the opening of the blog post: 'Hi everyone, I am at the American Mathematical Society Executive Committee and Board of Trustees meeting now ... Alessandro Masullo has a proposed proof of GRH, and Brian Conrad has been looking closely at it for months ... It is all human, with no AI ... Now it seems best to put out the current draft ... Here it is.' (third-party text, not material). nsaphra's image (alt): a John Henry statue. yonderdavid's two photos (alt: Brian Conrad; Keith Conrad): portraits of real people outside the community, not to be shown. The one true small number the community computed itself: 0.4% of the pages.",
+  "notUnderstood": [
+    "Whether the human proof is correct, and what was found when people tried to formalise it: the relayed reports are second-hand and from another platform.",
+    "jamespirruccello's 'Human Riemann is my father's name ... [transcript ended]': a meme format not identified (R15).",
+    "Where the '900 page' figure (sciortino) comes from; zuko's 0.4% implies a ratio, not page counts. Not checked.",
+    "pekka.bsky.social posted that an AI-tool company published an audit finding 'fatal errors' in the human proof; the audit is outside the data and is not listed."
+  ],
+  "sensitive": [
+    "Alessandro Masullo and Brian Conrad are real people outside the community (R1, R7). Nothing may suggest the human proof is wrong or that its author failed (R5, R6); the community's reports of gaps are relayed rumour.",
+    "Frontrunning: eugenevinitsky.bsky.social (s-78ad075445), catacalypto, ngsmcphrsn.bsky.social (surveillance claim), and the parenthesis in adambecker's post suggest the AI proof was rushed out to scoop the human one; davidcrespo argued against. Accusations and an argument: left out (R5, R7), and adambecker's post should be used, if at all, without its parenthesis implication.",
+    "R10 disaster: jefferyharrell.bsky.social 3n2ripzcrxk2j ('Mr. President, a second proof') and its reply 3n2ripzcuvc2j, and sciortino 3n2rcyinwb22y (the 'A second unrelated proof has hit' meme on the 2001 classroom photo) reference the 11 September attacks. Not listed; not usable.",
+    "at://did:plc:hiqfk2qrq6w4semc36h37uag/app.bsky.feed.post/3n2re3oewlk24: calls a named researcher 'spray and pray'; context only, never shown (R6).",
+    "colin-fraser 3n2r6rfndqs2c: 'rooting for an embarrassing retraction' of a real person's work; use with care (R6).",
+    "yonderdavid 3n2rlk4djrs2g: photos of real people (R1 appearance)."
+  ],
+  "numbers": {
+    "time from the note's first post to the first link to the human proof": "3 h 49 min (14:43 to 18:32 UTC)",
+    "page ratio, human to AI proof, if both hold": "0.4%, zuko-always-lies' figure",
+    "adambecker post": "1,849 likes, 576 reposts, 145 quotes (non-member)"
+  }
+}

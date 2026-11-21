@@ -1,0 +1,3262 @@
+{
+ "segment": "making-of-inward",
+ "draft": "making-of-inward",
+ "episode": "002-commissions-w47",
+ "takes": 4,
+ "gate": 0.6,
+ "lines": [
+  {
+   "id": "l0-how",
+   "who": "larry",
+   "kind": "say",
+   "text": "This is how the show is made. First —",
+   "as": null,
+   "heard": [
+    {
+     "text": "This is how the flow is made first.",
+     "count": 3
+    },
+    {
+     "text": "This is how the floor is made first.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 8,
+    "of": 8,
+    "min": 8
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "This is how the show is made. First —",
+     "score": {
+      "heard": 8,
+      "of": 8,
+      "min": 8
+     },
+     "heard": [
+      {
+       "text": "This is how the flow is made first.",
+       "count": 3
+      },
+      {
+       "text": "This is how the floor is made first.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "l0-come-in",
+   "who": "larry",
+   "kind": "say",
+   "text": "Do come in.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Do come in.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 3,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Do come in.",
+     "score": {
+      "heard": 3,
+      "of": 3,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "Do come in.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "l0-parts",
+   "who": "larry",
+   "kind": "say",
+   "text": "Lips. Jaw. Tongue. Velum.",
+   "as": "Lips. Djaw. Tongue. Vee-lum.",
+   "heard": [
+    {
+     "text": "lips, jaw, tongue, heelum",
+     "count": 3
+    },
+    {
+     "text": "lips, jaw, tongue, heel, arm",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 4,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "velum",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 1,
+     "word": "Jaw",
+     "as": "Djaw",
+     "plain": "dʒ ɔ",
+     "ipa": "d dʒ ɔ",
+     "keeps": true
+    },
+    {
+     "i": 3,
+     "word": "Velum",
+     "as": "Vee-lum",
+     "plain": "v ɛ l ʌ m",
+     "ipa": "v i l ʌ m",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "Lips. Djaw. Tongue. Vee-lum.",
+     "score": {
+      "heard": 3,
+      "of": 4,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "lips, jaw, tongue, heelum",
+       "count": 3
+      },
+      {
+       "text": "lips, jaw, tongue, heel, arm",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "Jaw",
+       "as": "Djaw",
+       "plain": "dʒ ɔ",
+       "ipa": "d dʒ ɔ",
+       "keeps": true
+      },
+      {
+       "i": 3,
+       "word": "Velum",
+       "as": "Vee-lum",
+       "plain": "v ɛ l ʌ m",
+       "ipa": "v i l ʌ m",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "l0-head",
+   "who": "larry",
+   "kind": "say",
+   "text": "That's everything in my head.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Let's everything in my head",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 5,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "that's",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "That's everything in my head.",
+     "score": {
+      "heard": 4,
+      "of": 5,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "Let's everything in my head",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "scenes-title",
+   "who": "larry",
+   "kind": "say",
+   "text": "Before the show: scenes.",
+   "as": null,
+   "heard": [
+    {
+     "text": "before the show seems",
+     "count": 2
+    },
+    {
+     "text": "before the flow sinks.",
+     "count": 1
+    },
+    {
+     "text": "Before the show seems",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 4,
+    "min": 2
+   },
+   "status": "weak",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "scenes",
+     "count": 4
+    },
+    {
+     "word": "show",
+     "count": 1
+    }
+   ],
+   "rejected": [
+    {
+     "word": "show",
+     "as": "shoh",
+     "plain": "ʃ oʊ",
+     "ipa": "ʃ ɑ h",
+     "why": "vowel oʊ → ɑ"
+    }
+   ],
+   "tried": [
+    {
+     "as": "Before the show: scenes.",
+     "score": {
+      "heard": 3,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "before the show seems",
+       "count": 2
+      },
+      {
+       "text": "before the flow sinks.",
+       "count": 1
+      },
+      {
+       "text": "Before the show seems",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Before the show: seenz.",
+     "score": {
+      "heard": 3,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "before the show seems",
+       "count": 2
+      },
+      {
+       "text": "before the flow sinks.",
+       "count": 1
+      },
+      {
+       "text": "Before the show seems",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 3,
+       "word": "scenes",
+       "as": "seenz",
+       "plain": "s i n z",
+       "ipa": "s i n z",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Before the, show: scenes.",
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "before the shou shins.",
+       "count": 2
+      },
+      {
+       "text": "Before the show seems built...",
+       "count": 1
+      },
+      {
+       "text": "Before the show seems busy.",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Before the, show: seenz.",
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "before the shou shins.",
+       "count": 2
+      },
+      {
+       "text": "Before the show seems built...",
+       "count": 1
+      },
+      {
+       "text": "Before the show seems busy.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 3,
+       "word": "scenes",
+       "as": "seenz",
+       "plain": "s i n z",
+       "ipa": "s i n z",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Before the show: scenes.",
+     "rate": 0.9,
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "before the full shins.",
+       "count": 2
+      },
+      {
+       "text": "Before the flow sinks",
+       "count": 1
+      },
+      {
+       "text": "before the flow sinks.",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Before the show: scenes.",
+     "rate": 0.82,
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Before the flow sinks",
+       "count": 1
+      },
+      {
+       "text": "Before the flow sinks, be-",
+       "count": 1
+      },
+      {
+       "text": "Before the flow sinks...",
+       "count": 1
+      },
+      {
+       "text": "before the full shins build",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "scenes-builders",
+   "who": "larry",
+   "kind": "say",
+   "text": "Builders draw them. From one builder's report:",
+   "as": "Builders draw them. Frum one builder's, report:",
+   "heard": [
+    {
+     "text": "Builders draw them from one builder's report.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 7,
+    "of": 7,
+    "min": 7
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "sounds": [
+    {
+     "i": 3,
+     "word": "From",
+     "as": "Frum",
+     "plain": "f ɹ ə m",
+     "ipa": "f ɹ ʌ m",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "Builders draw them. Frum one builder's, report:",
+     "score": {
+      "heard": 7,
+      "of": 7,
+      "min": 7
+     },
+     "heard": [
+      {
+       "text": "Builders draw them from one builder's report.",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 3,
+       "word": "From",
+       "as": "Frum",
+       "plain": "f ɹ ə m",
+       "ipa": "f ɹ ʌ m",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "l3-kazoo",
+   "who": "larry",
+   "kind": "say",
+   "text": "\"The first kazoo looked like a submarine; I redrew it.\"",
+   "as": "\"The first kazoo looked like a submarine; I ree-drew it.\"",
+   "heard": [
+    {
+     "text": "The first two looked like submarine, I redrew it.",
+     "count": 2
+    },
+    {
+     "text": "The first two looked like submarine. I redrew it.",
+     "count": 2
+    }
+   ],
+   "score": {
+    "heard": 8,
+    "of": 10,
+    "min": 8
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "kazoo",
+     "count": 4
+    },
+    {
+     "word": "a",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 8,
+     "word": "redrew",
+     "as": "ree-drew",
+     "plain": "ɹ ɛ d ɹ ɛ w",
+     "ipa": "ɹ i d ɹ u",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "\"The first kazoo looked like a submarine; I ree-drew it.\"",
+     "score": {
+      "heard": 8,
+      "of": 10,
+      "min": 8
+     },
+     "heard": [
+      {
+       "text": "The first two looked like submarine, I redrew it.",
+       "count": 2
+      },
+      {
+       "text": "The first two looked like submarine. I redrew it.",
+       "count": 2
+      }
+     ],
+     "sounds": [
+      {
+       "i": 8,
+       "word": "redrew",
+       "as": "ree-drew",
+       "plain": "ɹ ɛ d ɹ ɛ w",
+       "ipa": "ɹ i d ɹ u",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "l1-this-way",
+   "who": "larry",
+   "kind": "say",
+   "text": "This way.",
+   "as": "This, way.",
+   "heard": [
+    {
+     "text": "this way",
+     "count": 3
+    },
+    {
+     "text": "This way.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 2,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "This, way.",
+     "score": {
+      "heard": 2,
+      "of": 2,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "this way",
+       "count": 3
+      },
+      {
+       "text": "This way.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "review-late-title",
+   "who": "larry",
+   "kind": "say",
+   "text": "Before the scenes: review.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Before the scene, re you.",
+     "count": 3
+    },
+    {
+     "text": "before the shins are you",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 4,
+    "min": 2
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "scenes",
+     "count": 4
+    },
+    {
+     "word": "review",
+     "count": 4
+    }
+   ],
+   "known": [
+    "review"
+   ],
+   "suggest": {
+    "rate": 0.9,
+    "as": "Before the scenes: review.",
+    "score": {
+     "heard": 3,
+     "of": 4,
+     "min": 2
+    }
+   },
+   "tried": [
+    {
+     "as": "Before the scenes: review.",
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Before the scene, re you.",
+       "count": 3
+      },
+      {
+       "text": "before the shins are you",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Before the seenz: review.",
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Before the scene, re you.",
+       "count": 3
+      },
+      {
+       "text": "before the shins are you",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "scenes",
+       "as": "seenz",
+       "plain": "s i n z",
+       "ipa": "s i n z",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Before the, scenes: review.",
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Before the change for you",
+       "count": 3
+      },
+      {
+       "text": "Before the shins are you ready?",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Before the scenes: Reev-yoo.",
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Before the scene, re you.",
+       "count": 3
+      },
+      {
+       "text": "Before the scenes read you",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 3,
+       "word": "review",
+       "as": "Reev-yoo",
+       "plain": "ɹ i v j u",
+       "ipa": "ɹ i v j u",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Before the, seenz: review.",
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Before the change for you",
+       "count": 3
+      },
+      {
+       "text": "Before the shins are you ready?",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "scenes",
+       "as": "seenz",
+       "plain": "s i n z",
+       "ipa": "s i n z",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Before the scenes: review.",
+     "rate": 0.9,
+     "score": {
+      "heard": 3,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Before the scenes were you.",
+       "count": 3
+      },
+      {
+       "text": "Before the shins are you hurt",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Before the scenes: review.",
+     "rate": 0.82,
+     "score": {
+      "heard": 2,
+      "of": 4,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Before the shins are you",
+       "count": 1
+      },
+      {
+       "text": "Before the shins are you.",
+       "count": 1
+      },
+      {
+       "text": "before the shins re you",
+       "count": 1
+      },
+      {
+       "text": "Before the shins show you...",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "review-late-rule",
+   "who": "larry",
+   "kind": "say",
+   "text": "Reviewers choose. Whoever makes a thing does not judge it.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Or you will choose, whoever makes the thing does not love it.",
+     "count": 2
+    },
+    {
+     "text": "or you are cool, whoever makes the thing does not love it.",
+     "count": 1
+    },
+    {
+     "text": "or you are told, whoever makes things does not love it.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 6,
+    "of": 10,
+    "min": 6
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "reviewers",
+     "count": 4
+    },
+    {
+     "word": "a",
+     "count": 4
+    },
+    {
+     "word": "judge",
+     "count": 4
+    },
+    {
+     "word": "choose",
+     "count": 2
+    }
+   ],
+   "tried": [
+    {
+     "as": "Reviewers choose. Whoever makes a thing does not judge it.",
+     "score": {
+      "heard": 6,
+      "of": 10,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "Or you will choose, whoever makes the thing does not love it.",
+       "count": 2
+      },
+      {
+       "text": "or you are cool, whoever makes the thing does not love it.",
+       "count": 1
+      },
+      {
+       "text": "or you are told, whoever makes things does not love it.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "review-late-me",
+   "who": "larry",
+   "kind": "say",
+   "text": "So don't ask me how this is going.",
+   "as": "So don't, ask me how this is going.",
+   "heard": [
+    {
+     "text": "So don't ask me how this is going.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 8,
+    "of": 8,
+    "min": 8
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "So don't, ask me how this is going.",
+     "score": {
+      "heard": 8,
+      "of": 8,
+      "min": 8
+     },
+     "heard": [
+      {
+       "text": "So don't ask me how this is going.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "l2-go-on",
+   "who": "larry",
+   "kind": "say",
+   "text": "Go on.",
+   "as": "Go onn.",
+   "heard": [
+    {
+     "text": "Go on!",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 2,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "sounds": [
+    {
+     "i": 1,
+     "word": "on",
+     "as": "onn",
+     "plain": "ə n",
+     "ipa": "ɑ n n",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "Go onn.",
+     "score": {
+      "heard": 2,
+      "of": 2,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Go on!",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "on",
+       "as": "onn",
+       "plain": "ə n",
+       "ipa": "ɑ n n",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "scripts-title",
+   "who": "larry",
+   "kind": "say",
+   "text": "Before review: scripts.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Before you scripts",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 3,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "review",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Before review: scripts.",
+     "score": {
+      "heard": 2,
+      "of": 3,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Before you scripts",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "scripts-writer",
+   "who": "larry",
+   "kind": "say",
+   "text": "The writer stood here: an AI agent with a short reading list.",
+   "as": "The writer, stood here: an ay-eye agent, with uh short reed-ing list.",
+   "heard": [
+    {
+     "text": "The writer stood here, an AI agent, with a short reading list.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 12,
+    "of": 12,
+    "min": 12
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "sounds": [
+    {
+     "i": 5,
+     "word": "AI",
+     "as": "ay-eye",
+     "plain": "aɪ",
+     "ipa": "eɪ aɪ",
+     "keeps": null
+    },
+    {
+     "i": 8,
+     "word": "a",
+     "as": "uh",
+     "plain": "ə",
+     "ipa": "ʌ",
+     "keeps": true
+    },
+    {
+     "i": 10,
+     "word": "reading",
+     "as": "reed-ing",
+     "plain": "ɹ i ɾ ɪ ŋ",
+     "ipa": "ɹ i d ɪ ŋ",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "The writer, stood here: an ay-eye agent, with uh short reed-ing list.",
+     "score": {
+      "heard": 12,
+      "of": 12,
+      "min": 12
+     },
+     "heard": [
+      {
+       "text": "The writer stood here, an AI agent, with a short reading list.",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 5,
+       "word": "AI",
+       "as": "ay-eye",
+       "plain": "aɪ",
+       "ipa": "eɪ aɪ",
+       "keeps": null
+      },
+      {
+       "i": 8,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      },
+      {
+       "i": 10,
+       "word": "reading",
+       "as": "reed-ing",
+       "plain": "ɹ i ɾ ɪ ŋ",
+       "ipa": "ɹ i d ɪ ŋ",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "l2-list",
+   "who": "larry",
+   "kind": "say",
+   "text": "The show is not on it. By rule.",
+   "as": null,
+   "heard": [
+    {
+     "text": "The foe is not knit by rule.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 8,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "show",
+     "count": 4
+    },
+    {
+     "word": "on",
+     "count": 4
+    },
+    {
+     "word": "it",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "The show is not on it. By rule.",
+     "score": {
+      "heard": 5,
+      "of": 8,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "The foe is not knit by rule.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "scripts-kazoo",
+   "who": "larry",
+   "kind": "say",
+   "text": "The script said kazoo. The tool heard clue.",
+   "as": null,
+   "heard": [
+    {
+     "text": "The script said glue, and the tool heard glue.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 6,
+    "of": 8,
+    "min": 6
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "kazoo",
+     "count": 4
+    },
+    {
+     "word": "clue",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "The script said kazoo. The tool heard clue.",
+     "score": {
+      "heard": 6,
+      "of": 8,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "The script said glue, and the tool heard glue.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "l1-heard",
+   "who": "larry",
+   "kind": "say",
+   "text": "I can't tell you what you just heard.",
+   "as": null,
+   "heard": [
+    {
+     "text": "I can't tell you what you just heard.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 8,
+    "of": 8,
+    "min": 8
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "I can't tell you what you just heard.",
+     "score": {
+      "heard": 8,
+      "of": 8,
+      "min": 8
+     },
+     "heard": [
+      {
+       "text": "I can't tell you what you just heard.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "review-early-title",
+   "who": "larry",
+   "kind": "say",
+   "text": "Before the scripts: review. Again.",
+   "as": "Before the scripts: Rreev-yoo. Again.",
+   "heard": [
+    {
+     "text": "Before the scripts, hurry you again.",
+     "count": 3
+    },
+    {
+     "text": "Before the script, hurry you again.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 5,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "review",
+     "count": 4
+    },
+    {
+     "word": "scripts",
+     "count": 1
+    }
+   ],
+   "sounds": [
+    {
+     "i": 3,
+     "word": "review",
+     "as": "Rreev-yoo",
+     "plain": "ɹ i v j u",
+     "ipa": "ɹ ɹ i v j u",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "Before the scripts: Rreev-yoo. Again.",
+     "score": {
+      "heard": 4,
+      "of": 5,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "Before the scripts, hurry you again.",
+       "count": 3
+      },
+      {
+       "text": "Before the script, hurry you again.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 3,
+       "word": "review",
+       "as": "Rreev-yoo",
+       "plain": "ɹ i v j u",
+       "ipa": "ɹ ɹ i v j u",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "review-early-seen",
+   "who": "larry",
+   "kind": "say",
+   "text": "These reviewers have seen everything the show has done. Nothing gets in twice.",
+   "as": null,
+   "heard": [
+    {
+     "text": "These are yours, I've seen everything the focus done, nothing gets in place.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 8,
+    "of": 13,
+    "min": 8
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "reviewers",
+     "count": 4
+    },
+    {
+     "word": "have",
+     "count": 4
+    },
+    {
+     "word": "show",
+     "count": 4
+    },
+    {
+     "word": "has",
+     "count": 4
+    },
+    {
+     "word": "twice",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "These reviewers have seen everything the show has done. Nothing gets in twice.",
+     "score": {
+      "heard": 8,
+      "of": 13,
+      "min": 8
+     },
+     "heard": [
+      {
+       "text": "These are yours, I've seen everything the focus done, nothing gets in place.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "review-early-except",
+   "who": "larry",
+   "kind": "say",
+   "text": "Except review.",
+   "as": null,
+   "heard": [
+    {
+     "text": "except for you",
+     "count": 2
+    },
+    {
+     "text": "Except for you",
+     "count": 2
+    }
+   ],
+   "score": {
+    "heard": 1,
+    "of": 2,
+    "min": 1
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "review",
+     "count": 4
+    }
+   ],
+   "known": [
+    "review"
+   ],
+   "tried": [
+    {
+     "as": "Except review.",
+     "score": {
+      "heard": 1,
+      "of": 2,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "except for you",
+       "count": 2
+      },
+      {
+       "text": "Except for you",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "as": "Except Reev-yoo.",
+     "score": {
+      "heard": 1,
+      "of": 2,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "except for you",
+       "count": 2
+      },
+      {
+       "text": "Except for you",
+       "count": 2
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "review",
+       "as": "Reev-yoo",
+       "plain": "ɹ i v j u",
+       "ipa": "ɹ i v j u",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Except review.",
+     "rate": 0.9,
+     "score": {
+      "heard": 1,
+      "of": 2,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Except for you",
+       "count": 3
+      },
+      {
+       "text": "except for you",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Except review.",
+     "rate": 0.82,
+     "score": {
+      "heard": 1,
+      "of": 2,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Except for you",
+       "count": 3
+      },
+      {
+       "text": "Except for you, you",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "review-early-way",
+   "who": "larry",
+   "kind": "say",
+   "text": "You know the way.",
+   "as": null,
+   "heard": [
+    {
+     "text": "You know the way",
+     "count": 3
+    },
+    {
+     "text": "Do you know the way?",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 4,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "You know the way.",
+     "score": {
+      "heard": 4,
+      "of": 4,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "You know the way",
+       "count": 3
+      },
+      {
+       "text": "Do you know the way?",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "posts-title",
+   "who": "larry",
+   "kind": "say",
+   "text": "Before review: posts.",
+   "as": "Before review: poasstss.",
+   "heard": [
+    {
+     "text": "Before you post",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 1,
+    "of": 3,
+    "min": 1
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "review",
+     "count": 4
+    },
+    {
+     "word": "posts",
+     "count": 4
+    }
+   ],
+   "known": [
+    "review"
+   ],
+   "sounds": [
+    {
+     "i": 2,
+     "word": "posts",
+     "as": "poasstss",
+     "plain": "p oʊ s t s",
+     "ipa": "p oʊ s s t s s",
+     "keeps": true
+    }
+   ],
+   "rejected": [
+    {
+     "word": "posts",
+     "as": "pohsts",
+     "plain": "p oʊ s t s",
+     "ipa": "p ɑ h s t s",
+     "why": "vowel oʊ → ɑ"
+    }
+   ],
+   "tried": [
+    {
+     "as": "Before review: poasstss.",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Before you post",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "posts",
+       "as": "poasstss",
+       "plain": "p oʊ s t s",
+       "ipa": "p oʊ s s t s s",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Before review: posts.",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Before you poach",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "Before Reev-yoo: poasstss.",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Before you post",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "review",
+       "as": "Reev-yoo",
+       "plain": "ɹ i v j u",
+       "ipa": "ɹ i v j u",
+       "keeps": true
+      },
+      {
+       "i": 2,
+       "word": "posts",
+       "as": "poasstss",
+       "plain": "p oʊ s t s",
+       "ipa": "p oʊ s s t s s",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Before Reev-yoo: posts.",
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Before you poach",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "review",
+       "as": "Reev-yoo",
+       "plain": "ɹ i v j u",
+       "ipa": "ɹ i v j u",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Before review: poasstss.",
+     "rate": 0.9,
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "before you post",
+       "count": 2
+      },
+      {
+       "text": "Before you post",
+       "count": 2
+      }
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "posts",
+       "as": "poasstss",
+       "plain": "p oʊ s t s",
+       "ipa": "p oʊ s s t s s",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Before review: poasstss.",
+     "rate": 0.82,
+     "score": {
+      "heard": 1,
+      "of": 3,
+      "min": 1
+     },
+     "heard": [
+      {
+       "text": "Before you post",
+       "count": 1
+      },
+      {
+       "text": "Before you push, let...",
+       "count": 1
+      },
+      {
+       "text": "Before you push, let's...",
+       "count": 1
+      },
+      {
+       "text": "Before you push.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 2,
+       "word": "posts",
+       "as": "poasstss",
+       "plain": "p oʊ s t s",
+       "ipa": "p oʊ s s t s s",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "posts-count",
+   "who": "larry",
+   "kind": "say",
+   "text": "Last run: twenty thousand, eight hundred and twenty-five.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Last run, 2825.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 9,
+    "of": 9,
+    "min": 9
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Last run: twenty thousand, eight hundred and twenty-five.",
+     "score": {
+      "heard": 9,
+      "of": 9,
+      "min": 9
+     },
+     "heard": [
+      {
+       "text": "Last run, 2825.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "bottom-community",
+   "who": "larry",
+   "kind": "say",
+   "text": "Before the posts: the community.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Before the post, the community.",
+     "count": 3
+    },
+    {
+     "text": "Before the post, the community",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 4,
+    "of": 5,
+    "min": 4
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "posts",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Before the posts: the community.",
+     "score": {
+      "heard": 4,
+      "of": 5,
+      "min": 4
+     },
+     "heard": [
+      {
+       "text": "Before the post, the community.",
+       "count": 3
+      },
+      {
+       "text": "Before the post, the community",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "turn-you",
+   "who": "larry",
+   "kind": "say",
+   "text": "That's you, simcluster. You make this show. I open and shut.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Let you, simple stir, when you make this fall, I open and shut.",
+     "count": 2
+    },
+    {
+     "text": "Let you, simple stir, when you make this fall, I open it shut.",
+     "count": 2
+    }
+   ],
+   "score": {
+    "heard": 7,
+    "of": 11,
+    "min": 7
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "that's",
+     "count": 4
+    },
+    {
+     "word": "simcluster",
+     "count": 4
+    },
+    {
+     "word": "show",
+     "count": 4
+    },
+    {
+     "word": "and",
+     "count": 2
+    }
+   ],
+   "tried": [
+    {
+     "as": "That's you, simcluster. You make this show. I open and shut.",
+     "score": {
+      "heard": 7,
+      "of": 11,
+      "min": 7
+     },
+     "heard": [
+      {
+       "text": "Let you, simple stir, when you make this fall, I open and shut.",
+       "count": 2
+      },
+      {
+       "text": "Let you, simple stir, when you make this fall, I open it shut.",
+       "count": 2
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "turn-point",
+   "who": "larry",
+   "kind": "say",
+   "text": "From now on, you can point. In a post, type an at sign, then the show's name:",
+   "as": "From now on, you can point. In uh post, type an att sign, then the show's name:",
+   "heard": [
+    {
+     "text": "From now on, you can point in a post type net sign in the full name.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 13,
+    "of": 17,
+    "min": 13
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "an",
+     "count": 4
+    },
+    {
+     "word": "at",
+     "count": 4
+    },
+    {
+     "word": "then",
+     "count": 4
+    },
+    {
+     "word": "show's",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 7,
+     "word": "a",
+     "as": "uh",
+     "plain": "ə",
+     "ipa": "ʌ",
+     "keeps": true
+    },
+    {
+     "i": 11,
+     "word": "at",
+     "as": "att",
+     "plain": "ə t",
+     "ipa": "æ t t",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "From now on, you can point. In uh post, type an att sign, then the show's name:",
+     "score": {
+      "heard": 13,
+      "of": 17,
+      "min": 13
+     },
+     "heard": [
+      {
+       "text": "From now on, you can point in a post type net sign in the full name.",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 7,
+       "word": "a",
+       "as": "uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      },
+      {
+       "i": 11,
+       "word": "at",
+       "as": "att",
+       "plain": "ə t",
+       "ipa": "æ t t",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "turn-handle",
+   "who": "larry",
+   "kind": "say",
+   "text": "@latecluster.simcluster.tv",
+   "as": "aat,-layt,-cluster,-dot,-sim-cluster,-dot,-tee-vee",
+   "heard": [
+    {
+     "text": "add late cluster.simcluster.tv",
+     "count": 3
+    },
+    {
+     "text": "add late cluster.simcluster.te",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 3,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "tv",
+     "count": 1
+    }
+   ],
+   "sounds": [
+    {
+     "i": 0,
+     "word": "latecluster.simcluster.tv",
+     "as": "aat,-layt,-cluster,-dot,-sim-cluster,-dot,-tee-vee",
+     "plain": "l eɪ ɾ ɛ k l ʌ s t ɚ s ɪ m k l ʌ s t ɚ t i v i",
+     "ipa": "æ æ t l eɪ t k l ʌ s t ɚ d ɑ t s ɪ m k l ʌ s t ɚ d ɑ t t i v i",
+     "keeps": null
+    }
+   ],
+   "tried": [
+    {
+     "as": "aat,-layt,-cluster,-dot,-sim-cluster,-dot,-tee-vee",
+     "score": {
+      "heard": 3,
+      "of": 3,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "add late cluster.simcluster.tv",
+       "count": 3
+      },
+      {
+       "text": "add late cluster.simcluster.te",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "latecluster.simcluster.tv",
+       "as": "aat,-layt,-cluster,-dot,-sim-cluster,-dot,-tee-vee",
+       "plain": "l eɪ ɾ ɛ k l ʌ s t ɚ s ɪ m k l ʌ s t ɚ t i v i",
+       "ipa": "æ æ t l eɪ t k l ʌ s t ɚ d ɑ t s ɪ m k l ʌ s t ɚ d ɑ t t i v i",
+       "keeps": null
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "turn-spaces",
+   "who": "larry",
+   "kind": "say",
+   "text": "No spaces.",
+   "as": "Noh, spaces.",
+   "heard": [
+    {
+     "text": "No! Spaces!",
+     "count": 3
+    },
+    {
+     "text": "No, space shows.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 2,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "sounds": [
+    {
+     "i": 0,
+     "word": "No",
+     "as": "Noh",
+     "plain": "n oʊ",
+     "ipa": "n oʊ",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "Noh, spaces.",
+     "score": {
+      "heard": 2,
+      "of": 2,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "No! Spaces!",
+       "count": 3
+      },
+      {
+       "text": "No, space shows.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "No",
+       "as": "Noh",
+       "plain": "n oʊ",
+       "ipa": "n oʊ",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "turn-where",
+   "who": "larry",
+   "kind": "say",
+   "text": "Then we look where you point.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Then we look where you point.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 6,
+    "of": 6,
+    "min": 6
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Then we look where you point.",
+     "score": {
+      "heard": 6,
+      "of": 6,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "Then we look where you point.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "turn-look",
+   "who": "larry",
+   "kind": "say",
+   "text": "That's all. No reply. No promise.",
+   "as": null,
+   "heard": [
+    {
+     "text": "That's all, no reply, no promise.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 6,
+    "of": 6,
+    "min": 6
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "That's all. No reply. No promise.",
+     "score": {
+      "heard": 6,
+      "of": 6,
+      "min": 6
+     },
+     "heard": [
+      {
+       "text": "That's all, no reply, no promise.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "turn-mouth",
+   "who": "larry",
+   "kind": "say",
+   "text": "I'm a mouth.",
+   "as": "I'm Uh mouth.",
+   "heard": [
+    {
+     "text": "I'm a mouse",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 3,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "mouth",
+     "count": 4
+    }
+   ],
+   "sounds": [
+    {
+     "i": 1,
+     "word": "a",
+     "as": "Uh",
+     "plain": "ə",
+     "ipa": "ʌ",
+     "keeps": true
+    }
+   ],
+   "tried": [
+    {
+     "as": "I'm Uh mouth.",
+     "score": {
+      "heard": 2,
+      "of": 3,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "I'm a mouse",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 1,
+       "word": "a",
+       "as": "Uh",
+       "plain": "ə",
+       "ipa": "ʌ",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "up-community",
+   "who": "larry",
+   "kind": "say",
+   "text": "Now, from the bottom. Community.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Now, from the bottom, community.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 5,
+    "of": 5,
+    "min": 5
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Now, from the bottom. Community.",
+     "score": {
+      "heard": 5,
+      "of": 5,
+      "min": 5
+     },
+     "heard": [
+      {
+       "text": "Now, from the bottom, community.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "up-posts",
+   "who": "larry",
+   "kind": "say",
+   "text": "Posts.",
+   "as": "Poasstss.",
+   "heard": [
+    {
+     "text": "Post",
+     "count": 2
+    },
+    {
+     "text": "It posts!",
+     "count": 1
+    },
+    {
+     "text": "the post",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 0,
+    "of": 1,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "posts",
+     "count": 3
+    }
+   ],
+   "sounds": [
+    {
+     "i": 0,
+     "word": "Posts",
+     "as": "Poasstss",
+     "plain": "p oʊ s t s",
+     "ipa": "p oʊ s s t s s",
+     "keeps": true
+    }
+   ],
+   "rejected": [
+    {
+     "word": "Posts",
+     "as": "Pohsts",
+     "plain": "p oʊ s t s",
+     "ipa": "p ɑ h s t s",
+     "why": "vowel oʊ → ɑ"
+    }
+   ],
+   "tried": [
+    {
+     "as": "Poasstss.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Post",
+       "count": 2
+      },
+      {
+       "text": "It posts!",
+       "count": 1
+      },
+      {
+       "text": "the post",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "Posts",
+       "as": "Poasstss",
+       "plain": "p oʊ s t s",
+       "ipa": "p oʊ s s t s s",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Posts.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Be poached!",
+       "count": 1
+      },
+      {
+       "text": "It poached!",
+       "count": 1
+      },
+      {
+       "text": "Poops",
+       "count": 1
+      },
+      {
+       "text": "Post",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Poasstss.",
+     "rate": 0.9,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Oh",
+       "count": 1
+      },
+      {
+       "text": "post",
+       "count": 1
+      },
+      {
+       "text": "The post shows",
+       "count": 1
+      },
+      {
+       "text": "the post straight",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "Posts",
+       "as": "Poasstss",
+       "plain": "p oʊ s t s",
+       "ipa": "p oʊ s s t s s",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Poasstss.",
+     "rate": 0.82,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "post",
+       "count": 2
+      },
+      {
+       "text": "It's post 3",
+       "count": 1
+      },
+      {
+       "text": "the post 3",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "Posts",
+       "as": "Poasstss",
+       "plain": "p oʊ s t s",
+       "ipa": "p oʊ s s t s s",
+       "keeps": true
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "up-review-early",
+   "who": "larry",
+   "kind": "say",
+   "text": "Review.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Where are you?",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 0,
+    "of": 1,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "review",
+     "count": 4
+    }
+   ],
+   "known": [
+    "review"
+   ],
+   "tried": [
+    {
+     "as": "Review.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Where are you?",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "Reev-yoo.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Where are you?",
+       "count": 4
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "Review",
+       "as": "Reev-yoo",
+       "plain": "ɹ i v j u",
+       "ipa": "ɹ i v j u",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Review.",
+     "rate": 0.9,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Where are you?",
+       "count": 2
+      },
+      {
+       "text": "Hey, you",
+       "count": 1
+      },
+      {
+       "text": "I",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Review.",
+     "rate": 0.82,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Very useful.",
+       "count": 3
+      },
+      {
+       "text": "Hurry you!",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "up-scripts",
+   "who": "larry",
+   "kind": "say",
+   "text": "Scripts.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Oh, scrapes, scrapes...",
+     "count": 1
+    },
+    {
+     "text": "Oh, Scrapes!",
+     "count": 1
+    },
+    {
+     "text": "Scrapes",
+     "count": 1
+    },
+    {
+     "text": "Scrapes.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 0,
+    "of": 1,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "scripts",
+     "count": 4
+    }
+   ],
+   "known": [
+    "scripts"
+   ],
+   "tried": [
+    {
+     "as": "Scripts.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Oh, scrapes, scrapes...",
+       "count": 1
+      },
+      {
+       "text": "Oh, Scrapes!",
+       "count": 1
+      },
+      {
+       "text": "Scrapes",
+       "count": 1
+      },
+      {
+       "text": "Scrapes.",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Skripts.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Oh, scrapes, scrapes...",
+       "count": 1
+      },
+      {
+       "text": "Oh, Scrapes!",
+       "count": 1
+      },
+      {
+       "text": "Scrapes",
+       "count": 1
+      },
+      {
+       "text": "Scrapes.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "Scripts",
+       "as": "Skripts",
+       "plain": "s k ɹ ɪ p t s",
+       "ipa": "s k ɹ ɪ p t s",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Scripts.",
+     "rate": 0.9,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Scrapes",
+       "count": 1
+      },
+      {
+       "text": "Scrapes!",
+       "count": 1
+      },
+      {
+       "text": "Subscribe",
+       "count": 1
+      },
+      {
+       "text": "to subscribe",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Scripts.",
+     "rate": 0.82,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Scrap, Scrap!",
+       "count": 1
+      },
+      {
+       "text": "Scripps",
+       "count": 1
+      },
+      {
+       "text": "Subscribe!",
+       "count": 1
+      },
+      {
+       "text": "to subscribe",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "up-review-late",
+   "who": "larry",
+   "kind": "say",
+   "text": "Review.",
+   "as": null,
+   "heard": [
+    {
+     "text": "for you",
+     "count": 1
+    },
+    {
+     "text": "or you",
+     "count": 1
+    },
+    {
+     "text": "Re-yoop",
+     "count": 1
+    },
+    {
+     "text": "Where are you?",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 0,
+    "of": 1,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "review",
+     "count": 4
+    }
+   ],
+   "known": [
+    "review"
+   ],
+   "tried": [
+    {
+     "as": "Review.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "for you",
+       "count": 1
+      },
+      {
+       "text": "or you",
+       "count": 1
+      },
+      {
+       "text": "Re-yoop",
+       "count": 1
+      },
+      {
+       "text": "Where are you?",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Reev-yoo.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Are you?",
+       "count": 3
+      },
+      {
+       "text": "Where are you?",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "Review",
+       "as": "Reev-yoo",
+       "plain": "ɹ i v j u",
+       "ipa": "ɹ i v j u",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Review.",
+     "rate": 0.9,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Are you?",
+       "count": 1
+      },
+      {
+       "text": "Re-yoo",
+       "count": 1
+      },
+      {
+       "text": "Re-yoo!",
+       "count": 1
+      },
+      {
+       "text": "Re-yux",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Review.",
+     "rate": 0.82,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Are you?",
+       "count": 1
+      },
+      {
+       "text": "re you see",
+       "count": 1
+      },
+      {
+       "text": "Re-yose",
+       "count": 1
+      },
+      {
+       "text": "Reuse",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "up-scenes",
+   "who": "larry",
+   "kind": "say",
+   "text": "Scenes.",
+   "as": null,
+   "heard": [
+    {
+     "text": "scenes",
+     "count": 2
+    },
+    {
+     "text": "SINCE",
+     "count": 1
+    },
+    {
+     "text": "SINGH. SINGH. SINGH. SINGH.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 0,
+    "of": 1,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "scenes",
+     "count": 2
+    }
+   ],
+   "tried": [
+    {
+     "as": "Scenes.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "scenes",
+       "count": 2
+      },
+      {
+       "text": "SINCE",
+       "count": 1
+      },
+      {
+       "text": "SINGH. SINGH. SINGH. SINGH.",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Seenz.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "scenes",
+       "count": 2
+      },
+      {
+       "text": "SINCE",
+       "count": 1
+      },
+      {
+       "text": "SINGH. SINGH. SINGH. SINGH.",
+       "count": 1
+      }
+     ],
+     "sounds": [
+      {
+       "i": 0,
+       "word": "Scenes",
+       "as": "Seenz",
+       "plain": "s i n z",
+       "ipa": "s i n z",
+       "keeps": true
+      }
+     ]
+    },
+    {
+     "as": "Scenes.",
+     "rate": 0.9,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "scenes",
+       "count": 2
+      },
+      {
+       "text": "Shins",
+       "count": 1
+      },
+      {
+       "text": "SINGH",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "Scenes.",
+     "rate": 0.82,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Shins",
+       "count": 2
+      },
+      {
+       "text": "oooh shins",
+       "count": 1
+      },
+      {
+       "text": "shins",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "up-show",
+   "who": "larry",
+   "kind": "say",
+   "text": "And that's the show.",
+   "as": "And that's the, show.",
+   "heard": [
+    {
+     "text": "and that's the show",
+     "count": 2
+    },
+    {
+     "text": "And that's the shawl",
+     "count": 1
+    },
+    {
+     "text": "And that's the shawl.",
+     "count": 1
+    }
+   ],
+   "score": {
+    "heard": 3,
+    "of": 4,
+    "min": 3
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "show",
+     "count": 2
+    }
+   ],
+   "tried": [
+    {
+     "as": "And that's the, show.",
+     "score": {
+      "heard": 3,
+      "of": 4,
+      "min": 3
+     },
+     "heard": [
+      {
+       "text": "and that's the show",
+       "count": 2
+      },
+      {
+       "text": "And that's the shawl",
+       "count": 1
+      },
+      {
+       "text": "And that's the shawl.",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "burp",
+   "who": "larry",
+   "kind": "say",
+   "text": "Urp.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Oop.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 0,
+    "of": 1,
+    "min": 0
+   },
+   "status": "unsayable",
+   "flags": [],
+   "real": false,
+   "missed": [
+    {
+     "word": "urp",
+     "count": 4
+    }
+   ],
+   "tried": [
+    {
+     "as": "Urp.",
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Oop.",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "Urp.",
+     "rate": 0.9,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Oop.",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "Urp.",
+     "rate": 0.82,
+     "score": {
+      "heard": 0,
+      "of": 1,
+      "min": 0
+     },
+     "heard": [
+      {
+       "text": "Oop.",
+       "count": 3
+      },
+      {
+       "text": "oop",
+       "count": 1
+      }
+     ]
+    }
+   ]
+  },
+  {
+   "id": "button",
+   "who": "larry",
+   "kind": "say",
+   "text": "Excuse me.",
+   "as": null,
+   "heard": [
+    {
+     "text": "Excuse me.",
+     "count": 4
+    }
+   ],
+   "score": {
+    "heard": 2,
+    "of": 2,
+    "min": 2
+   },
+   "status": "ok",
+   "flags": [],
+   "real": false,
+   "missed": [],
+   "tried": [
+    {
+     "as": "Excuse me.",
+     "score": {
+      "heard": 2,
+      "of": 2,
+      "min": 2
+     },
+     "heard": [
+      {
+       "text": "Excuse me.",
+       "count": 4
+      }
+     ]
+    }
+   ]
+  }
+ ],
+ "voices": {
+  "larry": {
+   "f0": 107,
+   "nearest": "pete",
+   "distance": 1.54
+  }
+ },
+ "owner": [],
+ "heardDifferently": [],
+ "soundsDifferent": []
+}

@@ -1,0 +1,188 @@
+{
+  "id": "riemann-before-gta-six",
+  "title": "What arrived first: the running comparisons",
+  "happened": "The day before, the video game GTA VI had been released, and for years people had joked about what would happen before it came out. Several accounts noted that the hypothesis had almost come first: one said 'almost', a small member insisted it had not, and chordbug read a line in the note about 'horrible timing' as regret at missing that joke by a day. A second comparison came from screenshots of a mathematician's old posts mocking the idea that AI would prove the hypothesis in 2026 before Apple shipped an LLM-powered Siri, with his gracious concession that day; norvid said he too was surprised the Riemann tech came first, and replies offered their own list of things still waiting (self-driving cars, faster-than-light travel, a purely visual Pokémon run), until a member pointed out that Siri already runs on Gemini and norvid admitted he could not fact-check that. A third was the Millennium Prize scoreboard: a joke that all the problems might be solved with none of the prize money claimed, whether the prize even covers the token cost, and a prediction that P vs NP will be last. foremphasis quoted his own earlier guess of a headline about the hypothesis being solved in 2.5 million lines of Lean 'to little fanfare' with 'might have undershot just a bit'. joetforhire posted a screenshot of a July post predicting the hypothesis would fall on 21 November 2026, and members admired the date. And yetanotheruseless said he was less worried about Claude solving RH than about a bot with 3 brain cells becoming Top Chicken before him. The show can assert nothing about whether the proof (or the human proof mentioned here) is correct; on 20 November it was a claim being checked, and these posts are people reacting to the claim.",
+  "posts": [
+    {
+      "uri": "at://did:plc:xxvldnf5qhbne5gcizxngngd/app.bsky.feed.post/3n2qwz7y7yc2p",
+      "why": "reified-systems.itch.io (378, non-member): 'We almost got the Riemann Hypothesis before GTA 6.'"
+    },
+    {
+      "uri": "at://did:plc:tbig7qnx4o5ylp5v23w577vl/app.bsky.feed.post/3n2qxlndc7s2l",
+      "why": "sifu.tweety.fish: could be a coincidence that RH and Navier-Stokes came one day after GTA VI"
+    },
+    {
+      "uri": "at://did:plc:hle73yc4rjzhi2s42t6ivglw/app.bsky.feed.post/3n2qzjbphyk2s",
+      "why": "invert (173, small member): we did *not* get it before GTA VI"
+    },
+    {
+      "uri": "at://did:plc:3qxpuyugoel4svgub7ywotmz/app.bsky.feed.post/3n2r72js4v22t",
+      "why": "chordbug: by 'horrible timing' the note means missing the GTA6 joke by a day; 127 likes, image of the note's line"
+    },
+    {
+      "uri": "at://did:plc:b6eke66r3vbmnegg73qgprl6/app.bsky.feed.post/3n2rdfcgiug2q",
+      "why": "mergesort: credit to a mathematician for taking it in stride, with screenshots of his earlier posts and his concession"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2rdvtu4n22f",
+      "why": "norvid quotes it: also surprised the Riemann hypothesis tech came before LLM-powered Siri; 104 likes"
+    },
+    {
+      "uri": "at://did:plc:lmidtahyizyejqz74zeaip67/app.bsky.feed.post/3n2reg4vy4c2j",
+      "why": "garrison: surprised it came before self-driving cars, a close race"
+    },
+    {
+      "uri": "at://did:plc:p2cp5gopk7mgjegy6wadk3ep/app.bsky.feed.post/3n2rfercc6c2g",
+      "why": "samuel.fm: faster-than-light travel before Siri is good"
+    },
+    {
+      "uri": "at://did:plc:4vvaxwovyg4yo4n7dyyncaiu/app.bsky.feed.post/3n2restzgzc2r",
+      "why": "thebadcode: purely visual pokemon run equally hard"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2rjspdab22a",
+      "why": "norvid: is this a mnemonic...?"
+    },
+    {
+      "uri": "at://did:plc:2k4dwow7fqauc2sysuzzj6qz/app.bsky.feed.post/3n2rktkdufk2h",
+      "why": "weiyen: isn't Siri already running on Gemini, since iOS 27?"
+    },
+    {
+      "uri": "at://did:plc:mssgex5rqek4wc66wgvzztbc/app.bsky.feed.post/3n2rkuj4j6s2d",
+      "why": "norvid: doesn't have enough Siri knowledge to fact-check that; sorry readers"
+    },
+    {
+      "uri": "at://did:plc:w75fzwl4ibla3witt3nk5oox/app.bsky.feed.post/3n2rlwgvizs26",
+      "why": "forthrast: Siri expert here, it counts but it sucks"
+    },
+    {
+      "uri": "at://did:plc:nouamhwlij66naya7yrchmlg/app.bsky.feed.post/3n2r3fwylxs2m",
+      "why": "foremphasis quotes his earlier '2.5 million lines of lean to little fanfare' headline guess: 'might have undershot just a bit'; 82 likes"
+    },
+    {
+      "uri": "at://did:plc:q5cnyaqzm5lyig37jm7srfzu/app.bsky.feed.post/3n2qxrgg2k22c",
+      "why": "hornblende: all Millennium problems solved, no prize money claimed, would be the funniest outcome"
+    },
+    {
+      "uri": "at://did:plc:pcpxcmv5z6oseafi5khuulta/app.bsky.feed.post/3n2qypnq7qk2o",
+      "why": "wavebidder: does the prize money cover the token cost?"
+    },
+    {
+      "uri": "at://did:plc:oqoksnyukzbase3uttllntwk/app.bsky.feed.post/3n2qziopvmc2x",
+      "why": "mrcheeze: not at public pricing"
+    },
+    {
+      "uri": "at://did:plc:nouamhwlij66naya7yrchmlg/app.bsky.feed.post/3n2r7cdmi7s2m",
+      "why": "foremphasis: registering a prediction that P vs NP will be the last Millennium problem standing"
+    },
+    {
+      "uri": "at://did:plc:oqoksnyukzbase3uttllntwk/app.bsky.feed.post/3n2r7tbwfg22e",
+      "why": "mrcheeze: counterpoint, RH came early because it's the most famous"
+    },
+    {
+      "uri": "at://did:plc:nouamhwlij66naya7yrchmlg/app.bsky.feed.post/3n2r7wyvaqs2m",
+      "why": "foremphasis: an uninformed hunch it's a different class of problem"
+    },
+    {
+      "uri": "at://did:plc:oqoksnyukzbase3uttllntwk/app.bsky.feed.post/3n2ra7cfvdc2e",
+      "why": "mrcheeze: the only progress is learning all our techniques don't work (Wikipedia screenshot)"
+    },
+    {
+      "uri": "at://did:plc:hfrtjnhcfzvyrht2atilf3yw/app.bsky.feed.post/3n2rfnkmx5222",
+      "why": "lowrhoufo (10,745, non-member): crazy that only one Millennium problem was ultimately solved with human work"
+    },
+    {
+      "uri": "at://did:plc:4rnej33af5ly4yjgpuaeupd3/app.bsky.feed.post/3n2rh5zjghk2j",
+      "why": "joetforhire: 'we've only got about four months before they play The Song...' with a screenshot of a July prediction"
+    },
+    {
+      "uri": "at://did:plc:zrwhncnqel7corjtg2cak3jx/app.bsky.feed.post/3n2rhehjgsc2n",
+      "why": "tbabb: quite the long putt to nail the date within one day"
+    },
+    {
+      "uri": "at://did:plc:wamidydbgu3u6fk3yckaglnz/app.bsky.feed.post/3n2rhixk6c22i",
+      "why": "philpax quotes it: impressive call on the date"
+    },
+    {
+      "uri": "at://did:plc:fensreek6maqgui5apldqdij/app.bsky.feed.post/3n2rhquipok2m",
+      "why": "premium-content (240, small): bit off on the length"
+    },
+    {
+      "uri": "at://did:plc:bjaceaxgoto5p7gor2rcov3g/app.bsky.feed.post/3n2rlecjcic2e",
+      "why": "yetanotheruseless: you can't even fit the URLs for the 14 parts of the Lean proof in an original tweet"
+    },
+    {
+      "uri": "at://did:plc:bjaceaxgoto5p7gor2rcov3g/app.bsky.feed.post/3n2ra3mcor22j",
+      "why": "yetanotheruseless: you worry about Claude solving RH; he's upset a bot with 3 brain cells got Top Chicken before him; 90 likes"
+    }
+  ],
+  "people": [
+    {
+      "handle": "norvid-studies.bsky.social",
+      "note": "Member, featuredPrevious. The Siri post (104 likes)."
+    },
+    {
+      "handle": "mergesort.me",
+      "note": "5,793 followers, not a member. Posted screenshots of another account's posts (Daniel Litt, littmath, 5,963 followers, not a member, a mathematician): R2 (screenshots someone else took) and R7 for Litt."
+    },
+    {
+      "handle": "foremphasis.bsky.social",
+      "note": "519 followers, member. Quoted his own earlier post (its text is in the skeleton's context)."
+    },
+    {
+      "handle": "mrcheeze.github.io",
+      "note": "1,812 followers, member."
+    },
+    {
+      "handle": "invert.bsky.social",
+      "note": "173 followers, member, small (R7: hero only)."
+    },
+    {
+      "handle": "chordbug.bsky.social",
+      "note": "2,333 followers, not a member."
+    },
+    {
+      "handle": "reified-systems.itch.io / sifu.tweety.fish / lowrhoufo.bsky.social / hornblende.bsky.social",
+      "note": "378, 12,822, 10,745, 574 followers, none members."
+    },
+    {
+      "handle": "joetforhire.com",
+      "note": "982 followers, member. The screenshot is of a post on X by a third person (@mykola)."
+    },
+    {
+      "handle": "yetanotheruseless.com",
+      "note": "3,972 followers, member. Top Chicken is the cluster's own game; the bot that topped it is jevbot (561 followers, bot)."
+    },
+    {
+      "handle": "samuel.fm",
+      "note": "54,200 followers, member: large account."
+    },
+    {
+      "handle": "garrison / thebadcode / weiyen / forthrast / tbabb / philpax / wavebidder",
+      "note": "728, 3,077, 748, 1,174, 1,346, 2,208, 922 followers, all members."
+    },
+    {
+      "handle": "premium-content.bsky.social",
+      "note": "240 followers, small, not a member."
+    }
+  ],
+  "couldBeShown": "The comparisons are a list the community wrote itself: GTA VI (released the day before), LLM-powered Siri, self-driving cars, faster-than-light travel, a purely visual Pokémon run, Top Chicken, P vs NP, the Millennium Prize money. chordbug's image (alt): 'The precise timing is horrible.' and the following lines of the note. mergesort's three screenshots (alt): Daniel Litt, 9/29/25, 'guy who thinks he'll win a millenium prize for typing \"prove the Riemann Hypothesis. don't make any mistakes.\"'; 3/8/25, 'person who thinks AI will prove the Riemann hypothesis in 2026 but that Apple won't deliver an LLM-powered Siri'; 11/20/26, 'Seems like I was wrong about this!'. joetforhire's image (no alt, fetched): a screenshot of an X post by 'Myk is Walking Backwards' (@mykola), 9:16 PM, Jul 20, 2026, 71.3K views: 'It's November 21st, 2026. The Riemann hypothesis falls ... and the proof fits in a tweet', followed by invented future dates (P = NP on January 22, 2027, Gödel falling on February 9, 'The Song' first played February 14). mrcheeze's image: a Wikipedia section on barriers to proving P vs NP.",
+  "notUnderstood": [
+    "'The Song' in joetforhire's post and the X prediction: a reference inside that prediction; what it is beyond that is not in the data (R15).",
+    "rivertam's 'Millenniums Alpoge, who solves two millennium prize problems a year ... outlier and should not have been counted' (s-1762680059) echoes a meme format not identified; not listed.",
+    "Whether the Millennium Prize for Navier-Stokes was actually awarded to anyone: the posts disagree (colin-fraser says OpenAI got it); the show should not state it."
+  ],
+  "sensitive": [
+    "at://did:plc:b6eke66r3vbmnegg73qgprl6/app.bsky.feed.post/3n2rdfcgiug2q: screenshots of a real mathematician's earlier posts, including one he concedes was wrong. R2 (someone else's screenshot) and R6/R7: the show should not present him as having been wrong; mergesort's own framing is kind ('who is very smart').",
+    "at://did:plc:4rnej33af5ly4yjgpuaeupd3/app.bsky.feed.post/3n2rh5zjghk2j: screenshot of a third person's post on X (R2); the prediction's words are not material.",
+    "at://did:plc:bjaceaxgoto5p7gor2rcov3g/app.bsky.feed.post/3n2ra3mcor22j quotes catblanketflower 3n2qyuyawy22c, which is marked 'grief and disaster' (its alt text): the quoted post may not be shown; yetanotheruseless's own post is unmarked.",
+    "cee.wtf 3n2rlj7ydj22a attributes an invented review score to a real music critic (Anthony Fantano): left out (R5).",
+    "lowrhoufo and mrcheeze's prize post allude to the last human solver's refusal of the prize; his life choices stay out (R1)."
+  ],
+  "numbers": {
+    "posts setting RH against GTA VI": "4 (reified-systems, sifu.tweety.fish, invert, chordbug), from the scan of the window",
+    "Siri thread": "26 posts, 15 authors, 11 members (s-7c9b7c579a)",
+    "foremphasis' earlier estimate": "2.5 million lines of Lean (his own earlier post); the community's later figure was 175,187 files",
+    "Top Chicken post": "90 likes"
+  }
+}

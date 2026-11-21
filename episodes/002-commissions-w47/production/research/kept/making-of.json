@@ -1,0 +1,266 @@
+{
+ "id": "making-of",
+ "title": "How the show is made, and what was said in public about making it",
+ "happened": "The show is made by AI agents in set roles, through thirteen stages run by a tool that calls no model, with the owner setting direction and watching every episode before it is published; the fact sheet documents the process and the last full run, an unaired draft of 19 and 20 November 2026. In public, the owner's thread announcing the show (13 November) credited the script to Claude Fable 5.2 and the implementation to Claude Opus 5.5, with light direction by himself, and linked the source code and the voice synth and head model it is built on, inviting people to make their own episode. One community member thanked him for the repository the same day. On 19 November, replying to a community member's post about the show, the owner asked whether to automate it as a weekly show and how to open it to community direction without corrupting it; that member replied suggesting a bot people tag, then a producer bot that could ask people questions and gather material. Nothing on the card records the owner answering those replies. This commission, a making-of script, is itself made through the process the card describes.",
+ "facts": "production/research/production-facts.md",
+ "posts": [
+  {
+   "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n25tahbpwc23",
+   "url": "https://bsky.app/profile/kumavis.me/post/3n25tahbpwc23",
+   "author": {
+    "did": "did:plc:c2x5i7fneh7xbvpvw2r3omes",
+    "handle": "kumavis.me",
+    "displayName": "🪷 kumavis 🪷",
+    "followers": 1690,
+    "member": true
+   },
+   "time": "2026-11-13T01:25:14.501Z",
+   "text": "Next up on ChimeraTV: its The Late Cluster with Larry Nx, the simcluster's own talk show",
+   "counts": {
+    "likes": 97,
+    "reposts": 10,
+    "replies": 9,
+    "quotes": 14
+   },
+   "why": "The owner's post announcing the show, the root of his launch thread. Its text only: the video attached to it is the aired episode and is not part of this card.",
+   "media": {
+    "images": false,
+    "alts": [],
+    "video": true
+   },
+   "aboutShow": true
+  },
+  {
+   "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n25tai3qwk23",
+   "url": "https://bsky.app/profile/kumavis.me/post/3n25tai3qwk23",
+   "author": {
+    "did": "did:plc:c2x5i7fneh7xbvpvw2r3omes",
+    "handle": "kumavis.me",
+    "displayName": "🪷 kumavis 🪷",
+    "followers": 1690,
+    "member": true
+   },
+   "time": "2026-11-13T01:25:14.503Z",
+   "text": "Script by Fable 5.2 High, implementation by Opus 5.5, light direction by me",
+   "counts": {
+    "likes": 12,
+    "reposts": 0,
+    "replies": 2,
+    "quotes": 0
+   },
+   "why": "The owner's credit line in the same launch thread: which model wrote the script, which implemented it, and his own part. The post it replies to (the thread's second post) is withheld from this card; its occasion is 'crediting the show in its launch thread'.",
+   "replyTo": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n25tahcdhc23",
+   "aboutShow": true
+  },
+  {
+   "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n25vm7gzms23",
+   "url": "https://bsky.app/profile/kumavis.me/post/3n25vm7gzms23",
+   "author": {
+    "did": "did:plc:c2x5i7fneh7xbvpvw2r3omes",
+    "handle": "kumavis.me",
+    "displayName": "🪷 kumavis 🪷",
+    "followers": 1690,
+    "member": true
+   },
+   "time": "2026-11-13T02:07:36.424Z",
+   "text": "source here, feel free to make your own episode github.com/kumavis/vibe...\nchimera voice synth and head model from github.com/jamesondh/ch...",
+   "counts": {
+    "likes": 10,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 1
+   },
+   "why": "The owner's reply to his credit line: where the source code is, an invitation to make your own episode, and where the voice synth and head model come from.",
+   "replyTo": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n25tai3qwk23",
+   "links": [
+    {
+     "url": "https://github.com/jamesondh/chimera-vocal-synth",
+     "domain": "github.com",
+     "title": null
+    },
+    {
+     "url": "https://github.com/kumavis/vibe-dump/tree/main/packages/late-cluster",
+     "domain": "github.com",
+     "title": null
+    }
+   ],
+   "aboutShow": true
+  },
+  {
+   "uri": "at://did:plc:xbtmt2zjwlrfegqvch7fboei/app.bsky.feed.post/3n27t2ajsm224",
+   "url": "https://bsky.app/profile/zzstoatzz.io/post/3n27t2ajsm224",
+   "author": {
+    "did": "did:plc:xbtmt2zjwlrfegqvch7fboei",
+    "handle": "zzstoatzz.io",
+    "displayName": "nate",
+    "followers": 2965,
+    "member": true
+   },
+   "time": "2026-11-13T20:27:05.576Z",
+   "text": "ty @kumavis.me for the repo",
+   "counts": {
+    "likes": 2,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "A community member thanking the owner for the repository, quoting the owner's source post. It is a reply under the author's own earlier post, which is not on this card (see sensitive).",
+   "replyTo": "at://did:plc:xbtmt2zjwlrfegqvch7fboei/app.bsky.feed.post/3n27swx6vhk24",
+   "quoted": {
+    "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n25vm7gzms23"
+   },
+   "aboutShow": true
+  },
+  {
+   "uri": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n2ngbkuqxs2g",
+   "url": "https://bsky.app/profile/bisks.net/post/3n2ngbkuqxs2g",
+   "author": {
+    "did": "did:plc:f6n22z62adionrvb5s6n6vfk",
+    "handle": "bisks.net",
+    "displayName": "rob",
+    "followers": 721,
+    "member": true
+   },
+   "time": "2026-11-19T06:15:48.993Z",
+   "text": "still thinking about this one, just incredible",
+   "counts": {
+    "likes": 13,
+    "reposts": 0,
+    "replies": 2,
+    "quotes": 0
+   },
+   "why": "The occasion of the owner's question: a community member's quote of the launch post, six days later. General praise; it names nothing in the episode.",
+   "quoted": {
+    "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n25tahbpwc23"
+   },
+   "aboutShow": true
+  },
+  {
+   "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2nh7ifdyk2f",
+   "url": "https://bsky.app/profile/kumavis.me/post/3n2nh7ifdyk2f",
+   "author": {
+    "did": "did:plc:c2x5i7fneh7xbvpvw2r3omes",
+    "handle": "kumavis.me",
+    "displayName": "🪷 kumavis 🪷",
+    "followers": 1690,
+    "member": true
+   },
+   "time": "2026-11-19T06:32:33.022Z",
+   "text": "thinking of automating it as a weekly show. Good idea bad idea or do it anyways?",
+   "counts": {
+    "likes": 4,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "The owner, replying to that post, asking in public whether to automate the show as a weekly.",
+   "replyTo": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n2ngbkuqxs2g",
+   "aboutShow": true
+  },
+  {
+   "uri": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2nhnui2x22f",
+   "url": "https://bsky.app/profile/kumavis.me/post/3n2nhnui2x22f",
+   "author": {
+    "did": "did:plc:c2x5i7fneh7xbvpvw2r3omes",
+    "handle": "kumavis.me",
+    "displayName": "🪷 kumavis 🪷",
+    "followers": 1690,
+    "member": true
+   },
+   "time": "2026-11-19T06:40:35.461Z",
+   "text": "and how to open it for community direction, without corrupting it",
+   "counts": {
+    "likes": 2,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "The owner's follow-up to his own question: how to open the show to community direction without corrupting it.",
+   "replyTo": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2nh7ifdyk2f",
+   "aboutShow": true
+  },
+  {
+   "uri": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n2ni7veajs2i",
+   "url": "https://bsky.app/profile/bisks.net/post/3n2ni7veajs2i",
+   "author": {
+    "did": "did:plc:f6n22z62adionrvb5s6n6vfk",
+    "handle": "bisks.net",
+    "displayName": "rob",
+    "followers": 721,
+    "member": true
+   },
+   "time": "2026-11-19T06:50:40.358Z",
+   "text": "i encourage you to have a bot that people tag!",
+   "counts": {
+    "likes": 3,
+    "reposts": 0,
+    "replies": 1,
+    "quotes": 0
+   },
+   "why": "A community member's reply to the owner's follow-up: a suggestion, a bot that people tag.",
+   "replyTo": "at://did:plc:c2x5i7fneh7xbvpvw2r3omes/app.bsky.feed.post/3n2nhnui2x22f",
+   "aboutShow": true
+  },
+  {
+   "uri": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n2nibts55k2i",
+   "url": "https://bsky.app/profile/bisks.net/post/3n2nibts55k2i",
+   "author": {
+    "did": "did:plc:f6n22z62adionrvb5s6n6vfk",
+    "handle": "bisks.net",
+    "displayName": "rob",
+    "followers": 721,
+    "member": true
+   },
+   "time": "2026-11-19T06:51:45.830Z",
+   "text": "actually a producer bot that could dm people and ask people questions and gather material for the show is plausibly an actual good idea not just me talking my beat",
+   "counts": {
+    "likes": 5,
+    "reposts": 0,
+    "replies": 0,
+    "quotes": 0
+   },
+   "why": "The same member's next post in that reply chain: a producer bot that could ask people questions and gather material for the show.",
+   "replyTo": "at://did:plc:f6n22z62adionrvb5s6n6vfk/app.bsky.feed.post/3n2ni7veajs2i",
+   "aboutShow": true
+  }
+ ],
+ "people": [
+  {
+   "handle": "kumavis.me",
+   "note": "The show's owner (display name 🪷 kumavis 🪷, 1,690 followers). Five of his posts are on the card. Not on the opt-out list; his bio asks nothing about quoting. His puppet did not speak in the aired episode. See the terms on putting the owner on screen."
+  },
+  {
+   "handle": "bisks.net",
+   "note": "rob, 721 followers, a cluster member. Three posts on the card (one is the occasion of the owner's question). Not on the opt-out list; his bio asks nothing about quoting. His puppet did not speak in the aired episode."
+  },
+  {
+   "handle": "zzstoatzz.io",
+   "note": "nate, 2,965 followers, a cluster member. One usable post on the card. Not on the opt-out list; his bio asks nothing about quoting, but it names his employer and where he has lived, which the show never uses. His puppet did not speak in the aired episode."
+  }
+ ],
+ "couldBeShown": "The process can be shown working, from the repository's own machinery: the thirteen stages as a path the camera travels along, each stage a room holding the files it writes (production/<stage>/ folders, the briefs, state.json); the head model itself, the CHIMERA vocal tract (jaw, tongue, lips, velum) drawn in the studio's lines and moving as a line is said; a cue file (segments/<seg>/cues.json: each line's id, speaker, start and end times and word timings) driving a picture; a frame being shot (npm run shoot) at a cue and looked at; the transcription check printing what it heard beside what was written; a card skeleton being filled by a tool by address, so no post is retyped; the guard hook refusing a path; two reviewers' verdicts combined by arithmetic. The nesting is real and documented: this commission is a folder (episodes/002-commissions-w47/) inside the repository whose process it describes; the fact sheet describes the fact sheet being written; the card describes the card being made; and whoever writes the script is at the drafting stage of the process the script explains. The owner's own public posts can be shown as the cards they were, in his launch thread and in his question thread.",
+ "notUnderstood": [
+  "In the credit post, what 'High' in 'Fable 5.2 High' refers to: no record in the repository says.",
+  "In the producer-bot post, what 'talking my beat' refers to: probably the author's own bot work, but the card does not establish it.",
+  "'ChimeraTV' in the launch post: whether it names anything beyond the post itself is not established."
+ ],
+ "sensitive": [
+  "The launch post's attached video is the aired episode. Only the post's text is on this card: its video, and anything in it, is not described, shown or used.",
+  "The launch thread's second post (between the announcement and the credit line) is withheld: it describes the aired episode. The rest of the launch thread and its quote posts are left off for the same reason, or because the scraper marks them sensitive (money, legal trouble, politics).",
+  "The post nate's thank-you replies under is his own video post about his work for his employer (R1). It is not on this card and is not shown, described or read; his job, employer and location are never mentioned.",
+  "The producer-bot post mentions direct messages. Direct messages are private (R2), and nothing on this card says the show did or will do what the replies suggest.",
+  "The owner is the show's owner: whether he appears as a puppet guest is his call, not the script's (see the terms)."
+ ],
+ "numbers": {
+  "postsAboutTheShowInTheWindow": 202,
+  "postsOnThisCard": 9,
+  "window": "13 November 2026 00:00Z to 21 November 2026 00:24Z (posts about the show since the aired episode)",
+  "followers": {
+   "kumavis.me": 1690,
+   "bisks.net": 721,
+   "zzstoatzz.io": 2965
+  },
+  "process": "every number about the process is in the fact sheet, with its source run: 13 stages, 7 agent roles plus a cold viewer, 248 cluster accounts and 20,825 posts scraped, 73 cards, 548 ideas, 9 drafts, 6 selected, 504.5 seconds, 47 posts from 16 accounts, 21 of 26, about 115 million effective tokens of Claude Fable, 157 seconds to render the video"
+ },
+ "terms": "production/research/terms-making-of.md"
+}

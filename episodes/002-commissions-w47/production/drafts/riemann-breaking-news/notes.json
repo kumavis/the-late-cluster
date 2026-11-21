@@ -1,0 +1,103 @@
+{
+  "slug": "riemann-breaking-news",
+  "title": "Breaking News",
+  "format": "a news bulletin in studio lines (the house's frame) around members' posts: three posts at the desk about one chart, then a demonstration of something a member made, credited",
+  "seconds": 90,
+  "standing": null,
+  "cards": [
+    "riemann-what-is-a-zeta-function",
+    "riemann-learned-from-the-chart"
+  ],
+  "ideas": [
+    "1:17",
+    "2:17",
+    "2:3",
+    "1:3"
+  ],
+  "turn": "Small proof buries the anchor",
+  "speakers": [
+    "davidcrespo.bsky.social",
+    "moultano.bsky.social",
+    "shimmermathlabs.com"
+  ],
+  "featured": [
+    "davidcrespo.bsky.social",
+    "moultano.bsky.social",
+    "shimmermathlabs.com",
+    "zetaof1.bsky.social"
+  ],
+  "shape": [
+    "The news, about 14 seconds. A sting, a banner with the one word BREAKING, Larry as the anchor. He says the one sentence of news, then that the cluster spent Friday posting about it, and after a beat all the bulletin has: 'davidcrespo posted a chart.' On 'chart' the banner drops out of the frame and Larry watches it go.",
+    "The chart, about 26 seconds. davidcrespo's puppet says the chart post, with the chart inside his card. moultano's puppet says moultano's quote of it, with that card set inside it.",
+    "The question, about 6 seconds. A hard cut, nothing of the chart left on screen. Larry: 'For viewers just joining us, and for me: what is a zeta function?'",
+    "The call and the reply, about 23 seconds. Amber's puppet says her call into a follow spot on a lit box with only an account plate in it. Sibyl reads zetaof1's reply from its card, in two breaths, with a laugh at the post's own line break.",
+    "The proof, about 23 seconds. Her post comes up, shrinks to a small card on 'it does actually' and stays. Her line of symbols lands as bars, unspoken, in two seconds. She says the bracket sentence and 'so every block adds ≥ ½'; the groups press into slabs. The slabs drop on a pile, faster and faster, with nobody speaking, and the pile passes Larry. She says her last line as the crane gives up; her square lights on her card.",
+    "The button, about 4 seconds. Wide shot, no anchor. Larry, from behind the pile: 'It fits in a post.'"
+  ],
+  "taken": {
+    "from riemann-proof-that-fits": "Her call said into a follow spot that then waits; Sibyl reading the reply from its card with no remark; her post shrinking to a small card on 'it does actually' and staying to the end with its credit and its label; the bars, her brackets, the guide line, the clause as a tag, the groups pressing into slabs marked with her own sign; the brackets arriving twice as wide through the stage door and the wall; the pile passing Larry; the crane that stops short; her square on her own card and nowhere else; the button from behind the pile.",
+    "from riemann-market-wrap": "davidcrespo's puppet saying the chart post with the chart inside his card; moultano's puppet saying the quote with the chart card set inside it; guests in boxes (the analyst wall becomes a news channel's guest boxes); Larry's bare throws, which say who posted and what kind of post it was and nothing about what it says."
+  },
+  "leftOut": [
+    "norvid's question, softmacs' reply and norvid's answer (the owner's cut), and with them the graphics that went dark one by one and 'Can I keep the globe?'.",
+    "Every clock time, spoken or on a studio clock (the owner's cut). Cards keep their dates.",
+    "Larry's ticker, globe and 'Give me everything.': they were built to be switched off by the reply that is gone, so they had no ending left. The show now draws nothing of its own about the market.",
+    "huwupy's post. It is davidcrespo's joke a second time in plainer words, and three market posts in a row behind bare throws was where the earlier segment went flat. If it is wanted back it goes after moultano's, as the top-level post it was ('huwupy, in a separate post.'), for about 8 seconds; its cast entry is in the earlier draft.",
+    "Most of zetaof1's third line. The whole post was 52 words in one voice, the slowest stretch of the earlier segment. The first two lines are read whole, and of the third only that zeta at 1 diverges to infinity, with both cuts marked.",
+    "Her line of symbols from the voice. Recited it took about ten seconds and was the hardest thing in the segment to follow by ear. The bars say it in two, and it lights on her card as they land.",
+    "Eppy's six calls and Sibyl's 'At least.'. Six calls with a pause before each was the other slow stretch, the call was a word the voice cannot say ('Half.' is heard as 'Hit' in every spelling tried), and it put the house's voice inside her post. The slabs now drop on ticks that get closer together, her four lines run with no house line between them, and nobody says a number of the house's.",
+    "dlowd's reply and the applause under it. Kind, but it stood between the pile and the button.",
+    "The earlier opening line ('Friday, the cluster had a question. So do I.'), davidcrespo's follow-up and lucresnooker's pair: no room.",
+    "The how-I-learned chain. The chart may be shown only inside davidcrespo's card and moultano's, and a how-I-learned post has nothing to point at without it."
+  ],
+  "jokes": [
+    "The frame's turn: a sting, a banner and one grave sentence of news, and then, in the same voice, all the bulletin has: 'davidcrespo posted a chart.' Picture: the banner drops out of the frame on 'chart'.",
+    "The members' own jokes, said from a correspondent's box with full news gravity around them: davidcrespo's line, and moultano's, which already sounds like an analyst.",
+    "'For viewers just joining us, and for me: what is a zeta function?' The anchor's reset, used to admit he has no idea. It is also the question her call really answered.",
+    "The call and the reply: 'now is your time to shine, you got this' into a follow spot, and what came back, read whole for two lines. Both posts are real and in order. The studio makes no remark; the laugh is the audience's and sits at the post's own line break.",
+    "'it does actually': the post shrinks to a small card as she says it fits.",
+    "The pile: every slab the same size, the brackets that make them twice as wide each time, through the door and then the wall, and the ticks closing up. Nobody counts. It passes the anchor and he watches it go.",
+    "The button: the voice says it fits, from behind the thing that does not."
+  ],
+  "screen": [
+    "News channel look. A banner with the one word BREAKING and a strap under it. The strap carries Larry's headline as its caption, exactly as he says it, then THE CLUSTER REACTS. On 'chart' both drop out of the frame for good.",
+    "A guest box opens for davidcrespo's puppet; his post card with the chart inside it; the disclaimer footer comes in.",
+    "A second guest box for moultano's puppet; the post card with the chart card set inside it.",
+    "Hard cut. Larry alone, closer. One letter zeta over his shoulder.",
+    "Amber's box and her call card, marked REPLY and naming nobody. A third box lights with no puppet in it: an account plate for Zeta Of 1 under a follow spot. zetaof1's reply card rises into it, whole; words light as Sibyl reads; the words passed over stay unlit.",
+    "The boxes open out into the studio. Her proof card comes up, shrinks to the left edge and stays, with its credit and the label ZETA AT 1 · NOT THE HYPOTHESIS.",
+    "A bar lands for each term of her line of symbols, the term under it as she wrote it; the stage door opens on a queue of wider brackets. A count under each group, a guide line, the clause as a tag, exactly as posted and marked at both ends. The groups press into slabs marked with her sign.",
+    "Slabs drop on a pile by the desk. Wider brackets arrive: the desk, the stage door, the wall. The pile covers Larry and leaves the frame; the crane follows and stops.",
+    "Her square lights on her card. Wide shot, no anchor, Larry's voice from behind the pile."
+  ],
+  "length": {
+    "estimate": "190 words in 15 lines, and about four seconds of bars and slabs with nobody speaking. The earlier proof segment was about 175 words and its last fitted render was 88.9 seconds: two words a second with everything in. At that rate this is about 95 seconds, and adding it up beat by beat gives 94. That is just over a minute and a half.",
+    "whereItWent": "The news and the chart take about 40 seconds. The question, the call, the reply and the proof take about 56, where the earlier segment took 89.",
+    "ifItMustBeShorter": "Nothing left comes out clean. I would not cut further into the call or her proof.",
+    "fitted": "The fitted render ran 101.2 seconds, of which 11.7 were a mistake in the script: twelve ticks meant to lie under her last line played in a row before it. With that mended it should render at about 89.5."
+  },
+  "forTheReviewer": [
+    "The owner asked for the market-reaction jokes. Two of the three in the earlier segment are here (davidcrespo's and moultano's). huwupy's is left out; see leftOut for why and for how it comes back.",
+    "zetaof1's reply is read with two marked cuts: 'Also zeta evaluated at 1 … diverges to infinity …'. What is passed over is 'is just the sum of inverse natural numbers and that', and the last clause, about the handle. Both are cuts for time. What is kept of the third line is kept on purpose: her next word is 'proof', the segment opened on news of another proof, and with 'diverges to infinity' said just before it her proof is heard as the proof of that statement. The card keeps the whole post and its line breaks while it is read, as the terms require, so part of it is on screen unread. If two cuts in one line is one too many, the remedy is to restore the nine words in the middle, about 4 seconds.",
+    "The reply is read over two lines of the script, sibyl-zeta-1 and sibyl-zeta-2. sources.json can name only one staged line as the setup of her proof, and names the second, the one spoken immediately before it. The staged setup to lay beside the original is both.",
+    "The laugh between Sibyl's two breaths sits at the post's own line break, after zetaof1's own joke. No house character remarks on the post or looks at anyone. If the laugh reads as a remark, it is one beat to remove.",
+    "Her proof is said in four lines, in order, and no house line comes between them. Two pieces are cut from the voice, marked on the lines either side, and shown exactly as posted: her line of symbols (ζ(1) = 1 + ½ + (⅓ + ¼) + (⅕ + ⋯ + ⅛) + ⋯), which the bars are, each term standing under its bar as she wrote it and lighting on her card as it lands; and the clause '… more simply: block k has 2ᵏ terms, each ≥ 1/2ᵏ⁺¹, …', as the tag it was in the earlier draft. The four spoken lines and the two shown pieces, put together, are her whole post, character for character.",
+    "Unspoken text on screen beyond a glance: the tag at tag-k, as in the earlier draft (a label, up while she says the sentence it restates, with no hold of its own), and the unread parts of zetaof1's card and of her small card, both of which the terms require to stay whole.",
+    "The wider brackets under her dots are drawn by her own rule (each twice as wide as the last). Nothing is written under a bar that she did not write, and nobody says a number for them.",
+    "The news frame. Larry's two sentences of news are the terms' safe wordings, word for word, with 'Breaking news.' in front. The graphics carry the word BREAKING, the headline as its own caption, and THE CLUSTER REACTS, and nothing else in the whole segment. No line says today, tonight, now or this morning; the frame says Friday. 'For viewers just joining us' is the only other piece of genre patter.",
+    "The market. The house lines are 'davidcrespo posted a chart.' and 'moultano, quoting the chart.' No house line says or implies what a price did or why, none remarks on a market post, and the show draws no ticker, arrow, globe or line. The banner and the strap are out of the frame (banner-off) before the chart card comes up (card-chart), and never return, so no frame has a news graphic with the chart, a market post or her proof. The chart image is inside davidcrespo's card and moultano's and nowhere else.",
+    "Order. The running order is the true order throughout (UTC, 20 November: chart 15:35, moultano's quote 17:38:47, her call 17:38:53, zetaof1's reply 17:42, her proof 17:52), but no line or graphic says so. Between the chart and the question there is a hard cut to an empty screen and a new question in Larry's own voice. Nothing presents the market posts and her proof as answering each other.",
+    "The account whose question her call answered is not in this segment: not on the call card (marked REPLY, no handle), not aloud, not in sources.json accounts or posts. Its post is recorded only as the context of her line, with its text.",
+    "House lines use no pronoun for a real person. 'They' in the headline is the mathematician, in the terms' own wording. Checked on 21 November 2026: none of the four accounts is on the opt-out list, by handle or by DID."
+  ],
+  "forTheSoundEditor": [
+    "No `as` anywhere. The only delivery settings are a rate on two short Larry lines (larry-chart, larry-button) and a few gaps. Change any of them.",
+    "House lines say two names: davidcrespo and moultano. The cards and the captions carry the handles.",
+    "larry-chart wants the beat before it and the same gravity as the headline. It is the first punch.",
+    "sibyl-zeta-2: the two ellipses are cuts in the reading, not pauses to act. Said, it is one sentence: Also zeta evaluated at 1, diverges to infinity.",
+    "amber-infinity: her closing square is not said. It lights on her card at the cue 'square'.",
+    "Ticks: eight under the cue 'bars', one for each bar as it lands, 0.25 seconds apart; six under 'slabs', closing up; and twelve more after the cue 'crane', 0.15 seconds apart, which carry on from that run and lie under the start of amber-infinity. A sound's `at` moves the cursor, so those twelve are followed by a wait of -1.65 that puts the cursor back: her line starts where it would with no ticks. They stop about a second and a half into her line, before her infinity sign. If the tick is the wrong sound for something landing, any short studio one-shot will do.",
+    "Cues placed against the end of a line: 'banner-off' 0.35 seconds before the end of larry-chart, to fall on 'chart'; 'zeta-sign' 0.85 before the end of larry-ask (set from the fitted line), to fall on 'zeta'; 'tag-k' 0.9 before the end of amber-brackets, over 'its last term'. They will want moving once the lines are fitted.",
+    "cast.js is copied entry for entry, as briefed. moultano (270 Hz) and shimmermathlabs (250 Hz) were placed for separate drafts with the same body setting and are now in one segment. They never speak back to back: Larry's question is between them."
+  ]
+}

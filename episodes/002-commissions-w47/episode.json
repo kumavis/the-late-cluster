@@ -1,0 +1,16 @@
+{
+  "id": "002-commissions-w47",
+  "number": 2,
+  "slug": "commissions-w47",
+  "title": "Commissions, week 47",
+  "description": "A commission of four separate segments, one video each: two on how the show is made, and two built on members' posts from the week's Riemann talk on Bluesky.",
+  "airDate": "2026-11-21",
+  "status": "draft",
+  "rundown": [
+    "making-of-inward",
+    "making-of-outward",
+    "riemann-proof-that-fits",
+    "riemann-market-wrap",
+    "riemann-breaking-news"
+  ]
+}

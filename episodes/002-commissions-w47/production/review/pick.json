@@ -1,0 +1,948 @@
+{
+ "format": "late-cluster-commission-pick/1",
+ "combined": [
+  {
+   "idea": "1:17",
+   "card": "riemann-what-is-a-zeta-function",
+   "scores": [
+    5,
+    5
+   ],
+   "mean": 5.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:17"
+   ]
+  },
+  {
+   "idea": "2:25",
+   "card": "making-of",
+   "scores": [
+    5,
+    5
+   ],
+   "mean": 5.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:25"
+   ]
+  },
+  {
+   "idea": "2:3",
+   "card": "riemann-learned-from-the-chart",
+   "scores": [
+    5,
+    5
+   ],
+   "mean": 5.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:3"
+   ]
+  },
+  {
+   "idea": "1:3",
+   "card": "riemann-learned-from-the-chart",
+   "scores": [
+    4,
+    5
+   ],
+   "mean": 4.5,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:3"
+   ]
+  },
+  {
+   "idea": "2:11",
+   "card": "riemann-checking-the-lean",
+   "scores": [
+    4,
+    5
+   ],
+   "mean": 4.5,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:12"
+   ]
+  },
+  {
+   "idea": "2:27",
+   "card": "making-of",
+   "scores": [
+    5,
+    4
+   ],
+   "mean": 4.5,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:28"
+   ]
+  },
+  {
+   "idea": "2:29",
+   "card": "making-of",
+   "scores": [
+    4,
+    5
+   ],
+   "mean": 4.5,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "1:11",
+   "card": "riemann-checking-the-lean",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:10"
+   ]
+  },
+  {
+   "idea": "1:16",
+   "card": "riemann-checking-the-lean",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "1:19",
+   "card": "riemann-what-is-a-zeta-function",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:19"
+   ]
+  },
+  {
+   "idea": "1:2",
+   "card": "riemann-learned-from-the-chart",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "1:23",
+   "card": "riemann-what-is-a-zeta-function",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:24"
+   ]
+  },
+  {
+   "idea": "1:25",
+   "card": "making-of",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:25"
+   ]
+  },
+  {
+   "idea": "1:28",
+   "card": "making-of",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:27"
+   ]
+  },
+  {
+   "idea": "1:29",
+   "card": "making-of",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:28"
+   ]
+  },
+  {
+   "idea": "1:9",
+   "card": "riemann-checking-the-lean",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:9"
+   ]
+  },
+  {
+   "idea": "2:1",
+   "card": "riemann-learned-from-the-chart",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "2:10",
+   "card": "riemann-checking-the-lean",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:11"
+   ]
+  },
+  {
+   "idea": "2:13",
+   "card": "riemann-checking-the-lean",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "repeat",
+   "avoid": [
+    "No on-screen counter that goes up each time a repeated word or line is said: the repeated word has to land without a running tally beside it.",
+    "No on-screen counter that goes up each time a character says a set word, and no button that is one more utterance changing the count."
+   ],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "2:17",
+   "card": "riemann-what-is-a-zeta-function",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:17"
+   ]
+  },
+  {
+   "idea": "2:19",
+   "card": "riemann-what-is-a-zeta-function",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:19"
+   ]
+  },
+  {
+   "idea": "2:20",
+   "card": "riemann-what-is-a-zeta-function",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:20"
+   ]
+  },
+  {
+   "idea": "2:28",
+   "card": "making-of",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:29"
+   ]
+  },
+  {
+   "idea": "2:31",
+   "card": "making-of",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:26"
+   ]
+  },
+  {
+   "idea": "2:32",
+   "card": "making-of",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "2:9",
+   "card": "riemann-checking-the-lean",
+   "scores": [
+    4,
+    4
+   ],
+   "mean": 4.0,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:9"
+   ]
+  },
+  {
+   "idea": "1:18",
+   "card": "riemann-what-is-a-zeta-function",
+   "scores": [
+    3,
+    4
+   ],
+   "mean": 3.5,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:18"
+   ]
+  },
+  {
+   "idea": "1:20",
+   "card": "riemann-what-is-a-zeta-function",
+   "scores": [
+    4,
+    3
+   ],
+   "mean": 3.5,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:20"
+   ]
+  },
+  {
+   "idea": "1:26",
+   "card": "making-of",
+   "scores": [
+    3,
+    4
+   ],
+   "mean": 3.5,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:31"
+   ]
+  },
+  {
+   "idea": "1:27",
+   "card": "making-of",
+   "scores": [
+    3,
+    4
+   ],
+   "mean": 3.5,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:26"
+   ]
+  },
+  {
+   "idea": "1:30",
+   "card": "making-of",
+   "scores": [
+    4,
+    3
+   ],
+   "mean": 3.5,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "2:16",
+   "card": "riemann-checking-the-lean",
+   "scores": [
+    4,
+    3
+   ],
+   "mean": 3.5,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "2:18",
+   "card": "riemann-what-is-a-zeta-function",
+   "scores": [
+    3,
+    4
+   ],
+   "mean": 3.5,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:18"
+   ]
+  },
+  {
+   "idea": "2:26",
+   "card": "making-of",
+   "scores": [
+    3,
+    4
+   ],
+   "mean": 3.5,
+   "verdict": "repeat",
+   "avoid": [
+    "Do not end on something that was only an 'if' turning out to exist already, and do not have a character announce that it has been made."
+   ],
+   "turned": [],
+   "same_as": [
+    "1:27"
+   ]
+  },
+  {
+   "idea": "2:5",
+   "card": "riemann-learned-from-the-chart",
+   "scores": [
+    3,
+    4
+   ],
+   "mean": 3.5,
+   "verdict": "fresh",
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "1:1",
+   "card": "riemann-learned-from-the-chart",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "1:10",
+   "card": "riemann-checking-the-lean",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:12"
+   ]
+  },
+  {
+   "idea": "1:12",
+   "card": "riemann-checking-the-lean",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:11"
+   ]
+  },
+  {
+   "idea": "1:13",
+   "card": "riemann-checking-the-lean",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:15"
+   ]
+  },
+  {
+   "idea": "1:15",
+   "card": "riemann-checking-the-lean",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "1:21",
+   "card": "riemann-what-is-a-zeta-function",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "1:22",
+   "card": "riemann-what-is-a-zeta-function",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:21"
+   ]
+  },
+  {
+   "idea": "1:24",
+   "card": "riemann-what-is-a-zeta-function",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:23"
+   ]
+  },
+  {
+   "idea": "1:31",
+   "card": "making-of",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "1:32",
+   "card": "making-of",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "1:4",
+   "card": "riemann-learned-from-the-chart",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:8"
+   ]
+  },
+  {
+   "idea": "1:8",
+   "card": "riemann-learned-from-the-chart",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "2:12",
+   "card": "riemann-checking-the-lean",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:10"
+   ]
+  },
+  {
+   "idea": "2:14",
+   "card": "riemann-checking-the-lean",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:14"
+   ]
+  },
+  {
+   "idea": "2:15",
+   "card": "riemann-checking-the-lean",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:13"
+   ]
+  },
+  {
+   "idea": "2:2",
+   "card": "riemann-learned-from-the-chart",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:5"
+   ]
+  },
+  {
+   "idea": "2:21",
+   "card": "riemann-what-is-a-zeta-function",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:22"
+   ]
+  },
+  {
+   "idea": "2:22",
+   "card": "riemann-what-is-a-zeta-function",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "2:23",
+   "card": "riemann-what-is-a-zeta-function",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:24"
+   ]
+  },
+  {
+   "idea": "2:24",
+   "card": "riemann-what-is-a-zeta-function",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:23"
+   ]
+  },
+  {
+   "idea": "2:30",
+   "card": "making-of",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "2:4",
+   "card": "riemann-learned-from-the-chart",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "2:7",
+   "card": "riemann-learned-from-the-chart",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "2:8",
+   "card": "riemann-learned-from-the-chart",
+   "scores": [
+    3,
+    3
+   ],
+   "mean": 3.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "1:4"
+   ]
+  },
+  {
+   "idea": "1:14",
+   "card": "riemann-checking-the-lean",
+   "scores": [
+    3,
+    2
+   ],
+   "mean": 2.5,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:14"
+   ]
+  },
+  {
+   "idea": "1:6",
+   "card": "riemann-learned-from-the-chart",
+   "scores": [
+    3,
+    2
+   ],
+   "mean": 2.5,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "1:7",
+   "card": "riemann-learned-from-the-chart",
+   "scores": [
+    2,
+    3
+   ],
+   "mean": 2.5,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "2:6",
+   "card": "riemann-learned-from-the-chart",
+   "scores": [
+    3,
+    2
+   ],
+   "mean": 2.5,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": []
+  },
+  {
+   "idea": "1:5",
+   "card": "riemann-learned-from-the-chart",
+   "scores": [
+    2,
+    2
+   ],
+   "mean": 2.0,
+   "verdict": null,
+   "avoid": [],
+   "turned": [],
+   "same_as": [
+    "2:2"
+   ]
+  }
+ ],
+ "summaries": {
+  "1": {
+   "riemann": {
+    "first": "1:17 (2:17 is the same idea): a member's real proof shown working, with a five-word turn and a picture that explains itself while the voice only counts halves",
+    "second": "2:3 (1:3 is the same idea): the day's most-liked joke and five members' own lines in a frame that collapses on a small account's plain answer, from a different card and different people than the first"
+   },
+   "making-of": {
+    "first": "2:27 (1:28 is the same idea): the pull-back through every checker's room ends at the viewer by necessity, so the turn to the audience is the punch and not an addition",
+    "second": "2:25 (1:25 is the same idea): the dive through throat after throat is the truest use of three dimensions and ends at the borrowed voice, the inward complement to the first"
+   }
+  },
+  "2": {
+   "riemann": {
+    "first": "2:3 with 1:3: the market wrap, because the members' own theories are the escalation and a small account's plain answer is the collapse, so the form is the joke and every punch is a real line",
+    "second": "2:11 (1:12 opens the same way): one real four-letter answer tilts the studio and two more members' lines jolt and level it, in short words the engine can say, from accounts new to the show; 1:18 with 1:17 is the reserve"
+   },
+   "making-of": {
+    "first": "2:25 with 1:25's route: the host's mouth is the show's own anatomy as the vehicle, the bottom is the one layer the show did not make, and Larry's turn grows out of that ending",
+    "second": "2:29: recursion as falling detail keeps the words shrinking inside two minutes, and the notification dot returning on a tag is the best carrier of 'a tag gets a look and nothing more'"
+   }
+  }
+ }
+}

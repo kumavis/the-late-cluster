@@ -1,0 +1,1647 @@
+{
+ "id": "making-of-inward",
+ "title": "The Making Of, All the Way Down",
+ "duration": 103.364,
+ "audio": "audio/making-of-inward.mp3",
+ "tele": "tele/making-of-inward.bin",
+ "lines": [
+  {
+   "i": 0,
+   "id": "l0-how",
+   "who": "larry",
+   "kind": "say",
+   "text": "This is how the show is made. First —",
+   "caption": true,
+   "t0": 0.3,
+   "t1": 2.776,
+   "words": [
+    [
+     0.36,
+     0.577,
+     "This"
+    ],
+    [
+     0.577,
+     0.714,
+     "is"
+    ],
+    [
+     0.714,
+     0.96,
+     "how"
+    ],
+    [
+     0.96,
+     1.078,
+     "the"
+    ],
+    [
+     1.078,
+     1.364,
+     "show"
+    ],
+    [
+     1.364,
+     1.485,
+     "is"
+    ],
+    [
+     1.485,
+     1.895,
+     "made."
+    ],
+    [
+     2.305,
+     2.776,
+     "First"
+    ],
+    [
+     2.776,
+     2.776,
+     "—"
+    ]
+   ],
+   "tele": 0,
+   "teleT0": 0.25
+  },
+  {
+   "i": 1,
+   "id": "l0-come-in",
+   "who": "larry",
+   "kind": "say",
+   "text": "Do come in.",
+   "caption": true,
+   "t0": 3.356,
+   "t1": 4.107,
+   "words": [
+    [
+     3.416,
+     3.616,
+     "Do"
+    ],
+    [
+     3.616,
+     3.914,
+     "come"
+    ],
+    [
+     3.914,
+     4.107,
+     "in."
+    ]
+   ],
+   "tele": 1,
+   "teleT0": 3.306
+  },
+  {
+   "i": 2,
+   "id": "l0-parts",
+   "who": "larry",
+   "kind": "say",
+   "text": "Lips. Jaw. Tongue. Velum.",
+   "caption": true,
+   "t0": 4.387,
+   "t1": 7.246,
+   "words": [
+    [
+     4.447,
+     4.818,
+     "Lips."
+    ],
+    [
+     5.228,
+     5.633,
+     "Jaw."
+    ],
+    [
+     6.043,
+     6.398,
+     "Tongue."
+    ],
+    [
+     6.808,
+     7.246,
+     "Velum."
+    ]
+   ],
+   "tele": 2,
+   "teleT0": 4.337
+  },
+  {
+   "i": 3,
+   "id": "l0-head",
+   "who": "larry",
+   "kind": "say",
+   "text": "That's everything in my head.",
+   "caption": true,
+   "t0": 7.526,
+   "t1": 9.361,
+   "words": [
+    [
+     7.586,
+     7.99,
+     "That's"
+    ],
+    [
+     7.99,
+     8.59,
+     "everything"
+    ],
+    [
+     8.59,
+     8.726,
+     "in"
+    ],
+    [
+     8.726,
+     8.965,
+     "my"
+    ],
+    [
+     8.965,
+     9.361,
+     "head."
+    ]
+   ],
+   "tele": 3,
+   "teleT0": 7.476
+  },
+  {
+   "i": 4,
+   "id": "scenes-title",
+   "who": "larry",
+   "kind": "say",
+   "text": "Before the show: scenes.",
+   "caption": true,
+   "t0": 9.841,
+   "t1": 11.493,
+   "words": [
+    [
+     9.901,
+     10.362,
+     "Before"
+    ],
+    [
+     10.362,
+     10.474,
+     "the"
+    ],
+    [
+     10.474,
+     10.855,
+     "show:"
+    ],
+    [
+     11.095,
+     11.493,
+     "scenes."
+    ]
+   ],
+   "tele": 4,
+   "teleT0": 9.791
+  },
+  {
+   "i": 5,
+   "id": "scenes-builders",
+   "who": "larry",
+   "kind": "say",
+   "text": "Builders draw them. From one builder's report:",
+   "caption": true,
+   "t0": 11.773,
+   "t1": 15.231,
+   "words": [
+    [
+     11.833,
+     12.282,
+     "Builders"
+    ],
+    [
+     12.282,
+     12.588,
+     "draw"
+    ],
+    [
+     12.588,
+     12.815,
+     "them."
+    ],
+    [
+     13.225,
+     13.551,
+     "From"
+    ],
+    [
+     13.551,
+     13.787,
+     "one"
+    ],
+    [
+     13.787,
+     14.357,
+     "builder's"
+    ],
+    [
+     14.597,
+     15.231,
+     "report:"
+    ]
+   ],
+   "tele": 5,
+   "teleT0": 11.723
+  },
+  {
+   "i": 6,
+   "id": "l3-kazoo",
+   "who": "larry",
+   "kind": "say",
+   "text": "\"The first kazoo looked like a submarine; I redrew it.\"",
+   "caption": true,
+   "t0": 15.511,
+   "t1": 19.019,
+   "words": [
+    [
+     15.571,
+     15.699,
+     "\"The"
+    ],
+    [
+     15.699,
+     16.12,
+     "first"
+    ],
+    [
+     16.12,
+     16.491,
+     "kazoo"
+    ],
+    [
+     16.491,
+     16.846,
+     "looked"
+    ],
+    [
+     16.846,
+     17.226,
+     "like"
+    ],
+    [
+     17.226,
+     17.3,
+     "a"
+    ],
+    [
+     17.3,
+     17.965,
+     "submarine;"
+    ],
+    [
+     18.205,
+     18.366,
+     "I"
+    ],
+    [
+     18.366,
+     18.859,
+     "redrew"
+    ],
+    [
+     18.859,
+     19.019,
+     "it.\""
+    ]
+   ],
+   "tele": 6,
+   "teleT0": 15.461
+  },
+  {
+   "i": 7,
+   "id": "l1-this-way",
+   "who": "larry",
+   "kind": "say",
+   "text": "This way.",
+   "caption": true,
+   "t0": 19.299,
+   "t1": 20.229,
+   "words": [
+    [
+     19.359,
+     19.654,
+     "This"
+    ],
+    [
+     19.894,
+     20.229,
+     "way."
+    ]
+   ],
+   "tele": 7,
+   "teleT0": 19.249
+  },
+  {
+   "i": 8,
+   "id": "review-late-title",
+   "who": "larry",
+   "kind": "say",
+   "text": "Before the scenes: review.",
+   "caption": true,
+   "t0": 20.709,
+   "t1": 22.506,
+   "words": [
+    [
+     20.769,
+     21.231,
+     "Before"
+    ],
+    [
+     21.231,
+     21.343,
+     "the"
+    ],
+    [
+     21.343,
+     21.741,
+     "scenes:"
+    ],
+    [
+     21.981,
+     22.506,
+     "review."
+    ]
+   ],
+   "tele": 8,
+   "teleT0": 20.659
+  },
+  {
+   "i": 9,
+   "id": "review-late-rule",
+   "who": "larry",
+   "kind": "say",
+   "text": "Reviewers choose. Whoever makes a thing does not judge it.",
+   "caption": true,
+   "t0": 22.786,
+   "t1": 26.245,
+   "words": [
+    [
+     22.846,
+     23.391,
+     "Reviewers"
+    ],
+    [
+     23.391,
+     23.908,
+     "choose."
+    ],
+    [
+     24.318,
+     24.734,
+     "Whoever"
+    ],
+    [
+     24.734,
+     25.098,
+     "makes"
+    ],
+    [
+     25.098,
+     25.166,
+     "a"
+    ],
+    [
+     25.166,
+     25.425,
+     "thing"
+    ],
+    [
+     25.425,
+     25.628,
+     "does"
+    ],
+    [
+     25.628,
+     25.873,
+     "not"
+    ],
+    [
+     25.873,
+     26.075,
+     "judge"
+    ],
+    [
+     26.075,
+     26.245,
+     "it."
+    ]
+   ],
+   "tele": 9,
+   "teleT0": 22.736
+  },
+  {
+   "i": 10,
+   "id": "review-late-me",
+   "who": "larry",
+   "kind": "say",
+   "text": "So don't ask me how this is going.",
+   "caption": true,
+   "t0": 26.525,
+   "t1": 29.17,
+   "words": [
+    [
+     26.585,
+     26.825,
+     "So"
+    ],
+    [
+     26.825,
+     27.308,
+     "don't"
+    ],
+    [
+     27.548,
+     27.902,
+     "ask"
+    ],
+    [
+     27.902,
+     28.063,
+     "me"
+    ],
+    [
+     28.063,
+     28.35,
+     "how"
+    ],
+    [
+     28.35,
+     28.585,
+     "this"
+    ],
+    [
+     28.585,
+     28.735,
+     "is"
+    ],
+    [
+     28.735,
+     29.17,
+     "going."
+    ]
+   ],
+   "tele": 10,
+   "teleT0": 26.475
+  },
+  {
+   "i": 11,
+   "id": "l2-go-on",
+   "who": "larry",
+   "kind": "say",
+   "text": "Go on.",
+   "caption": true,
+   "t0": 29.45,
+   "t1": 30.104,
+   "words": [
+    [
+     29.51,
+     29.771,
+     "Go"
+    ],
+    [
+     29.771,
+     30.104,
+     "on."
+    ]
+   ],
+   "tele": 11,
+   "teleT0": 29.4
+  },
+  {
+   "i": 12,
+   "id": "scripts-title",
+   "who": "larry",
+   "kind": "say",
+   "text": "Before review: scripts.",
+   "caption": true,
+   "t0": 30.584,
+   "t1": 32.428,
+   "words": [
+    [
+     30.644,
+     31.106,
+     "Before"
+    ],
+    [
+     31.106,
+     31.617,
+     "review:"
+    ],
+    [
+     31.857,
+     32.428,
+     "scripts."
+    ]
+   ],
+   "tele": 12,
+   "teleT0": 30.534
+  },
+  {
+   "i": 13,
+   "id": "scripts-writer",
+   "who": "larry",
+   "kind": "say",
+   "text": "The writer stood here: an AI agent with a short reading list.",
+   "caption": true,
+   "t0": 32.708,
+   "t1": 37.075,
+   "words": [
+    [
+     32.768,
+     32.886,
+     "The"
+    ],
+    [
+     32.886,
+     33.326,
+     "writer"
+    ],
+    [
+     33.566,
+     33.931,
+     "stood"
+    ],
+    [
+     33.931,
+     34.278,
+     "here:"
+    ],
+    [
+     34.518,
+     34.642,
+     "an"
+    ],
+    [
+     34.642,
+     34.961,
+     "AI"
+    ],
+    [
+     34.961,
+     35.328,
+     "agent"
+    ],
+    [
+     35.568,
+     35.772,
+     "with"
+    ],
+    [
+     35.772,
+     35.88,
+     "a"
+    ],
+    [
+     35.88,
+     36.289,
+     "short"
+    ],
+    [
+     36.289,
+     36.682,
+     "reading"
+    ],
+    [
+     36.682,
+     37.075,
+     "list."
+    ]
+   ],
+   "tele": 13,
+   "teleT0": 32.658
+  },
+  {
+   "i": 14,
+   "id": "l2-list",
+   "who": "larry",
+   "kind": "say",
+   "text": "The show is not on it. By rule.",
+   "caption": true,
+   "t0": 37.355,
+   "t1": 39.665,
+   "words": [
+    [
+     37.415,
+     37.543,
+     "The"
+    ],
+    [
+     37.543,
+     37.853,
+     "show"
+    ],
+    [
+     37.853,
+     37.984,
+     "is"
+    ],
+    [
+     37.984,
+     38.209,
+     "not"
+    ],
+    [
+     38.209,
+     38.345,
+     "on"
+    ],
+    [
+     38.345,
+     38.53,
+     "it."
+    ],
+    [
+     38.94,
+     39.193,
+     "By"
+    ],
+    [
+     39.193,
+     39.665,
+     "rule."
+    ]
+   ],
+   "tele": 14,
+   "teleT0": 37.305
+  },
+  {
+   "i": 15,
+   "id": "scripts-kazoo",
+   "who": "larry",
+   "kind": "say",
+   "text": "The script said kazoo. The tool heard clue.",
+   "caption": true,
+   "t0": 39.945,
+   "t1": 42.991,
+   "words": [
+    [
+     40.005,
+     40.133,
+     "The"
+    ],
+    [
+     40.133,
+     40.614,
+     "script"
+    ],
+    [
+     40.614,
+     40.916,
+     "said"
+    ],
+    [
+     40.916,
+     41.384,
+     "kazoo."
+    ],
+    [
+     41.794,
+     41.922,
+     "The"
+    ],
+    [
+     41.922,
+     42.262,
+     "tool"
+    ],
+    [
+     42.262,
+     42.556,
+     "heard"
+    ],
+    [
+     42.556,
+     42.991,
+     "clue."
+    ]
+   ],
+   "tele": 15,
+   "teleT0": 39.895
+  },
+  {
+   "i": 16,
+   "id": "l1-heard",
+   "who": "larry",
+   "kind": "say",
+   "text": "I can't tell you what you just heard.",
+   "caption": true,
+   "t0": 43.271,
+   "t1": 45.553,
+   "words": [
+    [
+     43.331,
+     43.489,
+     "I"
+    ],
+    [
+     43.489,
+     43.896,
+     "can't"
+    ],
+    [
+     43.896,
+     44.182,
+     "tell"
+    ],
+    [
+     44.182,
+     44.37,
+     "you"
+    ],
+    [
+     44.37,
+     44.634,
+     "what"
+    ],
+    [
+     44.634,
+     44.822,
+     "you"
+    ],
+    [
+     44.822,
+     45.147,
+     "just"
+    ],
+    [
+     45.147,
+     45.553,
+     "heard."
+    ]
+   ],
+   "tele": 16,
+   "teleT0": 43.221
+  },
+  {
+   "i": 17,
+   "id": "review-early-title",
+   "who": "larry",
+   "kind": "say",
+   "text": "Before the scripts: review. Again.",
+   "caption": true,
+   "t0": 46.433,
+   "t1": 49.2,
+   "words": [
+    [
+     46.493,
+     46.954,
+     "Before"
+    ],
+    [
+     46.954,
+     47.066,
+     "the"
+    ],
+    [
+     47.066,
+     47.637,
+     "scripts:"
+    ],
+    [
+     47.877,
+     48.448,
+     "review."
+    ],
+    [
+     48.858,
+     49.2,
+     "Again."
+    ]
+   ],
+   "tele": 17,
+   "teleT0": 46.383
+  },
+  {
+   "i": 18,
+   "id": "review-early-seen",
+   "who": "larry",
+   "kind": "say",
+   "text": "These reviewers have seen everything the show has done. Nothing gets in twice.",
+   "caption": true,
+   "t0": 49.48,
+   "t1": 53.929,
+   "words": [
+    [
+     49.54,
+     49.776,
+     "These"
+    ],
+    [
+     49.776,
+     50.306,
+     "reviewers"
+    ],
+    [
+     50.306,
+     50.494,
+     "have"
+    ],
+    [
+     50.494,
+     50.757,
+     "seen"
+    ],
+    [
+     50.757,
+     51.285,
+     "everything"
+    ],
+    [
+     51.285,
+     51.396,
+     "the"
+    ],
+    [
+     51.396,
+     51.665,
+     "show"
+    ],
+    [
+     51.665,
+     51.881,
+     "has"
+    ],
+    [
+     51.881,
+     52.165,
+     "done."
+    ],
+    [
+     52.575,
+     52.945,
+     "Nothing"
+    ],
+    [
+     52.945,
+     53.285,
+     "gets"
+    ],
+    [
+     53.285,
+     53.407,
+     "in"
+    ],
+    [
+     53.407,
+     53.929,
+     "twice."
+    ]
+   ],
+   "tele": 18,
+   "teleT0": 49.43
+  },
+  {
+   "i": 19,
+   "id": "review-early-except",
+   "who": "larry",
+   "kind": "say",
+   "text": "Except review.",
+   "caption": true,
+   "t0": 54.209,
+   "t1": 55.331,
+   "words": [
+    [
+     54.269,
+     54.764,
+     "Except"
+    ],
+    [
+     54.764,
+     55.331,
+     "review."
+    ]
+   ],
+   "tele": 19,
+   "teleT0": 54.159
+  },
+  {
+   "i": 20,
+   "id": "review-early-way",
+   "who": "larry",
+   "kind": "say",
+   "text": "You know the way.",
+   "caption": true,
+   "t0": 55.611,
+   "t1": 56.519,
+   "words": [
+    [
+     55.671,
+     55.86,
+     "You"
+    ],
+    [
+     55.86,
+     56.084,
+     "know"
+    ],
+    [
+     56.084,
+     56.201,
+     "the"
+    ],
+    [
+     56.201,
+     56.519,
+     "way."
+    ]
+   ],
+   "tele": 20,
+   "teleT0": 55.561
+  },
+  {
+   "i": 21,
+   "id": "posts-title",
+   "who": "larry",
+   "kind": "say",
+   "text": "Before review: posts.",
+   "caption": true,
+   "t0": 56.999,
+   "t1": 59.045,
+   "words": [
+    [
+     57.059,
+     57.521,
+     "Before"
+    ],
+    [
+     57.521,
+     58.032,
+     "review:"
+    ],
+    [
+     58.272,
+     59.045,
+     "posts."
+    ]
+   ],
+   "tele": 21,
+   "teleT0": 56.949
+  },
+  {
+   "i": 22,
+   "id": "posts-count",
+   "who": "larry",
+   "kind": "say",
+   "text": "Last run: twenty thousand, eight hundred and twenty-five.",
+   "caption": true,
+   "t0": 59.325,
+   "t1": 63.213,
+   "words": [
+    [
+     59.385,
+     59.783,
+     "Last"
+    ],
+    [
+     59.783,
+     60.065,
+     "run:"
+    ],
+    [
+     60.305,
+     60.736,
+     "twenty"
+    ],
+    [
+     60.736,
+     61.277,
+     "thousand,"
+    ],
+    [
+     61.517,
+     61.717,
+     "eight"
+    ],
+    [
+     61.717,
+     62.127,
+     "hundred"
+    ],
+    [
+     62.127,
+     62.31,
+     "and"
+    ],
+    [
+     62.31,
+     63.213,
+     "twenty-five."
+    ]
+   ],
+   "tele": 22,
+   "teleT0": 59.275
+  },
+  {
+   "i": 23,
+   "id": "bottom-community",
+   "who": "larry",
+   "kind": "say",
+   "text": "Before the posts: the community.",
+   "caption": true,
+   "t0": 64.793,
+   "t1": 67.175,
+   "words": [
+    [
+     64.853,
+     65.344,
+     "Before"
+    ],
+    [
+     65.344,
+     65.463,
+     "the"
+    ],
+    [
+     65.463,
+     66.118,
+     "posts:"
+    ],
+    [
+     66.358,
+     66.483,
+     "the"
+    ],
+    [
+     66.483,
+     67.175,
+     "community."
+    ]
+   ],
+   "tele": 23,
+   "teleT0": 64.743
+  },
+  {
+   "i": 24,
+   "id": "turn-you",
+   "who": "larry",
+   "kind": "say",
+   "text": "That's you, simcluster. You make this show. I open and shut.",
+   "caption": true,
+   "t0": 67.455,
+   "t1": 72.169,
+   "words": [
+    [
+     67.515,
+     67.894,
+     "That's"
+    ],
+    [
+     67.894,
+     68.186,
+     "you,"
+    ],
+    [
+     68.426,
+     69.216,
+     "simcluster."
+    ],
+    [
+     69.626,
+     69.827,
+     "You"
+    ],
+    [
+     69.827,
+     70.122,
+     "make"
+    ],
+    [
+     70.122,
+     70.334,
+     "this"
+    ],
+    [
+     70.334,
+     70.731,
+     "show."
+    ],
+    [
+     71.141,
+     71.315,
+     "I"
+    ],
+    [
+     71.315,
+     71.648,
+     "open"
+    ],
+    [
+     71.648,
+     71.842,
+     "and"
+    ],
+    [
+     71.842,
+     72.169,
+     "shut."
+    ]
+   ],
+   "tele": 24,
+   "teleT0": 67.405
+  },
+  {
+   "i": 25,
+   "id": "turn-point",
+   "who": "larry",
+   "kind": "say",
+   "text": "From now on, you can point. In a post, type an at sign, then the show's name:",
+   "caption": true,
+   "t0": 72.449,
+   "t1": 78.19,
+   "words": [
+    [
+     72.509,
+     72.795,
+     "From"
+    ],
+    [
+     72.795,
+     73.053,
+     "now"
+    ],
+    [
+     73.053,
+     73.197,
+     "on,"
+    ],
+    [
+     73.437,
+     73.626,
+     "you"
+    ],
+    [
+     73.626,
+     73.828,
+     "can"
+    ],
+    [
+     73.828,
+     74.35,
+     "point."
+    ],
+    [
+     74.76,
+     74.885,
+     "In"
+    ],
+    [
+     74.885,
+     74.993,
+     "a"
+    ],
+    [
+     74.993,
+     75.525,
+     "post,"
+    ],
+    [
+     75.765,
+     76.145,
+     "type"
+    ],
+    [
+     76.145,
+     76.269,
+     "an"
+    ],
+    [
+     76.269,
+     76.557,
+     "at"
+    ],
+    [
+     76.557,
+     76.979,
+     "sign,"
+    ],
+    [
+     77.219,
+     77.391,
+     "then"
+    ],
+    [
+     77.391,
+     77.503,
+     "the"
+    ],
+    [
+     77.503,
+     77.848,
+     "show's"
+    ],
+    [
+     77.848,
+     78.19,
+     "name:"
+    ]
+   ],
+   "tele": 25,
+   "teleT0": 72.399
+  },
+  {
+   "i": 26,
+   "id": "turn-handle",
+   "who": "larry",
+   "kind": "say",
+   "text": "@latecluster.simcluster.tv",
+   "caption": true,
+   "t0": 78.47,
+   "t1": 83.417,
+   "words": [
+    [
+     78.53,
+     83.417,
+     "@latecluster.simcluster.tv"
+    ]
+   ],
+   "tele": 26,
+   "teleT0": 78.42
+  },
+  {
+   "i": 27,
+   "id": "turn-spaces",
+   "who": "larry",
+   "kind": "say",
+   "text": "No spaces.",
+   "caption": true,
+   "t0": 83.717,
+   "t1": 84.965,
+   "words": [
+    [
+     83.777,
+     84.113,
+     "No"
+    ],
+    [
+     84.353,
+     84.965,
+     "spaces."
+    ]
+   ],
+   "tele": 27,
+   "teleT0": 83.667
+  },
+  {
+   "i": 28,
+   "id": "turn-where",
+   "who": "larry",
+   "kind": "say",
+   "text": "Then we look where you point.",
+   "caption": true,
+   "t0": 85.245,
+   "t1": 86.86,
+   "words": [
+    [
+     85.305,
+     85.477,
+     "Then"
+    ],
+    [
+     85.477,
+     85.633,
+     "we"
+    ],
+    [
+     85.633,
+     85.899,
+     "look"
+    ],
+    [
+     85.899,
+     86.151,
+     "where"
+    ],
+    [
+     86.151,
+     86.327,
+     "you"
+    ],
+    [
+     86.327,
+     86.86,
+     "point."
+    ]
+   ],
+   "tele": 28,
+   "teleT0": 85.195
+  },
+  {
+   "i": 29,
+   "id": "turn-look",
+   "who": "larry",
+   "kind": "say",
+   "text": "That's all. No reply. No promise.",
+   "caption": true,
+   "t0": 87.14,
+   "t1": 90.34,
+   "words": [
+    [
+     87.2,
+     87.587,
+     "That's"
+    ],
+    [
+     87.587,
+     87.995,
+     "all."
+    ],
+    [
+     88.405,
+     88.592,
+     "No"
+    ],
+    [
+     88.592,
+     89.152,
+     "reply."
+    ],
+    [
+     89.562,
+     89.749,
+     "No"
+    ],
+    [
+     89.749,
+     90.34,
+     "promise."
+    ]
+   ],
+   "tele": 29,
+   "teleT0": 87.09
+  },
+  {
+   "i": 30,
+   "id": "turn-mouth",
+   "who": "larry",
+   "kind": "say",
+   "text": "I'm a mouth.",
+   "caption": true,
+   "t0": 90.62,
+   "t1": 91.608,
+   "words": [
+    [
+     90.68,
+     90.987,
+     "I'm"
+    ],
+    [
+     90.987,
+     91.107,
+     "a"
+    ],
+    [
+     91.107,
+     91.608,
+     "mouth."
+    ]
+   ],
+   "tele": 30,
+   "teleT0": 90.57
+  },
+  {
+   "i": 31,
+   "id": "up-community",
+   "who": "larry",
+   "kind": "say",
+   "text": "Now, from the bottom. Community.",
+   "caption": true,
+   "t0": 91.888,
+   "t1": 94.427,
+   "words": [
+    [
+     91.948,
+     92.304,
+     "Now,"
+    ],
+    [
+     92.544,
+     92.83,
+     "from"
+    ],
+    [
+     92.83,
+     92.942,
+     "the"
+    ],
+    [
+     92.942,
+     93.366,
+     "bottom."
+    ],
+    [
+     93.776,
+     94.427,
+     "Community."
+    ]
+   ],
+   "tele": 31,
+   "teleT0": 91.838
+  },
+  {
+   "i": 32,
+   "id": "up-posts",
+   "who": "larry",
+   "kind": "say",
+   "text": "Posts.",
+   "caption": true,
+   "t0": 94.547,
+   "t1": 95.466,
+   "words": [
+    [
+     94.607,
+     95.466,
+     "Posts."
+    ]
+   ],
+   "tele": 32,
+   "teleT0": 94.497
+  },
+  {
+   "i": 33,
+   "id": "up-review-early",
+   "who": "larry",
+   "kind": "say",
+   "text": "Review.",
+   "caption": true,
+   "t0": 95.586,
+   "t1": 96.172,
+   "words": [
+    [
+     95.646,
+     96.172,
+     "Review."
+    ]
+   ],
+   "tele": 33,
+   "teleT0": 95.536
+  },
+  {
+   "i": 34,
+   "id": "up-scripts",
+   "who": "larry",
+   "kind": "say",
+   "text": "Scripts.",
+   "caption": true,
+   "t0": 96.292,
+   "t1": 96.923,
+   "words": [
+    [
+     96.352,
+     96.923,
+     "Scripts."
+    ]
+   ],
+   "tele": 34,
+   "teleT0": 96.242
+  },
+  {
+   "i": 35,
+   "id": "up-review-late",
+   "who": "larry",
+   "kind": "say",
+   "text": "Review.",
+   "caption": true,
+   "t0": 97.043,
+   "t1": 97.628,
+   "words": [
+    [
+     97.103,
+     97.628,
+     "Review."
+    ]
+   ],
+   "tele": 35,
+   "teleT0": 96.993
+  },
+  {
+   "i": 36,
+   "id": "up-scenes",
+   "who": "larry",
+   "kind": "say",
+   "text": "Scenes.",
+   "caption": true,
+   "t0": 97.748,
+   "t1": 98.206,
+   "words": [
+    [
+     97.808,
+     98.206,
+     "Scenes."
+    ]
+   ],
+   "tele": 36,
+   "teleT0": 97.698
+  },
+  {
+   "i": 37,
+   "id": "up-show",
+   "who": "larry",
+   "kind": "say",
+   "text": "And that's the show.",
+   "caption": true,
+   "t0": 98.786,
+   "t1": 100.256,
+   "words": [
+    [
+     98.846,
+     99.045,
+     "And"
+    ],
+    [
+     99.045,
+     99.425,
+     "that's"
+    ],
+    [
+     99.425,
+     99.602,
+     "the"
+    ],
+    [
+     99.842,
+     100.256,
+     "show."
+    ]
+   ],
+   "tele": 37,
+   "teleT0": 98.736
+  },
+  {
+   "i": 38,
+   "id": "burp",
+   "who": "larry",
+   "kind": "say",
+   "text": "Urp.",
+   "caption": false,
+   "t0": 100.756,
+   "t1": 101.061,
+   "words": [
+    [
+     100.816,
+     101.061,
+     "Urp."
+    ]
+   ],
+   "tele": 38,
+   "teleT0": 100.706
+  },
+  {
+   "i": 39,
+   "id": "button",
+   "who": "larry",
+   "kind": "say",
+   "text": "Excuse me.",
+   "caption": true,
+   "t0": 101.841,
+   "t1": 102.764,
+   "words": [
+    [
+     101.901,
+     102.52,
+     "Excuse"
+    ],
+    [
+     102.52,
+     102.764,
+     "me."
+    ]
+   ],
+   "tele": 39,
+   "teleT0": 101.791
+  }
+ ],
+ "cues": {
+  "studio": 0.3,
+  "in-larry": 2.626,
+  "parts": 4.387,
+  "throat-one": 9.461,
+  "log-line": 15.511,
+  "in-small": 19.219,
+  "throat-two": 20.329,
+  "in-smaller": 29.37,
+  "throat-three": 30.204,
+  "writer-desk": 32.708,
+  "ear": 39.945,
+  "in-smallest": 45.753,
+  "throat-four": 46.053,
+  "in-tiny": 55.531,
+  "throat-five": 56.619,
+  "in-tiniest": 63.413,
+  "bottom": 63.813,
+  "cluster": 64.793,
+  "typing": 72.449,
+  "handle": 78.47,
+  "look": 85.245,
+  "out": 91.888,
+  "desk": 98.306,
+  "excuse": 101.841
+ },
+ "sfx": [],
+ "music": []
+}
