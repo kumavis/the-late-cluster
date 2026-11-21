@@ -358,9 +358,15 @@ test('usage: positionals and unknown flags exit 2; help lists the command', asyn
 
 const NEW_DESCRIPTION = 'The Late Cluster, with Larry Nx\nthe simcluster\'s own late night talk show';
 
-test('the committed show.config.json seeds the bio as it is live, the credit, and the repost list', () => {
+test('the committed show.config.json holds a bio within the limits, naming only credited handles, and the repost list', () => {
   const show = JSON.parse(readFileSync(new URL('../../../show.config.json', import.meta.url), 'utf8'));
-  assert.equal(show.bluesky.profile.description, 'The Late Cluster, with Larry Nx\nthe simcluster\'s own late night talk show');
+  // The bio is configuration and the owner changes it, so its words are not pinned here: only its shape.
+  const bio = show.bluesky.profile.description;
+  assert.equal(typeof bio, 'string');
+  assert.ok(bio.trim().length > 0, 'the bio is not blank');
+  assert.ok([...new Intl.Segmenter().segment(bio)].length <= 256, 'at most 256 graphemes');
+  assert.ok(Buffer.byteLength(bio, 'utf8') <= 2560, 'at most 2560 bytes');
+  for (const [, handle] of bio.matchAll(/@([a-z0-9.-]+[a-z0-9])/gi)) assert.ok(show.bluesky.profile.credited.includes(handle), `@${handle} is a credited handle`);
   assert.deepEqual(show.bluesky.profile.credited, ['kumavis.me']);
   assert.ok(show.bluesky.repostAuthors.includes(show.bluesky.did), 'the show itself');
   assert.ok(show.bluesky.repostAuthors.includes('did:plc:c2x5i7fneh7xbvpvw2r3omes'), 'the owner');
