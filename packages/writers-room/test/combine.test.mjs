@@ -187,16 +187,27 @@ test('people rules count only aired episodes: an unaired draft never blocks anyo
   }
 })
 
-test('the real ledger: someone only in the unaired trial passes the people rules for a new episode (skipped outside the repository)', { skip: !existsSync(join(REPO, 'docs', 'ledger', '002-the-joke-nobody-built.json')) }, () => {
-  const l = loadLedger(join(REPO, 'docs', 'ledger'))
-  assert.deepEqual(l.problems, [])
-  const trial = l.entries.find((e) => e.id === '002-the-joke-nobody-built')
-  assert.equal(trial.aired, false)
-  const yon = trial.guests.find((g) => g.handle === 'yonderdavid.bsky.social')
-  assert.ok(yon, 'the trial lists yonderdavid as a guest')
-  const r = peopleRules(l, 3, { speakers: [yon], featured: [yon, { did: 'did:plc:new1', handle: 'n1.example' }, { did: 'did:plc:new2', handle: 'n2.example' }] }, config.people)
-  assert.deepEqual(r.failures, [])
-  // the pilot's speakers rest
-  const pilot = l.entries.find((e) => e.id === '001-pilot')
-  assert.equal(peopleRules(l, 3, { speakers: [pilot.guests[0]] }, config.people).failures.length, 1)
+test('people rules with the configured limits: an appearance only in an unaired entry does not count; the last aired episode\'s speakers rest', () => {
+  // the shape of the real ledger (a pilot, an aired episode, an unaired trial between them) without naming anyone real
+  const trial = { ...E('002-trial', [P('tri', 'tri.test')], [P('tri', 'tri.test'), P('tri2', 'tri2.test')]), aired: false }
+  const d = ledgerDir([E('001-pilot', [P('ana', 'ana.test')], [P('ana', 'ana.test')]), trial, E('003-aired', [P('bo', 'bo.test')], [P('bo', 'bo.test')])])
+  try {
+    const l = loadLedger(d)
+    assert.deepEqual(l.problems, [])
+    const fresh = [P('new1', 'n1.test'), P('new2', 'n2.test')]
+    // the trial's guest is in no aired episode: he may speak, and is not featured before
+    const r = peopleRules(l, 4, { speakers: [P('tri', 'tri.test')], featured: [P('tri', 'tri.test'), ...fresh] }, config.people)
+    assert.deepEqual(r.failures, [])
+    assert.equal(r.repeatShare, 0)
+    // the most recent aired episode's speaker rests
+    const b = peopleRules(l, 4, { speakers: [P('bo', 'bo.test')] }, config.people)
+    assert.equal(b.failures.length, 1)
+    assert.match(b.failures[0], /spoke in the previous aired episode \(003-aired\)/)
+  } finally {
+    cleanup(d)
+  }
+})
+
+test('the real ledger loads with no problems (skipped outside the repository)', { skip: !existsSync(join(REPO, 'docs', 'ledger')) }, () => {
+  assert.deepEqual(loadLedger(join(REPO, 'docs', 'ledger')).problems, [])
 })
