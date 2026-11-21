@@ -15,9 +15,8 @@
       },
       {
         "episode": "002-2026-w47",
-        "date": "2026-11-20",
-        "role": "shown",
-        "aired": false
+        "date": "2026-11-21",
+        "role": "shown"
       }
     ]
   },
@@ -79,9 +78,8 @@
       },
       {
         "episode": "002-2026-w47",
-        "date": "2026-11-20",
-        "role": "spoke",
-        "aired": false
+        "date": "2026-11-21",
+        "role": "spoke"
       }
     ]
   },
@@ -152,9 +150,8 @@
       },
       {
         "episode": "002-2026-w47",
-        "date": "2026-11-20",
-        "role": "spoke",
-        "aired": false
+        "date": "2026-11-21",
+        "role": "spoke"
       }
     ]
   },
@@ -164,12 +161,6 @@
       {
         "episode": "002-the-joke-nobody-built",
         "date": "2026-11-19",
-        "role": "shown",
-        "aired": false
-      },
-      {
-        "episode": "002-2026-w47",
-        "date": "2026-11-20",
         "role": "shown",
         "aired": false
       }
@@ -186,9 +177,8 @@
       },
       {
         "episode": "002-2026-w47",
-        "date": "2026-11-20",
-        "role": "shown",
-        "aired": false
+        "date": "2026-11-21",
+        "role": "shown"
       }
     ]
   },
@@ -203,9 +193,8 @@
       },
       {
         "episode": "002-2026-w47",
-        "date": "2026-11-20",
-        "role": "shown",
-        "aired": false
+        "date": "2026-11-21",
+        "role": "shown"
       }
     ]
   },
@@ -220,9 +209,8 @@
       },
       {
         "episode": "002-2026-w47",
-        "date": "2026-11-20",
-        "role": "spoke",
-        "aired": false
+        "date": "2026-11-21",
+        "role": "spoke"
       }
     ]
   },
@@ -231,9 +219,8 @@
     "appearances": [
       {
         "episode": "002-2026-w47",
-        "date": "2026-11-20",
-        "role": "spoke",
-        "aired": false
+        "date": "2026-11-21",
+        "role": "spoke"
       }
     ]
   },
@@ -242,9 +229,8 @@
     "appearances": [
       {
         "episode": "002-2026-w47",
-        "date": "2026-11-20",
-        "role": "spoke",
-        "aired": false
+        "date": "2026-11-21",
+        "role": "spoke"
       }
     ]
   },
@@ -253,9 +239,8 @@
     "appearances": [
       {
         "episode": "002-2026-w47",
-        "date": "2026-11-20",
-        "role": "spoke",
-        "aired": false
+        "date": "2026-11-21",
+        "role": "spoke"
       }
     ]
   },
@@ -264,31 +249,8 @@
     "appearances": [
       {
         "episode": "002-2026-w47",
-        "date": "2026-11-20",
-        "role": "shown",
-        "aired": false
-      }
-    ]
-  },
-  "did:plc:cwa5qtro5bhfz25opigbe6qi": {
-    "handle": "catblanketflower.yuwakisa.com",
-    "appearances": [
-      {
-        "episode": "002-2026-w47",
-        "date": "2026-11-20",
-        "role": "shown",
-        "aired": false
-      }
-    ]
-  },
-  "did:plc:jg6o3bgflm3q4y7jpmpvenj3": {
-    "handle": "7778777.online",
-    "appearances": [
-      {
-        "episode": "002-2026-w47",
-        "date": "2026-11-20",
-        "role": "shown",
-        "aired": false
+        "date": "2026-11-21",
+        "role": "shown"
       }
     ]
   },
@@ -297,9 +259,38 @@
     "appearances": [
       {
         "episode": "002-2026-w47",
-        "date": "2026-11-20",
-        "role": "shown",
-        "aired": false
+        "date": "2026-11-21",
+        "role": "shown"
+      }
+    ]
+  },
+  "did:plc:ctphcgyhnllfluywokibtrgb": {
+    "handle": "davidcrespo.bsky.social",
+    "appearances": [
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-21",
+        "role": "spoke"
+      }
+    ]
+  },
+  "did:plc:h25avmes6g7fgcddc3xj7qmg": {
+    "handle": "moultano.bsky.social",
+    "appearances": [
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-21",
+        "role": "spoke"
+      }
+    ]
+  },
+  "did:plc:dhwhxgjyh4h2dd5vjgji67mo": {
+    "handle": "zetaof1.bsky.social",
+    "appearances": [
+      {
+        "episode": "002-2026-w47",
+        "date": "2026-11-21",
+        "role": "shown"
       }
     ]
   }

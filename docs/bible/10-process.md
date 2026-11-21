@@ -56,8 +56,8 @@ selection is a real choice. Each standing segment is drafted every week.
 - spoken words at about 1.6 to 2.2 per second of the length the draft claims;
 - notes that give the segment's retell in one sentence, its turn or feeling in five words, the people
   in it, and what a builder needs to know;
-- lines written so they can be said; the sound editor fits them to the engine and hands back only a
-  line that cannot be heard as written ([voices](07-voices.md#read-what-was-heard));
+- lines written so they can be said; the sound editor fits them to the engine on a best effort and
+  changes no word ([voices](07-voices.md#read-what-was-heard));
 - the episode's experiment, from the brief, built in wherever it touches this segment.
 
 **Reviewers score each draft** on four questions: is it funny; is it interesting; does it work as
@@ -73,8 +73,8 @@ other; an open that reaches the first material within about fifteen seconds; a c
 last strong thing and does not review the night; nothing added to tie segments together that the
 segments did not earn; the episode's experiment run as `production/experiment.md` sets it out;
 every script validating and rendering; every line the assembler adds or changes passed by the
-repetition gate, and heard as written once the sound editor has fitted it; every real name heard as
-that name.
+repetition gate, then fitted on a best effort with its heard text read; nothing heard that is
+crude, alarming or out of bounds.
 
 **Watch for:** an order chosen because it feels like the usual order; a new runner threaded through
 finished segments to make them cohere; a summing-up line; segments trimmed evenly instead of the
@@ -153,7 +153,7 @@ removes things; it never overrides Part A.
 | A13 | Repetition | Two reviewers with the record of earlier episodes have given every selected script a verdict; none is *repeat*; at most one item is *turned*; nothing refers to an earlier episode | Any repeat; a second turned item; a callback to the show's past |
 | A14 | People | Nobody whose puppet spoke in the previous episode speaks in this one; most of the accounts featured on screen are new; any warning that someone is on too often has been answered | A speaker from the previous episode; a majority of returning accounts; an unanswered warning |
 | A15 | Unread text | Nothing on screen beyond a glance goes unspoken: every shown post is performed or read aloud, or is glance-sized | Any block of text held for the viewer to read in silence |
-| A16 | Heard text | The transcription's heard text has been read for every line. Nothing heard is offensive or alarming, touches R10, or says something about a real person that the script does not. Every real name is heard as that name in the voice that says it | Any such line; heard text not read; a name heard as another word |
+| A16 | Heard text | The transcription's heard text of the final mix has been read for every line. Nothing heard is crude, offensive or alarming, or touches R10. Every line that is still heard differently from its caption about a real person, a real name heard as another word included, is listed in the fit report for the owner's watch, and its exact words are on screen while it is said (best effort is sufficient: [voices](07-voices.md#read-what-was-heard)) | Anything crude, offensive, alarming or out of bounds heard; heard text not read; a line heard differently about a real person that is not listed, or whose exact words are not on screen |
 
 ### Part B: quality (0, 1 or 2 each; 26 possible)
 
@@ -166,7 +166,7 @@ removes things; it never overrides Part A.
 | B5 | **Newcomer test** | Two thirds or more of the jokes work for someone who missed the week | About half | Mostly in-jokes |
 | B6 | **Tone** | Affectionate throughout; any sincere moment is earned, short and in the community's own words, spoken | A sincere moment that runs long or is in the show's words; a tease close to the line | A speech, a sneer, or sincerity undercut at someone's expense |
 | B7 | **Television** | Every segment gives the viewer something to watch happen; things people made are shown working | One segment is heads and cards | Two or more segments are heads and cards |
-| B8 | **Intelligibility** | Every punchline is heard as written and every name as itself | One or two soft punchlines, carried by caption and picture | A punchline or a name nobody can hear |
+| B8 | **Intelligibility** | Every punchline is heard as written and every name as itself | Some punchlines or names are soft, and the caption and a picture carry each one | A punchline or a name that is lost: not heard, and not on screen when it is said |
 | B9 | **Sound** | One reaction per joke, sized to it; some lines left dry; nothing loud under a punch | Over-sweetened in places | A laugh after every line, or big laughs on mild jokes |
 | B10 | **Shape** | About eight minutes or less with no filler; adjacent segments differ; every segment ends on a button; the open and the close do their jobs | A slack stretch, two similar segments adjacent, or over nine minutes | Padded to a length, ten minutes or over, or segments with no buttons |
 | B11 | **Standing segments** | The interview, Top Chicken and the music each do what their format asks, or one is cut with a reason under the first rule | One of them is perfunctory | Two are perfunctory, or one is missing with no reason |

@@ -51,6 +51,7 @@ Episodes so far:
 |---|---|---|
 | `001-pilot` | aired 2026-11-13 | [001-pilot.md](001-pilot.md), [001-pilot.json](001-pilot.json) |
 | `002-the-joke-nobody-built` | drafted 2026-11-19, never aired | [002-the-joke-nobody-built.md](002-the-joke-nobody-built.md), [002-the-joke-nobody-built.json](002-the-joke-nobody-built.json) |
+| `002-2026-w47` | aired 2026-11-21; the previous aired episode for the next run | [002-2026-w47.md](002-2026-w47.md), [002-2026-w47.json](002-2026-w47.json) |
 
 ## Giving a verdict: fresh, turned or repeat
 

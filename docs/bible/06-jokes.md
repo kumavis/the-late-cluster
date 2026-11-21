@@ -28,6 +28,16 @@ The synthesized voice is slow, a little smeared, and loses about one word in fiv
 - **The screen is not for reading.** Anything longer than a glance is spoken or it is not there
   ([television](08-direction.md#television)). A second joke that needs a sentence belongs in
   somebody's mouth.
+- **A thing that is shown working may take the punch itself, with no word said.** It lands when
+  the turn is something the thing visibly does: a change the viewer could describe in a sentence.
+  It does not land when the turn has to be read off the screen, or rests on a fact the viewer has
+  not been told; then the voice takes the punch. Nothing said before it gives the turn away and
+  nothing said after it explains it. Once in an episode it is a change of texture. In every
+  segment it is a habit.
+
+> *Illustration.* The society's new self-filling trough is shown at work: it fills, it tips, and
+> it waters the path. Nobody speaks, and nobody needs to. Not this: the trough's gauge stopping at
+> a figure that is only funny to someone who knows the hosepipe limit.
 
 ## Specificity
 

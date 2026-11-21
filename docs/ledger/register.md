@@ -37,6 +37,30 @@ under a new name.
 | Larry as the loser; Sibyl overruled only by the bot | 02 | one episode; "Larry wins once" in the 002 draft, no verdict | Larry's bad luck **kept** as character. The Sibyl-and-bot routine **removed** |
 | The monologue's over-the-shoulder artefact framing | 04, 08 | one episode; followed in the 002 draft | **Kept** as one framing among several |
 
+### After the second aired episode (002-2026-w47, 21 November 2026)
+
+What the second aired episode did with the rows above. Read it for two things: evidence about a
+rule, and a pilot habit coming back under a new name. The right-hand column of the table is not
+changed; this is the next entry for each row it touches.
+
+| the row | what the second episode did | for the next reviewer |
+|---|---|---|
+| Five slots in a fixed order; the song before goodnight | No fixed order was used, and yet it ended as the pilot did: the song, then the host's goodnight. The owner chose it ("i think i like ending the episode with the song") | Two of two. A third time the song has a home position, which the bible says nothing has |
+| The Ask with "Built it." as the cold open | No cold open. The first segment carried the open: a member's machine, as a studio sketch, wrote the title | Gone |
+| Sibyl's "And now... [descriptor]... Larry... Nx!" | The formula and the descriptor are gone. The announcer still named the host in the first seconds: "This is The Late Cluster, with Larry Nx." | The act has aired twice. A third time it is a ritual way to start |
+| The BUILT counter and its bumps | Not on screen. The word "built" was sung twice as a plain verb | Gone |
+| Slot lengths; about eight minutes | 9:39.6, against the pilot's 9:51. Nine pieces, from 10 s to 103 s | Neither aired episode has been near eight minutes |
+| 1.6–2.2 spoken words per second | 1.70 (987 words in 579.6 s) | Holds |
+| Fact, turn, punch, picture; a tag on every graphic | Kept; tags were glance-sized (88 REPLIES · 1 PEN; 201 ÷ 6,186 = 3.2 %) | Holds |
+| Buttons of six words or fewer | Every button was ("It fits in a post."; "Excuse me."; "I resign."; "I do what I can.") | Holds. Six of nine were Larry's, alone and dry: "mostly Larry's" is back without being a rule |
+| One reaction sound per joke; three or four big laughs | Two big laughs; one segment of 103 s with no audience sound at all | The pilot's habit did not return |
+| Stamps as the house punctuation | No stamp as a verdict anywhere | Gone |
+| The sincere beat | It moved to the middle and into the show's own words: the invitation in the making-of, 27 s, by the owner's commission. The bible asks for the community's words, spoken, and short | The pilot's kind was belonging; this one's is "you make this show". Both were about the community and the show. A third sincere beat on that subject is a habit |
+| "gn, simcluster." and "Press E to leave." as the close | The owner ruled on 21 November 2026 that an episode ends on a few lines and a goodnight, as frame, with the words judged by the gate each week. Aired: "Happy polyhedra week." / "Good night, everybody." | A goodnight is frame again. Its words, its payoffs and its props are not. The built-in credits also head themselves GOOD NIGHT, BLUESKY every episode |
+| A guest built from four ingredients | Casting only: own words, a voice, a look, a plain chyron title. No creature, no signature prop | Holds |
+| Larry as the loser | Kept as character and pushed further: buried, refilled and resigned, and small or left out as the turn of three segments | The character is established twice over. The particular defeats and lines are done |
+| The monologue's over-the-shoulder framing | Not used. One over-the-shoulder glyph (a single letter) in the news segment | No tic |
+
 Rules the first bible took from the owner, and so did not list: the song standing and its genre
 rotating; real words first; the Top Chicken result reported. The owner's decisions as of 19 November
 2026 are in the bible's frame and standing segments: an interview every week, Top Chicken with the
@@ -105,9 +129,40 @@ shapes; that is not a repeat.
 - **The Thread:** established by the owner as the preferred way to have real people on; performed
   once, in the 002 draft.
 
+What the second aired episode did with these:
+
+- **The Thread** has now aired, twice in one episode and in two ways: three posts performed in
+  order by two puppets (chess), and a thread of four posts with mixed treatment, two performed,
+  one a glance, one read aloud because its author is a small account (coffee).
+- **The Interview by the show's account** is still not built. The account now exists
+  (`@latecluster.simcluster.tv`), and the owner ruled on 21 November 2026 that the bot is a
+  command-line tool and nothing more: it runs when a person runs it and does not watch or answer
+  anyone. On air the show promised a look at what members point it at, "No reply. No promise."
+- **A project presented as a TV genre** (the pilot's weather forecast) has a cousin: the second
+  episode dressed its own segment as a news channel for fourteen seconds, for outside news, with
+  no patter in a guest's mouth. Two aired episodes of two have used a broadcast genre as a frame.
+- **Live From the Build**, **The Changelog**, **The Field Guide** and **Corrections** have not
+  aired.
+
+## The owner's rulings made during the second episode
+
+Each changes what a reviewer checks. The words are in
+`episodes/002-2026-w47/production/owner-notes.md`.
+
+| ruling, 21 and 22 November 2026 | where it is written | what it means at a gate |
+|---|---|---|
+| An episode ends on a few lines and a goodnight; the goodnight's jokes are subject to the repetition check | `03-episode-shape.md` | Ending on a goodnight is not a repeat. The words are judged every week |
+| Best effort on pronunciation is sufficient, because the subtitles carry the line | `07-voices.md`, the workflow, and since this review the scorecard's rows A16 and B8 | A line or a name the voice cannot say does not go back. Something heard as crude, alarming or out of bounds still fails |
+| A bot's post counts toward the member who runs it only if that member makes an appearance | the workflow | The two-segment cap counts appearances, not operators. Consent is unchanged: the operator is who R13 protects |
+| The song's original ending stays, over two repeat verdicts | the owner's notes only | The owner may overrule the gate for one item. The item is still recorded as a repeat, and the shape has aired twice |
+| The limit of one joke about the show itself does not apply to the commissioned making-of; the account bit is a second piece about the show by the owner's choice | the commission's history; the owner's notes | For that episode only. The bible's limit stands |
+| The approved cut is not edited for a display name that changed after the scrape | the owner's notes | A card shows the name the account had when it posted |
+| The show's account may tag the accounts in an episode under its own post; it never turns up in someone else's thread | `09-real-people.md` (R13) and the owner's notes | About the account, not the episode |
+
 ## Experiments and what they tested
 
 | episode | experiment | rule tested | result |
 |---|---|---|---|
 | 001 (aired) | the show itself | none | people wanted another; see [lore.md](lore.md), experiment log |
 | 002 (draft) | the last wish refused; the counter holds; Larry wins once | "the last bump after the tally"; "Larry as the loser" | none: never aired |
+| 002-2026-w47 (aired) | ten seconds with no words: in each segment made from a made thing, the thing is shown in use and delivers the segment's turn itself | "The voice says the setup and the punch" (06, and the one-page summary) | Partly run: three stretches were built, two aired, and the owner cut the third. Cold viewers on stills named the turn in the two that aired and not in the one that was cut, and the owner kept the same two. The two that worked turn on a change of state that can be watched; the one that did not had to be read and was explained afterwards. The rule was amended: a thing shown working may take the punch itself, once in an episode. The audience's reaction is still to come |
