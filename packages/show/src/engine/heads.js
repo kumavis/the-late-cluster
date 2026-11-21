@@ -14,6 +14,7 @@ import { Anatomy3D } from '../../chimera/ui/render/anatomy3d.ts'
 import { VoiceModel } from '../../chimera/ui/analysis.ts'
 import { NEUTRAL } from '../../chimera/wasm/engine.ts'
 import { withPalette } from './palette.js'
+import { tileClear } from './tile.js'
 
 export const VIEW = { pressure: true, particles: true, grid: false, calipers: false }
 const SAMPLE_RATE = 48000
@@ -177,6 +178,7 @@ function convexHull(xy) {
 
 // ---------------------------------------------------------------- the shared renderer
 
+
 export class GLHeads {
   constructor() {
     this.canvas = document.createElement('canvas')
@@ -217,10 +219,15 @@ export class GLHeads {
       this.gl.setSize(this.size, this.size, false)
     }
     const gl = this.gl
+    // Clear the tile and a margin round it. The stage copies the tile with smoothing, and the
+    // filter reads a pixel past the tile's right and top edges; whatever an earlier, bigger tile
+    // left there (Larry's close-up, say) would show as a thin line with a corner beside the head.
+    const m = tileClear(px, this.size)
+    gl.setScissorTest(true)
+    gl.setScissor(0, 0, m, m)
+    gl.clear()
     gl.setViewport(0, 0, px, px)
     gl.setScissor(0, 0, px, px)
-    gl.setScissorTest(true)
-    gl.clear()
     gl.render(head.r.scene, head.r.camera)
     return [0, this.size - px, px, px]
   }

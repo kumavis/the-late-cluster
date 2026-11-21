@@ -73,6 +73,7 @@ src/
   stage/set.js      the studio's set pieces         stage/costumes.js costumes
   stage/chrome.js   logo, chyron, captions
   engine/heads.js   CHIMERA heads + the shared WebGL renderer
+  engine/tile.js    how far a head tile's clear reaches (past the tile, for the smoothed copy)
   engine/tele.js    telemetry decoder               engine/transport.js the clock
   engine/palette.js per-character head colour
   kit/draw.js       the drawing kit                 kit/ease.js      easing, tweens, seeded RNG
