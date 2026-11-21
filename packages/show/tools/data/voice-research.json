@@ -1,2664 +1,2762 @@
 {
-  "$comment": "The voice research file: words and patterns the synthesized voices find hard, from the fitting tool's fit.json and the sound editors' notes. Generated page: docs/voice-research.md (npm run voice-research -- --page). Harvest and add with npm run voice-research (packages/show/tools/README.md, 'The voice research file'). A guest's voice is 'guest'; 'seen' holds episode or draft ids only, never a person, a handle or a post.",
-  "words": [
-    {
-      "word": "a",
-      "status": "works",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "uh",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "a",
-              "count": 12
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "uh",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "\"uh\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/making-of-inward",
-        "002-commissions-w47/making-of-outward"
-      ]
-    },
-    {
-      "word": "adds",
-      "status": "cannot",
-      "voices": [
-        "guest"
-      ],
-      "heard": [
-        {
-          "as": "head"
-        },
-        {
-          "as": "edge"
-        }
-      ],
-      "spellings": [
-        {
-          "as": "adz",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "head",
-              "count": 4
-            }
-          ]
-        },
-        {
-          "as": "add-z",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "headlier",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [],
-      "note": "Heard as \"head\" or \"edge\" in every one of eight tries.",
-      "seen": [
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "word": "ai",
-      "status": "unstable",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "ay-eye",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "the",
-              "count": 2
-            },
-            {
-              "as": "a",
-              "count": 1
-            },
-            {
-              "as": "ai",
-              "count": 1
-            }
-          ]
-        }
-      ],
-      "works": [],
-      "note": "Raised Larry: ay-eye heard in 2 of 4 takes after \"an\"; otherwise lost (\"when the agent\").",
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
-    },
-    {
-      "word": "as",
-      "status": "works",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "azz",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "as",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "azz",
-          "voices": [
-            "sibyl"
-          ]
-        }
-      ],
-      "note": "\"azz\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "at least",
-      "status": "unstable",
-      "voices": [
-        "guest",
-        "sibyl"
-      ],
-      "heard": [
-        {
-          "as": "at least",
-          "count": 8
-        },
-        {
-          "as": "but it's just"
-        },
-        {
-          "as": "but each"
-        }
-      ],
-      "spellings": [
-        {
-          "as": "att-leest",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "headlier teeth",
-              "count": 4
-            }
-          ]
-        },
-        {
-          "as": "at-leest",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "to piece",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [],
-      "note": "Heard in about half the takes in a guest's voice, and as written in Sibyl's (\"At least\" ×4); a comma after it picked up a false \"won't\".",
-      "seen": [
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "word": "attached",
-      "status": "works",
-      "voices": [
-        "guest"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "uh-tatched",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "attached",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "uh-tatched",
-          "voices": [
-            "guest"
-          ]
-        }
-      ],
-      "note": "\"uh-tatched\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "auditor",
-      "status": "cannot",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [],
-      "works": [],
-      "note": "Raised Larry (176 Hz): aw-dih-ter \"card is to\", odd-it-er \"hard to\", aw-dit-tor \"card it or\", aw-di-ter \"in order to\"; never the word.",
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
-    },
-    {
-      "word": "bluesky",
-      "status": "works",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "blue-sky",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "bluesky",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "blue-sky",
-          "voices": [
-            "sibyl"
-          ]
-        }
-      ],
-      "note": "\"blue-sky\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "word": "booking",
-      "status": "works",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "book-ing",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "booking",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "book-ing",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "\"book-ing\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/making-of-outward"
-      ]
-    },
-    {
-      "word": "broader",
-      "status": "works",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "braw-der",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "broader",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "braw-der",
-          "voices": [
-            "sibyl"
-          ]
-        }
-      ],
-      "note": "\"braw-der\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "calling",
-      "status": "works",
-      "voices": [
-        "guest"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "kaw-ling",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "calling",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "kaw-ling",
-          "voices": [
-            "guest"
-          ]
-        }
-      ],
-      "note": "\"kaw-ling\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "word": "checked",
-      "status": "works",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "checkt",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "checked",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "checkt",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "\"checkt\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
-    },
-    {
-      "word": "clue",
-      "status": "cannot",
-      "voices": [
-        "larry"
-      ],
-      "heard": [
-        {
-          "as": "glue",
-          "count": 4
-        }
-      ],
-      "spellings": [],
-      "works": [],
-      "note": "Heard as \"glue\" in every take and every spelling tried: an initial \"cl\" comes out \"gl\".",
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
-    },
-    {
-      "word": "earlier",
-      "status": "works",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "ur-lee-er",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "earlier",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "ur-lee-er",
-          "voices": [
-            "sibyl"
-          ]
-        }
-      ],
-      "note": "\"ur-lee-er\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "eight",
-      "status": "unstable",
-      "voices": [
-        "eppy"
-      ],
-      "heard": [
-        {
-          "as": "it",
-          "count": 10
-        }
-      ],
-      "spellings": [
-        {
-          "as": "Ate",
-          "voices": [
-            "eppy"
-          ],
-          "heard": [
-            {
-              "as": "it",
-              "count": 4
-            }
-          ]
-        },
-        {
-          "as": "Eightt",
-          "voices": [
-            "eppy"
-          ],
-          "heard": [
-            {
-              "as": "it",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [],
-      "note": "Eppy: \"Eight, terms\" heard \"It, terms\" ×4 (Ate, Eightt the same).",
-      "seen": [
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "word": "had",
-      "status": "works",
-      "voices": [
-        "larry",
-        "sibyl"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "hadd",
-          "voices": [
-            "larry",
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "had",
-              "count": 8
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "hadd",
-          "voices": [
-            "larry",
-            "sibyl"
-          ]
-        }
-      ],
-      "note": "\"hadd\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/making-of-inward",
-        "002-commissions-w47/making-of-outward"
-      ]
-    },
-    {
-      "word": "half",
-      "status": "unstable",
-      "voices": [
-        "guest",
-        "eppy"
-      ],
-      "heard": [
-        {
-          "as": "head"
-        },
-        {
-          "as": "hit"
-        },
-        {
-          "as": "health"
-        },
-        {
-          "as": "heath"
-        },
-        {
-          "as": "have"
-        }
-      ],
-      "spellings": [
-        {
-          "as": "one-half",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "hit",
-              "count": 8
-            },
-            {
-              "as": "head",
-              "count": 3
-            },
-            {
-              "as": "have",
-              "count": 1
-            }
-          ]
-        },
-        {
-          "as": "one-haff",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "heath",
-              "count": 2
-            },
-            {
-              "as": "head",
-              "count": 1
-            },
-            {
-              "as": "hit",
-              "count": 1
-            }
-          ]
-        },
-        {
-          "as": "wun-half",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "head",
-              "count": 4
-            }
-          ]
-        },
-        {
-          "as": "wun-haaf",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "head, head, head (a runaway)",
-              "count": 4
-            }
-          ]
-        },
-        {
-          "as": "a-half",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "the fifth",
-              "count": 2
-            },
-            {
-              "as": "half",
-              "count": 2
-            }
-          ]
-        }
-      ],
-      "works": [],
-      "note": "Eppy, alone in a line: \"Hit\" as written and as Haf/Haff, Hahf/Haaff! \"Hey\", Hallf \"Health\", Harf \"Hah!\"; after \"terms\" \"heh\" or \"has\". Lost at the end of a line in guest voices too.",
-      "seen": [
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "word": "hello",
-      "status": "works",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "huh-loh",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "hello",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "huh-loh",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "\"huh-loh\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/making-of-outward"
-      ]
-    },
-    {
-      "word": "infinitely",
-      "status": "cannot",
-      "voices": [
-        "guest"
-      ],
-      "heard": [
-        {
-          "as": "infantry",
-          "count": 21
-        },
-        {
-          "as": "thank you so much for watching and i'll see you in the",
-          "count": 2
-        },
-        {
-          "as": "infantry meni hares",
-          "count": 1
-        }
-      ],
-      "spellings": [
-        {
-          "as": "inn-fuh-nut-lee",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "in faknaji mani herco",
-              "count": 2
-            }
-          ]
-        },
-        {
-          "as": "inn-fun-nut-lee",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "in fun not gee",
-              "count": 2
-            }
-          ]
-        }
-      ],
-      "works": [],
-      "note": "Guest at 254 Hz: \"infantry\" ×4 as written; in-finn-it-lee \"Infiniti\", infinitly \"in fungi\", inn-fuh-nut-lee \"In Faknaji\"; never heard.",
-      "seen": [
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "word": "inverse",
-      "status": "works",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "inn-verse",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "inverse",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "inn-verse",
-          "voices": [
-            "sibyl"
-          ]
-        }
-      ],
-      "note": "\"inn-verse\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "word": "it",
-      "status": "works",
-      "voices": [
-        "guest"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "itt",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "it",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "itt",
-          "voices": [
-            "guest"
-          ]
-        }
-      ],
-      "note": "\"itt\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "word": "jaw",
-      "status": "works",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "djaw",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "jaw",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "djaw",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "\"djaw\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
-    },
-    {
-      "word": "judge",
-      "status": "cannot",
-      "voices": [
-        "larry"
-      ],
-      "heard": [
-        {
-          "as": "love"
-        },
-        {
-          "as": "god is"
-        }
-      ],
-      "spellings": [
-        {
-          "as": "juhdge",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "drop",
-              "count": 3
-            }
-          ]
-        }
-      ],
-      "works": [],
-      "note": "Larry: as written \"love it\", \"does it\" (judges); juhdge \"drop\", djudge \"draw it\" and in the question \"drugs it\" (not used).",
-      "seen": [
-        "002-commissions-w47/making-of-outward"
-      ]
-    },
-    {
-      "word": "kazoo",
-      "status": "works",
-      "voices": [
-        "larry"
-      ],
-      "heard": [
-        {
-          "as": "zoom",
-          "count": 2
-        },
-        {
-          "as": "two",
-          "count": 2
-        }
-      ],
-      "spellings": [
-        {
-          "as": "kah-zoo",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "kazu",
-              "count": 4
-            }
-          ]
-        },
-        {
-          "as": "ka-zoo",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "tazoo",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "kah-zoo",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "`kah-zoo` is heard as \"Kazu\", which is kazoo as Whisper spells it; at a raised pitch (176 Hz) `ka-zoo` gave \"tazoo\".",
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
-    },
-    {
-      "word": "limit",
-      "status": "works",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [
-        {
-          "as": "shimit"
-        }
-      ],
-      "spellings": [
-        {
-          "as": "limmit",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "limit",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "limmit",
-          "voices": [
-            "sibyl"
-          ]
-        }
-      ],
-      "note": "As written, after \"reached its\", heard as a near-crude \"shimit\"; `limmit` is heard.",
-      "seen": [
-        "002-commissions-w47/making-of-outward"
-      ]
-    },
-    {
-      "word": "loss",
-      "status": "works",
-      "voices": [
-        "guest"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "lawss",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "loss",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "lawss",
-          "voices": [
-            "guest"
-          ]
-        }
-      ],
-      "note": "\"lawss\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "market",
-      "status": "works",
-      "voices": [
-        "sibyl",
-        "guest"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "mar-kit",
-          "voices": [
-            "sibyl",
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "market",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "mar-kit",
-          "voices": [
-            "sibyl",
-            "guest"
-          ]
-        }
-      ],
-      "note": "\"mar-kit\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "markets",
-      "status": "works",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "mar-kits",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "markets",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "mar-kits",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "\"mar-kits\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "math",
-      "status": "works",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "mathh",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "math",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "mathh",
-          "voices": [
-            "sibyl"
-          ]
-        }
-      ],
-      "note": "\"mathh\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "meaningfully",
-      "status": "works",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "meeningfully",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "meaningfully",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "meeningfully",
-          "voices": [
-            "sibyl"
-          ]
-        }
-      ],
-      "note": "\"meeningfully\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "mouth",
-      "status": "cannot",
-      "voices": [
-        "larry"
-      ],
-      "heard": [
-        {
-          "as": "mouse"
-        }
-      ],
-      "spellings": [],
-      "works": [],
-      "note": "Larry: \"mouse\" in every take, as written and as mouthh, mowthh, mowth after a comma; mouth-th gave \"nasty h\", not used.",
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
-    },
-    {
-      "word": "multitudes",
-      "status": "unstable",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [
-        {
-          "as": "multi-toad",
-          "count": 3
-        },
-        {
-          "as": "molecules"
-        },
-        {
-          "as": "my food"
-        }
-      ],
-      "spellings": [
-        {
-          "as": "mul-tee-toodz",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "multi-toad",
-              "count": 3
-            },
-            {
-              "as": "multitudes",
-              "count": 1
-            }
-          ]
-        }
-      ],
-      "works": [],
-      "note": "Heard about one take in four.",
-      "seen": [
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "word": "nobody",
-      "status": "works",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "noh-bodee",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "nobody",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "noh-bodee",
-          "voices": [
-            "sibyl"
-          ]
-        }
-      ],
-      "note": "\"noh-bodee\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/making-of-outward"
-      ]
-    },
-    {
-      "word": "on",
-      "status": "works",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "awn",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "on",
-              "count": 8
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "awn",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "\"awn\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
-    },
-    {
-      "word": "plausibly",
-      "status": "unstable",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [
-        {
-          "as": "plause to be"
-        }
-      ],
-      "spellings": [
-        {
-          "as": "plaw-zib-lee",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "plausibly",
-              "count": 1
-            },
-            {
-              "as": "it'll probably be",
-              "count": 3
-            }
-          ]
-        }
-      ],
-      "works": [],
-      "note": "Sibyl: plaw-zib-lee heard 1 take in 4; otherwise \"it'll probably be\".",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "posted",
-      "status": "works",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "post-id",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "posted",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "post-id",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "\"post-id\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
-    },
-    {
-      "word": "posts",
-      "status": "unstable",
-      "voices": [
-        "larry"
-      ],
-      "heard": [
-        {
-          "as": "david",
-          "count": 2
-        },
-        {
-          "as": "of",
-          "count": 2
-        }
-      ],
-      "spellings": [
-        {
-          "as": "poasts",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "david",
-              "count": 10
-            },
-            {
-              "as": "posts",
-              "count": 4
-            },
-            {
-              "as": "dave",
-              "count": 2
-            },
-            {
-              "as": "grespa",
-              "count": 1
-            },
-            {
-              "as": "poets",
-              "count": 1
-            }
-          ]
-        },
-        {
-          "as": "pohsts",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "grespa",
-              "count": 2
-            }
-          ]
-        }
-      ],
-      "works": [],
-      "note": "Larry: \"posts a chart\" runs together as \"Postcard\" (poasts); poasts, uh chart gave \"Poets or Hard\".",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "quoting",
-      "status": "works",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "kwoat-ing",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "quoting",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "kwoat-ing",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "\"kwoat-ing\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "record",
-      "status": "works",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "rek-ord",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "record",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "rek-ord",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "\"rek-ord\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
-    },
-    {
-      "word": "reply",
-      "status": "works",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "ree-ply",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "reply",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "ree-ply",
-          "voices": [
-            "sibyl"
-          ]
-        }
-      ],
-      "note": "\"ree-ply\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "reviewers",
-      "status": "cannot",
-      "voices": [
-        "sibyl",
-        "larry"
-      ],
-      "heard": [
-        {
-          "as": "are yours",
-          "count": 3
-        },
-        {
-          "as": "two are your"
-        }
-      ],
-      "spellings": [
-        {
-          "as": "ree-vyoo-erz",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "early-liers",
-              "count": 3
-            },
-            {
-              "as": "rely on a",
-              "count": 1
-            }
-          ]
-        },
-        {
-          "as": "re-viewers",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "rears",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [],
-      "note": "Sibyl: \"are yours\" as written; Too reviewers, rev-yoo-ers \"however you are\", ree-vew-urz \"early in the world\"; never heard.",
-      "seen": [
-        "002-commissions-w47/making-of-outward"
-      ]
-    },
-    {
-      "word": "riemann",
-      "status": "cannot",
-      "voices": [
-        "sibyl",
-        "guest"
-      ],
-      "heard": [
-        {
-          "as": "raiment"
-        },
-        {
-          "as": "remin"
-        },
-        {
-          "as": "room"
-        },
-        {
-          "as": "rim and"
-        }
-      ],
-      "spellings": [
-        {
-          "as": "ree-mun",
-          "voices": [
-            "sibyl",
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "raymond",
-              "count": 4
-            },
-            {
-              "as": "remain",
-              "count": 4
-            },
-            {
-              "as": "rate on high"
-            },
-            {
-              "as": "rateman"
-            }
-          ]
-        },
-        {
-          "as": "reemahn",
-          "voices": [
-            "sibyl",
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "remet",
-              "count": 4
-            },
-            {
-              "as": "remote"
-            }
-          ]
-        },
-        {
-          "as": "ree-mon",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "early moon",
-              "count": 3
-            },
-            {
-              "as": "early month",
-              "count": 1
-            }
-          ]
-        }
-      ],
-      "works": [],
-      "note": "Never heard as the name in Sibyl's or a guest's voice (\"Raymond\", \"remain\", \"Rayman\", \"remet\", \"early moon\"); the card and the caption carry it.",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "sheet",
-      "status": "unstable",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [
-        {
-          "as": "(a crude word)"
-        },
-        {
-          "as": "sheet",
-          "count": 4
-        }
-      ],
-      "spellings": [],
-      "works": [],
-      "note": "After \"other's\" it was heard as a crude word, which is never accepted; respelling the word before it (`uh-therz`) cleared it.",
-      "seen": [
-        "002-commissions-w47/making-of-outward"
-      ]
-    },
-    {
-      "word": "show",
-      "status": "unstable",
-      "voices": [
-        "larry"
-      ],
-      "heard": [
-        {
-          "as": "flow",
-          "count": 3
-        },
-        {
-          "as": "fall"
-        },
-        {
-          "as": "phone"
-        },
-        {
-          "as": "foe"
-        },
-        {
-          "as": "floor"
-        }
-      ],
-      "spellings": [
-        {
-          "as": "sshow",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "show",
-              "count": 4
-            }
-          ]
-        },
-        {
-          "as": "showw",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "show",
-              "count": 8
-            }
-          ]
-        },
-        {
-          "as": "shoh",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "shah",
-              "count": 4
-            },
-            {
-              "as": "shot",
-              "count": 2
-            }
-          ]
-        },
-        {
-          "as": "sshoww",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "shawl",
-              "count": 1
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "sshow",
-          "voices": [
-            "larry"
-          ]
-        },
-        {
-          "as": "showw",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "As written heard \"flow\", \"fall\", \"phone\": `showw` was heard in two lines, `sshow` in one, but `sshoww` gave \"shawl\" and `shoh` \"shah\".",
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
-    },
-    {
-      "word": "simcluster",
-      "status": "works",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "sim-cluster",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "simcluster",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "sim-cluster",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "\"sim-cluster\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
-    },
-    {
-      "word": "sixteen",
-      "status": "works",
-      "voices": [
-        "eppy"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "sik-steen",
-          "voices": [
-            "eppy"
-          ],
-          "heard": [
-            {
-              "as": "sixteen",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "sik-steen",
-          "voices": [
-            "eppy"
-          ]
-        }
-      ],
-      "note": "\"sik-steen\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "word": "sloshing",
-      "status": "works",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "slaw-shing",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "sloshing",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "slaw-shing",
-          "voices": [
-            "sibyl"
-          ]
-        }
-      ],
-      "note": "\"slaw-shing\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "so",
-      "status": "works",
-      "voices": [
-        "guest"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "sew",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "so",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "sew",
-          "voices": [
-            "guest"
-          ]
-        }
-      ],
-      "note": "\"sew\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "word": "solve",
-      "status": "works",
-      "voices": [
-        "guest"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "sawlv",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "solve",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "sawlv",
-          "voices": [
-            "guest"
-          ]
-        }
-      ],
-      "note": "\"sawlv\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "stock",
-      "status": "works",
-      "voices": [
-        "guest",
-        "sibyl"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "stawk",
-          "voices": [
-            "guest",
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "stock",
-              "count": 8
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "stawk",
-          "voices": [
-            "guest",
-            "sibyl"
-          ]
-        }
-      ],
-      "note": "\"stawk\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "tech",
-      "status": "works",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "tek",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "tech",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "tek",
-          "voices": [
-            "sibyl"
-          ]
-        }
-      ],
-      "note": "\"tek\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "terms",
-      "status": "works",
-      "voices": [
-        "eppy"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "termss",
-          "voices": [
-            "eppy"
-          ],
-          "heard": [
-            {
-              "as": "terms",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "termss",
-          "voices": [
-            "eppy"
-          ]
-        }
-      ],
-      "note": "\"termss\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "word": "than",
-      "status": "works",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "thann",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "than",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "thann",
-          "voices": [
-            "sibyl"
-          ]
-        }
-      ],
-      "note": "\"thann\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "that",
-      "status": "works",
-      "voices": [
-        "larry",
-        "guest"
-      ],
-      "heard": [
-        {
-          "as": "of the",
-          "count": 3
-        },
-        {
-          "as": "let's",
-          "count": 1
-        }
-      ],
-      "spellings": [
-        {
-          "as": "thatt",
-          "voices": [
-            "larry",
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "that",
-              "count": 8
-            }
-          ]
-        },
-        {
-          "as": "thaat",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "that",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "thatt",
-          "voices": [
-            "larry",
-            "guest"
-          ]
-        },
-        {
-          "as": "thaat",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "As written a stressed or line-final \"that\" becomes \"of the\" or \"let's\"; `thatt` (or `thaat`) is heard.",
-      "seen": [
-        "002-commissions-w47/making-of-inward",
-        "002-commissions-w47/making-of-outward",
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "word": "that's",
-      "status": "works",
-      "voices": [
-        "larry"
-      ],
-      "heard": [
-        {
-          "as": "let's",
-          "count": 4
-        },
-        {
-          "as": "let",
-          "count": 3
-        }
-      ],
-      "spellings": [
-        {
-          "as": "thatt's",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "that's",
-              "count": 8
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "thatt's",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "As written heard \"let's\" or \"let\"; `thatt's` is heard.",
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
-    },
-    {
-      "word": "the",
-      "status": "works",
-      "voices": [
-        "guest"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "thee",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "the",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "thee",
-          "voices": [
-            "guest"
-          ]
-        }
-      ],
-      "note": "\"thee\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "this",
-      "status": "works",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "thiss",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "this",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "thiss",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "\"thiss\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/making-of-outward"
-      ]
-    },
-    {
-      "word": "tool",
-      "status": "cannot",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [
-        {
-          "as": "two",
-          "count": 7
-        }
-      ],
-      "spellings": [],
-      "works": [],
-      "note": "Sibyl: \"two\" ×7 in earlier lines; here heard, but \"Two reviewers\" before it became \"The tool is yours\"; tuhl gave \"tough\", tewl \"tail\".",
-      "seen": [
-        "002-commissions-w47/making-of-outward"
-      ]
-    },
-    {
-      "word": "two",
-      "status": "works",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "too",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "two",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "too",
-          "voices": [
-            "sibyl"
-          ]
-        }
-      ],
-      "note": "\"too\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/making-of-outward"
-      ]
-    },
-    {
-      "word": "unprompted",
-      "status": "cannot",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "un-promp-tid",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "on prompted",
-              "count": 4
-            }
-          ]
-        },
-        {
-          "as": "un-prompted",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "and cramped it"
-            },
-            {
-              "as": "on cramped"
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "un-promp-tid",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "Never heard as one word: \"on prompted\" at best.",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "unsolved",
-      "status": "works",
-      "voices": [
-        "guest"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "un-sawlvd",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "unsolved",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "un-sawlvd",
-          "voices": [
-            "guest"
-          ]
-        }
-      ],
-      "note": "\"un-sawlvd\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "usage",
-      "status": "cannot",
-      "voices": [
-        "sibyl"
-      ],
-      "heard": [
-        {
-          "as": "are you",
-          "count": 3
-        },
-        {
-          "as": "be your",
-          "count": 1
-        }
-      ],
-      "spellings": [
-        {
-          "as": "yoos-age",
-          "voices": [
-            "sibyl"
-          ],
-          "heard": [
-            {
-              "as": "are you extremely"
-            },
-            {
-              "as": "are you a streamer"
-            },
-            {
-              "as": "do you feel"
-            }
-          ]
-        }
-      ],
-      "works": [],
-      "note": "Sibyl, two-word line: yoos-age \"the only\" ×4 (kept), Yoo-sidge \"you've said\", Yoos-idj \"are you a little\"; never the word.",
-      "seen": [
-        "002-commissions-w47/making-of-outward"
-      ]
-    },
-    {
-      "word": "values",
-      "status": "unstable",
-      "voices": [
-        "guest"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "val-yooz",
-          "voices": [
-            "guest"
-          ],
-          "heard": [
-            {
-              "as": "values",
-              "count": 3
-            },
-            {
-              "as": "value is",
-              "count": 1
-            }
-          ]
-        }
-      ],
-      "works": [],
-      "note": "`val-yooz` heard in 3 of 4 takes; the fourth, \"value is\", changed the sentence.",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "word": "velum",
-      "status": "cannot",
-      "voices": [
-        "larry"
-      ],
-      "heard": [
-        {
-          "as": "heelum",
-          "count": 3
-        },
-        {
-          "as": "heel arm",
-          "count": 1
-        }
-      ],
-      "spellings": [
-        {
-          "as": "vee-lum",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "heelum",
-              "count": 3
-            },
-            {
-              "as": "heel arm",
-              "count": 1
-            }
-          ]
-        }
-      ],
-      "works": [],
-      "note": "Heard as \"heelum\"; harmless nonsense, and a label on screen carried the word.",
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
-    },
-    {
-      "word": "voice",
-      "status": "works",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "vwoice",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "voice",
-              "count": 4
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "vwoice",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "\"vwoice\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
-    },
-    {
-      "word": "was",
-      "status": "works",
-      "voices": [
-        "larry"
-      ],
-      "heard": [],
-      "spellings": [
-        {
-          "as": "wuz",
-          "voices": [
-            "larry"
-          ],
-          "heard": [
-            {
-              "as": "was",
-              "count": 8
-            }
-          ]
-        }
-      ],
-      "works": [
-        {
-          "as": "wuz",
-          "voices": [
-            "larry"
-          ]
-        }
-      ],
-      "note": "\"wuz\" heard in every take (harvested from fit.json).",
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
+ "$comment": "The voice research file: words and patterns the synthesized voices find hard, from the fitting tool's fit.json and the sound editors' notes. Generated page: docs/voice-research.md (npm run voice-research -- --page). Harvest and add with npm run voice-research (packages/show/tools/README.md, 'The voice research file'). A guest's voice is 'guest'; 'seen' holds episode or draft ids only, never a person, a handle or a post.",
+ "words": [
+  {
+   "word": "a",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "uh",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "a",
+       "count": 12
+      }
+     ]
     }
-  ],
-  "patterns": [
+   ],
+   "works": [
     {
-      "pattern": "A line of one or two words",
-      "note": "Easily lost or misheard (\"Nobody.\" as \"No bad day\", \"Half.\" as \"Hit\" or \"Hey\" in every spelling, a two-word line never heard); a comma between the words or a respelling helps, a longer line more; a slower rate did not.",
-      "seen": [
-        "002-commissions-w47/making-of-inward",
-        "002-commissions-w47/making-of-outward",
-        "002-commissions-w47/riemann-proof-that-fits"
-      ],
-      "words": [
-        "half"
-      ]
-    },
-    {
-      "pattern": "A word beginning \"cl\"",
-      "note": "The \"cl\" is voiced to \"gl\" (\"clue\" was \"glue\" in every take and spelling).",
-      "words": [
-        "clue"
-      ],
-      "seen": [
-        "002-commissions-w47/making-of-inward"
-      ]
-    },
-    {
-      "pattern": "A word beginning with the \"j\" sound",
-      "note": "\"Judge\" was never heard and \"joke\" was lost; a `d` before it (`djaw`) is the known try.",
-      "words": [
-        "judge",
-        "joke"
-      ],
-      "seen": [
-        "002-commissions-w47/making-of-outward",
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "pattern": "A final \"th\"",
-      "note": "\"Mouth\" was heard as \"mouse\" and \"math\" as \"mess\" until spelled `mathh`.",
-      "words": [
-        "mouth",
-        "math"
-      ],
-      "seen": [
-        "002-commissions-w47/making-of-inward",
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "pattern": "A short question",
-      "note": "One looped into a hallucinated \"God is it? God is it?\": a religious word is never accepted; rate 0.9 and a gap before the line stopped the loop.",
-      "seen": [
-        "002-commissions-w47/making-of-outward"
-      ]
-    },
-    {
-      "pattern": "A handle read aloud",
-      "note": "Heard as ordinary words or a near name, never as the handle; the card and the caption carry it, and no waiver is needed.",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
-    },
-    {
-      "pattern": "A name with a possessive 's straight after another word",
-      "note": "Never heard in six spellings; it became \"which means\", which changed what the line said.",
-      "seen": [
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "pattern": "A comma inside a real person's line",
-      "note": "A pause can add a word: a comma after \"at least\" picked up a false \"won't\". Listen for a negation gained.",
-      "words": [
-        "at least"
-      ],
-      "seen": [
-        "002-commissions-w47/riemann-proof-that-fits"
-      ]
-    },
-    {
-      "pattern": "A clock time said in words",
-      "note": "\"Twelve thirty-eight\" was heard as \"12th date\" in every take; the clock on screen carries it.",
-      "seen": [
-        "002-commissions-w47/riemann-market-wrap"
-      ]
+     "as": "uh",
+     "voices": [
+      "larry"
+     ]
     }
-  ]
+   ],
+   "note": "\"uh\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-inward",
+    "002-commissions-w47/making-of-outward"
+   ]
+  },
+  {
+   "word": "adds",
+   "status": "cannot",
+   "voices": [
+    "guest"
+   ],
+   "heard": [
+    {
+     "as": "head"
+    },
+    {
+     "as": "edge"
+    }
+   ],
+   "spellings": [
+    {
+     "as": "adz",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "head",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "add-z",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "headlier",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Heard as \"head\" or \"edge\" in every one of eight tries.",
+   "seen": [
+    "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "word": "ai",
+   "status": "unstable",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "ay-eye",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "the",
+       "count": 2
+      },
+      {
+       "as": "a",
+       "count": 1
+      },
+      {
+       "as": "ai",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Raised Larry: ay-eye heard in 2 of 4 takes after \"an\"; otherwise lost (\"when the agent\").",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
+   "word": "as",
+   "status": "works",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "azz",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "as",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "azz",
+     "voices": [
+      "sibyl"
+     ]
+    }
+   ],
+   "note": "\"azz\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "word": "at least",
+   "status": "unstable",
+   "voices": [
+    "guest",
+    "sibyl"
+   ],
+   "heard": [
+    {
+     "as": "at least",
+     "count": 8
+    },
+    {
+     "as": "but it's just"
+    },
+    {
+     "as": "but each"
+    }
+   ],
+   "spellings": [
+    {
+     "as": "att-leest",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "headlier teeth",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "at-leest",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "to piece",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Heard in about half the takes in a guest's voice, and as written in Sibyl's (\"At least\" ×4); a comma after it picked up a false \"won't\".",
+   "seen": [
+    "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "word": "attached",
+   "status": "misleads",
+   "voices": [
+    "guest"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "uh-tatched",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "attached",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"uh-tatched\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ],
+   "misleads": [
+    {
+     "as": "uh-tatched",
+     "voices": [
+      "guest"
+     ],
+     "ipa": "ʌ t æ tʃ d",
+     "why": "consonants after the last vowel: tʃ t → tʃ d"
+    }
+   ],
+   "ipa": "ə t æ tʃ t"
+  },
+  {
+   "word": "auditor",
+   "status": "cannot",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [],
+   "works": [],
+   "note": "Raised Larry (176 Hz): aw-dih-ter \"card is to\", odd-it-er \"hard to\", aw-dit-tor \"card it or\", aw-di-ter \"in order to\"; never the word.",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
+   "word": "bluesky",
+   "status": "works",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "blue-sky",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "bluesky",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "blue-sky",
+     "voices": [
+      "sibyl"
+     ]
+    }
+   ],
+   "note": "\"blue-sky\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "word": "booking",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "book-ing",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "booking",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "book-ing",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"book-ing\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-outward"
+   ]
+  },
+  {
+   "word": "broader",
+   "status": "works",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "braw-der",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "broader",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "braw-der",
+     "voices": [
+      "sibyl"
+     ]
+    }
+   ],
+   "note": "\"braw-der\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "word": "calling",
+   "status": "works",
+   "voices": [
+    "guest"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "kaw-ling",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "calling",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "kaw-ling",
+     "voices": [
+      "guest"
+     ]
+    }
+   ],
+   "note": "\"kaw-ling\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "word": "checked",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "checkt",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "checked",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "checkt",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"checkt\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
+   "word": "clue",
+   "status": "cannot",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "glue",
+     "count": 4
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "Heard as \"glue\" in every take and every spelling tried: an initial \"cl\" comes out \"gl\".",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
+   "word": "earlier",
+   "status": "works",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "ur-lee-er",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "earlier",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "ur-lee-er",
+     "voices": [
+      "sibyl"
+     ]
+    }
+   ],
+   "note": "\"ur-lee-er\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "word": "eight",
+   "status": "unstable",
+   "voices": [
+    "eppy"
+   ],
+   "heard": [
+    {
+     "as": "it",
+     "count": 10
+    }
+   ],
+   "spellings": [
+    {
+     "as": "Ate",
+     "voices": [
+      "eppy"
+     ],
+     "heard": [
+      {
+       "as": "it",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "Eightt",
+     "voices": [
+      "eppy"
+     ],
+     "heard": [
+      {
+       "as": "it",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Eppy: \"Eight, terms\" heard \"It, terms\" ×4 (Ate, Eightt the same).",
+   "seen": [
+    "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "word": "had",
+   "status": "works",
+   "voices": [
+    "larry",
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "hadd",
+     "voices": [
+      "larry",
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "had",
+       "count": 8
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "hadd",
+     "voices": [
+      "larry",
+      "sibyl"
+     ]
+    }
+   ],
+   "note": "\"hadd\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-inward",
+    "002-commissions-w47/making-of-outward"
+   ]
+  },
+  {
+   "word": "half",
+   "status": "unstable",
+   "voices": [
+    "guest",
+    "eppy"
+   ],
+   "heard": [
+    {
+     "as": "head"
+    },
+    {
+     "as": "hit"
+    },
+    {
+     "as": "health"
+    },
+    {
+     "as": "heath"
+    },
+    {
+     "as": "have"
+    }
+   ],
+   "spellings": [
+    {
+     "as": "one-half",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "hit",
+       "count": 8
+      },
+      {
+       "as": "head",
+       "count": 3
+      },
+      {
+       "as": "have",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "one-haff",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "heath",
+       "count": 2
+      },
+      {
+       "as": "head",
+       "count": 1
+      },
+      {
+       "as": "hit",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "wun-half",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "head",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "wun-haaf",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "head, head, head (a runaway)",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "a-half",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "the fifth",
+       "count": 2
+      },
+      {
+       "as": "half",
+       "count": 2
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Eppy, alone in a line: \"Hit\" as written and as Haf/Haff, Hahf/Haaff! \"Hey\", Hallf \"Health\", Harf \"Hah!\"; after \"terms\" \"heh\" or \"has\". Lost at the end of a line in guest voices too.",
+   "seen": [
+    "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "word": "hello",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "huh-loh",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "hello",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "huh-loh",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"huh-loh\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-outward"
+   ]
+  },
+  {
+   "word": "infinitely",
+   "status": "cannot",
+   "voices": [
+    "guest"
+   ],
+   "heard": [
+    {
+     "as": "infantry",
+     "count": 21
+    },
+    {
+     "as": "thank you so much for watching and i'll see you in the",
+     "count": 2
+    },
+    {
+     "as": "infantry meni hares",
+     "count": 1
+    }
+   ],
+   "spellings": [
+    {
+     "as": "inn-fuh-nut-lee",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "in faknaji mani herco",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "as": "inn-fun-nut-lee",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "in fun not gee",
+       "count": 2
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Guest at 254 Hz: \"infantry\" ×4 as written; in-finn-it-lee \"Infiniti\", infinitly \"in fungi\", inn-fuh-nut-lee \"In Faknaji\"; never heard.",
+   "seen": [
+    "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "word": "inverse",
+   "status": "works",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "inn-verse",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "inverse",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "inn-verse",
+     "voices": [
+      "sibyl"
+     ]
+    }
+   ],
+   "note": "\"inn-verse\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "word": "it",
+   "status": "works",
+   "voices": [
+    "guest"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "itt",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "it",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "itt",
+     "voices": [
+      "guest"
+     ]
+    }
+   ],
+   "note": "\"itt\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "word": "jaw",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "djaw",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "jaw",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "djaw",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"djaw\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
+   "word": "judge",
+   "status": "cannot",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "love"
+    },
+    {
+     "as": "god is"
+    }
+   ],
+   "spellings": [
+    {
+     "as": "juhdge",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "drop",
+       "count": 3
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Larry: as written \"love it\", \"does it\" (judges); juhdge \"drop\", djudge \"draw it\" and in the question \"drugs it\" (not used).",
+   "seen": [
+    "002-commissions-w47/making-of-outward"
+   ]
+  },
+  {
+   "word": "kazoo",
+   "status": "misleads",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "zoom",
+     "count": 2
+    },
+    {
+     "as": "two",
+     "count": 2
+    }
+   ],
+   "spellings": [
+    {
+     "as": "kah-zoo",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "kazu",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "ka-zoo",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "tazoo",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "`kah-zoo` is heard as \"Kazu\", which is kazoo as Whisper spells it; at a raised pitch (176 Hz) `ka-zoo` gave \"tazoo\".",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ],
+   "misleads": [
+    {
+     "as": "kah-zoo",
+     "voices": [
+      "larry"
+     ],
+     "ipa": "k ɑ z u",
+     "why": "vowel ə → ɑ"
+    }
+   ],
+   "ipa": "k ə z u"
+  },
+  {
+   "word": "limit",
+   "status": "misleads",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [
+    {
+     "as": "shimit"
+    }
+   ],
+   "spellings": [
+    {
+     "as": "limmit",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "limit",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "As written, after \"reached its\", heard as a near-crude \"shimit\"; `limmit` is heard.",
+   "seen": [
+    "002-commissions-w47/making-of-outward"
+   ],
+   "misleads": [
+    {
+     "as": "limmit",
+     "voices": [
+      "sibyl"
+     ],
+     "ipa": "l ɪ m m ɪ t",
+     "why": "vowel ə → ɪ"
+    }
+   ],
+   "ipa": "l ɪ m ə t"
+  },
+  {
+   "word": "loss",
+   "status": "works",
+   "voices": [
+    "guest"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "lawss",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "loss",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "lawss",
+     "voices": [
+      "guest"
+     ]
+    }
+   ],
+   "note": "\"lawss\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "word": "market",
+   "status": "misleads",
+   "voices": [
+    "sibyl",
+    "guest"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "mar-kit",
+     "voices": [
+      "sibyl",
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "market",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"mar-kit\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ],
+   "misleads": [
+    {
+     "as": "mar-kit",
+     "voices": [
+      "sibyl",
+      "guest"
+     ],
+     "ipa": "m ɑ ɹ k ɪ t",
+     "why": "vowel ə → ɪ"
+    }
+   ],
+   "ipa": "m ɑ ɹ k ə t"
+  },
+  {
+   "word": "markets",
+   "status": "misleads",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "mar-kits",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "markets",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"mar-kits\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ],
+   "misleads": [
+    {
+     "as": "mar-kits",
+     "voices": [
+      "larry"
+     ],
+     "ipa": "m ɑ ɹ k ɪ t s",
+     "why": "vowel ə → ɪ"
+    }
+   ],
+   "ipa": "m ɑ ɹ k ə t s"
+  },
+  {
+   "word": "math",
+   "status": "misleads",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "mathh",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "math",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"mathh\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ],
+   "misleads": [
+    {
+     "as": "mathh",
+     "voices": [
+      "sibyl"
+     ],
+     "ipa": "m æ θ h",
+     "why": "consonants after the last vowel: θ → θ h"
+    }
+   ],
+   "ipa": "m æ θ"
+  },
+  {
+   "word": "meaningfully",
+   "status": "misleads",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "meeningfully",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "meaningfully",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"meeningfully\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ],
+   "misleads": [
+    {
+     "as": "meeningfully",
+     "voices": [
+      "sibyl"
+     ],
+     "ipa": "m i n ɪ ŋ g f ʌ ɫ l i",
+     "why": "consonants after vowel 2: ŋ f → ŋ g f"
+    }
+   ],
+   "ipa": "m i n ɪ ŋ f ə l i"
+  },
+  {
+   "word": "mouth",
+   "status": "cannot",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "mouse"
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "Larry: \"mouse\" in every take, as written and as mouthh, mowthh, mowth after a comma; mouth-th gave \"nasty h\", not used.",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
+   "word": "multitudes",
+   "status": "unstable",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [
+    {
+     "as": "multi-toad",
+     "count": 3
+    },
+    {
+     "as": "molecules"
+    },
+    {
+     "as": "my food"
+    }
+   ],
+   "spellings": [
+    {
+     "as": "mul-tee-toodz",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "multi-toad",
+       "count": 3
+      },
+      {
+       "as": "multitudes",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Heard about one take in four.",
+   "seen": [
+    "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "word": "nobody",
+   "status": "misleads",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "noh-bodee",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "nobody",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"noh-bodee\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-outward"
+   ],
+   "misleads": [
+    {
+     "as": "noh-bodee",
+     "voices": [
+      "sibyl"
+     ],
+     "ipa": "n oʊ b oʊ ɾ i",
+     "why": "vowel ɑ → oʊ"
+    }
+   ],
+   "ipa": "n oʊ b ɑ d i"
+  },
+  {
+   "word": "on",
+   "status": "misleads",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "awn",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "on",
+       "count": 8
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"awn\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ],
+   "misleads": [
+    {
+     "as": "awn",
+     "voices": [
+      "larry"
+     ],
+     "ipa": "ɔ n",
+     "why": "vowel ə → ɔ"
+    }
+   ],
+   "ipa": "ə n"
+  },
+  {
+   "word": "plausibly",
+   "status": "unstable",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [
+    {
+     "as": "plause to be"
+    }
+   ],
+   "spellings": [
+    {
+     "as": "plaw-zib-lee",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "plausibly",
+       "count": 1
+      },
+      {
+       "as": "it'll probably be",
+       "count": 3
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Sibyl: plaw-zib-lee heard 1 take in 4; otherwise \"it'll probably be\".",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "word": "posted",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "post-id",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "posted",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "post-id",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"post-id\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
+   "word": "posts",
+   "status": "unstable",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "david",
+     "count": 2
+    },
+    {
+     "as": "of",
+     "count": 2
+    }
+   ],
+   "spellings": [
+    {
+     "as": "poasts",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "david",
+       "count": 10
+      },
+      {
+       "as": "posts",
+       "count": 4
+      },
+      {
+       "as": "dave",
+       "count": 2
+      },
+      {
+       "as": "grespa",
+       "count": 1
+      },
+      {
+       "as": "poets",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "pohsts",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "grespa",
+       "count": 2
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Larry: \"posts a chart\" runs together as \"Postcard\" (poasts); poasts, uh chart gave \"Poets or Hard\".",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "word": "quoting",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "kwoat-ing",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "quoting",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "kwoat-ing",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"kwoat-ing\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "word": "record",
+   "status": "misleads",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "rek-ord",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "record",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"rek-ord\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ],
+   "misleads": [
+    {
+     "as": "rek-ord",
+     "voices": [
+      "larry"
+     ],
+     "ipa": "ɹ ɛ k ɔ ɹ d",
+     "why": "vowel ə → ɛ"
+    }
+   ],
+   "ipa": "ɹ ə k ɔ ɹ d"
+  },
+  {
+   "word": "reply",
+   "status": "misleads",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "ree-ply",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "reply",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"ree-ply\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ],
+   "misleads": [
+    {
+     "as": "ree-ply",
+     "voices": [
+      "sibyl"
+     ],
+     "ipa": "ɹ i p l aɪ",
+     "why": "vowel ɪ → i"
+    }
+   ],
+   "ipa": "ɹ ɪ p l aɪ"
+  },
+  {
+   "word": "reviewers",
+   "status": "cannot",
+   "voices": [
+    "sibyl",
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "are yours",
+     "count": 3
+    },
+    {
+     "as": "two are your"
+    }
+   ],
+   "spellings": [
+    {
+     "as": "ree-vyoo-erz",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "early-liers",
+       "count": 3
+      },
+      {
+       "as": "rely on a",
+       "count": 1
+      }
+     ]
+    },
+    {
+     "as": "re-viewers",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "rears",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Sibyl: \"are yours\" as written; Too reviewers, rev-yoo-ers \"however you are\", ree-vew-urz \"early in the world\"; never heard.",
+   "seen": [
+    "002-commissions-w47/making-of-outward"
+   ]
+  },
+  {
+   "word": "riemann",
+   "status": "cannot",
+   "voices": [
+    "sibyl",
+    "guest"
+   ],
+   "heard": [
+    {
+     "as": "raiment"
+    },
+    {
+     "as": "remin"
+    },
+    {
+     "as": "room"
+    },
+    {
+     "as": "rim and"
+    }
+   ],
+   "spellings": [
+    {
+     "as": "ree-mun",
+     "voices": [
+      "sibyl",
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "raymond",
+       "count": 4
+      },
+      {
+       "as": "remain",
+       "count": 4
+      },
+      {
+       "as": "rate on high"
+      },
+      {
+       "as": "rateman"
+      }
+     ]
+    },
+    {
+     "as": "reemahn",
+     "voices": [
+      "sibyl",
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "remet",
+       "count": 4
+      },
+      {
+       "as": "remote"
+      }
+     ]
+    },
+    {
+     "as": "ree-mon",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "early moon",
+       "count": 3
+      },
+      {
+       "as": "early month",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Never heard as the name in Sibyl's or a guest's voice (\"Raymond\", \"remain\", \"Rayman\", \"remet\", \"early moon\"); the card and the caption carry it.",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "word": "sheet",
+   "status": "unstable",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [
+    {
+     "as": "(a crude word)"
+    },
+    {
+     "as": "sheet",
+     "count": 4
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "After \"other's\" it was heard as a crude word, which is never accepted; respelling the word before it (`uh-therz`) cleared it.",
+   "seen": [
+    "002-commissions-w47/making-of-outward"
+   ]
+  },
+  {
+   "word": "show",
+   "status": "misleads",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "flow",
+     "count": 3
+    },
+    {
+     "as": "fall"
+    },
+    {
+     "as": "phone"
+    },
+    {
+     "as": "foe"
+    },
+    {
+     "as": "floor"
+    }
+   ],
+   "spellings": [
+    {
+     "as": "sshow",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "show",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "showw",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "show",
+       "count": 8
+      }
+     ]
+    },
+    {
+     "as": "shoh",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "shah",
+       "count": 4
+      },
+      {
+       "as": "shot",
+       "count": 2
+      }
+     ]
+    },
+    {
+     "as": "sshoww",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "shawl",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Plain \"show\" is right (the owner, by ear, 21 November 2026): `showw` and `sshoww` are pronounced \"shao\" though the transcription wrote \"show\" for `showw`; `sshow` adds an s. As written the transcription heard \"flow\", \"fall\", \"phone\": the caption carries it.",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ],
+   "misleads": [
+    {
+     "as": "showw",
+     "voices": [
+      "larry"
+     ],
+     "ipa": "ʃ aʊ w"
+    },
+    {
+     "as": "sshoww",
+     "voices": [
+      "larry"
+     ],
+     "ipa": "s ʃ aʊ w"
+    },
+    {
+     "as": "sshow",
+     "voices": [
+      "larry"
+     ],
+     "ipa": "s ʃ oʊ",
+     "why": "consonants before the first vowel: ʃ → s ʃ"
+    }
+   ],
+   "ipa": "ʃ oʊ"
+  },
+  {
+   "word": "simcluster",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "sim-cluster",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "simcluster",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "sim-cluster",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"sim-cluster\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
+   "word": "sixteen",
+   "status": "works",
+   "voices": [
+    "eppy"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "sik-steen",
+     "voices": [
+      "eppy"
+     ],
+     "heard": [
+      {
+       "as": "sixteen",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "sik-steen",
+     "voices": [
+      "eppy"
+     ]
+    }
+   ],
+   "note": "\"sik-steen\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "word": "sloshing",
+   "status": "misleads",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "slaw-shing",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "sloshing",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"slaw-shing\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ],
+   "misleads": [
+    {
+     "as": "slaw-shing",
+     "voices": [
+      "sibyl"
+     ],
+     "ipa": "s l ɔ ʃ ɪ ŋ",
+     "why": "vowel ɑ → ɔ"
+    }
+   ],
+   "ipa": "s l ɑ ʃ ɪ ŋ"
+  },
+  {
+   "word": "so",
+   "status": "works",
+   "voices": [
+    "guest"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "sew",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "so",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "sew",
+     "voices": [
+      "guest"
+     ]
+    }
+   ],
+   "note": "\"sew\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "word": "solve",
+   "status": "misleads",
+   "voices": [
+    "guest"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "sawlv",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "solve",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"sawlv\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ],
+   "misleads": [
+    {
+     "as": "sawlv",
+     "voices": [
+      "guest"
+     ],
+     "ipa": "s ɔ ɫ v",
+     "why": "vowel ɑ → ɔ"
+    }
+   ],
+   "ipa": "s ɑ ɫ v"
+  },
+  {
+   "word": "stock",
+   "status": "misleads",
+   "voices": [
+    "guest",
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "stawk",
+     "voices": [
+      "guest",
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "stock",
+       "count": 8
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"stawk\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ],
+   "misleads": [
+    {
+     "as": "stawk",
+     "voices": [
+      "guest",
+      "sibyl"
+     ],
+     "ipa": "s t ɔ k",
+     "why": "vowel ɑ → ɔ"
+    }
+   ],
+   "ipa": "s t ɑ k"
+  },
+  {
+   "word": "tech",
+   "status": "works",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "tek",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "tech",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "tek",
+     "voices": [
+      "sibyl"
+     ]
+    }
+   ],
+   "note": "\"tek\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "word": "terms",
+   "status": "misleads",
+   "voices": [
+    "eppy"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "termss",
+     "voices": [
+      "eppy"
+     ],
+     "heard": [
+      {
+       "as": "terms",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"termss\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-proof-that-fits"
+   ],
+   "misleads": [
+    {
+     "as": "termss",
+     "voices": [
+      "eppy"
+     ],
+     "ipa": "t ɝ m s s",
+     "why": "consonants after the last vowel: m z → m s"
+    }
+   ],
+   "ipa": "t ɝ m z"
+  },
+  {
+   "word": "than",
+   "status": "misleads",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "thann",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "than",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"thann\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ],
+   "misleads": [
+    {
+     "as": "thann",
+     "voices": [
+      "sibyl"
+     ],
+     "ipa": "θ æ n n",
+     "why": "consonants before the first vowel: ð → θ"
+    }
+   ],
+   "ipa": "ð ə n"
+  },
+  {
+   "word": "that",
+   "status": "misleads",
+   "voices": [
+    "larry",
+    "guest"
+   ],
+   "heard": [
+    {
+     "as": "of the",
+     "count": 3
+    },
+    {
+     "as": "let's",
+     "count": 1
+    }
+   ],
+   "spellings": [
+    {
+     "as": "thatt",
+     "voices": [
+      "larry",
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "that",
+       "count": 8
+      }
+     ]
+    },
+    {
+     "as": "thaat",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "that",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "As written a stressed or line-final \"that\" becomes \"of the\" or \"let's\"; `thatt` (or `thaat`) is heard.",
+   "seen": [
+    "002-commissions-w47/making-of-inward",
+    "002-commissions-w47/making-of-outward",
+    "002-commissions-w47/riemann-proof-that-fits"
+   ],
+   "misleads": [
+    {
+     "as": "thatt",
+     "voices": [
+      "larry",
+      "guest"
+     ],
+     "ipa": "θ æ t t",
+     "why": "consonants before the first vowel: ð → θ"
+    },
+    {
+     "as": "thaat",
+     "voices": [
+      "larry"
+     ],
+     "ipa": "θ æ æ t",
+     "why": "1 vowel → 2"
+    }
+   ],
+   "ipa": "ð ə t"
+  },
+  {
+   "word": "that's",
+   "status": "misleads",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "let's",
+     "count": 4
+    },
+    {
+     "as": "let",
+     "count": 3
+    }
+   ],
+   "spellings": [
+    {
+     "as": "thatt's",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "that's",
+       "count": 8
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "As written heard \"let's\" or \"let\"; `thatt's` is heard.",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ],
+   "misleads": [
+    {
+     "as": "thatt's",
+     "voices": [
+      "larry"
+     ],
+     "ipa": "θ æ t t s",
+     "why": "consonants before the first vowel: ð → θ"
+    }
+   ],
+   "ipa": "ð æ t s"
+  },
+  {
+   "word": "the",
+   "status": "works",
+   "voices": [
+    "guest"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "thee",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "the",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "thee",
+     "voices": [
+      "guest"
+     ]
+    }
+   ],
+   "note": "\"thee\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "word": "this",
+   "status": "misleads",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "thiss",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "this",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"thiss\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-outward"
+   ],
+   "misleads": [
+    {
+     "as": "thiss",
+     "voices": [
+      "larry"
+     ],
+     "ipa": "θ ɪ s s",
+     "why": "consonants before the first vowel: ð → θ"
+    }
+   ],
+   "ipa": "ð ɪ s"
+  },
+  {
+   "word": "tool",
+   "status": "cannot",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [
+    {
+     "as": "two",
+     "count": 7
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "Sibyl: \"two\" ×7 in earlier lines; here heard, but \"Two reviewers\" before it became \"The tool is yours\"; tuhl gave \"tough\", tewl \"tail\".",
+   "seen": [
+    "002-commissions-w47/making-of-outward"
+   ]
+  },
+  {
+   "word": "two",
+   "status": "works",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "too",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "two",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "too",
+     "voices": [
+      "sibyl"
+     ]
+    }
+   ],
+   "note": "\"too\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-outward"
+   ]
+  },
+  {
+   "word": "unprompted",
+   "status": "cannot",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "un-promp-tid",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "on prompted",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "un-prompted",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "and cramped it"
+      },
+      {
+       "as": "on cramped"
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "un-promp-tid",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "Never heard as one word: \"on prompted\" at best.",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "word": "unsolved",
+   "status": "misleads",
+   "voices": [
+    "guest"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "un-sawlvd",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "unsolved",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"un-sawlvd\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ],
+   "misleads": [
+    {
+     "as": "un-sawlvd",
+     "voices": [
+      "guest"
+     ],
+     "ipa": "ʌ n s ɔ ɫ v d",
+     "why": "vowel ɑ → ɔ"
+    }
+   ],
+   "ipa": "ə n s ɑ ɫ v d"
+  },
+  {
+   "word": "usage",
+   "status": "cannot",
+   "voices": [
+    "sibyl"
+   ],
+   "heard": [
+    {
+     "as": "are you",
+     "count": 3
+    },
+    {
+     "as": "be your",
+     "count": 1
+    }
+   ],
+   "spellings": [
+    {
+     "as": "yoos-age",
+     "voices": [
+      "sibyl"
+     ],
+     "heard": [
+      {
+       "as": "are you extremely"
+      },
+      {
+       "as": "are you a streamer"
+      },
+      {
+       "as": "do you feel"
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Sibyl, two-word line: yoos-age \"the only\" ×4 (kept), Yoo-sidge \"you've said\", Yoos-idj \"are you a little\"; never the word.",
+   "seen": [
+    "002-commissions-w47/making-of-outward"
+   ]
+  },
+  {
+   "word": "values",
+   "status": "unstable",
+   "voices": [
+    "guest"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "val-yooz",
+     "voices": [
+      "guest"
+     ],
+     "heard": [
+      {
+       "as": "values",
+       "count": 3
+      },
+      {
+       "as": "value is",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "`val-yooz` heard in 3 of 4 takes; the fourth, \"value is\", changed the sentence.",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "word": "velum",
+   "status": "cannot",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "heelum",
+     "count": 3
+    },
+    {
+     "as": "heel arm",
+     "count": 1
+    }
+   ],
+   "spellings": [
+    {
+     "as": "vee-lum",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "heelum",
+       "count": 3
+      },
+      {
+       "as": "heel arm",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Heard as \"heelum\"; harmless nonsense, and a label on screen carried the word.",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
+   "word": "voice",
+   "status": "misleads",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "vwoice",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "voice",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "\"vwoice\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ],
+   "misleads": [
+    {
+     "as": "vwoice",
+     "voices": [
+      "larry"
+     ],
+     "ipa": "v w ɔɪ s",
+     "why": "consonants before the first vowel: v → v w"
+    }
+   ],
+   "ipa": "v ɔɪ s"
+  },
+  {
+   "word": "was",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "wuz",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "was",
+       "count": 8
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "wuz",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"wuz\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ]
+  }
+ ],
+ "patterns": [
+  {
+   "pattern": "A line of one or two words",
+   "note": "Easily lost or misheard (\"Nobody.\" as \"No bad day\", \"Half.\" as \"Hit\" or \"Hey\" in every spelling, a two-word line never heard); a comma between the words or a respelling helps, a longer line more; a slower rate did not.",
+   "seen": [
+    "002-commissions-w47/making-of-inward",
+    "002-commissions-w47/making-of-outward",
+    "002-commissions-w47/riemann-proof-that-fits"
+   ],
+   "words": [
+    "half"
+   ]
+  },
+  {
+   "pattern": "A word beginning \"cl\"",
+   "note": "The \"cl\" is voiced to \"gl\" (\"clue\" was \"glue\" in every take and spelling).",
+   "words": [
+    "clue"
+   ],
+   "seen": [
+    "002-commissions-w47/making-of-inward"
+   ]
+  },
+  {
+   "pattern": "A word beginning with the \"j\" sound",
+   "note": "\"Judge\" was never heard and \"joke\" was lost; a `d` before it (`djaw`) is the known try.",
+   "words": [
+    "judge",
+    "joke"
+   ],
+   "seen": [
+    "002-commissions-w47/making-of-outward",
+    "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "pattern": "A final \"th\"",
+   "note": "\"Mouth\" was heard as \"mouse\" and \"math\" as \"mess\" until spelled `mathh`.",
+   "words": [
+    "mouth",
+    "math"
+   ],
+   "seen": [
+    "002-commissions-w47/making-of-inward",
+    "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "pattern": "A short question",
+   "note": "One looped into a hallucinated \"God is it? God is it?\": a religious word is never accepted; rate 0.9 and a gap before the line stopped the loop.",
+   "seen": [
+    "002-commissions-w47/making-of-outward"
+   ]
+  },
+  {
+   "pattern": "A handle read aloud",
+   "note": "Heard as ordinary words or a near name, never as the handle; the card and the caption carry it, and no waiver is needed.",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ]
+  },
+  {
+   "pattern": "A name with a possessive 's straight after another word",
+   "note": "Never heard in six spellings; it became \"which means\", which changed what the line said.",
+   "seen": [
+    "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "pattern": "A comma inside a real person's line",
+   "note": "A pause can add a word: a comma after \"at least\" picked up a false \"won't\". Listen for a negation gained.",
+   "words": [
+    "at least"
+   ],
+   "seen": [
+    "002-commissions-w47/riemann-proof-that-fits"
+   ]
+  },
+  {
+   "pattern": "A clock time said in words",
+   "note": "\"Twelve thirty-eight\" was heard as \"12th date\" in every take; the clock on screen carries it.",
+   "seen": [
+    "002-commissions-w47/riemann-market-wrap"
+   ]
+  }
+ ]
 }

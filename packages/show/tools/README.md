@@ -16,6 +16,7 @@ npm run render -- ref demo --whisper  # render, then check every captioned line 
 npm run check -- ref demo             # verify the three outputs against the contract (no ids: the whole rundown)
 npm run fit -- <ep> <seg> [--json] [--apply]          # fit a segment's lines to the engine (below: "Fitting a script")
 npm run fit -- <ep> --draft <slug> [--json] [--apply] # the same for a draft in production/drafts/
+npm run fit -- <ep> --draft <slug> --sounds           # no rendering: every `as` that changes a dictionary word's sounds
 npm run render -- <ep> --draft <slug>  # render a draft into the studio's scratch (check and analyze whisper take --draft too)
 npm run voices -- <ep> [--drafts]      # give every guest a voice distinct from the house and each other
 bun packages/show/tools/analyze.ts whisper ref demo   # just the intelligibility check on the last render
@@ -411,7 +412,10 @@ more and the Whisper score near the others. Pan guests away from whoever they ta
 wrong. Watch the IPA in the timeline, then check with `--whisper`. Join multi-word respellings
 with hyphens so the caption's word timings still map. Watch out: **each hyphen part is G2P'd as
 its own word, and function words get their weak form**. `for-mints` comes out /fəɹ/ and `at-proto`
-/ət/. Spell those parts so they aren't function words (`four`, `att`).
+/ət/. Spell those parts so they aren't function words (`four`, `att`). For a word the dictionary
+knows, read the IPA of the respelling against the word's: a respelling must keep its vowels and
+consonants ("A respelling keeps the word's sounds", below). `showw` was transcribed "show" and is
+said /ʃaʊw/, "shao".
 
 These were tested on Larry in "Next up, X, live.", with the IPA and what Whisper heard:
 
@@ -541,6 +545,7 @@ npm run fit -- <ep> <seg>                     # an assembled segment
 npm run fit -- <ep> --draft <slug> --json     # also write fit.json beside the script
 npm run fit -- <ep> --draft <slug> --apply    # write the chosen respellings into the script's `as` fields
 npm run fit -- <ep> <seg> --lines bee,queue   # only these line ids; --takes 2 for a quicker pass; --no-search to only listen
+npm run fit -- <ep> --draft <slug> --sounds   # the sounds audit only: no rendering, no Whisper, exit 0 (also <ep> <seg>)
 ```
 
 What it does, per line (every `say` and every captioned sung line):
@@ -560,15 +565,60 @@ What it does, per line (every `say` and every captioned sung line):
    respellings from the pronunciation dictionary (one hyphenated part per syllable, function-word
    parts given strong spellings), the tested table and weak sounds above, what fixed that word
    before (remembered in `.cache/fit/learned.json`), and commas that set a word apart or let it
-   run on. A respelling must still sound like the dictionary's word (the engine's IPA within a
-   couple of sounds). Each candidate is screened on two takes; the best three are heard on all four,
+   run on. A respelling must keep the dictionary word's sounds (below): one that does not is
+   rejected before it is rendered. Each candidate is screened on two takes; the best three are heard on all four,
    with the best two put together; if nothing passes, the best is tried slower.
 5. Keeps the best candidate, in this order: nothing flagged, every take over the gate, the
    median take, the worst take, fewest changes. The line as written wins a tie.
 
+**A respelling keeps the word's sounds.** The transcription is a proxy: it guesses real words
+from near sounds, so a spelling can score well and be wrong. `showw` was transcribed "show" in
+every take, and the engine says it /ʃ aʊ w/: a listener hears "shao". Best effort must never make
+a word sound worse than its plain spelling. So, for a word the pronunciation dictionary knows, a
+candidate is acceptable only if its phonemes (the engine's own G2P, `g2p.toPhrases`, the IPA the
+renderer prints) keep the word's vowels, in order, and turn no consonant into another. It may:
+
+- double or hold a consonant (`belll`, `hadd`: repeats count once), or put a closure before an
+  affricate (`djoke`: d before dʒ);
+- add a break between syllables (a hyphen) or a pause (a comma);
+- shift stress: any stress of the dictionary's vowel at that place, so a function word may take
+  its strong vowel (`onn` for "on", /ən/ → /ɑnn/; `thee` for "the");
+- swap a vowel for a near-identical one. In this engine there are two pairs, one dictionary vowel
+  unstressed and stressed: ə–ʌ (AH; `uh` for "a", `Frum` for "from") and ɚ–ɝ (ER). Vowels that are
+  merely close are not near-identical: ɛ–æ are close in the male body's formants and bet is not
+  bat; ɑ–ɔ are one vowel only where cot and caught merge, so `stawk` is "stalk" to everyone else.
+  The list is `config/sounds.json` (`nearVowels`, with the allophones the G2P picks by context:
+  dark l, the flap for t and d); change it by ear, never because the transcription liked a spelling.
+
+Everything else is rejected before it is rendered (so it also saves renders): another vowel
+(`showw` /ʃaʊw/, `shoh` /ʃɑh/, `kah-zoo` /kɑzu/ for /kəzu/), another consonant (`thiss` /θɪss/ for
+/ðɪs/: th in a spelling the dictionary does not know is always θ), an added one (`sshow` /sʃoʊ/,
+`mathh` /mæθh/, the h of an open `-uh` part: `thuh` is /θʌh/), or one lost. A word the dictionary
+does not know (a name, a handle, an invented word, shorthand read as it is meant: `ay-eye` for AI)
+has no reference: any spelling is a guess, unconstrained, and its sounds are shown. When no
+acceptable candidate beats the plain spelling, the plain spelling stays, and a line may stay
+misheard by the transcription: that is the best-effort ruling working as intended. A word with
+two readings (record, the noun and the verb) is checked against the dictionary's one reading;
+read such a line yourself.
+
+A respelling already in the script (a sound editor's, by hand) goes through the same check every
+time the tool runs: a line whose `as` changes a dictionary word's vowels or consonants is listed
+under `sounds different from the word`, with both phoneme strings. That list does not block; it is
+for the sound editor and the owner. `--sounds` prints only that check, for a draft or a segment,
+with no rendering and no Whisper, and the guesses apart:
+
+```
+sounds 002-commissions-w47 --draft making-of-inward: 11 lines with `as` · 7 words sound different from the word · 4 guesses
+sounds different from the word (the word's sounds → the spelling's):
+  l2-list (larry) show → showw: /ʃ oʊ/ → /ʃ aʊ w/ (vowel oʊ → aʊ)
+  l2-list (larry) on → awn: /ə n/ → /ɔ n/ (vowel ə → ɔ)
+guesses (not in the dictionary: no reference, sounds shown only):
+  l0-parts (larry) Velum → Vee-lum: /v i l ʌ m/
+```
+
 It reads the voice research file (`data/voice-research.json`) for the line's voice (a house id,
 or `guest` for any guest): a spelling that has worked for a word in that voice is tried before
-anything else, and a word marked `cannot` with no working spelling in that voice is not searched
+anything else (never one marked `misleads`, which is not tried at all), and a word marked `cannot` with no working spelling in that voice is not searched
 past its recorded tries (a `cannot` word with none recorded is searched as usual); the row says
 `known hard word: <word>`.
 
@@ -610,7 +660,13 @@ into the episode's `public/` or `segments/`). For a published episode's segment 
   "voices": { "larry": { "f0": 107, "nearest": "pete", "distance": 1.54 } } }
 ```
 
-`as` is the respelling the tool chose (null when the caption is said as written); `was` and `fix`
+`as` is the respelling the tool chose (null when the caption is said as written). `sounds` lists,
+for the chosen `as` and for each entry of `tried`, every respelled word with the sounds of the word
+and of the spelling: `{ i, word, as, plain, ipa, keeps }` (`keeps` true or false for a dictionary
+word, null for a guess, with `why` when false); for a chosen respelling the table prints both
+(`fix: on → onn (was 1/2) · on /ə n/ → onn /ɑ n n/`). `rejected` lists the spellings refused before
+rendering, with both sounds and why; `soundsDifferent` (top level) the script's own respellings
+that change a word. `was` and `fix`
 appear only when it proposes a change; `suggest` only when a slower rate did better (never applied);
 `tried` lists every candidate heard, with what it was heard as, `takes: 2` marking those only
 screened. `real` marks a real person's line; `missed` the caption words the chosen candidate's
@@ -652,7 +708,8 @@ words, cut lines or re-place sfx; those are the writer's and the builder's.
 
 `data/voice-research.json` is the one source of truth for the words and patterns the voices find
 hard; [`docs/voice-research.md`](../../../docs/voice-research.md) is generated from it, for a
-writer to scan in a minute (what cannot be said, what is unstable, patterns, spellings that work;
+writer to scan in a minute (what cannot be said, what is unstable, patterns, spellings that work,
+spellings that only the transcription accepts;
 where each was seen stays out of the page). Both are committed; the studio cannot regenerate the
 file (`scripts/test/checkout.test.mjs` guards it), and a test fails when the page is stale.
 
@@ -662,10 +719,12 @@ npm run voice-research -- <ep> --draft <slug> --add usage --line usage-limit --s
 npm run voice-research -- <ep> --draft <slug> --add kazoo --line l1-kazoo --status works --as kah-zoo --note "Heard as Kazu."
 npm run voice-research -- <ep> --draft <slug> --pattern "A word beginning \"cl\"" --words clue --note "Voiced to gl."
 npm run voice-research -- --page                   # regenerate the page only; --dry-run writes nothing
+npm run voice-research -- --sounds                 # the sounds check over every working spelling (bun); --dry-run writes nothing
 ```
 
 The harvest records, as `works`, each caption word respelled in the chosen `as` and heard in every
-take (with what it was heard as, and the other spellings tried, from `tried`), and lists every line
+take and whose sounds are the word's (a spelling heard as the word whose sounds are not, by
+fit.json's `sounds`, goes in under `misleads` instead) (with what it was heard as, and the other spellings tried, from `tried`), and lists every line
 still `weak`, `flagged` or `unsayable` with its heard texts and missed words. It never makes an
 entry it cannot attribute to a word: a respelling heard in only some takes, a symbol said as words
 and anything never heard are printed, not recorded. `--add` records the word that failed, from one
@@ -674,17 +733,29 @@ spelling tried was heard as, come from the file. A word already recorded keeps i
 spelling works once (you judge); counts from a source already seen are not added twice, so a harvest
 can be re-run. A hand edit of the JSON is fine too, in the same shape, followed by `--page`.
 
-An entry: `word` (lower case; a short phrase is allowed), `status` (`works`, `unstable`, `cannot`),
+An entry: `word` (lower case; a short phrase is allowed), `status` (`works`, `unstable`, `cannot`,
+`misleads`),
 `voices` (house ids, or `guest`: a guest's cast id can be a handle, so it is never recorded),
 `heard` (what the word as written was heard as, with counts), `spellings` (each tried, its voices
-and what it was heard as), `works` (the spellings heard as the word, and in which voices), `note`
+and what it was heard as), `works` (the spellings heard as the word, and in which voices),
+`misleads` (spellings the transcription heard as the word whose sounds are not the word's: `{ as,
+voices, ipa, why? }`), `ipa` (the word's own sounds, beside `misleads`), `note`
 (one line) and `seen` (episode or draft ids only, `<episode id>/<slug>`: never a person, a handle or
 which post a word came from). A pattern: `pattern`, `note`, `seen`, and optionally `words`, the
 words of a line it covers. **Names are never recorded**: a real person's name or handle is refused,
 and a line whose only missed words are a name needs no entry.
 
+**`misleads`: the transcription accepts it, a listener does not.** `--sounds` runs the sounds check
+(above) over every working spelling in the file with the engine's G2P (under bun): one that changes
+the word moves from `works` to `misleads`, with its sounds and the word's, and its evidence
+(`spellings`, `heard`) stays. An entry left with no working spelling is marked `misleads`; another
+status is kept. The fitting tool never tries such a spelling, first or otherwise, and the page lists
+them apart from the spellings that work, with both phoneme strings. Plain "show" is right (the
+owner, by ear): `showw` and `sshoww` are pronounced "shao". `--add <word> --status misleads --as
+<spelling>` records one by hand; `--sounds` fills in its sounds.
+
 A hard line (unsayable, or flagged for a statement heard differently) counts as recorded when a
-`cannot` or `unstable` word, or a pattern with `words`, seen in that draft, covers a word of its
+`cannot`, `unstable` or `misleads` word, or a pattern with `words`, seen in that draft, covers a word of its
 caption. The command exits 0 when every hard line is recorded, 1 when one is not or a line is heard
 as something never accepted, 2 for bad arguments. It runs with node, with nothing installed.
 
@@ -851,6 +922,9 @@ How it works:
 
 ## Known limits
 
+- The sounds check compares a respelling with the dictionary's one reading of a word, so a word
+  with two (record, the noun and the verb) can be judged against the wrong one, and Whisper's
+  approval of a spelling is never a listener's: read the phonemes, and listen.
 - Some words cannot be said, or are unstable, in some voices: they are recorded in
   [`docs/voice-research.md`](../../../docs/voice-research.md). A writer may still use them; the
   captions carry the line.

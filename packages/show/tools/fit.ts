@@ -18,6 +18,11 @@
  * differently is listed last ("heard differently, caption exact"). The voice research file
  * (data/voice-research.json) is read: a spelling that worked for a word in this voice is tried
  * first, and a word known to be hard is not searched past its known tries ("known hard word").
+ * A respelling keeps the word's sounds (sounds.mjs, config/sounds.json): for a dictionary word, a
+ * candidate whose phonemes (the engine's G2P) change its vowels or turn a consonant into another is
+ * rejected before it is rendered; a hand respelling in the script that does so is listed under
+ * "sounds different from the word" (it does not block). --sounds only runs that check over the
+ * script's `as` fields, with no rendering and no Whisper, and exits 0.
  * --json writes fit.json beside the script (for a published episode's segment, into
  * the tool's cache instead, so the committed build's sourceHash is not disturbed). --apply writes
  * the chosen respellings into the script's `as` fields and nothing else. Exit 1 when a line is still
@@ -44,7 +49,9 @@ import { loadEpisode, loadDraft, requireSegment, exitOnEpisodeError } from "./ep
 import { takeDraftArg } from "./draft.mjs";
 import { GATE, wordScore, missedWords, flagsFor, summarise, lineStatus, better, overGate, realNames, isRealLine, blockingFlags } from "./heard.mjs";
 import { loadResearch, knownFor, voiceOf } from "./voice-research-lib.mjs";
-import { lineCandidates, combine, loadDict, splitToken, editDistance } from "./respell.mjs";
+import { lineCandidates, combine, loadDict, splitToken } from "./respell.mjs";
+import { lineSounds, soundsRow } from "./sounds.mjs";
+import { acceptor, printAudit, soundsTools } from "./sounds.ts";
 import { applyAs } from "./source-edit.mjs";
 import { nearest } from "./voices-lib.mjs";
 
@@ -319,6 +326,8 @@ interface FitLine {
   searched: boolean;
   /** words of this line the voice research file marks as hard in its voice */
   known?: string[];
+  /** respellings refused before rendering because they change the word's sounds */
+  rejected: { word: string; as: string; plain: string; ipa: string; why?: string }[];
 }
 
 function readJson(file: string): any {
@@ -349,13 +358,14 @@ async function main() {
   const flags = new Set(args.filter((a) => a.startsWith("--")));
   const pos = args.filter((a) => !a.startsWith("--"));
   const usage = () => {
-    console.error("usage: npm run fit -- <ep> <segment-id> | <ep> --draft <slug>  [--json] [--apply] [--takes 2-4] [--lines id,id] [--no-search]");
+    console.error("usage: npm run fit -- <ep> <segment-id> | <ep> --draft <slug>  [--json] [--apply] [--takes 2-4] [--lines id,id] [--no-search] | --sounds");
     process.exit(2);
   };
-  for (const f of flags) if (!["--json", "--apply", "--no-search"].includes(f)) usage();
+  for (const f of flags) if (!["--json", "--apply", "--no-search", "--sounds"].includes(f)) usage();
+  const soundsOnly = flags.has("--sounds");
   if (!(nTakes >= 2 && nTakes <= TAKES.length)) usage();
   if (pos.length !== (draftSlug ? 1 : 2)) usage();
-  if (spawnSync("which", ["whisper"]).status !== 0) {
+  if (!soundsOnly && spawnSync("which", ["whisper"]).status !== 0) {
     console.error("error: whisper is not on PATH (pip install openai-whisper); the fitting tool needs it");
     process.exit(1);
   }
@@ -384,6 +394,12 @@ async function main() {
     process.exit(2);
   }
   const script = (await import(pathToFileURL(scriptFile).href + `?t=${Date.now()}`)).default;
+  const sounds = await soundsTools();
+  if (soundsOnly) {
+    // the audit: no rendering, no Whisper
+    printAudit(label, script, sounds);
+    process.exit(0);
+  }
   const sources = readJson(sourcesFile);
   const pipeline = readJson(join(HERE, "..", "..", "writers-room", "config", "pipeline.json"));
   const own = readJson(join(HERE, "data", "heard-terms.json")) ?? {};
@@ -402,7 +418,7 @@ async function main() {
     }
     throw e;
   }
-  const { E, g2p } = await loadEngine();
+  const { E } = await loadEngine();
   const dict = loadDict();
   const learned: Record<string, string[]> = readJson(LEARNED) ?? {};
   const research = loadResearch();
@@ -417,7 +433,7 @@ async function main() {
       const fid = l.id ?? `#${l.i}`;
       const real = isRealLine({ who: l.who, text: l.text }, { cast, sources, names });
       const current: Cand = { as: l.spoken ?? l.text, edits: 0, takes: [], clip: l.clip };
-      return { line: l, id: fid, text: l.text, spoken: l.spoken ?? l.text, real, cands: [current], current, searched: false };
+      return { line: l, id: fid, text: l.text, spoken: l.spoken ?? l.text, real, cands: [current], current, searched: false, rejected: [] };
     })
     .filter((f) => !only || only.includes(f.id));
   if (only && !lines.length) {
@@ -452,14 +468,6 @@ async function main() {
 
   const needs = (f: FitLine) => !f.current.sum!.pass || f.current.sum!.flags.length > 0;
   const search = !flags.has("--no-search");
-  // the sound of a word as the engine says it (IPA segments), for keeping respellings close to it
-  const ipa = (w: string) => {
-    try {
-      return g2p.toPhrases(w).flatMap((p) => p.segments.map((s: any) => s.ipa));
-    } catch {
-      return [];
-    }
-  };
   const syllables = (s: string) => {
     try {
       return E.lyricsToSyllables(s).length;
@@ -483,21 +491,13 @@ async function main() {
       const missedSet = new Set(target);
       const hardHere = Object.keys(known.hard).filter((w) => w.split(/\s+/).every((x) => missedSet.has(x)));
       if (hardHere.length) f.known = hardHere;
-      let cs = lineCandidates(f.text, f.spoken, target, { dict, learned: lrn, hard: known.hard, maxWords: 3, perWord: 4 });
-      const want = f.line.kind === "sing" ? syllables(f.spoken) : 0;
-      cs = cs.filter((c) => {
-        if (f.line.kind === "sing" && syllables(c.as) !== want) return false;
-        // a respelling must still sound like the dictionary's word (within a couple of sounds)
-        const a = c.as.split(" "), b = f.text.split(" ");
-        for (let i = 0; i < a.length; i++) {
-          const ca = splitToken(a[i]).core, cb = splitToken(b[i] ?? "").core;
-          if (!ca || ca.toLowerCase() === cb.toLowerCase() || ca === splitToken(f.spoken.split(" ")[i] ?? "").core) continue;
-          if (!dict.has(cb.toLowerCase())) continue;
-          const want = ipa(cb), got = ipa(ca);
-          if (!got.length || editDistance(want, got) > Math.max(2, Math.round(want.length * 0.4))) return false;
-        }
-        return true;
+      // a respelling keeps the word's sounds (sounds.mjs): one that does not is never rendered
+      const accept = acceptor(sounds, (r) => {
+        if (!f.rejected.some((x) => x.word === r.word && x.as === r.as)) f.rejected.push({ word: r.word, as: r.as, plain: r.plain, ipa: r.ipa, ...(r.why ? { why: r.why } : {}) });
       });
+      let cs = lineCandidates(f.text, f.spoken, target, { dict, learned: lrn, hard: known.hard, avoid: known.avoid, accept, maxWords: 3, perWord: 4 });
+      const want = f.line.kind === "sing" ? syllables(f.spoken) : 0;
+      if (f.line.kind === "sing") cs = cs.filter((c) => syllables(c.as) === want);
       for (const c of cs.slice(0, 12)) {
         const cand: Cand = { as: c.as, edits: c.edits, why: c.why, takes: [] };
         f.cands.push(cand);
@@ -590,6 +590,9 @@ async function main() {
     gate: GATE,
     lines: lines.map((f) => {
       const c = f.chosen!, s = c.sum!;
+      // the sounds of each respelled word and of the word itself (the engine's G2P)
+      const snd = (as: string) => lineSounds(f.text, as, sounds).words;
+      const mine = snd(c.as);
       const missed = new Map<string, number>();
       for (const k of c.keys ?? []) for (const w of missedWords(f.text, ears.heard(k))) missed.set(w, (missed.get(w) ?? 0) + 1);
       return {
@@ -606,8 +609,10 @@ async function main() {
         real: f.real,
         missed: [...missed].map(([word, count]) => ({ word, count })),
         ...(f.known ? { known: f.known } : {}),
+        ...(mine.length ? { sounds: mine } : {}),
+        ...(f.rejected.length ? { rejected: f.rejected } : {}),
         ...(f.suggestion ? { suggest: { rate: f.suggestion.rate, as: f.suggestion.as, score: f.suggestion.sum!.score } } : {}),
-        tried: f.cands.filter((x) => x.sum).map((x) => ({ as: x.as, ...(x.rate ? { rate: x.rate } : {}), score: x.sum!.score, heard: x.sum!.heard, ...(x.takes.length < takes.length ? { takes: x.takes.length } : {}), ...(x.sum!.flags.length ? { flags: x.sum!.flags } : {}) })),
+        tried: f.cands.filter((x) => x.sum).map((x) => ({ as: x.as, ...(x.rate ? { rate: x.rate } : {}), score: x.sum!.score, heard: x.sum!.heard, ...(x.takes.length < takes.length ? { takes: x.takes.length } : {}), ...(x.sum!.flags.length ? { flags: x.sum!.flags } : {}), ...(snd(x.as).length ? { sounds: snd(x.as) } : {}) })),
       };
     }),
     voices,
@@ -616,7 +621,9 @@ async function main() {
   const owner = out.lines.filter((l) => blockingFlags(l.flags).length).map((l) => ({ id: l.id, who: l.who, flags: blockingFlags(l.flags), heard: l.heard[0]?.text ?? "" }));
   // a real person's line heard differently: the caption carries the exact words
   const different = out.lines.filter((l) => l.real && (l.status !== "ok" || l.flags.length)).map((l) => ({ id: l.id, who: l.who, status: l.status, text: l.text, heard: l.heard[0]?.text ?? "" }));
-  Object.assign(out, { owner, heardDifferently: different });
+  // a respelling in the script (a sound editor's, by hand) that changes a dictionary word's sounds: listed, never blocking
+  const soundsDifferent = lines.flatMap((f) => lineSounds(f.text, f.spoken, sounds).words.filter((x) => x.keeps === false).map((x) => ({ id: f.id, who: f.line.who, word: x.word, as: x.as, plain: x.plain, ipa: x.ipa, ...(x.why ? { why: x.why } : {}) })));
+  Object.assign(out, { owner, heardDifferently: different, soundsDifferent });
 
   const count = (st: string) => out.lines.filter((l) => l.status === st).length;
   const secs = (performance.now() - t0) / 1000;
@@ -633,6 +640,8 @@ async function main() {
     let row = `${cut1(l.id, w).padEnd(w)} ${l.who.padEnd(8).slice(0, 8)} ${sc.padEnd(9)} ${l.status!.padEnd(9)}`;
     const notes: string[] = [];
     if (l.fix) notes.push(`fix: ${l.fix} (was ${f.current.sum!.score.heard}/${f.current.sum!.score.of})`);
+    // a chosen respelling: the word's sounds and the spelling's
+    if (l.fix && l.sounds) for (const x of l.sounds) if (f.spoken.split(/\s+/)[x.i] !== l.as!.split(/\s+/)[x.i]) notes.push(`${x.word} /${x.plain}/ → ${x.as} /${x.ipa}/${x.keeps === null ? " (a guess)" : ""}`);
     if (l.flags.length) notes.push(l.flags.join(", "));
     if (l.known) notes.push(`known hard word: ${l.known.join(", ")}`);
     if (l.status !== "ok" || l.flags.length) notes.push(l.heard.slice(0, 2).map((h) => `"${cut1(h.text, 60)}"×${h.count}`).join(" "));
@@ -643,6 +652,10 @@ async function main() {
   if (different.length) {
     console.log("heard differently, caption exact:");
     for (const d of different) console.log(`  ${d.id} (${d.who}, ${d.status}) "${cut1(d.text, 60)}" heard "${cut1(d.heard, 60)}"`);
+  }
+  if (soundsDifferent.length) {
+    console.log("sounds different from the word (a respelling in the script; the word's sounds → the spelling's):");
+    for (const d of soundsDifferent) console.log(`  ${soundsRow(d)}`);
   }
   console.log(`voices: ${Object.entries(voices).map(([k, v]) => `${k} ${v.f0} Hz ~${v.nearest} ${v.distance}`).join(" · ")}`);
 

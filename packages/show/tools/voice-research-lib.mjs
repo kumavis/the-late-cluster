@@ -4,11 +4,15 @@
 // on pronunciation is sufficient, as subtitles carry the line; hard words are documented here.
 //
 // A word entry:
-//   { word, status: works|unstable|cannot, voices: [], heard: [{ as, count? }],
+//   { word, status: works|unstable|cannot|misleads, voices: [], heard: [{ as, count? }],
 //     spellings: [{ as, voices: [], heard: [{ as, count? }] }], works: [{ as, voices: [] }],
-//     note, seen: ["<episode id>" | "<episode id>/<draft or segment>"] }
+//     misleads?: [{ as, voices: [], ipa, why? }], ipa?, note, seen: ["<episode id>" | "<episode id>/<draft or segment>"] }
 // `heard` is what the word as written was heard as; `spellings` what each respelling tried was
-// heard as; `works` the spellings that were heard, and in which voices. A guest's voice is recorded
+// heard as; `works` the spellings that were heard, and in which voices. `misleads` the spellings the
+// transcription heard as the word but whose sounds are not the word's (sounds.mjs: the engine's G2P
+// changes a vowel or a consonant, as "showw" is /ʃ aʊ w/, "shao"), with their sounds, and `ipa` the
+// word's own; status `misleads` is a word whose only accepted spellings are such: the transcription
+// accepts them, a listener does not, and the plain spelling stays. A guest's voice is recorded
 // as "guest", never by its cast id. `seen` never names a person, a handle or a post.
 // A pattern: { pattern, note, words?: [], seen: [] } (`words`: words of a line that the pattern
 // covers, for the stage 8 gate's "recorded" check; never a name).
@@ -23,7 +27,7 @@ import { splitToken } from './respell.mjs'
 
 export const RESEARCH_FILE = fileURLToPath(new URL('./data/voice-research.json', import.meta.url))
 export const PAGE_FILE = fileURLToPath(new URL('../../../docs/voice-research.md', import.meta.url))
-export const STATUSES = ['works', 'unstable', 'cannot']
+export const STATUSES = ['works', 'unstable', 'cannot', 'misleads']
 /** a guest's voice, whatever its cast id (a cast id can be a handle) */
 export const GUEST = 'guest'
 /** where something was seen: an episode id, or an episode id and a draft or segment slug */
@@ -85,6 +89,12 @@ export function validate(r) {
     if (!Array.isArray(e?.works)) out.push(`${at}: "works" must be a list (empty when nothing works)`)
     else for (const w of e.works) if (!one(w?.as) || !Array.isArray(w.voices) || !w.voices.length) out.push(`${at}: each working spelling is { as, voices }`)
     if (e?.status === 'works' && !e.works?.length) out.push(`${at}: status "works" needs a spelling in "works"`)
+    if (e?.misleads !== undefined) {
+      if (!Array.isArray(e.misleads)) out.push(`${at}: "misleads" must be a list`)
+      else for (const m of e.misleads) if (!one(m?.as) || !Array.isArray(m.voices) || !m.voices.length || typeof m.ipa !== 'string') out.push(`${at}: each misleading spelling is { as, voices, ipa }`)
+    }
+    if (e?.ipa !== undefined && typeof e.ipa !== 'string') out.push(`${at}: "ipa" is the word's sounds, a string`)
+    if (e?.status === 'misleads' && !e.misleads?.length) out.push(`${at}: status "misleads" needs a spelling in "misleads"`)
     if (!one(e?.note)) out.push(`${at}: "note" is one line`)
     seen(e?.seen, at)
   }
@@ -261,7 +271,10 @@ export function harvest(fit, { house, names = [] }) {
             else spellings.push({ as: sp, heard: hh })
           }
         }
-        works.push({ word, as, voice, line: l.id, heard: h.counts, spellings, asWritten })
+        // fit.json's sounds check: a spelling heard as the word whose sounds are not the word's misleads
+        const snd = (l.sounds ?? []).find((s) => s.i === i)
+        const misleading = snd?.keeps === false ? { keeps: false, plain: snd.plain, ipa: snd.ipa, ...(snd.why ? { why: snd.why } : {}) } : {}
+        works.push({ word, as, voice, line: l.id, heard: h.counts, spellings, asWritten, ...misleading })
       })
     }
     if (HARD.includes(l.status)) {
@@ -288,18 +301,30 @@ export function mergeWorks(research, works, { source }) {
   // counts are added once per source: a word already seen in this source before this harvest is not counted again
   const seenBefore = new Map(research.words.map((e) => [e.word, new Set(e.seen ?? [])]))
   for (const w of works) {
+    const misleading = w.keeps === false
     let e = r.words.find((x) => x.word === w.word)
     if (!e) {
-      e = { word: w.word, status: 'works', voices: [], heard: [], spellings: [], works: [], note: `"${w.as}" heard in every take (harvested from fit.json).`, seen: [] }
+      e = misleading
+        ? { word: w.word, status: 'misleads', voices: [], heard: [], spellings: [], works: [], note: `"${w.as}" heard as the word in every take, but its sounds are not the word's (harvested from fit.json).`, seen: [] }
+        : { word: w.word, status: 'works', voices: [], heard: [], spellings: [], works: [], note: `"${w.as}" heard in every take (harvested from fit.json).`, seen: [] }
       r.words.push(e)
       added.push(w.word)
     }
     const fresh = !seenBefore.get(w.word)?.has(source)
     const before = JSON.stringify(e)
     e.voices = union(e.voices, [w.voice])
-    const wk = e.works.find((x) => x.as === w.as)
-    if (wk) wk.voices = union(wk.voices, [w.voice])
-    else e.works.push({ as: w.as, voices: [w.voice] })
+    if (misleading) {
+      // the transcription accepts it, a listener does not: kept apart from the working spellings
+      e.misleads ??= []
+      if (w.plain) e.ipa = w.plain
+      const m = e.misleads.find((x) => x.as === w.as)
+      if (m) m.voices = union(m.voices, [w.voice])
+      else e.misleads.push({ as: w.as, voices: [w.voice], ipa: w.ipa ?? '', ...(w.why ? { why: w.why } : {}) })
+    } else {
+      const wk = e.works.find((x) => x.as === w.as)
+      if (wk) wk.voices = union(wk.voices, [w.voice])
+      else e.works.push({ as: w.as, voices: [w.voice] })
+    }
     const sp = (as, heard) => {
       let s = e.spellings.find((x) => x.as === as)
       if (!s) e.spellings.push((s = { as, voices: [], heard: [] }))
@@ -329,6 +354,7 @@ export function addWord(research, { fit, lineId, word, status, as = null, note, 
   if (!STATUSES.includes(status)) throw new Error(`--status is ${STATUSES.join(', ')}`)
   if (!String(note ?? '').trim() || String(note).includes('\n')) throw new Error('--note is one line: what the voice does with the word')
   if (status === 'works' && !as) throw new Error('--status works needs --as <the spelling that works>')
+  if (status === 'misleads' && !as) throw new Error('--status misleads needs --as <the spelling the transcription accepts and a listener does not>')
   if (isName(w, names)) throw new Error(`"${word}" is part of a real person's name or handle: names are not recorded here (the caption carries them)`)
   const i = tokenOf(l.text, w)
   if (i < 0) throw new Error(`"${word}" is not in the caption of ${lineId}: "${l.text}"`)
@@ -361,7 +387,14 @@ export function addWord(research, { fit, lineId, word, status, as = null, note, 
     const chosen = l.as ?? text
     for (const t of l.tried ?? []) if (t.as !== chosen) record(t.as, t.heard)
   }
-  if (as) {
+  if (as && status === 'misleads') {
+    // its sounds are filled in by the sounds check (npm run voice-research -- --sounds)
+    e.misleads ??= []
+    e.works = e.works.filter((x) => x.as !== as)
+    const m = e.misleads.find((x) => x.as === as)
+    if (m) m.voices = union(m.voices, [voice])
+    else e.misleads.push({ as, voices: [voice], ipa: '' })
+  } else if (as) {
     const wk = e.works.find((x) => x.as === as)
     if (wk) wk.voices = union(wk.voices, [voice])
     else e.works.push({ as, voices: [voice] })
@@ -423,24 +456,69 @@ export function isRecorded(research, line, source) {
  * - first: { word: [spellings] } that work in this voice, to try before anything else;
  * - hard: { word: [spellings] } for words marked `cannot` with no spelling working in this voice:
  *   only these known tries are heard again (none recorded: searched as usual), and the line says
- *   "known hard word".
+ *   "known hard word";
+ * - avoid: { word: [spellings] } the transcription accepted but whose sounds are not the word's
+ *   (`misleads`, in any voice): never offered again, first or otherwise.
  */
 export function knownFor(research, voice) {
   const first = {}
   const hard = {}
+  const avoid = {}
   for (const e of research?.words ?? []) {
-    const mine = (e.works ?? []).filter((w) => w.voices.includes(voice)).map((w) => w.as)
+    const never = (e.misleads ?? []).map((m) => m.as)
+    if (never.length) avoid[e.word] = never
+    const mine = (e.works ?? []).filter((w) => w.voices.includes(voice) && !never.includes(w.as)).map((w) => w.as)
     if (mine.length) first[e.word] = mine
-    else if (e.status === 'cannot') hard[e.word] = (e.spellings ?? []).map((s) => s.as).slice(0, 4)
+    else if (e.status === 'cannot') hard[e.word] = (e.spellings ?? []).map((s) => s.as).filter((s) => !never.includes(s)).slice(0, 4)
   }
-  return { first, hard }
+  return { first, hard, avoid }
+}
+
+/**
+ * The sounds check over the file (sounds.ts --research): every working spelling whose sounds are not
+ * the word's (`check(word, spelling)` → { keeps, plain, ipa, why? } | null, from sounds.mjs) moves
+ * from `works` to `misleads`, with its sounds and the word's; its evidence (`spellings`, `heard`)
+ * stays. A `works` entry left with no working spelling becomes `misleads`; any other status is kept.
+ * A misleading spelling already recorded gets its sounds filled in when they are missing. Running it
+ * twice changes nothing the second time.
+ * → { research, changed: [{ word, from, to, moved: [spelling] }] }
+ */
+export function markMisleading(research, check) {
+  const r = { ...research, words: research.words.map((e) => structuredClone(e)) }
+  const changed = []
+  for (const e of r.words) {
+    const before = JSON.stringify(e)
+    const from = e.status
+    const moved = []
+    const mark = (as, voices) => {
+      const c = check(e.word, as)
+      if (c?.keeps !== false) return false
+      e.misleads ??= []
+      if (c.plain) e.ipa = c.plain
+      const m = e.misleads.find((x) => x.as === as)
+      if (m) m.voices = union(m.voices, voices)
+      else e.misleads.push({ as, voices, ipa: c.ipa, ...(c.why ? { why: c.why } : {}) })
+      moved.push(as)
+      return true
+    }
+    e.works = (e.works ?? []).filter((w) => !mark(w.as, w.voices))
+    for (const m of e.misleads ?? []) {
+      if (m.ipa && e.ipa) continue
+      const c = check(e.word, m.as)
+      if (c?.ipa && !m.ipa) m.ipa = c.ipa
+      if (c?.plain && !e.ipa) e.ipa = c.plain
+    }
+    if (e.status === 'works' && !e.works.length && e.misleads?.length) e.status = 'misleads'
+    if (JSON.stringify(e) !== before) changed.push({ word: e.word, from, to: e.status, moved })
+  }
+  return { research: tidy(r), changed }
 }
 
 // ------------------------------------------------------------------ the page
 
 const md = (s) => String(s ?? '').replace(/\|/g, '\\|')
 const heardList = (list, n = 4) => (list ?? []).slice(0, n).map((h) => `"${md(h.as)}"${h.count ? ` ×${h.count}` : ''}`).join(', ') || '(not recorded)'
-const spelled = (e) => (e.spellings ?? []).filter((s) => !(e.works ?? []).some((w) => w.as === s.as)).slice(0, 4).map((s) => `\`${md(s.as)}\` → ${s.heard?.length ? heardList(s.heard, 2) : '?'}`).join('; ') || '—'
+const spelled = (e) => (e.spellings ?? []).filter((s) => !(e.works ?? []).some((w) => w.as === s.as) && !(e.misleads ?? []).some((m) => m.as === s.as)).slice(0, 4).map((s) => `\`${md(s.as)}\` → ${s.heard?.length ? heardList(s.heard, 2) : '?'}`).join('; ') || '—'
 
 /** docs/voice-research.md, generated from the file: what cannot be said, what is unstable, patterns, spellings that work */
 export function renderPage(research) {
@@ -486,6 +564,21 @@ export function renderPage(research) {
   if (working.length) {
     L.push('| word | `as` | voices | note |', '|---|---|---|---|')
     for (const e of working) for (const w of e.works) L.push(`| ${md(e.word)}${e.status !== 'works' ? ` (${e.status})` : ''} | \`${md(w.as)}\` | ${w.voices.join(', ')} | ${md(e.note)} |`)
+    L.push('')
+  } else L.push('Nothing recorded yet.', '')
+  L.push(
+    '## Heard by the transcription, not by a listener',
+    '',
+    "The transcription wrote the word for these spellings, but the engine says them with other sounds",
+    "(its own phonemes, IPA): a listener hears another word. They are not working spellings, the",
+    'fitting tool never tries them, and the plain spelling stays. Marked `misleads` when no other',
+    'spelling works.',
+    '',
+  )
+  const misleading = words.filter((e) => (e.misleads ?? []).length)
+  if (misleading.length) {
+    L.push("| word | the word's sounds | `as` | its sounds | voices | note |", '|---|---|---|---|---|---|')
+    for (const e of misleading) for (const m of e.misleads) L.push(`| ${md(e.word)}${e.status !== 'misleads' ? ` (${e.status})` : ''} | /${md(e.ipa ?? '?')}/ | \`${md(m.as)}\` | /${md(m.ipa || '?')}/ | ${m.voices.join(', ')} | ${md(e.note)} |`)
     L.push('')
   } else L.push('Nothing recorded yet.', '')
   return L.join('\n')

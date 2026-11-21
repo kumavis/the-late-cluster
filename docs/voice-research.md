@@ -47,7 +47,6 @@ Heard in some takes or some lines, not others.
 | **plausibly** | sibyl | "plause to be" | `plaw-zib-lee` → "plausibly" ×1, "it'll probably be" ×3 | Sibyl: plaw-zib-lee heard 1 take in 4; otherwise "it'll probably be". |
 | **posts** | larry | "david" ×2, "of" ×2 | `poasts` → "david" ×10, "posts" ×4; `pohsts` → "grespa" ×2 | Larry: "posts a chart" runs together as "Postcard" (poasts); poasts, uh chart gave "Poets or Hard". |
 | **sheet** | sibyl | "(a crude word)", "sheet" ×4 | — | After "other's" it was heard as a crude word, which is never accepted; respelling the word before it (`uh-therz`) cleared it. |
-| **show** | larry | "flow" ×3, "fall", "phone", "foe" | `shoh` → "shah" ×4, "shot" ×2; `sshoww` → "shawl" ×1 | As written heard "flow", "fall", "phone": `showw` was heard in two lines, `sshow` in one, but `sshoww` gave "shawl" and `shoh` "shah". |
 | **values** | guest | (not recorded) | `val-yooz` → "values" ×3, "value is" ×1 | `val-yooz` heard in 3 of 4 takes; the fourth, "value is", changed the sentence. |
 
 ## Patterns
@@ -74,7 +73,6 @@ Heard as the word, in these voices. Words above may have one too, in some voice.
 |---|---|---|---|
 | a | `uh` | larry | "uh" heard in every take (harvested from fit.json). |
 | as | `azz` | sibyl | "azz" heard in every take (harvested from fit.json). |
-| attached | `uh-tatched` | guest | "uh-tatched" heard in every take (harvested from fit.json). |
 | bluesky | `blue-sky` | sibyl | "blue-sky" heard in every take (harvested from fit.json). |
 | booking | `book-ing` | larry | "book-ing" heard in every take (harvested from fit.json). |
 | broader | `braw-der` | sibyl | "braw-der" heard in every take (harvested from fit.json). |
@@ -86,37 +84,49 @@ Heard as the word, in these voices. Words above may have one too, in some voice.
 | inverse | `inn-verse` | sibyl | "inn-verse" heard in every take (harvested from fit.json). |
 | it | `itt` | guest | "itt" heard in every take (harvested from fit.json). |
 | jaw | `djaw` | larry | "djaw" heard in every take (harvested from fit.json). |
-| kazoo | `kah-zoo` | larry | `kah-zoo` is heard as "Kazu", which is kazoo as Whisper spells it; at a raised pitch (176 Hz) `ka-zoo` gave "tazoo". |
-| limit | `limmit` | sibyl | As written, after "reached its", heard as a near-crude "shimit"; `limmit` is heard. |
 | loss | `lawss` | guest | "lawss" heard in every take (harvested from fit.json). |
-| market | `mar-kit` | sibyl, guest | "mar-kit" heard in every take (harvested from fit.json). |
-| markets | `mar-kits` | larry | "mar-kits" heard in every take (harvested from fit.json). |
-| math | `mathh` | sibyl | "mathh" heard in every take (harvested from fit.json). |
-| meaningfully | `meeningfully` | sibyl | "meeningfully" heard in every take (harvested from fit.json). |
-| nobody | `noh-bodee` | sibyl | "noh-bodee" heard in every take (harvested from fit.json). |
-| on | `awn` | larry | "awn" heard in every take (harvested from fit.json). |
 | posted | `post-id` | larry | "post-id" heard in every take (harvested from fit.json). |
 | quoting | `kwoat-ing` | larry | "kwoat-ing" heard in every take (harvested from fit.json). |
-| record | `rek-ord` | larry | "rek-ord" heard in every take (harvested from fit.json). |
-| reply | `ree-ply` | sibyl | "ree-ply" heard in every take (harvested from fit.json). |
-| show (unstable) | `sshow` | larry | As written heard "flow", "fall", "phone": `showw` was heard in two lines, `sshow` in one, but `sshoww` gave "shawl" and `shoh` "shah". |
-| show (unstable) | `showw` | larry | As written heard "flow", "fall", "phone": `showw` was heard in two lines, `sshow` in one, but `sshoww` gave "shawl" and `shoh` "shah". |
 | simcluster | `sim-cluster` | larry | "sim-cluster" heard in every take (harvested from fit.json). |
 | sixteen | `sik-steen` | eppy | "sik-steen" heard in every take (harvested from fit.json). |
-| sloshing | `slaw-shing` | sibyl | "slaw-shing" heard in every take (harvested from fit.json). |
 | so | `sew` | guest | "sew" heard in every take (harvested from fit.json). |
-| solve | `sawlv` | guest | "sawlv" heard in every take (harvested from fit.json). |
-| stock | `stawk` | guest, sibyl | "stawk" heard in every take (harvested from fit.json). |
 | tech | `tek` | sibyl | "tek" heard in every take (harvested from fit.json). |
-| terms | `termss` | eppy | "termss" heard in every take (harvested from fit.json). |
-| than | `thann` | sibyl | "thann" heard in every take (harvested from fit.json). |
-| that | `thatt` | larry, guest | As written a stressed or line-final "that" becomes "of the" or "let's"; `thatt` (or `thaat`) is heard. |
-| that | `thaat` | larry | As written a stressed or line-final "that" becomes "of the" or "let's"; `thatt` (or `thaat`) is heard. |
-| that's | `thatt's` | larry | As written heard "let's" or "let"; `thatt's` is heard. |
 | the | `thee` | guest | "thee" heard in every take (harvested from fit.json). |
-| this | `thiss` | larry | "thiss" heard in every take (harvested from fit.json). |
 | two | `too` | sibyl | "too" heard in every take (harvested from fit.json). |
 | unprompted (cannot) | `un-promp-tid` | larry | Never heard as one word: "on prompted" at best. |
-| unsolved | `un-sawlvd` | guest | "un-sawlvd" heard in every take (harvested from fit.json). |
-| voice | `vwoice` | larry | "vwoice" heard in every take (harvested from fit.json). |
 | was | `wuz` | larry | "wuz" heard in every take (harvested from fit.json). |
+
+## Heard by the transcription, not by a listener
+
+The transcription wrote the word for these spellings, but the engine says them with other sounds
+(its own phonemes, IPA): a listener hears another word. They are not working spellings, the
+fitting tool never tries them, and the plain spelling stays. Marked `misleads` when no other
+spelling works.
+
+| word | the word's sounds | `as` | its sounds | voices | note |
+|---|---|---|---|---|---|
+| attached | /ə t æ tʃ t/ | `uh-tatched` | /ʌ t æ tʃ d/ | guest | "uh-tatched" heard in every take (harvested from fit.json). |
+| kazoo | /k ə z u/ | `kah-zoo` | /k ɑ z u/ | larry | `kah-zoo` is heard as "Kazu", which is kazoo as Whisper spells it; at a raised pitch (176 Hz) `ka-zoo` gave "tazoo". |
+| limit | /l ɪ m ə t/ | `limmit` | /l ɪ m m ɪ t/ | sibyl | As written, after "reached its", heard as a near-crude "shimit"; `limmit` is heard. |
+| market | /m ɑ ɹ k ə t/ | `mar-kit` | /m ɑ ɹ k ɪ t/ | sibyl, guest | "mar-kit" heard in every take (harvested from fit.json). |
+| markets | /m ɑ ɹ k ə t s/ | `mar-kits` | /m ɑ ɹ k ɪ t s/ | larry | "mar-kits" heard in every take (harvested from fit.json). |
+| math | /m æ θ/ | `mathh` | /m æ θ h/ | sibyl | "mathh" heard in every take (harvested from fit.json). |
+| meaningfully | /m i n ɪ ŋ f ə l i/ | `meeningfully` | /m i n ɪ ŋ g f ʌ ɫ l i/ | sibyl | "meeningfully" heard in every take (harvested from fit.json). |
+| nobody | /n oʊ b ɑ d i/ | `noh-bodee` | /n oʊ b oʊ ɾ i/ | sibyl | "noh-bodee" heard in every take (harvested from fit.json). |
+| on | /ə n/ | `awn` | /ɔ n/ | larry | "awn" heard in every take (harvested from fit.json). |
+| record | /ɹ ə k ɔ ɹ d/ | `rek-ord` | /ɹ ɛ k ɔ ɹ d/ | larry | "rek-ord" heard in every take (harvested from fit.json). |
+| reply | /ɹ ɪ p l aɪ/ | `ree-ply` | /ɹ i p l aɪ/ | sibyl | "ree-ply" heard in every take (harvested from fit.json). |
+| show | /ʃ oʊ/ | `showw` | /ʃ aʊ w/ | larry | Plain "show" is right (the owner, by ear, 21 November 2026): `showw` and `sshoww` are pronounced "shao" though the transcription wrote "show" for `showw`; `sshow` adds an s. As written the transcription heard "flow", "fall", "phone": the caption carries it. |
+| show | /ʃ oʊ/ | `sshoww` | /s ʃ aʊ w/ | larry | Plain "show" is right (the owner, by ear, 21 November 2026): `showw` and `sshoww` are pronounced "shao" though the transcription wrote "show" for `showw`; `sshow` adds an s. As written the transcription heard "flow", "fall", "phone": the caption carries it. |
+| show | /ʃ oʊ/ | `sshow` | /s ʃ oʊ/ | larry | Plain "show" is right (the owner, by ear, 21 November 2026): `showw` and `sshoww` are pronounced "shao" though the transcription wrote "show" for `showw`; `sshow` adds an s. As written the transcription heard "flow", "fall", "phone": the caption carries it. |
+| sloshing | /s l ɑ ʃ ɪ ŋ/ | `slaw-shing` | /s l ɔ ʃ ɪ ŋ/ | sibyl | "slaw-shing" heard in every take (harvested from fit.json). |
+| solve | /s ɑ ɫ v/ | `sawlv` | /s ɔ ɫ v/ | guest | "sawlv" heard in every take (harvested from fit.json). |
+| stock | /s t ɑ k/ | `stawk` | /s t ɔ k/ | guest, sibyl | "stawk" heard in every take (harvested from fit.json). |
+| terms | /t ɝ m z/ | `termss` | /t ɝ m s s/ | eppy | "termss" heard in every take (harvested from fit.json). |
+| than | /ð ə n/ | `thann` | /θ æ n n/ | sibyl | "thann" heard in every take (harvested from fit.json). |
+| that | /ð ə t/ | `thatt` | /θ æ t t/ | larry, guest | As written a stressed or line-final "that" becomes "of the" or "let's"; `thatt` (or `thaat`) is heard. |
+| that | /ð ə t/ | `thaat` | /θ æ æ t/ | larry | As written a stressed or line-final "that" becomes "of the" or "let's"; `thatt` (or `thaat`) is heard. |
+| that's | /ð æ t s/ | `thatt's` | /θ æ t t s/ | larry | As written heard "let's" or "let"; `thatt's` is heard. |
+| this | /ð ɪ s/ | `thiss` | /θ ɪ s s/ | larry | "thiss" heard in every take (harvested from fit.json). |
+| unsolved | /ə n s ɑ ɫ v d/ | `un-sawlvd` | /ʌ n s ɔ ɫ v d/ | guest | "un-sawlvd" heard in every take (harvested from fit.json). |
+| voice | /v ɔɪ s/ | `vwoice` | /v w ɔɪ s/ | larry | "vwoice" heard in every take (harvested from fit.json). |

@@ -102,6 +102,8 @@ A real person's post cannot be reworded to suit the engine. Therefore:
 - **The function-word trap:** each hyphenated part is pronounced as its own word, and function words
   get their weak forms. A part spelled "for" comes out "fer". Use parts that are not function words.
 - Read the IPA the renderer prints for every line, then read the heard text.
+- **A respelling keeps the word's vowels and consonants.** The transcription's approval is not a
+  listener's: `showw` was transcribed "show" and is said "shao".
 
 House respellings:
 

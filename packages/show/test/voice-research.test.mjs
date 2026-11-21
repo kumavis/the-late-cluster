@@ -6,7 +6,7 @@ import assert from 'node:assert/strict'
 import { readFileSync } from 'node:fs'
 import { BLOCKING, blockingFlags } from '../tools/heard.mjs'
 import { lineCandidates } from '../tools/respell.mjs'
-import { RESEARCH_FILE, PAGE_FILE, addPattern, addWord, emptyResearch, hardLines, harvest, isRecorded, knownFor, loadResearch, mergeWorks, renderPage, tokenHeard, validate } from '../tools/voice-research-lib.mjs'
+import { RESEARCH_FILE, PAGE_FILE, addPattern, addWord, emptyResearch, hardLines, harvest, isRecorded, knownFor, loadResearch, markMisleading, mergeWorks, renderPage, tokenHeard, validate } from '../tools/voice-research-lib.mjs'
 
 const HOUSE = new Set(['larry', 'sibyl', 'eppy'])
 const SRC = '009-test-week/talk'
@@ -157,4 +157,77 @@ test('the committed research file is well formed and its page is up to date', ()
   assert.ok(r.words.length > 0 && r.patterns.length > 0)
   for (const e of r.words) for (const v of [...e.voices, ...e.works.flatMap((w) => w.voices)]) assert.ok(['larry', 'sibyl', 'hy', 'al', 'dee', 'pete', 'eppy', 'guest'].includes(v), `${e.word}: voice "${v}" is a house id or "guest"`)
   assert.equal(readFileSync(PAGE_FILE, 'utf8'), renderPage(r), 'docs/voice-research.md is stale: npm run voice-research -- --page')
+})
+
+// ---- spellings the transcription accepts and a listener does not
+
+const SHOW = { word: 'show', status: 'unstable', voices: ['larry'], heard: [{ as: 'flow', count: 3 }], spellings: [{ as: 'showw', voices: ['larry'], heard: [{ as: 'show', count: 8 }] }, { as: 'sshow', voices: ['larry'], heard: [{ as: 'show', count: 4 }] }], works: [{ as: 'showw', voices: ['larry'] }, { as: 'sshow', voices: ['larry'] }], note: 'n', seen: [SRC] }
+const THIS = { word: 'this', status: 'works', voices: ['larry'], heard: [], spellings: [{ as: 'thiss', voices: ['larry'], heard: [{ as: 'this', count: 4 }] }], works: [{ as: 'thiss', voices: ['larry'] }], note: 'n', seen: [SRC] }
+const HAD = { word: 'had', status: 'works', voices: ['larry'], heard: [], spellings: [{ as: 'hadd', voices: ['larry'], heard: [] }], works: [{ as: 'hadd', voices: ['larry'] }], note: 'n', seen: [SRC] }
+// the sounds check as sounds.ts gives it (the engine's G2P), for these spellings
+const SOUNDS = { 'show/showw': ['ʃ oʊ', 'ʃ aʊ w', 'vowel oʊ → aʊ'], 'show/sshow': ['ʃ oʊ', 's ʃ oʊ', 'consonants before the first vowel: ʃ → s ʃ'], 'this/thiss': ['ð ɪ s', 'θ ɪ s s', 'consonants before the first vowel: ð → θ'], 'had/hadd': ['h æ d', 'h æ d d', null] }
+const check = (w, s) => {
+  const x = SOUNDS[`${w}/${s}`]
+  return x ? { keeps: !x[2], plain: x[0], ipa: x[1], ...(x[2] ? { why: x[2] } : {}) } : null
+}
+
+test('the sounds check over the file: a working spelling that changes the word misleads; the evidence stays', () => {
+  const r = { ...emptyResearch(), words: [SHOW, THIS, HAD] }
+  const m = markMisleading(r, check)
+  assert.deepEqual(m.changed.map((c) => [c.word, c.from, c.to, c.moved]), [['show', 'unstable', 'unstable', ['showw', 'sshow']], ['this', 'works', 'misleads', ['thiss']]])
+  const show = m.research.words.find((e) => e.word === 'show')
+  assert.deepEqual(show.works, [])
+  assert.equal(show.ipa, 'ʃ oʊ')
+  assert.deepEqual(show.misleads.map((x) => [x.as, x.ipa]), [['showw', 'ʃ aʊ w'], ['sshow', 's ʃ oʊ']])
+  assert.deepEqual(show.spellings, SHOW.spellings, 'what each spelling was heard as is kept')
+  assert.equal(m.research.words.find((e) => e.word === 'had').status, 'works', 'a doubled consonant keeps the word')
+  assert.deepEqual(validate(m.research), [])
+  assert.deepEqual(markMisleading(m.research, check).changed, [], 'a second run changes nothing')
+  // the fitting tool: never tried first, never tried again
+  const k = knownFor(m.research, 'larry')
+  assert.deepEqual(k.first, { had: ['hadd'] })
+  assert.deepEqual(k.avoid, { show: ['showw', 'sshow'], this: ['thiss'] })
+  const dict = new Map([['this', 'DH IH1 S'.split(' ')]])
+  const before = lineCandidates('Read this.', null, ['this'], { dict, learned: knownFor({ words: [THIS] }, 'larry').first })
+  assert.equal(before[0].as, 'Read thiss.', 'before: the misleading spelling came first')
+  const after = lineCandidates('Read this.', null, ['this'], { dict, learned: { ...k.first, this: ['thiss'] }, avoid: k.avoid })
+  assert.ok(!after.some((c) => c.as.includes('thiss')), 'after: not tried at all, even when remembered')
+  assert.deepEqual(validate({ words: [{ ...THIS, status: 'misleads', works: [] }] }).join(), 'words[0] this: status "misleads" needs a spelling in "misleads"')
+})
+
+test('the page shows misleading spellings apart from the working ones, with the sounds of both', () => {
+  const r = markMisleading({ ...emptyResearch(), words: [SHOW, THIS, HAD] }, check).research
+  const page = renderPage(r)
+  const work = page.slice(page.indexOf('## Spellings that work'), page.indexOf('## Heard by the transcription, not by a listener'))
+  const mis = page.slice(page.indexOf('## Heard by the transcription, not by a listener'))
+  assert.ok(page.indexOf('## Spellings that work') < page.indexOf('## Heard by the transcription, not by a listener'))
+  assert.match(work, /\| had \| `hadd` \| larry \|/)
+  assert.ok(!work.includes('showw') && !work.includes('thiss'))
+  assert.match(mis, /\| show \(unstable\) \| \/ʃ oʊ\/ \| `showw` \| \/ʃ aʊ w\/ \| larry \|/)
+  assert.match(mis, /\| this \| \/ð ɪ s\/ \| `thiss` \| \/θ ɪ s s\/ \| larry \|/)
+  assert.match(renderPage(emptyResearch()), /## Heard by the transcription, not by a listener\n\n[^]*\n\nNothing recorded yet\.\n$/)
+})
+
+test('a harvested spelling whose sounds are not the word goes in as misleads, never as works', () => {
+  const fit = { lines: [L({ id: 'list', text: 'The show is not on it.', as: 'The showw is not on it.', heard: [{ text: 'The show is not on it.', count: 4 }], sounds: [{ i: 1, word: 'show', as: 'showw', plain: 'ʃ oʊ', ipa: 'ʃ aʊ w', keeps: false, why: 'vowel oʊ → aʊ' }] })] }
+  const h = harvest(fit, { house: HOUSE })
+  assert.equal(h.works[0].keeps, false)
+  const m = mergeWorks(emptyResearch(), h.works, { source: SRC })
+  const e = m.research.words[0]
+  assert.deepEqual([e.word, e.status, e.works, e.ipa], ['show', 'misleads', [], 'ʃ oʊ'])
+  assert.deepEqual(e.misleads, [{ as: 'showw', voices: ['larry'], ipa: 'ʃ aʊ w', why: 'vowel oʊ → aʊ' }])
+  assert.deepEqual(validate(m.research), [])
+  assert.deepEqual(knownFor(m.research, 'larry').first, {})
+})
+
+test('the committed file: show misleads, by the owner\'s ear; nothing it marks misleading is offered first', () => {
+  const r = loadResearch(RESEARCH_FILE)
+  const show = r.words.find((e) => e.word === 'show')
+  assert.equal(show.status, 'misleads')
+  assert.equal(show.ipa, 'ʃ oʊ')
+  for (const as of ['showw', 'sshoww']) assert.equal(show.misleads.find((m) => m.as === as)?.ipa.includes('aʊ'), true, as)
+  for (const voice of ['larry', 'sibyl', 'guest']) {
+    const k = knownFor(r, voice)
+    for (const [w, sp] of Object.entries(k.first)) for (const s of sp) assert.ok(!(k.avoid[w] ?? []).includes(s), `${w}: ${s}`)
+  }
 })

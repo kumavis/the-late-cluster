@@ -3,6 +3,7 @@
  * npm run voice-research -- <ep> --draft <slug> --add <word> --line <id> --status works|unstable|cannot --note "…" [--as <spelling>]
  * npm run voice-research -- <ep> --draft <slug> --pattern "<pattern>" --note "…" [--words a,b]
  * npm run voice-research -- --page                                              # only regenerate docs/voice-research.md
+ * npm run voice-research -- --sounds [--dry-run]                                # the sounds check over the file (bun: the engine's G2P)
  *
  * The voice research file (data/voice-research.json) and its page (docs/voice-research.md). The
  * harvest reads a draft's (or a segment's) fit.json: each caption word respelled in the chosen `as`
@@ -10,15 +11,18 @@
  * with what was heard and the words missed, so the sound editor can record the word that failed
  * with `--add` (or a pattern with `--pattern`). It never makes an entry it cannot attribute to a
  * word, and never records a real person's name or handle. Every run that changes the file
- * regenerates the page.
+ * regenerates the page. A harvested spelling whose sounds are not the word's (fit.json's `sounds`)
+ * goes in as `misleads`, never as `works`; --sounds runs the same check over every working spelling
+ * already in the file (sounds.ts, under bun) and marks the ones that fail.
  *
  * Exit 0 when every hard line (unsayable, or flagged for something other than a name or a blocking
  * word) is recorded; 1 when one is not, or a line is heard as something crude, alarming or out of
  * bounds (that is for another spelling, or the owner); 2 for bad arguments.
  *
- * Node builtins only; run with node (no engine, no Whisper).
+ * Node builtins only; run with node (no engine, no Whisper). Only --sounds needs bun.
  */
 import { existsSync, readdirSync, readFileSync, renameSync, writeFileSync } from 'node:fs'
+import { spawnSync } from 'node:child_process'
 import { join } from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
 import { resolveEpisode, EpisodeError } from './episode.mjs'
@@ -27,7 +31,7 @@ import { blockingFlags, realNames } from './heard.mjs'
 import { RESEARCH_FILE, PAGE_FILE, addPattern, addWord, hardLines, harvest, isRecorded, loadResearch, mergeWorks, renderPage, validate } from './voice-research-lib.mjs'
 
 const HERE = new URL('./', import.meta.url)
-const USAGE = 'usage: npm run voice-research -- <ep> (--draft <slug> | --drafts | <seg>) [--dry-run] [--add <word> --line <id> --status works|unstable|cannot --note "…" [--as <spelling>] | --pattern "…" --note "…" [--words a,b]] | --page'
+const USAGE = 'usage: npm run voice-research -- <ep> (--draft <slug> | --drafts | <seg>) [--dry-run] [--add <word> --line <id> --status works|unstable|cannot|misleads --note "…" [--as <spelling>] | --pattern "…" --note "…" [--words a,b]] | --page | --sounds [--dry-run]'
 
 const fail = (msg, code = 2) => {
   console.error(msg.startsWith('usage') ? msg : `error: ${msg}`)
@@ -80,6 +84,12 @@ async function main() {
     if (i < 0) return false
     args.splice(i, 1)
     return true
+  }
+  if (flag('sounds')) {
+    // the engine's G2P runs under bun: sounds.ts does the check and writes the file and the page
+    const r = spawnSync('bun', [fileURLToPath(new URL('./sounds.ts', HERE)), '--research', ...(flag('dry-run') ? ['--dry-run'] : [])], { stdio: 'inherit' })
+    if (r.error) fail(`--sounds needs bun on the PATH (${r.error.message})`, 1)
+    process.exit(r.status ?? 1)
   }
   if (flag('page')) {
     const r = loadResearch()

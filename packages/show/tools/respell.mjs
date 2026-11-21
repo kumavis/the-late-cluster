@@ -38,6 +38,13 @@ export const KNOWN = {
 }
 
 /**
+ * The words of the table above that are shorthand or initialisms, read out as they are meant: the
+ * dictionary's reading of the letters ("ai" as "eye", "lol" as one syllable) is not the word's
+ * sound, so the sounds check (sounds.mjs) treats them as words it has no reference for.
+ */
+export const SHORTHAND = new Set(['bsky', 'gm', 'gn', 'atproto', 'nx', 'ai', 'lol', 'tho', 'thru', 'pls', 'idk', 'afaik', 'imo', 'tbh', 'irl', 'gg'])
+
+/**
  * Hyphen parts are G2P'd as words, and function words get their weak form (`for-mints` → /fəɹ/):
  * a part that is a function word is spelled so it is not one.
  */
@@ -217,9 +224,13 @@ const join = (toks) => toks.join(' ')
  *   spellings already tried: for those words only these are offered, with no new search and no
  *   commas (a hard word with no recorded tries is searched as usual). `learned` is tried first for every other word (the research file's working spellings
  *   come first in it).
+ * - `accept(word, spelling)` (fit.ts: the sounds check, sounds.mjs) says whether a respelling keeps
+ *   the caption word's sounds; a spelling it refuses is never offered, so it is never rendered.
+ *   `avoid` maps lower-case words to spellings never to offer (the research file's `misleads`).
+ *   Both are applied before `perWord` is counted. Taking a respelling back out is always offered.
  * The line as it stands is not included. Every candidate has as many tokens as the caption.
  */
-export function lineCandidates(text, as, missed, { dict = new Map(), learned = {}, hard = {}, maxWords = 3, perWord = 4 } = {}) {
+export function lineCandidates(text, as, missed, { dict = new Map(), learned = {}, hard = {}, maxWords = 3, perWord = 4, accept = () => true, avoid = {} } = {}) {
   const al = alignedTokens(text, as) ?? alignedTokens(text, text)
   const spoken = al.spoken
   const out = []
@@ -235,10 +246,12 @@ export function lineCandidates(text, as, missed, { dict = new Map(), learned = {
   for (const i of targetTokens(text, missed).slice(0, maxWords)) {
     const cap = splitToken(al.text[i])
     const cur = splitToken(spoken[i])
+    const never = new Set((avoid[cap.core.toLowerCase()] ?? []).map((s) => s.toLowerCase()))
+    const ok = (r) => !never.has(r.toLowerCase()) && accept(cap.core, r)
     const known = hard[cap.core.toLowerCase()]
     if (known?.length) {
       // a word known to be hard: the known tries only, then stop
-      for (const r of known.slice(0, perWord)) {
+      for (const r of known.filter(ok).slice(0, perWord)) {
         if (r === cur.core) continue
         const toks = spoken.slice()
         toks[i] = cur.lead + r + cur.trail
@@ -247,7 +260,7 @@ export function lineCandidates(text, as, missed, { dict = new Map(), learned = {
       continue
     }
     // respellings of the word, with the punctuation the spoken token has
-    for (const r of wordCandidates(cap.core, { dict, learned }).slice(0, perWord)) {
+    for (const r of wordCandidates(cap.core, { dict, learned }).filter(ok).slice(0, perWord)) {
       const toks = spoken.slice()
       toks[i] = cur.lead + r + cur.trail
       add(toks, 1, `${cap.core} → ${r}`)
