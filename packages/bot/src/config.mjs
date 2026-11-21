@@ -1,6 +1,7 @@
 // Settings come from the environment first, then packages/bot/bot.config.json, then the repo's
 // show.config.json (the show-wide settings: siteUrl, and bluesky.handle / bluesky.did, the
-// show's account). The one secret, BSKY_APP_PASSWORD, comes only from the environment (locally
+// show's account; bluesky.repostAuthors, the DIDs `repost` may repost; bluesky.profile, the bio
+// `profile` writes and the handles it may credit). The one secret, BSKY_APP_PASSWORD, comes only from the environment (locally
 // the root `npm run bot` loads it from .secrets); it is never read from a file by this package.
 import { readFileSync } from 'node:fs';
 import { join } from 'node:path';
@@ -14,6 +15,8 @@ export const CONFIG_PATH = fileURLToPath(new URL('../bot.config.json', import.me
 export const SHOW_CONFIG_PATH = join(REPO_ROOT, 'show.config.json');
 /** The profile picture `profile` sets, relative to the repo root, when bot.config.json names none. */
 export const DEFAULT_AVATAR = 'brand/avatar.png';
+/** Where `repost` reads a post's author, text and counts without logging in. */
+export const DEFAULT_APPVIEW = 'https://public.api.bsky.app';
 
 export function readConfigFile(path = CONFIG_PATH) {
   let text;
@@ -42,6 +45,10 @@ export function loadSettings({ env = {}, configPath = CONFIG_PATH, showConfigPat
     handleSource: envHandle ? 'BSKY_HANDLE' : showHandle ? 'show.config.json' : null,
     did: typeof show.bluesky?.did === 'string' && show.bluesky.did ? show.bluesky.did : null,
     hasPassword: Boolean(env.BSKY_APP_PASSWORD),
+    appView: env.BSKY_APPVIEW || file.appView || DEFAULT_APPVIEW,
+    // Left raw here; the commands that use them validate them, so a bad list fails loudly there.
+    repostAuthors: show.bluesky?.repostAuthors,
+    profile: show.bluesky?.profile,
     configPath,
   };
 }

@@ -1,6 +1,7 @@
 {
   "siteUrl": "",
   "service": "https://bsky.social",
+  "appView": "https://public.api.bsky.app",
   "langs": ["en"],
   "avatar": "brand/avatar.png"
 }

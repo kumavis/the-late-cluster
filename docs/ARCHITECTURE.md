@@ -224,7 +224,8 @@ episode. `<seg>` is a segment id.
 | `npm run media -- --dir <digest> --uri <at://…>` | fetch a post's pictures, or a video's thumbnail, from Bluesky's public CDN into `<digest>/media/` and print paths and alt text |
 | `npm run sources -- check <sources.json> [--dir <digest>] [--out <file.md>] [--json]` | the live source check: cited posts unchanged, accounts' bios, labels, pinned and recent posts; exit 1 when something needs a person |
 | `npm run bot -- announce <ep> [--live]` | compose the announcement post; dry run unless `--live` |
-| `npm run bot -- profile [--avatar <file>] [--live] [--no-backup]` | set the account's profile picture (`avatar` in `bot.config.json`); dry run unless `--live` |
+| `npm run bot -- profile [--only avatar\|description] [--avatar <file>] [--live] [--no-backup]` | set the account's profile picture (`avatar` in `bot.config.json`) and bio (`bluesky.profile.description` in `show.config.json`); the dry run compares the bio with the live one; dry run unless `--live` |
+| `npm run bot -- repost <post> [--live] [--undo]` | repost a post whose author is in `bluesky.repostAuthors`, or take the repost back; the dry run reads the post and prints the record; dry run unless `--live` |
 | `npm run bot -- dm send <handle-or-did> --file <path> [--live]` | send interview questions by direct message; dry run unless `--live` |
 | `npm run bot -- dm read <handle-or-did> [--limit 50] [--json]` | read that conversation; logs in, changes nothing |
 | `npm run produce -- --week 2026-W47 [--status \| --check <stage> [--task <id> \| --segment <seg>] \| --find "…" \| --from <stage> \| --rework <task> \| --exclude <id>] [--runner headless\|manual\|fixture] [--preview-only]` | drive one episode through the thirteen stages; headless (the default where `claude` is signed in) stops only at a failure or a send-back; `--check … --task` prints one task's lines; `--preview-only` never publishes |
@@ -334,9 +335,19 @@ It is dry-run by default and posts only with `--live` and credentials in the env
 (`BSKY_HANDLE`, `BSKY_APP_PASSWORD`). Later jobs, such as handling opt-out requests sent to the
 account, are on the roadmap.
 
-`profile` sets the account's avatar and nothing else: it keeps every other field of the
-profile record, writes with `swapRecord` so a concurrent change is refused, and first saves
-the picture it replaces to `data/bot/` (gitignored). `dm send` and `dm read` interview one
+`profile` sets the account's avatar and bio (`description`) and nothing else (`--only` picks
+one): it keeps every other field of the profile record, writes with `swapRecord` so a
+concurrent change is refused, and first saves what it replaces (the picture, or the whole
+record when the bio changes) to `data/bot/` (gitignored). The bio is committed, in
+`bluesky.profile` in `show.config.json`; it is held to the lexicon's 256 graphemes and 2560
+bytes, and may name an account as `@handle` only if that handle is in
+`bluesky.profile.credited`. Its dry run reads the live record, unauthenticated, to show
+whether the bio would change. `repost` reposts only posts whose author's DID is in
+`bluesky.repostAuthors` (the committed list is how the owner allows an account) and who is
+not on the scraper's opt-out list; its dry run reads the post from the public AppView
+without logging in, live it refuses to repost twice, `--undo` deletes the repost, and every
+live change is logged to `data/bot/reposts.jsonl`. A repost has no text, so it mentions
+nobody. `dm send` and `dm read` interview one
 person by direct message through the chat service (`atproto-proxy: did:web:api.bsky.chat#bsky_chat`);
 they need an app password with direct-message access, refuse anyone on the scraper's opt-out
 list, and send plain text only, never a mention or link. Message text is private: it lives
@@ -424,8 +435,9 @@ puppets that stand for real accounts. Nothing airs without a person having read 
 The two are kept apart.
 
 **Configuration is committed.** Anything that is not secret lives in a file in git, so it is
-reviewable and the same for everyone: `show.config.json` (the site URL and the show's Bluesky
-handle and DID), each package's own `config/` folder (the scraper's cluster, scoring, safety
+reviewable and the same for everyone: `show.config.json` (the site URL; the show's Bluesky
+handle and DID, the authors the bot may repost, and the account's bio with the handles it may
+credit), each package's own `config/` folder (the scraper's cluster, scoring, safety
 and opt-out lists; the bot's wording), and `terraform/terraform.tfvars` (the zone and its
 records).
 

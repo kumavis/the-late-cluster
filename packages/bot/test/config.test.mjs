@@ -48,3 +48,14 @@ test('handle: BSKY_HANDLE, else bluesky.handle in show.config.json; the did come
   assert.equal(none.handle, null);
   assert.equal(none.handleSource, null);
 });
+
+test('appView: BSKY_APPVIEW, then bot.config.json, then the public AppView; the repost list and bio come from show.config.json', (t) => {
+  const bluesky = { handle: 'show.example.test', did: 'did:plc:show', repostAuthors: ['did:plc:show'], profile: { description: 'Hi', credited: ['owner.example.test'] } };
+  const paths = files(t, { bot: { appView: 'https://appview.example.test' }, show: { bluesky } });
+  assert.equal(loadSettings({ env: { BSKY_APPVIEW: 'https://env.example.test' }, ...paths }).appView, 'https://env.example.test');
+  const s = loadSettings({ env: {}, ...paths });
+  assert.equal(s.appView, 'https://appview.example.test');
+  assert.deepEqual(s.repostAuthors, ['did:plc:show']);
+  assert.deepEqual(s.profile, bluesky.profile);
+  assert.equal(loadSettings({ env: {}, ...files(t, {}) }).appView, 'https://public.api.bsky.app');
+});

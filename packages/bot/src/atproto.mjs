@@ -101,9 +101,35 @@ export function createClient({ service = DEFAULT_SERVICE, fetch = globalThis.fet
       });
     },
 
-    /** One record. Returns { uri, cid, value }; throws XrpcError (error 'RecordNotFound') if absent. */
-    async getRecord({ repo, collection, rkey }) {
-      return call('com.atproto.repo.getRecord', { params: { repo, collection, rkey } });
+    /**
+     * One record. Returns { uri, cid, value }; throws XrpcError (error 'RecordNotFound') if absent.
+     * Records are public: `auth: false` reads one without a session (a dry run does that).
+     */
+    async getRecord({ repo, collection, rkey, auth = true }) {
+      return call('com.atproto.repo.getRecord', { params: { repo, collection, rkey }, auth });
+    },
+
+    /**
+     * Deletes a record. `swapRecord` is the CID it must still have; the server refuses otherwise
+     * (InvalidSwap). Returns the server's reply (a commit, or nothing).
+     */
+    async deleteRecord({ repo, collection, rkey, swapRecord }) {
+      return call('com.atproto.repo.deleteRecord', {
+        method: 'POST', body: { repo, collection, rkey, ...(swapRecord === undefined ? {} : { swapRecord }) },
+      });
+    },
+
+    /**
+     * Post views (author, record, counts, embed view) from a public AppView, without the token:
+     * `appView` is its origin, e.g. https://public.api.bsky.app. Returns { posts }.
+     */
+    async getPosts(uris, { appView }) {
+      if (!appView) throw new Error('getPosts needs an AppView host');
+      const host = new URL(appView);
+      if (host.protocol !== 'https:' && !['localhost', '127.0.0.1', '[::1]'].includes(host.hostname)) {
+        throw new Error(`refusing non-https AppView host: ${appView}`);
+      }
+      return call('app.bsky.feed.getPosts', { params: { uris }, auth: false, host });
     },
 
     /**
@@ -165,9 +191,9 @@ export function createClient({ service = DEFAULT_SERVICE, fetch = globalThis.fet
       return this.proxied(CHAT_PROXY, 'chat.bsky.convo.sendMessage', { method: 'POST', body: { convoId, message: { text } } });
     },
 
-    /** One page of a repo collection, newest first. Returns { records, cursor }. */
-    async listRecords({ repo, collection, limit = 100, cursor }) {
-      return call('com.atproto.repo.listRecords', { params: { repo, collection, limit, cursor } });
+    /** One page of a repo collection, newest first. Returns { records, cursor }. `auth: false` reads it without a session. */
+    async listRecords({ repo, collection, limit = 100, cursor, auth = true }) {
+      return call('com.atproto.repo.listRecords', { params: { repo, collection, limit, cursor }, auth });
     },
   };
 }

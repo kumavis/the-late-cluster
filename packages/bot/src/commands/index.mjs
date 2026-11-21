@@ -3,5 +3,6 @@
 import announce from './announce.mjs';
 import profile from './profile.mjs';
 import dm from './dm.mjs';
+import repost from './repost.mjs';
 
-export const commands = new Map([announce, profile, dm].map((c) => [c.name, c]));
+export const commands = new Map([announce, profile, repost, dm].map((c) => [c.name, c]));

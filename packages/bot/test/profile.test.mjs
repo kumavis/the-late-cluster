@@ -17,12 +17,16 @@ const RECORD_CID = 'bafyreiprofilerecord';
 const OLD_AVATAR = 'bafkreioldavatar';
 const NEW_AVATAR = 'bafkreinewavatar';
 const OLD_BYTES = jpegBytes(500, 500);
+const OLD_DESCRIPTION = 'An automated comedy show. Ünïcødé 🎙️';
 
-/** A throwaway repo root: show.config.json with the account, and brand/avatar.png. */
-function repo(t, { avatar = pngBytes(512, 512), did = DID } = {}) {
+/**
+ * A throwaway repo root: show.config.json with the account and its configured bio (by default the
+ * same as the fixture record's, so the avatar tests see the description unchanged), and brand/avatar.png.
+ */
+function repo(t, { avatar = pngBytes(512, 512), did = DID, profile = { description: OLD_DESCRIPTION, credited: ['owner.example.test'] } } = {}) {
   const root = mkdtempSync(join(tmpdir(), 'late-cluster-bot-profile-'));
   t.after(() => rmSync(root, { recursive: true, force: true }));
-  writeFileSync(join(root, 'show.config.json'), JSON.stringify({ siteUrl: '', bluesky: { handle: HANDLE, did } }));
+  writeFileSync(join(root, 'show.config.json'), JSON.stringify({ siteUrl: '', bluesky: { handle: HANDLE, did, ...(profile ? { profile } : {}) } }));
   mkdirSync(join(root, 'brand'));
   if (avatar) writeFileSync(join(root, 'brand/avatar.png'), avatar);
   return root;
@@ -39,7 +43,7 @@ function existingProfile() {
   return {
     $type: 'app.bsky.actor.profile',
     displayName: 'The Late Cluster',
-    description: 'An automated comedy show. Ünïcødé 🎙️',
+    description: OLD_DESCRIPTION,
     avatar: { $type: 'blob', ref: { $link: OLD_AVATAR }, mimeType: 'image/jpeg', size: OLD_BYTES.length },
     banner: { $type: 'blob', ref: { $link: 'bafkreibanner' }, mimeType: 'image/png', size: 1234 },
     labels: { $type: 'com.atproto.label.defs#selfLabels', values: [{ val: 'bot' }] },
@@ -78,9 +82,9 @@ test('the image parser reads PNG and JPEG sizes from their bytes', () => {
   assert.equal(sniffImageType(Buffer.from('GIF89a')), null);
 });
 
-test('dry run is the default: validates, prints the plan, and makes no request at all', async (t) => {
+test('dry run of the avatar alone: validates, prints the plan, and makes no request at all', async (t) => {
   const root = repo(t);
-  const r = await run(['profile'], { root, env: ENV });
+  const r = await run(['profile', '--only', 'avatar'], { root, env: ENV });
   assert.equal(r.code, 0, r.err);
   assert.equal(r.fetch.calls.length, 0);
   assert.match(r.out, /^DRY RUN: nothing was sent\. Add --live to change the profile\./);
@@ -90,6 +94,9 @@ test('dry run is the default: validates, prints the plan, and makes no request a
   assert.match(r.out, /Pixels: {2}512x512/);
   assert.match(r.out, /Account: @show\.example\.test \(did:plc:showprofile\) on https:\/\/bsky\.social/);
   assert.match(r.out, /getBlob for the current avatar and save it to data\/bot\/avatar-previous-<cid>\.<ext>/);
+  assert.match(r.out, /changing only "avatar";/);
+  assert.match(r.out, /--only avatar: the description is not touched/);
+  assert.ok(!r.out.includes('Description'));
   assert.equal(r.err, '');
   assert.ok(!r.out.includes(PASSWORD));
 });
@@ -97,7 +104,7 @@ test('dry run is the default: validates, prints the plan, and makes no request a
 test('dry run with --avatar and --no-backup; warnings for non-square and small pictures', async (t) => {
   const root = repo(t, { avatar: null });
   writeFileSync(join(root, 'small.jpg'), jpegBytes(300, 200));
-  const r = await run(['profile', '--avatar', 'small.jpg', '--no-backup'], { root });
+  const r = await run(['profile', '--only', 'avatar', '--avatar', 'small.jpg', '--no-backup'], { root });
   assert.equal(r.code, 0, r.err);
   assert.equal(r.fetch.calls.length, 0);
   assert.match(r.out, /Avatar: {2}small\.jpg\n/);
@@ -133,7 +140,7 @@ test('refuses a missing, oversize, wrong-type or fake file, in both modes, befor
       assert.equal(fetch.requests.length, 0);
     }
   }
-  const ok = await run(['profile', '--avatar', 'exact.png'], { root });
+  const ok = await run(['profile', '--only', 'avatar', '--avatar', 'exact.png'], { root });
   assert.equal(ok.code, 0, 'exactly 1,000,000 bytes is allowed');
 });
 
@@ -225,6 +232,7 @@ test('live: no profile record yet creates one, with swapRecord null and nothing 
   assert.deepEqual(put.body.record, {
     $type: 'app.bsky.actor.profile',
     avatar: { $type: 'blob', ref: { $link: NEW_AVATAR }, mimeType: 'image/png', size: 64 },
+    description: OLD_DESCRIPTION,
     createdAt: FIXED_NOW.toISOString(),
   });
   assert.match(r.out, /No profile record yet/);
@@ -254,7 +262,7 @@ test('live: the same picture is a no-op', async (t) => {
     'GET com.atproto.repo.getRecord',
     'POST com.atproto.repo.uploadBlob',
   ]);
-  assert.match(r.out, /already the avatar\. Nothing was written\./);
+  assert.match(r.out, /already the avatar\.\nThe description is already the configured one\.\nNothing to change\. Nothing was written\./);
   assert.equal(existsSync(join(root, 'data/bot')), false);
 });
 
@@ -341,5 +349,167 @@ test('usage: positionals and unknown flags exit 2; help lists the command', asyn
   assert.equal((await run(['profile', 'extra'], { root })).code, 2);
   assert.equal((await run(['profile', '--display-name', 'x'], { root })).code, 2);
   const help = await run(['help'], { root });
-  assert.match(help.out, /profile \[--avatar <file>\] \[--live\] \[--no-backup\]/);
+  assert.match(help.out, /profile \[--only avatar\|description\] \[--avatar <file>\] \[--live\] \[--no-backup\]/);
+  assert.equal((await run(['profile', '--only', 'banner'], { root })).code, 2);
+  assert.equal((await run(['profile', '--only', 'description', '--avatar', 'x.png'], { root })).code, 2);
+});
+
+// The bio (`description`), from bluesky.profile in show.config.json.
+
+const NEW_DESCRIPTION = 'The Late Cluster, with Larry Nx\nthe simcluster\'s own late night talk show';
+
+test('the committed show.config.json seeds the bio as it is live, the credit, and the repost list', () => {
+  const show = JSON.parse(readFileSync(new URL('../../../show.config.json', import.meta.url), 'utf8'));
+  assert.equal(show.bluesky.profile.description, 'The Late Cluster, with Larry Nx\nthe simcluster\'s own late night talk show');
+  assert.deepEqual(show.bluesky.profile.credited, ['kumavis.me']);
+  assert.ok(show.bluesky.repostAuthors.includes(show.bluesky.did), 'the show itself');
+  assert.ok(show.bluesky.repostAuthors.includes('did:plc:c2x5i7fneh7xbvpvw2r3omes'), 'the owner');
+  assert.equal(typeof show.bluesky.$comment, 'string');
+  assert.equal(typeof show.bluesky.profile.$comment, 'string');
+});
+
+test('dry run: an unchanged description says so, reading the record without logging in', async (t) => {
+  const root = repo(t);
+  const fetch = fakePds(routes());
+  const r = await run(['profile'], { root, fetch });
+  assert.equal(r.code, 0, r.err);
+  assert.deepEqual(calls(fetch), ['GET com.atproto.repo.getRecord'], 'one read, no login, no write');
+  assert.equal(fetch.requests[0].headers.authorization, undefined);
+  assert.equal(fetch.requests[0].url.searchParams.get('repo'), DID);
+  assert.match(r.out, /^DRY RUN: nothing was sent\./);
+  assert.match(r.out, /Description \(bluesky\.profile\.description in show\.config\.json\): \d+\/256 graphemes, \d+\/2560 bytes/);
+  assert.match(r.out, /live \(record bafyreiprofilerecord\):/);
+  assert.match(r.out, /=> unchanged: --live would leave the description as it is\./);
+  assert.match(r.out, /changing only "avatar" and "description"/);
+});
+
+test('dry run: a changed description is shown beside the live one, exactly', async (t) => {
+  const root = repo(t, { profile: { description: NEW_DESCRIPTION } });
+  const fetch = fakePds(routes());
+  const r = await run(['profile', '--only', 'description'], { root, fetch });
+  assert.equal(r.code, 0, r.err);
+  assert.deepEqual(calls(fetch), ['GET com.atproto.repo.getRecord']);
+  assert.match(r.out, /configured:\n {4}\| The Late Cluster, with Larry Nx\n {4}\| the simcluster's own late night talk show\n/);
+  assert.match(r.out, /\| An automated comedy show\./);
+  assert.match(r.out, /=> would change\. Exactly, as JSON:/);
+  assert.ok(r.out.includes(`configured: ${JSON.stringify(NEW_DESCRIPTION)}`));
+  assert.ok(!r.out.includes('Avatar:'), '--only description says nothing about the picture');
+  assert.match(r.out, /--only description: the avatar is not touched/);
+
+  const none = fakePds(routes({ record: null }));
+  const r2 = await run(['profile', '--only', 'description'], { root, fetch: none });
+  assert.match(r2.out, /live \(no profile record yet\):\n {4}\(none\)/);
+  assert.match(r2.out, /live: {7}\(none\)/);
+});
+
+test('dry run: a record that cannot be read is reported, not fatal', async (t) => {
+  const root = repo(t);
+  const r0 = routes();
+  r0['com.atproto.repo.getRecord'] = () => [500, { error: 'InternalServerError', message: 'boom' }];
+  const r = await run(['profile', '--only', 'description'], { root, fetch: fakePds(r0) });
+  assert.equal(r.code, 0, r.err);
+  assert.match(r.out, /live: could not be read without logging in \(.*HTTP 500.*\); --live reads it after logging in/);
+});
+
+test('live: a changed description writes only that field, with swapRecord, after saving the record', async (t) => {
+  const root = repo(t, { profile: { description: NEW_DESCRIPTION } });
+  const fetch = fakePds(routes({ root }));
+  const r = await run(['profile', '--only', 'description', '--live'], { root, env: ENV, fetch });
+  assert.equal(r.code, 0, r.err);
+  assert.deepEqual(calls(fetch), [
+    'POST com.atproto.server.createSession',
+    'GET com.atproto.repo.getRecord',
+    'POST com.atproto.repo.putRecord',
+  ]);
+  const put = fetch.requests.at(-1);
+  assert.equal(put.body.swapRecord, RECORD_CID);
+  assert.deepEqual(put.body.record, { ...existingProfile(), description: NEW_DESCRIPTION }, 'every other field, the avatar included, is as it was');
+  assert.deepEqual(put.backupsAtWrite, ['profile-previous-bafyreiprofilerecord.json']);
+  const saved = JSON.parse(readFileSync(join(root, 'data/bot/profile-previous-bafyreiprofilerecord.json'), 'utf8'));
+  assert.deepEqual(saved.value, existingProfile());
+  assert.equal(saved.cid, RECORD_CID);
+  assert.match(r.out, /description: {5}changed/);
+  assert.match(r.out, /record backup: {3}data\/bot\/profile-previous-bafyreiprofilerecord\.json/);
+  assert.ok(!r.out.includes('new avatar:'));
+});
+
+test('live: avatar and description change together in one write', async (t) => {
+  const root = repo(t, { profile: { description: NEW_DESCRIPTION } });
+  const fetch = fakePds(routes({ root }));
+  const r = await run(['profile', '--live'], { root, env: ENV, fetch });
+  assert.equal(r.code, 0, r.err);
+  const puts = fetch.requests.filter((q) => q.nsid === 'com.atproto.repo.putRecord');
+  assert.equal(puts.length, 1);
+  const { avatar, description, ...rest } = puts[0].body.record;
+  const { avatar: _a, description: _d, ...before } = existingProfile();
+  assert.deepEqual(rest, before);
+  assert.equal(avatar.ref.$link, NEW_AVATAR);
+  assert.equal(description, NEW_DESCRIPTION);
+  assert.deepEqual(puts[0].backupsAtWrite.sort(), ['avatar-previous-bafkreioldavatar.jpg', 'profile-previous-bafyreiprofilerecord.json']);
+});
+
+test('live: an unchanged description writes nothing; --only avatar never touches it', async (t) => {
+  const root = repo(t);
+  let fetch = fakePds(routes({ root }));
+  let r = await run(['profile', '--only', 'description', '--live'], { root, env: ENV, fetch });
+  assert.equal(r.code, 0, r.err);
+  assert.deepEqual(calls(fetch), ['POST com.atproto.server.createSession', 'GET com.atproto.repo.getRecord']);
+  assert.match(r.out, /The description is already the configured one\.\nNothing to change\. Nothing was written\./);
+
+  const other = repo(t, { profile: { description: NEW_DESCRIPTION } });
+  fetch = fakePds(routes({ root: other }));
+  r = await run(['profile', '--only', 'avatar', '--live'], { root: other, env: ENV, fetch });
+  assert.equal(r.code, 0, r.err);
+  assert.equal(fetch.requests.at(-1).body.record.description, OLD_DESCRIPTION);
+});
+
+test('a description over 256 graphemes or 2560 bytes is refused before any request', async (t) => {
+  const family = '\u{1F468}‍\u{1F469}‍\u{1F467}‍\u{1F466}'; // one grapheme, 25 bytes
+  for (const [text, re] of [
+    ['x'.repeat(257), /is 257 graphemes; Bluesky bios are limited to 256/],
+    [family.repeat(103), /is 2575 bytes; Bluesky bios are limited to 2560/],
+  ]) {
+    for (const live of [false, true]) {
+      const root = repo(t, { profile: { description: text } });
+      const fetch = fakePds(routes());
+      const r = await run(['profile', '--only', 'description', ...(live ? ['--live'] : [])], { root, env: ENV, fetch });
+      assert.equal(r.code, 1);
+      assert.match(r.err, re);
+      assert.equal(fetch.requests.length, 0);
+    }
+  }
+  const root = repo(t, { profile: { description: 'x'.repeat(256) } });
+  const r = await run(['profile', '--only', 'description'], { root, fetch: fakePds(routes()) });
+  assert.equal(r.code, 0, 'exactly 256 graphemes is allowed');
+});
+
+test('a handle in the description must be a credited account', async (t) => {
+  for (const [text, re] of [
+    ['Made by @someone.bsky.social', /names @someone\.bsky\.social, which is not a credited account\. A handle may appear in the bio only if it is listed in bluesky\.profile\.credited in show\.config\.json \(now: owner\.example\.test\)/],
+    ['ask @did:plc:abc', /names @did:plc:abc, which is not a credited account/],
+    ['by @owner.example.test and @larry', /names @larry,/],
+  ]) {
+    const root = repo(t, { profile: { description: text, credited: ['owner.example.test'] } });
+    const fetch = fakePds(routes());
+    const r = await run(['profile', '--only', 'description', '--live'], { root, env: ENV, fetch });
+    assert.equal(r.code, 1, text);
+    assert.match(r.err, re);
+    assert.equal(fetch.requests.length, 0);
+  }
+  const root = repo(t, { profile: { description: 'Made by @Owner.Example.Test.\nmail: show@example.test', credited: ['@owner.example.test'] } });
+  const r = await run(['profile', '--only', 'description'], { root, fetch: fakePds(routes()) });
+  assert.equal(r.code, 0, r.err);
+
+  const none = repo(t, { profile: { description: 'by @owner.example.test' } });
+  const r2 = await run(['profile', '--only', 'description'], { root: none, fetch: fakePds(routes()) });
+  assert.equal(r2.code, 1);
+  assert.match(r2.err, /\(now: none\)/);
+});
+
+test('no configured description is a clear error unless --only avatar', async (t) => {
+  const root = repo(t, { profile: null });
+  const r = await run(['profile'], { root, fetch: fakePds(routes()) });
+  assert.equal(r.code, 1);
+  assert.match(r.err, /no description configured: set bluesky\.profile\.description in show\.config\.json \(or use --only avatar\)/);
+  assert.equal((await run(['profile', '--only', 'avatar'], { root })).code, 0);
 });

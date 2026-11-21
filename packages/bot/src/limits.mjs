@@ -17,3 +17,7 @@ export const DM_MAX_GRAPHEMES = 1000;
 export const DM_MAX_BYTES = 10_000;
 // chat.bsky.convo.getMessages and listConvos: limit maximum 100.
 export const CHAT_PAGE_MAX_LIMIT = 100;
+// app.bsky.actor.profile `description` (the bio): maxGraphemes 256, maxLength 2560 (UTF-8 bytes),
+// from the same lexicon file as the avatar.
+export const DESCRIPTION_MAX_GRAPHEMES = 256;
+export const DESCRIPTION_MAX_BYTES = 2560;

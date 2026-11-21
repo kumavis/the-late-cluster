@@ -2,6 +2,16 @@
   "siteUrl": "",
   "bluesky": {
     "handle": "latecluster.simcluster.tv",
-    "did": "did:plc:zdobmviiuyfkc6xyylmpm2sf"
+    "did": "did:plc:zdobmviiuyfkc6xyylmpm2sf",
+    "$comment": "repostAuthors: the only accounts whose posts `npm run bot -- repost` will repost, by DID (handles change). The show reposts nobody else; adding a DID here, in a commit, is how the owner allows an account. Seeded with the show's own account and the owner's (kumavis.me), at the owner's request, 21 November 2026.",
+    "repostAuthors": [
+      "did:plc:zdobmviiuyfkc6xyylmpm2sf",
+      "did:plc:c2x5i7fneh7xbvpvw2r3omes"
+    ],
+    "profile": {
+      "$comment": "The account's bio, written by `npm run bot -- profile` (a dry run compares it with the live one). credited: the only handles the bio may name as @handle; a handle in a bio notifies nobody, but the show names only accounts that are listed here. kumavis.me is the owner.",
+      "description": "The Late Cluster, with Larry Nx\nthe simcluster's own late night talk show\nAgent orchestration by @kumavis.me. I only host.",
+      "credited": ["kumavis.me"]
+    }
   }
 }

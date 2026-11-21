@@ -2,8 +2,9 @@
 
 The Bluesky account for *The Late Cluster with Larry Nx*. Its jobs: announce a published
 episode (one post with a line in the show's voice, the episode number and title, the episode
-URL, and a link card with the episode's thumbnail); set the account's profile picture; and
-interview someone by direct message, then read the answer.
+URL, and a link card with the episode's thumbnail); set the account's profile picture and bio;
+repost a post by an account the owner has allowed; and interview someone by direct message,
+then read the answer.
 
 - Node 22, ESM, no npm dependencies, Node builtins only (see `docs/ARCHITECTURE.md`).
 - **Dry run is the default.** Nothing is sent without `--live`.
@@ -12,7 +13,8 @@ interview someone by direct message, then read the answer.
 ```sh
 npm run bot -- announce 1                 # dry run: print exactly what would be sent
 npm run bot -- announce 001-pilot --live  # post it (needs BSKY_APP_PASSWORD, from .secrets)
-npm run bot -- profile                    # dry run: check brand/avatar.png, print what would change
+npm run bot -- profile                    # dry run: check brand/avatar.png, compare the bio with the live one
+npm run bot -- repost https://bsky.app/profile/kumavis.me/post/<rkey>   # dry run: read the post, print the record
 npm run bot -- dm send guest.bsky.social --file questions.txt   # dry run: print the messages
 npm run bot -- dm read guest.bsky.social  # log in and print the conversation; changes nothing
 npm run bot -- help
@@ -30,7 +32,7 @@ The bot cannot do any of this for you. Do it once, by hand.
    Agent", part 3) asks bot accounts to identify themselves with a `bot` self-label on
    their profile (`labels: { $type: 'com.atproto.label.defs#selfLabels', values: [{ val: 'bot' }] }`
    on the `app.bsky.actor.profile` record). This package writes only the profile's
-   `avatar` (see [`profile`](#profile---avatar-file---live---no-backup)); set the label once
+   `avatar` and `description` (see [`profile`](#profile)); set the label once
    from the app if it offers the option, or with a one-off script as in that tutorial. Also say in the bio that the account is automated, that it is a comedy show
    played by labelled puppets, who runs it, and how to ask to be left out.
 3. **Create an app password** (in the app: Settings, Privacy and security, App passwords).
@@ -50,6 +52,7 @@ The bot cannot do any of this for you. Do it once, by hand.
    | `SITE_URL` | no, if set in a config file | the site root, e.g. `https://simcluster.tv/`; falls back to `siteUrl` in `bot.config.json`, then to `siteUrl` in the repo's `show.config.json` |
    | `BSKY_HANDLE` | no | overrides `bluesky.handle` in `show.config.json` (for testing with another account) |
    | `BSKY_PDS` | no | PDS host, default `https://bsky.social` |
+   | `BSKY_APPVIEW` | no | the public AppView `repost` reads posts from without logging in; overrides `appView` in `bot.config.json` (default `https://public.api.bsky.app`) |
    | `BOT_USER_AGENT` | no | the `User-Agent` header; the default is generic and names neither the show nor its owner |
 
    In GitHub Actions there is no `.secrets`: store `BSKY_APP_PASSWORD` as a **repository
@@ -72,14 +75,41 @@ handle ever stops resolving, setting `BSKY_HANDLE` to the DID is the quick fix.
 ### `bot.config.json`
 
 ```json
-{ "siteUrl": "", "service": "https://bsky.social", "langs": ["en"], "avatar": "brand/avatar.png" }
+{ "siteUrl": "", "service": "https://bsky.social", "appView": "https://public.api.bsky.app", "langs": ["en"], "avatar": "brand/avatar.png" }
 ```
 
 Environment variables win over the file. The site URL is looked up as `SITE_URL`, then this
 file's `siteUrl`, then `siteUrl` in the repo root's `show.config.json` (the show-wide setting
 the episode builds use), so normally it is set once, there. `langs` is the post's language tags (at most 3).
 `avatar` is the picture `profile` sets, relative to the repo root (default `brand/avatar.png`).
+`appView` is where `repost` reads a post (author, text, counts) without logging in.
 The file holds no secrets and can be committed.
+
+### `bluesky` in `show.config.json`
+
+The show-wide account settings, committed at the repo root:
+
+```json
+"bluesky": {
+  "handle": "latecluster.simcluster.tv",
+  "did": "did:plc:zdobmviiuyfkc6xyylmpm2sf",
+  "$comment": "why repostAuthors exists",
+  "repostAuthors": ["did:plc:zdobmviiuyfkc6xyylmpm2sf", "did:plc:c2x5i7fneh7xbvpvw2r3omes"],
+  "profile": {
+    "$comment": "what the bio and credited are",
+    "description": "The Late Cluster, with Larry Nx\nthe simcluster's own late night talk show",
+    "credited": ["kumavis.me"]
+  }
+}
+```
+
+- `repostAuthors`: the only authors `repost` will repost, by DID (handles change). Seeded
+  with the show's own account and the owner's (`kumavis.me`). Adding a DID here, in a commit,
+  is how the owner allows an account; nothing else does.
+- `profile.description`: the bio `profile` writes, exactly (lines joined by `\n`). It was
+  seeded with the bio as it was live on 21 November 2026, so a dry run then reported no change.
+- `profile.credited`: the only handles the bio may name as `@handle` (seed: `kumavis.me`, the
+  owner). See [No mentions](#no-mentions).
 
 ## `announce <ep> [--live] [--force]`
 
@@ -135,36 +165,92 @@ without `BSKY_APP_PASSWORD` is an error that names what is missing. With them:
 The duplicate check reads the PDS directly rather than the AppView, so a post made a
 moment ago is seen. It only looks back 500 posts.
 
-## `profile [--avatar <file>] [--live] [--no-backup]`
+## `profile`
 
-Sets the account's profile picture, and nothing else. The picture is `avatar` in
-`bot.config.json` (relative to the repo root), or `--avatar <file>` (relative to where you
-run it).
+```
+profile [--only avatar|description] [--avatar <file>] [--live] [--no-backup]
+```
 
-**Dry run is the default**: no login and no request of any kind. It checks the file and
-prints its path, type, byte size and pixel size, the account (handle and DID) it would
-change, and the steps `--live` would take.
+Sets the account's profile picture and its bio (`description`), and nothing else. The picture
+is `avatar` in `bot.config.json` (relative to the repo root), or `--avatar <file>` (relative to
+where you run it). The bio is `bluesky.profile.description` in `show.config.json`. By default
+both are handled; `--only avatar` or `--only description` handles just one and leaves the other
+field exactly as it is (`--avatar` with `--only description` is a usage error).
 
-Checked in both modes, before any request: the file exists; it is PNG or JPEG **by its
-bytes**, not its name; it is at most 1,000,000 bytes (the `app.bsky.actor.profile` lexicon's
-`avatar` limit); its header can be read. A picture that is not square, or is under 400 px on
-a side, gets a warning but is not refused.
+**Dry run is the default**: no login, and nothing is written. For the avatar it makes no request
+at all: it checks the file and prints its path, type, byte size and pixel size. For the bio it
+makes one public read, `com.atproto.repo.getRecord` for `app.bsky.actor.profile/self` without
+the token, and prints the configured bio and the live one line by line, then whether `--live`
+would change it (when it would, both are printed again as JSON, so a trailing space or a
+missing newline shows). If that read fails, the dry run says so and goes on. It also prints the
+account (handle and DID) and the steps `--live` would take.
+
+Checked in both modes, before any request:
+
+- the picture: it exists; it is PNG or JPEG **by its bytes**, not its name; it is at most
+  1,000,000 bytes (the `app.bsky.actor.profile` lexicon's `avatar` limit); its header can be
+  read. A picture that is not square, or is under 400 px on a side, gets a warning but is not
+  refused;
+- the bio: it is set and not blank; it is at most 256 graphemes and 2560 UTF-8 bytes (the
+  lexicon's `description` limits); every `@handle` (or `@did:...`) in it is listed in
+  `bluesky.profile.credited`. Anything else is refused, naming the handle and the list.
 
 `--live`, in order:
 
 1. `createSession` with the handle and app password;
 2. stop unless the session's DID is `bluesky.did` in `show.config.json`;
 3. `com.atproto.repo.getRecord` for `app.bsky.actor.profile/self` (no record yet: one is created);
-4. `uploadBlob` with the picture; if its CID is already the avatar's, stop, writing nothing;
-5. unless `--no-backup`, fetch the current avatar (`com.atproto.sync.getBlob`, unauthenticated,
-   from the PDS named in the session's DID document) and save it as
-   `data/bot/avatar-previous-<cid>.<ext>` (gitignored). If that fails, nothing is written;
+4. avatar: `uploadBlob` with the picture; if its CID is already the avatar's, the avatar is left
+   alone. Bio: compared with the record's `description`, exactly. If neither changes, stop,
+   writing nothing;
+5. unless `--no-backup`, save what is about to be replaced, in `data/bot/` (gitignored): the
+   current avatar (`com.atproto.sync.getBlob`, unauthenticated, from the PDS named in the
+   session's DID document) as `avatar-previous-<cid>.<ext>` when the avatar changes, and the
+   whole profile record as `profile-previous-<record cid>.json` when the bio changes. If either
+   fails, nothing is written;
 6. `com.atproto.repo.putRecord` with `swapRecord` set to the CID read in step 3 (`null` when
    there was no record), so a change made elsewhere in the meantime is refused, not
-   overwritten. Every other field (display name, description, banner, labels, pinned post,
-   starter pack, `createdAt`, and anything unrecognised) is kept exactly as read; only `avatar`
-   changes;
-7. print the previous avatar's CID, the new one, and where the backup went.
+   overwritten. Every other field (display name, banner, labels, pinned post, starter pack,
+   `createdAt`, and anything unrecognised) is kept exactly as read; only the fields that
+   changed, `avatar` and/or `description`, are replaced, in one write;
+7. print the previous avatar's CID, the new one, whether the bio changed, and where the backups went.
+
+## `repost <post> [--live] [--undo]`
+
+Reposts one post. `<post>` is a `https://bsky.app/profile/<handle-or-did>/post/<rkey>` address
+or an `at://<handle-or-did>/app.bsky.feed.post/<rkey>` URI.
+
+It reposts only posts whose **author's DID is in `bluesky.repostAuthors`** in `show.config.json`
+(seeded with the show's own account and the owner's). Any other author is refused, with a
+message saying that the list is how the owner allows one. The scraper's **opt-out list** is
+checked too, as `dm` checks it: by handle as typed, by DID once resolved, and by the post
+author's handle as the AppView gives it. An author given as a DID who is not on the list, or a
+handle on the opt-out list, is refused before any request.
+
+**Dry run is the default.** It may read, unauthenticated, and writes nothing: it resolves a
+handle with `com.atproto.identity.resolveHandle`, fetches the post from the public AppView
+(`app.bsky.feed.getPosts` on `appView`, default `https://public.api.bsky.app`; the token never
+goes there), and prints the author, date, text, reply, repost, quote and like counts, whether it
+has a video, and the exact `app.bsky.feed.repost` record `--live` would create: `subject` with
+the post's `uri` and `cid`, and `createdAt`. It also looks through the account's own reposts
+(`com.atproto.repo.listRecords`, unauthenticated) and says if this post is already reposted; if
+that read fails it says so and `--live` checks again after logging in.
+
+`--live`: `createSession`; stop unless the session is `bluesky.did`; the same resolve, read and
+checks; `listRecords` on the account's `app.bsky.feed.repost` collection (up to 10 pages of 100),
+and if any record's `subject.uri` is this post, say so and stop, writing nothing; otherwise
+`com.atproto.repo.createRecord`, print the repost's `at://` address, and append one JSON line to
+`data/bot/reposts.jsonl` (gitignored): time, `action`, the subject, and the repost's address.
+
+`--undo` takes the account's repost of that post back: it finds it the same way and deletes it
+with `com.atproto.repo.deleteRecord` (with `swapRecord` set to the repost record's CID), logging
+an `undo` line. A dry run prints the record it would delete. Undoing needs no permission and
+skips the repost list and the opt-out list, since it only removes; if there is no repost it
+says so and writes nothing.
+
+A repost carries no text and no facets, so the no-mentions rule is not touched; a repost does
+notify the author it reposts, which is why only listed authors can be reposted. `--text`,
+`--quote` and `--mention` are rejected with an explanation: this command never makes a quote post.
 
 ## `dm send <handle-or-did> --file <path> [--live]`
 
@@ -233,6 +319,20 @@ command line for that one run, never handles read from an episode, a manifest, t
 scraper's data or a cast file; it resolves each to a DID and shows them in the dry run; and
 it is never on by default.
 
+### What is and is not a mention
+
+- **A mention** is a `app.bsky.richtext.facet#mention` facet in a post: it links a DID and
+  notifies that account. The bot never creates one, in any command.
+- **A repost** (`repost`) is an `app.bsky.feed.repost` record holding only a reference to the
+  post and a time. It has no text and no facets, so it mentions nobody. It does notify the
+  post's author, as any repost does, which is why it is limited to `bluesky.repostAuthors`.
+- **A handle in the bio** (`profile`) is plain text: the profile record's `description` has no
+  facets, and the apps' turning `@name` into a link there notifies nobody. In the spirit of the
+  rule all the same, the bio may name an account as `@handle` only if it is listed in
+  `bluesky.profile.credited` (seed: `kumavis.me`, the owner, credited at the owner's request);
+  any other `@handle` or `@did:...` in the configured text is refused before anything is sent.
+- **Direct messages** never carry a mention, a link or a facet (see `dm send`).
+
 ## Code layout
 
 ```
@@ -241,10 +341,12 @@ src/cli.mjs             argument parsing and dispatch; everything injectable for
 src/commands/index.mjs  the command registry
 src/commands/announce.mjs
 src/commands/profile.mjs
+src/commands/repost.mjs
 src/commands/dm.mjs
 src/atproto.mjs         XRPC client over an injectable fetch: createSession, uploadBlob,
-                        createRecord, listRecords, getRecord, putRecord, getBlob,
-                        resolveHandle, and proxied chat calls (getConvoForMembers,
+                        createRecord, listRecords, getRecord, putRecord, deleteRecord, getBlob,
+                        resolveHandle, getPosts (public AppView, no token),
+                        and proxied chat calls (getConvoForMembers,
                         listConvos, getMessages, sendMessage)
 src/image.mjs           PNG/JPEG type and pixel size from the file's bytes
 src/optout.mjs          reads the scraper's opt-out list
@@ -294,10 +396,17 @@ No network: every request goes to an injected fake `fetch`. Covered: byte offset
 non-ASCII text, the grapheme and byte limits, manifest validation and refusals, the dry-run
 output, the live call order and request bodies, the duplicate check (with paging) and
 `--force`, the thumbnail size limit, credential errors, and that no password or token ever
-reaches the output. For `profile`: a dry run makes no request, every other profile field
+reaches the output. For `profile`: a dry run of the avatar makes no request, every other profile field
 (including unknown ones) is kept, a missing record is created, `swapRecord` is sent, the same
 CID is a no-op, the DID check comes before any upload, the backup is written before the write
-and a failed backup stops it, `--no-backup`, and type, size and fake-PNG refusals. For `dm`:
+and a failed backup stops it, `--no-backup`, and type, size and fake-PNG refusals; for the bio,
+the committed seed, a dry run's single unauthenticated read and its "unchanged" and "would
+change" reports, a changed bio written alone with `swapRecord` after the record is saved, both
+fields in one write, `--only` either way, the 256-grapheme and 2560-byte limits (exactly 256
+allowed), and uncredited `@handle` and `@did:` refusals. For `repost`: address parsing, a dry
+run that only reads (no login, no token, nothing written), the exact record created live, the
+log line, an author not on the list or on the opt-out list refused, the AppView's author
+checked, an existing repost detected (with paging), `--undo` in both modes, and the DID check. For `dm`:
 zero requests in a dry run, the proxy header on chat calls only, order and stop-at-first-failure,
 limit, empty, mention and link refusals, the opt-out list, the DID check, `read` making no
 write and never calling `updateRead`, the sent log, and the plain-words chat errors. Fixtures
@@ -317,6 +426,16 @@ of the `app.bsky` lexicon authority, and `bluesky-social/atproto` `lexicons/com/
   `listRecords` (limit max 100), `getRecord`, `putRecord` (`swapRecord` nullable: `null`
   means the record must not exist yet), `com.atproto.sync.getBlob`, `com.atproto.identity.resolveHandle`.
 - `app.bsky.actor.profile`: `avatar` is a blob, accept `image/png`, `image/jpeg`, maxSize 1,000,000.
+
+Added on 2026-11-21 for `repost` and the bio, from the same lexicons as known then (not
+re-fetched for this change; check them before relying on a limit at its edge):
+
+- `app.bsky.actor.profile`: `description` maxGraphemes 256, maxLength 2560 (UTF-8 bytes); it has no facets.
+- `app.bsky.feed.repost`: `subject` (a `com.atproto.repo.strongRef`, `uri` and `cid`) and
+  `createdAt`, both required.
+- `com.atproto.repo.deleteRecord`: `repo`, `collection`, `rkey`, optional `swapRecord`.
+- `app.bsky.feed.getPosts`: `uris` (at most 25), served without a token by the public AppView
+  `public.api.bsky.app`; each post view has `uri`, `cid`, `author`, `record`, `embed` and the counts.
 - `chat.bsky.convo.defs#messageInput`: `text` maxGraphemes 1000, maxLength 10000; `getMessages`
   and `listConvos` limit max 100; chat is reached with `atproto-proxy: did:web:api.bsky.chat#bsky_chat`.
 - The `bot` profile self-label and the "only interact when tagged" guidance: atproto.com,
