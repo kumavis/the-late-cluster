@@ -11,8 +11,10 @@
  * test sentences; distance = pitch semitones / 2 and spectrum dB / 2.5). A guest whose voice is
  * already 1.5 or more from everything placed before it keeps it, so its fitted respellings stay
  * good. Any other guest gets the slot (a body, a pitch, a timbre, from voices-lib.mjs) that clears
- * 1.5 nearest its old pitch, or the most distant one if none clears it. Only `body`, `f0` and
- * `source` change; `rate`, `accent` and `pan` (the attitude and the place) stay.
+ * 1.5 nearest its old pitch, or the most distant one if none clears it. A `guest: true` entry with no
+ * `body` (a writer's entry) has no voice yet: it gets the slot that clears 1.5 with the most room, so
+ * fresh guests spread across the range, and the table says "new (no voice yet)". Only `body`, `f0`
+ * and `source` change (inserted if absent); `rate`, `accent` and `pan` (the attitude and the place) stay.
  *
  * Rules, per guest: not-lowest, not-highest, below:<Hz>, above:<Hz> (measured median f0), keep,
  * new. The pronoun steer (config/voices.json, the owner's ruling of 21 November 2026) adds a soft
@@ -29,9 +31,8 @@ import { CAST } from "../src/cast.js";
 import { measureVoice } from "./analyze.ts";
 import { loadEpisode, exitOnEpisodeError } from "./episode.mjs";
 import { draftSlugs } from "./draft.mjs";
-import { MIN_DISTANCE, allowed, assign, guestPronouns, nearest, parseRule, pronounText, slotGrid, steerRules } from "./voices-lib.mjs";
+import { MIN_DISTANCE, allowed, assign, castGuests, guestPronouns, nearest, parseRule, pronounText, slotGrid, steerRules, writeVoice } from "./voices-lib.mjs";
 import { REPO } from "./episode.mjs";
-import { parseLiteral, prop, setProp } from "./source-edit.mjs";
 
 /** the house: whoever src/cast.js defines, before any episode is merged in */
 const HOUSE = Object.keys(CAST);
@@ -61,15 +62,15 @@ const t0 = performance.now();
 const ep = await loadEpisode(pos[0]).catch(exitOnEpisodeError);
 
 // ---- who: the episode's own cast entries, then each draft's
-type Def = { file: string; from: string; entry: any };
+// (an entry with a body, or `guest: true` with no voice yet: a writer's entry, placed fresh)
+type Def = { file: string; from: string; entry: any; voiced: boolean };
 const guests = new Map<string, Def[]>();
 const addFile = async (file: string, from: string) => {
   if (!existsSync(file)) return;
   const own = (await import(pathToFileURL(file).href)).CAST ?? {};
-  for (const [id, entry] of Object.entries<any>(own)) {
-    if (HOUSE.includes(id) || !entry?.body) continue;
+  for (const { id, entry, voiced } of castGuests(own, HOUSE)) {
     if (!guests.has(id)) guests.set(id, []);
-    guests.get(id)!.push({ file, from, entry });
+    guests.get(id)!.push({ file, from, entry, voiced });
   }
 };
 await addFile(join(ep.dir, "cast.js"), "episode");
@@ -93,9 +94,10 @@ for (const [id, defs] of guests) {
   // the voice it has now: the episode's entry if there is one, else the first draft's
   // (when the files disagree, the episode's or the first draft's is tried first, and if it is kept
   // it is written into the others, so the guest has one voice everywhere)
-  const now = defs[0].entry;
+  // (a guest with no voice in any file has none: feat null, placed fresh)
+  const now = defs.find((d) => d.voiced) ?? null;
   const distinctVoices = new Set(defs.map((d) => JSON.stringify([d.entry.body, d.entry.f0, d.entry.source])));
-  gl.push({ id, feat: await measureVoice(spec(now)), defs, split: distinctVoices.size > 1 });
+  gl.push({ id, feat: now ? await measureVoice(spec(now.entry)) : null, now, defs, split: distinctVoices.size > 1, fresh: !now });
 }
 // ---- stated pronouns, from the sources.json record the pipeline carries (never from the cast entry)
 const readJson = (f: string) => { try { return JSON.parse(readFileSync(f, "utf8")); } catch { return null; } };
@@ -114,7 +116,7 @@ const result = assign({ house, guests: gl.map((g) => ({ id: g.id, feat: g.feat }
 
 // a slot was measured at a standard rate and accent; measured with the guest's own, a new voice can
 // land closer than it looked. Such a guest is placed again from a short list measured its own way.
-const real = async (k: number, v: any) => measureVoice(spec({ ...gl[k].defs[0].entry, body: v.body, f0: v.f0, source: v.source }));
+const real = async (k: number, v: any) => measureVoice(spec({ ...(gl[k].now ?? gl[k].defs[0]).entry, body: v.body, f0: v.f0, source: v.source }));
 const feats: any[] = [];
 for (const [k, r] of result.entries()) feats[k] = r.keep ? gl[k].feat : await real(k, r.slot);
 for (const [k, r] of result.entries()) {
@@ -146,18 +148,12 @@ for (const [k, r] of result.entries()) {
 
 // ---- write: body, f0 and source of each changed guest, in every file that defines it
 const writes = new Map<string, string>();
-const fmtObj = (o: Record<string, number>) => `{ ${Object.entries(o).map(([k, v]) => `${k}: ${v}`).join(", ")} }`;
 for (const [k, r] of result.entries()) {
   if (r.keep && !gl[k].split) continue;
-  const v = r.keep ? gl[k].defs[0].entry : r.slot;
+  const v = r.keep ? gl[k].now!.entry : r.slot;
   for (const d of gl[k].defs) {
-    if (r.keep && d === gl[k].defs[0]) continue;
-    let src = writes.get(d.file) ?? readFileSync(d.file, "utf8");
-    for (const [key, val] of [["body", fmtObj(v.body)], ["f0", String(v.f0)], ["source", fmtObj(v.source ?? {})]] as const) {
-      const entry = prop(parseLiteral(src, { name: "CAST" }), r.id)?.value;
-      src = setProp(src, entry, key, val, { after: key === "source" ? "accent" : "title" });
-    }
-    writes.set(d.file, src);
+    if (r.keep && d === gl[k].now) continue;
+    writes.set(d.file, writeVoice(writes.get(d.file) ?? readFileSync(d.file, "utf8"), r.id, v));
   }
 }
 // the final voices, measured with each guest's own rate and accent
@@ -173,6 +169,7 @@ const table = final.map((f) => {
     nearest: nn?.id ?? null,
     distance: nn ? Math.round(nn.distance * 100) / 100 : null,
     kept: f.r.keep,
+    ...(gl[f.k].fresh ? { fresh: true } : {}),
     ...(f.r.keep ? {} : { voice: { body: f.r.slot.body, f0: f.r.slot.f0, source: f.r.slot.source, note: f.r.slot.note }, was: before ? Math.round(before.f0) : null, split: gl[f.k].split }),
     ...(rules[f.id] ? { rules: rules[f.id].map((x) => x.rule + (x.hz ? `:${x.hz}` : "")) } : {}),
     pronouns: pronounText(said.get(f.id)),
@@ -185,7 +182,7 @@ const bad = table.filter((t) => t.distance !== null && t.distance < MIN_DISTANCE
 console.log(`voices ${ep.id}: ${table.length} guests${drafts.length ? ` from the episode and ${drafts.length} drafts` : ""} against ${HOUSE.length} house voices · nearest at least ${MIN_DISTANCE} · ${((performance.now() - t0) / 1000).toFixed(0)} s`);
 const w = Math.max(6, ...table.map((t) => t.id.length));
 for (const t of table) {
-  const what = t.kept ? (gl.find((g) => g.id === t.id)!.split ? `kept (${t.in[0]}'s voice, now in all its files)` : "kept") : `new: ${t.voice!.body.female}/${t.voice!.body.child} f0 ${t.voice!.f0} ${t.voice!.note}${t.was ? ` (was ${t.was} Hz)` : ""}`;
+  const what = t.kept ? (gl.find((g) => g.id === t.id)!.split ? `kept (${t.in[0]}'s voice, now in all its files)` : "kept") : `${t.fresh ? "new (no voice yet)" : "new"}: ${t.voice!.body.female}/${t.voice!.body.child} f0 ${t.voice!.f0} ${t.voice!.note}${t.was ? ` (was ${t.was} Hz)` : ""}`;
   const steer = typeof t.steer === "string" ? `steer ${t.steer}` : `steer ${t.steer.wanted}: ${t.steer.met ? "met" : "NOT MET"}`;
   console.log(`${t.id.padEnd(w)} ${String(t.f0).padStart(4)} Hz  ~${String(t.nearest).padEnd(w)} ${t.distance?.toFixed(2)}  ${what}${t.distance! < MIN_DISTANCE ? "  TOO CLOSE" : ""}  [${t.in.join(", ")}]  pronouns ${t.pronouns}; ${steer}`);
 }

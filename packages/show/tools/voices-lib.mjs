@@ -3,6 +3,7 @@
 // renders through the engine) and writes the cast entries; everything here is arithmetic.
 //
 // Pure, Node builtins only: `node --test` loads it with nothing installed.
+import { parseLiteral, prop, setProp } from './source-edit.mjs'
 
 /** below this nearest-neighbour distance two voices are easy to confuse (tools/README.md) */
 export const MIN_DISTANCE = 1.5
@@ -94,7 +95,9 @@ const better = (a, b) => {
  * at least `min` from the house and from every voice already placed (so its respellings stay
  * valid), unless a rule says otherwise. Otherwise it gets the slot farthest from everything placed
  * that its rules allow, preferring, among slots that clear `min`, the one nearest its current
- * pitch (with `margin` to spare: slots are measured at a standard rate and accent). `prefer` maps an
+ * pitch (with `margin` to spare: slots are measured at a standard rate and accent); a guest with no
+ * voice yet (feat null) has no old pitch, so among those it gets the one with the most room, which
+ * spreads fresh guests across the range. `prefer` maps an
  * id to soft rules (the pronoun steer, steerRules): among slots that clear `min`, one that meets them
  * comes first; distinctness always comes before them, and a hand rule for the guest switches them
  * off. A guest with a steer gets `steer: { wanted, met }`. Returns [{ id, keep, slot?, feat, nearest: { id, distance } }] in the input order.
@@ -195,3 +198,37 @@ export function guestPronouns(sources = [], authors = {}) {
 
 /** how a pronoun record reads in the table: the phrase, "none stated", or "no source record" */
 export const pronounText = (x) => (!x ? 'no source record' : x.pronouns?.text ? x.pronouns.text : 'none stated')
+
+/**
+ * Which entries of a cast.js `CAST` are guests to place: every id that is not a house id and either
+ * has a voice (`body`) or is marked `guest: true` without one (a writer's entry, `{ name, handle,
+ * title, guest: true }`: a guest that needs a voice). Anything else is skipped. Returns
+ * [{ id, entry, voiced }] in the file's order.
+ */
+export function castGuests(own = {}, house = []) {
+  const out = []
+  for (const [id, entry] of Object.entries(own ?? {})) {
+    if (house.includes(id) || !entry || typeof entry !== 'object') continue
+    if (entry.body) out.push({ id, entry, voiced: true })
+    else if (entry.guest === true) out.push({ id, entry, voiced: false })
+  }
+  return out
+}
+
+const fmtObj = (o) => `{ ${Object.entries(o ?? {}).map(([k, v]) => `${k}: ${v}`).join(', ')} }`
+
+/**
+ * Write a voice ({ body, f0, source }) into cast entry `id` of a cast.js source: each of the three
+ * keys is replaced where it is, or inserted (body after `title`, f0 after `body`, source after
+ * `accent` or else after `f0`), so an entry that has none of them yet, on one line or several, gets
+ * all three and keeps every other key and comment as it was. Returns the new source.
+ */
+export function writeVoice(src, id, v) {
+  for (const [key, val] of [['body', fmtObj(v.body)], ['f0', String(v.f0)], ['source', fmtObj(v.source)]]) {
+    const entry = prop(parseLiteral(src, { name: 'CAST' }), id)?.value
+    if (!entry) throw new Error(`no cast entry ${id}`)
+    const after = key === 'body' ? 'title' : key === 'f0' ? 'body' : prop(entry, 'accent') ? 'accent' : 'f0'
+    src = setProp(src, entry, key, val, { after })
+  }
+  return src
+}

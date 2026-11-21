@@ -77,7 +77,7 @@ function draftTask(ctx, d) {
       d.standing ? STANDING[d.standing] : `Draft one segment from card ${d.card}.`,
       d.ideas.length ? `The ideas ranked for it:\n${ideaLines.join('\n')}` : d.cards.length ? 'No idea was ranked for it: work from the card.' : 'No idea was ranked for it: take its material from the pool (rank/pool.md).',
       d.standing === 'music' && prev?.song?.genre ? `Avoid: the genre "${prev.song.genre}".` : null,
-      `Write drafts/${d.slug}/script.js in the script format of packages/show/tools/README.md, with \`id: '${d.slug}'\`, and drafts/${d.slug}/notes.json: ${NOTES(d)}. If real accounts appear, drafts/${d.slug}/sources.json (playbooks/sources.md); a guest the studio lacks goes in drafts/${d.slug}/cast.js.`,
+      `Write drafts/${d.slug}/script.js in the script format of packages/show/tools/README.md, with \`id: '${d.slug}'\`, and drafts/${d.slug}/notes.json: ${NOTES(d)}. If real accounts appear, drafts/${d.slug}/sources.json (playbooks/sources.md); a guest the studio lacks goes in drafts/${d.slug}/cast.js as \`{ name, handle, title, guest: true }\` with no voice settings, because a sound editor places the voice (\`npm run voices\`).`,
       'Write words. Do not render audio and do not chase what the engine hears: the fitting tool and a sound editor do that, and send back only a line that cannot be said.',
       'Television: nothing on screen for the viewer to read in silence. Run the experiment (experiment.md) where it touches this segment.',
     ].filter(Boolean),

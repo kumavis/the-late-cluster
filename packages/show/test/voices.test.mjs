@@ -103,3 +103,74 @@ test('pronoun steer: applied as a preference; distinctness first; a hand rule wi
   assert.equal(e.steer.met, false)
   assert.ok(e.feat.f0 < 120)
 })
+
+// A writer's guest entry ({ name, handle, title, guest: true }, no voice settings): found, placed
+// fresh with the steer, and written. Invented guests on .example handles.
+import { castGuests, writeVoice } from '../tools/voices-lib.mjs'
+
+test('a guest: true entry with no body is a guest to place; one with neither is skipped; house ids are skipped', () => {
+  const own = {
+    larry: { name: 'House', body: { female: 0, child: 0 }, f0: 100 },
+    nova: { name: 'Nova', handle: '@nova.example', title: 'Posted it', guest: true },
+    olde: { name: 'Olde', handle: '@olde.example', title: 'Voiced', guest: true, body: { female: 1, child: 0 }, f0: 225 },
+    prop: { name: 'A prop', handle: '@prop.example', title: 'Not a guest' },
+  }
+  assert.deepEqual(castGuests(own, ['larry']).map((g) => [g.id, g.voiced]), [['nova', false], ['olde', true]])
+})
+
+test('a guest with no voice is placed fresh: clears the bar, spreads with the most room, and takes the steer', () => {
+  const lo = [{ rule: 'above', hz: 120 }]
+  const hi = [{ rule: 'below', hz: 220 }]
+  const r = assign({ house, guests: [{ id: 'she', feat: null }, { id: 'he', feat: null }, { id: 'free', feat: null }], slots, prefer: { she: lo, he: hi } })
+  for (const x of r) {
+    assert.equal(x.keep, false)
+    assert.ok(x.nearest.distance >= MIN_DISTANCE, `${x.id} ${x.feat.f0}: nearest ${x.nearest.distance}`)
+  }
+  assert.ok(r[0].feat.f0 > 120 && r[0].steer.met, JSON.stringify(r[0]))
+  assert.ok(r[1].feat.f0 < 220 && r[1].steer.met, JSON.stringify(r[1]))
+  assert.equal(r[2].steer, undefined, 'none stated: no steer')
+  assert.equal(new Set(r.map((x) => x.slot.key)).size, 3)
+  // with no steer, the slot with the most room: a lone fresh guest takes a pitch at the edge of the range, not the middle
+  const lone = assign({ house, guests: [{ id: 'x', feat: null }], slots })[0]
+  assert.ok(lone.feat.f0 <= 96 || lone.feat.f0 >= 240, String(lone.feat.f0))
+  // the steer still keeps a she/her guest out of the low band even when the low edge has the most room
+  const shel = assign({ house, guests: [{ id: 'x', feat: null }], slots: slots.filter((s) => s.f0 < 100 || s.f0 === 172), prefer: { x: lo } })[0]
+  assert.ok(shel.feat.f0 > 120, String(shel.feat.f0))
+  const hel = assign({ house, guests: [{ id: 'x', feat: null }], slots: slots.filter((s) => s.f0 > 230 || s.f0 === 96), prefer: { x: hi } })[0]
+  assert.ok(hel.feat.f0 < 220, String(hel.feat.f0))
+})
+
+test('writeVoice: an entry with no voice keys, on one line or several, gets body, f0 and source; the rest stays', async () => {
+  const v = { body: { female: 0.5, child: 0 }, f0: 205, source: { tension: 0.62, brightness: 0.5 } }
+  const src = [
+    '// Guests of an invented draft. No voice settings: a sound editor places the voices.',
+    'export const CAST = {',
+    "  nova: { name: \"Nova 🌸\", handle: \"@nova.example\", title: 'Posted it, once', guest: true }, // one line",
+    '  wren: {',
+    "    name: 'Wren', // the account's display name",
+    "    handle: '@wren.example',",
+    "    title: 'Replied',",
+    '    guest: true,',
+    '  },',
+    "  olde: { name: 'Olde', handle: '@olde.example', title: 'Voiced', guest: true, body: { female: 1, child: 0 }, f0: 225, rate: 1.1, accent: 0.3, source: { tension: 0.5 } },",
+    '}',
+    '',
+  ].join('\n')
+  let out = writeVoice(src, 'nova', v)
+  out = writeVoice(out, 'wren', v)
+  out = writeVoice(out, 'olde', v)
+  const lines = out.split('\n')
+  assert.equal(lines[0], src.split('\n')[0])
+  assert.equal(lines[2], "  nova: { name: \"Nova 🌸\", handle: \"@nova.example\", title: 'Posted it, once', body: { female: 0.5, child: 0 }, f0: 205, source: { tension: 0.62, brightness: 0.5 }, guest: true }, // one line")
+  assert.ok(out.includes("    name: 'Wren', // the account's display name\n"))
+  assert.ok(out.includes("    title: 'Replied', body: { female: 0.5, child: 0 }, f0: 205, source: { tension: 0.62, brightness: 0.5 },\n    guest: true,\n"))
+  assert.ok(out.includes("title: 'Voiced', guest: true, body: { female: 0.5, child: 0 }, f0: 205, rate: 1.1, accent: 0.3, source: { tension: 0.62, brightness: 0.5 } },"))
+  const { CAST } = await import('data:text/javascript,' + encodeURIComponent(out))
+  for (const id of ['nova', 'wren', 'olde']) {
+    assert.deepEqual([CAST[id].body, CAST[id].f0, CAST[id].source], [v.body, v.f0, v.source], id)
+    assert.equal(CAST[id].guest, true)
+  }
+  assert.deepEqual([CAST.nova.name, CAST.nova.handle, CAST.nova.title], ['Nova 🌸', '@nova.example', 'Posted it, once'])
+  assert.deepEqual([CAST.olde.rate, CAST.olde.accent], [1.1, 0.3])
+  assert.throws(() => writeVoice(src, 'nobody', v))
+})

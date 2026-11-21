@@ -334,7 +334,9 @@ export const LOOKS = {
 }
 ```
 
-A cast entry sets `body`, `f0`, `rate`, `accent`, `source` and `pan`. The numbers
+A writer's draft gives a guest no voice settings, only `{ name, handle, title, guest: true }`: a
+sound editor places the voice with `npm run voices` ("Giving guests voices"), which writes `body`,
+`f0` and `source` into the entry. A cast entry sets `body`, `f0`, `rate`, `accent`, `source` and `pan`. The numbers
 below come from a sweep: one sentence per setting, checked for NaN, level, voicing and a Whisper
 (base.en) transcription. No setting produced NaN or silence. The failure modes are saturation
 and lost intelligibility. Every clip is peak-normalized afterwards, so loudness is not a voice
@@ -642,9 +644,16 @@ two test sentences; distance = semitones ÷ 2 and spectrum dB ÷ 2.5). Guests ar
 against the house and everyone placed before them. A guest whose voice is already 1.5 or more from
 all of them keeps it, so its respellings stay good. Any other guest gets a slot (a body, a pitch in
 the engine's safe range and a timbre: plain, bright, soft, dark, pressed) that clears 1.5, the one
-nearest its old pitch; if none clears it, the most distant. The same cast id in several drafts is
+nearest its old pitch; if none clears it, the most distant. A guest whose entry is
+`{ name, handle, title, guest: true }` with no `body` (how a writer leaves it) has no voice yet and is
+placed fresh the same way, steer and all; with no old pitch to stay near, it gets the slot that clears
+1.5 with the most room (farthest from the house and everyone placed before it), so fresh guests
+spread across the range, and its row says `new (no voice yet)`. An entry with neither `body` nor
+`guest: true` is not a guest and is skipped, as are house ids. The same cast id in several drafts is
 one guest with one voice, written into every file that defines it; if those files disagreed, it
-gets a new one. Only `body`, `f0` and `source` are written: `rate`, `accent` and `pan` stay.
+gets a new one. Only `body`, `f0` and `source` are written, each replaced where it is or inserted
+when the entry lacks it (body after `title`, then f0, then source), on one line or several, with
+every other key and comment left as it was: `rate`, `accent` and `pan` stay.
 
 Rules per guest: `not-lowest`, `not-highest`, `below:<Hz>`, `above:<Hz>` (on the measured median),
 `keep` (keep its voice even if too close), `new` (move it even if distinct). `--dry-run` writes
