@@ -89,9 +89,14 @@ npm run produce -- --week 2026-W47     # the whole weekly pipeline, stage by sta
   it, print it, or copy a value out of it. Commands that need a secret load it themselves.
 
 **Outward-facing actions: ask first**
-- Every bot command that changes anything (`announce`, `profile`, `repost`, `dm send`) is a dry run. Never
+- The bot is a command-line tool and nothing more: it runs when a person runs it, and it does
+  not watch or answer anyone (the owner's ruling, 21 November 2026).
+- Every bot command that changes anything (`announce`, `post`, `reply`, `profile`, `repost`,
+  `dm send`) is a dry run. Never
   add `--live` unless the owner says so in that conversation. The bot tags only the accounts that
-  appear in the episode a post is about (the owner's ruling, 21 November 2026), and nobody else;
+  appear in the episode a post is about (the owner's ruling, 21 November 2026), and nobody else:
+  `reply --episode` is the one command that writes a mention, and only for accounts in that
+  episode's `production/sources.json`;
   direct messages never carry a mention. It reposts only posts by accounts listed in
   `show.config.json`, and the account's bio is configuration there too. Direct-message text is private: it stays in the
   gitignored `data/bot/dm/` and is never committed, quoted or performed unless the person says

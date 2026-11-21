@@ -5,6 +5,7 @@ import { resolve } from 'node:path';
 import { commands } from './commands/index.mjs';
 import { CONFIG_PATH, REPO_ROOT } from './config.mjs';
 import { BotError } from './errors.mjs';
+import { probeVideo } from './video.mjs';
 
 function help() {
   const lines = ['usage: npm run bot -- <command> [args]', '', 'commands:'];
@@ -20,6 +21,7 @@ export async function main(argv, io = {}) {
   const {
     env = {}, stdout = process.stdout, stderr = process.stderr, fetch = globalThis.fetch,
     cwd = process.cwd(), now = () => new Date(), root, configPath = CONFIG_PATH,
+    sleep = (ms) => new Promise((r) => setTimeout(r, ms)), probe = probeVideo,
   } = io;
   const out = (s) => stdout.write(`${s}\n`);
   const err = (s) => stderr.write(`${s}\n`);
@@ -48,7 +50,7 @@ export async function main(argv, io = {}) {
     return await command.run({
       positionals: parsed.positionals,
       values: parsed.values,
-      env, fetch, cwd, now, configPath, out, err,
+      env, fetch, cwd, now, configPath, out, err, sleep, probe,
       root: resolve(cwd, parsed.values.root ?? root ?? REPO_ROOT),
     });
   } catch (e) {

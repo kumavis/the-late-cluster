@@ -10,7 +10,7 @@ import { loadSettings } from '../config.mjs';
 import { BotError, UsageError } from '../errors.mjs';
 import { CHAT_PAGE_MAX_LIMIT, DM_MAX_BYTES, DM_MAX_GRAPHEMES } from '../limits.mjs';
 import { loadOptOut, normHandle } from '../optout.mjs';
-import { graphemeLength, utf8Length } from '../richtext.mjs';
+import { graphemeLength, LINK_RE, MENTION_RE, utf8Length } from '../richtext.mjs';
 
 const USAGE = 'dm send <handle-or-did> --file <path> [--live] | dm read <handle-or-did> [--limit 50] [--json]';
 /** Where the sent log goes, relative to the repo root (gitignored by /data/). */
@@ -22,10 +22,6 @@ export const CONVO_PAGES = 20;
 
 const DID_RE = /^did:[a-z]+:[A-Za-z0-9._:%-]+$/;
 const HANDLE_RE = /^([a-z0-9]([a-z0-9-]{0,61}[a-z0-9])?\.)+[a-z]([a-z0-9-]{0,61}[a-z0-9])?$/;
-// Anything that reads as tagging an account: @ at a word start followed by a name or DID.
-const MENTION_RE = /(^|[^\w])(@[a-z0-9][a-z0-9.:_-]*)/i;
-// Anything that reads as a link: a scheme, www., or a domain with a path.
-const LINK_RE = /\b[a-z][a-z0-9+.-]*:\/\/\S+|\bwww\.\S+|\b[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}\/\S*/i;
 
 export default {
   name: 'dm',

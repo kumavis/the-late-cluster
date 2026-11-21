@@ -3,5 +3,12 @@
   "service": "https://bsky.social",
   "appView": "https://public.api.bsky.app",
   "langs": ["en"],
-  "avatar": "brand/avatar.png"
+  "avatar": "brand/avatar.png",
+  "video": {
+    "service": "https://video.bsky.app",
+    "did": "did:web:video.bsky.app",
+    "jobTimeoutMinutes": 20,
+    "pollSeconds": 3,
+    "stallSeconds": 120
+  }
 }

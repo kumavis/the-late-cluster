@@ -30,5 +30,12 @@ export function linkFacet(text, uri, from = 0) {
   };
 }
 
+/** Any `@word` at a word start: what `dm`, `post` and `reply` treat as naming an account. Group 2 is `@name`. */
+export const MENTION_RE = /(^|[^\w])(@[a-z0-9][a-z0-9.:_-]*)/i;
+/** Every such `@word`, for matchAll. */
+export const MENTION_RE_ALL = /(^|[^\w])(@[a-z0-9][a-z0-9.:_-]*)/gi;
+/** Anything that reads as a link: a scheme, www., or a domain with a path. */
+export const LINK_RE = /\b[a-z][a-z0-9+.-]*:\/\/\S+|\bwww\.\S+|\b[a-z0-9-]+(\.[a-z0-9-]+)*\.[a-z]{2,}\/\S*/i;
+
 /** Text that a reader could take for a tag of an account: "@name.tld" or "@did:...". */
 export const HANDLE_LIKE = /(^|[^\w])@(did:[a-z]+:|[a-z0-9-]+\.[a-z0-9.-]*[a-z])/i;

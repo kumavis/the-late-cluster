@@ -21,3 +21,15 @@ export const CHAT_PAGE_MAX_LIMIT = 100;
 // from the same lexicon file as the avatar.
 export const DESCRIPTION_MAX_GRAPHEMES = 256;
 export const DESCRIPTION_MAX_BYTES = 2560;
+// app.bsky.embed.video (read 2026-11-21 from the lexicon): `video` a blob, accept video/mp4,
+// maxSize 300000000; `captions` at most 20, each { lang, file } with `file` a blob accepting
+// text/vtt, maxSize 20000; `alt` a string with no limit; `aspectRatio` { width, height },
+// integers, minimum 1. `presentation` known values: default, gif.
+export const VIDEO_MAX_BYTES = 300_000_000;
+export const VIDEO_MIME_TYPE = 'video/mp4';
+export const CAPTIONS_MAX = 20;
+export const CAPTION_MAX_BYTES = 20_000;
+export const CAPTION_MIME_TYPE = 'text/vtt';
+export const ASPECT_MIN = 1;
+/** Not in the lexicon: the app's own limit on a video's length, in seconds (10 minutes). */
+export const VIDEO_MAX_SECONDS = 600;

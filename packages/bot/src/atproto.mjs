@@ -3,6 +3,17 @@
 // The access token lives only in this closure: it is never returned, logged, or
 // written anywhere. Error messages carry the XRPC error name and message from the
 // server, never request bodies or headers.
+//
+// One request does not go through fetch: the video upload. Node's fetch has a fixed 300 s
+// headers timeout that fires while a slow upload is still being written, and it cannot be
+// changed without the undici package, which this package does not install. So the upload goes
+// by node:https (node:http for a loopback host, in tests), with an explicit Content-Length, no
+// overall time limit, and a stall limit instead.
+import { createReadStream } from 'node:fs';
+import { request as httpRequest } from 'node:http';
+import { request as httpsRequest } from 'node:https';
+import { Transform } from 'node:stream';
+import { pipeline } from 'node:stream/promises';
 
 export const DEFAULT_SERVICE = 'https://bsky.social';
 /** Generic on purpose: it names neither the show nor its owner. Override with BOT_USER_AGENT. */
@@ -17,6 +28,7 @@ export class XrpcError extends Error {
     this.nsid = nsid;
     this.status = status;
     this.error = error;
+    this.data = null; // the parsed error body, when there was one
   }
 }
 
@@ -39,10 +51,12 @@ export function createClient({ service = DEFAULT_SERVICE, fetch = globalThis.fet
     return u.toString();
   }
 
-  async function call(nsid, { method = 'GET', params, body, contentType, auth = true, raw = false, host, proxy } = {}) {
+  async function call(nsid, { method = 'GET', params, body, contentType, auth = true, raw = false, host, proxy, bearer } = {}) {
     const headers = { 'user-agent': userAgent, accept: raw ? '*/*' : 'application/json' };
     if (proxy) headers['atproto-proxy'] = proxy;
-    if (auth) {
+    if (bearer) {
+      headers.authorization = `Bearer ${bearer}`; // a service auth token, for another service
+    } else if (auth) {
       if (!accessJwt) throw new Error(`${nsid} needs a session: call createSession first`);
       headers.authorization = `Bearer ${accessJwt}`;
     }
@@ -55,14 +69,11 @@ export function createClient({ service = DEFAULT_SERVICE, fetch = globalThis.fet
     if (raw && res.ok) {
       return { bytes: Buffer.from(await res.arrayBuffer()), contentType: res.headers.get('content-type') };
     }
-    const text = await res.text();
-    let data = null;
-    try { data = text ? JSON.parse(text) : null; } catch { /* non-JSON error page */ }
-    if (!res.ok) {
-      const retry = res.status === 429 ? ' (rate limited; try again later)' : '';
-      throw new XrpcError(nsid, res.status, data?.error, (data?.message ?? '') + retry);
-    }
-    return data;
+    return readReply(nsid, res);
+  }
+
+  async function readReply(nsid, res) {
+    return parseReply(nsid, res.status, await res.text());
   }
 
   return {
@@ -191,11 +202,131 @@ export function createClient({ service = DEFAULT_SERVICE, fetch = globalThis.fet
       return this.proxied(CHAT_PROXY, 'chat.bsky.convo.sendMessage', { method: 'POST', body: { convoId, message: { text } } });
     },
 
+    /**
+     * A service auth token for another service: `aud` is that service's DID, `lxm` the one method
+     * the token allows, `exp` its expiry in whole seconds since the epoch (optional). Asked of the
+     * account's own PDS. Returns the token; it is never printed.
+     */
+    async getServiceAuth({ aud, lxm, exp }) {
+      const data = await call('com.atproto.server.getServiceAuth', { params: { aud, lxm, exp }, host: pds ?? base });
+      if (typeof data?.token !== 'string' || !data.token) throw new Error('getServiceAuth returned no token');
+      return data.token;
+    },
+
+    /** Video service: today's upload allowance. `token` is a service auth token for it. */
+    async getUploadLimits({ host, token }) {
+      return call('app.bsky.video.getUploadLimits', { auth: false, bearer: token, host: checkedHost(host, 'video service') });
+    },
+
+    /** Video service: one processing job. Sent without any token. Returns { jobStatus }. */
+    async getJobStatus({ host, jobId }) {
+      return call('app.bsky.video.getJobStatus', { auth: false, params: { jobId }, host: checkedHost(host, 'video service') });
+    },
+
+    /**
+     * Video service: uploads a file **as a stream** from disk, never holding it in memory, by
+     * node:https (see the top of this file for why not fetch). `token` is a service auth token
+     * for the PDS's uploadBlob; it is never printed or put in an error. Returns the parsed JSON
+     * answer (a job status, at the top level); a refusal throws XrpcError with the body in
+     * `.data` (the `already_exists` answer arrives so). There is no overall time limit: if no
+     * bytes are written for `stallMs`, the request is destroyed and the error says how many
+     * bytes had been sent. `onProgress(sent, size)` is called about every 10 percent.
+     */
+    async uploadVideo({ host, token, did, name, path, size, mimeType = 'video/mp4', stallMs = 120_000, onProgress }) {
+      const nsid = 'app.bsky.video.uploadVideo';
+      const u = new URL(`/xrpc/${nsid}`, checkedHost(host, 'video service'));
+      u.searchParams.set('did', did);
+      u.searchParams.set('name', name);
+      const request = u.protocol === 'https:' ? httpsRequest : httpRequest;
+      return new Promise((resolve, reject) => {
+        let sent = 0;
+        let nextMark = 0.1;
+        let settled = false;
+        let responded = false;
+        let written = false;
+        let timer = null;
+        const done = (fn, v) => { if (!settled) { settled = true; clearTimeout(timer); fn(v); } };
+        const req = request(u, {
+          method: 'POST',
+          headers: {
+            'user-agent': userAgent, accept: 'application/json', authorization: `Bearer ${token}`,
+            'content-type': mimeType, 'content-length': String(size),
+          },
+        });
+        const arm = () => {
+          clearTimeout(timer);
+          if (settled || responded || written) return;
+          timer = setTimeout(() => {
+            const e = new Error(`the upload stalled: nothing was written for ${stallMs / 1000} s, after ${sent} of ${size} bytes had been sent`);
+            done(reject, e);
+            req.destroy(e);
+          }, stallMs);
+        };
+        req.on('response', (res) => {
+          responded = true;
+          clearTimeout(timer);
+          const chunks = [];
+          res.on('data', (c) => chunks.push(c));
+          res.on('error', (e) => done(reject, new Error(`the upload's answer could not be read: ${e.message}`)));
+          res.on('end', () => {
+            try { done(resolve, parseReply(nsid, res.statusCode, Buffer.concat(chunks).toString('utf8'))); } catch (e) { done(reject, e); }
+          });
+        });
+        // A transport error may race an early answer (a server may refuse before reading the
+        // body): give the answer a moment to arrive before failing on the error.
+        const transport = (e) => {
+          if (settled || responded) return;
+          setTimeout(() => { if (!responded) done(reject, new Error(`the upload failed after ${sent} of ${size} bytes: ${e.message}`)); }, 1000).unref();
+        };
+        req.on('error', transport);
+        const counter = new Transform({
+          transform(chunk, _enc, cb) {
+            sent += chunk.length;
+            arm();
+            if (onProgress && size > 0 && sent / size >= nextMark) {
+              onProgress(sent, size);
+              while (sent / size >= nextMark) nextMark += 0.1;
+            }
+            cb(null, chunk);
+          },
+        });
+        arm();
+        // Once every byte is written the stall limit no longer applies: waiting for the answer is not a stall.
+        pipeline(createReadStream(path), counter, req).then(() => { written = true; clearTimeout(timer); }, transport);
+      });
+    },
+
     /** One page of a repo collection, newest first. Returns { records, cursor }. `auth: false` reads it without a session. */
     async listRecords({ repo, collection, limit = 100, cursor, auth = true }) {
       return call('com.atproto.repo.listRecords', { params: { repo, collection, limit, cursor }, auth });
     },
   };
+}
+
+/**
+ * An XRPC answer: the parsed JSON body, or an XrpcError carrying the status, the error name (an
+ * error body may have `error` and no `message`) and the body in `.data`.
+ */
+export function parseReply(nsid, status, text) {
+  let data = null;
+  try { data = text ? JSON.parse(text) : null; } catch { /* non-JSON error page */ }
+  if (status < 200 || status >= 300) {
+    const retry = status === 429 ? ' (rate limited; try again later)' : '';
+    const e = new XrpcError(nsid, status, data?.error, (data?.message ?? '') + retry);
+    e.data = data;
+    throw e;
+  }
+  return data;
+}
+
+/** A service origin as a URL; https only, except a loopback host (for tests). */
+function checkedHost(host, what) {
+  if (!host) throw new Error(`no ${what} host configured`);
+  const u = new URL(host);
+  if (u.protocol !== 'https:' && !['localhost', '127.0.0.1', '[::1]'].includes(u.hostname)) {
+    throw new Error(`refusing non-https ${what} host: ${host}`);
+  }
+  return u;
 }
 
 /** The #atproto_pds endpoint of a DID document, if it is https. Anything else is ignored. */

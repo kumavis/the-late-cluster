@@ -57,7 +57,7 @@ export function fakePds(routes) {
     const req = { nsid, method: init.method ?? 'GET', url: u, headers, body };
     requests.push(req);
     const handler = routes[nsid];
-    const result = handler ? handler(req) : [501, { error: 'NotImplemented', message: nsid }];
+    const result = handler ? await handler(req) : [501, { error: 'NotImplemented', message: nsid }];
     if (result instanceof Response) return result; // e.g. raw bytes for getBlob
     const [status, data] = result;
     return new Response(JSON.stringify(data), { status, headers: { 'content-type': 'application/json' } });

@@ -224,6 +224,8 @@ episode. `<seg>` is a segment id.
 | `npm run media -- --dir <digest> --uri <at://…>` | fetch a post's pictures, or a video's thumbnail, from Bluesky's public CDN into `<digest>/media/` and print paths and alt text |
 | `npm run sources -- check <sources.json> [--dir <digest>] [--out <file.md>] [--json]` | the live source check: cited posts unchanged, accounts' bios, labels, pinned and recent posts; exit 1 when something needs a person |
 | `npm run bot -- announce <ep> [--live]` | compose the announcement post; dry run unless `--live` |
+| `npm run bot -- post <ep> --video <file.mp4> --text-file <file> [--alt-file <file>] [--captions <file.vtt>] [--lang en] [--aspect <w>:<h>] [--upload-only] [--live]` | post the episode's video (no mention, no link), uploaded as a stream to the video service; `--upload-only` uploads and keeps the blob for a later post; dry run unless `--live` |
+| `npm run bot -- reply <post> --text-file <file> --episode <ep> [--live]` | reply under one of the show's own posts, tagging only accounts in `episodes/<ep>/production/sources.json`; dry run unless `--live` |
 | `npm run bot -- profile [--only avatar\|description] [--avatar <file>] [--live] [--no-backup]` | set the account's profile picture (`avatar` in `bot.config.json`) and bio (`bluesky.profile.description` in `show.config.json`); the dry run compares the bio with the live one; dry run unless `--live` |
 | `npm run bot -- repost <post> [--live] [--undo]` | repost a post whose author is in `bluesky.repostAuthors`, or take the repost back; the dry run reads the post and prints the record; dry run unless `--live` |
 | `npm run bot -- dm send <handle-or-did> --file <path> [--live]` | send interview questions by direct message; dry run unless `--live` |
@@ -330,10 +332,30 @@ and no credentials by default. `packages/scraper/README.md` has the detail.
 
 ## The bot: `packages/bot`
 
-The show's Bluesky account. Its first job is to announce a published episode with a link card.
-It is dry-run by default and posts only with `--live` and credentials in the environment
-(`BSKY_HANDLE`, `BSKY_APP_PASSWORD`). Later jobs, such as handling opt-out requests sent to the
-account, are on the roadmap.
+The command line for the show's Bluesky account. **It is a CLI, not an always-on bot**: a person
+runs each command; nothing listens, schedules or replies by itself (the owner: "the scope of
+"the bot" at present is just a cli, not an always on bot that responds"). Every command that
+writes is a dry run by default and writes only with `--live` and credentials in the environment
+(`BSKY_HANDLE`, `BSKY_APP_PASSWORD`). Handling opt-out requests sent to the account is on the
+roadmap, as a command a person runs.
+
+`announce` posts a published episode with a link card. `post` posts the episode's video: the
+text carries no mention and no link; the file is checked (MP4 by its bytes, 300,000,000 bytes,
+600 s and pixel size by `ffprobe` when it is on the PATH, else `--aspect`), streamed to the video
+service (host and DID in `bot.config.json`) with service auth tokens from the PDS, and polled
+until processed; nothing is posted unless every step before succeeded. The upload is the one
+request that does not use `fetch`: Node's fetch has a fixed 300 s headers timeout that would
+kill a slow upload mid-write, and changing it needs the `undici` package, which is not
+installed. It goes by `node:https` with an explicit `Content-Length`, no overall time limit,
+and a stall limit (`video.stallSeconds`, default 120 s without a byte written). The service's
+upload answer is a job status at the top level; `getJobStatus` wraps it; both are read. A processed blob is kept
+in the gitignored `data/bot/video-uploads/<sha256>.json`, so `--upload-only` and a later post, or
+a run after a timeout, do not upload again. `reply` is the only command that mentions anyone, on
+the owner's ruling of 21 November 2026 ("The bot tags only the accounts that appear in the
+episode a post is about"): only under the show's own posts, only accounts in that episode's
+`production/sources.json` with the DID on record there, each handle re-resolved at run time and
+refused if it moved, nobody on the opt-out list, and no links. Posts and replies are logged to
+`data/bot/posts.jsonl` and `data/bot/replies.jsonl`.
 
 `profile` sets the account's avatar and bio (`description`) and nothing else (`--only` picks
 one): it keeps every other field of the profile record, writes with `swapRecord` so a

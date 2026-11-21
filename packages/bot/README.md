@@ -1,18 +1,26 @@
 # @late-cluster/bot
 
-The Bluesky account for *The Late Cluster with Larry Nx*. Its jobs: announce a published
-episode (one post with a line in the show's voice, the episode number and title, the episode
-URL, and a link card with the episode's thumbnail); set the account's profile picture and bio;
-repost a post by an account the owner has allowed; and interview someone by direct message,
-then read the answer.
+> **"The bot" is a command line, not an always-on bot.** In the owner's words: "the scope of
+> "the bot" at present is just a cli, not an always on bot that responds". Every command here
+> is run by a person, once, and then exits. Nothing listens, schedules or replies by itself.
+
+The command line for the Bluesky account of *The Late Cluster with Larry Nx*. Its jobs:
+announce a published episode (one post with a link card); post the episode's video; reply under
+one of the show's own posts, tagging the episode's accounts; set the account's profile picture
+and bio; repost a post by an account the owner has allowed; and interview someone by direct
+message, then read the answer.
 
 - Node 22, ESM, no npm dependencies, Node builtins only (see `docs/ARCHITECTURE.md`).
+  `post` uses `ffprobe`, if it is on the PATH, to read the video's size and length.
 - **Dry run is the default.** Nothing is sent without `--live`.
-- **It never mentions or tags anyone.** See [No mentions](#no-mentions).
+- **It mentions nobody, except in `reply --episode`**, and there only the accounts in that
+  episode's `sources.json`. See [No mentions](#no-mentions).
 
 ```sh
 npm run bot -- announce 1                 # dry run: print exactly what would be sent
 npm run bot -- announce 001-pilot --live  # post it (needs BSKY_APP_PASSWORD, from .secrets)
+npm run bot -- post 2 --video ep2.mp4 --text-file post.txt --alt-file alt.txt --captions ep2.vtt   # dry run
+npm run bot -- reply https://bsky.app/profile/latecluster.simcluster.tv/post/<rkey> --text-file thanks.txt --episode 2   # dry run
 npm run bot -- profile                    # dry run: check brand/avatar.png, compare the bio with the live one
 npm run bot -- repost https://bsky.app/profile/kumavis.me/post/<rkey>   # dry run: read the post, print the record
 npm run bot -- dm send guest.bsky.social --file questions.txt   # dry run: print the messages
@@ -37,8 +45,9 @@ The bot cannot do any of this for you. Do it once, by hand.
    played by labelled puppets, who runs it, and how to ask to be left out.
 3. **Create an app password** (in the app: Settings, Privacy and security, App passwords).
    Tick "Allow access to your direct messages" only if the account will use `dm`: without it
-   `dm send` and `dm read` are refused by the server, and `announce` and `profile` work
-   either way. Never use the account's real password here: the bot
+   `dm send` and `dm read` are refused by the server, and the other commands work
+   either way. Posting a video (`post`) also needs the account's **email to be verified**,
+   and Bluesky limits how many videos an account may upload each day. Never use the account's real password here: the bot
    only ever needs an app password, and one can be revoked without touching the account.
 4. **Put the secret in `.secrets`.** Configuration and secrets are kept apart: the handle
    is already in `show.config.json` (committed), and the only secret, the app password, goes
@@ -75,15 +84,23 @@ handle ever stops resolving, setting `BSKY_HANDLE` to the DID is the quick fix.
 ### `bot.config.json`
 
 ```json
-{ "siteUrl": "", "service": "https://bsky.social", "appView": "https://public.api.bsky.app", "langs": ["en"], "avatar": "brand/avatar.png" }
+{
+  "siteUrl": "", "service": "https://bsky.social", "appView": "https://public.api.bsky.app",
+  "langs": ["en"], "avatar": "brand/avatar.png",
+  "video": { "service": "https://video.bsky.app", "did": "did:web:video.bsky.app", "jobTimeoutMinutes": 20, "pollSeconds": 3, "stallSeconds": 120 }
+}
 ```
 
 Environment variables win over the file. The site URL is looked up as `SITE_URL`, then this
 file's `siteUrl`, then `siteUrl` in the repo root's `show.config.json` (the show-wide setting
 the episode builds use), so normally it is set once, there. `langs` is the post's language tags (at most 3).
 `avatar` is the picture `profile` sets, relative to the repo root (default `brand/avatar.png`).
-`appView` is where `repost` reads a post (author, text, counts) without logging in.
-The file holds no secrets and can be committed.
+`appView` is where `repost` and `reply` read a post (author, text, counts) without logging in.
+`video` is the video service `post` uploads to: its host and DID (configuration, not code),
+how long to wait for a processing job (`jobTimeoutMinutes`, default 20), how often to ask
+(`pollSeconds`), and how long the upload may go without writing a byte before it is given up
+(`stallSeconds`, default 120). `service` must be https; plain http is accepted only for a
+loopback host (the tests' local server). The file holds no secrets and can be committed.
 
 ### `bluesky` in `show.config.json`
 
@@ -164,6 +181,124 @@ without `BSKY_APP_PASSWORD` is an error that names what is missing. With them:
 
 The duplicate check reads the PDS directly rather than the AppView, so a post made a
 moment ago is seen. It only looks back 500 posts.
+
+## `post`
+
+```
+post <ep> --video <file.mp4> --text-file <file> [--alt-file <file>] [--captions <file.vtt>]
+     [--lang en] [--aspect <w>:<h>] [--upload-only] [--live]
+```
+
+Posts the episode's video as a top-level post. `<ep>` is `2`, `002` or the full id; the episode
+must exist, and if its built manifest is not `published` the command warns (in both modes) and
+goes on, since the owner approves a post by running it. The text and alt text come from files,
+with line endings normalised and blank space at either end trimmed. `--lang` may be given up to
+three times (default: `langs` in `bot.config.json`); the captions' `lang` is the first one.
+
+**Checked before anything is sent**, each with its own refusal:
+
+- the text: not empty, at most 300 graphemes and 3000 UTF-8 bytes, and **no mention and no
+  link** (the tagged reply is the only place a mention may go);
+- the video: exists, is an MP4 by its bytes (an `ftyp` box that is not QuickTime's), at most
+  300,000,000 bytes. Its width, height and duration are read with `ffprobe` when it is on the
+  PATH, and the duration must be at most 600 s. Without `ffprobe`, `--aspect <w>:<h>` is
+  required (the pixel size, e.g. `1920:1080`) and a warning says the duration was not checked.
+  With `ffprobe`, the file's own size is used, and an `--aspect` that disagrees gets a warning;
+- the captions: WebVTT by their first line (`WEBVTT`, after an optional byte-order mark), at
+  most 20,000 bytes;
+- the alt text, when given: not empty.
+
+**Dry run (default)** makes no request at all. It prints the episode, the video's size, length
+and aspect ratio, its SHA-256 and whether an upload of it is already stored, the captions, the
+text and alt text with their lengths, the record exactly as it would be created (blobs as
+placeholders, unless a stored upload's blob is known), and the calls a live run would make, in
+order.
+
+The record has the shape of episode one's video post, which the owner's own app created and the
+server accepted: `{ $type, createdAt, embed, langs, text }`, with `embed` as
+`{ $type: 'app.bsky.embed.video', aspectRatio: { height, width }, presentation: 'default', video }`,
+where `video` is the blob exactly as the job returned it (`$type`, `ref.$link`, `mimeType`,
+`size`), passed through untouched, and `aspectRatio` is the file's own pixel size. Ours adds
+`captions: [{ lang, file }]` and `alt`, as the lexicon allows.
+
+**`--live`**, stopping at the first failure. **Nothing is posted unless every step before the
+post succeeded**: a failed upload or a failed job ends the command with the reason and no post.
+
+1. `createSession`; stop unless the session's DID is `bluesky.did`;
+2. the file's SHA-256, read as a stream. If `data/bot/video-uploads/<sha256>.json` holds a
+   blob, it is reused and steps 3 to 6 are skipped; if it holds a pending job, step 6 picks it up;
+3. a service auth token (`com.atproto.server.getServiceAuth` on the PDS, `aud` the video
+   service's DID, `lxm` `app.bsky.video.getUploadLimits`), then `getUploadLimits` on the video
+   service. It prints the videos and bytes left today, and stops unless `canUpload` (or if
+   fewer bytes are left than the file has);
+4. a second token, `aud` `did:web:<the PDS host>` (from the session's DID document), `lxm`
+   `com.atproto.repo.uploadBlob`, `exp` 30 minutes from now in whole seconds;
+5. `POST <video service>/xrpc/app.bsky.video.uploadVideo?did=…&name=…` with the file
+   **streamed from disk** (never read into memory), `Authorization: Bearer <that token>`,
+   `Content-Type: video/mp4` and an explicit `Content-Length` of the file's size (not chunked).
+   This one request goes by **`node:https`, not `fetch`**: Node's fetch has a fixed 300 s
+   headers timeout that fires while a slow upload is still being written, and it cannot be
+   changed without the `undici` package, which this package does not install. So there is no
+   overall time limit, only a stall limit: if no bytes are written for `stallSeconds` (default
+   120), the request is destroyed and the error says how many bytes had been sent. Progress is
+   printed about every 10 percent. The token is never printed or put in an error.
+   The answer is a job status **at the top level** (`{ did, jobId, state, error, blob }`);
+   `getJobStatus` wraps it as `{ jobStatus }`; both shapes are read, everywhere, and an empty
+   `jobId` means no job. If the service answers `already_exists`, the blob it returns is used,
+   or, if it gives only a job id, that job is polled. A refusal names the service's error (its
+   bodies carry `error` and often no `message`). The job is saved as pending at once;
+6. `app.bsky.video.getJobStatus` (without a token) every `pollSeconds`, printing each change of
+   state and progress, until the job has a blob. An unknown state means "still in process". A
+   `JOB_STATE_FAILED` state, a `failureCode`, or a 400 answer (the service does not know the
+   job) ends the command and forgets the job, so the next run uploads again. Any other failed
+   poll keeps it saved. After `jobTimeoutMinutes` (default 20) it stops, naming the job id; the
+   job stays saved, and running the same command again picks it up;
+7. the blob is saved in `data/bot/video-uploads/<sha256>.json`. With `--upload-only` the
+   command stops here: no post. A later `post --live` of the same file reuses the blob;
+8. the captions, if any, through the PDS (`com.atproto.repo.uploadBlob`, `text/vtt`);
+9. `listRecords` on the account's last 100 posts: if one already carries this video's blob,
+   stop;
+10. `createRecord` with `createdAt` set at that moment; print the post's `at://` address and its
+    bsky.app URL, and append a line to `data/bot/posts.jsonl` (gitignored): time, episode,
+    address, URL, the video's SHA-256 and blob CID.
+
+A stored blob that is never put in a post may be cleaned up by the PDS after a while. If a
+post with a reused blob fails, the error says so: remove the stored file and run again (the
+video service will answer `already_exists`, or upload afresh).
+
+## `reply`
+
+```
+reply <post> --text-file <file> --episode <ep> [--live]
+```
+
+Replies under one of the **show's own posts**, and is the one command that may tag anyone. It
+carries out the owner's ruling of 21 November 2026: "The bot tags only the accounts that appear
+in the episode a post is about".
+
+- `<post>` is a bsky.app address or an `at://` address. Its author must be the show's account:
+  a DID or handle that is not the show's is refused before any request, and so is a post the
+  AppView says is someone else's.
+- Every `@handle` in the text must be an account in `episodes/<ep>/production/sources.json`
+  (`accounts[]`, matched by handle, case aside). The mention's DID is the one **on record
+  there**. Each handle is resolved again at run time, in the dry run and again live, and
+  refused if it no longer points at that DID (handles change). Each is checked against the
+  opt-out list, by handle and DID. An account on record without a DID cannot be tagged.
+- Any other `@handle`, an `@did:...`, and any link are refused. The text is at most 300
+  graphemes and 3000 bytes.
+- An account on record that is a bot may be tagged like any other; whom to name is the text
+  file's choice.
+- The facets cover the `@` and the handle as written, in UTF-8 byte offsets, start inclusive
+  and end exclusive (`app.bsky.richtext.facet#mention`, `did`).
+- `reply.root` is the parent's own root when the parent is itself a reply, otherwise the
+  parent; `reply.parent` is the parent. Both `uri` and `cid` are read from the network at run
+  time (`app.bsky.feed.getPosts` on the public AppView).
+
+**Dry run (default)** reads without logging in (`resolveHandle` for each handle and the parent,
+`getPosts` for the parent) and writes nothing. It prints the text, each mention with its DID,
+where it came from and its byte range, and the exact record. **`--live`** logs in, stops unless
+the session is the show's, repeats every check, creates the record, prints its address and
+bsky.app URL, and appends a line to `data/bot/replies.jsonl` (gitignored).
 
 ## `profile`
 
@@ -305,24 +440,31 @@ the way the bible's real-people rules allow.
 
 ## No mentions
 
-The show parodies real accounts. A mention facet sends that person a notification they did
-not ask for, so an announcement never carries one, and there is no automatic tagging of
-the accounts an episode features. Concretely:
+The show parodies real accounts. A mention facet sends that person a notification, so
+**mentions are refused everywhere except in `reply --episode`**, and there only on these terms
+(the owner's ruling, 21 November 2026: "The bot tags only the accounts that appear in the
+episode a post is about"):
 
-- the composer only ever produces link facets, and `assertNoMentions` rejects anything else;
-- post text that looks like a handle is refused, so it cannot even look like a tag;
-- `--mention` and `--tag` are rejected with an explanation.
+- the reply is under one of the show's own posts;
+- every `@handle` is an account in that episode's `production/sources.json`, and the
+  mention's DID is the one recorded there;
+- each handle still resolves to that DID when the command runs, dry run and live;
+- nobody on the opt-out list is tagged;
+- the text names whom to tag; nothing tags automatically. A person writes the text file and
+  runs the command.
 
-An opt-in `--mention <handle>` flag was considered and **not built**. If a guest ever asks
-to be tagged, the rule for adding it is: it accepts only handles typed explicitly on the
-command line for that one run, never handles read from an episode, a manifest, the
-scraper's data or a cast file; it resolves each to a DID and shows them in the dry run; and
-it is never on by default.
+Everywhere else:
+
+- `announce`: the composer only ever produces link facets, `assertNoMentions` rejects anything
+  else, and post text that looks like a handle is refused, so it cannot even look like a tag;
+- `post`: any `@handle` in the text is refused, and so is any link;
+- `dm`: plain text only, no mention, no link, no facet;
+- `--mention` and `--tag` are rejected with an explanation by `announce`, `post` and `dm`.
 
 ### What is and is not a mention
 
 - **A mention** is a `app.bsky.richtext.facet#mention` facet in a post: it links a DID and
-  notifies that account. The bot never creates one, in any command.
+  notifies that account. Only `reply --episode` creates one, on the terms above.
 - **A repost** (`repost`) is an `app.bsky.feed.repost` record holding only a reference to the
   post and a time. It has no text and no facets, so it mentions nobody. It does notify the
   post's author, as any repost does, which is why it is limited to `bluesky.repostAuthors`.
@@ -340,14 +482,18 @@ bin/bot.mjs             entry point (root: "bot": "node packages/bot/bin/bot.mjs
 src/cli.mjs             argument parsing and dispatch; everything injectable for tests
 src/commands/index.mjs  the command registry
 src/commands/announce.mjs
+src/commands/post.mjs   the episode's video post
+src/commands/reply.mjs  the tagged reply
 src/commands/profile.mjs
 src/commands/repost.mjs
 src/commands/dm.mjs
 src/atproto.mjs         XRPC client over an injectable fetch: createSession, uploadBlob,
                         createRecord, listRecords, getRecord, putRecord, deleteRecord, getBlob,
-                        resolveHandle, getPosts (public AppView, no token),
+                        resolveHandle, getPosts (public AppView, no token), getServiceAuth,
+                        the video service (getUploadLimits, a streamed uploadVideo, getJobStatus),
                         and proxied chat calls (getConvoForMembers,
                         listConvos, getMessages, sendMessage)
+src/video.mjs           MP4 by its bytes, ffprobe, captions, the streamed checksum, the video embed
 src/image.mjs           PNG/JPEG type and pixel size from the file's bytes
 src/optout.mjs          reads the scraper's opt-out list
 src/compose.mjs         builds and checks the post record
@@ -360,15 +506,17 @@ src/config.mjs          environment, bot.config.json and the root show.config.js
 
 Adding a job: write `src/commands/<name>.mjs` exporting `{ name, summary, usage, options, run }`
 (`options` in `node:util` `parseArgs` form) and add it to `src/commands/index.mjs`. `run(ctx)`
-gets `positionals`, `values`, `env`, `fetch`, `out`, `err`, `root`, `cwd`, `now`. New XRPC
+gets `positionals`, `values`, `env`, `fetch`, `out`, `err`, `root`, `cwd`, `now`, `sleep` and
+`probe` (ffprobe; tests pass a fake, so they never need it installed). New XRPC
 calls go in `src/atproto.mjs`. Keep the dry-run-by-default rule for anything that writes.
 
 ## Roadmap sketch: the opt-out inbox (not implemented)
 
 Goal: anyone can ask to be left out of the show by replying to or mentioning the bot.
 
-- **Command** `npm run bot -- optouts [--live]`, run on a schedule. Dry run prints what it
-  would record and reply.
+- **Command** `npm run bot -- optouts [--live]`, run by a person. (Running it on a schedule
+  would make the bot always-on, which is outside its present scope: it is a command line.)
+  Dry run prints what it would record and reply.
 - **Read**: `app.bsky.notification.listNotifications` (authenticated, reasons `mention` and
   `reply`), paging from a stored cursor; `app.bsky.notification.updateSeen` afterwards in
   live mode.
@@ -406,7 +554,24 @@ fields in one write, `--only` either way, the 256-grapheme and 2560-byte limits 
 allowed), and uncredited `@handle` and `@did:` refusals. For `repost`: address parsing, a dry
 run that only reads (no login, no token, nothing written), the exact record created live, the
 log line, an author not on the list or on the opt-out list refused, the AppView's author
-checked, an existing repost detected (with paging), `--undo` in both modes, and the DID check. For `dm`:
+checked, an existing repost detected (with paging), `--undo` in both modes, and the DID check.
+For `post`: every limit at and just past its edge (300 graphemes, 3000 bytes, 3 langs,
+300,000,000 bytes with sparse files, 600 s, 20,000-byte captions, 20 captions, an aspect of at
+least 1), the embed against episode one's accepted record, a dry run with no request, the
+refusals (mention, link, not an MP4, too long, no ffprobe without `--aspect`, empty alt, not
+WebVTT), the live order, and the upload **on a real loopback server** (`node:http` on
+127.0.0.1, since a mocked fetch cannot see a `node:https` request): `content-length` equal to
+the file and no `transfer-encoding`, the type, the Bearer token, `did` and `name`, the body's
+SHA-256 over a few random MB, progress about every 10 percent, a top-level and a wrapped
+answer, `already_exists` with a blob and with only a job id, the three error bodies observed
+from the real service, and a server that stops reading (the stall limit, made short). Also the
+service tokens' `aud`, `lxm` and `exp`, the job's states (an unknown one waits, completed
+with a blob, failed with a code), `canUpload: false`, a failed upload with no
+post, `--upload-only` then reuse, the timeout and picking the job up, and an already-posted
+video. For `reply`: the facet's byte offsets after a non-ASCII character, the root when the
+parent is itself a reply, a dry run that only reads, the live record and log, a mention not in
+the episode, a handle that now resolves elsewhere, the opt-out list, links, a parent by someone
+else, and the DID check. For `dm`:
 zero requests in a dry run, the proxy header on chat calls only, order and stop-at-first-failure,
 limit, empty, mention and link refusals, the opt-out list, the DID check, `read` making no
 write and never calling `updateRead`, the sent log, and the plain-words chat errors. Fixtures
@@ -440,3 +605,56 @@ re-fetched for this change; check them before relying on a limit at its edge):
   and `listConvos` limit max 100; chat is reached with `atproto-proxy: did:web:api.bsky.chat#bsky_chat`.
 - The `bot` profile self-label and the "only interact when tagged" guidance: atproto.com,
   "Build an Agent" tutorial.
+
+Added on 2026-11-21 for `post` and `reply`. Which facts come from where:
+
+- **Read that day from Bluesky's lexicons** (by the coordinator, and treated as the server's
+  stated limits; each is in the tests):
+  - `app.bsky.feed.post`: `text` maxGraphemes 300, maxLength 3000 bytes; `langs` at most 3;
+    `reply` is `{ root, parent }`; `embed` may be `app.bsky.embed.video`.
+  - `app.bsky.embed.video`: `video` required, a blob accepting `video/mp4`, maxSize 300,000,000;
+    `captions` at most 20, each `{ lang, file }` with `file` a blob accepting `text/vtt`,
+    maxSize 20,000; `alt` a string with no limit; `aspectRatio` `{ width, height }`, integers,
+    minimum 1; `presentation` known values `default` and `gif`.
+  - `app.bsky.richtext.facet`: `index` is `{ byteStart, byteEnd }` over the text's UTF-8 bytes,
+    start inclusive, end exclusive; a mention is `{ $type: 'app.bsky.richtext.facet#mention', did }`.
+  - `app.bsky.video.getUploadLimits` (output `canUpload` required, `remainingDailyVideos`,
+    `remainingDailyBytes`, `message`, `error`), `uploadVideo` (output described as
+    `{ jobStatus }`; but see "observed" below: the real service answers at the top level) and
+    `getJobStatus` (`jobId`, `did`, `state`, `progress` 0 to 100, `blob`, `error`, `failureCode`,
+    `message`); the job states and failure codes in `src/video.mjs`.
+- **From Bluesky's video upload tutorial**, not a lexicon: the two service auth tokens (their
+  `aud`, `lxm` and the upload token's 30-minute `exp`), the upload request's URL, headers and
+  host `video.bsky.app`, polling until `blob` is set, the `already_exists` answer carrying the
+  earlier blob, the need for a verified email, the daily limits, and the app's 10-minute limit
+  on a video's length.
+- **Not read that day; from the tutorial and from what `repost` already does**: the
+  `com.atproto.server.getServiceAuth` parameters (`aud`, `lxm`, `exp`) and its `{ token }`
+  output, and the strong ref (`com.atproto.repo.strongRef`: `uri` and `cid`) used for
+  `reply.root` and `reply.parent`.
+- **Observed 21 November 2026**, from unauthenticated probes of `https://video.bsky.app` (by
+  the coordinator; distinct from what the lexicon and the tutorial say). Each body is in
+  `test/post.test.mjs`, verbatim:
+  - `POST /xrpc/app.bsky.video.uploadVideo` with no token: HTTP 401,
+    `{"did":"","error":"missing token","jobId":"","state":""}`;
+  - `GET /xrpc/app.bsky.video.getJobStatus?jobId=<unknown>` with no token: HTTP 400,
+    `{"did":"","error":"invalid jobId","jobId":"","state":""}` (it answers without a token, so
+    polling without one is right);
+  - `GET /xrpc/app.bsky.video.getUploadLimits` with no token: HTTP 401,
+    `{"canUpload":false,"error":"missing_token"}`.
+
+  So the upload's answer is a job status at the top level (`did`, `jobId`, `state`, `error`,
+  and by the tutorial `blob` when done), not wrapped in `jobStatus`; error bodies carry `error`
+  and often no `message`; an absent job id is the empty string. The tutorial reads the upload's
+  answer the same way: `jobId` and `blob` straight off its JSON.
+- **The transport**: Node's built-in fetch has a fixed 300 s headers timeout that fires while a
+  slow upload is still being written; it cannot be changed without the `undici` package. So
+  the upload goes by `node:https` (see `src/atproto.mjs`).
+- **Not built, for whoever meets a refusal next**: the Bluesky app's own source has moved to a
+  multipart upload (`app.bsky.video.startUpload`, parts, `finishUpload`, `getUploadStatus`,
+  `abortUpload`). The single-request `uploadVideo` still answers and is what the tutorial
+  documents, so this package stays on it; if a real run is refused, look there first.
+- **The reference record**: episode one's video post, as the owner's app created it and the
+  server accepted it, from the scraper's copy (in `test/post.test.mjs`, with the member's link
+  and the text cut). It is why the embed carries `presentation: "default"` and passes the job's
+  blob through untouched.

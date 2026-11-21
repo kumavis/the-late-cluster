@@ -49,8 +49,27 @@ export function loadSettings({ env = {}, configPath = CONFIG_PATH, showConfigPat
     // Left raw here; the commands that use them validate them, so a bad list fails loudly there.
     repostAuthors: show.bluesky?.repostAuthors,
     profile: show.bluesky?.profile,
+    video: videoSettings(file.video),
     configPath,
   };
+}
+
+/** The video service (`video` in bot.config.json): its host and DID are configuration, not code. */
+export const DEFAULT_VIDEO = Object.freeze({
+  service: 'https://video.bsky.app', did: 'did:web:video.bsky.app', jobTimeoutMinutes: 20, pollSeconds: 3, stallSeconds: 120,
+});
+
+function videoSettings(raw = {}) {
+  const v = { ...DEFAULT_VIDEO, ...(raw && typeof raw === 'object' ? raw : {}) };
+  // https, or plain http to a loopback host only (a test's local server).
+  if (typeof v.service !== 'string' || !/^(https:\/\/|http:\/\/(127\.0\.0\.1|localhost|\[::1\])(:\d+)?(\/|$))/.test(v.service)) {
+    throw new BotError(`video.service in bot.config.json must be an https URL, got ${JSON.stringify(v.service)}`);
+  }
+  if (typeof v.did !== 'string' || !v.did.startsWith('did:')) throw new BotError(`video.did in bot.config.json must be a DID, got ${JSON.stringify(v.did)}`);
+  for (const k of ['jobTimeoutMinutes', 'pollSeconds', 'stallSeconds']) {
+    if (typeof v[k] !== 'number' || !(v[k] > 0)) throw new BotError(`video.${k} in bot.config.json must be a positive number`);
+  }
+  return v;
 }
 
 /** The site root with a trailing slash, so that episodes/<id>/ resolves under it
