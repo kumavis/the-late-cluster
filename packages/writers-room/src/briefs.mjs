@@ -6,6 +6,7 @@
 // the earlier round asked for and what came back. Every file a brief names exists (trial finding 31).
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
+import { PRONOUN_RULE, briefCards, peopleOfCards } from './pronouns.mjs'
 
 export const briefPath = (ctx, task) => join(ctx.paths.production, 'briefs', task.stage, `${task.id}.md`)
 export const scratchDir = (ctx, task) => `${ctx.config.scratch.dir.replace('{id}', ctx.id)}/${task.id}`
@@ -73,6 +74,10 @@ export function renderBrief(ctx, task, { feedback = [], earlier: before = [] } =
   if (task.rules.length) L.push('## What the check enforces', '', ...task.rules.map((r) => `- ${r}`), '')
   const terms = termsFor(ctx, task.cards)
   if (terms.length) L.push('## Terms of use', '', ...terms.flatMap((t) => [`**${t.id}:** ${t.text}`, '']))
+  // stated pronouns: every brief carries the rule; one that names people lists them (README "Pronouns")
+  const people = peopleOfCards(ctx, briefCards(ctx, task))
+  L.push('## People and pronouns', '', PRONOUN_RULE, '')
+  if (people.length) L.push(...people.map((p) => `- @${p.handle}: ${p.pronouns}`), '')
   if (earlier.length) L.push('## The earlier round', '', ...earlier.map((e) => `- ${e}`), '')
   if (feedback.length) L.push('## Sent back to you', '', 'Fix every one, in place:', '', ...feedback.map((f) => `- ${f}`), '')
   L.push('## Never', '', `Never read or do: ${NEVER[task.role] ?? NEVER.writer} Never change the constitution. Nobody will answer questions. When you finish, reply in two or three sentences.`, '')

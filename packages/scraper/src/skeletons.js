@@ -14,7 +14,7 @@ import { answerPairs } from './interview.js'
 export const SKELETON_FORMAT = 'late-cluster-skeleton/1'
 export const INDEX_FORMAT = 'late-cluster-skeletons/1'
 export const LANE_FORMAT = 'late-cluster-lane/1'
-export const LANES = ['made', 'talk', 'games', 'voices', 'interview']
+export const LANES = ['made', 'talk', 'games', 'voices', 'interview', 'tagged']
 
 const byTime = (a, b) => (a.time < b.time ? -1 : a.time > b.time ? 1 : a.uri < b.uri ? -1 : 1)
 const compile = (list = []) => list.map((x) => new RegExp(x, 'iu'))
@@ -76,7 +76,7 @@ export function botTest({ profiles = new Map(), bios = new Map(), games = [], cf
  * @param {Function} a.featured (did, handle) -> { previous, earlier, appearances }
  * @param {object} a.config the loaded config (lanes, safety, show, games)
  */
-export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map(), memberDids = new Set(), bioReview = new Set(), featured = () => ({ previous: null, earlier: null, appearances: 0 }), config }) {
+export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map(), memberDids = new Set(), bioReview = new Set(), featured = () => ({ previous: null, earlier: null, appearances: 0 }), config, outside = false }) {
   const L = config.lanes ?? {}
   const small = config.safety?.smallAccountFollowers ?? 300
   const games = config.games?.games ?? []
@@ -93,6 +93,7 @@ export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map
     return {
       did, handle: handle ?? a.handle ?? prof?.handle ?? null, displayName: displayName ?? a.displayName ?? prof?.displayName ?? null,
       followers, member: memberDids.has(did), small: Number.isFinite(followers) && followers < small, bot: isBot(did, labels),
+      pronouns: a.pronouns !== undefined ? a.pronouns : prof?.pronouns ?? null, ...(a.pronounsReview || prof?.pronounsReview ? { pronounsReview: true } : {}),
       featuredPrevious: fe.previous ?? null, featuredEarlier: fe.earlier ?? null, timesFeatured: fe.appearances ?? 0,
       ...(bioReview.has(did) ? { bioReview: true } : {}),
     }
@@ -102,7 +103,7 @@ export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map
     if (inStory.has(p.uri)) return { uri: p.uri, handle: p.handle, inStory: true }
     const out = { uri: p.uri, url: p.url, handle: p.handle, displayName: p.displayName ?? null, text: p.text ?? '', time: p.time, inStory: inStory.has(p.uri) }
     const a = authorOf(p.authorDid, p.handle, p.displayName, p._authorLabels)
-    out.author = { did: a.did, followers: a.followers, member: a.member, small: a.small, bot: a.bot }
+    out.author = { did: a.did, followers: a.followers, member: a.member, small: a.small, bot: a.bot, pronouns: a.pronouns }
     if (p.media?.length) out.media = p.media.map(slimMedia)
     if (p.redacted) out.redacted = true
     Object.assign(out, marksOf(p) ?? {})
@@ -138,6 +139,7 @@ export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map
     out.media = (p.media ?? []).map(slimMedia)
     if (p.embedded) out.embedded = p.embedded
     if (p.redacted) out.redacted = true
+    if (p.addressedToShow) out.addressedToShow = true
     Object.assign(out, marksOf(p) ?? {})
     return out
   }
@@ -202,7 +204,9 @@ export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map
     // lane hints
     const lanes = []
     let made = null
-    if (!excluded) {
+    // A thread fetched only because a member pointed at it (README "The tagged lane") is in no
+    // lane but `tagged`, which the lane builder adds.
+    if (!excluded && !outside) {
       const links = linkInfo(s)
       const makers = new Map()
       for (const p of kept) {
@@ -246,6 +250,7 @@ export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map
       kind: s.kind,
       headline: excluded ? null : headline,
       lanes,
+      ...(outside ? { outsideCluster: true, note: 'fetched only because a member of the cluster pointed at it; outside the cluster, in no lane but tagged' } : {}),
       ...(made ? { makers: made.makers } : {}),
       reason: excluded ? [] : s.reason,
       stats: { posts: kept.length, authors: people.size, members: members.size, days: s.stats.days, quotePosts: s.stats.quotePosts, memberReposts: s.stats.memberReposts },
@@ -270,6 +275,7 @@ export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map
       lanes: lanes.map((x) => x.lane),
       postsMarked: marks.postsMarked, leadMarked: marks.leadMarked, consentMarked: marks.consentMarked,
       excluded: !!excluded,
+      ...(outside ? { outsideCluster: true } : {}),
       media: kept.reduce((n, p) => n + (p.media?.length ?? 0), 0),
       file: `skeletons/${s.id}.json`,
     })
@@ -297,7 +303,7 @@ export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map
         const wpMarks = wp ? { ...(wp.sensitive?.length ? { sensitive: wp.sensitive } : {}), ...(wp.consent?.length ? { consent: wp.consent } : {}), ...(wp.redacted ? { consent: ['redacted'] } : {}) } : {}
         return {
           time: x.time, likes: x.likes, ofRecord: x.ofRecord ?? null, rankInHistory: x.rankInHistory ?? null,
-          winner: x.winner?.excluded ? { excluded: true } : x.winner ? { did: x.winner.did, handle: x.winner.handle, displayName: x.winner.displayName, followers: x.winner.followers, small: x.winner.small } : null,
+          winner: x.winner?.excluded ? { excluded: true } : x.winner ? { did: x.winner.did, handle: x.winner.handle, displayName: x.winner.displayName, pronouns: x.winner.did ? authorOf(x.winner.did, x.winner.handle).pronouns : null, followers: x.winner.followers, small: x.winner.small } : null,
           mayName: !!x.winner && !x.winner.excluded,
           why: x.winner?.excluded ? 'the winner is left out by the consent rules: not named, not described, the result counted only' : 'a winner may be named (R7), subject to R10 and R11',
           winningPost: wp && !x.winner?.excluded ? { uri: wp.uri, url: wp.url, skeleton: storyOfPost.get(wp.uri) ?? null, mayQuote: !Object.keys(wpMarks).length, ...(Object.keys(wpMarks).length ? { marks: wpMarks } : {}) } : null,
@@ -348,7 +354,7 @@ export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map
     format: LANE_FORMAT, lane: 'voices', window: window.label,
     rule: `Members the show has never featured, ranked by the sum of their three best unmarked posts, each scored ln(1 + engagement) + 1.2 × lift over the author's usual − ${V.audienceWeight ?? 0.5} × log10(followers + 10), so a small account's good day can lead. Left out: bots, accounts over ${V.maxFollowers ?? 5000} followers, and posts that are marked or inside a story the consent rules leave out.`,
     entries: voiceRows.slice(0, V.limit ?? 30).map((r, i) => ({
-      rank: i + 1, did: r.a.did, handle: r.a.handle, displayName: r.a.displayName, followers: r.a.followers, small: r.a.small, postsInWindow: r.n, strength: round(r.strength),
+      rank: i + 1, did: r.a.did, handle: r.a.handle, displayName: r.a.displayName, pronouns: r.a.pronouns, followers: r.a.followers, small: r.a.small, postsInWindow: r.n, strength: round(r.strength),
       line: `@${r.a.handle}${r.a.small ? ' (small account)' : ''}, ${r.a.followers ?? '?'} followers: ${clip(r.top[0].p.text || (r.top[0].p.media?.length ? `(${r.top[0].p.media[0].kind})` : ''), lineChars)}`,
       posts: r.top.map(({ p, m }) => ({ id: storyOfPost.get(p.uri), uri: p.uri, score: m.score, line: clip(p.text || (p.media?.length ? `(${p.media.map((x) => x.kind).join(', ')}${p.media.every((x) => !x.hasAlt) ? ', no alt text' : ''})` : '(no text)'), lineChars) })),
     })),
@@ -421,33 +427,25 @@ export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map
   ivRows.sort((x, y) => { const kx = key(x), ky = key(y); for (let i = 0; i < kx.length; i++) if (kx[i] !== ky[i]) return ky[i] - kx[i]; return x.a.did < y.a.did ? -1 : 1 })
   const qa = (x) => ({
     skeleton: x.skeleton, aboutMade: x.aboutMade, kind: x.kind,
-    question: { uri: x.question.uri, url: x.question.url, handle: x.question.handle, displayName: x.question.displayName, text: x.question.text, time: x.question.time, member: x.question.member, followers: x.question.authorFollowers, small: x.question.smallAccount, bioReview: bioReview.has(x.question.authorDid) || undefined },
+    question: { uri: x.question.uri, url: x.question.url, handle: x.question.handle, displayName: x.question.displayName, pronouns: authorOf(x.question.authorDid, x.question.handle).pronouns, text: x.question.text, time: x.question.time, member: x.question.member, followers: x.question.authorFollowers, small: x.question.smallAccount, bioReview: bioReview.has(x.question.authorDid) || undefined },
     answer: { uri: x.answer.uri, url: x.answer.url, text: x.answer.text, time: x.answer.time, counts: x.answer.counts },
   })
   lanes.interview = {
     format: LANE_FORMAT, lane: 'interview', window: window.label,
     rule: `Members who made something in the window and were asked about it in public (a usable question-and-answer pair whose question replies to, quotes, or sits under the post that shows what they made), ranked by how many such pairs, then how many different people asked, then how many made things were asked about; then members with at least ${I.minPairs ?? 3} usable pairs of any kind. Every usable pair is listed, oldest first; inside a made story, a reply to the maker that the maker answered counts as asking (kind "reply to the maker") even when it is not worded as a question. Both sides of a pair pass every mark. Nobody who appeared in the previous aired episode; no bots.`,
     entries: ivRows.slice(0, I.limit ?? 12).map((r, i) => ({
-      rank: i + 1, did: r.a.did, handle: r.a.handle, displayName: r.a.displayName, followers: r.a.followers, small: r.a.small, featuredEarlier: r.a.featuredEarlier, timesFeatured: r.a.timesFeatured,
+      rank: i + 1, did: r.a.did, handle: r.a.handle, displayName: r.a.displayName, pronouns: r.a.pronouns, followers: r.a.followers, small: r.a.small, featuredEarlier: r.a.featuredEarlier, timesFeatured: r.a.timesFeatured,
       line: `@${r.a.handle}: made ${r.mine.size} thing${r.mine.size === 1 ? '' : 's'} in the window, asked about ${r.thingsAsked.size} (${r.madeAsked.length} pair${r.madeAsked.length === 1 ? '' : 's'}); ${r.withStory.length} usable pair${r.withStory.length === 1 ? '' : 's'} from ${r.askers} asker${r.askers === 1 ? '' : 's'}`,
       made: [...r.mine].sort((x, y) => files.get(x).rank - files.get(y).rank).map((id) => ({ id, asked: r.thingsAsked.has(id), line: files.get(id).marks.leadMarked ? '(lead post marked)' : clip(files.get(id).headline, lineChars) })),
       pairs: [...r.withStory].sort((x, y) => (x.answer.time < y.answer.time ? -1 : 1)).map(qa),
     })),
   }
 
-  index.sort((a, b) => a.rank - b.rank)
-  // Every slice also lists its skeleton ids, ranked, once each: what the lane should look at.
-  for (const l of LANES) {
-    const ids = []
-    const add = (id) => { if (id && !ids.includes(id)) ids.push(id) }
-    for (const e of lanes[l].entries) {
-      add(e.id)
-      for (const p of e.posts ?? []) add(p.id)
-      for (const m of e.made ?? []) add(m.id)
-      for (const q of e.pairs ?? []) add(q.skeleton)
-    }
-    lanes[l].skeletons = ids
-  }
+  // tagged: filled in by run.js once every skeleton exists (src/tagged.js)
+  lanes.tagged = { format: LANE_FORMAT, lane: 'tagged', window: window.label, rule: 'What the audience pointed at; see src/tagged.js.', entries: [] }
+
+  index.sort((a, b) => (a.rank ?? Infinity) - (b.rank ?? Infinity) || (a.id < b.id ? -1 : 1))
+  for (const l of LANES) lanes[l].skeletons = laneSkeletonIds(lanes[l])
   const counts = {
     stories: d.stories.length, written: wrote.length, excluded: index.filter((x) => x.excluded).length,
     noMember: skipped.noMember, aboutShowForReviewers: skipped.aboutShow,
@@ -464,6 +462,19 @@ export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map
   }
 }
 
+/** Every skeleton id a slice points at, ranked, once each: what the lane should look at. */
+export function laneSkeletonIds(slice) {
+  const ids = []
+  const add = (id) => { if (id && !ids.includes(id)) ids.push(id) }
+  for (const e of slice.entries) {
+    add(e.id)
+    for (const p of e.posts ?? []) add(p.id)
+    for (const m of e.made ?? []) add(m.id)
+    for (const q of e.pairs ?? []) add(q.skeleton)
+  }
+  return ids
+}
+
 /** A lane slice as short Markdown: the rule and one line per entry. */
 export function renderLane(slice) {
   const out = [`# Lane: ${slice.lane} (${slice.window})`, '', slice.rule, '']
@@ -478,6 +489,13 @@ export function renderLane(slice) {
       for (const m of e.made) out.push(`   - made: \`${m.id}\`${m.asked ? ' (asked about)' : ''} ${m.line}`)
     }
     out.push('', 'Every pair, with exact text, is in the JSON beside this file.')
+  } else if (slice.lane === 'tagged') {
+    for (const e of slice.entries) {
+      out.push(`${e.rank}. \`${e.id}\` ${e.line}`)
+      for (const t of e.taggers) out.push(`   - pointed by @${t.handle} (${t.kind}, weight ${t.weight}: membership score ${t.centrality.raw} of ${t.centrality.max}${t.nth > 1 ? `, their ${t.nth}${t.nth === 2 ? 'nd' : t.nth === 3 ? 'rd' : 'th'} pointer` : ''}) ${t.url}`)
+    }
+    if (slice.counts) out.push('', `Counted: ${slice.counts.counted} pointers from ${slice.counts.taggers} members. Not listed: ${slice.counts.ignored.notMember} from outside the cluster, ${slice.counts.ignored.bot} by bots, ${slice.counts.ignored.excludedTagger + slice.counts.ignored.excludedTarget} for consent, ${slice.counts.ignored.overCap + slice.counts.ignored.repeat} over the cap or repeated, ${slice.counts.ignored.notFound} not found; ${slice.counts.aboutShow} tags only about the show are for reviewers.`)
+    if (slice.entries.length) out.push('', 'Each tagger\'s post, with exact text and marks, is in the JSON beside this file.')
   } else {
     for (const e of slice.entries) out.push(`${e.rank}. \`${e.id}\` ${e.line}`)
   }

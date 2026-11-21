@@ -238,7 +238,9 @@ Two studio tools have no root command and are run directly: `bun packages/show/t
 (loudness, voices, the Whisper intelligibility pass) and `node packages/show/tools/video.mjs`
 (video exports into `video/<id>/`). Review frames from `shoot` go to `shots/<id>/<seg>/`.
 The sound editor's two tools are `fit` and `voices` (`packages/show/tools/README.md`, "Fitting a
-script" and "Giving guests voices"). `fit` caches every render and every transcription in
+script" and "Giving guests voices"). `voices` prints each guest's stated pronouns and applies the
+owner's soft pronoun steer (`packages/show/config/voices.json`): a preference after distinctness,
+off under a hand `--rule`; nothing reads a voice back as a statement about a person. `fit` caches every render and every transcription in
 `packages/show/tools/.cache/`, so a re-run of an unchanged script takes seconds; it writes nothing
 outside the script's own folder (`fit.json`, and `as` fields with `--apply`), and for a published
 episode keeps `fit.json` in the cache. A studio tool given the path of an episode folder
@@ -289,8 +291,20 @@ and no credentials by default. `packages/scraper/README.md` has the detail.
   and the community's own checker, suggested seeds); `skeletons/`, a card skeleton per story
   with every post's exact text, author, counts, reply and quote, alt text, media addresses and
   marks; `lanes/`, the skeleton ids for each research lane (`made`, `talk`, `games`, `voices`,
-  `interview`), ranked; `reviewers/`, what was said about the show, for reviewers only. The
+  `interview`, `tagged`), ranked; `reviewers/`, what was said about the show, for reviewers only. The
   shapes are in the package README, "Skeletons and lanes".
+- **The tagged lane** (package README, "The tagged lane"): a post by a member of the window's
+  cluster that tags the show's account (a mention facet with its DID) and points at something that
+  is not the show is a pointer, weighted by the tagger's membership score (normalised to 0..1, with
+  a diminishing return per member; weights in `config/lanes.json` `tagged`). Tags from outside the
+  cluster are counted, never listed; a tag only about the show stays with reviewers. Found in what
+  was collected and by `searchPosts` with the `mentions` parameter on `api.bsky.app`; a pointed-at
+  thread outside the digest is fetched (one request each, capped) and analysed apart, so a tag
+  changes no story, score, rank or reach. Nothing replies to, likes or acknowledges a tag.
+- **Pronouns** (package README, "Pronouns"): every account's stated pronouns, `{ text, forms,
+  source }` from the profile's built-in field or an explicit bio statement, or `null` (none
+  stated); a conflicting bio is none, marked for the auditor. Only the phrase crosses to other
+  roles: authors, skeleton posts, lane entries, `npm run lookup`; `npm run sources` flags a change.
 - **Reach** stands in for views: per post and story, the separate counts, participants, and
   a score with weights in `config/scoring.json`. The pipeline uses the same score.
 - **Sections:** community games (Top Chicken standings with streaks, the record and history),
@@ -373,7 +387,10 @@ auditors and its `reviewers/` from all but reviewers and auditors, and keeps the
 to `npm run sources` and `npm run media`. The repetition gate catches what slips through.
 
 **Gates** do not depend on a model's judgement. Among them: cards built from the scraper's skeletons,
-with every picture described and no marked post; every judgement from two reviewers; the
+with every picture described and no marked post (a `tagged` card records who pointed and proposes
+nothing; an empty lane gets no task); **stated pronouns** on every card, the terms file and every
+brief that names people, and a pronoun gate on house lines and on-screen text (a warning at draft,
+blocking at assembly; real people's verbatim lines exempt); every judgement from two reviewers; the
 **repetition gate** on ideas, selected scripts (including pairs) and lines added at assembly; the
 **caps**, applied by the tool as it selects (one interview, nobody in more than two segments, nobody
 who spoke in the previous aired episode, the accounts on screen mostly new); every line **heard as

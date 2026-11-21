@@ -1,0 +1,8 @@
+{
+  "$comment": "npm run voices (tools/README.md, 'Guest voices'). pronounSteer is the owner's ruling of 21 November 2026: a guest's stated pronouns softly steer which voice their puppet gets. A guest whose stated forms include 'she' and not 'he' is kept out of the lowest band (a measured median f0 at or below lowestBandBelowHz); one whose forms include 'he' and not 'she' is kept out of the highest (at or above highestBandAboveHz); everyone else (mixed forms, any pronouns, they alone, neopronouns, none stated, or no source record) is placed freely. Nobody is pushed towards a band. It is the --rule forms above:<hz> and below:<hz>, applied as a preference: distinctness from the house and the other guests comes first, an unmet preference is placed anyway and named in the table, and a --rule given by hand for a guest switches the steer off for that guest. It runs one way only: nothing reads a voice back as a statement about a person. enabled: false switches it off.",
+  "pronounSteer": {
+    "enabled": true,
+    "lowestBandBelowHz": 120,
+    "highestBandAboveHz": 220
+  }
+}

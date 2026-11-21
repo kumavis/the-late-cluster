@@ -7,6 +7,10 @@ import { Candidates, selectMembers } from './cluster.js'
 import { normalizePost, mergePost, didOfUri } from './normalize.js'
 import { WEEK } from './window.js'
 import { personHandles } from './games.js'
+import { showDids as tagDids, findTags } from './tagged.js'
+import { showMatcher } from './show.js'
+import { botTest } from './skeletons.js'
+import { pronounsOf } from './pronouns.js'
 
 export class PostStore {
   constructor(consent) {
@@ -66,12 +70,13 @@ function threadAuthors(node, out = [], depth = 0) {
 
 /** The few profile fields kept: follower count is for the small-account rule (R7). */
 const labelVals = (p) => [...new Set((p.labels ?? []).map((l) => l?.val ?? l).filter((v) => typeof v === 'string'))].sort()
-const slimProfile = (p) => ({ did: p.did, handle: p.handle, displayName: p.displayName?.trim() || null, followersCount: p.followersCount ?? null, labels: labelVals(p) })
+// Stated pronouns cross to other roles (the phrase only; the bio stays private): README "Pronouns".
+const slimProfile = (p) => { const pr = pronounsOf(p); return { did: p.did, handle: p.handle, displayName: p.displayName?.trim() || null, followersCount: p.followersCount ?? null, labels: labelVals(p), pronouns: pr.pronouns, ...(pr.review ? { pronounsReview: true } : {}) } }
 /**
  * What the run keeps privately about an account, for the bio pass and the auditor
  * (`private/profiles.json`, never read by other roles): the description and labels as read.
  */
-const privateProfile = (p) => ({ did: p.did, handle: p.handle, displayName: p.displayName?.trim() || null, description: typeof p.description === 'string' ? p.description : '', labels: labelVals(p), pinnedPost: p.pinnedPost?.uri ?? null })
+const privateProfile = (p) => { const pr = pronounsOf(p); return { did: p.did, handle: p.handle, displayName: p.displayName?.trim() || null, description: typeof p.description === 'string' ? p.description : '', labels: labelVals(p), pinnedPost: p.pinnedPost?.uri ?? null, pronouns: pr.pronouns, ...(pr.review ? { pronounsReview: { statements: pr.statements } } : {}) } }
 
 export async function collect({ client, config, window, consent, log = () => {}, membershipOnly = false }) {
   const { cluster } = config
@@ -267,7 +272,9 @@ export async function collect({ client, config, window, consent, log = () => {},
   // ---- 9. member feeds: the whole window first, then as much baseline as the budget allows
   const others = sel.members.filter((m) => !m.seed)
   // Keep enough budget for the profile checks at the end: consent depends on them.
-  const reserve = (col.threadsToExpand ?? 0) + (col.profileReserve ?? 250) + (config.show?.performableThreads?.prefetch ?? 0) + 10
+  const TG = config.lanes?.tagged ?? {}
+  const tagReserve = TG.enabled === false ? 0 : (TG.maxThreads ?? 20) + (TG.search?.enabled === false ? 0 : (TG.search?.queries ?? []).length * (TG.search?.maxPages ?? 2)) + 2
+  const reserve = (col.threadsToExpand ?? 0) + (col.profileReserve ?? 250) + (config.show?.performableThreads?.prefetch ?? 0) + tagReserve + 10
   const pool = async (list, fn) => {
     let done = 0
     await Promise.all(list.map(async (m) => {
@@ -341,13 +348,64 @@ export async function collect({ client, config, window, consent, log = () => {},
     gameHandles.push(...personHandles(mine, g))
   }
 
+  // ---- 10c. what the audience pointed at (README "The tagged lane"): posts that tag the show's
+  // account. Found in what was collected, and by a search for mentions of the show's DID. Posts
+  // found this way and threads fetched for them go to a store of their own, so a tag never adds
+  // a post to the digest's stories, scores or reach. A thread is fetched only for a member's
+  // pointer at something the digest does not hold, never for an excluded account's post.
+  const tagStore = new PostStore(consent)
+  const tagRun = { searches: [], threadsFetched: 0, threadsSkipped: 0 }
+  const showAccountDids = tagDids(config)
+  if (TG.enabled !== false && showAccountDids.size) {
+    const S = TG.search ?? {}
+    const showHandle = config.show?.accountHandle ?? (config.show?.handles ?? []).find((h) => !String(h).startsWith('did:')) ?? null
+    for (const did of S.enabled === false ? [] : showAccountDids) {
+      for (const tpl of S.queries ?? []) {
+        // A query is a string (q) or { q, mentions, ... } (searchPosts parameters).
+        const fill = (v) => String(v).replace('{did}', did).replace('{handle}', showHandle ?? '')
+        const spec = typeof tpl === 'string' ? { q: tpl } : tpl
+        if (JSON.stringify(spec).includes('{handle}') && !showHandle) continue
+        const { q, ...params } = Object.fromEntries(Object.entries(spec).filter(([k]) => !k.startsWith('$')).map(([k, v]) => [k, fill(v)]))
+        const label = JSON.stringify({ q, ...params })
+        if (tagRun.searches.some((x) => x.query === label)) continue
+        const res = await api.soft(warnings, 'tag search', () => api.searchPosts(client, q, { since: window.start, until: window.end, maxPages: S.maxPages ?? 2, host: S.host, params }))
+        tagRun.searches.push({ query: label, ok: !!res, posts: res?.posts?.length ?? 0, pages: res?.pages ?? 0 })
+        for (const v of res?.posts ?? []) if (!store.posts.has(v.uri)) tagStore.add(v, 'tag-search')
+      }
+    }
+    const lookup = (u) => store.posts.get(u) ?? tagStore.posts.get(u) ?? null
+    const all = new Map([...tagStore.posts, ...store.posts])
+    const tags = findTags([...all.values()], { lookup, dids: showAccountDids, matcher: showMatcher({ ...config.show, accountDids: [...showAccountDids] }), cfg: TG, window })
+    const isBot = botTest({ profiles: profileMap, bios, games: config.games?.games ?? [], cfg: config.lanes?.bots })
+    const per = new Map()
+    const roots = []
+    for (const { post: p, cls } of tags) {
+      if (!cls.pointer || !memberDids.has(p.authorDid) || consent.excludedDid(p.authorDid) || isBot(p.authorDid, p._authorLabels)) continue
+      const n = per.get(p.authorDid) ?? 0
+      if (n >= (TG.perTaggerCap ?? 5)) continue
+      per.set(p.authorDid, n + 1)
+      if (consent.excludedDid(didOfUri(cls.target)) || consent.excludedDid(didOfUri(cls.root))) continue
+      const have = store.posts.get(cls.target)
+      if (have && inWin(have)) continue
+      if (!roots.includes(cls.root)) roots.push(cls.root)
+    }
+    const maxT = TG.maxThreads ?? 20
+    for (const r of roots.slice(0, maxT)) {
+      const t = await api.soft(warnings, 'pointed-at thread', () => api.getPostThread(client, r, { depth: TG.threadDepth ?? 6 }))
+      if (t) { tagStore.addThread(t); tagRun.threadsFetched++ }
+    }
+    tagRun.threadsSkipped = Math.max(0, roots.length - maxT)
+    if (tagRun.threadsSkipped) warnings.push(`tagged: ${tagRun.threadsSkipped} pointed-at threads not fetched (maxThreads ${maxT})`)
+    log(`tagged: ${tags.length} tags, ${tagRun.threadsFetched} pointed-at threads fetched, ${tagStore.posts.size} posts kept apart`)
+  }
+
   const completeThreads = new Set()
 
   // ---- 11. profiles of everyone who can appear in the output: follower counts for the
   // small-account rule, and descriptions that opt out. Mentioned accounts are checked too,
   // so a mention of someone who opted out in their bio is redacted.
   const appearing = new Set()
-  for (const p of store.posts.values()) {
+  for (const p of [...store.posts.values(), ...tagStore.posts.values()]) {
     if (Date.parse(p.time) < baselineStart) continue
     appearing.add(p.authorDid)
     for (const m of p._mentions ?? []) appearing.add(m.did)
@@ -365,6 +423,7 @@ export async function collect({ client, config, window, consent, log = () => {},
     seeds, members: sel.members, memberDids, store, warnings, coverage, baselineStart,
     selection: { considered: sel.considered, qualified: sel.qualified, cut: sel.cut, cutRows: sel.cutRows, skippedSeeds },
     searchWorked,
+    tagStore, tagRun,
     pagesPerMember: { window: windowPages, baseline: plan.pages, baselineMax: baselinePages, baselineRequestsPlanned: plan.cost },
     threadsExpanded: toExpand.length,
   }

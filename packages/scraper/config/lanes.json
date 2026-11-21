@@ -52,6 +52,37 @@
     "minPairs": 3,
     "limit": 20
   },
+  "tagged": {
+    "$comment": "What the audience pointed at (README 'The tagged lane'). A post that tags the show's account (a mention facet with its DID) is a pointer when it points at something that is not the show: the post it replies to or quotes, a link, or its own top-level post with a picture, video, link or at least minOwnWords words besides mentions. aboutShowPatterns (case-insensitive regexes on the tag's own text and alt text) mark a tag that only talks about the show; it stays with the posts about the show (reviewers only). Only members of this window's cluster count as taggers; bots and excluded accounts never do. Each counted pointer weighs the tagger's membership score (cluster.json expansion.weights and caps) divided by the window's highest member score, at least weight.floor; a member's nth distinct thing in the window counts weight.repeatDecay^(n-1), the same thing twice counts once, and at most perTaggerCap count. search: searchPosts for mentions of the show's DID on host (each query a string q or searchPosts parameters; `mentions:` in q answers 400 unauthenticated, the mentions parameter is used instead) (cluster.json's note: it answers unauthenticated on api.bsky.app), each query at most maxPages pages; {did} and {handle} are filled in. A pointed-at thread not in the digest is fetched with one getPostThread each, at most maxThreads per run, threadDepth deep, and written as a skeleton marked outsideCluster.",
+    "enabled": true,
+    "minOwnWords": 6,
+    "aboutShowPatterns": [
+      "\\b(love[ds]?|liked?|enjoy(ed|ing)?|great|fun|amazing|favou?rite) (the|your|this|that|last|latest|new) (show|episode|ep)\\b",
+      "\\b(watch(ed|ing)?|saw) (the|your|this|that|last|latest|new) (show|episode|ep)\\b",
+      "\\bthanks? (you )?for (the|this|that) (show|episode|ep|feature|shout ?out)\\b",
+      "\\b(next|new) (episode|ep)\\b",
+      "\\bwhen'?s the next\\b",
+      "\\b(i'?m|i was|we'?re|we were) (on|in) (the|your) (show|episode)\\b",
+      "\\bmy puppet\\b"
+    ],
+    "perTaggerCap": 5,
+    "weight": {
+      "floor": 0.05,
+      "repeatDecay": 0.5
+    },
+    "search": {
+      "enabled": true,
+      "host": "https://api.bsky.app",
+      "queries": [
+        { "$comment": "the mentions parameter, by DID; the q operators (mentions:, from:) answer 400 unauthenticated", "q": "{handle}", "mentions": "{did}" },
+        { "$comment": "the handle as text, for an AppView that refuses the parameter; every hit is checked for a mention facet with the DID", "q": "{handle}" }
+      ],
+      "maxPages": 2
+    },
+    "maxThreads": 20,
+    "threadDepth": 6,
+    "limit": 40
+  },
   "bots": {
     "$comment": "An account is a bot when it carries the self-label 'bot', is a configured game account, is listed here (DIDs), or its profile description matches a pattern here.",
     "accounts": [],

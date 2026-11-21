@@ -15,7 +15,10 @@
  * `source` change; `rate`, `accent` and `pan` (the attitude and the place) stay.
  *
  * Rules, per guest: not-lowest, not-highest, below:<Hz>, above:<Hz> (measured median f0), keep,
- * new. --dry-run prints the table and writes nothing; --json also writes production/voices.json.
+ * new. The pronoun steer (config/voices.json, the owner's ruling of 21 November 2026) adds a soft
+ * above:/below: for a guest whose stated pronouns (from the sources.json record and the digest) are
+ * she without he, or he without she; distinctness comes first, a hand --rule switches it off, and the
+ * table says whether it applied and was met. Nothing reads a voice back as a statement about a person. --dry-run prints the table and writes nothing; --json also writes production/voices.json.
  * Exit 0 when every voice is 1.5 or more from its nearest neighbour, 1 when one is not, 2 for bad
  * arguments. A guest that changed voice needs its lines fitted again (npm run fit).
  */
@@ -26,7 +29,8 @@ import { CAST } from "../src/cast.js";
 import { measureVoice } from "./analyze.ts";
 import { loadEpisode, exitOnEpisodeError } from "./episode.mjs";
 import { draftSlugs } from "./draft.mjs";
-import { MIN_DISTANCE, allowed, assign, nearest, parseRule, slotGrid } from "./voices-lib.mjs";
+import { MIN_DISTANCE, allowed, assign, guestPronouns, nearest, parseRule, pronounText, slotGrid, steerRules } from "./voices-lib.mjs";
+import { REPO } from "./episode.mjs";
 import { parseLiteral, prop, setProp } from "./source-edit.mjs";
 
 /** the house: whoever src/cast.js defines, before any episode is merged in */
@@ -93,10 +97,20 @@ for (const [id, defs] of guests) {
   const distinctVoices = new Set(defs.map((d) => JSON.stringify([d.entry.body, d.entry.f0, d.entry.source])));
   gl.push({ id, feat: await measureVoice(spec(now)), defs, split: distinctVoices.size > 1 });
 }
+// ---- stated pronouns, from the sources.json record the pipeline carries (never from the cast entry)
+const readJson = (f: string) => { try { return JSON.parse(readFileSync(f, "utf8")); } catch { return null; } };
+const steerCfg = readJson(join(import.meta.dirname ?? new URL(".", import.meta.url).pathname, "..", "config", "voices.json"))?.pronounSteer ?? { enabled: false };
+const sourceFiles = [join(ep.dir, "production", "sources.json"), ...drafts.map((d) => join(ep.dir, "production", "drafts", d, "sources.json"))].map(readJson).filter(Boolean);
+const week = readJson(join(ep.dir, "episode.json"))?.week;
+const authors = week ? readJson(join(REPO, "data", "weeks", week, "digest.json"))?.authors ?? {} : {};
+const said = guestPronouns(sourceFiles, authors);
+const prefer: Record<string, any[]> = {};
+for (const [id] of guests) { const p = steerRules(said.get(id)?.pronouns ?? null, said.has(id) ? steerCfg : { enabled: false }); if (p.length) prefer[id] = p; }
+
 const slots = [];
 for (const s of slotGrid()) slots.push({ ...s, feat: await measureVoice({ body: s.body, f0: s.f0, rate: 1, accent: 0.2, source: s.source }) });
 
-const result = assign({ house, guests: gl.map((g) => ({ id: g.id, feat: g.feat })), slots, rules });
+const result = assign({ house, guests: gl.map((g) => ({ id: g.id, feat: g.feat })), slots, rules, prefer });
 
 // a slot was measured at a standard rate and accent; measured with the guest's own, a new voice can
 // land closer than it looked. Such a guest is placed again from a short list measured its own way.
@@ -119,8 +133,10 @@ for (const [k, r] of result.entries()) {
     const f = await real(k, sl);
     const d = nearest(f, others())?.distance ?? Infinity;
     const near = gl[k].feat ? Math.abs(12 * Math.log2(f.f0 / gl[k].feat.f0)) : 0;
-    const score = [d >= MIN_DISTANCE ? 1 : 0, d >= MIN_DISTANCE ? -near : d];
-    if (!best || score[0] > best.score[0] || (score[0] === best.score[0] && score[1] > best.score[1])) best = { sl, f, score };
+    const pref = rs.length ? [] : prefer[r.id] ?? [];
+    const met = !pref.length || allowed(f.f0, pref, []) ? 1 : 0;
+    const score = [d >= MIN_DISTANCE ? 1 : 0, met, d >= MIN_DISTANCE ? -near : d];
+    if (!best || score[0] > best.score[0] || (score[0] === best.score[0] && (score[1] > best.score[1] || (score[1] === best.score[1] && score[2] > best.score[2])))) best = { sl, f, score };
   }
   if (best) {
     r.slot = best.sl;
@@ -159,6 +175,9 @@ const table = final.map((f) => {
     kept: f.r.keep,
     ...(f.r.keep ? {} : { voice: { body: f.r.slot.body, f0: f.r.slot.f0, source: f.r.slot.source, note: f.r.slot.note }, was: before ? Math.round(before.f0) : null, split: gl[f.k].split }),
     ...(rules[f.id] ? { rules: rules[f.id].map((x) => x.rule + (x.hz ? `:${x.hz}` : "")) } : {}),
+    pronouns: pronounText(said.get(f.id)),
+    // the steer: whether it applied (a hand rule switches it off) and whether the final voice meets it
+    steer: rules[f.id] ? (prefer[f.id] ? "off: a hand rule" : "none") : prefer[f.id] ? { wanted: prefer[f.id].map((x: any) => `${x.rule}:${x.hz}`).join(" "), met: allowed(f.feat.f0, prefer[f.id], []) } : "none",
   };
 });
 const bad = table.filter((t) => t.distance !== null && t.distance < MIN_DISTANCE);
@@ -167,8 +186,10 @@ console.log(`voices ${ep.id}: ${table.length} guests${drafts.length ? ` from the
 const w = Math.max(6, ...table.map((t) => t.id.length));
 for (const t of table) {
   const what = t.kept ? (gl.find((g) => g.id === t.id)!.split ? `kept (${t.in[0]}'s voice, now in all its files)` : "kept") : `new: ${t.voice!.body.female}/${t.voice!.body.child} f0 ${t.voice!.f0} ${t.voice!.note}${t.was ? ` (was ${t.was} Hz)` : ""}`;
-  console.log(`${t.id.padEnd(w)} ${String(t.f0).padStart(4)} Hz  ~${String(t.nearest).padEnd(w)} ${t.distance?.toFixed(2)}  ${what}${t.distance! < MIN_DISTANCE ? "  TOO CLOSE" : ""}  [${t.in.join(", ")}]`);
+  const steer = typeof t.steer === "string" ? `steer ${t.steer}` : `steer ${t.steer.wanted}: ${t.steer.met ? "met" : "NOT MET"}`;
+  console.log(`${t.id.padEnd(w)} ${String(t.f0).padStart(4)} Hz  ~${String(t.nearest).padEnd(w)} ${t.distance?.toFixed(2)}  ${what}${t.distance! < MIN_DISTANCE ? "  TOO CLOSE" : ""}  [${t.in.join(", ")}]  pronouns ${t.pronouns}; ${steer}`);
 }
+for (const t of table) if (typeof t.steer === "object" && !t.steer.met) console.log(`steer not met for ${t.id}: placed at ${t.f0} Hz to stay distinct from the house and the other guests (wanted ${t.steer.wanted}); a preference, not a rule`);
 const changed = table.filter((t) => !t.kept || gl.find((g) => g.id === t.id)!.split);
 if (!flags.has("--dry-run")) {
   for (const [file, src] of writes) {

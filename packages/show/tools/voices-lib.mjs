@@ -82,6 +82,11 @@ export function allowed(f0, rules, roomF0s) {
   return true
 }
 
+const better = (a, b) => {
+  for (let k = 0; k < a.length; k++) if (a[k] !== b[k]) return a[k] > b[k]
+  return false
+}
+
 /**
  * Assign voices. `house` and `guests` are [{ id, feat }] (a guest's feat is its current voice, or
  * null if it has none); `slots` is [{ key, feat, ... }] measured; `rules` maps an id to its rules.
@@ -89,9 +94,30 @@ export function allowed(f0, rules, roomF0s) {
  * at least `min` from the house and from every voice already placed (so its respellings stay
  * valid), unless a rule says otherwise. Otherwise it gets the slot farthest from everything placed
  * that its rules allow, preferring, among slots that clear `min`, the one nearest its current
- * pitch (with `margin` to spare: slots are measured at a standard rate and accent). Returns [{ id, keep, slot?, feat, nearest: { id, distance } }] in the input order.
+ * pitch (with `margin` to spare: slots are measured at a standard rate and accent). `prefer` maps an
+ * id to soft rules (the pronoun steer, steerRules): among slots that clear `min`, one that meets them
+ * comes first; distinctness always comes before them, and a hand rule for the guest switches them
+ * off. A guest with a steer gets `steer: { wanted, met }`. Returns [{ id, keep, slot?, feat, nearest: { id, distance } }] in the input order.
  */
-export function assign({ house, guests, slots, rules = {}, min = MIN_DISTANCE, margin = 0.25 }) {
+/**
+ * The pronoun steer (the owner's ruling of 21 November 2026; config/voices.json `pronounSteer`): a
+ * guest whose stated forms include "she" and not "he" is kept out of the lowest band (`above:<hz>`),
+ * one whose forms include "he" and not "she" out of the highest (`below:<hz>`); anyone else (mixed
+ * forms, any pronouns, they alone, neopronouns, none stated) is placed freely. A preference, not a
+ * rule: it is the same `above` / `below` the --rule flag takes, applied softly by assign().
+ * `pronouns` is the record the pipeline carries ({ text, forms } or null). Returns [] or [rule].
+ */
+export function steerRules(pronouns, cfg = {}) {
+  if (cfg.enabled === false) return []
+  const forms = Array.isArray(pronouns?.forms) ? pronouns.forms : []
+  const she = forms.includes('she')
+  const he = forms.includes('he')
+  if (she && !he && Number.isFinite(cfg.lowestBandBelowHz)) return [{ rule: 'above', hz: cfg.lowestBandBelowHz }]
+  if (he && !she && Number.isFinite(cfg.highestBandAboveHz)) return [{ rule: 'below', hz: cfg.highestBandAboveHz }]
+  return []
+}
+
+export function assign({ house, guests, slots, rules = {}, prefer = {}, min = MIN_DISTANCE, margin = 0.25 }) {
   const placed = house.map((h) => ({ id: h.id, feat: h.feat }))
   const order = guests.map((g, i) => ({ g, i })).sort((a, b) => (rules[b.g.id]?.length ?? 0) - (rules[a.g.id]?.length ?? 0) || a.i - b.i)
   const out = new Array(guests.length)
@@ -101,12 +127,20 @@ export function assign({ house, guests, slots, rules = {}, min = MIN_DISTANCE, m
     const f0s = () => placed.map((p) => p.feat.f0)
     const keepRule = rs.some((r) => r.rule === 'keep')
     const newRule = rs.some((r) => r.rule === 'new')
+    // a hand rule always wins over the pronoun steer: a guest with one gets no steer
+    const pref = rs.length ? [] : prefer[g.id] ?? []
+    const steer = (f0) => (pref.length ? { wanted: pref.map((r) => `${r.rule}:${r.hz}`).join(' '), met: allowed(f0, pref, []) } : null)
+    let current = null
     if (g.feat && !newRule) {
       const nn = nearest(g.feat, placed)
       if (keepRule || ((!nn || nn.distance >= min) && allowed(g.feat.f0, rs, f0s()))) {
-        placed.push({ id: g.id, feat: g.feat })
-        out[i] = { id: g.id, keep: true, feat: g.feat, nearest: nn }
-        continue
+        current = { id: g.id, keep: true, feat: g.feat, nearest: nn }
+        // distinct already: kept, unless the steer is unmet and a slot can meet it and stay distinct
+        if (keepRule || !pref.length || allowed(g.feat.f0, pref, [])) {
+          placed.push({ id: g.id, feat: g.feat })
+          out[i] = { ...current, ...(steer(g.feat.f0) ? { steer: steer(g.feat.f0) } : {}) }
+          continue
+        }
       }
     }
     let best = null
@@ -118,16 +152,46 @@ export function assign({ house, guests, slots, rules = {}, min = MIN_DISTANCE, m
       // little, so a new voice must clear the bar with some room
       const clears = d >= min + margin
       const near = g.feat ? Math.abs(12 * Math.log2(s.feat.f0 / g.feat.f0)) : 0
-      // clear the bar first; then stay near the old pitch; then the most room
-      const score = [clears ? 1 : 0, clears ? -near : d, d]
-      if (!best || score[0] > best.score[0] || (score[0] === best.score[0] && (score[1] > best.score[1] || (score[1] === best.score[1] && score[2] > best.score[2])))) best = { s, nn, score }
+      const met = !pref.length || allowed(s.feat.f0, pref, [])
+      // clear the bar first; then the steer, a preference only; then stay near the old pitch; then the most room
+      const score = [clears ? 1 : 0, met ? 1 : 0, clears ? -near : d, d]
+      if (!best || better(score, best.score)) best = { s, nn, score }
+    }
+    // a voice it already had that is distinct beats a new one that would not meet the steer either
+    if (current && (!best || !best.score[0] || !best.score[1])) {
+      placed.push({ id: g.id, feat: g.feat })
+      out[i] = { ...current, steer: steer(g.feat.f0) }
+      continue
     }
     if (!best) throw new Error(`no slot satisfies the rules for ${g.id}`)
     taken.add(best.s.key)
     placed.push({ id: g.id, feat: best.s.feat })
-    out[i] = { id: g.id, keep: false, slot: best.s, feat: best.s.feat, nearest: best.nn }
+    out[i] = { id: g.id, keep: false, slot: best.s, feat: best.s.feat, nearest: best.nn, ...(steer(best.s.feat.f0) ? { steer: steer(best.s.feat.f0) } : {}) }
   }
   // report each guest's nearest neighbour among everyone, now that all are placed
   for (const o of out) o.nearest = nearest(o.feat, placed.filter((p) => p.id !== o.id))
   return out
 }
+
+/**
+ * Each guest's stated pronouns, from the record the pipeline carries: the sources.json files of the
+ * episode and its drafts name each guest's account (`role: guest`, `cast`, `did`, `handle`), and the
+ * digest's `authors` (by DID, then handle) carry the scraper's `pronouns`. A pronouns field on the
+ * sources account itself comes first. A guest with no source record is left out: no steer.
+ * Never from the cast entry's name or look. Returns Map castId -> { pronouns, handle, did }.
+ */
+export function guestPronouns(sources = [], authors = {}) {
+  const norm = (h) => String(h ?? '').trim().replace(/^@/, '').toLowerCase()
+  const byHandle = new Map(Object.entries(authors ?? {}).map(([did, a]) => [norm(a?.handle), { did, ...a }]))
+  const out = new Map()
+  for (const s of sources) for (const a of s?.accounts ?? []) {
+    if (!a?.cast || out.has(a.cast)) continue
+    const rec = a.pronouns !== undefined ? a.pronouns : a.did && authors?.[a.did] ? authors[a.did].pronouns : byHandle.get(norm(a.handle))?.pronouns
+    if (rec === undefined) continue
+    out.set(a.cast, { pronouns: rec ?? null, handle: a.handle ?? null, did: a.did ?? null })
+  }
+  return out
+}
+
+/** how a pronoun record reads in the table: the phrase, "none stated", or "no source record" */
+export const pronounText = (x) => (!x ? 'no source record' : x.pronouns?.text ? x.pronouns.text : 'none stated')

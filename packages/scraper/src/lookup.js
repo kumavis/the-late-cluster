@@ -40,8 +40,11 @@ export function newestDigestDir(roots) {
 }
 
 /** The fields printed by default: enough to choose and cite a post, nothing to reread. */
-export function compact(p, storyOf = () => null) {
+export function compact(p, storyOf = () => null, pronounsOf = () => null) {
   const out = { uri: p.uri, handle: p.handle, time: p.time, text: p.text ?? '' }
+  // the author's stated pronouns, the phrase as written (README "Pronouns"); absent: none stated
+  const pr = p.pronouns ?? pronounsOf(p.authorDid ?? p.author?.did)
+  if (pr?.text) out.pronouns = pr.text
   if (p.counts) out.counts = [p.counts.likes ?? 0, p.counts.reposts ?? 0, p.counts.replies ?? 0, p.counts.quotes ?? 0]
   if (p.reply?.parent) out.replyTo = p.reply.parent
   else if (p.reply?.hidden) out.replyTo = 'hidden'
@@ -122,7 +125,7 @@ function loadByPost(dir) {
 /** A skeleton post in the shape `compact` reads. */
 function skeletonToRecord(p) {
   return {
-    uri: p.uri, handle: p.author?.handle, time: p.time, text: p.text, counts: p.counts,
+    uri: p.uri, handle: p.author?.handle, authorDid: p.author?.did, pronouns: p.author?.pronouns ?? null, time: p.time, text: p.text, counts: p.counts,
     reply: p.replyTo ? (p.replyTo.hidden ? { hidden: true } : { parent: p.replyTo.uri }) : null,
     quote: p.quoted ? (p.quoted.state === 'removed' ? { state: 'removed' } : { uri: p.quoted.uri }) : null,
     media: p.media, sensitive: p.sensitive, consent: p.consent, redacted: p.redacted,
@@ -152,7 +155,7 @@ export function lookup(argv, { roots = [], write = (s) => process.stdout.write(s
       for (const f of fields) o[f] = f === 'skeleton' ? storyOf(p.uri) : p[f] ?? null
       return o
     }
-    return a.full ? p : compact(p, storyOf)
+    return a.full ? p : compact(p, storyOf, (did) => digest.authors?.[did]?.pronouns ?? null)
   }
   const emit = (x) => write(JSON.stringify(x) + '\n')
   const emitPost = (p) => emit(shape(p))

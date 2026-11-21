@@ -56,7 +56,7 @@ export function validate(c) {
   for (const re of c.safety.excludedMentions?.aboutPatterns ?? []) {
     try { new RegExp(re, 'iu') } catch (e) { throw new Error(`config: bad pattern in safety.excludedMentions: ${e.message}`) }
   }
-  for (const list of [c.lanes?.made?.patterns ?? [], c.lanes?.games?.patterns ?? [], c.lanes?.bots?.bioPatterns ?? [], c.safety.selfDeclaredOptOut.indirectPatterns ?? [], c.safety.bioReview?.patterns ?? []]) {
+  for (const list of [c.lanes?.made?.patterns ?? [], c.lanes?.games?.patterns ?? [], c.lanes?.bots?.bioPatterns ?? [], c.lanes?.tagged?.aboutShowPatterns ?? [], c.safety.selfDeclaredOptOut.indirectPatterns ?? [], c.safety.bioReview?.patterns ?? []]) {
     for (const re of list) {
       try { new RegExp(re, 'iu') } catch (e) { throw new Error(`config: bad pattern ${JSON.stringify(re)}: ${e.message}`) }
     }

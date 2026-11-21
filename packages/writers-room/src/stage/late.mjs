@@ -7,7 +7,7 @@ import { join } from 'node:path'
 import { combineRepetition, filesIn, readJsonFile, repetitionProblems } from '../combine.mjs'
 import { importFresh } from '../context.mjs'
 import { gate } from '../gates/common.mjs'
-import { writeGuestLines, writeLabels, writeLength, writeNames, writeOptOut, writeRundown, writeSources } from '../gates/write.mjs'
+import { writePronouns, writeGuestLines, writeLabels, writeLength, writeNames, writeOptOut, writeRundown, writeSources } from '../gates/write.mjs'
 import { renderCheck, renderHeard, renderLengths, renderWhisper } from '../gates/render.mjs'
 import { directCards, directCredits, directDisclaimer, directFrames, directModules, directUnread, shootChanged } from '../gates/direct.mjs'
 import { reviewLedger, reviewScorecard, reviewVerdict } from '../gates/build.mjs'
@@ -184,7 +184,7 @@ const assemble = {
           )
       },
       after: (ctx) => ({ renderResult: ctx.tools.npm('render', [ctx.id, ...rundownOf(ctx)]) }),
-      gates: [assembleRendered, assembleFitted, writeRundown, writeSources, writeGuestLines, writeLabels, writeNames, writeOptOut, writeLength, peopleSources, renderCheck, renderWhisper, renderHeard, renderLengths, as(constitutionUnchanged, 'assemble.constitution')],
+      gates: [assembleRendered, assembleFitted, writeRundown, writeSources, writeGuestLines, writePronouns, writeLabels, writeNames, writeOptOut, writeLength, peopleSources, renderCheck, renderWhisper, renderHeard, renderLengths, as(constitutionUnchanged, 'assemble.constitution')],
     },
   ],
 }

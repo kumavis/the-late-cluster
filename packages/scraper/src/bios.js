@@ -23,7 +23,7 @@ export function buildPrivate({ bios = new Map(), consent, members = [], authors 
     if (!b) continue
     const r = consent.bioReview(b.description)
     if (r) review.set(did, r)
-    accounts.push({ did, handle: b.handle, displayName: b.displayName, member: memberDids.has(did), description: b.description, labels: b.labels, pinnedPost: b.pinnedPost, ...(r ? { bioReview: r } : {}) })
+    accounts.push({ did, handle: b.handle, displayName: b.displayName, member: memberDids.has(did), description: b.description, labels: b.labels, pinnedPost: b.pinnedPost, pronouns: b.pronouns ?? null, ...(b.pronounsReview ? { pronounsReview: b.pronounsReview } : {}), ...(r ? { bioReview: r } : {}) })
   }
   const read = [...bios.keys()].length
   const membersRead = members.filter((m) => bios.has(m.did)).length
@@ -34,6 +34,9 @@ export function buildPrivate({ bios = new Map(), consent, members = [], authors 
     excludedIndirect: consent.stats.selfDeclaredIndirect ?? 0,
     bioReview: review.size,
     bioReviewMembers: [...review.keys()].filter((d) => memberDids.has(d)).length,
+    pronounsStated: accounts.filter((a) => a.pronouns).length,
+    pronounsFromBio: accounts.filter((a) => a.pronouns?.source === 'bio').length,
+    pronounsReview: accounts.filter((a) => a.pronounsReview).length,
     note: 'excluded counts cover every profile the run read; bioReview covers accounts that appear in the output',
   }
   return { file: { format: 'late-cluster-private-profiles/1', note: 'private: for the auditor only; never copy a description into a file another role reads', counts, accounts }, review, counts }
@@ -46,6 +49,11 @@ export function renderBioReview({ file, review }) {
   for (const a of file.accounts.filter((x) => review.has(x.did))) {
     const r = a.bioReview ?? review.get(a.did)
     out.push(`- @${a.handle} (${a.did})${a.member ? ', member' : ''}: matched "${r.matched}" in "${r.phrase}"`)
+  }
+  const pr = file.accounts.filter((x) => x.pronounsReview)
+  if (pr.length) {
+    out.push('', '## Pronouns to judge', '', 'These bios state more than one set of pronouns, so none is recorded (other roles see "none stated"). Judge each; the owner decides whether a set goes into the record.', '')
+    for (const a of pr) out.push(`- @${a.handle} (${a.did})${a.member ? ', member' : ''}: ${a.pronounsReview.statements.map((x) => `"${x}"`).join(', ')}`)
   }
   return out.join('\n') + '\n'
 }

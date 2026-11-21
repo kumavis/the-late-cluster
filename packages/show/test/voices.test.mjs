@@ -57,3 +57,49 @@ test('the slot grid stays inside the engine’s safe pitches', () => {
   for (const s of g) assert.ok(s.f0 >= 85 && s.f0 <= 280 && s.body.child <= 0.4, s.key)
   assert.equal(new Set(g.map((s) => s.key)).size, g.length)
 })
+
+// The pronoun steer (config/voices.json, the owner's ruling of 21 November 2026), on invented guests.
+import { steerRules, guestPronouns, pronounText } from '../tools/voices-lib.mjs'
+import { readFileSync } from 'node:fs'
+const STEER = JSON.parse(readFileSync(new URL('../config/voices.json', import.meta.url), 'utf8')).pronounSteer
+
+test('pronoun steer: she without he keeps out of the lowest band, he without she out of the highest; anyone else is free', () => {
+  assert.deepEqual(steerRules({ text: 'she/her', forms: ['she'] }, STEER), [{ rule: 'above', hz: STEER.lowestBandBelowHz }])
+  assert.deepEqual(steerRules({ text: 'he/him', forms: ['he'] }, STEER), [{ rule: 'below', hz: STEER.highestBandAboveHz }])
+  for (const p of [{ text: 'they/them', forms: ['they'] }, { text: 'she/he', forms: ['she', 'he'] }, { text: 'any pronouns', forms: ['any'] }, { text: 'xe/xem', forms: ['xe'] }, null]) assert.deepEqual(steerRules(p, STEER), [], JSON.stringify(p))
+  assert.deepEqual(steerRules({ text: 'she/they', forms: ['she', 'they'] }, STEER).length, 1, 'she/they without he is steered')
+  assert.deepEqual(steerRules({ forms: ['she'] }, { ...STEER, enabled: false }), [])
+})
+
+test('pronoun steer: learned from the sources record and the digest, never the cast entry; none without a record', () => {
+  const authors = { 'did:plc:a': { handle: 'a.example.test', pronouns: { text: 'she/her', forms: ['she'] } }, 'did:plc:b': { handle: 'b.example.test', pronouns: null } }
+  const m = guestPronouns([{ accounts: [{ handle: 'a.example.test', did: 'did:plc:a', role: 'guest', cast: 'ga' }, { handle: 'b.example.test', role: 'guest', cast: 'gb' }] }], authors)
+  assert.equal(pronounText(m.get('ga')), 'she/her')
+  assert.equal(pronounText(m.get('gb')), 'none stated')
+  assert.equal(pronounText(m.get('gc')), 'no source record')
+})
+
+test('pronoun steer: applied as a preference; distinctness first; a hand rule wins; the unmet case is reported', () => {
+  const lo = [{ rule: 'above', hz: 120 }]
+  const hi = [{ rule: 'below', hz: 220 }]
+  // a she/her guest whose voice is low and distinct moves up to a slot that is distinct and meets it
+  const a = assign({ house, guests: [{ id: 'g', feat: flat(88, 20) }], slots, prefer: { g: lo } })[0]
+  assert.ok(a.feat.f0 > 120 && a.steer.met, JSON.stringify(a))
+  assert.ok(a.nearest.distance >= MIN_DISTANCE)
+  // a he/him guest is kept out of the highest band
+  const b = assign({ house, guests: [{ id: 'g', feat: flat(262) }], slots, prefer: { g: hi } })[0]
+  assert.ok(b.feat.f0 < 220 && b.steer.met, JSON.stringify(b))
+  // they/them or none stated: no preference, the old behaviour
+  const c = assign({ house, guests: [{ id: 'g', feat: flat(262) }], slots })[0]
+  assert.equal(c.keep, true)
+  assert.equal(c.steer, undefined)
+  // a hand rule wins: no steer at all
+  const d = assign({ house, guests: [{ id: 'g', feat: flat(88, 20) }], slots, rules: { g: [{ id: 'g', rule: 'keep' }] }, prefer: { g: lo } })[0]
+  assert.equal(d.keep, true)
+  assert.equal(d.steer, undefined)
+  // unmet: every slot above 120 Hz taken by distinctness; the guest is placed anyway, reported unmet
+  const lowOnly = slots.filter((s) => s.f0 < 120)
+  const e = assign({ house, guests: [{ id: 'g', feat: flat(110) }], slots: lowOnly, prefer: { g: lo } })[0]
+  assert.equal(e.steer.met, false)
+  assert.ok(e.feat.f0 < 120)
+})

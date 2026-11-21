@@ -18,6 +18,7 @@ import { loadConfig, DEFAULT_CONFIG_DIR } from './config.js'
 import { Consent, NO_UNAUTH } from './consent.js'
 import { normalizePost, didOfUri } from './normalize.js'
 import { showMatcher } from './show.js'
+import { pronounsOf } from './pronouns.js'
 import { compileTopics, topicsOf } from './sensitivity.js'
 import { feedItemTime } from './api.js'
 
@@ -202,6 +203,13 @@ export async function checkSources({ sources, digest = null, digestPosts = new M
     if (storedHandle && String(storedHandle).toLowerCase() !== String(pr.handle).toLowerCase()) need('handle changed', where, `was @${storedHandle}, now @${pr.handle}`)
     const storedName = a.stored.displayName ?? digestAuthors[pr.did]?.displayName
     if (storedName != null && (pr.displayName ?? '').trim() !== String(storedName).trim()) need('display name changed', where, `@${pr.handle}: was ${JSON.stringify(storedName)}, now ${JSON.stringify(pr.displayName ?? '')}`)
+    // Stated pronouns as they are now (README "Pronouns"), and a change since the scrape.
+    const prNow = pronounsOf(pr)
+    row.pronouns = prNow.pronouns
+    if (prNow.review) row.pronounsReview = true
+    const stored = a.stored.pronouns !== undefined ? a.stored.pronouns : digestAuthors[pr.did]?.pronouns
+    if (stored !== undefined && (stored?.text ?? null) !== (prNow.pronouns?.text ?? null)) need('pronouns changed', where, `@${pr.handle}: was ${stored?.text ? JSON.stringify(stored.text) : 'none stated'}, now ${prNow.pronouns?.text ? JSON.stringify(prNow.pronouns.text) : prNow.review ? 'none recorded (the bio states more than one set)' : 'none stated'}`)
+    row.checks.push(`pronouns ${prNow.pronouns?.text ?? 'none stated'}`)
     row.checks.push('profile')
     const pin = pr.pinnedPost?.uri ? pinned.get(pr.pinnedPost.uri) : null
     if (pin) {

@@ -156,13 +156,13 @@ export async function planPages(client, actors, { since, until, max, budget, see
 }
 
 /** searchPosts with a time range; returns posts, following cursors up to maxPages. */
-export async function searchPosts(client, q, { since, until, maxPages = 3, host } = {}) {
+export async function searchPosts(client, q, { since, until, maxPages = 3, host, params = {} } = {}) {
   const posts = []
   let cursor
   let pages = 0
   while (pages < maxPages) {
     const res = await client.get('app.bsky.feed.searchPosts', {
-      q, limit: 100, sort: 'latest', since: new Date(since).toISOString(), until: new Date(until).toISOString(), cursor,
+      q, ...params, limit: 100, sort: 'latest', since: new Date(since).toISOString(), until: new Date(until).toISOString(), cursor,
     }, { host })
     pages++
     posts.push(...(res.posts ?? []))

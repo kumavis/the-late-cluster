@@ -219,3 +219,28 @@ test('the reading table in config names chapters that exist in the real bible', 
   assert.ok(!Object.values(config.reading.kinds).some((c) => c?.length > 3), 'no task kind reads more than three chapters beside the constitution')
   void readFileSync, void writeFileSync
 })
+
+test('research: the tagged lane gets a task only when something was pointed at; its card records who pointed and proposes nothing', async () => {
+  const tagger = 'at://did:plc:cy/app.bsky.feed.post/tag1'
+  const withLane = (root) => put(root, `data/weeks/${WEEK}/lanes/tagged.json`, { format: 'late-cluster-lane/1', lane: 'tagged', skeletons: ['s-thread'], entries: [{ rank: 1, id: 's-thread', weight: 0.5, taggers: [{ uri: tagger, handle: 'cy.test', did: 'did:plc:cy', weight: 0.5 }] }] })
+  const emptyLane = (root) => put(root, `data/weeks/${WEEK}/lanes/tagged.json`, { format: 'late-cluster-lane/1', lane: 'tagged', skeletons: [], entries: [] })
+  const tasksWith = async (setup) => {
+    const root = fakeRepo()
+    try {
+      makeEpisode(root)
+      setup(root)
+      return (await STAGE_DEFS.research.waves[0].tasks(await ctxFor(root))).map((t) => t.id)
+    } finally { cleanup(root) }
+  }
+  assert.ok(!(await tasksWith(emptyLane)).includes('research.tagged'), 'an empty lane creates no task')
+  assert.ok((await tasksWith(withLane)).includes('research.tagged'))
+  const empty = await run('research', 'researchCards', card(), { setup: emptyLane })
+  assert.equal(empty.warnings.filter((w) => /lane tagged/.test(w)).length, 1)
+  assert.match(empty.warnings.find((w) => /lane tagged/.test(w)), /nothing in this window's slice, so no task/)
+
+  const tc = (over = {}) => card({ skeletons: ['s-thread'], pointedBy: [tagger], ...over }, 'tagged-throat', 'tagged')
+  ok(await run('research', 'researchCards', tc(), { setup: withLane }))
+  fails(await run('research', 'researchCards', tc({ pointedBy: undefined }), { setup: withLane }), /a tagged card records who pointed/)
+  fails(await run('research', 'researchCards', tc({ pointedBy: ['at://did:plc:ana/app.bsky.feed.post/x'] }), { setup: withLane }), /is not a tagger's post/)
+  fails(await run('research', 'researchCards', tc({ recommendation: 'feature it' }), { setup: withLane }), /a tagged card proposes nothing/)
+})

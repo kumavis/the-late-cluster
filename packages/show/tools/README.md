@@ -653,6 +653,23 @@ nearest voice and distance, kept or the new voice, and the files it is in, then 
 again. Exit 1 if a voice is still under 1.5 from its nearest neighbour. The first run measures
 a hundred slots (two or three minutes); after that every measurement comes from the cache.
 
+**Pronouns and the soft steer** (the owner's ruling of 21 November 2026; `packages/show/config/voices.json`
+`pronounSteer`). Each guest's stated pronouns come from the record the pipeline carries: the guest's
+account in the episode's or a draft's `production/sources.json` (`role: guest` with its `cast` id,
+by DID, then handle), looked up in the week's digest `authors` (`data/weeks/<week>/digest.json`), or
+a `pronouns` field on that sources account; never from the cast entry's name or look. A guest with
+no source record gets no steer. A guest whose stated forms include "she" and not "he" is kept out of
+the lowest band (`above:<lowestBandBelowHz>`, 120 Hz); one whose forms include "he" and not "she"
+out of the highest (`below:<highestBandAboveHz>`, 220 Hz); mixed forms, any pronouns, they alone,
+neopronouns and none stated are placed freely, and nobody is pushed towards a band. These are the
+`above:`/`below:` rules applied as a preference: among slots that clear 1.5, one that meets it comes
+first; distinctness from the house and the other guests always comes first, and when the two
+conflict the voice is placed anyway and the table says `NOT MET`, naming the guest. A `--rule` given
+by hand for a guest switches the steer off for that guest (`steer off: a hand rule`). Each row ends
+`pronouns <as stated | none stated | no source record>; steer <none | above:120: met | NOT MET>`.
+`enabled: false` switches it off. The steer runs one way only: nothing in the studio, the pipeline
+or a brief ever reads a voice back as a statement about a person.
+
 ---
 
 ## Rendering video (`video.mjs`)

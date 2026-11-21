@@ -19,7 +19,19 @@ import { findPost } from './digest.mjs'
 
 const readJson = (f) => JSON.parse(readFileSync(f, 'utf8'))
 
-export const LANES = ['made', 'talk', 'games', 'voices', 'interview']
+export const LANES = ['made', 'talk', 'games', 'voices', 'interview', 'tagged']
+
+/** the tagged lane's taggers by skeleton id: id -> [{ uri, handle, did, weight }] (the scraper's README, "The tagged lane") */
+export function laneTaggers(digestDir) {
+  const f = join(digestDir, 'lanes', 'tagged.json')
+  const out = new Map()
+  if (!existsSync(f)) return out
+  for (const e of readJson(f).entries ?? []) {
+    if (!out.has(e.id)) out.set(e.id, [])
+    for (const t of e.taggers ?? []) out.get(e.id).push({ uri: t.uri, handle: t.handle, did: t.did, weight: t.weight })
+  }
+  return out
+}
 
 /**
  * Why a post is refused, or null: the scraper's keyword mark (`sensitive`) or its consent reasons
@@ -49,6 +61,8 @@ function skeletonPost(d, p) {
     followers: au.followers ?? ref.followers ?? ref.authorFollowers ?? acc.followers ?? null,
     featured: { previous: au.featuredPrevious ?? ref.featuredPrevious ?? acc.featuredPrevious ?? null, earlier: au.featuredEarlier ?? ref.featuredEarlier ?? acc.featuredEarlier ?? null, times: au.timesFeatured ?? ref.timesFeatured ?? acc.timesFeatured ?? 0 },
     bioReview: au.bioReview ?? null,
+    // stated pronouns as the scraper recorded them ({ text, forms, source } or null: none stated)
+    pronouns: au.pronouns !== undefined ? au.pronouns : ref.pronouns !== undefined ? ref.pronouns : acc.pronouns ?? null,
     reach: ref.reach?.score ?? (typeof ref.reach === 'number' ? ref.reach : g.reach?.score ?? null),
     replyTo: ref.replyTo ?? ref.reply?.parent ?? g.parent ?? null,
     quotes: ref.quoted ?? ref.quotes ?? ref.quote ?? null,

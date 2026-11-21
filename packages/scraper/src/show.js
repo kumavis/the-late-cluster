@@ -6,7 +6,7 @@ export function showMatcher(show = {}) {
   const phrases = (show.phrases ?? []).map((p) => new RegExp(p, 'iu'))
   const links = (show.linkPatterns ?? []).map((p) => new RegExp(p, 'iu'))
   const handles = new Set((show.handles ?? []).map((h) => String(h).toLowerCase().replace(/^@/, '')))
-  const dids = new Set((show.handles ?? []).filter((h) => String(h).startsWith('did:')))
+  const dids = new Set([...(show.handles ?? []), ...(show.accountDids ?? [])].filter((h) => String(h).startsWith('did:')))
   return (p) => {
     const reasons = []
     const text = [p.text ?? '', ...(p.links ?? []).map((l) => l.title ?? ''), ...(p.imageAlts ?? [])].join('\n')
@@ -15,7 +15,7 @@ export function showMatcher(show = {}) {
     const mentioned = (p._mentions ?? []).some((m) => dids.has(m.did) || handles.has(String(m.text ?? '').toLowerCase().replace(/^@/, '')))
       || [...handles].some((h) => (p.text ?? '').toLowerCase().includes('@' + h))
     if (mentioned) reasons.push("mentions the show's account")
-    if (handles.has(String(p.handle ?? '').toLowerCase())) reasons.push("the show's own account")
+    if (handles.has(String(p.handle ?? '').toLowerCase()) || dids.has(p.authorDid)) reasons.push("the show's own account")
     return reasons
   }
 }
@@ -25,19 +25,29 @@ export function showMatcher(show = {}) {
  * to be left out can exclude its author everywhere.
  * @returns {{ about: Map<uri, string[]>, requests: Array<{did, handle, url}> }}
  */
-export function findShowPosts(rawWindowPosts, show, safety) {
+export function findShowPosts(rawWindowPosts, show, safety, tagged = {}) {
   const match = showMatcher(show)
   const about = new Map()
+  // A pointer (README "The tagged lane") tags the show but is about something else: it is not a
+  // post about the show. Replies under, and quotes of, a reply or quote pointer react to a post
+  // addressed to the show, and are.
+  const pointers = tagged.pointers ?? new Set()
+  const addressed = tagged.addressed ?? new Set()
   for (const p of rawWindowPosts) {
+    if (pointers.has(p.uri)) continue
     const r = match(p)
     if (r.length) about.set(p.uri, r)
+  }
+  for (const p of rawWindowPosts) {
+    if (about.has(p.uri) || pointers.has(p.uri)) continue
+    if ((p.reply?.parent && addressed.has(p.reply.parent)) || (p.quote?.uri && addressed.has(p.quote.uri))) about.set(p.uri, ['reacts to a post addressed to the show'])
   }
   // reactions: replies under, and quotes of, a post about the show, and so on down: a reply
   // under a quote of the show's post is about the show too (trial 002, finding 11)
   for (let changed = true; changed;) {
     changed = false
     for (const p of rawWindowPosts) {
-      if (about.has(p.uri)) continue
+      if (about.has(p.uri) || pointers.has(p.uri)) continue
       const why = p.reply?.parent && about.has(p.reply.parent) ? 'replies to a post about the show'
         : p.reply?.root && about.has(p.reply.root) ? 'in a thread about the show'
           : p.quote?.uri && about.has(p.quote.uri) ? 'quotes a post about the show' : null

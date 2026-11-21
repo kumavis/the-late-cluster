@@ -75,7 +75,7 @@ function addAccount(d, a) {
   const h = normHandle(a.handle)
   if (!h) return
   const prev = d.accounts.get(h) ?? {}
-  const acc = { ...prev, handle: h, did: a.did ?? a.authorDid ?? prev.did, displayName: a.displayName ?? prev.displayName, followers: a.followers ?? a.authorFollowers ?? prev.followers, small: a.small ?? a.smallAccount ?? prev.small, guest: a.guest ?? prev.guest, member: a.member ?? prev.member ?? null, seed: a.seed ?? prev.seed ?? false, featuredPrevious: a.featuredPrevious ?? prev.featuredPrevious ?? null, featuredEarlier: a.featuredEarlier ?? prev.featuredEarlier ?? null, timesFeatured: a.timesFeatured ?? prev.timesFeatured ?? 0, featuredBefore: Boolean(a.featuredBefore ?? a.featuredPrevious ?? a.featuredEarlier ?? (a.timesFeatured > 0 ? true : null) ?? prev.featuredBefore) }
+  const acc = { ...prev, handle: h, did: a.did ?? a.authorDid ?? prev.did, displayName: a.displayName ?? prev.displayName, followers: a.followers ?? a.authorFollowers ?? prev.followers, small: a.small ?? a.smallAccount ?? prev.small, guest: a.guest ?? prev.guest, member: a.member ?? prev.member ?? null, seed: a.seed ?? prev.seed ?? false, featuredPrevious: a.featuredPrevious ?? prev.featuredPrevious ?? null, featuredEarlier: a.featuredEarlier ?? prev.featuredEarlier ?? null, timesFeatured: a.timesFeatured ?? prev.timesFeatured ?? 0, pronouns: a.pronouns !== undefined ? a.pronouns : prev.pronouns, featuredBefore: Boolean(a.featuredBefore ?? a.featuredPrevious ?? a.featuredEarlier ?? (a.timesFeatured > 0 ? true : null) ?? prev.featuredBefore) }
   d.accounts.set(h, acc)
   // defensive: any opt-out style flag the scraper may add to an account record
   if (a.optedOut || a.optOut || a.selfDeclaredOptOut || a.excluded) {

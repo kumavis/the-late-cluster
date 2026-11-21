@@ -10,8 +10,9 @@ import { combineRepetition, filesIn, ideaProblems, rankCards, reachOf, reachWeig
 import { peopleRules } from '../ledger.mjs'
 import { gate } from '../gates/common.mjs'
 import { coverage, coverageMd } from '../coverage.mjs'
-import { laneFiles, laneSkeletons, loadSkeletons, lookupCommand, markOf, mediaCommand } from '../scraper.mjs'
+import { laneFiles, laneSkeletons, laneTaggers, loadSkeletons, lookupCommand, markOf, mediaCommand } from '../scraper.mjs'
 import { writeJson } from '../repo.mjs'
+import { pronounLabel } from '../pronouns.mjs'
 import { verbatimMismatch } from '../scan.mjs'
 import { P, W, R, REPETITION_RULES, excludedOf, has, json, pendingRepetition, previousLabel, repetitionFiles, reviewerIds, task } from './common.mjs'
 
@@ -90,6 +91,16 @@ export function cardPosts(ctx, card, skeletons = loadSkeletons(ctx.digestDir, ct
   return uris.map((u) => fromSk.find((p) => p.uri === u) ?? anywhere(u)).map((p, k) => p ?? { uri: uris[k], missing: true })
 }
 
+// The tagged lane: the card records who pointed, and proposes nothing (a tag decides nothing).
+const POINTED_BY = '"pointedBy": ["<at:// uri of each tagger\'s post, from lanes/tagged.json>"]'
+const PROPOSALS = ['proposal', 'recommend', 'recommendation', 'pitch', 'priority', 'promise']
+
+/** research lanes that get a task: a lane marked skipWhenEmpty is left out when its slice is empty */
+export function activeLanes(ctx, sk = loadSkeletons(ctx.digestDir, ctx.digest)) {
+  return ctx.config.parallel.researchLanes.map((lane) => ({ lane, ids: laneSkeletons(ctx.digestDir, sk, lane.id) })).filter((x) => !(x.lane.skipWhenEmpty && !x.ids.length))
+}
+export const emptyLanes = (ctx, sk) => { const on = new Set(activeLanes(ctx, sk).map((x) => x.lane.id)); return ctx.config.parallel.researchLanes.filter((l) => !on.has(l.id)) }
+
 const hasMedia = (p) => (p.media?.length ?? 0) > 0 || (Array.isArray(p.alt) ? p.alt.length : p.alt) || (p.text === '' && !p.missing)
 
 export function researchCardProblems(ctx, { file, card, lane }, skeletons) {
@@ -103,6 +114,14 @@ export function researchCardProblems(ctx, { file, card, lane }, skeletons) {
   for (const k of ['sensitive', 'showable', 'unknown']) if (typeof card[k] !== 'string') out.push(`${at}: "${k}" must be a sentence, or "none"`)
   for (const k of ['jokes', 'ideas', 'premise', 'turn', 'punchline', 'gag', 'angle']) if (k in card) out.push(`${at}: a card carries no jokes ("${k}")`)
   for (const id of card.skeletons ?? []) if (!skeletons.list.some((s) => s.id === id)) out.push(`${at}: skeleton ${id} is not in the week's skeletons`)
+  if (lane === 'tagged') {
+    const taggers = laneTaggers(ctx.digestDir)
+    const allowed = new Set((card.skeletons ?? []).flatMap((id) => (taggers.get(id) ?? []).map((t) => t.uri)))
+    const named = Array.isArray(card.pointedBy) ? card.pointedBy.map((x) => (typeof x === 'string' ? x : x?.uri)) : []
+    if (!named.length) out.push(`${at}: a tagged card records who pointed: ${POINTED_BY}`)
+    for (const u of named) if (!allowed.has(u)) out.push(`${at}: pointedBy ${u} is not a tagger's post for the card's skeletons in lanes/tagged.json`)
+    for (const k of PROPOSALS) if (k in card) out.push(`${at}: a tagged card proposes nothing ("${k}"): a tag guides where the show looks and decides nothing else`)
+  }
   if (!(card.skeletons ?? []).length && !(card.posts ?? []).length) out.push(`${at}: name the "skeletons" the card is made from`)
   const posts = cardPosts(ctx, card, skeletons)
   if (!posts.length) out.push(`${at}: the card keeps no post`)
@@ -130,7 +149,7 @@ function writeLonglist(ctx) {
     const dropped = new Set(s?.drop ?? [])
     const posts = cardPosts(ctx, card, skeletons).filter((p) => !p.missing && !dropped.has(p.uri))
     const reach = Math.round(posts.reduce((t, p) => t + (typeof p.reach === 'number' ? p.reach : reachOf(ctx.digest, [p.uri], w)), 0))
-    const people = [...new Map(posts.filter((p) => p.handle).map((p) => [p.did ?? p.handle, { handle: p.handle, did: p.did, followers: p.followers, featured: p.featured }])).values()]
+    const people = [...new Map(posts.filter((p) => p.handle).map((p) => [p.did ?? p.handle, { handle: p.handle, did: p.did, followers: p.followers, featured: p.featured, pronouns: pronounLabel(p.pronouns), pronounForms: p.pronouns?.forms ?? [] }])).values()]
     return { id: card.id, lane: card.lane, title: card.title, summary: card.summary, file: R(ctx, file), reach, kept: s ? s.keep === true : null, mergedInto: s?.mergedInto ?? null, posts: posts.map(({ uri, url, handle, did, text, followers, replyTo, quotes, alt }) => ({ uri, url, handle, did, text, followers, replyTo, quotes, alt, media: card.media?.[uri] ?? null })), people, showable: card.showable, unknown: card.unknown, sensitive: card.sensitive }
   })
   for (const c of cards) if (c.mergedInto) {
@@ -140,7 +159,7 @@ function writeLonglist(ctx) {
   writeJson(P(ctx, 'research/longlist.json'), { reachNote: "Reach stands in for how many people saw it, which Bluesky does not publish: the sum of the scraper's reach score over the card's posts.", cards })
   // one file per kept card: what a writer is pointed at, instead of the whole longlist
   for (const c of cards.filter((x) => x.kept)) writeJson(P(ctx, `research/kept/${c.id}.json`), c)
-  const terms = ['# Terms of use', '', 'Written by the tool from the screen. Every brief for a card includes its section.', '', ...cards.filter((c) => c.kept).flatMap((c) => [`## ${c.id}`, '', String(screen[c.id]?.terms ?? 'none').trim() || 'none', ''])]
+  const terms = ['# Terms of use', '', 'Written by the tool from the screen. Every brief for a card includes its section.', '', ...cards.filter((c) => c.kept).flatMap((c) => [`## ${c.id}`, '', String(screen[c.id]?.terms ?? 'none').trim() || 'none', '', `People (stated pronouns): ${c.people.map((p) => `@${p.handle}: ${p.pronouns}`).join('; ') || 'none'}.`, ''])]
   writeFileSync(P(ctx, 'research/terms.md'), terms.join('\n'))
   return cards
 }
@@ -152,8 +171,7 @@ const research = {
       tasks: (ctx) => {
         const dd = R(ctx, ctx.digestDir)
         const sk = loadSkeletons(ctx.digestDir, ctx.digest)
-        return ctx.config.parallel.researchLanes.map((lane) => {
-          const ids = laneSkeletons(ctx.digestDir, sk, lane.id)
+        return activeLanes(ctx, sk).map(({ lane, ids }) => {
           return task(ctx, 'research', {
             id: `research.${lane.id}`,
             role: 'researcher',
@@ -163,11 +181,12 @@ const research = {
             reads: [...laneFiles(ctx.digestDir, lane.id).map((f) => R(ctx, f)), sk.source === 'scraper' ? `${dd}/skeletons/index.json` : `${dd}/digest.md?`],
             instructions: [
               `Your lane is "${lane.title}". Its slice of the digest is listed above${ids.length ? `; its skeletons: ${ids.slice(0, 60).join(', ')}${ids.length > 60 ? ` and ${ids.length - 60} more` : ''}` : ''}. ${sk.source === 'scraper' ? `A skeleton (${dd}/skeletons/<id>.json) already holds every post's exact text, people, reach, replies, alt text and media addresses.` : 'This digest has no skeletons yet: a skeleton id is a story id (s-…).'}`,
-              `Choose the skeletons that are worth a card, merge those that are one story, and write one card per story as research/cards/${lane.id}/<card id>.json: ${CARD_FORMAT}.`,
+              `Choose the skeletons that are worth a card, merge those that are one story, and write one card per story as research/cards/${lane.id}/<card id>.json: ${lane.id === 'tagged' ? CARD_FORMAT.replace(/ \}$/, `, ${POINTED_BY} }`) : CARD_FORMAT}.`,
               `Look at every picture and video you keep (${mediaCommand(dd)} fetches them) and say in "media" what each shows. Look posts up with ${lookupCommand(dd)}. Never retype a post: name it by its address.`,
               lane.id === 'games' ? 'Top Chicken: every result in the window, the record and any streak. Winners only by name; never rank or name a non-winner.' : null,
               lane.id === 'voices' ? 'New and smaller voices: featured marks are facts for the people rules, never a reason to leave anyone out.' : null,
               lane.id === 'interview' ? 'Interview candidates: people who made something and were asked about it. One card per candidate, keeping each answer with the post it replied to.' : null,
+              lane.id === 'tagged' ? `What the audience pointed at: members of the cluster tagged the show's account at these things. Card what was pointed at exactly like any other story: what happened, what is shown, what is not understood. Record on the card who pointed, as ${POINTED_BY}, and nothing more about them. Propose nothing: a tag guides where the show looks and decides nothing else, and the show promises nobody a place. The tagger's own post is addressed to the show; it is not material for the card.` : null,
             ].filter(Boolean),
             rules: [
               `"id" is lower case words and dashes and starts with "${lane.id}-"; "lane" is "${lane.id}".`,
@@ -176,6 +195,7 @@ const research = {
               'Every skeleton exists; every post is one of the card\'s skeletons\' posts.',
               'No post the scraper marks sensitive and no opted-out account: leave that post out; the rest of the story stays usable.',
               'Every kept post with a picture or video has its "media" description.',
+              ...(lane.id === 'tagged' ? ['"pointedBy" names at least one tagger\'s post, each one listed for the card\'s skeletons in lanes/tagged.json; no proposal fields.'] : []),
             ],
           })
         })
@@ -217,7 +237,9 @@ async function researchCards(ctx) {
     if (ids.has(c.card.id)) g.fail(`${R(ctx, c.file)}: card id ${c.card.id} is used twice`)
     ids.add(c.card.id)
   }
-  for (const lane of ctx.config.parallel.researchLanes) if (!cards.some((c) => c.lane === lane.id)) g.warn(`lane ${lane.id} found nothing`)
+  const empty = emptyLanes(ctx, sk)
+  for (const lane of empty) g.warn(`lane ${lane.id} (${lane.title}): nothing in this window's slice, so no task`)
+  for (const lane of ctx.config.parallel.researchLanes) if (!empty.includes(lane) && !cards.some((c) => c.lane === lane.id)) g.warn(`lane ${lane.id} found nothing`)
   return g.done()
 }
 

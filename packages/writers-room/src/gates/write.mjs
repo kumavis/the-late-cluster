@@ -11,6 +11,7 @@ import { isExampleHost, jsText, namesIn, respellingMismatch, scriptLines, source
 import { contentFiles, gate, list, planSegments, read, rundown, sourcesIndex } from './common.mjs'
 import { optOutGate } from './shared.mjs'
 import { r3Tags } from '../bible.mjs'
+import { pronounGateLines, pronounProblems } from '../pronouns.mjs'
 
 export async function writeRundown(ctx) {
   const g = gate('write.rundown')
@@ -362,6 +363,20 @@ export function realLines(ctx) {
 }
 
 /** Rule R9: a puppet that stands for a real account is labelled `guest: true` (PUPPET · PARODY) */
+/** stated pronouns (README "Pronouns"): blocking at assembly; the draft stage runs the same check as a warning */
+export async function writePronouns(ctx) {
+  const g = gate('write.pronouns')
+  for (const seg of rundown(ctx)) {
+    const text = read(ctx.paths.segFile(seg, 'script.js'))
+    if (text === null) continue
+    const mod = read(ctx.paths.segFile(seg, 'index.js'))
+    const r = pronounGateLines(pronounProblems(ctx, { seg, file: `segments/${seg}/script.js`, text, screen: mod === null ? [] : [{ file: `segments/${seg}/index.js`, text: mod }] }))
+    r.failures.forEach((f) => g.fail(f))
+    r.warnings.forEach((w) => g.warn(w))
+  }
+  return g.done()
+}
+
 export async function writeLabels(ctx) {
   const g = gate('write.labels')
   const { cast, episodeCast } = ctx.castInfo

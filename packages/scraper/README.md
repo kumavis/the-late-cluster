@@ -70,13 +70,13 @@ Written to `data/weeks/<week>/` at the repo root (gitignored), or to `--out`:
 | `coverage.md` | the coverage report for the scope review; see "Coverage" |
 | `digest.md` | the same for a writer with ten minutes, in this order: the week at a glance; **Community games** (Top Chicken as a segment); **Built this week**; **New voices**; **Interview material**; **Threads you could perform**; the top 15 stories with their best unmarked posts quoted and linked (stories left out for consent without headlines; marked posts listed, not quoted); then appendices (A most active accounts, B links that circulated, C phrases that spiked, D "X week" declarations, E how it was made) |
 | `skeletons/` | a card skeleton per story (`<id>.json`), `index.json`, and `by-post.json` (post address to skeleton id); see "Skeletons and lanes" |
-| `lanes/` | `<lane>.json` and `<lane>.md` for `made`, `talk`, `games`, `voices`, `interview`: the skeleton ids each research lane should look at, ranked |
+| `lanes/` | `<lane>.json` and `<lane>.md` for `made`, `talk`, `games`, `voices`, `interview`, `tagged`: the skeleton ids each research lane should look at, ranked |
 | `reviewers/` | `about-show.json` and `.md`: posts and stories about the show itself, for reviewers and auditors only (trial 002, finding 11) |
 | `private/` | `profiles.json` (every kept account's profile description and labels as read) and `bio-review.md`: for the auditor only; see "Bios" |
 | `media/` | pictures and video thumbnails fetched by `npm run media`, on request only |
 | `.cache/http/` | raw API responses keyed by URL; see "The response cache" |
 
-Each author in `authors` carries `followers`, `small`, `member`, `bot`, `bioReview` (when set),
+Each author in `authors` carries `followers`, `small`, `member`, `bot`, `pronouns` (see "Pronouns"), `pronounsReview` and `bioReview` (when set),
 and from the ledger `featuredPrevious` / `featuredEarlier` (`"spoke"`, `"shown"` or null) and
 `timesFeatured`; posts carry `featured` when either is set, and `reach` (see "Reach").
 
@@ -108,6 +108,7 @@ agent that read it:
  "counts":[83,10,88,7],            // likes, reposts, replies, quotes
  "replyTo":"at://...",             // the parent's address, or "hidden"
  "quote":"at://...",               // the quoted post's address, or "removed"
+ "pronouns":"she/they",            // the author's stated pronouns as written; absent: none stated
  "media":["image (no alt)"],       // each picture or video, and whether it has alt text
  "marks":["health"],               // sensitive topics and consent reasons, when any
  "redacted":true,                  // when the consent rules altered the text
@@ -246,8 +247,9 @@ skeleton post (`hasText: false`, finding 10); `npm run media` fetches what it sh
 week, a link to their own site, a built link they say they made, a video, or a picture or link
 they say they made (`lanes.json` `made.patterns`); sharing someone else's repository is not
 making it. `talk`: at least 4 posts from at least 3 members, or a spiked phrase. `games`: a game
-account's posts, a winning post, or talk of scores, records and bets. Stories the consent rules
-leave out are in no lane.
+account's posts, a winning post, or talk of scores, records and bets. `tagged`: a member of the
+cluster pointed at it by tagging the show's account. Stories the consent rules leave out are in no
+lane.
 
 **`lanes/<lane>.json`** (`late-cluster-lane/1`) and a short `lanes/<lane>.md`:
 
@@ -268,6 +270,7 @@ leave out are in no lane.
   featured; each unmarked post scores `ln(1 + engagement) + 1.2 × lift − 1.5 × log10(followers +
   10)`, so a small account's good day can lead. Left out: bots, accounts over 3,000 followers,
   marked posts, and anything in a story the consent rules leave out.
+- `tagged`: one entry per thing a member pointed at; see "The tagged lane".
 - `interview`: one entry per candidate, `{ rank, did, handle, displayName, followers, small,
   featuredEarlier, timesFeatured, line, made: [{ id, asked, line }], pairs: [{ skeleton,
   aboutMade, kind, question: { uri, url, handle, displayName, text, time, member, followers,
@@ -278,6 +281,101 @@ leave out are in no lane.
   made story, a reply to the maker that the maker answered counts as asking (`kind: "reply to
   the maker"`). **Every** usable pair is given, oldest first. Nobody who appeared in the
   previous aired episode; no bots.
+
+## The tagged lane
+
+What the audience pointed at (WORKFLOW stage 2). `src/tagged.js`; config `config/lanes.json`
+`tagged`. A tag guides where the show looks and decides nothing else.
+
+**A tag** is a post whose own mention facets carry one of the show's DIDs (`show.config.json`
+`bluesky.did`, `cluster.json` `showAccount`, and any DID in `show.json` `handles`). Tags are found
+in everything collected, and by `app.bsky.feed.searchPosts` on `api.bsky.app` with the `mentions`
+parameter (the `mentions:` operator in `q` answers 400 unauthenticated; so does `from:`), then the
+handle as text; every hit is checked for the facet. The search's results and any thread fetched for
+a pointer go to a store of their own, never into the digest's stories.
+
+**A pointer**, told from a tag about the show, in this order:
+
+- the show's own posts are not taggers (counted as `own`);
+- a tag that links the show, or whose own text or alt text reacts to it (`aboutShowPatterns`:
+  "loved the episode", "when's the next", "my puppet", ...) is about the show;
+- a quote: a pointer at the quoted post, unless that post is the show's or about the show (names or
+  links it). A quote of another tag follows it to what that one points at;
+- a reply: a pointer at the parent, unless the parent or the thread root is the show's own post or
+  about the show (a tag in a thread under an episode is a reaction to it). A reply to another tag
+  follows it;
+- a top-level post: a pointer at itself when it carries a link (the link is the thing), a picture or
+  video, or at least `minOwnWords` (6) words besides mentions; otherwise "only the tag".
+
+Naming the show in a reply or quote ("this belongs on the late cluster") does not stop it pointing.
+A tag that is not a pointer stays where posts about the show go (`reviewers/`). A reply or quote
+pointer is the audience addressing the show about someone else's post: it is written to
+`posts.jsonl` marked `addressedToShow: true` and kept out of every story, score, section and reach
+figure, so tagging never raises a story's rank in another lane or its reach. Replies under, and
+quotes of, such a pointer are about the show. A top-level pointer is the thing itself and stays in
+its story, marked `addressedToShow`.
+
+**Who counts.** Only a member of the window's cluster (the membership the scope stage audits):
+a tag from anyone else is counted (`notMember`) and never listed. Bots and accounts excluded on
+consent grounds are not taggers. An excluded account's post is never shown or named because
+someone pointed at it, and neither is a story the consent rules leave out: the pointer is counted
+(`excludedTarget`) and nothing else. Every sensitivity and consent mark applies to the pointed-at
+post as everywhere else, and to the tagger's own.
+
+**Weight.** Each counted pointer weighs the tagger's centrality: the membership score the cluster
+already computes (`3·seedFollows + min(interactions, 12) + 4·roster + ...`, `cluster.json`
+`expansion.weights` and `caps`) divided by the window's highest member score, at least
+`weight.floor` (0.05). Each tagger carries `centrality: { raw, max, normalised, weight, seed,
+components }`, so an auditor can see why a pointer ranked where it did. A seed's score counts only
+what other seeds give it (seeds are not ranked against the cap), so a seed can weigh less than its
+place suggests. One member pointing at the same thing twice counts once (`repeat`); a member's nth
+distinct thing in the window counts `weight.repeatDecay`^(n-1) (0.5) and at most `perTaggerCap` (5)
+count (`overCap`). An entry's weight is the sum over its taggers; the lane is ordered by weight, then
+by people, then by the story's reach.
+
+**Outside the cluster.** When the thing pointed at is not in the digest, its thread is fetched (one
+`getPostThread` of its root, `threadDepth` 6, at most `maxThreads` (20) a run) and analysed apart
+from the digest, so it changes no other story's score or rank. Its skeleton has the id `x-…`,
+`rank: null`, `outsideCluster: true`, and no lane but `tagged`.
+
+**`lanes/tagged.json`**: the lane shape plus `counts` (`tags`, `pointers`, `counted`, `taggers`,
+`entries`, `aboutShow`, `ignored: { own, notMember, bot, excludedTagger, overCap, repeat,
+excludedTarget, notFound }`) and `aboutShowWhy`. An entry:
+
+```jsonc
+{ "rank": 1, "id": "s-…", "kind": "reply",            // reply | quote | link | post
+  "target": { "uri", "url", "handle", "did", "time", "text", "member": true, "pronouns", "media": 1, "sensitive"?, "consent"?, "redacted"? },
+  "link"?: "https://…", "outsideCluster": false,
+  "taggers": [{ "uri", "url", "handle", "did", "displayName", "time", "text", "kind", "addressedToShow": true,
+                "member": true, "followers", "small", "pronouns", "weight": 0.6, "nth": 1,
+                "centrality": { "raw": 18, "max": 30, "normalised": 0.6, "weight": 0.6, "seed": false, "components": {} } }],
+  "weight": 0.6, "people": 1, "reach": 120, "line": "…", "score": 0.6 }
+```
+
+The pointed-at skeleton gets the lane hint `tagged` and nothing else changes. The coverage report
+gains one line: pointers, counted, taggers, things, ignored and why, tags only about the show, in
+counts. `lanes/tagged.md` opens with the rule, including that a tag from outside the cluster was
+never there to see. `digest.json` `run.tagged` records the searches and threads fetched.
+
+## Pronouns
+
+Each account's stated pronouns (`src/pronouns.js`), with no extra requests: the profiles the run
+already reads carry Bluesky's built-in `pronouns` field.
+
+- `pronouns: { text, forms, source }`: `text` exactly as the person wrote it; `forms` the subject
+  forms it names (`she`, `he`, `they`, `it`, `xe`, `ze`, `ey`, `fae`, `ve`, `per`, `any`, or
+  `name` for "no pronouns"); `source` `profile` for the built-in field, else `bio` for an explicit
+  statement in the bio: a slash set ("she/her", "he/they", "xe/xem"), "any pronouns", "no
+  pronouns", or "pronouns: …". Never a lone word, never a guess from anything else.
+- A bio that states two different sets records none and marks `pronounsReview` (listed with the
+  statements in `private/bio-review.md`, "Pronouns to judge", for the auditor).
+- `pronouns: null` means none stated.
+
+The phrase goes wherever an author record goes to other roles: `authors` and `members` in
+`digest.json`, every skeleton post's `author` and its `replyTo`/`quoted` `author`, lane entries per
+person (voices, interview answers and questions, game winners, tagged taggers and targets), and
+`npm run lookup`'s compact record. The bio stays in `private/`. `npm run sources -- check` reports
+each account's pronouns as they are now and raises `pronouns changed` against the digest's record.
 
 ## Marks
 
@@ -333,7 +431,8 @@ line, `late-cluster-sources-check/1`: `{ checkedAt, since, clean, counts: { post
 issues, requests }, issues: [{ kind, where, what }], posts: [{ uri, where, status }],
 accounts: [{ did, handle, where, status, checks }], notes }`. Issue kinds: `post gone`, `text
 changed`, `cut does not match`, `opt-out`, `bio review`, `handle changed`, `display name
-changed`, `pinned post asks`, `post asks`, `about the show`, `asks the show`, `account gone`.
+changed`, `pronouns changed`, `pinned post asks`, `post asks`, `about the show`, `asks the show`, `account gone`.
+Each account row carries `pronouns` as read now.
 For the trial's `sources.json` (48 posts, 16 accounts) it made 21 requests.
 
 ## Who is "the cluster"
@@ -849,8 +948,10 @@ makes a parent a wish), `reach.weights`, and `weekDeclarations` (`maxN`, `top`).
 
 `config/lanes.json`: `made.patterns` and `limit`; `talk` (`minPosts`, `minMembers`, `limit`);
 `games` (`patterns`, `limit`); `voices` (`maxFollowers`, `audienceWeight`, `minPosts`,
-`postsEach`, `limit`); `interview` (`minPairs`, `limit`); `bots` (`accounts`, `bioPatterns`);
-`lineChars`. See "Skeletons and lanes".
+`postsEach`, `limit`); `interview` (`minPairs`, `limit`); `tagged` (`enabled`, `minOwnWords`,
+`aboutShowPatterns`, `perTaggerCap`, `weight.floor`, `weight.repeatDecay`, `search` (`enabled`,
+`host`, `queries`, `maxPages`), `maxThreads`, `threadDepth`, `limit`; see "The tagged lane");
+`bots` (`accounts`, `bioPatterns`); `lineChars`. See "Skeletons and lanes".
 
 `config/safety.json`: `smallAccountFollowers`, `selfDeclaredOptOut.patterns` and
 `indirectPatterns`, `bioReview.patterns`, `sensitivity.consentTopics`,
@@ -898,7 +999,10 @@ Does not work:
 - `app.bsky.feed.searchPosts` on `public.api.bsky.app` answers **403** (an HTML page from the
   CDN). The same call on `https://api.bsky.app` works unauthenticated, including
   `since`/`until`. The refusal on the public host is deliberate, so search is **off by
-  default**; `search.host` points at `api.bsky.app` for an owner who decides to turn it on.
+  default**; `search.host` points at `api.bsky.app` for an owner who decides to turn it on. The
+tagged lane's own search (`lanes.json` `tagged.search`, on by the owner's ruling that tagging the
+show's account guides where it looks) asks only for mentions of the show, with the `mentions`
+parameter; `mentions:` in `q` answers 400.
   The `from:` operator answers 400.
 - `app.bsky.actor.searchActors` returns an empty list unauthenticated on both hosts.
 - `app.bsky.feed.getActorLikes` answers 400 for other people's likes.

@@ -8,6 +8,7 @@ import { combineRepetition, filesIn, readIdeas, readJsonFile, repetitionProblems
 import { earlier, keyOf, peopleRules } from '../ledger.mjs'
 import { gate } from '../gates/common.mjs'
 import { checkGuestLines, r3Drift, spokenWords } from '../gates/write.mjs'
+import { pronounGateLines, pronounProblems } from '../pronouns.mjs'
 import { importFresh } from '../context.mjs'
 import { inheritProblems } from '../inherit.mjs'
 import { scriptLines } from '../scan.mjs'
@@ -136,6 +137,9 @@ async function draftLines(ctx) {
     const r = checkGuestLines(view, { seg: d.slug, file: `drafts/${d.slug}/script.js`, text: readFileSync(join(d.dir, 'script.js'), 'utf8') })
     r.failures.forEach((f) => g.fail(f))
     r.warnings.forEach((w) => g.warn(w))
+    // pronouns: a warning at the draft stage, blocking at assembly
+    const pr = pronounGateLines(pronounProblems(view, { seg: d.slug, file: `drafts/${d.slug}/script.js`, text: readFileSync(join(d.dir, 'script.js'), 'utf8') }), { blocking: false })
+    pr.warnings.forEach((w) => g.warn(`pronouns: ${w}`))
     const p = peopleRules(ctx.ledger, ctx.paths.number, { speakers: d.notes.speakers ?? [] }, ctx.config.people, ctx.digest)
     p.failures.forEach((f) => g.fail(`drafts/${d.slug}: ${f}`))
   }

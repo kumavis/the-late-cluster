@@ -152,8 +152,14 @@ picture and video, and any sensitivity mark, post by post. A skeleton is never r
 
 Researchers work in parallel, one lane each, from a slice of the digest cut for that lane:
 things that got made and shown; conversations and running bits; the community's games and
-numbers; new and smaller voices; and interview candidates, chosen for having made something
-and been asked about it. A researcher chooses skeletons, merges those that are one story,
+numbers; new and smaller voices; interview candidates, chosen for having made something
+and been asked about it; and **what the audience pointed at**. A post that tags the show's own
+account is read as a pointer when a member of the cluster posted it, and what it points at goes
+into that lane. Pointers are filtered and weighted by membership: a tag from outside the cluster
+is counted and not listed, and a member's pointer weighs as much as that member is central, so
+the lane is ordered by who pointed and not by how often. A tag guides where the show looks and
+decides nothing else: what is tagged passes the same screen and gates as the rest, and the show
+promises nobody a place. A researcher chooses skeletons, merges those that are one story,
 and adds what a tool cannot: what happened in neutral words, what a picture or video shows
 (fetched by the tool for the researcher to look at), what could be shown working, what is not
 understood. A card contains no jokes. A video with no words can be a card.

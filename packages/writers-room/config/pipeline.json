@@ -24,7 +24,7 @@
     "segmentTolerance": 0.15
   },
   "parallel": {
-    "$comment": "How many subagents work independently on a task (docs/WORKFLOW.md, stages). researchLanes are the lanes of stage 2, one researcher each; each lane's slice of the digest is the scraper's data/weeks/<week>/lanes/<lane>.json and .md.",
+    "$comment": "How many subagents work independently on a task (docs/WORKFLOW.md, stages). researchLanes are the lanes of stage 2, one researcher each; each lane's slice of the digest is the scraper's data/weeks/<week>/lanes/<lane>.json and .md. A lane with skipWhenEmpty gets no task when its slice is empty, and the run says so in one line.",
     "researchLanes": [
       {
         "id": "made",
@@ -45,6 +45,11 @@
       {
         "id": "interview",
         "title": "interview candidates: one member whose public posts answer real prompts"
+      },
+      {
+        "id": "tagged",
+        "title": "what the audience pointed at",
+        "skipWhenEmpty": true
       }
     ],
     "brainstormWriters": 3,
@@ -122,6 +127,18 @@
   "music": {
     "$comment": "The music draft's genre must differ from the previous aired episode's (ledger song.genre); the song's writer is told that genre as an avoid line before drafting. A genre used within genreWarnWindow aired episodes is a warning.",
     "genreWarnWindow": 8
+  },
+  "pronouns": {
+    "$comment": "Stated pronouns (README 'Pronouns'). house: the forms of each house character, taken from how docs/bible/02-cast.md refers to them (Larry and Eppy as he, Sibyl as she; the chapter gives the band none, so null: none stated). The pronoun gate (draft: a warning; assemble: blocking) reads he/him/his and she/her/hers in house characters' lines and on-screen text and fails when nobody in the segment, real or house, has stated that form; it warns, naming who it could refer to, when someone has. Real people's verbatim lines are exempt.",
+    "house": {
+      "larry": { "text": "he/him", "forms": ["he"] },
+      "sibyl": { "text": "she/her", "forms": ["she"] },
+      "eppy": { "text": "he/him", "forms": ["he"] },
+      "hy": null,
+      "al": null,
+      "dee": null,
+      "pete": null
+    }
   },
   "guestLines": {
     "$comment": "The source comments a real account's line may carry (bible 09, R3): verbatim, interview, catchphrase, each with `· context: at://…`. Invented guests on .example may use `// invented`. Pastiche of a real account fails. The gate warns when realAccount differs from the kinds R3 names (ignoring `invented`, which R3 reserves for fiction).",

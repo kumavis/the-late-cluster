@@ -82,6 +82,35 @@ the terms of use of its cards from `research/terms.md`; on a later round, what t
 for; on a rework, its own failures. A brief that would name a missing file stops the run. A viewer's
 brief says only that these are stills and where to write.
 
+## The tagged lane
+
+`parallel.researchLanes` includes `tagged`, "what the audience pointed at": the scraper's
+`lanes/tagged.json`, the things members of the cluster pointed at by tagging the show's account,
+each with its taggers and their weights. The researcher cards what was pointed at like any other
+story and records on the card who pointed (`"pointedBy": ["<at:// uri of each tagger's post>"]`,
+checked against the lane file); a tagged card proposes nothing (no `proposal`, `recommend`,
+`pitch`, `priority`, `promise` fields). A lane marked `skipWhenEmpty` gets no task when its slice is
+empty, and the research gate says so in one line (`lane tagged (…): nothing in this window's
+slice, so no task`). A tag guides where the show looks and decides nothing else.
+
+## Pronouns
+
+The scraper records each person's stated pronouns (its README, "Pronouns"); the pipeline carries
+them. `research/longlist.json` and `research/kept/<card>.json` list each person with `pronouns`
+(the phrase as written, or "none stated") and `pronounForms`; `research/terms.md` adds a "People
+(stated pronouns)" line per kept card. Every brief but a viewer's carries the standing rule
+(`src/pronouns.mjs` `PRONOUN_RULE`: refer to a real person by name or handle; use a pronoun only
+when one is stated, and then that one; otherwise the name, or "they"; never infer from a name, a
+picture, a voice or how someone writes), and a brief that names people (its cards; for assemble,
+stage and review, the plan's cards) lists them with their pronouns. The pronoun gate reads he, him,
+his, she, her, hers (and -self) in lines spoken by house characters and in on-screen text (other
+string literals in `script.js` and `index.js`); for each it lists the segment's people (house
+characters who speak, with their forms from `config/pipeline.json` `pronouns.house`, taken from
+`docs/bible/02-cast.md`; guests; the accounts its sources cite) and fails when nobody there has
+stated that form, or warns naming who it could refer to. At the draft stage it is a warning
+(`draft.lines`), at assembly blocking (`write.pronouns`). Verbatim, interview and catchphrase lines
+and a guest's own lines are exempt, and so is on-screen text that is a cited post's text.
+
 ## Roles and who may read what
 
 `.claude/agents/`: `writer`, `reviewer` on Fable; `researcher`, `auditor`, `sound-editor`, `builder` on

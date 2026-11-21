@@ -35,7 +35,7 @@ const byTime = (a, b) => (a.time < b.time ? -1 : a.time > b.time ? 1 : a.uri < b
  * @param {object} a.safety config.safety
  * @param {object} a.show config.show
  */
-export function analyze({ posts, memberDids, members = [], reposts = new Map(), window, baselineStart, baselineWeeks, priorPosts = [], consent, scoring, profiles = new Map(), featured = () => ({ previous: null, earlier: null, episodes: [], appearances: 0 }), safety = {}, show = {}, games = {}, completeThreads = new Set(), gaps = [] }) {
+export function analyze({ posts, memberDids, members = [], reposts = new Map(), window, baselineStart, baselineWeeks, priorPosts = [], consent, scoring, profiles = new Map(), featured = () => ({ previous: null, earlier: null, episodes: [], appearances: 0 }), safety = {}, show = {}, games = {}, completeThreads = new Set(), gaps = [], tagged = {} }) {
   const inWin = (p) => { const t = Date.parse(p.time); return t >= window.start && t < window.end }
   const inBase = (p) => { const t = Date.parse(p.time); return t >= baselineStart && t < window.start }
 
@@ -48,7 +48,7 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   // Posts about the show, found before filtering: a request to be left out excludes its
   // author from everything that follows (bible R11).
   const rawWindow = all.filter(inWin)
-  const showFound = findShowPosts(rawWindow, show, safety)
+  const showFound = findShowPosts(rawWindow, show, safety, tagged)
   const optOutRequests = []
   for (const r of showFound.requests) {
     if (consent.excludedDid(r.did) && !consent.showRequests.has(r.did)) continue
@@ -91,6 +91,12 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   // Posts withheld for being mainly about an excluded account: only the game section reads
   // them (a result it reports as "not included"); they are written nowhere.
   const withheld = []
+  // Reply and quote pointers (README "The tagged lane"): the audience addressing the show about
+  // someone else's post. They are written to posts.jsonl and the tagged lane, and kept out of
+  // every story, score, section and reach figure, so a tag never raises anything.
+  const addressedSet = tagged.addressed ?? new Set()
+  const tagSet = tagged.tags ?? new Set()
+  const addressedPosts = []
   const seen = new Set()
   for (const raw of all.sort((a, b) => (a.uri < b.uri ? -1 : 1))) {
     if (seen.has(raw.uri)) continue
@@ -105,8 +111,10 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
       continue
     }
     p.member = memberDids.has(p.authorDid)
+    if (tagSet.has(p.uri)) p.addressedToShow = true
     if (w || !inBase(p)) annotate(p)
-    if (w) windowPosts.push(p)
+    if (w && addressedSet.has(p.uri)) addressedPosts.push(p)
+    else if (w) windowPosts.push(p)
     else {
       if (inBase(p)) baselinePosts.push(p)
       context.set(p.uri, p)
@@ -321,7 +329,8 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
   // whether the show featured them in the previous episode or an earlier one.
   const authorEntry = (p) => {
     const fe = featured(p.authorDid, p.handle)
-    return { handle: p.handle, displayName: p.displayName, followers: p.authorFollowers, small: !!p.smallAccount, member: !!p.member, featuredPrevious: fe.previous, featuredEarlier: fe.earlier, timesFeatured: fe.appearances }
+    const prof = profiles.get(p.authorDid)
+    return { handle: p.handle, displayName: p.displayName, followers: p.authorFollowers, small: !!p.smallAccount, member: !!p.member, pronouns: prof?.pronouns ?? null, ...(prof?.pronounsReview ? { pronounsReview: true } : {}), featuredPrevious: fe.previous, featuredEarlier: fe.earlier, timesFeatured: fe.appearances }
   }
   const authors = {}
   for (const p of windowPosts) {
@@ -366,7 +375,8 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
     authors,
     appendices: { activeAccounts, links, phrases: phraseList, weeks, runningBits: phraseList.filter((p) => p.days >= 3).map((p) => ({ term: p.term, days: p.days, authors: p.authors })) },
     members,
-    posts: windowPosts.sort(byTime).map((p) => ({ ...publicPost(p), ...(memberReposts.get(p.uri) ? { memberReposts: memberReposts.get(p.uri) } : {}) })),
+    addressedByUri: new Map(addressedPosts.map((p) => [p.uri, p])),
+    posts: [...windowPosts, ...addressedPosts].sort(byTime).map((p) => ({ ...publicPost(p), ...(memberReposts.get(p.uri) ? { memberReposts: memberReposts.get(p.uri) } : {}) })),
     counts: { windowPosts: windowPosts.length, baselinePosts: baselinePosts.length, contextPosts: context.size, priorPostsUsed: priorPosts.length },
   }
 }
