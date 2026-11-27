@@ -90,6 +90,15 @@ from different cultures", and much of that wisdom is held as scripture by someon
 is about the religion of the people the show covers, or about any mention of a religious
 teacher or text, is the owner's to say, and nothing is staged until they have.
 
+**The owner's ruling, 27 November 2026.** Asked "May this special name a rabbi and quote him,
+given R10 lists religion?", the owner answered: "Keep the rabbi". So the quotation, its
+attribution to Rabbi Tarfon and the line that says what he meant by it stay. The ruling is for
+this special. The project manager takes it to cover the reviewed script as it stands, which
+also tells a story from the Zhuangzi and a couplet from the Tirukkural as old books and makes
+no remark on anyone's faith; that extension is the project manager's reading. It changes
+nothing about R10 for the people the show covers, and the rule of respect above still holds:
+no joke at a tradition's expense, no ranking, and Larry speaks for none of them.
+
 ## How it is made
 
 By hand, through the workflow's roles (`docs/WORKFLOW.md`), because the pipeline tool runs

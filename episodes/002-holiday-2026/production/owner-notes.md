@@ -32,3 +32,20 @@ In the owner's words, exactly as given:
 > this is not episode 3, its a holiday special. we're not following the normal workflow of using
 > user posts, we will return to that for the next episode, but we want to keep the relevant parts
 > like the review flow. take this to a reviewed script and then lets discuss together
+
+## 27 November 2026: a rough audio cut
+
+> i think ill take a rough audio cut of the drafts. i dont need prounciation to be perfect, but
+> a pass at pacing + timing (pauses) would be nice
+
+## 27 November 2026: the rabbi stays
+
+Chapter 9, R10, names religion as out of bounds, and the reviewed script names Rabbi Tarfon and
+quotes him. Asked "May this special name a rabbi and quote him, given R10 lists religion?", the
+owner answered:
+
+> Keep the rabbi
+
+Still open with the owner: whether Larry may explain a long-dead thinker's idea in his own
+words (the reading of Article 3 in `special.md`), the either-ors in `assembly.md`, the end
+card, the air slot, and how the archive lists a special.
