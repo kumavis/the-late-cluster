@@ -33,13 +33,18 @@ No spelling tried was heard as the word.
 | **review** | larry | "where are you" ×4 | `Reev-yoo` → "where are you" ×4 | Larry at 104-209 Hz: alone and in every line heard as 'are you', 'where are you', 'for you'; Rree-view, Rreev-yoo, Rree-vue, Rreevv-yoo kept the sounds and were never heard; Rreview was heard but says /ɹɛviw/, not used. |
 | **reviewers** | sibyl, larry | "are yours" ×3, "two are your" | `ree-vyoo-erz` → "early-liers" ×3, "rely on a" ×1; `re-viewers` → "rears" ×4 | Sibyl: "are yours" as written; Too reviewers, rev-yoo-ers "however you are", ree-vew-urz "early in the world"; never heard. |
 | **riemann** | sibyl, guest | "raiment", "remin", "room", "rim and" | `ree-mun` → "raymond" ×4, "remain" ×4; `reemahn` → "remet" ×4, "remote"; `ree-mon` → "early moon" ×3, "early month" ×1 | Never heard as the name in Sibyl's or a guest's voice ("Raymond", "remain", "Rayman", "remet", "early moon"); the card and the caption carry it. |
+| **ruling** | eppy | "rowing" ×6, "rolling stand" ×3, "roaring" ×1, "rolling" ×1 | `roo-ling` → "rolling" ×4; `rool-ling` → "rolling" ×3, "ruling" ×1 | Eppy: heard as 'rowing' or 'rolling' in every take; roo-ling, rool-ling and a slower rate tried. |
 | **scripts** | larry | "scrapes" ×2, "oh scrapes" ×1, "to scrapes" ×1 | `Skripts` → "scrapes" ×2, "oh scrapes" ×1 | Larry, one-word line, 104-190 Hz: 'scrapes' in nearly every take; Skrippts, Scriptts, Sskriptts, Scrrippts the same. In a longer line it is heard. |
 | **sphenomegacorona** | sibyl | (not recorded) | `sfee-no-mega-corona` → "single megacroner" ×4 | Heard "single megacroner" as sfee-no-mega-corona in every take. |
+| **they'd** | larry | "let" ×10, "(lost)" ×6, "let me" ×4, "late" ×2 | — | Heard as 'let me' or 'late': the opening th is lost; a comma after it and a slower rate did not bring it back. |
+| **thou** | larry | "allowed" ×4 | — | Larry: heard as 'allowed' after 'art', or 'love' with a comma between. Left plain so the quotation flows. |
+| **thy** | larry | "lied to" ×2, "(lost)" ×1, "likelihood" ×1 | — | Larry: heard as 'lied', 'like' or 'likely' (th read as l). A comma before it and a slower rate tried. |
 | **tool** | sibyl | "two" ×7 | — | Sibyl: "two" ×7 in earlier lines; here heard, but "Two reviewers" before it became "The tool is yours"; tuhl gave "tough", tewl "tail". |
 | **unprompted** | larry | (not recorded) | `un-prompted` → "and cramped it", "on cramped" | Never heard as one word: "on prompted" at best. |
 | **usage** | sibyl | "are you" ×3, "be your" ×1 | `yoos-age` → "are you extremely", "are you a streamer" | Sibyl, two-word line: yoos-age "the only" ×4 (kept), Yoo-sidge "you've said", Yoos-idj "are you a little"; never the word. |
 | **velum** | larry | "heelum" ×3, "heel arm" ×1 | `vee-lum` → "heelum" ×3, "heel arm" ×1 | Heard as "heelum"; harmless nonsense, and a label on screen carried the word. |
 | **viewers** | larry | "were" ×4 | — | Larry, after 'For': 'after you were' in every take; view-erz the same, vyoo-erz adds a vowel; a comma after For gave 'Sir, you are'. |
+| **walk** | larry | "lock" ×4 | — | Larry: heard as 'lock', 'rock' or 'work'; the w reads as l or r. No spelling keeps the vowel (wwalk changes it). |
 | **wop** | dee, hy | "clap" ×2, "flap" ×1, "slap" ×1 | `wopp` → "slap" ×3, "let's" ×1 | Sung alone (Dee, MIDI 72, 0.36 s; Hy, MIDI 67): heard Clap, Flap, Slap, My baby, Love you; wopp and wwop keep the sounds and did no better (Slap, Let's, MUP). In do-wop it is heard as up. The lyric on screen carries it. |
 | **yowl** | guest | "yau" ×2, "yow" ×2 | — | Heard "yow" (or "Yau", "Yauro") in every take, plain and `yowll`; the l is lost. The caption carries it. |
 | **zeta** | sibyl | "later" ×11, "later evaluate" ×3, "later we will allow you" ×3, "(lost)" ×2 | — | Never heard as the word: Sibyl 'red', 'z', 'they', 'later'; Larry 'red', 'data', 'that', 'late'; a guest's handle reading zay-tuh 'later'. Zay-tuh and zayta change the sounds (an added h, another vowel), so the plain spelling stays. |
@@ -56,6 +61,7 @@ Heard in some takes or some lines, not others.
 | **chicken** | sibyl | "click on" ×2, "tabs" ×2 | `Chik-kun` → "nikon" ×13, "con" ×2; `chik-kun` → "nikon" ×2 | "top chicken" in a read post, sibyl: heard "tabs can", "Nikon", "connect"; topp, Chik-kun with commas was best (16/20). Caption carries it. |
 | **coffee** | guest | "coffee" ×4 | — | After polyhedral, plain coffee was heard "calf" and kof-fee too; set apart by commas ("polly-hee-drull, coffee, simulator") it is heard. caw-fee is /k ɔ f i/, not the word. |
 | **eight** | eppy | "it" ×10 | `Ate` → "it" ×4; `Eightt` → "it" ×4 | Eppy: "Eight, terms" heard "It, terms" ×4 (Ate, Eightt the same). |
+| **gently** | larry | "plenty" ×12, "cheap" ×3, "clean" ×2, "cold" ×2 | `jent-lee` → "clean" ×1, "gee" ×1 | Larry, slowed: heard as 'plenty', 'lengthy' or 'lanky'; jent-lee tried. |
 | **half** | guest, eppy | "head", "hit", "health", "heath" | `one-half` → "hit" ×8, "head" ×3; `one-haff` → "heath" ×2, "head" ×1; `wun-half` → "head" ×4; `wun-haaf` → "head, head, head (a runaway)" ×4 | Eppy, alone in a line: "Hit" as written and as Haf/Haff, Hahf/Haaff! "Hey", Hallf "Health", Harf "Hah!"; after "terms" "heh" or "has". Lost at the end of a line in guest voices too. |
 | **host** | larry | "hoped" ×3, "hope" ×1 | — | Larry, line-final after only: heard hoped in most takes (once post); plain at rate 0.9 was best; hoast and a comma after I did no better; hohst and hostt change the vowel. |
 | **kazoo** | larry, guest | "kakzu" ×2, "kazoo" ×2, "two" ×2, "zoom" ×2 | `ka-zoo` → "tazoo" ×4 | `kah-zoo` is heard as "Kazu" but is /k ɑ z u/; at a raised pitch `ka-zoo` gave "tazoo". In a guest's voice plain was heard "clue"; plain after "uh" ("like uh kazoo") was heard "kazoo" in 2 takes of 4, "kakzu" in 2. |
@@ -67,7 +73,10 @@ Heard in some takes or some lines, not others.
 | **scenes** | larry | "scenes" ×2, "oh shins" ×1, "singh singh singh singh" ×1 | `Seenz` → "scenes" ×2, "oh shins" ×1 | Larry, one-word line: 'scenes' about half the takes, otherwise 'shins' or 'since'; Seenz, Sceenz the same. |
 | **sheet** | sibyl | "(a crude word)", "sheet" ×4 | — | After "other's" it was heard as a crude word, which is never accepted; respelling the word before it (`uh-therz`) cleared it. |
 | **simulator** | guest | "simulator" ×6, "(lost)" ×4, "see me later" ×2, "see my leaker" ×2 | `sim-yul-layt-ter` → "(lost)" ×1, "seem your lead" ×1 | Sung by the bass lead at MIDI 52-57, a syllable to a half beat: heard 'simulators' or 'simulate her' after someone built, 'see me later' at the start of a line; sim-yul-layt-ter did worse. Spoken by Larry it is heard. |
+| **tarfon** | larry | "taran" ×4 | — | Heard as 'Taran' (plain) or 'Tarhan' (Tar-fon): the f is lost. |
+| **tirukkural** | larry | "percrel" ×1, "turcrel" ×1 | — | Tee-rook-koo-rul after a comma is heard as 'Tirok Ural'; Tih-roo-koo-rul adds an h (/tɪhɹu/) and was heard as 'Hero Girl'. |
 | **values** | guest | (not recorded) | `val-yooz` → "values" ×3, "value is" ×1 | `val-yooz` heard in 3 of 4 takes; the fourth, "value is", changed the sentence. |
+| **zhuangzi** | larry | (not recorded) | — | Jwong-dzuh after a comma ('The, Jwong-dzuh') is heard as 'drwangza'; Jwahng-dzuh adds an h (/dʒwæhŋ/) and was not heard at all. |
 
 ## Patterns
 
@@ -87,6 +96,7 @@ Not single words.
 | A burp or other sound given to a voice | Larry 'Urp.' at f0 55, flat: heard 'Oop'. Captionless: it is a sound, not a line, and the transcription only shows it is not a word. |
 | A sung scat syllable | Sung doo is transcribed Do or Doo (the sound is right); sung wop is never written, alone or in do-wop (up, Clap, love); whop has the same phonemes and the same render. Held hook endings set off loops of do do do. |
 | A sung lead line over a four-voice block | Hy's lead at MIDI 64-71, a syllable to a half beat, over bass, ooh pads and brushes: rarely transcribed (silence, loops of long or no, some love for someone); a comma after someone helped a little. The lyric display carries it. |
+| "That" opening a short sentence | Said unstressed (/ðət/) and run into the next word ('That is' becomes 'the-tiz'); a comma after it ('That, is the rule') keeps it a word. |
 
 ## Spellings that work
 
@@ -96,6 +106,7 @@ Heard as the word, in these voices. Words above may have one too, in some voice.
 |---|---|---|---|
 | a | `uh` | larry, guest | "uh" heard in every take (harvested from fit.json). |
 | ai (unstable) | `ay-eye` | larry | Raised Larry: ay-eye heard in 2 of 4 takes after "an"; otherwise lost ("when the agent"). |
+| an | `ann` | larry | "ann" heard in every take (harvested from fit.json). |
 | as | `azz` | sibyl | "azz" heard in every take (harvested from fit.json). |
 | bluesky | `blue-sky` | sibyl | Not in the dictionary: the engine reads the plain word as bluh-eh-skee. Spelled as two words it is blue sky. |
 | bluesky | `Blue-Sky` | larry | Not in the dictionary: the engine reads the plain word as bluh-eh-skee. Spelled as two words it is blue sky. |
@@ -105,11 +116,16 @@ Heard as the word, in these voices. Words above may have one too, in some voice.
 | calling | `kaw-ling` | guest | "kaw-ling" heard in every take (harvested from fit.json). |
 | can | `cann` | larry | "cann" heard in every take (harvested from fit.json). |
 | checked | `checkt` | larry | "checkt" heard in every take (harvested from fit.json). |
+| counted | `kown-tid` | pete | "kown-tid" heard in every take (harvested from fit.json). |
 | datacenter | `dayta-center` | sibyl | "dayta-center" heard in every take (harvested from fit.json). |
+| does | `duz` | larry | "duz" heard in every take (harvested from fit.json). |
 | earlier | `ur-lee-er` | sibyl | "ur-lee-er" heard in every take (harvested from fit.json). |
 | every | `eh-ver-ee` | guest | "eh-ver-ee" heard in every take (harvested from fit.json). |
+| for | `four` | larry | "four" heard in every take (harvested from fit.json). |
 | from | `frum` | larry | "frum" heard in every take (harvested from fit.json). |
 | had | `hadd` | larry, sibyl | "hadd" heard in every take (harvested from fit.json). |
+| have | `hav` | larry | "hav" heard in every take (harvested from fit.json). |
+| he | `hee` | larry | "hee" heard in every take (harvested from fit.json). |
 | hello | `huh-loh` | larry | "huh-loh" heard in every take (harvested from fit.json). |
 | i | `eye` | larry | "eye" heard in every take (harvested from fit.json). |
 | in | `inn` | larry | "inn" heard in every take (harvested from fit.json). |
@@ -128,17 +144,20 @@ Heard as the word, in these voices. Words above may have one too, in some voice.
 | record | `rekkerd` (the reading /ɹ ɛ k ɚ d/) | eppy | The noun ("the record"): plain is said as the dictionary's verb /ɹ ə k ɔ ɹ d/ yet heard "record" in every take; `rekkerd` /ɹ ɛ k k ɝ d/ keeps the noun's reading /ɹ ɛ k ɚ d/ and works; `rek-ord` keeps neither. |
 | redrew | `ree-drew` | larry | "ree-drew" heard in every take (harvested from fit.json). |
 | repost (unstable) | `ree-post` | larry | Heard "report" in some takes: a statement changed. Plain was best in a guest's line (3 of 4); rate 0.85 cleared Larry's short "I like. I ree-post."; slower rates and ree-poast did worse for the guest. |
+| saying | `say-ing` | larry | "say-ing" heard in every take (harvested from fit.json). |
 | side | `sighed` | sibyl | "sighed" heard in every take (harvested from fit.json). |
 | simcluster | `sim-cluster` | larry | "sim-cluster" heard in every take (harvested from fit.json). |
 | sixteen | `sik-steen` | eppy | "sik-steen" heard in every take (harvested from fit.json). |
 | so | `sew` | guest | "sew" heard in every take (harvested from fit.json). |
 | suspense | `sus-pense` | guest | "sus-pense" heard in every take (harvested from fit.json). |
 | tech | `tek` | sibyl | "tek" heard in every take (harvested from fit.json). |
-| the | `thee` | guest | "thee" heard in every take (harvested from fit.json). |
+| the | `thee` | guest, larry | "thee" heard in every take (harvested from fit.json). |
+| tirukkural (unstable) | `Tee-rook-koo-rul` | larry | Tee-rook-koo-rul after a comma is heard as 'Tirok Ural'; Tih-roo-koo-rul adds an h (/tɪhɹu/) and was heard as 'Hero Girl'. |
 | two | `too` | sibyl | "too" heard in every take (harvested from fit.json). |
 | unprompted (cannot) | `un-promp-tid` | larry | Never heard as one word: "on prompted" at best. |
 | uses | `yoo-zuz` | sibyl | "yoo-zuz" heard as the word in every take, but its sounds are not the word's (harvested from fit.json). |
 | was | `wuz` | larry | "wuz" heard in every take (harvested from fit.json). |
+| zhuangzi (unstable) | `Jwong-dzuh` | larry | Jwong-dzuh after a comma ('The, Jwong-dzuh') is heard as 'drwangza'; Jwahng-dzuh adds an h (/dʒwæhŋ/) and was not heard at all. |
 
 ## Heard by the transcription, not by a listener
 

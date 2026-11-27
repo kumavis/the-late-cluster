@@ -159,6 +159,49 @@
    ]
   },
   {
+   "word": "an",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "no",
+     "count": 1
+    },
+    {
+     "as": "rich",
+     "count": 1
+    }
+   ],
+   "spellings": [
+    {
+     "as": "ann",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "an",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "ann",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"ann\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "003-holiday-2026/walk"
+   ]
+  },
+  {
    "word": "as",
    "status": "works",
    "voices": [
@@ -653,6 +696,40 @@
    ]
   },
   {
+   "word": "counted",
+   "status": "works",
+   "voices": [
+    "pete"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "kown-tid",
+     "voices": [
+      "pete"
+     ],
+     "heard": [
+      {
+       "as": "counted",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "kown-tid",
+     "voices": [
+      "pete"
+     ]
+    }
+   ],
+   "note": "\"kown-tid\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "003-holiday-2026/walk"
+   ]
+  },
+  {
    "word": "datacenter",
    "status": "works",
    "voices": [
@@ -719,6 +796,40 @@
    "note": "Sibyl: heard 'divergent' in every take, as written and with commas around zeta.",
    "seen": [
     "002-commissions-w47/riemann-breaking-news"
+   ]
+  },
+  {
+   "word": "does",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "duz",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "does",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "duz",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"duz\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "003-holiday-2026/walk"
    ]
   },
   {
@@ -834,6 +945,40 @@
    ]
   },
   {
+   "word": "for",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "four",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "for",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "four",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"four\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "003-holiday-2026/walk"
+   ]
+  },
+  {
    "word": "from",
    "status": "works",
    "voices": [
@@ -875,6 +1020,70 @@
    "seen": [
     "002-commissions-w47/making-of-inward",
     "002-2026-w47/made-pen-plotter-replies"
+   ]
+  },
+  {
+   "word": "gently",
+   "status": "unstable",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "plenty",
+     "count": 12
+    },
+    {
+     "as": "cheap",
+     "count": 3
+    },
+    {
+     "as": "clean",
+     "count": 2
+    },
+    {
+     "as": "cold",
+     "count": 2
+    },
+    {
+     "as": "lanky",
+     "count": 2
+    },
+    {
+     "as": "blunty",
+     "count": 1
+    },
+    {
+     "as": "lengthy",
+     "count": 1
+    },
+    {
+     "as": "lunchy",
+     "count": 1
+    }
+   ],
+   "spellings": [
+    {
+     "as": "jent-lee",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "clean",
+       "count": 1
+      },
+      {
+       "as": "gee",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Larry, slowed: heard as 'plenty', 'lengthy' or 'lanky'; jent-lee tried.",
+   "seen": [
+    "003-holiday-2026/walk"
    ]
   },
   {
@@ -1077,6 +1286,74 @@
    "note": "Guest at 254 Hz, after 'many': 'hair', 'here', 'head'; havz the same.",
    "seen": [
     "002-commissions-w47/riemann-breaking-news"
+   ]
+  },
+  {
+   "word": "have",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "hav",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "have",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "hav",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"hav\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "003-holiday-2026/walk"
+   ]
+  },
+  {
+   "word": "he",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "hee",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "he",
+       "count": 8
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "hee",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"hee\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "003-holiday-2026/walk"
    ]
   },
   {
@@ -1926,7 +2203,12 @@
      "voices": [
       "larry"
      ],
-     "heard": []
+     "heard": [
+      {
+       "as": "on",
+       "count": 4
+      }
+     ]
     }
    ],
    "works": [
@@ -1939,7 +2221,8 @@
    ],
    "note": "\"awn\" heard in every take (harvested from fit.json).",
    "seen": [
-    "002-commissions-w47/making-of-inward"
+    "002-commissions-w47/making-of-inward",
+    "003-holiday-2026/walk"
    ],
    "misleads": [
     {
@@ -2695,6 +2978,104 @@
    ]
   },
   {
+   "word": "ruling",
+   "status": "cannot",
+   "voices": [
+    "eppy"
+   ],
+   "heard": [
+    {
+     "as": "rowing",
+     "count": 6
+    },
+    {
+     "as": "rolling stand",
+     "count": 3
+    },
+    {
+     "as": "roaring",
+     "count": 1
+    },
+    {
+     "as": "rolling",
+     "count": 1
+    },
+    {
+     "as": "rowing turned",
+     "count": 1
+    }
+   ],
+   "spellings": [
+    {
+     "as": "roo-ling",
+     "voices": [
+      "eppy"
+     ],
+     "heard": [
+      {
+       "as": "rolling",
+       "count": 4
+      }
+     ]
+    },
+    {
+     "as": "rool-ling",
+     "voices": [
+      "eppy"
+     ],
+     "heard": [
+      {
+       "as": "rolling",
+       "count": 3
+      },
+      {
+       "as": "ruling",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "works": [],
+   "note": "Eppy: heard as 'rowing' or 'rolling' in every take; roo-ling, rool-ling and a slower rate tried.",
+   "seen": [
+    "003-holiday-2026/walk"
+   ]
+  },
+  {
+   "word": "saying",
+   "status": "works",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "say-ing",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "saying",
+       "count": 4
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "say-ing",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "\"say-ing\" heard in every take (harvested from fit.json).",
+   "seen": [
+    "003-holiday-2026/walk"
+   ]
+  },
+  {
    "word": "scenes",
    "status": "unstable",
    "voices": [
@@ -3304,6 +3685,25 @@
    ]
   },
   {
+   "word": "tarfon",
+   "status": "unstable",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "taran",
+     "count": 4
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "Heard as 'Taran' (plain) or 'Tarhan' (Tar-fon): the f is lost.",
+   "seen": [
+    "003-holiday-2026/walk"
+   ]
+  },
+  {
    "word": "tech",
    "status": "works",
    "voices": [
@@ -3536,19 +3936,21 @@
    "word": "the",
    "status": "works",
    "voices": [
-    "guest"
+    "guest",
+    "larry"
    ],
    "heard": [],
    "spellings": [
     {
      "as": "thee",
      "voices": [
-      "guest"
+      "guest",
+      "larry"
      ],
      "heard": [
       {
        "as": "the",
-       "count": 12
+       "count": 16
       }
      ]
     }
@@ -3557,7 +3959,8 @@
     {
      "as": "thee",
      "voices": [
-      "guest"
+      "guest",
+      "larry"
      ]
     }
    ],
@@ -3565,7 +3968,39 @@
    "seen": [
     "002-commissions-w47/riemann-market-wrap",
     "002-commissions-w47/riemann-breaking-news",
-    "002-2026-w47/interview-yonderdavid"
+    "002-2026-w47/interview-yonderdavid",
+    "003-holiday-2026/walk"
+   ]
+  },
+  {
+   "word": "they'd",
+   "status": "cannot",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "let",
+     "count": 10
+    },
+    {
+     "as": "(lost)",
+     "count": 6
+    },
+    {
+     "as": "let me",
+     "count": 4
+    },
+    {
+     "as": "late",
+     "count": 2
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "Heard as 'let me' or 'late': the opening th is lost; a comma after it and a slower rate did not bring it back.",
+   "seen": [
+    "003-holiday-2026/walk"
    ]
   },
   {
@@ -3605,6 +4040,139 @@
     }
    ],
    "ipa": "ð ɪ s"
+  },
+  {
+   "word": "thou",
+   "status": "cannot",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "allowed",
+     "count": 4
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "Larry: heard as 'allowed' after 'art', or 'love' with a comma between. Left plain so the quotation flows.",
+   "seen": [
+    "003-holiday-2026/walk"
+   ]
+  },
+  {
+   "word": "thy",
+   "status": "cannot",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "lied to",
+     "count": 2
+    },
+    {
+     "as": "(lost)",
+     "count": 1
+    },
+    {
+     "as": "likelihood",
+     "count": 1
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "Larry: heard as 'lied', 'like' or 'likely' (th read as l). A comma before it and a slower rate tried.",
+   "seen": [
+    "003-holiday-2026/walk"
+   ]
+  },
+  {
+   "word": "tirukkural",
+   "status": "unstable",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "percrel",
+     "count": 1
+    },
+    {
+     "as": "turcrel",
+     "count": 1
+    }
+   ],
+   "spellings": [
+    {
+     "as": "Tee-rook-koo-rul",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "tirok ural",
+       "count": 7
+      },
+      {
+       "as": "terakural",
+       "count": 3
+      },
+      {
+       "as": "the",
+       "count": 3
+      },
+      {
+       "as": "material world",
+       "count": 2
+      },
+      {
+       "as": "teragural",
+       "count": 2
+      },
+      {
+       "as": "tirok world",
+       "count": 2
+      },
+      {
+       "as": "turk world",
+       "count": 2
+      },
+      {
+       "as": "(lost)",
+       "count": 1
+      },
+      {
+       "as": "terakurals",
+       "count": 1
+      },
+      {
+       "as": "tirokural",
+       "count": 1
+      },
+      {
+       "as": "tyrokural version",
+       "count": 1
+      },
+      {
+       "as": "world",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "Tee-rook-koo-rul",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "Tee-rook-koo-rul after a comma is heard as 'Tirok Ural'; Tih-roo-koo-rul adds an h (/tɪhɹu/) and was heard as 'Hero Girl'.",
+   "seen": [
+    "003-holiday-2026/walk"
+   ]
   },
   {
    "word": "tool",
@@ -3950,6 +4518,25 @@
    "ipa": "v ɔɪ s"
   },
   {
+   "word": "walk",
+   "status": "cannot",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "lock",
+     "count": 4
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "Larry: heard as 'lock', 'rock' or 'work'; the w reads as l or r. No spelling keeps the vowel (wwalk changes it).",
+   "seen": [
+    "003-holiday-2026/walk"
+   ]
+  },
+  {
    "word": "was",
    "status": "works",
    "voices": [
@@ -4109,6 +4696,44 @@
    "seen": [
     "002-commissions-w47/riemann-breaking-news"
    ]
+  },
+  {
+   "word": "zhuangzi",
+   "status": "unstable",
+   "voices": [
+    "larry"
+   ],
+   "heard": [],
+   "spellings": [
+    {
+     "as": "Jwong-dzuh",
+     "voices": [
+      "larry"
+     ],
+     "heard": [
+      {
+       "as": "drwangza",
+       "count": 3
+      },
+      {
+       "as": "drangza",
+       "count": 1
+      }
+     ]
+    }
+   ],
+   "works": [
+    {
+     "as": "Jwong-dzuh",
+     "voices": [
+      "larry"
+     ]
+    }
+   ],
+   "note": "Jwong-dzuh after a comma ('The, Jwong-dzuh') is heard as 'drwangza'; Jwahng-dzuh adds an h (/dʒwæhŋ/) and was not heard at all.",
+   "seen": [
+    "003-holiday-2026/walk"
+   ]
   }
  ],
  "patterns": [
@@ -4230,6 +4855,16 @@
     "wheelies",
     "showed",
     "mug",
+    "that"
+   ]
+  },
+  {
+   "pattern": "\"That\" opening a short sentence",
+   "note": "Said unstressed (/ðət/) and run into the next word ('That is' becomes 'the-tiz'); a comma after it ('That, is the rule') keeps it a word.",
+   "seen": [
+    "003-holiday-2026/walk"
+   ],
+   "words": [
     "that"
    ]
   }
