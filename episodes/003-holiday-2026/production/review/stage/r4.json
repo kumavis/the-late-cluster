@@ -1,0 +1,38 @@
+{
+  "round": 4,
+  "cut": "56b76f91c4f6e4ef836cef744c2df1f1e13d904dceec02ec2567ddea89d9e8c0",
+  "segments": {
+    "walk": {
+      "verdict": "change",
+      "changes": [
+        {
+          "owner": "segment",
+          "file": "episodes/003-holiday-2026/segments/walk/table.js",
+          "scene": "table",
+          "at": "eppy-calls-it 237.08 to 238.90 (ruling-stands); goodnight 248.17 to 257.0 (mixed-up-world, keep-close, stay-warm)",
+          "change": "At the phone caption scale the caption bar covers most of our plate, and in Eppy's line part of the bowl beside it, while these lines are captioned. Our plate and the bowl must sit clear of the caption bar in these shots. Minor: the moments that depend on them are clear of any caption. Those are the bowl at our plate after the cut at served (about 233.6 to 234.3), our plate with food in the-meal (239.27, 241.52), and the hold after 'Goodnight' (258.5 to 261.5)."
+        },
+        {
+          "owner": "studio",
+          "file": "the credits roll (episode.json credits as drawn by the studio's credits)",
+          "scene": "credits",
+          "at": "credits 8.5 to 13 s in (271.79 to 276.29)",
+          "change": "In 'THE HÁVAMÁL, STANZA 47' the two accented capitals are drawn in a different, heavier typeface from the rest of the line, so they stand out like a typo. The year '1923' also wraps onto a line of its own after 'THE POETIC EDDA\",', which leaves the comma hanging. Every letter must be in the credits' own face, and the Bellows entry must not leave the year on its own after a dangling comma. Minor: every word is readable and correct."
+        }
+      ]
+    }
+  },
+  "looksRight": [
+    "Poster and start: the file's first frame (0.00) is Larry in profile on the last block in the snow, with the lit windows behind him and no caption. The episode then starts on the dark studio at 0.20, with no title card and the overhead lamp clear of his mouth.",
+    "Text on screen across the whole cut: OPEN, DON'T WALK, WALK, the caption bar (with its speaker labels) and the credits only. The OPEN sign is whole or absent through the push at cook-in-back (61.48, 63.11).",
+    "Captions are readable at 640 by 360 on every line, and every one is the script's words exactly. That includes the new and changed lines: cant-believe 'I keep saying, \"I can't believe it.\"' (35.05), both-ways (38.01), what-helped 'They couldn't believe it, either. Some wrote down what helped.' (48.89, wrapped onto two lines), one-line (178.83), comrade-line '\"Rich did I feel when a comrade I found\".' (182.24, 182.69), poem-talking (187.00) and mostly (188.94). Both Tarfon halves keep their opening and closing marks as written (141.10, 143.93). No caption covers a speaking mouth, the cook in his hatch, either sign or the figure in the top window.",
+    "The last block: in profile with lit windows and snow through this-block, one-line, comrade-line, poem-talking and mostly (174.79 to 188.94). The cut on comrade (about 180.4) is closer on the same profile and the same street, with the snow continuous and his head not turning. It reads as a deliberate closer shot, not a mistake. It cuts back on glance, he turns to us once (about 185.0) and is back in profile by 185.8, and his head is front for poem-talking and mostly. His building is not seen until the cut on apartment-door (190.61), where the street stops at his door.",
+    "Every point of the round-1 brief still holds in this cut, with nothing newly failing. The listening holds still show him turned to us with nothing else changing. The cook slows while the room keeps bobbing (83.44 to 88.13). DON'T WALK, then WALK on no word. The coin and the busker shrinking away. The watcher is in the top window and gone before the door opens (210.80 to 214.34). The coat, scarf, envelope and cardigan stay continuous. Six stay six in the same seats, with seven heads only in table-wide and they-look. The gold chair and the second chair. The bowl seen at Larry's left, then at our plate after the cut, with nothing sliding. Sibyl down at her plate for 'It's my house.' and level on Larry for 'It's still the rule.' No glass raised and no light change.",
+    "The episode's last frame (263.19) is black. The credits roll is readable at 640 by 360. It names the house cast who appear, lists the busker as 'On the corner: The busker', gives both QUOTED entries (Gorfinkle 1913, 'first published', no edition; Bellows, The Poetic Edda, 1923) and both TOLD FROM lines, and says every voice is synthesized. Nothing overlaps or is cut off, and the roll ends on black (280.79, 282.29)."
+  ],
+  "forTheOwner": [
+    "Both changes are cosmetic, and nothing a line depends on is hidden or wrong. Whether either should hold up the morning's post is yours to decide.",
+    "Whether a cut is the right weight for the Norse line is a matter of taste. As a matter of fact, it does not read as a mistake.",
+    "As before, only sound can settle whether the listening holds are heard as us speaking, and whether the coin lands as the tune's missing note."
+  ]
+}
