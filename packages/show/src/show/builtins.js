@@ -5,7 +5,7 @@ import { logo } from '../stage/chrome.js'
 import { label, labelWidth, seg, box, P, creditsRoll, crow } from '../kit/draw.js'
 import { noise1, clamp, unlerp, ease } from '../kit/ease.js'
 import { CAST } from '../cast.js'
-import { creditLines, wrapCredit, episodeCredits } from './credits.js'
+import { creditLines, wrapCredit, episodeCredits, rollHeight, plainRoll } from './credits.js'
 
 const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
@@ -148,32 +148,48 @@ export function blackModule(id = 'title') {
 
 /**
  * The end. `o.plain` (episode.json `plainCards`): the credits roll once over black, from a second
- * after the last segment's last frame, with no studio, no band and no logo, then the screen stays
- * black. Otherwise the stock end card: the band plays out under the logo and the roll loops.
- * `o.extra`: the episode's own credit sections (episode.json `credits`), in either.
+ * after the last segment's last frame, with no studio, no band and no logo, and are gone by
+ * PLAIN_ROLL.seconds (later only for credits too long to read at that pace); then the screen stays black. Otherwise the stock end card: the band plays
+ * out under the logo and the roll loops. `o.extra`: the episode's own credit sections
+ * (episode.json `credits`), in either. Each module has `seconds(ctx)`: how long one complete roll
+ * takes (the plain roll's length; the stock roll's first loop), which the video's credits scene runs.
  */
 export function endModule(who = null, o = {}) {
   return o.plain ? plainEndModule(who, o.extra) : stockEndModule(who, o.extra)
 }
 
-/** the plain roll's column: the WATCH AGAIN button (y 640) is below it */
-export const PLAIN_ROLL = { x: 240, y: 80, w: 800, h: 520, speed: 34, delay: 1 }
+/**
+ * The plain roll: its column (the WATCH AGAIN button, y 640, is below it), its type a third
+ * larger than the stock roll's so the smallest line (a role, 13 × 1.3 units) still reads at 640 by
+ * 360, and its timing: black for `delay` s, the roll, `tail` s of black, `seconds` in all, with every
+ * line up for at least `minUp` s (show/credits.js plainRoll).
+ */
+export const PLAIN_ROLL = Object.freeze({ x: 160, y: 60, w: 960, h: 540, scale: 1.3, delay: 1, tail: 1, seconds: 20, minUp: 4 })
 
-/** credit lines with every string wider than `w` (as creditsRoll sets a string) broken at spaces */
-function wrapLines(ctx, lines, w) {
-  const fits = (s) => labelWidth(ctx, s.toUpperCase(), { size: 18, ls: 0.2 }) <= w
+/** credit lines with every string wider than `w` (as creditsRoll sets a string at `scale`) broken at spaces */
+function wrapLines(ctx, lines, w, scale = 1) {
+  const fits = (s) => labelWidth(ctx, s.toUpperCase(), { size: 18 * scale, ls: 0.2 }) <= w
   return lines.flatMap((l) => (typeof l === 'string' && l ? wrapCredit(l, fits) : [l]))
 }
 
 function plainEndModule(who, extra) {
   const lines = credits(who, { plain: true, extra })
   const rect = PLAIN_ROLL
-  let wrapped = null
+  let wrapped = null, timing = null
+  const prepare = (ctx) => {
+    if (wrapped) return
+    wrapped = wrapLines(ctx, lines, rect.w - 60, rect.scale)
+    timing = plainRoll(rollHeight(wrapped, 34 * rect.scale), rect)
+  }
   return {
     id: 'end',
     title: 'Credits',
     duration: 1e9,
     cast: [],
+    seconds(ctx) {
+      prepare(ctx)
+      return timing.seconds
+    },
     direct(t, show) {
       show.shot('wide', { band: false })
       show.onAir = false
@@ -181,9 +197,9 @@ function plainEndModule(who, extra) {
     drawFront(ctx, t) {
       ctx.fillStyle = '#000'
       ctx.fillRect(0, 0, 1280, 720)
-      wrapped ??= wrapLines(ctx, lines, rect.w - 40)
+      prepare(ctx)
       // once, from the bottom of the column to past its top; then black
-      creditsRoll(ctx, wrapped, Math.max(0, t - rect.delay), { rect, speed: rect.speed, split: 0.5 })
+      creditsRoll(ctx, wrapped, Math.max(0, t - rect.delay), { rect, speed: timing.speed, split: 0.5, scale: rect.scale })
     },
   }
 }
@@ -192,11 +208,19 @@ function stockEndModule(who, extra) {
   const raw = credits(who, { extra })
   // an episode's own lines may be long: only then is the roll wrapped to its column
   let lines = episodeCredits(extra).length ? null : raw
+  // wide enough for a guest's handle in the right-hand column (split 0.44), clear of the band and the desk
+  const rect = { x: 370, y: 300, w: 560, h: 270 }
+  const speed = 34
   return {
     id: 'end',
     title: 'Good night',
     duration: 1e9,
     cast: ['larry', 'hy', 'al', 'pete', 'dee'],
+    // a second of the logo, then one loop of the roll
+    seconds(ctx) {
+      lines ??= wrapLines(ctx, raw, rect.w - 40)
+      return 1 + (rollHeight(lines) + rect.h) / speed
+    },
     direct(t, show) {
       show.shot('wide')
       show.onAir = false
@@ -209,17 +233,14 @@ function stockEndModule(who, extra) {
       const a = ease.outCubic(clamp(unlerp(0.2, 1.4, t)))
       logo(ctx, 640, 200, 0.62, { t, align: 'center', alpha: a })
       // the credits roll in a column under the logo (and loop)
-      // wide enough for a guest's handle in the right-hand column (split 0.44), clear of the band and the desk
-      const rect = { x: 370, y: 300, w: 560, h: 270 }
       ctx.save()
       ctx.globalAlpha = 0.75 * a
       ctx.fillStyle = '#000'
       ctx.fillRect(rect.x, rect.y, rect.w, rect.h)
       ctx.restore()
       lines ??= wrapLines(ctx, raw, rect.w - 40)
-      const speed = 34
       // one loop: the lines' height (creditsRoll: 34 per line, 1.5× for a heading) plus the window
-      const total = lines.reduce((h, l) => h + (l?.head ? 51 : 34), 0) + rect.h
+      const total = rollHeight(lines) + rect.h
       creditsRoll(ctx, lines, (Math.max(0, t - 1) * speed % total) / speed, { rect, speed, split: 0.44 })
     },
   }

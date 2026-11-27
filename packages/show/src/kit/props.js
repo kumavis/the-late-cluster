@@ -656,12 +656,14 @@ tvFrame.glass = function (ctx, x, y, w, h, o = {}) {
 /**
  * Rolling credits: lines scroll up from the bottom of rect at `speed` units/s from t = 0.
  * lines: strings, or [role, name] pairs, or { head: 'Section' }. o: { rect, speed, lineHeight,
- * split (0..1 where the role/name columns meet) }. Returns true while still rolling.
+ * split (0..1 where the role/name columns meet), scale (the type and the default line height,
+ * default 1) }. Returns true while still rolling.
  */
 export function creditsRoll(ctx, lines, t, o = {}) {
   const rect = o.rect ?? { x: 0, y: 0, w: 1280, h: 720 }
   const speed = o.speed ?? 40
-  const lh = o.lineHeight ?? 34
+  const k = o.scale ?? 1
+  const lh = o.lineHeight ?? 34 * k
   const cx = rect.x + rect.w / 2
   let y = rect.y + rect.h - t * speed
   ctx.save()
@@ -671,12 +673,12 @@ export function creditsRoll(ctx, lines, t, o = {}) {
   for (const ln of lines) {
     const fade = clamp(Math.min((y - rect.y) / 60, (rect.y + rect.h - y) / 60))
     if (y > rect.y - lh && y < rect.y + rect.h + lh) {
-      if (typeof ln === 'string') label(ctx, ln.toUpperCase(), cx, y, { size: 18, align: 'center', color: P.white, ls: 0.2, alpha: fade })
+      if (typeof ln === 'string') label(ctx, ln.toUpperCase(), cx, y, { size: 18 * k, align: 'center', color: P.white, ls: 0.2, alpha: fade })
       else if (Array.isArray(ln)) {
         const split = rect.x + rect.w * (o.split ?? 0.6)
-        label(ctx, String(ln[0]).toUpperCase(), split - 16, y, { size: 13, align: 'right', color: P.sky, ls: 0.16, alpha: fade })
-        label(ctx, String(ln[1]), split + 16, y, { size: 18, align: 'left', color: P.white, ls: 0.06, alpha: fade })
-      } else if (ln?.head) label(ctx, ln.head.toUpperCase(), cx, y, { size: 22, align: 'center', color: P.gold, ls: 0.35, weight: 'm', alpha: fade })
+        label(ctx, String(ln[0]).toUpperCase(), split - 16 * k, y, { size: 13 * k, align: 'right', color: P.sky, ls: 0.16, alpha: fade })
+        label(ctx, String(ln[1]), split + 16 * k, y, { size: 18 * k, align: 'left', color: P.white, ls: 0.06, alpha: fade })
+      } else if (ln?.head) label(ctx, ln.head.toUpperCase(), cx, y, { size: 22 * k, align: 'center', color: P.gold, ls: 0.35, weight: 'm', alpha: fade })
     }
     y += ln?.head ? lh * 1.5 : lh
   }

@@ -850,7 +850,36 @@ node packages/show/tools/video.mjs 1 <seg> --frames 90  # a 3 s test → video/<
 
 Options: `--jobs 3` (segments in parallel, each in its own browser), `--scale 1.5` (stage backing
 store: 1.5 gives 1920×1080, 1 gives 1280×720), `--crf 16`, `--preset slow`, `--out dir`. Temp
-files go to `$TMPDIR`. On an M3 Max, `--all --jobs 4` takes about 8 minutes.
+files go to `$TMPDIR`. On an M3 Max, `--all --jobs 4` takes about 8 minutes. The browser is
+Playwright's Chromium, or `CHROMIUM_PATH` if set (as for `shoot`).
+
+**The credits** (`--credits`, off by default). The page ends on its end card; the video, whose
+scenes are the rundown, does not, unless the run says `--credits`. Then the end card is one more
+scene, `credits`, after the rundown (clip `<n>-credits.mp4`), with silence under it, in every
+whole-episode file the run writes: the full cut, the posting cut, the YouTube cut, and the
+previews of each. It is the page's own end card, made the same way (`app.js` `makeEnd`): the
+stock card, or for an episode with `plainCards` the plain roll over black
+(`packages/show/README.md`, "Title, production and end cards"). It runs one complete roll: the
+plain roll is 20 s (600 frames; longer only if an episode's credits are too long for every line
+to stay up 4 s), the stock card a second of logo and then one loop of its roll.
+
+```sh
+node packages/show/tools/video.mjs 3 --all --bluesky --credits --soften box --preview-360   # every scene, the credits too, and the posting cut
+node packages/show/tools/video.mjs 3 credits --credits                                       # the credits clip alone (20 s)
+node packages/show/tools/video.mjs 3 --full --bluesky --credits                              # rebuild from clips, credits clip included
+```
+
+- The credits count against `--max-seconds` like any scene: the posting cut's length is the
+  rundown, the credits and any poster frames.
+- `--poster <s>` is a moment of the finished cut, so it can fall in the credits; the poster goes in
+  front as before.
+- The subtitles (`.srt`, `.vtt`) are unchanged: the credits come after the last caption and have
+  none of their own, and a poster still moves every cue by its length.
+- `--caption-scale` does not touch the roll (there are no captions on it). Read the roll at 360p
+  with `--soften box`: the plain roll's type is a third larger than the stock roll's, and with the
+  soften filter every line of episode three's roll, the smallest (a cast role) included, reads in
+  the 360p preview. Without it, point sampling breaks letters in the roll's thinner lines.
+- `--credits` with only single segments to render is refused; `credits` as a scene needs `--credits`.
 
 **The posting cut** (`--bluesky`; tune it with `--max-mb 280 --max-seconds 600 --out-name
 late-cluster-bluesky.mp4`) is the whole episode for Bluesky, which allows 10 minutes and
@@ -904,7 +933,8 @@ npm run shoot -- 2 top-chicken 22 --caption-scale 1.4   # a frame to look at: �
   - **Chyrons clear it.** A chyron that would overlap whatever is in the caption area (the bar or
     the `[ LAUGHTER ]` / `[ APPLAUSE ]` box, lift included) sits just above it, 4 stage units
     clear, at every scale; it moves as the box fades in, so it never jumps.
-- `--poster <seconds> [--poster-frames 2]` puts that frame of the finished cut in front of every
+- `--poster <seconds> [--poster-frames 2]` puts that frame of the finished cut (the credits
+  included, with `--credits`) in front of every
   whole-episode file the run writes (full, posting and YouTube cuts), held for two frames with
   silence under it, so the file's first frame (Bluesky's poster) is that picture. The `.srt` and
   `.vtt` it writes move later by the same amount: pass the same `--poster` to a `--subs` run whose

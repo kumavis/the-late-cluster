@@ -4,7 +4,7 @@
 // production and end cards").
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { creditLines, cardOptions, episodeCredits, wrapCredit } from '../src/show/credits.js'
+import { creditLines, cardOptions, episodeCredits, wrapCredit, rollHeight, plainRoll } from '../src/show/credits.js'
 import { rosterCast } from '../src/roster.js'
 import { CAST } from '../src/cast.js'
 
@@ -109,4 +109,26 @@ test('a long credit line wraps at spaces without changing a character', () => {
   assert.deepEqual(wrapCredit('one two three four', (x) => x.length <= 9), ['one two', 'three', 'four'])
   assert.deepEqual(wrapCredit('short', () => true), ['short'])
   assert.deepEqual(wrapCredit('unbreakable', () => false), ['unbreakable'])
+})
+
+test('the plain roll is done in its seconds, and every line stays up to be read', () => {
+  // as builtins.js PLAIN_ROLL (which needs a browser to import)
+  const roll = { h: 540, scale: 1.3, delay: 1, tail: 1, seconds: 20, minUp: 4 }
+  const cast = rosterCast('003-x', CAST, { ...BUSKER, ...GUEST })
+  const up = (t) => roll.h / t.speed
+  const done = (height, t) => roll.delay + (height + roll.h) / t.speed + roll.tail
+  // a roll like episode three's: exactly the seconds, each line up for well over the minimum
+  const short = creditLines(cast, new Set(['larry', 'hy', 'busker']), { plain: true, extra: episodeCredits(EXTRA) })
+  const hs = rollHeight(short, 34 * roll.scale)
+  const ts = plainRoll(hs, roll)
+  assert.equal(ts.seconds, 20)
+  assert.ok(Math.abs(done(hs, ts) - 20) < 1e-9)
+  assert.ok(up(ts) > roll.minUp)
+  // a much longer roll keeps the minimum and takes longer, never shorter
+  const long = creditLines(cast, null, { plain: true, extra: episodeCredits([...EXTRA, ...EXTRA, ...EXTRA, ...EXTRA]) })
+  const hl = rollHeight(long, 34 * roll.scale)
+  const tl = plainRoll(hl, roll)
+  assert.ok(Math.abs(up(tl) - roll.minUp) < 1e-9)
+  assert.ok(tl.seconds > 20 && Math.abs(done(hl, tl) - tl.seconds) < 1e-9)
+  assert.equal(rollHeight([{ head: 'A' }, 'b', ['c', 'd']]), 51 + 34 + 34)
 })

@@ -96,3 +96,19 @@ export function wrapCredit(text, fits) {
   if (cur.length) out.push(join(cur))
   return out
 }
+
+/** the height a roll of `lines` takes (creditsRoll: `lh` a line, 1.5 × that for a heading) */
+export function rollHeight(lines, lh = 34) {
+  return lines.reduce((h, l) => h + (l?.head ? lh * 1.5 : lh), 0)
+}
+
+/**
+ * The plain roll's timing: { speed (units/s), seconds }. It starts `delay` s in at the bottom of a
+ * window `h` high and its last line has left the top by `seconds - tail`, the last `tail` s being
+ * black, so the whole roll takes `seconds`, on the page and in the video. A roll so long that a
+ * line would be up for less than `minUp` s in the window goes no faster than that and takes longer.
+ */
+export function plainRoll(height, { h, seconds, delay, tail, minUp = 4 }) {
+  const speed = Math.min((height + h) / (seconds - delay - tail), h / minUp)
+  return { speed, seconds: Math.max(seconds, delay + (height + h) / speed + tail) }
+}

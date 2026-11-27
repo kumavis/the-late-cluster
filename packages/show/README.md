@@ -457,12 +457,15 @@ reworded. Credits are the one place unspoken text is allowed: keep them to what 
   `npm run shoot -- <ep> title <t>` and `npm run thumbnail -- <ep>`, at its default 2 s) shows
   that segment at `t`; while no segment has an `index.js` it is a black frame. The video never
   had a title card: its scenes are the rundown, and its default poster is the cut's first frame.
+  It gets the end card only with `video.mjs --credits` (`tools/README.md`).
 - **a plain end.** After the last segment the credits roll once over black, from a second after
-  its last frame: no studio, no band, no music, no logo and no GOOD NIGHT, BLUESKY heading; the
-  line that guests are puppets only when a guest appears. Then the screen stays black, and WATCH
+  its last frame, and are gone by 20 s (`PLAIN_ROLL`; longer only for credits too long for every
+  line to stay up 4 s), in type a third larger than the stock roll's so it reads at 640 by 360.
+  No studio, no band, no music, no logo and no GOOD NIGHT, BLUESKY heading; the line that guests
+  are puppets only when a guest appears. Then the screen stays black, and WATCH
   AGAIN is offered as before. The roll keeps everything Article 4 requires: the cast who appear,
   any guests by name and handle, and that every voice is synthesized by CHIMERA. Shoot it at
-  several moments, `npm run shoot -- <ep> end 3 10 20 30`, and read every line.
+  several moments, `npm run shoot -- <ep> end 3 8 12 16 19`, and read every line.
 
 ### Do / don't
 

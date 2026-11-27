@@ -61,6 +61,8 @@ export async function startApp(params) {
   const firstReady = ready.indexOf(true)
   const makeTitle = () => new Show({ module: plain ? blackModule('title') : titleModule(tonight, episode), cues: null, tele: null, puppets })
   const makeEnd = () => new Show({ module: endModule(appearing, { plain, extra }), cues: null, tele: null, puppets })
+  // the video tool's credits scene (tools/video.mjs --credits) is this end card, made the same way
+  window.__lc.makeEnd = makeEnd
   const makeProduction = (i) => new Show({ module: productionModule(titles[i], i + 1), cues: null, tele: null, puppets })
 
   // ------------------------------------------------------------ deterministic frame mode

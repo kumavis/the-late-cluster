@@ -3,7 +3,7 @@
 // Node builtins only: no browser, no ffmpeg.
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
-import { parseVideoArgs, toSrt, toVtt, shiftCues, stamp, posterAt, previewName, preview360Args, preview720Args, PREVIEW_360, SOFTEN, blueskyVideoGraph } from '../tools/video-lib.mjs'
+import { parseVideoArgs, toSrt, toVtt, shiftCues, stamp, posterAt, previewName, preview360Args, preview720Args, PREVIEW_360, SOFTEN, blueskyVideoGraph, CREDITS, sceneList } from '../tools/video-lib.mjs'
 
 test('defaults are what the tool always did', () => {
   const o = parseVideoArgs(['002', '--all'])
@@ -176,4 +176,29 @@ test('the desktop preview: 1280x720, bicubic, about 3.2 Mbit/s', () => {
   assert.equal(at('-profile:v'), 'main')
   assert.ok(!preview720Args('i', 'o', { audio: false }).includes('-c:a'))
   assert.ok(preview720Args('i', 'o', { audio: false }).includes('-an'))
+})
+
+test('--credits: off by default; on, the credits scene follows the rundown', () => {
+  assert.equal(parseVideoArgs(['3', '--all']).credits, false)
+  assert.deepEqual(sceneList(['a', 'b']), ['a', 'b'])
+  assert.deepEqual(sceneList(['a', 'b'], false), ['a', 'b'])
+  for (const extra of [['--all'], ['--full'], ['--bluesky'], ['--youtube'], [CREDITS]]) {
+    const o = parseVideoArgs(['3', ...extra, '--credits'])
+    assert.deepEqual(o.errors, [], extra.join(' '))
+    assert.equal(o.credits, true)
+  }
+  assert.deepEqual(sceneList(['a', 'b'], true), ['a', 'b', CREDITS])
+  assert.throws(() => sceneList(['a', CREDITS], true), /named credits/)
+})
+
+test('--credits needs a whole-episode file or the scene itself; the scene needs --credits', () => {
+  assert.match(parseVideoArgs(['3', 'walk', '--credits']).errors.join(), /whole-episode file/)
+  assert.match(parseVideoArgs(['3', CREDITS]).errors.join(), /needs --credits/)
+  assert.deepEqual(parseVideoArgs(['3', '--all', '--bluesky', '--soften', 'box', '--caption-scale', '1.6', '--poster', '250', '--credits']).errors, [])
+})
+
+test('a poster may fall in the credits scene, which comes last', () => {
+  const counts = [7492, 600]
+  assert.deepEqual(posterAt(250, counts), { frame: 7500, index: 1, local: 8 })
+  assert.throws(() => posterAt(8092 / 30, counts), /long/)
 })

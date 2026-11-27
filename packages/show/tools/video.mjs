@@ -24,6 +24,11 @@
 // the LAME gapless header (decoder delay + padding), so sample 0 is the segment's t = 0 — the same
 // alignment the page gets from audioLead().
 //
+// --credits: the episode's end card (the page's, made by app.js: the stock card or, with
+// plainCards, the plain roll) as one more scene, `credits`, after the rundown, with silence under
+// it, in every whole-episode file (full, posting and YouTube cuts, and their previews). It runs
+// one complete roll (the end module's seconds()). Its clip is <n>-credits.mp4.
+//
 // Frame counts: each segment is round(duration·30) frames (within half a frame of its cues.json
 // duration, independent of the other segments). Each clip's audio is the decoded mp3 trimmed or
 // padded (by under a frame, at the tail) to that length; the full episode's audio is those PCM
@@ -34,7 +39,7 @@ import { existsSync, openSync, readSync, closeSync } from 'node:fs'
 import { join, dirname, resolve } from 'node:path'
 import { tmpdir } from 'node:os'
 import { resolveEpisode, EpisodeError, REPO } from './episode.mjs'
-import { parseVideoArgs, USAGE, stamp, toSrt, toVtt, posterAt, previewName, previewArgs, blueskyVideoGraph } from './video-lib.mjs'
+import { parseVideoArgs, USAGE, stamp, toSrt, toVtt, posterAt, previewName, previewArgs, blueskyVideoGraph, CREDITS, sceneList } from './video-lib.mjs'
 
 const FFMPEG = process.env.FFMPEG ?? (existsSync('/opt/homebrew/bin/ffmpeg') ? '/opt/homebrew/bin/ffmpeg' : 'ffmpeg')
 const FFPROBE = process.env.FFPROBE ?? (existsSync('/opt/homebrew/bin/ffprobe') ? '/opt/homebrew/bin/ffprobe' : 'ffprobe')
@@ -88,6 +93,14 @@ const W = Math.round(1280 * scale), H = Math.round(720 * scale)
 const written = []
 
 const rundown = ep.rundown
+// the whole-episode files' scenes: the rundown, then (--credits) the credits
+let scenes
+try {
+  scenes = sceneList(rundown, args.credits)
+} catch (e) {
+  console.error(`error: ${e.message}`)
+  process.exit(2)
+}
 const cuesOf = async (id) => JSON.parse(await readFile(ep.segFile(id, 'cues.json'), 'utf8'))
 // the scene list is the episode's rundown, read at run time; clips are numbered by position in it. Each
 // segment is round(duration·30) frames on its own, so a clip stays valid when another segment
@@ -95,17 +108,29 @@ const cuesOf = async (id) => JSON.parse(await readFile(ep.segFile(id, 'cues.json
 const durations = []
 for (const id of rundown) durations.push(existsSync(ep.segFile(id, 'cues.json')) ? (await cuesOf(id)).duration : null)
 const frameCounts = durations.map((d) => (d == null ? null : Math.round(d * FPS)))
+// the credits scene's length is the page's (one roll): set when it renders, or read from its clip
+if (args.credits) durations.push(null), frameCounts.push(null)
 const needCounts = (list) => {
-  const bad = list.filter((id) => frameCounts[rundown.indexOf(id)] == null)
+  const bad = list.filter((id) => frameCounts[scenes.indexOf(id)] == null)
+  if (bad.includes(CREDITS)) throw new Error(`no credits scene: render it (--all --credits, or ${CREDITS} --credits)`)
   if (bad.length) throw new Error(`no cues.json for ${bad.join(', ')}: render its audio first`)
 }
-const clipName = (id, nocaps = false) => `${String(rundown.indexOf(id) + 1).padStart(2, '0')}-${id}${nocaps ? '-nocaps' : ''}.mp4`
+/** the credits scene's frame count from its clip, when this run did not render it */
+async function creditsCount() {
+  const i = scenes.indexOf(CREDITS)
+  if (i < 0 || frameCounts[i] != null) return
+  const clip = join(outDir, clipName(CREDITS))
+  if (!existsSync(clip)) return
+  const n = Number((await run(FFPROBE, ['-v', 'error', '-select_streams', 'v:0', '-count_packets', '-show_entries', 'stream=nb_read_packets', '-of', 'csv=p=0', clip])).toString().trim())
+  if (Number.isInteger(n) && n > 0) frameCounts[i] = n
+}
+const clipName = (id, nocaps = false) => `${String(scenes.indexOf(id) + 1).padStart(2, '0')}-${id}${nocaps ? '-nocaps' : ''}.mp4`
 const FULL = 'late-cluster-full.mp4'
 
-let ids = all ? rundown.slice() : args.ids
-// lossless sidecars (temp, this run only) when the run renders the whole rundown for a posting cut
-const keepLossless = bluesky && rundown.every((id) => ids.includes(id)) && !frameLimit
-const unknown = ids.filter((id) => !rundown.includes(id))
+let ids = all ? scenes.slice() : args.ids
+// lossless sidecars (temp, this run only) when the run renders every scene for a posting cut
+const keepLossless = bluesky && scenes.every((id) => ids.includes(id)) && !frameLimit
+const unknown = ids.filter((id) => !scenes.includes(id))
 if (unknown.length || (!ids.length && !fullOnly && !bluesky && !youtube && !subsOnly)) {
   if (unknown.length) console.error(`not in the rundown: ${unknown.join(', ')}`)
   console.error(USAGE)
@@ -128,6 +153,7 @@ function run(cmd, args, { input, quiet = true } = {}) {
 
 /** the segment's mp3 decoded (gapless: sample 0 = t 0), trimmed/padded to n frames, f32le stereo */
 async function segmentPcm(id, frames) {
+  if (id === CREDITS) return Buffer.alloc(frames * SPF * 8) // the credits run in silence
   const cues = await cuesOf(id)
   const mp3 = ep.asset(cues.audio)
   if (!mp3) throw new Error(`${ep.id} ${id}: not rendered (no ${cues.audio} in ${ep.rel(ep.publicDir)}/ or ${ep.distDir ? ep.rel(ep.distDir) : '-'}/)`)
@@ -144,13 +170,14 @@ const VUI = ['-bsf:v', 'h264_metadata=colour_primaries=1:transfer_characteristic
 
 // ------------------------------------------------------------------ the full episode from the clips
 async function buildFull(tmp) {
-  const missing = rundown.filter((id) => !existsSync(join(outDir, clipName(id))))
+  const missing = scenes.filter((id) => !existsSync(join(outDir, clipName(id))))
   if (missing.length) throw new Error(`can't build ${FULL}: missing clips for ${missing.join(', ')}`)
-  needCounts(rundown)
+  await creditsCount()
+  needCounts(scenes)
   // the clips' video streams, back to back: each remuxed video-only first (concatenating the clips
   // themselves would carry each one's AAC priming offset into the video timestamps)
   const parts = []
-  for (const id of rundown) {
+  for (const id of scenes) {
     const part = join(tmp, `${id}.v.mp4`)
     await run(FFMPEG, ['-v', 'error', '-y', '-i', join(outDir, clipName(id)), '-map', '0:v:0', '-c:v', 'copy', part])
     parts.push(part)
@@ -159,7 +186,7 @@ async function buildFull(tmp) {
   for (const f of parts) await rm(f, { force: true })
 }
 
-/** video-only parts (each starting at 0, in rundown order) + the segments' PCM back to back → out */
+/** video-only parts (each starting at 0, in scene order) + the scenes' PCM back to back → out */
 async function assemble(tmp, parts, name) {
   // the poster frame goes in as a part of its own, encoded like the clips so they copy together
   const poster = posterFrames ? await posterPart(tmp, parts, name, X264([]), { check: true }) : null
@@ -167,7 +194,7 @@ async function assemble(tmp, parts, name) {
   const list = join(tmp, `${name}.txt`)
   await writeFile(list, seq.map((f) => `file '${f.replace(/'/g, "'\\''")}'\n`).join(''))
   const pcms = poster ? [Buffer.alloc(posterFrames * SPF * 8)] : []
-  for (const [i, id] of rundown.entries()) pcms.push(await segmentPcm(id, frameCounts[i]))
+  for (const [i, id] of scenes.entries()) pcms.push(await segmentPcm(id, frameCounts[i]))
   const pcmFile = join(tmp, `${name}.f32`)
   await writeFile(pcmFile, Buffer.concat(pcms))
   const t0 = Date.now()
@@ -188,12 +215,12 @@ async function extradata(file) {
 
 /**
  * The poster: frame `--poster` of the finished cut (found in its part of `parts`, which are in
- * rundown order), held for posterFrames, encoded with `enc` → a file in tmp. With `check`, its
+ * scene order, the credits last with --credits), held for posterFrames, encoded with `enc` → a file in tmp. With `check`, its
  * H.264 configuration must equal the parts' (the clips' settings), so the concat demuxer can copy
  * it in front of them.
  */
 async function posterPart(tmp, parts, name, enc, { ext = 'mp4', check = false } = {}) {
-  needCounts(rundown)
+  needCounts(scenes)
   const at = posterAt(args.poster, frameCounts)
   const src = parts[at.index]
   const dest = join(tmp, `${name}.poster.${ext}`)
@@ -218,7 +245,7 @@ async function posterPart(tmp, parts, name, enc, { ext = 'mp4', check = false } 
       throw new Error(`${name}: the clips were encoded with other settings (${opts(src)}) than this run's (${opts(dest)}), so the poster cannot be copied in front of them: run again with the --crf and --preset the clips were made with`)
     }
   }
-  console.log(`  poster: frame ${at.frame} of the cut (${rundown[at.index]} frame ${at.local}), held ${posterFrames} frames`)
+  console.log(`  poster: frame ${at.frame} of the cut (${scenes[at.index]} frame ${at.local}), held ${posterFrames} frames`)
   return dest
 }
 
@@ -236,19 +263,21 @@ async function preview(file, rung) {
 // ------------------------------------------------------------------ the posting cut (size-capped)
 /** two-pass x264 at the bitrate that fits maxMB, from the lossless sidecars (else the clips) */
 async function buildBluesky(tmp) {
-  needCounts(rundown)
+  await creditsCount()
+  needCounts(scenes)
+  // the limit is on the whole file: the poster frames and the credits scene count
   const frames = frameCounts.reduce((a, b) => a + b, 0) + posterFrames
   const dur = frames / FPS
-  if (dur >= maxSeconds) throw new Error(`the episode is ${dur.toFixed(2)} s: over the ${maxSeconds} s limit`)
-  const lossless = rundown.map((id) => join(tmp, `${id}.lossless.mkv`))
+  if (dur >= maxSeconds) throw new Error(`the episode is ${dur.toFixed(2)} s${args.credits ? ' with its credits' : ''}: over the ${maxSeconds} s limit`)
+  const lossless = scenes.map((id) => join(tmp, `${id}.lossless.mkv`))
   let parts
   if (lossless.every((f) => existsSync(f))) parts = lossless
   else {
-    const missing = rundown.filter((id) => !existsSync(join(outDir, clipName(id))))
+    const missing = scenes.filter((id) => !existsSync(join(outDir, clipName(id))))
     if (missing.length) throw new Error(`can't build ${blueskyName}: missing clips for ${missing.join(', ')}`)
     console.warn(`${blueskyName}: no lossless frames from this run (render with --all --bluesky for those); encoding from the CRF ${crf} clips, a second generation`)
     parts = []
-    for (const id of rundown) {
+    for (const id of scenes) {
       const part = join(tmp, `${id}.bv.mp4`)
       await run(FFMPEG, ['-v', 'error', '-y', '-i', join(outDir, clipName(id)), '-map', '0:v:0', '-c:v', 'copy', part])
       parts.push(part)
@@ -260,7 +289,7 @@ async function buildBluesky(tmp) {
   await writeFile(list, parts.map((f) => `file '${f.replace(/'/g, "'\\''")}'\n`).join(''))
   const pcmFile = join(tmp, 'bluesky.f32')
   const pcms = poster ? [Buffer.alloc(posterFrames * SPF * 8)] : []
-  for (const [i, id] of rundown.entries()) pcms.push(await segmentPcm(id, frameCounts[i]))
+  for (const [i, id] of scenes.entries()) pcms.push(await segmentPcm(id, frameCounts[i]))
   await writeFile(pcmFile, Buffer.concat(pcms))
   pcms.length = 0
   const out = join(outDir, blueskyName)
@@ -408,7 +437,7 @@ async function writeSubs() {
 
 // ------------------------------------------------------------------ the page side: one segment
 /** runs inside the page: build the Show from the app's modules and step it like app.js's tick() */
-async function pageRender({ id, frames, fps, sink, w, h, captions = true, dry = false, captionScale = 1 }) {
+async function pageRender({ id, frames, fps, sink, w, h, captions = true, dry = false, captionScale = 1, credits = false }) {
   const [{ Show }, { load }, { Stage }] = await Promise.all([import('/src/show/show.js'), import('/src/show/segments.js'), import('/src/stage/stage.js')])
   const lc = window.__lc
   // same module instances as the app's? (otherwise puppets/heads would be a second copy)
@@ -416,18 +445,25 @@ async function pageRender({ id, frames, fps, sink, w, h, captions = true, dry = 
   const st = lc.stage
   if (st.canvas.width !== w || st.canvas.height !== h) throw new Error(`stage backing store is ${st.canvas.width}×${st.canvas.height}, wanted ${w}×${h}`)
   if (st.captionScale !== captionScale) throw new Error(`the page's caption scale is ${st.captionScale}, wanted ${captionScale}`)
-  const d = await load(id, { audio: false })
+  // the credits scene is the app's own end card (app.js makeEnd), one complete roll long
+  const d = credits ? null : await load(id, { audio: false })
   const makeShow = () => {
+    if (credits) {
+      const sh = lc.makeEnd()
+      sh.resetMotion()
+      return sh
+    }
     const sh = new Show({ module: d.module, cues: d.cues, tele: d.tele, puppets: lc.puppets })
     sh.captions = true
     d.module.setup?.(sh) // as playSegment()
     sh.resetMotion() // as tick() on the transport's new epoch: the cut
     return sh
   }
+  if (credits && frames == null) frames = Math.round(makeShow().module.seconds(st.ctx) * fps)
   // above caption scale 1, one scale per line, the largest that keeps what is protected clear over
   // the whole line (a pass of its own first; at scale 1 nothing of this runs)
   let plan = null
-  if (captionScale !== 1 && captions) {
+  if (captionScale !== 1 && captions && !credits) {
     const { planCaptionScales } = await import('/src/show/caption-plan.js')
     plan = planCaptionScales({ stage: st, makeShow, to: (frames - 1) / fps, fps })
   }
@@ -476,7 +512,7 @@ async function pageRender({ id, frames, fps, sink, w, h, captions = true, dry = 
     if (!r.ok) throw new Error(`sink: ${r.status} ${await r.text()}`)
   }
   for (const k in ms) ms[k] = +(ms[k] / frames).toFixed(1)
-  return { k: st.k, glow: st.glowOn, w: st.canvas.width, h: st.canvas.height, ms, runs, plan: plan ? [...plan] : null }
+  return { k: st.k, glow: st.glowOn, w: st.canvas.width, h: st.canvas.height, ms, runs, plan: plan ? [...plan] : null, frames }
 }
 
 // ------------------------------------------------------------------ main
@@ -526,6 +562,8 @@ async function launch() {
   const { chromium } = await import('playwright')
   const gc = '--js-flags=--expose-gc'
   const gpu = ['--enable-gpu', '--use-angle=metal', '--ignore-gpu-blocklist', gc]
+  // CHROMIUM_PATH, as shoot.mjs takes it: that browser (with the GPU flags) and nothing else
+  if (process.env.CHROMIUM_PATH) return await chromium.launch({ executablePath: process.env.CHROMIUM_PATH, args: gpu })
   try {
     return await chromium.launch({ channel: 'chromium', args: gpu })
   } catch (e) {
@@ -541,8 +579,9 @@ async function renderSegment(task) {
   const captions = task.captions ?? true
   const dry = kind === 'subs'
   const job = `${id}.${kind}`
-  const i = rundown.indexOf(id)
-  const frames = frameLimit ?? frameCounts[i]
+  const i = scenes.indexOf(id)
+  // the credits scene's length is the page's: null here until it has rendered
+  let frames = frameLimit ?? frameCounts[i]
   const t0 = Date.now()
   const vfile = join(tmp, kind === 'yt' ? `${id}.yt.mp4` : `${id}.video.mp4`)
   // with --bluesky (and the whole episode being rendered) a lossless sidecar of the same yuv420p
@@ -566,7 +605,7 @@ async function renderSegment(task) {
         const n = sinks.get(job).n
         if (Date.now() - last > 15000 || n === frames) {
           last = Date.now()
-          console.log(`  ${job}: ${n}/${frames} frames  (${((Date.now() - t0) / 1000).toFixed(0)} s)`)
+          console.log(`  ${job}: ${n}/${frames ?? '…'} frames  (${((Date.now() - t0) / 1000).toFixed(0)} s)`)
         }
         if (enc.stdin.write(buf)) res()
         else enc.stdin.once('drain', res)
@@ -590,8 +629,9 @@ async function renderSegment(task) {
         return 'n/a'
       }
     })
-    const info = await page.evaluate(pageRender, { id, frames, fps: FPS, sink: `/__video/${job}`, w: W, h: H, captions, dry, captionScale })
+    const info = await page.evaluate(pageRender, { id, frames, fps: FPS, sink: `/__video/${job}`, w: W, h: H, captions, dry, captionScale, credits: id === CREDITS })
     capRuns.set(id, info.runs)
+    if (frames == null) frames = frameCounts[i] = info.frames
     if (info.plan) {
       const below = info.plan.filter(([, s]) => s < captionScale)
       console.log(`  ${id}: ${info.plan.length} caption lines planned, ${below.length} below ×${captionScale}${below.length ? ': ' + below.map(([k, s]) => `×${s} "${k.split('|').slice(2).join('|').slice(0, 40)}"`).join(', ') : ''}`)
@@ -614,13 +654,13 @@ async function renderSegment(task) {
   await rm(pcmFile, { force: true })
   written.push(out)
   const mb = ((await stat(out)).size / 1e6).toFixed(1)
-  console.log(`${out}  ${frames} frames = ${(frames / FPS).toFixed(3)} s (cues ${durations[i]} s)  ${mb} MB  ${((Date.now() - t0) / 1000).toFixed(0)} s`)
+  console.log(`${out}  ${frames} frames = ${(frames / FPS).toFixed(3)} s (${id === CREDITS ? 'one roll of the credits' : `cues ${durations[i]} s`})  ${mb} MB  ${((Date.now() - t0) / 1000).toFixed(0)} s`)
 }
 
 try {
   const T0 = Date.now()
   const tasks = [...ids.map((id) => ({ id, kind: 'clip', captions: !noCaptions }))]
-  if (youtube) tasks.push(...rundown.map((id) => ({ id, kind: 'yt', captions: false })))
+  if (youtube) tasks.push(...scenes.map((id) => ({ id, kind: 'yt', captions: false })))
   else if (subsOnly) tasks.push(...rundown.map((id) => ({ id, kind: 'subs' })))
   if (tasks.length) {
     {
@@ -639,9 +679,9 @@ try {
       url = server.resolvedUrls.local[0]
     }
     if (!url.endsWith('/')) url += '/'
-    if (!frameLimit) needCounts(tasks.map((x) => x.id))
+    if (!frameLimit) needCounts(tasks.map((x) => x.id).filter((id) => id !== CREDITS))
     console.log(`rendering ${tasks.length} segment job(s) at ${W}×${H} ${FPS} fps, x264 ${preset} crf ${crf}, ${Math.min(jobs, tasks.length)} at a time → ${outDir}`)
-    const queue = tasks.slice().sort((a, b) => frameCounts[rundown.indexOf(b.id)] - frameCounts[rundown.indexOf(a.id)]) // longest first
+    const queue = tasks.slice().sort((a, b) => frameCounts[scenes.indexOf(b.id)] - frameCounts[scenes.indexOf(a.id)]) // longest first
     let failed = 0
     await Promise.all(
       Array.from({ length: Math.min(jobs, queue.length) }, async () => {
@@ -661,8 +701,8 @@ try {
   if ((all || fullOnly) && !frameLimit) await buildFull(tmp)
   if (bluesky && !frameLimit) await buildBluesky(tmp)
   if (youtube && !frameLimit) {
-    await assemble(tmp, rundown.map((id) => join(tmp, `${id}.yt.mp4`)), `${YT}.mp4`)
-    for (const id of rundown) await rm(join(tmp, `${id}.yt.mp4`), { force: true })
+    await assemble(tmp, scenes.map((id) => join(tmp, `${id}.yt.mp4`)), `${YT}.mp4`)
+    for (const id of scenes) await rm(join(tmp, `${id}.yt.mp4`), { force: true })
   }
   if ((youtube || subsOnly) && !frameLimit) await writeSubs()
   for (const rung of args.previews) for (const f of written) await preview(f, rung)
@@ -672,6 +712,6 @@ try {
 } catch (e) {
   console.error(e.message)
   // a failure after the frames were rendered keeps the lossless sidecars for a look/retry
-  await cleanup(keepLossless && rundown.some((id) => existsSync(join(tmp, `${id}.lossless.mkv`))))
+  await cleanup(keepLossless && scenes.some((id) => existsSync(join(tmp, `${id}.lossless.mkv`))))
   process.exit(1)
 }

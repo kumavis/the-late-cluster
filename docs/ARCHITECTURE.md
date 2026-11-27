@@ -102,7 +102,8 @@ segment's `cast` and `guests`, then any sections the episode's `credits` adds. A
 `title` in freeze mode, `shoot` and `thumbnail` mean that segment) and ends on the credits rolled
 once over black with no studio, band or good-night heading; without it, the stock cards play
 (`packages/show/README.md`, "Title, production and end cards"). The video's scenes are the
-rundown, so it has neither card either way.
+rundown, so it has no title card either way, and it ends on the end card (a scene `credits`, with
+silence under it) only with `video.mjs --credits`.
 
 ## An episode: `episodes/<id>/`
 
@@ -299,7 +300,7 @@ Two studio tools have no root command and are run directly: `bun packages/show/t
 (loudness, voices, the Whisper intelligibility pass) and `node packages/show/tools/video.mjs`
 (video exports into `video/<id>/`; for the cut Bluesky serves to phones, `--soften box` filters
 the posting cut in its own encode against Bluesky's unfiltered 3:1 downscale, `--caption-scale <n>`
-scales the caption bar as a ceiling (never over a protected post card or credit, `draw.protect`; chyrons move clear of it), `--poster <s>` puts that frame first as the poster, and `--preview-360` and
+scales the caption bar as a ceiling (never over a protected post card or credit, `draw.protect`; chyrons move clear of it), `--poster <s>` puts that frame first as the poster, `--credits` ends every whole-episode file on the episode's end card, and `--preview-360` and
 `--preview-720`, also on an existing file, write the streams a phone and a desktop get;
 `packages/show/tools/README.md`, "For phones"). Review frames from `shoot` go to `shots/<id>/<seg>/`.
 The sound editor's tools are `fit`, `voice-research` and `voices` (`packages/show/tools/README.md`,

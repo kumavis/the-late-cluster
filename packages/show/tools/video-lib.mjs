@@ -6,7 +6,7 @@ import { parseCaptionScale } from '../src/stage/caption-layout.js'
 export const FPS = 30
 
 export const USAGE =
-  'usage: node packages/show/tools/video.mjs <ep> --all | <id> [id …] | --full   [--out dir] [--jobs n] [--scale 1.5] [--crf 16] [--preset slow] [--frames n] [--caption-scale n] [--bluesky [--max-mb 280] [--max-seconds 600] [--out-name late-cluster-bluesky.mp4]] [--youtube] [--no-captions] [--subs] [--poster <seconds> [--poster-frames 2]] [--soften box|tent (with --bluesky)] [--preview-360] [--preview-720]\n' +
+  'usage: node packages/show/tools/video.mjs <ep> --all | <id> [id …] | --full   [--out dir] [--jobs n] [--scale 1.5] [--crf 16] [--preset slow] [--frames n] [--caption-scale n] [--bluesky [--max-mb 280] [--max-seconds 600] [--out-name late-cluster-bluesky.mp4]] [--youtube] [--no-captions] [--subs] [--poster <seconds> [--poster-frames 2]] [--soften box|tent (with --bluesky)] [--preview-360] [--preview-720] [--credits]\n' +
   '       node packages/show/tools/video.mjs --preview-360 [--preview-720] <file.mp4>'
 
 /**
@@ -68,6 +68,7 @@ export function parseVideoArgs(args) {
     previews,
     previewFile,
     soften: null,
+    credits: false,
     ids: [],
     errors,
   }
@@ -105,10 +106,27 @@ export function parseVideoArgs(args) {
     else if (!o.bluesky) errors.push('--soften is for the posting cut: it needs --bluesky')
     else o.soften = soft
   }
+  // --credits: the end card as the last scene of every whole-episode file (scene id `credits`)
+  o.credits = flag('credits')
   const stray = argv.filter((a) => a.startsWith('--'))
   if (stray.length) errors.push(`unknown option${stray.length > 1 ? 's' : ''}: ${stray.join(' ')}`)
   o.ids = argv.filter((a) => !a.startsWith('--'))
+  if (o.credits && !(o.all || o.full || o.bluesky || o.youtube || o.ids.includes(CREDITS))) errors.push(`--credits goes on a whole-episode file (--all, --full, --bluesky, --youtube), or renders the scene alone as \`${CREDITS}\``)
+  if (!o.credits && o.ids.includes(CREDITS)) errors.push(`\`${CREDITS}\` is the credits scene: it needs --credits`)
   return o
+}
+
+/** the credits scene's id (its clip is <n>-credits.mp4, after the rundown's) */
+export const CREDITS = 'credits'
+
+/**
+ * The scenes of the whole-episode files, in order: the rundown, then with --credits the end card.
+ * A rundown segment named like the credits scene cannot have the credits after it.
+ */
+export function sceneList(rundown, credits = false) {
+  if (!credits) return rundown.slice()
+  if (rundown.includes(CREDITS)) throw new Error(`the rundown has a segment named ${CREDITS}: --credits cannot add the credits scene after it`)
+  return [...rundown, CREDITS]
 }
 
 // ------------------------------------------------------------------ subtitles
