@@ -45,18 +45,28 @@ export const AZ = { ahead: 0.14, down: 0.2 }
  * The walk. It moves from each `go` to the following `stop` (a cue, plus `after` seconds), easing
  * in over `in` and out over `out` seconds, and stands still between a stop and the next go. `name`
  * is the stop's name, used by street.stop() / street.arrive() and by a landmark's `stop`. `pace`
-multiplies the speed for that move (default 1).
+ * multiplies the speed for that move (default 1); the steps keep their cadence and lengthen.
+ * `jump` fronts pixels are added at `jumpAt`, which must be a cut: an elliptical edit, the walk
+ * a few seconds further on in the next shot. Breath and step phase ignore jumps.
  */
 export const MOVES = [
-  { go: 'street-start', goAfter: 0.2, stop: 'stop-at-window', stopAfter: 0.3, name: 'restaurant', in: 1.4, out: 1.8 },
-  { go: 'walk-on', goAfter: 0.2, stop: 'busker-in', stopAfter: 2.8, name: 'busker', in: 1.6, out: 2.6 },
+  // a brisker pace and a short, late stop, so the restaurant's glass comes in at pass-restaurant
+  // and not during "Some nights." (integration pass)
+  { go: 'street-start', goAfter: 0.2, stop: 'stop-at-window', stopAfter: 0.6, name: 'restaurant', in: 1.4, out: 0.7, pace: 1.25 },
+  // walk-on is a cut: the walk jumps on past the restaurant there, so its window is gone and the
+  // street dark before the tune is heard (integration pass)
+  { go: 'walk-on', goAfter: 0.2, stop: 'busker-in', stopAfter: 2.8, name: 'busker', in: 1.0, out: 2.6, jumpAt: 'walk-on', jump: 400 },
   { go: 'walk-past', goAfter: 0.3, stop: 'crossing-red', stopAfter: 1.4, name: 'crossing', in: 1.6, out: 2.6 },
   // across the side street a little quicker (pace), so its gap is behind us by the last block
-  { go: 'walk-sign', goAfter: 0.4, stop: 'apartment-door', stopAfter: 1.2, name: 'door', in: 1.4, out: 2.2, pace: 1.3 },
+  // apartment-door is a cut: the walk jumps there, so his building is not in the last block's
+  // shot (it covered the lit flats from just before `glance`) and is in place in the door's wide
+  { go: 'walk-sign', goAfter: 0.4, stop: 'apartment-door', stopAfter: 1.2, name: 'door', in: 1.4, out: 2.2, pace: 1.3, jumpAt: 'apartment-door', jump: 560 },
 ]
 
 /** from here on it snows: a few flakes from `from`, all of it by `full` (cue, seconds after) */
-export const SNOW = { from: ['cross', 2.4], some: ['last-block', 0.5], full: ['apartment-door', 0] }
+// (review round two: the first snow did not read at 640 × 360; it now starts sooner, there is more of it
+// at first, and the flakes are bigger and brighter. Still flakes, not a blizzard.)
+export const SNOW = { from: ['cross', 0.8], some: ['cross', 3.4], full: ['apartment-door', 0] }
 
 // ---------------------------------------------------------------- the walk, as a function of t
 
@@ -74,7 +84,7 @@ function moveTimes(show, m) {
     rin *= k
     rout *= k
   }
-  return { go, stop, rin, rout, name: m.name, pace: m.pace ?? 1 }
+  return { go, stop, rin, rout, name: m.name, pace: m.pace ?? 1, jumpAt: m.jumpAt ? show.at(m.jumpAt) : Infinity, jump: m.jump ?? 0 }
 }
 
 /** speed fraction 0..1 of one move at t */
@@ -126,7 +136,7 @@ export const street = {
     // where the moods of the street change, in fronts coordinates (the fronts layer has k = 1)
     const S = this.stops
     this.zones = {
-      dark: [S.restaurant + 700, S.busker + 500], // "the street is darker here"
+      dark: [S.restaurant + 450, S.busker + 500], // "the street is darker here", from just past the restaurant
       flats: [S.crossing + 1000, S.door + 1400], // the last block: rows of lit apartment windows
     }
     this.holds = this.listenHolds(show)
@@ -139,11 +149,14 @@ export const street = {
 
   // ------------------------------------------------------------ distance and places
 
-  /** fronts pixels walked by t */
-  walk(t) {
+  /** fronts pixels walked by t (jumps: false leaves out the jumps at cuts) */
+  walk(t, jumps = true) {
     let s = 0
-    for (const M of this.moves) s += coveredBy(M, t)
-    return s * SPEED
+    for (const M of this.moves) {
+      s += coveredBy(M, t) * SPEED
+      if (jumps && t >= M.jumpAt) s += M.jump
+    }
+    return s
   },
 
   /** 0..1: how fast we are walking at t (0 standing, 1 full pace) */
@@ -153,9 +166,12 @@ export const street = {
     return clamp(v)
   },
 
-  /** the step phase at t (counts steps walked; the fractional part is where in the step) */
+  /** the step phase at t (counts steps walked; the fractional part is where in the step). The
+   * cadence is the footsteps' (102 a minute) whatever the pace: a faster pace is longer strides. */
   step(t) {
-    return this.walk(t) / STRIDE
+    let s = 0
+    for (const M of this.moves) s += coveredBy(M, t) / M.pace
+    return (s * SPEED) / STRIDE
   },
 
   /** fronts distance at a named stop ('restaurant', 'busker', 'crossing', 'door') */
@@ -196,7 +212,8 @@ export const street = {
     const out = {}
     for (const [name, at] of Object.entries(show.cues.cues ?? {})) {
       if (!name.startsWith('listen-')) continue
-      const next = show.lines.find((l) => l.t0 >= at - 1e-3)
+      // the next spoken line: the footsteps are `beat` lines and do not end a hold
+      const next = show.lines.find((l) => l.t0 >= at - 1e-3 && l.kind !== 'beat')
       out[name] = { t0: at, t1: next ? next.t0 : at + 1.5, line: next?.id }
     }
     return out
@@ -284,7 +301,7 @@ export const street = {
     const dark = new Path2D(), lit = new Path2D(), litFill = new Path2D()
     const cols = Math.max(1, Math.floor((w - 22) / 46))
     const gap = (w - cols * 22) / (cols + 1)
-    const litP = flats ? 0.62 : zone === 'dark' ? 0.04 : 0.15
+    const litP = flats ? 0.62 : zone === 'dark' ? 0.015 : 0.15
     for (let f = 0; f < floors; f++) {
       const wy = base - groundH - (f + 1) * floorH + 10
       for (let c = 0; c < cols; c++) {
@@ -595,7 +612,7 @@ export const street = {
       const u = age / life
       const k = h.size / 320
       // the breath hangs in still air while we walk on, but it leaves the mouth moving with him
-      const drift = (this.walk(t) - this.walk(tp)) * LAYERS.larry * 0.3 * show.cam.zoom
+      const drift = (this.walk(t, false) - this.walk(tp, false)) * LAYERS.larry * 0.3 * show.cam.zoom
       const x0 = h.mouth[0] + dir * (10 + 26 * Math.sqrt(u)) * k - drift
       const y0 = h.mouth[1] + 4 * k - 18 * u * k
       const a = 0.32 * (1 - u) * Math.min(1, age / 0.15)
@@ -618,8 +635,8 @@ export const street = {
     const at = ([c, dt]) => show.at(c) + dt
     const a0 = at(SNOW.from), a1 = at(SNOW.some), a2 = at(SNOW.full)
     if (t < a0) return 0
-    if (t < a1) return 0.25 * smoothstep(a0, a1, t)
-    return 0.25 + 0.75 * smoothstep(a1, a2, t)
+    if (t < a1) return 0.45 * smoothstep(a0, a1, t)
+    return 0.45 + 0.55 * smoothstep(a1, a2, t)
   },
 
   /**
@@ -654,7 +671,7 @@ export const street = {
         lit = Math.max(lit, clamp(1 - dx / (40 + dy * 0.55)) * clamp(1 - dy / 420))
       }
       const fade = smoothstep(thr, thr + 0.06, amount)
-      const level = clamp((0.35 + 0.65 * lit) * fade)
+      const level = clamp((0.55 + 0.45 * lit) * fade)
       const b = level > 0.66 ? 2 : level > 0.4 ? 1 : 0
       const r = L.r * (0.7 + 0.6 * hash01(i, L.seed + 5))
       buckets[b].moveTo(x + r, y)
@@ -672,9 +689,9 @@ export const street = {
 }
 
 const SNOW_LAYERS = {
-  far: { n: 260, k: 1.1, vy: 34, sway: 10, wind: -6, r: 1.1, alpha: 0.6, seed: 401 },
-  mid: { n: 150, k: 1.9, vy: 58, sway: 18, wind: -9, r: 1.8, alpha: 0.75, seed: 402 },
-  near: { n: 46, k: 3.2, vy: 96, sway: 30, wind: -14, r: 3.2, alpha: 0.8, seed: 403 },
+  far: { n: 220, k: 1.1, vy: 34, sway: 10, wind: -6, r: 1.6, alpha: 0.75, seed: 401 },
+  mid: { n: 130, k: 1.9, vy: 58, sway: 18, wind: -9, r: 2.6, alpha: 0.9, seed: 402 },
+  near: { n: 40, k: 3.2, vy: 96, sway: 30, wind: -14, r: 4.2, alpha: 0.9, seed: 403 },
 }
 
 const mod = (a, n) => ((a % n) + n) % n

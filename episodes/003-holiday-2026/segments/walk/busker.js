@@ -13,15 +13,16 @@
 //
 // Shots: `approach` (walking, the tune heard, Larry's head lifts; the busker slides in and the
 // street stops), `singer` (closer on him singing; at `tune-stops` his head tilts, looking for the
-// next note), `two` (both of them and the case; at `coin` one coin comes in from the bottom edge,
-// on our side, and lands in the case; Larry's head dips to it and comes up).
+// next note), `two` (both of them and the case; at `coin` one coin comes up from just below the
+// frame in front of Larry, his side, and lands in the case; his head dips to it and comes up).
+// (Integration pass: it came from our side, which said the viewer gave it; the script means Larry.)
 //
 // The sign that he is singing, for a viewer without sound, is a small note glyph that leaves his
 // mouth on each sung syllable and fades as it rises. No words.
 import { beam, occlude, rectPath, mix, P } from '@late-cluster/show/kit/draw.js'
 import { clamp, smoothstep, lerp, noise1 } from '@late-cluster/show/kit/ease.js'
 import { drawBuskerHat } from '@late-cluster/episode/segments/walk/costumes.js'
-import { AZ, VIEW } from '@late-cluster/episode/segments/walk/street.js'
+import { AZ, VIEW, LARRY } from '@late-cluster/episode/segments/walk/street.js'
 
 // ---------------------------------------------------------------- the place, street x at the stop
 
@@ -35,6 +36,18 @@ const CASE = { x: 806, y: 634, w: 128, h: 16, lid: 30 }
 /** the camera's lower framing while we stand with him */
 const LOW = 412
 const SINGER = { x: 948, y: 352, zoom: 2.5 }
+
+/**
+ * As we walk on he gets smaller (review round two: he slid away at one size). Over the three
+ * seconds after `walk-past` he, his lamp and his case shrink together about his feet, to
+ * 0.55, and his feet rise a little towards the far kerb: he is behind us and further every step.
+ * { k: scale, floor: street y of his feet, pivot: street x of his feet }
+ */
+function recede(show, t, at) {
+  // over the three seconds he is still in frame, so the shrinking is seen
+  const u = smoothstep(show.at('walk-past') + 0.3, show.at('walk-past') + 3.3, t)
+  return { k: 1 - 0.45 * u, floor: MAN.floor - 70 * u, pivot: at(MAN.x, LAYER) }
+}
 
 /** his look: three-quarters to our left, towards Larry and us */
 const BUSKER_AZ = Math.PI / 2 + 0.55
@@ -75,8 +88,8 @@ function coinAt(show, t) {
     const hop = b < 0.22 ? 7 * Math.sin((Math.PI * b) / 0.22) : 0
     return { x: x1, y: y1 - hop, spin: b < 0.3 ? 0.3 + 0.7 * Math.abs(Math.cos(b * 30)) : 0.32 }
   }
-  // from below the frame on our side, up and over into the case
-  const x0 = CASE.x - 150, y0 = 860
+  // from just below the frame in front of Larry (his side, not ours), up and over into the case
+  const x0 = LARRY.x + 90, y0 = 800
   const x = lerp(x0, x1, u)
   const y = lerp(y0, y1, u) - 300 * Math.sin(Math.PI * u) * (1 - 0.25 * u)
   return { x, y, spin: Math.abs(Math.cos(t * 26)) }
@@ -257,7 +270,8 @@ export default {
       const x = at(MAN.x, LAYER)
       if (x < -300 || x > 1700) return
       const h = buskerHead(show, t)
-      seg.place('busker', { x, y: MAN.y, scale: MAN.scale, look: BUSKER_AZ, z: 4, floor: MAN.floor })
+      const r = recede(show, t, at)
+      seg.place('busker', { x, y: r.floor - (MAN.floor - MAN.y) * r.k, scale: MAN.scale * r.k, look: BUSKER_AZ, z: 4, floor: r.floor })
       const b = show.puppet('busker')
       b.tilt(h.tilt)
       b.nod(h.nod)
@@ -265,8 +279,14 @@ export default {
 
     front(ctx, t, show, seg, at) {
       const dx = at(0, LAYER)
+      const r = recede(show, t, at)
+      ctx.save()
+      ctx.translate(r.pivot, r.floor)
+      ctx.scale(r.k, r.k)
+      ctx.translate(-r.pivot, -MAN.floor)
       lampPost(ctx, dx)
       openCase(ctx, dx, t, show)
+      ctx.restore()
     },
 
     over(ctx, t, show, seg, at) {

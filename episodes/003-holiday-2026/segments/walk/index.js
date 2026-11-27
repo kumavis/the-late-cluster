@@ -46,6 +46,7 @@
 //   Import studio code as @late-cluster/show/…, this folder as @late-cluster/episode/segments/walk/….
 import { dressWalk } from '@late-cluster/episode/segments/walk/costumes.js'
 import { SET_PIECES } from '@late-cluster/show/stage/set.js'
+import { snapshot, seeThrough } from '@late-cluster/episode/segments/walk/seethrough.js'
 import streetScene, { street, VIEW } from '@late-cluster/episode/segments/walk/street.js'
 import studio from '@late-cluster/episode/segments/walk/studio.js'
 import restaurant from '@late-cluster/episode/segments/walk/restaurant.js'
@@ -149,6 +150,8 @@ export default {
     show.onAir = false
     show.camera(VIEW)
     guard(show, 'dressWalk', () => dressWalk(show, t))
+    // the footsteps are music blocks: nobody nods on their beat (show.puppet(id).bob)
+    for (const id of show.puppets.keys()) show.puppet(id).bob(false)
     if (row.scene.direct) guard(show, `${row.scene.name}.direct()`, () => row.scene.direct(t, show, seg))
     show.shot(SHOT, { shot: `${i}:${seg.now.shot ?? 'main'}` })
   },
@@ -157,11 +160,16 @@ export default {
     const seg = show.walkSeg
     const s = SCENES[seg.now.row].scene
     if (s.drawBack) drawing(ctx, () => guard(show, `${s.name}.drawBack()`, () => s.drawBack(ctx, t, show, seg)))
+    // the picture behind the puppets, for the see-through heads (seethrough.js)
+    seg.behind = null
+    guard(show, 'snapshot', () => (seg.behind = snapshot(ctx)))
   },
 
   drawFront(ctx, t, show) {
     const seg = show.walkSeg
     const s = SCENES[seg.now.row].scene
+    // put back what the heads' black silhouettes hid (seethrough.js)
+    drawing(ctx, () => guard(show, 'seeThrough', () => seeThrough(ctx, show, seg.behind)))
     if (s.drawFront) drawing(ctx, () => guard(show, `${s.name}.drawFront()`, () => s.drawFront(ctx, t, show, seg)))
     if (seg.now.fade > 0) {
       ctx.save()

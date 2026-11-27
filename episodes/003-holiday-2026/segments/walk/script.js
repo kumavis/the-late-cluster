@@ -478,10 +478,12 @@ export default {
     { sfx: 'murmur', vol: 0.4, hold: 0, at: -0.6 },   // (sound editor) fills the dip before the last line
     { sfx: 'murmur', vol: 0.4, hold: 0, at: 0.8 },
     { sfx: 'murmur', vol: 0.4, hold: 0, at: 3.15 },
-    // (sound editor) The two murmurs above are laid ahead of the cursor: one starts 0.5 s before
-    // the last line, the other as its last word ends, so the room runs on about three seconds
-    // after "Goodnight". This step back returns the cursor to 0.8 s after "close".
-    { wait: -3.15 },
+    { sfx: 'murmur', vol: 0.4, hold: 0, at: 2.55 },
+    // (sound editor) The murmurs above are laid ahead of the cursor: one starts 0.5 s before the
+    // last line, one as its last word ends, and one 2.45 s after that, whose own fade lets the
+    // room die away about 5.5 s after "Goodnight". This step back returns the cursor to 0.8 s
+    // after "close".
+    { wait: -5.7 },
     { say: 'larry', id: 'stay-warm', text: 'Stay warm, folks. Goodnight.', rate: 0.94, gap: 0.5 },                  // the owner's line, and the last
   ],
 }

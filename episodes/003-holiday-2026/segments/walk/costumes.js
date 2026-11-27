@@ -153,8 +153,9 @@ function scarfPiece(ctx, a, pts, w, u, color, o = {}) {
   const r = ribbon(part, w, o.taper ?? 0)
   solid(ctx, a, r.outline, color, 1.5)
   if (o.fold) line(ctx, a, `M${part.map((p) => pt(p[0], p[1] + 0.6)).join(' L')}`, color, 0.8, { alpha: 0.4 })
-  // the end still being drawn glows: the scarf is drawing itself on
-  if (u < 1) return line(ctx, a, seg2(r.end), '#fff3d6', 1.8, { hot: true })
+  // a piece not yet whole stops short with a plain edge: the scarf is never seen drawing itself
+  // on (integration pass; the bright leading edge it had read as drawing even as it settled)
+  if (u < 1) return
   if (!o.ends) return
   const stripes = [0.8, 0.86].map((k) => seg2(ribbon(partial(full, k), w, (o.taper ?? 0) * k).end)).join(' ')
   line(ctx, a, stripes, color, 0.9, { alpha: 0.75 })
@@ -291,6 +292,34 @@ COSTUMES.walkJumper = {
   },
 }
 
+/**
+ * Pete: a hoodie with its hood down and lying flat on his shoulders (review round two). The
+ * studio's hoodie bunches the hood up behind the neck to jaw height, and through a see-through
+ * head its rim ran across his lips; this one's hood sits below the neck base, so nothing of it
+ * reaches his mouth from any angle. crewLook('pete') dresses him in it.
+ */
+COSTUMES.walkHoodie = {
+  back(ctx, a, c) {
+    const H = hemOf(a, 50)
+    legs(ctx, a, H - 2, '#3a2a20')
+    solid(ctx, a, body(18, 7, H, { slope: 7.5 }), c.color, 1.7)
+    line(ctx, a, sleeves(18, H, 7.5), c.color, 0.9, { alpha: 0.5 })
+  },
+  front(ctx, a, c) {
+    const cx = a.turn * 4.5
+    // the hood, down: a soft roll round the neckline, lying on the shoulders
+    solid(ctx, a, `M-13 2.5 C-11 -0.5 -8 -1.2 -7 -1.2 C-6 4 6 4 7 -1.2 C8 -1.2 11 -0.5 13 2.5 C11 7.5 6 9 0 9 C-6 9 -11 7.5 -13 2.5 Z`, c.color, 1.5)
+    line(ctx, a, `M-10.5 3 C-7 6.6 7 6.6 10.5 3`, c.color, 0.8, { alpha: 0.45 })
+    // drawstrings with aglets
+    for (const s of [-1, 1]) {
+      const x0 = cx * 0.5 + s * 2.6
+      line(ctx, a, `M${pt(x0, 8)} C${pt(x0, 12)} ${pt(x0, 16)} ${pt(x0 + s * 0.5, 20)}`, c.trim ?? '#ffe2cc', 1, { alpha: 0.85 })
+      line(ctx, a, `M${pt(x0 + s * 0.5, 20)} L${pt(x0 + s * 0.5, 22)}`, c.trim ?? '#ffe2cc', 2)
+    }
+    if (a.bottom > 32) line(ctx, a, `M${pt(cx - 11, 44)} L${pt(cx - 8, 32)} L${pt(cx + 8, 32)} L${pt(cx + 11, 44)}`, c.color, 1.2, { alpha: 0.7 })
+  },
+}
+
 /** Sibyl: a fine-knit crewneck with a crisp shirt collar laid over it, and a small pendant */
 COSTUMES.walkCollaredKnit = {
   back(ctx, a, c) {
@@ -416,6 +445,19 @@ export function scarfAt(t, from, dur = 2) {
 }
 
 /**
+ * The scarf in the studio, the one schedule for it (integration pass). He looks down with no
+ * scarf for `down` seconds after `scarf-on`; the studio cuts to his collar there, where the scarf
+ * is already most of the way on (`from`) and comes to rest over `settle` seconds; then it stays on
+ * to the last frame. studio.js cuts on the same numbers.
+ */
+export const SCARF = { down: 0.6, from: 0.84, settle: 0.4 }
+export function scarfOnAt(t, start) {
+  if (t < start + SCARF.down) return 0
+  const u = clamp01((t - start - SCARF.down) / SCARF.settle)
+  return SCARF.from + (1 - SCARF.from) * (1 - (1 - u) ** 3)
+}
+
+/**
  * A partial look for Larry, for show.puppet('larry').dress(...):
  *   garment  'overcoat' (the studio and the street) | 'cardigan' (the table)
  *   scarf    0..1, how much of the scarf is on
@@ -428,6 +470,8 @@ export function larryLook({ garment = 'overcoat', scarf = 0, envelope = false } 
 
 /** a partial look for one of the six at the table: sibyl, hy, al, dee, pete, eppy */
 export function crewLook(id) {
+  // Pete's hood is down (walkHoodie, above), whatever kind looks.js names
+  if (id === 'pete') return { costume: { ...OFF_DUTY.pete, kind: 'walkHoodie' } }
   return { costume: { ...OFF_DUTY[id] } }
 }
 
@@ -436,14 +480,14 @@ export const CREW = ['sibyl', 'hy', 'al', 'dee', 'pete', 'eppy']
 /**
  * Dress everyone for the walk at time t, from the cues. Call it first thing in direct(t, show).
  * The defaults are the script's cues; pass names or seconds to move them:
- *   scarfOn   when the scarf starts to draw on (it takes `scarfDur` seconds)
+ *   scarfOn   the cue he looks down for the scarf (see SCARF: it is never seen drawing on)
  *   envelope  when the envelope starts showing at his pocket
  *   coatOff   when the coat is gone and the cardigan is on (the envelope goes with the coat)
  */
-export function dressWalk(show, t, { scarfOn = 'scarf-on', scarfDur = 2, envelope = 'ask', coatOff = 'chair-in' } = {}) {
+export function dressWalk(show, t, { scarfOn = 'scarf-on', envelope = 'ask', coatOff = 'chair-in' } = {}) {
   const at = (v) => (typeof v === 'number' ? v : show.at(v))
   const off = at(coatOff)
   const garment = t >= off ? 'cardigan' : 'overcoat'
-  show.puppet('larry').dress(larryLook({ garment, scarf: scarfAt(t, at(scarfOn), scarfDur), envelope: t >= at(envelope) && t < off }))
+  show.puppet('larry').dress(larryLook({ garment, scarf: scarfOnAt(t, at(scarfOn)), envelope: t >= at(envelope) && t < off }))
   for (const id of CREW) show.puppet(id).dress(crewLook(id))
 }

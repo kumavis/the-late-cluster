@@ -1,7 +1,7 @@
 {
  "id": "walk",
  "title": "The Walk Home",
- "duration": 247.043,
+ "duration": 249.733,
  "audio": "audio/walk.mp3",
  "tele": "tele/walk.bin",
  "lines": [
@@ -3398,6 +3398,11 @@
    "name": "murmur-1",
    "t0": 243.563,
    "t1": 246.443
+  },
+  {
+   "name": "murmur-2",
+   "t0": 246.113,
+   "t1": 249.133
   }
  ],
  "music": [

@@ -19,14 +19,13 @@
 // bandstand barely there; the window, desk, ON AIR, sign, couch and chair are drawn here, blank
 // (studio-props.js), because the studio's own carry words or draw over the dimmer.
 //
-// The scarf. dressWalk (costumes.js) draws the scarf on over two seconds from `scarf-on`; the
-// brief wants it never seen drawing itself, so while this scene is on Larry is dressed again
-// with the same costume call (larryLook) and the scarf's amount from SCARF below: none in the
-// looking-down shot, the last of it settling in the collar shot, all of it after.
+// The scarf. One schedule, costumes.js SCARF, applied by dressWalk for the whole segment: none in
+// the looking-down shot, the last of it settling in the collar shot, all of it after. This file
+// only cuts on the same numbers (integration pass: it used to dress Larry a second time).
 import { WORLD, buildSkyline, drawSkyline } from '@late-cluster/show/stage/set.js'
 import { occlude, rectPath } from '@late-cluster/show/kit/draw.js'
 import { rng, clamp, tween, ease } from '@late-cluster/show/kit/ease.js'
-import { larryLook } from '@late-cluster/episode/segments/walk/costumes.js'
+import { SCARF } from '@late-cluster/episode/segments/walk/costumes.js'
 import { WIN, roomBeyond, onAirDark, signDark, seatsDark, windowFrame, pool, workLamp, deskDark, deskEnvelope, exitDoor } from '@late-cluster/episode/segments/walk/studio-props.js'
 
 /** where Larry stands: in the pool, side-on to the desk (head centre, world) */
@@ -47,8 +46,6 @@ const CAM = {
   door: { x: 1830, y: 640, zoom: 0.82 },
 }
 
-/** the scarf shots: the looking-down shot runs this long after `scarf-on`, then the collar */
-const SCARF = { down: 0.6, from: 0.84, settle: 0.4 }
 /** the door: it starts to swing this long before `out-the-door`, where the lamp goes out on the tick */
 const DOOR_SWING = 0.45
 /** after the tick, the last of the light goes over this long; then black until the street */
@@ -73,13 +70,6 @@ function lampOn(t, show) {
   return t < show.at('out-the-door') ? 1 : 0
 }
 
-/** how much of the scarf is on (0..1), for the shots above */
-function scarfAmount(t, show) {
-  const s = show.at('scarf-on')
-  if (t < s + SCARF.down) return 0
-  return lerp(SCARF.from, 1, ease.outCubic(clamp((t - s - SCARF.down) / SCARF.settle)))
-}
-
 export default {
   name: 'studio',
   // the room barely there under the dimmer; everything with words on it, or drawn over the
@@ -95,7 +85,6 @@ export default {
     const shot = shotAt(t, show)
     seg.shot(shot)
     const P = show.puppet('larry')
-    P.dress(larryLook({ garment: 'overcoat', scarf: scarfAmount(t, show), envelope: t >= show.at('ask') }))
 
     if (shot === 'wide') {
       // side-on, looking down at the desk; then up and round to us, unhurried

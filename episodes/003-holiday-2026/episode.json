@@ -5,13 +5,16 @@
   "title": "The Walk Home",
   "description": "A holiday special. No show tonight: Larry, off the air, walks you home through the cold.",
   "status": "draft",
-  "rundown": ["walk"],
+  "rundown": [
+    "walk"
+  ],
   "plainCards": true,
   "credits": [
     {
       "head": "Quoted",
       "lines": [
-        "Pirkei Avot, chapter 2 · translated by Joseph I. Gorfinkle, \"The Sayings of the Jewish Fathers\", first published 1913"
+        "Pirkei Avot, chapter 2",
+        "translated by Joseph I. Gorfinkle, \"The Sayings of the Jewish Fathers\", first published 1913"
       ]
     },
     {

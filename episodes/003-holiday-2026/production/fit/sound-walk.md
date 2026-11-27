@@ -133,6 +133,12 @@ Files: `packages/show/tools/data/voice-research.json` and `docs/voice-research.m
 - I ran one read-only `git check-ignore` to see whether that file was ignored, against the no-git rule. Nothing was changed by it.
 - Trials were rendered in a scratch copy of the episode outside the repo.
 
+## Follow-up: a longer ending
+
+I added one more murmur (vol 0.4) after the last line. It starts 2.45 s after "Goodnight." ends, and the step back changes from −3.15 to −5.7. Nothing before `stay-warm` moves, and no sound starts under the owner's lines. The room now runs to 249.13 s, 5.47 s after "Goodnight." ends at 243.66, and dies away on the murmur's own fade over its last 0.8 s.
+
+New length: **249.73 s** (+7.93 s on 241.80). `npm run check -- 003-holiday-2026 walk` passes.
+
 ## The mp3
 
 `/Users/xyz/Development/the-late-cluster/episodes/003-holiday-2026/public/audio/walk.mp3` (cues in `episodes/003-holiday-2026/segments/walk/cues.json`)

@@ -1,0 +1,71 @@
+{
+  "1": {
+    "what": "the studio switched off, before anyone speaks",
+    "times": [
+      0.6,
+      1.4,
+      2.2,
+      3
+    ]
+  },
+  "2": {
+    "what": "the hold on the cook after Larry has told the story (watch-the-cook)",
+    "times": [
+      87.3,
+      87.9,
+      88.5,
+      89.1,
+      89.6
+    ]
+  },
+  "3": {
+    "what": "the sign stays red, changes, and they cross in the first snow (still-red to cross)",
+    "times": [
+      162.2,
+      163,
+      163.8,
+      164.4,
+      164.9,
+      166,
+      167,
+      168,
+      169,
+      170
+    ]
+  },
+  "4": {
+    "what": "the figure in the top window when they arrive, then the door (apartment-door; after let-in)",
+    "times": [
+      178.4,
+      199.45,
+      199.9,
+      200.35,
+      200.65
+    ]
+  },
+  "5": {
+    "what": "the six look at us, and a chair comes in (they-look, chair-in)",
+    "times": [
+      211.5,
+      212,
+      212.5,
+      214.3,
+      214.6,
+      214.9,
+      215.1
+    ]
+  },
+  "6": {
+    "what": "the bowl arrives at our plate, and the meal (served, the-meal)",
+    "times": [
+      219.7,
+      220,
+      220.3,
+      220.5,
+      226.4,
+      227.3,
+      228.2,
+      229.1
+    ]
+  }
+}

@@ -16,7 +16,9 @@ export const FLOOR = 960
 /** the mug's base centre, as the studio's desk has it */
 export const MUG = { x: DESK.x + 96, y: DESK.top - 14 }
 /** the work lamp: its stand's foot and its bulb */
-export const LAMP = { x: 1385, bulb: { x: 1408, y: 588 } }
+// (review round two: the bulb was at his mouth's height, pointed at him, and a cold viewer read the
+// lamp as a microphone. It now hangs above his head in a reflector that points down at the floor.)
+export const LAMP = { x: 1385, bulb: { x: 1408, y: 418 } }
 /** the pool of light by the desk, on the floor */
 export const POOL = { x: 1520, y: FLOOR + 4, rx: 230, ry: 26 }
 /** the exit door, past the desk at the right of the room (beyond the wide's frame) */
@@ -148,20 +150,45 @@ export function workLamp(ctx, on) {
   seg(ctx, x - 6, FLOOR - 250, x + 6, FLOOR - 250, metal, 1.3, { alpha: ma })
   const arm = new Path2D()
   arm.moveTo(x, b.y + 60)
-  arm.lineTo(b.x - 6, b.y + 22)
+  arm.lineTo(x, b.y - 40)
+  arm.lineTo(b.x + 7, b.y - 40)
+  arm.lineTo(b.x + 7, b.y - 22)
   beam(ctx, arm, metal, 1.4, { alpha: ma })
-  // the socket
-  const so = new Path2D()
-  so.moveTo(b.x - 12, b.y + 26)
-  so.lineTo(b.x - 2, b.y + 12)
-  so.lineTo(b.x + 6, b.y + 18)
-  so.lineTo(b.x - 4, b.y + 32)
-  so.closePath()
-  occlude(ctx, so)
-  beam(ctx, so, metal, 1.2, { alpha: ma })
-  // the bulb, tipped toward the desk
+  // the cone of light, from the reflector's mouth down to the pool on the floor
+  if (on > 0) {
+    const cone = new Path2D()
+    cone.moveTo(b.x - 14, b.y + 8)
+    cone.lineTo(b.x + 30, b.y + 8)
+    cone.lineTo(POOL.x + POOL.rx * 0.85, POOL.y)
+    cone.lineTo(POOL.x - POOL.rx * 0.95, POOL.y)
+    cone.closePath()
+    ctx.save()
+    ctx.globalCompositeOperation = 'lighter'
+    const cg = ctx.createLinearGradient(0, b.y, 0, POOL.y)
+    cg.addColorStop(0, `rgba(255, 220, 160, ${0.13 * on})`)
+    cg.addColorStop(1, `rgba(255, 200, 130, ${0.04 * on})`)
+    ctx.fillStyle = cg
+    ctx.fill(cone)
+    ctx.restore()
+    const edges = new Path2D()
+    edges.moveTo(b.x - 14, b.y + 8)
+    edges.lineTo(POOL.x - POOL.rx * 0.95, POOL.y)
+    edges.moveTo(b.x + 30, b.y + 8)
+    edges.lineTo(POOL.x + POOL.rx * 0.85, POOL.y)
+    beam(ctx, edges, WARM, 1, { alpha: 0.16 * on })
+  }
+  // the reflector: a metal cone over the bulb, its mouth turned down at the floor by the desk
+  const shade = new Path2D()
+  shade.moveTo(b.x - 2, b.y - 22)
+  shade.lineTo(b.x + 16, b.y - 22)
+  shade.lineTo(b.x + 34, b.y + 8)
+  shade.lineTo(b.x - 18, b.y + 8)
+  shade.closePath()
+  occlude(ctx, shade)
+  beam(ctx, shade, metal, 1.4, { alpha: ma + 0.15 })
+  // the bulb, hanging in the reflector's mouth
   const bulb = new Path2D()
-  bulb.ellipse(b.x + 8, b.y, 13, 17, -0.55, 0, Math.PI * 2)
+  bulb.ellipse(b.x + 8, b.y + 10, 9, 11, 0, 0, Math.PI * 2)
   if (on > 0) {
     ctx.save()
     ctx.globalCompositeOperation = 'lighter'
@@ -172,20 +199,11 @@ export function workLamp(ctx, on) {
     ctx.fillRect(b.x - 70, b.y - 70, 156, 140)
     ctx.restore()
     beam(ctx, bulb, WARM_HOT, 2.2, { alpha: on, hot: true })
-    dot(ctx, b.x + 8, b.y, 5, WARM_HOT, on)
+    dot(ctx, b.x + 8, b.y + 10, 5, WARM_HOT, on)
   } else {
     occlude(ctx, bulb)
     beam(ctx, bulb, P.blueMid, 1.1, { alpha: 0.35 })
   }
-  // the wire cage round it
-  const cage = new Path2D()
-  for (const k of [-1, 0, 1]) {
-    cage.moveTo(b.x - 6, b.y + 18)
-    cage.quadraticCurveTo(b.x + 8 + k * 30, b.y - 4 + k * 4, b.x + 22 + k * 3, b.y - 22)
-  }
-  cage.moveTo(b.x - 10, b.y - 8)
-  cage.quadraticCurveTo(b.x + 14, b.y - 28, b.x + 34, b.y + 6)
-  beam(ctx, cage, metal, 1, { alpha: ma * 0.8 })
   // the cord, down the pole and away along the floor
   const cord = new Path2D()
   cord.moveTo(x + 3, b.y + 70)

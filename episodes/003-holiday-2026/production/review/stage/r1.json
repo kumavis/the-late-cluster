@@ -1,0 +1,63 @@
+{
+  "round": 1,
+  "segments": {
+    "walk": {
+      "verdict": "change",
+      "changes": [
+        {
+          "owner": "segment",
+          "file": "episodes/003-holiday-2026/segments/walk/costumes.js",
+          "scene": "table",
+          "at": "band-end, 207.02 (counted-in, Pete's first solo line); also every table shot Pete is in (202.26, 206.05, 213.51, 225.62)",
+          "change": "Pete's hoodie hood sits at mouth height: its rim runs across his lips and chin while he says 'I counted you in twice.' (seen at full size and at 640 by 360). The hood must sit below his jaw so that nothing crosses his mouth in any shot he is in."
+        },
+        {
+          "owner": "segment",
+          "file": "episodes/003-holiday-2026/segments/walk/table.js",
+          "scene": "table",
+          "at": "larry-and-sibyl, 220.65 to 222.78 (my-house, still-the-rule)",
+          "change": "The cue says Sibyl does not look up from her plate. At 640 by 360 her head is level and turned toward Larry, so she reads as looking at him while he says 'It's my house.' and while she answers. Her head must read plainly as down at her plate through both lines."
+        },
+        {
+          "owner": "segment",
+          "file": "episodes/003-holiday-2026/segments/walk/restaurant.js",
+          "scene": "restaurant",
+          "at": "cook-in-back push, about 61.3 to 61.9 (frame 61.58)",
+          "change": "As the camera pushes in to the hatch, the left frame edge cuts the neon sign to 'PEN' (then 'EN') for about half a second, which is a word other than OPEN. The sign must be seen whole or not at all during the push. (The one-frame 'OPE' at the right edge as the window slides in at 55.06 is the window arriving and is not part of this change.)"
+        },
+        {
+          "owner": "segment",
+          "file": "episodes/003-holiday-2026/segments/walk/busker.js",
+          "scene": "busker",
+          "at": "walk-past to tune-again, 104.02 to 110.22",
+          "change": "The cue says the busker slides away to the left and gets smaller. He slides away at the same size as when he stood under his lamp (107.04 and 108.02). He must get smaller as he goes. Minor: the slide-off on its own reads."
+        }
+      ]
+    }
+  },
+  "looksRight": [
+    "First frame (0.05) is the dark studio with no title card; set barely there, the sign and ON AIR dark, the work lamp's pool and the window the only light. The last frame (249.68) is black, after a hold from our chair from about 245.5 and a fade that starts about 248.",
+    "Scarf: no scarf while he looks down (19.9); the cut to the collar at 20.3 has it already nearly on and it settles. It is never seen drawing itself, and it stays on through every later shot, the table included.",
+    "Envelope: leaning on the mug at envelope (7.43), gone from the desk and at his coat pocket from ask (10.11) to the table door (209.5), blank throughout. Coat on from the first frame to larry-at-door; cardigan with the scarf from chair-in on.",
+    "Listen holds: the pause before 'Good.' (16.6 to 17.4), the wait after how-have-you-been (29.05), listen-help (50.86 to 52.7; only the walk and the street move), listen-put-right (122.53 to 125.8, close, red-tinted, he turns to us and stays), listen-door (181.96 to 184.39; he faces the door, then turns back to us; only snow moves). Nothing else changes in any of them.",
+    "The cook: in the hatch shots he works fast (frame-to-frame change about 0.13 to 0.16 RMSE at 0.15 s spacing) and after cook-slows leans in, head down, and moves slowly (about 0.05), while the diners keep moving at the same rate. The difference reads at 640 by 360; the hatch is large in its own shots and still plain in watch-the-cook.",
+    "DON'T WALK in red and WALK in green both read at 640 by 360; the sign changes at walk-sign (164.69) on no word, nobody looks up at it, and the road is empty in every crossing frame. The red is on him in the close shots.",
+    "The coin rises from just below the frame in front of Larry (100.9), arcs and lands in the case on the cue (101.33); no hand is seen. His head dips after it.",
+    "The figure in the top window: a larger silhouette standing at the left of the warm window from apartment-door (176.96) through back-to-us (198.2), moving away at 198.6 and gone at let-in (199.41) before the door has swung; the warm light then falls across the snow and him (200.76). It reads at 640 by 360 in the wide and in the window close-ups (190.99, 192.13).",
+    "The gold chair is on the near side, empty, its back to us, in table-wide (202.26) and they-look (211.13); the second chair arrives beside it from the right at chair-in (214.0). Both read at phone size, including with the caption bar at 1.4.",
+    "The dish is covered until the cut at served (218.8 to 218.85) and uncovered after it; the lid is never seen to move. The bowl enters at the left from Dee's end (219.2) with Larry's head turned to it, passes behind him (219.5), and his head follows it right to our plate (220.1 to 220.4).",
+    "No light change at they-look or goodnight: the room's brightness is the same in table-wide, they-look and every goodnight frame. No glass is raised or touched. No laugh, applause or ON AIR sign lights anywhere; Dee's laugh lights nothing.",
+    "The six stay six in the order Sibyl (head), Eppy, Al, Dee, Hy, Pete in every table shot, in their off-duty clothes, Eppy without the headset; seven heads only in table-wide and they-look, otherwise four full heads at most (with Dee partly behind Larry from our chair). Nobody is in two places.",
+    "Text on screen: OPEN, DON'T WALK, WALK, the caption bar and the credits only, apart from the cropped OPEN above. No lettering on the envelope, the building fronts, the busker's case, the studio set or the table.",
+    "Nothing on the street can be taken for a real business or person: the restaurant is unnamed, the shopfronts are blank, the busker's case is empty. Nothing on screen touches an R10 subject beyond what the script says aloud.",
+    "Credits: they name Larry and all six house cast who appear; the busker is listed as 'On the corner: The busker' under STARRING with the house cast, not under any heading for real accounts; 'Every voice in this programme is synthesized by Chimera.'; QUOTED gives Pirkei Avot chapter 2, Gorfinkle, 'The Sayings of the Jewish Fathers', first published 1913, with no edition named; TOLD FROM names the Zhuangzi (the cook who carved the ox) and the Tirukkural, chapter 9.",
+    "The two elliptical cuts in integration.md (walk-on, apartment-door) contradict nothing on screen: the restaurant is a sliver at the left and gone before busker-heard (91.93), and his building is in place in the door's wide."
+  ],
+  "forTheOwner": [
+    "Whether the listen holds are heard as us speaking. The picture holds still as asked in all five; whether that is enough is for someone watching with sound.",
+    "The coin is seen rising from in front of Larry and landing as the tick sounds. Whether it lands as 'the note the tune was missing' (reviewer-1's worry) is a matter of the sound and the timing, not the picture.",
+    "In the goodnight shot Dee's head sits partly behind Larry's see-through head. It is within the rules (one partial head behind him), but you may want to see whether it pulls the eye while he says your lines.",
+    "Watch-the-cook relies on the difference in pace between a small cook in the hatch and the bobbing room. It reads in stills and frame differences at phone size; whether it reads at speed on a phone is worth a look.",
+    "The credits wrap the QUOTED line after 'chapter 2 ·', leaving the separator at the end of the first line. It is accurate; it is only how it sits."
+  ]
+}

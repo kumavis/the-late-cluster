@@ -10,8 +10,9 @@
 //         the six spread along it, Larry beside us on the left in the gold chair (cardigan, scarf),
 //         our place along the bottom of the frame.
 // Seven heads share the frame only in the two door wides (`table-wide`, `they-look`). Every other
-// shot places only the heads whose seat is in frame, four or fewer (a seat hidden behind Larry's
-// head is left empty rather than drawn under him).
+// shot places the heads whose seat is in frame. A seat behind Larry's head is not left empty
+// (integration pass: six friends stay six across the cuts); its head is drawn behind his, and
+// counts as no full head in the frame.
 //
 // Things arrive without hands: our chair slides in from the right edge, the place setting slides
 // in along the bottom, the dish is covered before the cut to `served` and open after it, the bowl
@@ -100,9 +101,11 @@ function shotAt(show, t) {
   else if (t < at('goodnight')) s = { name: 'meal', view: 'seat', base: { x: 460, y: 360, zoom: 1 } }
   else {
     // goodnight: a slow push in on Larry while he says it, and it stays there
-    const base = { x: 900, y: 360, zoom: 1 }
+    // framed so that Larry sits in the gap between Dee and Al, with no head behind his
+    // (review round two: at x 900 Dee was half behind him through the owner's last lines)
+    const base = { x: 1084, y: 360, zoom: 1.15 }
     const u = show.ease.inOutSine(clamp((t - at('goodnight') - 2.0) / (at('stay-warm.end') - at('goodnight') - 2.0)))
-    s = { name: 'goodnight', view: 'seat', base, cam: { x: base.x - 80 * u, y: base.y - 10 * u, zoom: 1 + 0.12 * u } }
+    s = { name: 'goodnight', view: 'seat', base, cam: { x: base.x - 60 * u, y: base.y - 10 * u, zoom: base.zoom * (1 + 0.12 * u) } }
   }
   s.cam = s.cam ?? s.base
   s.near = ['sit', 'served', 'ruling', 'meal', 'goodnight'].includes(s.name)
@@ -123,7 +126,7 @@ const LARRY_AT = {
   sit: { stage: { x: 175, y: 350, scale: 1.6 } },
   served: { stage: { x: 268, y: 352, scale: 1.5 } },
   house: { stage: { x: 300, y: 385, scale: 1.9 } },
-  goodnight: { stage: { x: 330, y: 368, scale: 1.65 } },
+  goodnight: { stage: { x: 350, y: 368, scale: 1.65 } },
 }
 
 function larryPlace(s) {
@@ -147,8 +150,6 @@ function crewSeats(s) {
   return out
 }
 
-/** seats that sit behind Larry's head in a shot from our chair: left empty, never drawn under him */
-const HIDDEN = { sit: ['dee'], house: ['eppy', 'al'], goodnight: ['dee'], larry: ['pete'] }
 
 // ---------------------------------------------------------------- where everyone looks
 
@@ -199,7 +200,9 @@ function lookFor(show, t, s, id) {
     case 'served':
       return PAIR[id]
     case 'house':
-      return 2.35 // Sibyl, at her plate
+      // Sibyl faces her plate, nearly to us, so her chin going down reads (review round two:
+      // turned to Larry she read as level and talking to him)
+      return id === 'sibyl' ? 1.8 : 2.35
     case 'ruling':
       return id === 'eppy' ? 2.05 : 0.45 // Eppy to the table at large; Al and Dee to Eppy
     case 'meal':
@@ -251,10 +254,9 @@ export default {
     const V = s.view === 'door' ? DOOR : SEAT
 
     // the six
-    const hidden = HIDDEN[s.name] ?? []
     const edge = s.view === 'door' ? DOOR.far + 2 : SEAT.edge + 1
     for (const c of crewSeats(s)) {
-      if (!c.inFrame || hidden.includes(c.id)) continue
+      if (!c.inFrame) continue
       let { x, y } = c
       const p = show.puppet(c.id)
       let nod = 0, tilt = 0
@@ -275,7 +277,7 @@ export default {
         if (c.id === 'dee') nod -= dip(t, tm + 1.6, 0.12, 0.6) + dip(t, tm + 3.5, 0.1, 0.5)
         if (c.id === 'al') nod += dip(t, tm + 0.9, 0.1, 0.5) + dip(t, tm + 2.2, 0.09, 0.5) + dip(t, tm + 3.6, 0.1, 0.5) // nodding at something Sibyl said
       }
-      if (s.name === 'house' && c.id === 'sibyl') nod -= 0.3 // she does not look up from her plate
+      if (s.name === 'house' && c.id === 'sibyl') nod -= 0.62 // she does not look up from her plate
       if (s.name === 'goodnight') {
         // the room going on behind him, quietly: small nods, nothing that asks to be looked at
         const tg = show.at('goodnight')
@@ -300,10 +302,11 @@ export default {
       }
     }
 
-    // black: the hold after "Goodnight" and the fade both fit in what is left of the audio
+    // black: his nod ends about 0.85 s after "Goodnight"; three seconds from our chair after it,
+    // then a second's fade, in black before the audio ends (integration pass)
     const end = show.at('stay-warm.end')
-    const blackAt = Math.min(end + 3.3, show.duration - 0.12)
-    seg.fade(smoothstep(blackAt - 0.85, blackAt, t))
+    const blackAt = Math.min(end + 4.9, show.duration - 0.3)
+    seg.fade(smoothstep(blackAt - 1.0, blackAt, t))
   },
 
   drawBack(ctx, t, show, seg) {
@@ -399,8 +402,9 @@ function seatBack(ctx, t, show, seg, s) {
   const at = (c) => show.at(c)
   const meal = t >= at('the-meal')
   const tg = at('goodnight')
-  // in goodnight the room behind him is softer: drawn a little dimmer, so nothing asks to be looked at
-  const soft = s.name === 'goodnight' ? 0.75 : 1
+  // no change of light anywhere at the table (integration pass): the softness at goodnight is the
+  // slow push and the heads turned to one another
+  const soft = 1
   R.walls(ctx, -1200, 2600, -400, S.floor, { rail: 250, w: k })
   R.windowWithSnow(ctx, t, show, seg.street, S.window, { w: k, alpha: soft, snow: soft })
   R.windowWithSnow(ctx, t, show, seg.street, S.window2, { w: k, alpha: soft, snow: soft })
@@ -469,7 +473,7 @@ function seatFront(ctx, t, show, seg, s) {
   const S = SEAT
   const k = lw(s)
   const open = t >= show.at('served')
-  const soft = s.name === 'goodnight' ? 0.7 : 1
+  const soft = 1
   const b = s.name === 'served' ? servedBowl(show, t) : null
   // while it goes along the far side of the table the bowl is behind the candles and the dish
   if (b && b.u < 0.6) bowlAt(ctx, s, b, k)

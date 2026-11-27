@@ -1,0 +1,557 @@
+{
+  "reviewer": "reviewer-2",
+  "round": 1,
+  "from": "review/final/reviewer-2-r1.json",
+  "scriptVersion": "22e296d385af",
+  "items": [
+    {
+      "id": "walk:no-show",
+      "version": "26c616cdd641",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:paycheck",
+      "version": "38328272267c",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:mail-it",
+      "version": "9c6655d8d7d4",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:walk-with-me",
+      "version": "1f72985c91c6",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:scarf",
+      "version": "453c9a90a28e",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:how-have-you-been",
+      "version": "3eed83c43e12",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:yeah-me-too",
+      "version": "dc1654b6254f",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:fast-and-fair",
+      "version": "f52a9bd2f1a0",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:no-joke",
+      "version": "f9316a66f935",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:i-looked",
+      "version": "399069be9585",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:old-books",
+      "version": "c696d80bb181",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:what-helped",
+      "version": "f045735396bf",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:q-does-it-help",
+      "version": "ed8d1a9859cd",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:some-nights",
+      "version": "15cfee9413e2",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:always-stop",
+      "version": "84a989a7ba39",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:one-cook",
+      "version": "c697ff56d221",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:cook-story",
+      "version": "4d432a6d4425",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:zhuangzi-name",
+      "version": "359992c5f62a",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:cook-prince",
+      "version": "6cb8c54c8a35",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:cook-blade",
+      "version": "f7e47fc03518",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:cook-hard-part",
+      "version": "c6dd6453fc1c",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:cook-gently",
+      "version": "5b3abac3479d",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:busker-tune",
+      "version": "8a0e8584f05c",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:good-one",
+      "version": "603eb8c6b3ae",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:started-anyway",
+      "version": "3b7921ad155c",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:busker-behind",
+      "version": "7c5bb053ad1e",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:never-ends",
+      "version": "69ccd665c6de",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:no-cars",
+      "version": "cf1c5559ddf6",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:q-put-right",
+      "version": "2f170b0420a5",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:dont-know",
+      "version": "69694377afc4",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:tarfon-who",
+      "version": "5ab1e069ecb8",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:tarfon-recorded",
+      "version": "79e4873c3de5",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:tarfon-1",
+      "version": "dadb2aee71ac",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:tarfon-2",
+      "version": "8bf8e5d3298a",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:used-book",
+      "version": "a11a575071e3",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:guest-in-sentence",
+      "version": "b12b147daa10",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:borrow",
+      "version": "2dcfc342f4f2",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:dont-finish",
+      "version": "b111cedf23ad",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:dont-quit",
+      "version": "cf20b93001a4",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:this-block",
+      "version": "1d58fcb99c6d",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:this-is-me",
+      "version": "acdd58525e56",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:started-without-me",
+      "version": "1b8a85aa8983",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:q-come-up",
+      "version": "e2466a29eace",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:tamil-book",
+      "version": "c62110607524",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:guest-1",
+      "version": "6ab2a128a843",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:guest-2",
+      "version": "d874cc8dc7a6",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:position",
+      "version": "8b03e5247bef",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:come-up",
+      "version": "8b0e019a03de",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:late",
+      "version": "8fa29e592159",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:counted-in",
+      "version": "f849b2b488d6",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:long-way",
+      "version": "5ef786f2a08b",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:company",
+      "version": "750313b3ab29",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:chair",
+      "version": "ae7362158e72",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:rule",
+      "version": "93c9bf56caa3",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:my-house",
+      "version": "cf107e2a9edd",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:still-the-rule",
+      "version": "aa1fcb9b0fe7",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:ruling-stands",
+      "version": "83db210c305f",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:dee-laughs",
+      "version": "364ea49c3b6c",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:mixed-up-world",
+      "version": "430177c2b804",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:keep-close",
+      "version": "7150b21db517",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    },
+    {
+      "id": "walk:stay-warm",
+      "version": "3e46db7742d8",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+    }
+  ]
+}

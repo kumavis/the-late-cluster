@@ -236,6 +236,31 @@ function cook(ctx, show, t) {
   beam(ctx, board, P.white, lw(show, 1.2), { alpha: 0.7 })
 }
 
+/** a covered plate on the pass at (x, y), and two wisps of steam rising from it, up past the hatch */
+function passPlate(ctx, show, t, x, y) {
+  const plate = new Path2D()
+  plate.ellipse(x, y, 20, 4, 0, 0, Math.PI * 2)
+  occlude(ctx, plate)
+  beam(ctx, plate, '#fff1cc', lw(show, 1.3), { alpha: 0.9 })
+  const food = new Path2D()
+  food.moveTo(x - 12, y - 1)
+  food.quadraticCurveTo(x, y - 13, x + 12, y - 1)
+  occlude(ctx, food)
+  beam(ctx, food, P.gold, lw(show, 1.2), { alpha: 0.85 })
+  // steam: each wisp climbs and fades, starting again every 2.4 s, the two out of step
+  for (let i = 0; i < 2; i++) {
+    const u = ((t / 2.4 + i * 0.5) % 1 + 1) % 1
+    const wisp = new Path2D()
+    const x0 = x - 5 + i * 9, y0 = y - 12 - u * 14
+    for (let k = 0; k <= 10; k++) {
+      const v = k / 10
+      const wx = x0 + 5 * Math.sin(v * 5 + t * 1.6 + i * 2), wy = y0 - v * 46
+      k ? wisp.lineTo(wx, wy) : wisp.moveTo(wx, wy)
+    }
+    beam(ctx, wisp, '#fff6e0', lw(show, 1.1), { alpha: 0.55 * Math.sin(Math.PI * u) })
+  }
+}
+
 /** the room behind the glass, clipped to it (street units, the window's own x offset `dx`) */
 function room(ctx, t, show, dx, diners) {
   ctx.save()
@@ -274,6 +299,9 @@ function room(ctx, t, show, dx, diners) {
     posts.lineTo(x, SILL + 15)
   }
   beam(ctx, posts, P.goldMid, lw(show, 1.2), { alpha: 0.7 })
+  // a plate waiting on the pass, its steam rising past the hatch's frame: an opening into a
+  // kitchen, not a screen (review round two: a cold viewer saw "a chef on a screen")
+  passPlate(ctx, show, t, HATCH.x + 34, SILL + 3)
   for (const L of LAMPS) hangingLamp(ctx, show, L.x, L.y)
   // the tables, the back row first
   for (let i = 0; i < ROWS.length; i++) {
@@ -288,16 +316,23 @@ function room(ctx, t, show, dx, diners) {
     sheen.lineTo(x + w, GLASS.y0)
   }
   beam(ctx, sheen, P.sky, lw(show, 1), { alpha: 0.1 })
-  // the neon, small, hanging in the glass's upper left corner (clear of the captions)
+  // the neon, small, hanging in the glass's upper left corner (clear of the captions). It is
+  // seen whole or not at all: while a frame edge would cut it (the push at cook-in-back), it is
+  // not drawn (review round two: it read "PEN", then "EN")
   const size = 15
   const text = 'OPEN'
   const tw = labelWidth(ctx, text, { size, ls: 0.16 })
   const nx = GLASS.x0 + 22, ny = GLASS.y0 + 52
-  const tube = rectPath(nx - 9, ny - size - 7, tw + 14, size + 15, 4)
-  occlude(ctx, tube)
-  beam(ctx, tube, '#ff4a4a', lw(show, 1.2), { alpha: 0.7 })
-  label(ctx, text, nx, ny, { size, color: '#ff6a5c', ls: 0.16, weight: 'm' })
-  label(ctx, text, nx, ny, { size, color: '#ffd0c8', ls: 0.16, weight: 'l', alpha: 0.6 })
+  const box = { x0: dx + nx - 9, x1: dx + nx + tw + 5, y0: ny - size - 7, y1: ny + 8 }
+  const c = show.cam
+  const vx0 = c.x - 640 / c.zoom, vx1 = c.x + 640 / c.zoom, vy0 = c.y - 360 / c.zoom, vy1 = c.y + 360 / c.zoom
+  if (box.x0 >= vx0 && box.x1 <= vx1 && box.y0 >= vy0 && box.y1 <= vy1) {
+    const tube = rectPath(nx - 9, ny - size - 7, tw + 14, size + 15, 4)
+    occlude(ctx, tube)
+    beam(ctx, tube, '#ff4a4a', lw(show, 1.2), { alpha: 0.7 })
+    label(ctx, text, nx, ny, { size, color: '#ff6a5c', ls: 0.16, weight: 'm' })
+    label(ctx, text, nx, ny, { size, color: '#ffd0c8', ls: 0.16, weight: 'l', alpha: 0.6 })
+  }
   ctx.restore()
 }
 
