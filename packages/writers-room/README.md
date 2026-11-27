@@ -87,17 +87,17 @@ Everything lands under `episodes/<id>/production/`; reviewers' and auditors' fil
 | # | stage | tasks (role) | the tool | blocks until |
 |---|---|---|---|---|
 | 1 | scope | `scope.auditor` | scrapes if there is no digest; coverage figures | `review/scope.md` has every section and its `## Verdict` says `proceed` (`rescrape: …` sends back to scope) |
-| 2 | research | `research.<lane>` (researcher), then `research.screen` (auditor) | cards' exact posts from the skeletons; `research/longlist.json`, `research/kept/<card>.json`, `research/terms.md` from `review/screen.json` | every card from real skeletons, media described, no marked post; a screen decision, merge, drops and terms for every card; each note (a bio line or a general remark, `src/consent.mjs`) has the exact words, where and to whom |
+| 2 | research | `research.<lane>` (researcher, its brief carrying a one-line pointer with the owner's words for each requested segment), then `research.screen` (auditor) | cards' exact posts from the skeletons; `research/longlist.json`, `research/kept/<card>.json`, `research/terms.md` from `review/screen.json` | every card from real skeletons, media described, no marked post; a screen decision, merge, drops and terms for every card; each note (a bio line or a general remark, `src/consent.mjs`) has the exact words, where and to whom |
 | 3 | rank | `rank.reviewer-<k>` | interest and reach weighted; a pool of `ranking.pool`, interview candidates apart | two reviewers' interest for every kept card |
 | 4 | brainstorm | `brainstorm.writer-<k>` (writer) | merges ideas | every pool card has ideas from two writers |
 | 5 | shortlist | `shortlist.reviewer-<k>`, then `shortlist.experiment` (reviewer) | best joke, synergy, variety; `rank/shortlist.json` with `interview` ranked apart | scores for every pool card; `experiment.md` with a measure |
 | 6 | repetition-ideas | `repetition-ideas.reviewer-<k>-r<n>`; `repetition-ideas.rework-<idea>` (writer) | strictest verdict; people rules | nothing going to drafting is a repeat |
-| 7 | draft | `draft.<slug>` (writer): the shortlist and the three standing segments, each with its card and ideas | the previous aired genre as an `avoid` line for music | a draft for every planned slug; real lines sourced, with the draft's own cast |
+| 7 | draft | `draft.<slug>` (writer): the shortlist, the three standing segments, each with its card and ideas, and each segment the owner asked for (`production/owner-requests.json`), with the owner's words and exceptions | the previous aired genre as an `avoid` line for music; `draft.requested`: the record's shape, a slug no planned draft has, every card in the longlist and kept by the screen | a draft for every planned slug; real lines sourced, with the draft's own cast |
 | 8 | fit | `fit.voices`, `fit.<slug>` (sound-editor, best effort); `fit.rewrite-<slug>` (writer) only when the owner asks | `npm run fit` on every changed draft | every draft fitted; nothing heard crude, alarming or out of bounds (listed first, for the owner); every hard line recorded in the voice research file; sound editors changed no words |
-| 9 | select | `select.reviewer-<k>`; `select.repetition-<r>-r<n>`; `select.redraft-<slug>` (writer); `select.consent-r<n>` (auditor) | fills toward the target applying the caps (one interview, two segments a person, no previous speaker, a pair verdict keeps the better script, consent outs: only an out that names a stop, the opt-out list, `!no-unauthenticated` or an ask to the show, or a post gone or changed, drops a draft; a bio line or a general remark is a note); `plan.json` | scores, no repeat among the selected, caps, a consent refresh of this selection with every out naming its stop, every selected draft heard |
-| 10 | assemble | `assemble.writer`; `assemble.repetition-<r>-r<n>`; `assemble.rework` (writer); `assemble.sound` (sound-editor) | copies the drafts in, merges sources and casts; finds the lines added or changed; fits segments; renders | the added lines pass the gate; every write, render and heard-text gate |
+| 9 | select | `select.reviewer-<k>` (`select.reviewer-<k>-r<n>` for drafts that joined later); `select.repetition-<r>-r<n>`; `select.redraft-<slug>` (writer); `select.consent-r<n>` (auditor) | a requested segment first, on the owner's word (`select.requested`: a cap it breaks stops the run before anything more is briefed, naming the cap and the segments; it is never dropped and the cap never ignored), then fills toward the target applying the caps (one interview, two segments a person, no previous speaker, a pair verdict keeps the better script, consent outs: only an out that names a stop, the opt-out list, `!no-unauthenticated` or an ask to the show, or a post gone or changed, drops a draft; a bio line or a general remark is a note); `plan.json` | scores, no repeat among the selected, caps, a consent refresh of this selection with every out naming its stop, every selected draft heard |
+| 10 | assemble | `assemble.writer`; `assemble.repetition-<r>-r<n>`; `assemble.rework` (writer); `assemble.consent-r<n>` (auditor); `assemble.sound` (sound-editor) | copies the drafts in, merges sources and casts; finds the lines added or changed; lists in `assemble/consent-sources-r<n>.json` the real accounts and posts in `sources.json` no passing consent round covered; fits segments; renders | the added lines pass the gate; `assemble.consent`: what assembly added has a passing round of its own (an out goes back to the assembler); every write, render and heard-text gate |
 | 11 | stage | `stage.<seg>` (builder), then `stage.auditor-r<n>`; `stage.fix-<seg>-r<n>`, `stage.fix-episode-r<n>` (builder) | re-shoots only changed segments (`stage/frames.json`) | frames, cards (every post shown or performed), unread text, credits, imports; a pass for every segment |
-| 12 | build | none | thumbnail, build (`--preview`), `verify`, `npm run sources` on every cited post | the build verifies and every cited post is live and unchanged (the check's notes do not fail it) |
+| 12 | build | none | thumbnail, build (`--preview`; inside it the sources check and the gates-on-record check, `npm run on-record`), `verify`, `npm run sources` on every cited post | the build verifies, the gates are on record for every rundown segment, and every cited post is live and unchanged (the check's notes do not fail it) |
 | 13 | review | `review.viewer-<k>` (viewer), then `review.reviewer` | title and credits frames; the cold-viewer sets; `review/cold-viewers.md`; the pull request text | scorecard, ledger and verdict; a send-back is valid |
 
 ## Briefs
@@ -110,6 +110,30 @@ that kind of task, and the files it works from (never the whole bible); the gate
 the terms of use of its cards from `research/terms.md`; on a later round, what the earlier round asked
 for; on a rework, its own failures. A brief that would name a missing file stops the run. A viewer's
 brief says only that these are stills and where to write.
+
+## Segments the owner asks for
+
+The project manager records them by hand in `production/owner-requests.json` (`src/requests.mjs`):
+
+```json
+{ "format": "late-cluster-requests/1",
+  "segments": [{ "slug": "owner-bit", "title": "The running bit, by request",
+                 "asked": { "words": "<the owner's words, verbatim>", "date": "2026-11-24" },
+                 "cards": ["talk-running-bit"],
+                 "exceptions": ["The bible's limit of one joke about the show per episode does not apply to this segment."] }] }
+```
+
+A record out of shape stops the run. `cards` may be empty: a request made before research names
+none yet (each research brief carries the owner's words as a pointer, and the project manager adds
+the card ids after the screen), and a segment about the show may never need one. Each entry becomes
+a planned draft once its slug is free and every card it names is kept by the screen
+(`draft.requested` names what is missing). From there it passes every gate, and at select it is
+kept on the owner's word. An exception never names the constitution. A request added after the
+draft stage reopens draft, fit and select, as `--from draft` would. If assembly had begun, it
+reopens too. The tool copies the segment in, appends it to the rundown, and merges its sources and
+its guests (again after the assembler's wave, so a rewritten `cast.js` keeps them). It sets
+`assembly.md` aside, so `assemble.writer` is briefed again to place the segment. The stage auditor
+then gets a new round, because the last one never saw it.
 
 ## The tagged lane
 

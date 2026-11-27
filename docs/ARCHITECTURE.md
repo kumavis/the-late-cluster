@@ -193,6 +193,24 @@ reading only what is listed, could not see. Episode 001 predates the sources for
 the check with a one-line warning, and `npm run aired -- 001-pilot` still prints its findings under a
 first line saying the build does not enforce them.
 
+The build then runs the gates-on-record check (`npm run on-record`, `scripts/lib/onrecord.mjs`). It
+reads what the pipeline recorded under `production/` and refuses a published build in three cases:
+a rundown segment that was a draft has no script repetition verdicts from two reviewers in
+`review/repetition-scripts.json`, or the verdict on record is a repeat; a line written or changed
+at assembly (the open, the close, the joins, or every line of a segment that was never a draft)
+has no two verdicts on its current words in `review/repetition-assembly.json`; or a real account
+that airs in a segment (as the sources check computes it) is not in the source list a passing
+consent refresh was run on. That list is `select/sources.json`, and its `selection` is named by a
+`review/consent/r<n>.json` with `"verdict": "pass"`; for what assembly added, it is
+`assemble/consent-sources-r<n>.json` with a passing `review/consent-assembly/r<n>.json`. Stage 10
+briefs that round itself, so a run stops at assembly with a task to do, not at the build. A preview warns and carries on. The check
+exists because two of episode 002's segments joined after select. They skipped the script
+repetition gate, and the consent refresh for one segment's accounts was only done after it aired.
+The owner decided on 27 November 2026 that segments the owner asks for go through the same gates.
+Episodes 001 and 002 aired before the check and cannot pass, so both are exempt by id
+(`PREDATES_GATE_RECORDS` in `scripts/lib/onrecord.mjs`, a closed list). Their builds skip the check
+with a one-line warning, and `npm run on-record` still reports for them.
+
 Absolute URLs in a build (the Open Graph image and page URL) come from `siteUrl` in
 `show.config.json`, never from the environment, so a committed build does not depend on who
 built it. While `siteUrl` is empty those tags are relative.
@@ -239,7 +257,8 @@ episode. `<seg>` is a segment id.
 | `npm run thumbnail -- <ep> [<seg> <t>]` | shoot a frame into `thumbnail.jpg`: the title card, or a moment of a segment |
 | `npm run avatar [-- --variant a\|b\|c] [--out file] [--candidates]` | render `brand/avatar.png`, the show's Bluesky profile picture, from the host puppet (Playwright); `--candidates` writes all three to `preview/_avatar/` with a contact sheet |
 | `npm run banner [-- --variant a\|b\|c] [--out file.png] [--candidates]` | render `brand/banner.png`, the account's banner: the title over the set's skyline, no host (Playwright); 3000×1000 PNG, or 1500×500 when the larger is over Bluesky's 1,000,000 bytes; refused if the title is under the profile picture or a phone button or under 140 points wide on a phone; `--candidates` writes all three to `brand/candidates/` with `banner-sheet.png` (each as a desktop and a phone profile) |
-| `npm run build -- <ep> [--preview]` | build into `dist/episodes/<id>/`, or a draft into `preview/<id>/`; runs the sources check first (refuses a published build on a finding, warns in a preview) |
+| `npm run build -- <ep> [--preview]` | build into `dist/episodes/<id>/`, or a draft into `preview/<id>/`; runs the sources check and the gates-on-record check first (refuses a published build on a finding, warns in a preview) |
+| `npm run on-record -- <ep>` | the gates-on-record check alone: every rundown segment that was a draft has script repetition verdicts from two reviewers, every line written at assembly has two of its own, and every real account that airs was covered by a passing consent refresh; one line per finding; exit 1 on a finding (Node builtins only, no digest, no network) |
 | `npm run aired -- <ep>` | the sources check alone: every tagged line, post address, post card and real account that airs in the rundown segments has a record in `production/sources.json`; one line per finding with segment, file, line and the post's address or handle; exit 1 on a finding (Node builtins only, no digest) |
 | `npm run verify` | committed builds match their sources (Node builtins only) |
 | `npm run site` | generate the archive index into `dist/` (ignored, never committed) |
@@ -433,17 +452,17 @@ several subagents wrote independently with recorded arithmetic, applies the caps
 | # | stage | subagents (role), in waves | the tool |
 |---|---|---|---|
 | 1 | scope | 1 auditor | scrapes if there is no digest; coverage figures |
-| 2 | research | 1 researcher per lane, from the scraper's skeletons and lane slices; then 1 auditor screens | exact posts from the skeletons; the longlist, one file per kept card, `research/terms.md` |
+| 2 | research | 1 researcher per lane, from the scraper's skeletons and lane slices; then 1 auditor screens | exact posts from the skeletons; the longlist, one file per kept card, `research/terms.md`; each segment the owner asked for as a one-line pointer in every lane's brief |
 | 3 | rank | 2 reviewers, interest only | reach and interest weighted; a pool of about fifteen, interview candidates ranked apart |
 | 4 | brainstorm | 2 or 3 writers, on the pool only | merges the ideas |
 | 5 | shortlist | 2 reviewers (best joke, synergy, variety); 1 reviewer proposes the experiment | the shortlist of four or five; the interview candidates in order |
 | 6 | repetition (ideas) | 2 reviewers with the ledger; a writer per repeat | strictest verdict; people rules |
-| 7 | draft | 1 writer per shortlisted card and per standing segment, each given its card and ideas | the previous aired genre as an `avoid` line |
+| 7 | draft | 1 writer per shortlisted card, per standing segment and per segment the owner asked for (`production/owner-requests.json`), each given its card and ideas, or the owner's words and exceptions | the previous aired genre as an `avoid` line; a requested segment's shape, free slug and screened cards |
 | 8 | fit | sound editors (voices, then each draft with lines to settle, best effort, recording hard words with `npm run voice-research`); a writer only when the owner asks for a rewrite | `npm run fit` on every changed draft |
-| 9 | select | 2 reviewers score; 2 judge repetition on the selection (verdicts may be on a pair); a writer per repeat; 1 auditor refreshes consent | the selection with the caps; `plan.json` |
-| 10 | assemble | 1 writer; 2 reviewers on the lines it added; 1 sound editor | copies drafts in, merges sources and casts; fits; renders |
+| 9 | select | 2 reviewers score (a later round for drafts that joined late); 2 judge repetition on the selection (verdicts may be on a pair); a writer per repeat; 1 auditor refreshes consent | the selection with the caps, a requested segment held in it on the owner's word (a cap it breaks stops the run for the owner); `plan.json` |
+| 10 | assemble | 1 writer; 2 reviewers on the lines it added; 1 auditor refreshes consent for any account or post the additions bring in; 1 sound editor | copies drafts in, merges sources and casts (and, when a requested segment joins after assembly began, copies it in, merges its guests and briefs the writer again); lists what the select refresh did not cover; fits; renders |
 | 11 | stage | 1 builder per segment; then 1 auditor, a verdict per segment and a route per change | re-shoots only changed segments |
-| 12 | build | none | thumbnail, build (`--preview` for a trial), `verify`, every cited post checked live |
+| 12 | build | none | thumbnail, build (`--preview` for a trial; the sources and gates-on-record checks inside it), `verify`, every cited post checked live |
 | 13 | review | a `viewer` per cold-viewer stretch; then 1 reviewer | title and credits frames; `review/cold-viewers.md`; the pull request text |
 
 Everything a production writes is under `episodes/<id>/production/`, reviewers' and auditors'

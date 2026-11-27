@@ -16,7 +16,8 @@ import { SEG_RE, writeJson } from '../repo.mjs'
 import { RESEARCH_FILE, RESEARCH_PAGE, ensureFit, fitCommand, fitProblems, heardLine, isRecorded, readFit, readResearch, renderDraftCommand, researchCommand, researchSource, voicesCommand } from '../studio.mjs'
 import { sourcesCommand } from '../scraper.mjs'
 import { CONSENT_STOPS, POST_STOPS, NOTE_FORMAT, NOTE_RULE, REPORT_RULE, STOP_RULE, noteProblems, outProblems } from '../consent.mjs'
-import { draftPlan } from './early.mjs'
+import { draftPlan, requestedPlanProblems } from './early.mjs'
+import { requestedNote, requestedSegments } from '../requests.mjs'
 import { P, W, R, REPETITION_RULES, excludedOf, has, json, pendingRepetition, previousAired, previousLabel, repetitionFiles, reviewerIds, sha, shaText, task } from './common.mjs'
 
 export const draftsDir = (ctx) => P(ctx, 'drafts')
@@ -63,20 +64,23 @@ function draftTask(ctx, d) {
     const i = ideas.find((x) => x.id === id)
     return i ? `- ${id} (card ${i.card}): ${i.premise} / turn: ${i.turn} / screen: ${i.screen} / format: ${i.format}` : `- ${id}`
   })
+  const req = d.requested
   return task(ctx, 'draft', {
     id: `draft.${d.slug}`,
     role: 'writer',
     kind: d.standing ? `draft-${d.standing}` : 'draft',
     segment: d.slug,
-    title: d.standing ? `Draft the standing segment: ${d.slug}` : `Draft a segment from card ${d.card}`,
+    title: d.standing ? `Draft the standing segment: ${d.slug}` : req ? `Draft the segment the owner asked for: ${req.title}` : `Draft a segment from card ${d.card}`,
     writes: [`drafts/${d.slug}/script.js`, `drafts/${d.slug}/notes.json`],
     alsoEdits: [W(ctx, `drafts/${d.slug}/sources.json`), W(ctx, `drafts/${d.slug}/cast.js`)],
     keys: [`drafts/${d.slug}`],
-    reads: [...(d.cards.length ? d.cards.map((c) => W(ctx, `research/kept/${c}.json`)) : [W(ctx, 'rank/pool.md')]), 'packages/show/tools/README.md', 'packages/writers-room/playbooks/sources.md', W(ctx, 'experiment.md'), `${RESEARCH_PAGE}?`],
+    reads: [...(d.cards.length ? d.cards.map((c) => W(ctx, `research/kept/${c}.json`)) : req ? [] : [W(ctx, 'rank/pool.md')]), 'packages/show/tools/README.md', 'packages/writers-room/playbooks/sources.md', W(ctx, 'experiment.md'), `${RESEARCH_PAGE}?`],
     cards: d.cards,
     instructions: [
-      d.standing ? STANDING[d.standing] : `Draft one segment from card ${d.card}.`,
-      d.ideas.length ? `The ideas ranked for it:\n${ideaLines.join('\n')}` : d.cards.length ? 'No idea was ranked for it: work from the card.' : 'No idea was ranked for it: take its material from the pool (rank/pool.md).',
+      d.standing ? STANDING[d.standing] : req ? `The owner asked for this segment ("${req.title}") on ${req.asked.date}, in these words: "${req.asked.words}". ${!d.cards.length ? 'It draws on no card: write it for the house cast. A real person\'s line or post needs a card and a source record, so it has none.' : `Draft it from ${d.cards.length === 1 ? `card ${d.cards[0]}` : `cards ${d.cards.join(', ')}`}.`}` : `Draft one segment from card ${d.card}.`,
+      req ? (req.exceptions.length ? `The owner granted these exceptions for it, and only these:\n${req.exceptions.map((e) => `- ${e}`).join('\n')}\nNothing in the constitution is ever among them: their words in their context, the opt-out list and every real-people rule apply in full.` : 'The owner granted no exception for it: every rule applies. Nothing in the constitution is ever an exception.') : null,
+      req ? 'It is in the selection on the owner\'s word, and it passes every gate like any other draft: it is scored, judged for repetition, and its accounts\' consent is refreshed.' : null,
+      req ? `No idea was ranked for it: work from ${d.cards.length ? 'the cards and ' : ''}the owner's words.` : d.ideas.length ? `The ideas ranked for it:\n${ideaLines.join('\n')}` : d.cards.length ? 'No idea was ranked for it: work from the card.' : 'No idea was ranked for it: take its material from the pool (rank/pool.md).',
       d.standing === 'music' && prev?.song?.genre ? `Avoid: the genre "${prev.song.genre}".` : null,
       `Write drafts/${d.slug}/script.js in the script format of packages/show/tools/README.md, with \`id: '${d.slug}'\`, and drafts/${d.slug}/notes.json: ${NOTES(d)}. If real accounts appear, drafts/${d.slug}/sources.json (playbooks/sources.md); a guest the studio lacks goes in drafts/${d.slug}/cast.js as \`{ name, handle, title, guest: true }\` with no voice settings, because a sound editor places the voice (\`npm run voices\`).`,
       'Write words. Do not render audio and do not chase what the engine hears: the fitting tool and a sound editor make a best effort, and nothing comes back to you for how a line is heard.',
@@ -98,7 +102,14 @@ function draftTask(ctx, d) {
 
 const draft = {
   name: 'draft',
-  waves: [{ tasks: (ctx) => draftPlan(ctx).map((d) => draftTask(ctx, d)), gates: [draftFiles, draftLines, draftStanding] }],
+  waves: [{ tasks: (ctx) => draftPlan(ctx).map((d) => draftTask(ctx, d)), gates: [draftRequested, draftFiles, draftLines, draftStanding] }],
+}
+
+/** the segments the owner asked for: the record's shape, a free slug, and every card screened */
+async function draftRequested(ctx) {
+  const g = gate('draft.requested')
+  for (const f of requestedPlanProblems(ctx)) g.fail(f)
+  return g.done()
 }
 
 async function draftFiles(ctx) {
@@ -424,17 +435,29 @@ export function selection(ctx) {
     if ([...me.all, ...me.accounts].some((k) => outKeys.has(k)) || [...me.posts].some((u) => outPosts.has(u))) return 'the consent refresh put an account or post in it out'
     const back = me.speakers.find((k) => spoke.has(k))
     if (back) return `someone who spoke in ${prev.id} speaks in it`
-    if (me.interview && chosen.filter((s) => info.get(s).interview).length >= (caps.interviews ?? 1)) return `an episode has ${caps.interviews ?? 1} interview`
+    const interviews = chosen.filter((s) => info.get(s).interview)
+    if (me.interview && interviews.length >= (caps.interviews ?? 1)) return `an episode has ${caps.interviews ?? 1} interview (${interviews.join(', ')})`
     const max = caps.segmentsPerPerson ?? 2
     const over = me.all.find((k) => chosen.filter((s) => info.get(s).all.includes(k)).length >= max)
-    if (over) return `someone in it is already in ${max} selected segments`
+    if (over) return `someone in it is already in ${max} selected segments (${over}: ${chosen.filter((s) => info.get(s).all.includes(over)).join(', ')})`
     const pair = pairs.find((p) => p.includes(slug) && chosen.includes(p.find((x) => x !== slug)))
     if (pair) return `it repeats with ${pair.find((x) => x !== slug)} (a verdict on the pair)`
     return null
   }
   const rows = drafts.map((d) => ({ slug: d.slug, title: d.notes.title, standing: d.notes.standing, seconds: Math.round(Number(d.notes.seconds) || 0) }))
   const reviews = filesIn(P(ctx, 'review/select'), '.json').map(readJsonFile)
-  return selectDrafts({ drafts: rows, reviews, weights: ctx.config.selection.weights, targetSeconds: ctx.limits.targetSeconds, maxSeconds: ctx.limits.runtimeSeconds.max, excluded: excludedOf(ctx, 'select'), blocked })
+  const required = requestedSegments(ctx.paths.production).map((r) => r.slug).filter((s) => info.has(s))
+  return selectDrafts({ drafts: rows, reviews, weights: ctx.config.selection.weights, targetSeconds: ctx.limits.targetSeconds, maxSeconds: ctx.limits.runtimeSeconds.max, excluded: excludedOf(ctx, 'select'), blocked, required })
+}
+
+/** a requested segment that cannot be kept without breaking a cap: [message]; the owner decides */
+export function requestedConflicts(ctx, sel = selection(ctx)) {
+  const out = []
+  const req = sel.rows.filter((r) => r.requested)
+  for (const r of req) if (r.conflict) out.push(`the owner asked for ${r.slug}, and keeping it breaks a cap: ${r.conflict}`)
+  if (sel.requiredSeconds > ctx.limits.runtimeSeconds.max) out.push(`the owner asked for ${req.map((r) => r.slug).join(', ')}, and keeping ${req.length === 1 ? 'it' : 'them'} breaks a cap: the running time; ${req.length === 1 ? 'it runs' : 'they run'} ${sel.requiredSeconds} s, over the ${ctx.limits.runtimeSeconds.max} s ceiling`)
+  for (const r of requestedSegments(ctx.paths.production)) if (!readDrafts(ctx).some((d) => d.slug === r.slug)) out.push(`the owner asked for ${r.slug}, and it has no draft (drafts/${r.slug}/): it joins at the draft stage (npm run produce -- --week ${ctx.week} --from draft)`)
+  return out
 }
 
 const selectedItems = (ctx) => {
@@ -464,25 +487,33 @@ const select = {
       before: (ctx) => fitDrafts(ctx),
       tasks: (ctx) => {
         const drafts = readDrafts(ctx)
-        const scored = filesIn(P(ctx, 'review/select'), '.json').map((f) => f.split('/').pop().replace('.json', ''))
+        // a requested segment that breaks a cap stops select here, for the owner, before more work is briefed
+        if (requestedConflicts(ctx).length) return []
+        const scoreFiles = filesIn(P(ctx, 'review/select'), '.json').map((f) => ({ name: f.split('/').pop().replace('.json', ''), j: readJsonFile(f) }))
         const scorers = reviewerIds(ctx)
-          .filter((r) => !scored.includes(r))
-          .map((r) =>
-            task(ctx, 'select', {
-              id: `select.${r}`,
+          .map((r) => {
+            // a reviewer's files: review/select/<r>.json, then <r>-r<n>.json for drafts that joined later
+            const mine = scoreFiles.filter((f) => f.name === r || f.name.startsWith(`${r}-r`))
+            const todo = drafts.filter((d) => !mine.some((f) => typeof f.j.drafts?.[d.slug]?.funny === 'number'))
+            if (mine.length && !todo.length) return null
+            const name = mine.length ? `${r}-r${mine.length + 1}` : r
+            return task(ctx, 'select', {
+              id: `select.${name}`,
               role: 'reviewer',
-              title: `Score the fitted drafts (${r})`,
-              writes: [`review/select/${r}.json`],
-              keys: [`review/select/${r}.json`, `${r} `],
-              reads: drafts.flatMap((d) => [W(ctx, `drafts/${d.slug}/script.js`), W(ctx, `drafts/${d.slug}/notes.json`)]),
+              title: mine.length ? `Score the drafts that joined later (${r})` : `Score the fitted drafts (${r})`,
+              writes: [`review/select/${name}.json`],
+              keys: [`review/select/${name}.json`, `${r} `],
+              reads: todo.flatMap((d) => [W(ctx, `drafts/${d.slug}/script.js`), W(ctx, `drafts/${d.slug}/notes.json`)]),
               instructions: [
-                `Score every draft (${drafts.map((d) => d.slug).join(', ')}) from 0 to 10 on four things: funny; interesting; television (does it work on screen: nothing left to read in silence); variety (something different from the other drafts and from ${previousLabel(ctx)}). Standing segments are selected on merit too.`,
-                `Write review/select/${r}.json: { "reviewer": "${r}", "drafts": { "<slug>": { "funny", "interesting", "television", "variety", "reason" } }, "inherit": [] }. Judge alone. "inherit" is usually empty; only if a builder truly needs an earlier file as reference: { "from": "<episode id>", "path": "segments/<seg>/index.js", "why" }.`,
+                `Score ${mine.length ? 'these drafts, which joined after your first scores' : 'every draft'} (${todo.map((d) => d.slug).join(', ')}) from 0 to 10 on four things: funny; interesting; television (does it work on screen: nothing left to read in silence); variety (something different from the other drafts and from ${previousLabel(ctx)}). Standing segments are selected on merit too.`,
+                requestedNote(ctx.paths.production),
+                `Write review/select/${name}.json: { "reviewer": "${r}", "drafts": { "<slug>": { "funny", "interesting", "television", "variety", "reason" } }, "inherit": [] }. Judge alone. "inherit" is usually empty; only if a builder truly needs an earlier file as reference: { "from": "<episode id>", "path": "segments/<seg>/index.js", "why" }.`,
                 'The tool fills the rundown by score and applies the caps (one interview, nobody in more than two segments, nobody who spoke in the previous aired episode).',
-              ],
+              ].filter(Boolean),
               rules: ['All four scores, 0 to 10, for every draft, with a reason.'],
-            }),
-          )
+            })
+          })
+          .filter(Boolean)
         if (scorers.length) return scorers
         const items = selectedItems(ctx)
         const files = repetitionFiles(P(ctx, 'review/repetition-scripts'))
@@ -511,6 +542,12 @@ const select = {
           .filter((it) => combined[it.id]?.verdict === 'repeat')
           .map((it) => {
             const d = drafts.find((x) => x.slug === it.id)
+            // a writer's redraft is the new baseline for fit.words: its words before the redraft are retired
+            const snap = json(P(ctx, 'fit/texts.json'), null)
+            if (snap?.[it.id]) {
+              delete snap[it.id]
+              writeJson(P(ctx, 'fit/texts.json'), snap)
+            }
             return task(ctx, 'select', {
               id: `select.redraft-${it.id}`,
               role: 'writer',
@@ -570,15 +607,25 @@ const select = {
           week: ctx.week,
           segments: chosen.map((r) => {
             const d = drafts.find((x) => x.slug === r.slug)
-            return { id: r.slug, title: d.notes.title, format: d.notes.format, seconds: Math.round(Number(d.notes.seconds) || 0), standing: d.notes.standing ?? null, cards: d.notes.cards ?? [], ideas: d.notes.ideas ?? [], turn: d.notes.turn ?? null, speakers: d.notes.speakers ?? [], featured: d.notes.featured ?? [], ...(d.notes.genre ? { genre: d.notes.genre, theme: d.notes.theme } : {}), score: r.score, repetition: combined[r.slug]?.verdict ?? null }
+            return { id: r.slug, title: d.notes.title, format: d.notes.format, seconds: Math.round(Number(d.notes.seconds) || 0), standing: d.notes.standing ?? null, cards: d.notes.cards ?? [], ideas: d.notes.ideas ?? [], turn: d.notes.turn ?? null, speakers: d.notes.speakers ?? [], featured: d.notes.featured ?? [], ...(d.notes.genre ? { genre: d.notes.genre, theme: d.notes.theme } : {}), ...(r.requested ? { requested: true } : {}), score: r.score, repetition: combined[r.slug]?.verdict ?? null }
           }),
           cut: sel.rows.filter((r) => !r.selected).map((r) => ({ what: r.slug, why: r.why })),
           inherit: dedupeInherit(filesIn(P(ctx, 'review/select'), '.json').flatMap((f) => readJsonFile(f).inherit ?? [])),
         })
       },
-      gates: [selectScores, selectRepetition, selectCaps, selectConsent, selectFitted, selectFits, selectInherit],
+      gates: [selectRequested, selectScores, selectRepetition, selectCaps, selectConsent, selectFitted, selectFits, selectInherit],
     },
   ],
+}
+
+/** a requested segment holds its place; a cap it breaks stops the run for the owner, naming the cap and the segments */
+async function selectRequested(ctx) {
+  const g = gate('select.requested')
+  const conflicts = requestedConflicts(ctx)
+  for (const c of conflicts) g.fail(`${c}. The owner decides (production/owner-requests.json): the tool neither drops a requested segment nor ignores a cap`)
+  const kept = selection(ctx).rows.filter((r) => r.requested).map((r) => r.slug)
+  if (kept.length && !conflicts.length) g.warn(`requested by the owner, in the selection on the owner's word: ${kept.join(', ')}`)
+  return g.done()
 }
 
 const dedupeInherit = (xs) => xs.filter((x, k) => x && xs.findIndex((y) => y?.from === x.from && y?.path === x.path) === k)
@@ -587,7 +634,7 @@ async function selectScores(ctx) {
   const g = gate('select.scores')
   const reviews = filesIn(P(ctx, 'review/select'), '.json').map(readJsonFile)
   for (const d of readDrafts(ctx)) {
-    const n = reviews.filter((r) => ['funny', 'interesting', 'television', 'variety'].every((k) => typeof r.drafts?.[d.slug]?.[k] === 'number')).length
+    const n = new Set(reviews.filter((r) => ['funny', 'interesting', 'television', 'variety'].every((k) => typeof r.drafts?.[d.slug]?.[k] === 'number')).map((r, k) => r.reviewer ?? k)).size
     if (n < ctx.config.parallel.reviewers) g.fail(`draft ${d.slug} has scores from ${n} reviewers; it needs ${ctx.config.parallel.reviewers}`)
   }
   return g.done()

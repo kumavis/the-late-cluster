@@ -5,7 +5,8 @@
 // stand rather than what sources.json lists (episode 002's close-out: two performed posts had been
 // dropped from sources.json, their lines stayed, and the live check only reads what is listed).
 //
-//   airedFindings(ep) → { findings: [{ seg, file, line, what, ref, message }], notes: [string] }
+//   airedFindings(ep) → { findings: [{ seg, file, line, what, ref, message }], notes: [string],
+//                         airing: { <seg>: [handle] } (the real accounts that air in each segment) }
 //
 // It reads every .js file under each rundown segment (segments not in the rundown do not air) and
 // reports, with no record in sources.json:
@@ -17,6 +18,8 @@
 //     is no recorded post's text (cuts with … allowed), or whose handle is not in "accounts";
 //   - a real account whose puppet speaks or appears (as the page computes it), or whose card is
 //     shown, that is not in "accounts".
+// A line spoken only by an invented guest (a cast entry on .example) is fiction, as an invented
+// account's card is: neither its tag nor the addresses in its comments need a record.
 // `notes` are what it could not read: a card whose text is not a literal it can resolve.
 // Node builtins only; the lexer, the line locator and the cast are the writers' room's own.
 import { existsSync, readFileSync } from 'node:fs'
@@ -202,9 +205,14 @@ export async function airedFindings(ep) {
   const realGuest = (id) => guests.has(id) && !isInvented(cast[id])
   const add = (seg, file, line, what, ref, message) => findings.push({ seg, file, line, what, ref, message: `segments/${seg}/${file}${line ? `:${line}` : ''}: ${message}` })
   const needAccount = new Map() // handle → first place it airs
+  const airing = {} // seg → the real accounts that air in it (speak, appear, or have a card shown)
+  const airs = (seg, h) => (airing[seg] ??= new Set()).add(h)
 
   for (const seg of ep.rundown) {
     const dir = paths.segDir(seg)
+    // the posts an invented guest (.example) performs or answers are fiction, as its cards are: the
+    // writers' room never records them (sources.json lists real accounts only; write.names skips them)
+    const fiction = new Set()
     // script.js first, so an account that speaks is reported at its first line
     const files = walk(dir).filter((f) => /\.(m?js)$/.test(f)).sort((a, b) => (b === 'script.js') - (a === 'script.js'))
     for (const file of files) {
@@ -213,7 +221,12 @@ export async function airedFindings(ep) {
       // tagged lines (rule R3)
       if (file === 'script.js') {
         for (const l of scriptLines(src)) {
+          if (l.who.length && l.who.every((w) => guests.has(w) && isExampleHost(castHandle(cast[w])))) {
+            for (const ref of postRefs(l.comments.join(' '))) fiction.add(ref)
+            continue
+          }
           const real = l.who.filter(realGuest)
+          for (const who of real) airs(seg, castHandle(cast[who]))
           for (const who of real) if (!needAccount.has(castHandle(cast[who]))) needAccount.set(castHandle(cast[who]), { seg, file, line: l.line, why: `${who} speaks` })
           const tag = tagOf(l.comments)
           if (!tag || !['verbatim', 'interview', 'catchphrase'].includes(tag.kind)) continue
@@ -244,7 +257,7 @@ export async function airedFindings(ep) {
       // every post address written in the segment, in code or comments
       for (const t of lex(src).tokens) {
         for (const ref of postRefs(t.value)) {
-          if (reported.has(ref) || recorded(ref)) continue
+          if (reported.has(ref) || recorded(ref) || fiction.has(ref)) continue
           reported.add(ref)
           add(seg, file, t.line, 'address', ref, `${ref} is written here but is not in sources.json "posts"`)
         }
@@ -258,6 +271,7 @@ export async function airedFindings(ep) {
           notes.push(`segments/${seg}/${file}:${c.line}: a card${h ? ` by ${h}` : ''} whose text is ${c.unreadable}, not a literal; its record was not checked`)
           continue
         }
+        if (h) airs(seg, h)
         if (h && !needAccount.has(h)) needAccount.set(h, { seg, file, line: c.line, why: 'its card is shown' })
         const posts = allPosts.filter((p) => typeof p.text === 'string' && (!h || normHandle(p.author) === h))
         if (!posts.some((p) => sameText(c.text, p.text) || !verbatimMismatch(c.text, p.text))) add(seg, file, c.line, 'card', h, `a card${h ? ` by ${h}` : ''} shows "${short(c.text)}", which is no post${h ? ` of ${h}'s` : ''} in sources.json "posts"`)
@@ -269,6 +283,7 @@ export async function airedFindings(ep) {
     for (const id of appearing({ ...ctx, meta: { ...ctx.meta, rundown: [seg] } })) {
       if (!realGuest(id)) continue
       const h = castHandle(cast[id])
+      airs(seg, h)
       if (!needAccount.has(h)) needAccount.set(h, { seg, file: 'cues.json or index.js', line: null, why: `${id} appears` })
     }
   }
@@ -278,7 +293,7 @@ export async function airedFindings(ep) {
     findings.push({ seg: w.seg, file: w.file, line: w.line, what: 'account', ref: h, message: `${where}: ${h} airs (${w.why}) but is not in sources.json "accounts"` })
   }
   if (!sources && findings.length) findings.unshift({ seg: null, file: 'production/sources.json', line: null, what: 'sources', ref: null, message: 'production/sources.json is missing' })
-  return { findings, notes }
+  return { findings, notes, airing: Object.fromEntries(Object.entries(airing).map(([seg, hs]) => [seg, [...hs].sort()])) }
 }
 
 /** what `npm run aired` prints: { out: [lines], err: [notes], code } (1 on a finding) */

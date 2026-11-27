@@ -115,9 +115,9 @@ own.
 | 7 | **draft** | writers in parallel, one segment each | `drafts/<slug>/script.js`, notes and sources | every standing segment has a draft, and seven or eight drafts exist |
 | 8 | **fit** | the fitting tool, then sound editors | `drafts/<slug>/fit.json`, respellings in the script, entries in the voice research file | every draft is fitted on a best effort and its hard words are recorded; nothing heard is crude, alarming or out of bounds |
 | 9 | **select** | 2 reviewers score; tool combines and applies the caps; **repetition gate (scripts)** by 2 reviewers; 1 auditor refreshes consent over the network | `select/scores.json`, `review/repetition-scripts.json`, `review/consent-r<n>.md`, `plan.json` | no selected script repeats, no cap is broken, every selected account and post passes the consent refresh, and the rundown fits |
-| 10 | **assemble** | 1 writer for the order, open, close and joins; 2 reviewers on the lines the writer added; 1 sound editor; tools | final `segments/*/script.js`, `sources.json`, `assembly.md`, audio | scripts validate and render; the added lines pass the repetition gate; the real-people and heard-text gates pass |
+| 10 | **assemble** | 1 writer for the order, open, close and joins; 2 reviewers on the lines the writer added; 1 auditor refreshes consent for any account or post the additions bring in; 1 sound editor; tools | final `segments/*/script.js`, `sources.json`, `assembly.md`, `review/consent-assembly/r<n>.json`, audio | scripts validate and render; the added lines pass the repetition gate; every real account and post the select refresh did not cover passes a consent refresh of its own; the real-people and heard-text gates pass |
 | 11 | **stage** | builders in parallel, one segment each; then 1 auditor on the frames | `segments/*/index.js`, frames, `review/stage.json` | frames render clean; the cards, unread-text and credits gates pass; the auditor passes every segment |
-| 12 | **build** | tools | thumbnail, preview or published build, `review/sources-live.md` | the build and `verify` pass, everything from a real account that airs has a record in `sources.json` (`npm run aired`, run by the build: a finding refuses a published build, a preview only warns), and every cited post still exists unchanged |
+| 12 | **build** | tools | thumbnail, preview or published build, `review/sources-live.md` | the build and `verify` pass, everything from a real account that airs has a record in `sources.json` (`npm run aired`, run by the build: a finding refuses a published build, a preview only warns), every rundown segment's gates are on record: script repetition verdicts from two reviewers, two verdicts on each line written at assembly, and a passing consent refresh that covered every real account that airs (`npm run on-record`, run by the build the same way; `001-pilot` and `002-2026-w47` aired before it and are exempt), and every cited post still exists unchanged |
 | 13 | **review** | tool runs the cold-viewer test; then 1 reviewer | `review/cold-viewers.md` (the viewers' frames and answers stay outside `production/`, under `shots/<id>/_cold/`), `scorecard.md`, ledger entries, the pull request text | nothing; a send-back is a valid result and routes to the stage that can fix it |
 
 Then the owner watches the whole episode with sound. Nothing is published without that. What
@@ -262,6 +262,52 @@ still heard differently from its caption is listed in the fit report for the own
 thing is never accepted: a spelling heard as crude, alarming or out of bounds. The sound editor
 finds another, and if there is none the line goes to the owner.
 
+### Segments the owner asks for
+
+The owner may ask for a segment by name, and it goes through the same gates as every other
+segment (the owner's decision of 27 November 2026: "Yes, same gates"). The project manager records
+the request by hand in `production/owner-requests.json`: the segment's slug and title, the owner's
+words verbatim with the date they were said, the cards it draws on, and each exception the owner
+granted as a plain sentence of its own. The tool checks the shape and refuses a slug that collides
+with a planned draft.
+
+**The order.** Card ids exist only after research, so a request made at the start of a week names
+no cards yet. The request is recorded first, with an empty card list. Each research brief then
+carries one line with the owner's words, asking the researcher to card whatever their lane holds on
+the subject. Here the request is only a pointer, like a tag: it decides nothing, and the screen
+applies as always. After the screen, the project manager adds the card ids to the request. Every
+card it names must be in the run's longlist and must have passed the constitution screen; if one
+has not, the draft stage stops and says which. A request may also draw on no cards at all, such
+as a segment about the show itself, written for the house cast. That is safe by construction:
+without a card and a source record, the real-people gates refuse any real person's line or post.
+Material newer than the scrape is not a special path: the scrape is run again so the digest holds
+it, and research runs on the new digest.
+
+From there the segment is a planned draft. Its writer's brief carries the owner's words and the
+exceptions, and it is fitted, scored and judged like any other draft. At select it is in the
+selection on the owner's word, not on its score, and the rest of the rundown is selected around it
+under the caps. If keeping it would break a cap (the running time, a person in more than two
+segments, one interview, someone who spoke in the previous aired episode, a pair verdict, a consent
+out), the run stops and names the cap and the segments, and the owner decides. The tool never drops
+a requested segment and never ignores a cap. Because the segment is in the selection, the
+repetition gate on scripts and the consent refresh cover it with no special case. A "repeat"
+verdict sends it back for a redraft like any other, because being requested waives nothing.
+
+An exception covers only what it says, and only craft rules: a bible limit such as one joke about
+the show per episode, or material from outside the scrape's window. An exception does not make a
+card: whatever the segment draws on is still carded and screened at research. Nothing in the
+constitution is ever an exception: the people involved say only their own words, in their own
+context, and the opt-out list and the consent refresh still apply. The tool refuses an exception
+that names the constitution or a real-people rule.
+
+A request may be added at any time before select is done. If it is added after the draft stage,
+the run reopens draft, fit and select for it, as `--from draft` would. Nothing is reopened for a
+request that could not yet be drafted. If assembly had already begun, assembly reopens too. The
+tool copies the segment in, appends it to the rundown, and merges its sources and guests. It sets
+the assembler's `assembly.md` aside, so the assembler is briefed again, with a line saying what
+joined, to place the segment and write its joins. Its builder stages it, and the stage auditor
+looks again at every segment. At the build, nothing airs without these gates on record (stage 12).
+
 ### 9. Select
 
 Reviewers score every fitted draft: is it funny, is it interesting, **does it work as
@@ -291,7 +337,10 @@ is shown is performed or read aloud, or it is short enough to take in at a glanc
 ### 10 to 13. Assemble, stage, build, review
 
 One writer assembles the selected drafts into an episode: the order, the open and the close,
-the joins. The lines that writer adds or changes go through the repetition gate. The sound
+the joins. The lines that writer adds or changes go through the repetition gate. If they bring in
+a real account or post that the consent refresh at select did not cover, the tool lists only those
+additions and briefs one auditor for a consent refresh on them, on the same terms as at select. The
+stage does not pass until that round passes, and anything it puts out goes back to the assembler. The sound
 editor fits the assembled scripts again. Tools render the audio, and the gates run on the
 result: every line spoken by a real account's puppet is exact and in its own context; nothing
 in what the transcription **heard** is offensive, alarming or out of bounds. A line heard

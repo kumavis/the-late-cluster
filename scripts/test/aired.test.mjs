@@ -160,3 +160,18 @@ test('npm run aired on the pilot still reports its findings, after a line saying
     other.cleanup()
   }
 })
+
+test("an invented guest's (.example) performed posts are fiction, as its cards are; a house character's tagged line is not", async () => {
+  const fx = fixture({ records: true })
+  try {
+    const FAKE = 'at://did:plc:inventedfan000000000000000/app.bsky.feed.post/3fakepost1'
+    fx.put('episodes/003-fixture/cast.js', `export const CAST = {\n  guest: { name: 'Guest', handle: '@guest.bsky.social', guest: true },\n  quinn: { name: 'Quinn', handle: '@quinn.example', guest: true },\n}\n`)
+    fx.put('episodes/003-fixture/segments/talk/script.js', SCRIPT.replace("  ],\n}", `    { say: 'quinn', id: 'fic', text: 'a spoon, honestly' }, // verbatim: ${FAKE} · context: ${FAKE}\n  ],\n}`))
+    assert.deepEqual((await airedFindings(ep(fx))).findings, [])
+    // the same address on a house character's line still needs its record
+    fx.put('episodes/003-fixture/segments/talk/script.js', SCRIPT.replace("  ],\n}", `    { say: 'larry', id: 'read', text: 'a spoon, honestly' }, // verbatim: ${FAKE} · context: ${FAKE}\n  ],\n}`))
+    assert.ok((await airedFindings(ep(fx))).findings.some((f) => f.ref === FAKE))
+  } finally {
+    fx.cleanup()
+  }
+})

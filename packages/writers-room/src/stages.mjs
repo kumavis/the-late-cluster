@@ -15,6 +15,6 @@ export const STAGE_DEFS = { ...EARLY, ...DRAFTS, ...LATE }
 for (const s of STAGES) if (!STAGE_DEFS[s]) throw new Error(`stage ${s} has no definition`)
 
 export { coverage } from './coverage.mjs'
-export { draftPlan } from './stage/early.mjs'
-export { readDrafts, selection } from './stage/drafts.mjs'
+export { draftPlan, requestedPlanProblems } from './stage/early.mjs'
+export { readDrafts, requestedConflicts, selection } from './stage/drafts.mjs'
 export { addedLines } from './stage/late.mjs'

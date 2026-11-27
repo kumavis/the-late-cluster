@@ -22,6 +22,7 @@
     "banner": "node scripts/banner.mjs",
     "build": "node scripts/build.mjs",
     "aired": "node scripts/aired.mjs",
+    "on-record": "node scripts/on-record.mjs",
     "verify": "node scripts/verify.mjs",
     "site": "node packages/site/bin/build-site.mjs",
     "preview": "npm run site && node packages/site/bin/serve.mjs dist",

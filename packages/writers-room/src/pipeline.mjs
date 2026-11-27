@@ -19,8 +19,9 @@ import { copyInherited } from './inherit.mjs'
 import { describePost, loadDigest, lookupPosts } from './digest.mjs'
 import { checkWeek, episodePaths, findEpisodeForWeek, formatEpisodeJson, ID_RE, listEpisodes, PKG, ProduceError, readJson, rel, weekSlug } from './repo.mjs'
 import { loadState, newState, nextStage, resetFrom, saveState } from './state.mjs'
-import { STAGE_DEFS, STAGES } from './stages.mjs'
+import { STAGE_DEFS, STAGES, requestedPlanProblems } from './stages.mjs'
 import { makeTools } from './tools.mjs'
+import { REQUESTS_FILE, requestFileProblems, requestedSegments } from './requests.mjs'
 import { headlessReady, makeRunner } from './runners.mjs'
 
 const deepMerge = (a, b) => {
@@ -232,12 +233,43 @@ export async function produce(o) {
     state.stages[s].data = { ...(state.stages[s].data ?? {}), excluded: [...new Set([...(state.stages[s].data?.excluded ?? []), ...o.exclude])] }
     print(`excluded at ${s}: ${o.exclude.join(', ')}`)
   }
+  // the segments the owner asked for (src/requests.mjs): a record out of shape stops the run; one
+  // added after the draft stage reopens draft, fit and select for it, as --from draft would
+  const requestProblems = requestFileProblems(paths.production)
+  if (requestProblems.length) {
+    for (const p of requestProblems) print(`  FAIL ${p}`)
+    print(`produce ${found.id}: production/${REQUESTS_FILE} is not in shape; fix it and run again`)
+    save()
+    return 1
+  }
+  let from = o.from
+  const late = requestedSegments(paths.production).filter((r) => !existsSync(join(paths.production, 'drafts', r.slug, 'script.js'))).map((r) => r.slug)
+  if (late.length && !from && state.stages.draft.status === 'done') {
+    // nothing is reopened for a request that could not be drafted (a slug taken, a card not screened)
+    const blocked = requestedPlanProblems(await ctxFor())
+    if (blocked.length) {
+      for (const p of blocked) print(`  FAIL ${p}`)
+      print(`produce ${found.id}: the requested ${late.join(', ')} cannot join yet; nothing was reopened`)
+      save()
+      return 1
+    }
+    print(`requested by the owner after the draft stage: ${late.join(', ')}; draft, fit and select reopen for ${late.length === 1 ? 'it' : 'them'} (as --from draft)`)
+    from = 'draft'
+  }
+  // assembly had begun: it reopens too, and its writer is briefed again to place what joined
+  const rejoin = from && late.length && existsSync(join(paths.production, 'assembly.md')) ? late : []
   let todo
-  if (o.from) {
-    if (!STAGES.includes(o.from)) throw new ProduceError(`--from takes one of ${STAGES.join(', ')}`, 2)
-    resetFrom(state, o.from)
-    if (STAGES.indexOf(o.from) <= STAGES.indexOf('build')) setStatus(paths, 'draft')
-    todo = STAGES.slice(STAGES.indexOf(o.from))
+  if (from) {
+    if (!STAGES.includes(from)) throw new ProduceError(`--from takes one of ${STAGES.join(', ')}`, 2)
+    resetFrom(state, from)
+    if (STAGES.indexOf(from) <= STAGES.indexOf('build')) setStatus(paths, 'draft')
+    todo = STAGES.slice(STAGES.indexOf(from))
+    if (rejoin.length) {
+      setAside(join(paths.production, 'assembly.md'))
+      const joined = rejoin.join(', ')
+      state.stages.assemble.data = { ...(state.stages.assemble.data ?? {}), feedback: [`${joined}: ${rejoin.length === 1 ? 'a segment' : 'segments'} the owner asked for joined after assembly began (production/${REQUESTS_FILE}). The tool copies ${rejoin.length === 1 ? 'it' : 'them'} into segments/, appends ${rejoin.length === 1 ? 'it' : 'them'} to the rundown, and merges ${rejoin.length === 1 ? 'its' : 'their'} sources and guests into production/sources.json and cast.js. Place ${rejoin.length === 1 ? 'it' : 'them'} in the order (episode.json "rundown" and plan.json alike), write the joins, and say what you changed in assembly.md.`] }
+      print(`  assembly had begun: assembly.md is set aside and assemble.writer is briefed again to place ${joined}`)
+    }
   } else if (o.stage) {
     const before = STAGES.slice(0, STAGES.indexOf(o.stage)).filter((s) => state.stages[s].status !== 'done')
     if (before.length) throw new ProduceError(`${o.stage} needs ${before.join(', ')} done first`)

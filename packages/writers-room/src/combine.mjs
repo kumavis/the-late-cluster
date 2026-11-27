@@ -231,8 +231,11 @@ export function repetitionProblems(combined, { reviewers, maxTurnedFromPrevious,
  * reviews: [{ reviewer, drafts: { <slug>: { funny, interesting, television, variety, reason } } }]
  * drafts: [{ slug, seconds, standing }]. Fills toward targetSeconds by score, never past the ceiling;
  * `blocked(slug, chosenSoFar)` returns why a draft cannot join (the caps), or null.
+ * `required`: the slugs the owner asked for. They are selected first, on the owner's word, whatever
+ * their score; a cap one of them breaks (or an exclusion) is recorded on its row as `conflict`, never
+ * applied by dropping it, and `requiredSeconds` is their running time. The rest fill around them.
  */
-export function selectDrafts({ drafts, reviews, weights, targetSeconds, maxSeconds, excluded = [], blocked = () => null }) {
+export function selectDrafts({ drafts, reviews, weights, targetSeconds, maxSeconds, excluded = [], blocked = () => null, required = [] }) {
   const rows = drafts.map((dr) => {
     const per = reviews.map((r) => ({ reviewer: r.reviewer, ...(r.drafts?.[dr.slug] ?? {}) })).filter((x) => typeof x.funny === 'number')
     const crit = Object.fromEntries(Object.keys(weights).map((k) => [k, round3(avg(per.map((x) => Number(x[k]) || 0)))]))
@@ -241,7 +244,18 @@ export function selectDrafts({ drafts, reviews, weights, targetSeconds, maxSecon
   })
   rows.sort((a, b) => b.score - a.score || a.slug.localeCompare(b.slug))
   let total = 0
+  for (const r of rows.filter((x) => required.includes(x.slug))) {
+    const chosen = rows.filter((x) => x.selected).map((x) => x.slug)
+    const cap = excluded.includes(r.slug) ? 'it is excluded by the project manager (--exclude), and only the owner drops it' : blocked(r.slug, chosen)
+    r.selected = true
+    r.requested = true
+    total += r.seconds
+    r.why = 'requested by the owner'
+    if (cap) r.conflict = cap
+  }
+  const requiredSeconds = total
   for (const r of rows) {
+    if (r.requested) continue
     if (excluded.includes(r.slug)) {
       r.selected = false
       r.why = 'excluded by the project manager'
@@ -264,5 +278,5 @@ export function selectDrafts({ drafts, reviews, weights, targetSeconds, maxSecon
       r.why = `score ${r.score}, rank ${rows.indexOf(r) + 1}`
     }
   }
-  return { rows, total }
+  return { rows, total, requiredSeconds }
 }

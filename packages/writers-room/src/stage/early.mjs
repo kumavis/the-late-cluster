@@ -15,6 +15,7 @@ import { writeJson } from '../repo.mjs'
 import { pronounLabel } from '../pronouns.mjs'
 import { verbatimMismatch } from '../scan.mjs'
 import { NOTE_FORMAT, NOTE_RULE, REPORT_RULE, STOP_RULE, noteProblems } from '../consent.mjs'
+import { requestFileProblems, requestRunProblems, requestedSegments } from '../requests.mjs'
 import { P, W, R, REPETITION_RULES, excludedOf, has, json, pendingRepetition, previousLabel, repetitionFiles, reviewerIds, task } from './common.mjs'
 
 // ---------------------------------------------------------------- 1. scope
@@ -172,6 +173,8 @@ const research = {
       tasks: (ctx) => {
         const dd = R(ctx, ctx.digestDir)
         const sk = loadSkeletons(ctx.digestDir, ctx.digest)
+        // a segment the owner asked for is a pointer here, like a tag: it decides nothing, and the screen applies
+        const asked = requestedSegments(ctx.paths.production).map((r) => `The owner asked for a segment (${r.slug}) in these words: "${r.asked.words}". If your lane holds material on it, card that material exactly like any other story. The request is a pointer and decides nothing: the screen applies as always, and the project manager adds the card ids to the request after the screen.`)
         return activeLanes(ctx, sk).map(({ lane, ids }) => {
           return task(ctx, 'research', {
             id: `research.${lane.id}`,
@@ -187,6 +190,7 @@ const research = {
               lane.id === 'games' ? 'Top Chicken: every result in the window, the record and any streak. Winners only by name; never rank or name a non-winner.' : null,
               lane.id === 'voices' ? 'New and smaller voices: featured marks are facts for the people rules, never a reason to leave anyone out.' : null,
               lane.id === 'interview' ? 'Interview candidates: people who made something and were asked about it. One card per candidate, keeping each answer with the post it replied to.' : null,
+              ...asked,
               lane.id === 'tagged' ? `What the audience pointed at: members of the cluster tagged the show's account at these things. Card what was pointed at exactly like any other story: what happened, what is shown, what is not understood. Record on the card who pointed, as ${POINTED_BY}, and nothing more about them. Propose nothing: a tag guides where the show looks and decides nothing else, and the show promises nobody a place. The tagger's own post is addressed to the show; it is not material for the card.` : null,
             ].filter(Boolean),
             rules: [
@@ -524,7 +528,18 @@ export function draftPlan(ctx) {
     const cards = card ? [card] : [...new Set(chosen.map((id) => ideas.find((i) => i.id === id)?.card).filter(Boolean))]
     out.push({ slug: s, card, cards, ideas: chosen, standing: s })
   }
+  // the segments the owner asked for (production/owner-requests.json), each once its slug is free and
+  // its cards are screened; one that is not yet is left out here and named by the draft.requested gate
+  const check = { planned: out.map((d) => d.slug), standing: ctx.config.standing.segments, longlist: json(P(ctx, 'research/longlist.json')) }
+  for (const r of requestedSegments(ctx.paths.production)) if (!requestRunProblems(r, check).length) out.push({ slug: r.slug, card: r.cards[0] ?? null, cards: r.cards, ideas: [], standing: null, requested: r })
   return out
+}
+
+/** what keeps a requested segment from being drafted: the record's shape, a slug collision, a card not screened */
+export function requestedPlanProblems(ctx) {
+  const plan = draftPlan(ctx).filter((d) => !d.requested)
+  const check = { planned: plan.map((d) => d.slug), standing: ctx.config.standing.segments, longlist: json(P(ctx, 'research/longlist.json')) }
+  return [...requestFileProblems(ctx.paths.production), ...requestedSegments(ctx.paths.production).flatMap((r) => requestRunProblems(r, check))]
 }
 
 // ---------------------------------------------------------------- 6. repetition gate (ideas)
@@ -593,7 +608,7 @@ const repetitionIdeas = {
 async function repetitionIdeasGate(ctx) {
   const g = gate('repetition.ideas')
   const plan = draftPlan(ctx)
-  if (!plan.some((d) => !d.standing)) g.fail('nothing on the shortlist is left to draft (everything was excluded or dropped)')
+  if (!plan.some((d) => !d.standing && !d.requested)) g.fail('nothing on the shortlist is left to draft (everything was excluded or dropped)')
   const items = [...new Set(plan.flatMap((d) => d.ideas))].map((id) => ({ id }))
   const combined = combineRepetition(repetitionFiles(P(ctx, 'review/repetition-ideas')), items)
   const r = repetitionProblems(combined, { reviewers: ctx.config.repetition.reviewers, maxTurnedFromPrevious: ctx.config.repetition.maxTurnedFromPrevious, label: 'idea' })

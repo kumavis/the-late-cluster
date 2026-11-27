@@ -15,10 +15,13 @@ import { constitutionUnchanged, episodeImports, inheritConsistent, selfCheckDna 
 import { normHandle } from '../digest.mjs'
 import { peopleRules } from '../ledger.mjs'
 import { formatEpisodeJson, writeJson } from '../repo.mjs'
-import { scriptLines } from '../scan.mjs'
+import { isExampleHost, scriptLines } from '../scan.mjs'
+import { sourcesCommand } from '../scraper.mjs'
+import { CONSENT_STOPS, NOTE_FORMAT, NOTE_RULE, REPORT_RULE, STOP_RULE, noteProblems, outProblems } from '../consent.mjs'
 import { RESEARCH_FILE, RESEARCH_PAGE, ensureFit, fitCommand, fitProblems, heardLine, readFit, researchCommand } from '../studio.mjs'
 import { VIEWER_BRIEF, prepareCold, writeColdReport } from '../cold.mjs'
 import { draftsDir, ownerRewrites } from './drafts.mjs'
+import { requestedNote } from '../requests.mjs'
 import { P, W, R, REPETITION_RULES, as, has, json, pendingRepetition, repetitionFiles, reviewerIds, sha, shaText, task } from './common.mjs'
 
 const rundownOf = (ctx) => JSON.parse(readFileSync(ctx.paths.episodeJson, 'utf8')).rundown ?? []
@@ -46,8 +49,134 @@ async function mergeCast(ctx, plan) {
   if (Object.keys(cast).length) writeFileSync(ctx.paths.castJs, `// Merged by the pipeline from the selected drafts' cast.js. The assembler may edit it.\nexport const CAST = ${JSON.stringify(cast, null, 2)}\n`)
 }
 
+/**
+ * the guests of drafts that joined after assembly began (assemble/joined.json), added to the episode's
+ * cast.js: when assembly copies them in, and again after the assembler's wave. The file the assembler
+ * may have edited is kept as it is; only missing guests are appended, as one Object.assign.
+ */
+async function mergeLateCast(ctx, slugs) {
+  const have = has(ctx.paths.castJs) ? (await importFresh(ctx.paths.castJs)).CAST ?? {} : null
+  const add = {}
+  for (const id of slugs) {
+    const f = join(draftsDir(ctx), id, 'cast.js')
+    if (!has(f)) continue
+    for (const [k, v] of Object.entries((await importFresh(f)).CAST ?? {})) if (!(have && k in have) && !(k in add)) add[k] = v
+  }
+  if (!Object.keys(add).length) return
+  if (!have) writeFileSync(ctx.paths.castJs, `// Merged by the pipeline from the selected drafts' cast.js. The assembler may edit it.\nexport const CAST = ${JSON.stringify(add, null, 2)}\n`)
+  else writeFileSync(ctx.paths.castJs, `${readFileSync(ctx.paths.castJs, 'utf8').replace(/\n*$/, '\n')}\n// Added by the pipeline: the guests of ${slugs.join(', ')}, which joined after assembly began.\nObject.assign(CAST, ${JSON.stringify(add, null, 2)})\n`)
+}
+
 /** fit every segment whose script or the episode's cast changed since its last fit */
 const fitSegments = (ctx) => Object.fromEntries(rundownOf(ctx).filter((s) => has(ctx.paths.segFile(s, 'script.js'))).map((s) => [s, ensureFit(ctx, { seg: s })]))
+
+// ---------------------------------------------------------------- consent for what assembly adds
+
+const readOr = (f) => {
+  try {
+    return has(f) ? readJsonFile(f) : null
+  } catch {
+    return null
+  }
+}
+const roundsIn = (dir) => filesIn(dir, '.json').filter((f) => /\/r\d+\.json$/.test(f)).map((f) => ({ f, n: Number(/r(\d+)\.json$/.exec(f)[1]), j: readOr(f) ?? {} })).sort((a, b) => a.n - b.n)
+
+/**
+ * What the passing consent refreshes covered: select's (stage 9: select/sources.json, named by a passing
+ * review/consent/r<n>.json) and assembly's (assemble/consent-sources-r<n>.json, named by a passing
+ * review/consent-assembly/r<n>.json). → { handles, dids, posts, rounds: [file] }. The build reads this too.
+ */
+export function consentCoverage(prod) {
+  const out = { handles: new Set(), dids: new Set(), posts: new Set(), rounds: [] }
+  const take = (list) => {
+    for (const a of list.accounts ?? []) {
+      if (a?.handle) out.handles.add(normHandle(a.handle))
+      if (a?.did) out.dids.add(a.did)
+    }
+    for (const p of list.posts ?? []) if (p?.uri) out.posts.add(p.uri)
+  }
+  const sel = readOr(join(prod, 'select', 'sources.json'))
+  const pass = sel?.selection ? roundsIn(join(prod, 'review', 'consent')).find((r) => r.j.selection === sel.selection && r.j.verdict === 'pass') : null
+  if (pass) {
+    take(sel)
+    out.rounds.push(`production/review/consent/r${pass.n}.json`)
+  }
+  for (const r of roundsIn(join(prod, 'review', 'consent-assembly'))) {
+    const list = readOr(join(prod, 'assemble', `consent-sources-r${r.n}.json`))
+    if (r.j.verdict === 'pass' && list?.selection && list.selection === r.j.selection) {
+      take(list)
+      out.rounds.push(`production/review/consent-assembly/r${r.n}.json`)
+    }
+  }
+  return out
+}
+
+/** the real accounts and posts in production/sources.json that no passing consent refresh covered */
+export function consentAdditions(ctx) {
+  const s = readOr(ctx.paths.sources) ?? {}
+  const cov = consentCoverage(ctx.paths.production)
+  const real = (h) => Boolean(h) && !isExampleHost(normHandle(h))
+  const accounts = (s.accounts ?? []).filter((a) => real(a?.handle) && !cov.handles.has(normHandle(a.handle)) && !(a.did && cov.dids.has(a.did)))
+  const posts = [...new Map((s.posts ?? []).filter((p) => p?.uri && (!p.author || real(p.author)) && !cov.posts.has(p.uri)).map((p) => [p.uri, p])).values()]
+  const hash = shaText(JSON.stringify({ accounts: accounts.map((a) => normHandle(a.handle)).sort(), posts: posts.map((p) => p.uri).sort() }))
+  return { accounts, posts, hash, empty: !accounts.length && !posts.length }
+}
+
+const assemblyRounds = (ctx) => roundsIn(P(ctx, 'review/consent-assembly'))
+const additionsLabel = (add) => [...add.accounts.map((a) => normHandle(a.handle)), ...add.posts.map((p) => p.uri)].join(', ')
+
+function consentTask(ctx) {
+  const add = consentAdditions(ctx)
+  if (add.empty) return []
+  const rounds = assemblyRounds(ctx)
+  if (rounds.some((r) => r.j.selection === add.hash)) return []
+  const n = rounds.length + 1
+  writeJson(P(ctx, `assemble/consent-sources-r${n}.json`), { format: 'late-cluster-sources/1', week: ctx.week, selection: add.hash, accounts: add.accounts, posts: add.posts, links: [], lines: [], numbers: [] })
+  const dd = R(ctx, ctx.digestDir)
+  return [
+    task(ctx, 'assemble', {
+      id: `assemble.consent-r${n}`,
+      role: 'auditor',
+      kind: 'consent',
+      title: `Refresh consent for what assembly added (round ${n})`,
+      writes: [`review/consent-assembly/r${n}.json`],
+      alsoEdits: [W(ctx, `review/consent-assembly-r${n}.md`)],
+      keys: [`review/consent-assembly/r${n}.json`, `assemble/consent-sources-r${n}.json`],
+      reads: [W(ctx, `assemble/consent-sources-r${n}.json`), `${dd}/private/bio-review.md?`],
+      instructions: [
+        `The open, the close or the joins written at assembly bring in accounts or posts the consent refresh at select did not cover: ${additionsLabel(add)}. Only they are listed in assemble/consent-sources-r${n}.json.`,
+        `Run \`${sourcesCommand(W(ctx, `assemble/consent-sources-r${n}.json`), dd, W(ctx, `review/consent-assembly-r${n}.md`))} --json\`. It reads, over the network, each listed account's bio and labels as they are now, the pinned post, posts since the scrape and any post about the show, and checks that each cited post still exists unchanged. Its "issues" need a person: you. Its "notes" (a bio line, a general remark, a changed handle or display name) need nobody; carry the ones that bear on the material into your notes. Exit 0 with notes is a clean check.`,
+        `${STOP_RULE} A cited post is out when it is gone or its text changed. Use the network only through npm run sources and npm run media.`,
+        `${NOTE_RULE} That covers every listed account the scraper flagged for its bio (private/bio-review.md, "bioReview").`,
+        REPORT_RULE,
+        `Write review/consent-assembly/r${n}.json: { "selection": "${add.hash}", "verdict": "pass" | "out", "out": [{ "account": "<handle or DID>", "stop": ${CONSENT_STOPS.map((x) => `"${x}"`).join(' | ')}, "evidence": "<the post's address, or optout.json>" } or { "post": "<at://>", "stop": "gone" | "changed" | <its author's stop> }], "notes": [${NOTE_FORMAT}], "reason": "<one sentence>" }. Anything out goes back to the assembler, who takes it out; notes go to the reviewers as they are.`,
+      ],
+      rules: [`"selection" is "${add.hash}"; "verdict" is "pass" with "out" empty, or "out" with at least one account or post.`, `Every "out" entry names its "stop": an account only for ${CONSENT_STOPS.map((x) => `"${x}"`).join(', ')}; a post also for "gone" or "changed".`, 'Each note has "account", the exact "words", "where" (an at:// address or "bio") and "to".'],
+    }),
+  ]
+}
+
+/** every real account and post assembly added has a passing consent refresh of its own */
+async function assembleConsent(ctx) {
+  const g = gate('assemble.consent')
+  const add = consentAdditions(ctx)
+  if (add.empty) return g.done()
+  const rounds = assemblyRounds(ctx)
+  const round = rounds.find((r) => r.j.selection === add.hash)
+  if (!round) {
+    const n = rounds.length + 1
+    g.fail(`assembly added accounts or posts that no consent refresh covered (${additionsLabel(add)}): an auditor refreshes consent for them (task assemble.consent-r${n}, on production/assemble/consent-sources-r${n}.json)`)
+    return g.done()
+  }
+  const at = R(ctx, round.f)
+  const shape = [...outProblems(round.j.out ?? [], at), ...noteProblems(round.j.notes, at)]
+  if (!['pass', 'out'].includes(round.j.verdict)) g.fail(`${at}: "verdict" is "pass" or "out"`)
+  else if (round.j.verdict === 'out' && !(round.j.out ?? []).length) g.fail(`${at}: "out" names no account or post`)
+  else if (round.j.verdict === 'pass' && (round.j.out ?? []).length) g.fail(`${at}: "verdict" is "pass" but "out" names something; an out is a stop, a note goes in "notes"`)
+  else if (shape.length) shape.forEach((f) => g.fail(f))
+  else if (round.j.verdict === 'out') g.fail(`${at}: the consent refresh puts out ${(round.j.out ?? []).map((o) => o.account ?? o.post).join(', ')}; the assembler takes them out of the open, the close and the joins and out of production/sources.json (npm run produce -- --week ${ctx.week} --rework assemble.writer)`)
+  return g.done()
+}
 
 const assemble = {
   name: 'assemble',
@@ -65,6 +194,35 @@ const assemble = {
       writeJson(P(ctx, 'assemble/drafts.json'), snap)
       meta.rundown = plan.segments.map((s) => s.id)
       writeFileSync(ctx.paths.episodeJson, formatEpisodeJson(meta))
+    } else {
+      // select reopened (a segment the owner asked for joined late): copy in what is new, append it
+      // to the rundown for the assembler to place (the pipeline briefs the assembler again), and
+      // merge its sources and its guests; nothing else is touched
+      const fresh = plan.segments.filter((s) => !has(ctx.paths.segFile(s.id, 'script.js')) && has(join(draftsDir(ctx), s.id, 'script.js')))
+      if (fresh.length) {
+        const snap = json(P(ctx, 'assemble/drafts.json'), {})
+        const sources = has(ctx.paths.sources) ? readJsonFile(ctx.paths.sources) : null
+        for (const s of fresh) {
+          const from = join(draftsDir(ctx), s.id, 'script.js')
+          mkdirSync(ctx.paths.segDir(s.id), { recursive: true })
+          cpSync(from, ctx.paths.segFile(s.id, 'script.js'))
+          snap[s.id] = Object.fromEntries(linesOf(from).map((l) => [l.id, l.text]))
+          if (!meta.rundown.includes(s.id)) meta.rundown.push(s.id)
+          const own = join(draftsDir(ctx), s.id, 'sources.json')
+          if (sources && has(own)) {
+            const j = readJsonFile(own)
+            for (const a of j.accounts ?? []) if (!(sources.accounts ??= []).some((x) => normHandle(x.handle) === normHandle(a.handle))) sources.accounts.push(a)
+            for (const p of j.posts ?? []) if (!(sources.posts ??= []).some((x) => x.uri === p.uri && (x.segment ?? s.id) === (p.segment ?? s.id))) sources.posts.push({ ...p, segment: p.segment ?? s.id })
+            for (const k of ['links', 'lines', 'numbers']) (sources[k] ??= []).push(...(j[k] ?? []))
+          }
+        }
+        writeJson(P(ctx, 'assemble/drafts.json'), snap)
+        writeFileSync(ctx.paths.episodeJson, formatEpisodeJson(meta))
+        if (sources) writeJson(ctx.paths.sources, sources)
+        const joined = [...new Set([...json(P(ctx, 'assemble/joined.json'), []), ...fresh.map((s) => s.id)])]
+        writeJson(P(ctx, 'assemble/joined.json'), joined)
+        await mergeLateCast(ctx, joined)
+      }
     }
     if (!has(ctx.paths.sources)) {
       const merged = json(P(ctx, 'select/sources.json'), { format: 'late-cluster-sources/1', week: ctx.week, accounts: [], posts: [], links: [], lines: [], numbers: [] })
@@ -92,6 +250,8 @@ const assemble = {
           rules: ['episode.json rundown equals plan.json; a title and a description; status stays draft.', "Every real line's source and staged setup recorded in sources.json \"lines\".", `At most ${ctx.limits.words?.max} spoken words.`],
         }),
       ],
+      // the guests of a segment that joined late stay in cast.js whatever the assembler rewrote
+      after: (ctx) => mergeLateCast(ctx, json(P(ctx, 'assemble/joined.json'), [])),
       gates: [writeRundown],
     },
     {
@@ -139,6 +299,8 @@ const assemble = {
       },
       gates: [assembleRepetition],
     },
+    // what assembly added from real accounts gets a consent refresh of its own before anything renders
+    { tasks: (ctx) => consentTask(ctx), gates: [assembleConsent] },
     {
       before: (ctx) => fitSegments(ctx),
       tasks: (ctx) => {
@@ -343,7 +505,8 @@ const stage = {
             )
           const open = fixes.filter((t) => !t.done(ctx))
           if (open.length) return open
-          if (!fixes.length) return []
+          // a segment the last round never saw (it joined later) gets a new round
+          if (!fixes.length && rundownOf(ctx).every((s) => last.j.segments?.[s])) return []
         }
         const n = (last?.n ?? 0) + 1
         if (!has(P(ctx, `review/stage/r${n}.json`))) writeJson(P(ctx, `stage/hashes-r${n}.json`), { ...Object.fromEntries(rundownOf(ctx).map((s) => [s, segHash(ctx, s)])), _episode: looksHash(ctx) })
@@ -436,7 +599,8 @@ const review = {
             `Write the episode into the ledger: ${R(ctx, ctx.ledgerDir)}/${ctx.id}.md (every joke, runner, format, guest, account on a card, song genre and staging device) and ${R(ctx, ctx.ledgerDir)}/${ctx.id}.json ({ "id", "aired": false, "guests", "featured", "formats", "song", "runners", "catchphrases", "devices" }), and the tracker featured.json.`,
             'Write production/review.json: { "verdict": "approve" | "send-back", "route": "<the stage that can fix it>", "reasons": [], "changes": ["<what the recipient must change, with nothing from the ledger in it>"] }. Only "changes" reaches the stage it routes to. A send-back is a valid result.',
             'If the episode earned a change to the craft bible, edit the chapter and list it in production/dna-amendments.md. Never edit the constitution.',
-          ],
+            requestedNote(ctx.paths.production),
+          ].filter(Boolean),
           rules: ['Every row of the scorecard with evidence; the verdict follows the card.', "The ledger entry's guests and featured are who is on screen, by DID; the tracker has this episode's appearances."],
         }),
       ],
