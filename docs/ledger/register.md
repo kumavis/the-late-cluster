@@ -159,6 +159,19 @@ Each changes what a reviewer checks. The words are in
 | The approved cut is not edited for a display name that changed after the scrape | the owner's notes | A card shows the name the account had when it posted |
 | The show's account may tag the accounts in an episode under its own post; it never turns up in someone else's thread | `09-real-people.md` (R13) and the owner's notes | About the account, not the episode |
 
+## The owner's rulings made during the holiday special (003-holiday-2026, not yet aired)
+
+For this special only, unless the owner says otherwise. The words are in
+`episodes/003-holiday-2026/production/owner-notes.md`. None of these is evidence for a rule
+until the special has aired.
+
+| ruling, 27 November 2026 | where it is written | what it means at a gate |
+|---|---|---|
+| The outline: one piece of about four minutes with no posts, no guests, no standing segments and no audience, in which the host is earnest in his own words and explains what old thinkers thought | the owner's notes; `special.md` | The rows of the scorecard that ask for jokes, material from the window, short sincerity in the community's words, reactions and the standing segments were set aside for this special. They stand for every weekly episode |
+| "Keep the rabbi": the special may name a rabbi and quote him, although R10 lists religion | the owner's notes; `special.md` | For this special. The project manager extends it to two other old books told with nothing said of anyone's faith; the owner has not said so. R10 is unchanged for the people the show covers |
+| "we can call this episode 3 … go ahead continue through to the video" | the owner's notes | The project manager reads it as: the script as reviewed, every either-or as written, no stock title card, plain credits. The owner can reverse any of it after watching |
+| Not yet a ruling: whether Article 3 lets a house character explain a long-dead thinker's idea in his own words | `special.md`, as the project manager's reading | The final review passed the gate on the outline, which asks for it, and put the reading to the owner |
+
 ## Experiments and what they tested
 
 | episode | experiment | rule tested | result |
@@ -166,3 +179,4 @@ Each changes what a reviewer checks. The words are in
 | 001 (aired) | the show itself | none | people wanted another; see [lore.md](lore.md), experiment log |
 | 002 (draft) | the last wish refused; the counter holds; Larry wins once | "the last bump after the tally"; "Larry as the loser" | none: never aired |
 | 002-2026-w47 (aired) | ten seconds with no words: in each segment made from a made thing, the thing is shown in use and delivers the segment's turn itself | "The voice says the setup and the punch" (06, and the one-page summary) | Partly run: three stretches were built, two aired, and the owner cut the third. Cold viewers on stills named the turn in the two that aired and not in the one that was cut, and the owner kept the same two. The two that worked turn on a change of state that can be watched; the one that did not had to be read and was explained afterwards. The rule was amended: a thing shown working may take the punch itself, once in an episode. The audience's reaction is still to come |
+| 003-holiday-2026 (drafted, not yet aired) | four earnest minutes in the host's own words, outside the studio, with no posts, no guests and no audience; the owner set the form | "Sincerity" (01): earned by comedy, in the community's words, short, once | None yet: not aired, and nobody has watched it with sound. Before air: built in whole; the cues hold no laugh, applause or sting; cold viewers on stills named the places and what was done in them and missed two pictures that carry meaning. Both measures need three people watching with sound. It changes several things at once, so a result will not say which of them did it. No rule was amended |

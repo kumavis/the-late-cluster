@@ -115,7 +115,7 @@ export default {
     { cue: 'eyes-front' },
     // Profile. A lamp post goes by first. Easier to say the next part not looking at us.
     { say: 'larry', id: 'fast-and-fair', text: 'Things move fast lately. And fair is hard to find.', gap: 1.0 },
-    { say: 'larry', id: 'no-joke', text: "I don't have a joke for that.", as: "I don't have a djoke four that." },
+    { say: 'larry', id: 'no-joke', text: "I don't have a joke for that.", as: "I don't have a joke four that." },
     { say: 'larry', id: 'i-looked', text: 'I looked.', rate: 0.9, gap: 0.7 },
     { say: 'larry', id: 'old-books', text: "So I've been reading old books. Very old.", gap: 1.0 },
     { say: 'larry', id: 'what-helped', text: 'People were rattled then, too. Some wrote down what helped.', as: 'People were rattled, then, too. Some wrote down what helped.' },
@@ -475,13 +475,13 @@ export default {
     { wait: -2.8 },
     { say: 'larry', id: 'mixed-up-world', text: "It's a crazy mixed up world out there.", rate: 0.95, gap: 0.3 },   // the owner's line
     { say: 'larry', id: 'keep-close', text: 'Keep the ones that make you feel sane close.', as: 'Keep the ones that make you feel sane, close.', rate: 0.92, gap: 0.8 }, // the owner's line, its second breath
-    { sfx: 'murmur', vol: 0.4, hold: 0, at: -0.6 },   // (sound editor) fills the dip before the last line
+    { sfx: 'murmur', vol: 0.4, hold: 0, at: -3.5 },   // (sound editor) starts in the breath before "Keep the ones": the room runs on under it
     { sfx: 'murmur', vol: 0.4, hold: 0, at: 0.8 },
-    { sfx: 'murmur', vol: 0.4, hold: 0, at: 3.15 },
-    { sfx: 'murmur', vol: 0.4, hold: 0, at: 2.55 },
-    // (sound editor) The murmurs above are laid ahead of the cursor: one starts 0.5 s before the
-    // last line, one as its last word ends, and one 2.45 s after that, whose own fade lets the
-    // room die away about 5.5 s after "Goodnight". This step back returns the cursor to 0.8 s
+    { sfx: 'murmur', vol: 0.4, hold: 0, at: 3.3 },
+    { sfx: 'murmur', vol: 0.4, hold: 0, at: 2.4 },
+    // (sound editor) The murmurs above are laid ahead of the cursor: one starts in the breath
+    // before the last line, one just after its last word ends, and one 2.4 s after that, whose own
+    // fade lets the room die away about 5.5 s after "Goodnight". None starts during a line. This step back returns the cursor to 0.8 s
     // after "close".
     { wait: -5.7 },
     { say: 'larry', id: 'stay-warm', text: 'Stay warm, folks. Goodnight.', rate: 0.94, gap: 0.5 },                  // the owner's line, and the last

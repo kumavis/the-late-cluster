@@ -77,13 +77,13 @@ Nothing in the final render is heard as crude, alarming or out of bounds, and no
 
 ## Still heard differently from the caption (final render)
 
-None of these is a real person's words except the owner's lines, which are marked. All are best effort; the captions carry them.
+Two kinds of line here are a real person's words: the owner's lines, which are marked, and the 1913 quotation of Rabbi Tarfon (`tarfon-1`, `tarfon-2`). All are best effort; the captions carry them.
 
 - no-show (the owner's): "Oh, no short night, folks, holidays and all." ×4
 - mail-it, unsayable: "let me let I like the rock home" ×4. "They'd" and "walk" are recorded
 - walk-with-me (the owner's): "Would you lock with me a bit?" ×4
 - fast-and-fair: "Think move fast glitchy, and fair is hard to find." ×3
-- no-joke: "I don't have a drug for it." ×2, "…drug for that." ×1, as written ×1
+- no-joke: now `a joke four that`: as written ×3, "I don't have a joke for the two." ×1 (see the second follow-up: it was heard as "drug")
 - old-books: "So I didn't ignore books. Very old." ×4
 - what-helped: "People read them too, some wrote down what helped." ×4
 - one-cook: see above
@@ -116,7 +116,7 @@ None of these is a real person's words except the owner's lines, which are marke
 
 ## Respellings and rates now in the script
 
-`How, have`; `djoke four`; `rattled, then, too`; `One cook, in back,`; `The, Jwong-dzuh … saying that, wrong`; `Nobody there, till … started, anyway`; `Hee never duz`; `Hee is recorded, as say-ing` (rate 0.9); `thee study`; `Nearly, there`; `hav started`; `There's ann … called the, Tee-rook-koo-rul`; `Come onn up`; Pete's `kown-tid` (rate 0.88); Sibyl's `is, served … That, is` (rate 0.9, was 0.95); `feel sane, close`.
+`How, have`; `joke four`; `rattled, then, too`; `One cook, in back,`; `The, Jwong-dzuh … saying that, wrong`; `Nobody there, till … started, anyway`; `Hee never duz`; `Hee is recorded, as say-ing` (rate 0.9); `thee study`; `Nearly, there`; `hav started`; `There's ann … called the, Tee-rook-koo-rul`; `Come onn up`; Pete's `kown-tid` (rate 0.88); Sibyl's `is, served … That, is` (rate 0.9, was 0.95); `feel sane, close`.
 
 ## The voice research file
 
@@ -135,9 +135,40 @@ Files: `packages/show/tools/data/voice-research.json` and `docs/voice-research.m
 
 ## Follow-up: a longer ending
 
-I added one more murmur (vol 0.4) after the last line. It starts 2.45 s after "Goodnight." ends, and the step back changes from −3.15 to −5.7. Nothing before `stay-warm` moves, and no sound starts under the owner's lines. The room now runs to 249.13 s, 5.47 s after "Goodnight." ends at 243.66, and dies away on the murmur's own fade over its last 0.8 s.
+I added one more murmur (vol 0.4) after the last line. It starts 2.45 s after "Goodnight." ends, and the step back changes from −3.15 to −5.7. Nothing before `stay-warm` moves. (Corrected below: as first written, two murmurs did start under the owner's lines.) The room now runs to 249.13 s, 5.47 s after "Goodnight." ends at 243.66, and dies away on the murmur's own fade over its last 0.8 s.
 
 New length: **249.73 s** (+7.93 s on 241.80). `npm run check -- 003-holiday-2026 walk` passes.
+
+## Second follow-up: "joke", and the room around the last lines
+
+**`no-joke` was heard as "drug"**, which is never accepted here, straight after "fair is hard to find". With `djoke four` it was heard as "I don't have a drug for it" in three takes of four. Every try, each heard in four takes, with the line rendered on its own unless the row says so:
+
+| spelling or rate | heard as |
+|---|---|
+| plain | "I don't have a drug through it." ×4 |
+| `djoke four` (was in the script) | alone: as written ×3, "…a drug for it." ×1; in the full mix: "drug" ×3, as written ×1 |
+| `djoke for` | "drug through it" ×4 |
+| `uh joke` | "I don't have a dog through it." ×4 |
+| `a, joke` | "drug through it" ×2, "I don't want to stroke through it." ×2 |
+| `joke, for` | "drug through it" ×4 |
+| `have, a joke` | "drug through it" ×4 |
+| `jjoke` | "drug through it" ×4 |
+| plain at rate 0.9 | "I don't withdraw through it." ×3, "drug" ×1 |
+| `uh joke, for` at rate 0.92 | "I don't without a rogue, I throw it." ×3, "…a rogue through it." ×1 |
+| `joake four` at rate 0.92 | "I don't have a drug for it." ×4 |
+| **`joke four`** (now in the script) | **as written ×4**. In the full mix: as written ×3, "I don't have a joke for the two." ×1 |
+
+The script now has `I don't have a joke four that.` "four" is the strong vowel of "for" (/fɔɹ/ for /fəɹ/), and "joke" is the plain word. No take hears "drug". The line is 0.06 s shorter.
+
+**Nothing in the room starts during the owner's last lines or `stay-warm` any more.** Before, a murmur started at 239.0, on "close", and another at 243.56, under the end of "Goodnight." Now:
+- The fill is laid at −3.5 instead of −0.6, so it starts at 236.05, in the breath before "Keep the ones" (236.47 to 239.55), and runs under it with the murmur from 235.88.
+- One starts at 240.35, in the breath before "Stay warm" (240.85 to 243.60).
+- One starts at 243.65, after "Goodnight." (`at` 3.15 → 3.3).
+- The last starts at 246.05 (`at` 2.55 → 2.4) and dies away by 249.07, 5.47 s after the last word.
+
+The full list of starts around the three lines is 232.68 (before "It's a crazy…", 233.38), 235.88 and 236.05, 240.35, 243.65 and 246.05. Every one is in a gap. The levels are unchanged at 0.4, ducked under speech. `mixed-up-world`, `keep-close` and `stay-warm` still fit at 7/8, 8/9 and 4/4.
+
+New length: **249.67 s**. `npm run check -- 003-holiday-2026 walk` passes.
 
 ## The mp3
 

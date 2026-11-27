@@ -39,3 +39,23 @@ few of Larry's words.
 
 These went to the builders with the frame audit's findings. What stills cannot settle is for
 the owner's watch.
+
+## A second viewing, after the changes
+
+The builders changed the lamp, the snow and the hatch. Three new viewers, who had seen
+nothing, were shown the same moments of sets 1, 2 and 3 shot again (`_cold/set-1b`, `-2b`,
+`-3b`). The final reviewer had noted that the cold viewers were not asked again; this is that.
+
+| set | the viewer's answer, in full | confidence |
+|---|---|---|
+| 1b, the studio | "A dimly lit, wireframe-style animated scene of a puppet-like figure with a glowing head and a long dark coat, standing under a floor lamp in a night-time room with a city skyline through the window and a desk to the right. Across the four frames the figure stays almost still, with only a slight change in its head and posture, so little visible action takes place." | 3 |
+| 2b, the cook | "A wireframe, glowing-outline puppet head on the left, beside a dim restaurant set with an \"OPEN\" sign, a silhouetted audience at tables, and a chef silhouette on a kitchen-hatch screen, looks like a segment of a synthesized talk show set in a diner. Across the five frames the scene barely changes: the audience and chef shift slightly and the puppet's mouth area moves a little, with no clear event." | 2 |
+| 3b, the crossing | "A wireframe-style puppet head in a long coat and scarf stands on a neon-lit night street, with the camera tracking as the crossing signal changes from DON'T WALK to WALK and falling snow-like particles drift in." | 3 |
+
+- **The lamp is now read as a lamp**, and nobody sees a microphone.
+- **The snow is now seen.**
+- **The hatch is now named as a kitchen hatch**, though the viewer still calls it a screen and
+  takes the diners for an audience. Nothing happens in these stills, as before: the cook's
+  change of pace is motion, and whether it reads at speed on a phone is for the owner's watch.
+- Sets 4, 5 and 6 were not shown again. The figure at the window and the six heads turning
+  were not changed, and the final reviewer lists both for the owner's watch.

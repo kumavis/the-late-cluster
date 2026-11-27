@@ -1,0 +1,220 @@
+# Scorecard: 003-holiday-2026, "The Walk Home"
+
+Final review of the holiday special as staged, written 27 November 2026. One segment, `walk`:
+249.7 s (4:09.7) to black, then plain credits of about 19 s. 397 spoken words (363 of them
+Larry's) and 11 sung syllables; someone is speaking for 136 of the 250 seconds. It is a draft and
+has not aired. The reviewer wrote none of it, staged none of it and wrote none of its briefs.
+
+A reviewer's file: for reviewers, auditors, the project manager and the owner. Writers,
+researchers, sound editors and builders do not read it.
+
+## Verdict
+
+**Approve: it goes to the owner.** Step 0 is clean, every gate passes, and Part B is **19 of
+24**, with B11 left out as not applicable and no zero anywhere. Approval by a reviewer is not the
+owner's review (constitution, Article 5): nobody has heard this mix or watched it move, and gates
+A3, A6 and A16 pass on things only the owner can confirm. They are set out under "For the owner".
+
+The rows at 1 are B2 (whether it moves rests on a voice nobody has heard, with its central
+sentence carried by the caption), B7 (two long single shots of a head talking), B8 (about half
+the lines and all three names are heard as something else, each carried by its caption), B9 (two
+scripted sounds were not achieved and nobody has heard the footsteps) and B12 (the experiment's
+measure needs people watching with sound). "About half" in B8 is the fit report's own list: 38 of
+the 59 spoken lines, of which about twenty-five lose a word that matters.
+
+## How this was judged, and what could not be checked
+
+- **Read:** the owner's notes, `special.md`, `experiment.md`; `segments/walk/script.js`,
+  `notes.json` and `cues.json`; the fit report (`fit/sound-walk.md`), every heard text in it;
+  the builders' plan, costume and integration notes; the stage auditor's two rounds; the cold
+  viewers' answers; `select.md`, `assembly.md`, both select reviews, both final reviews, both
+  audits, the repetition record; the three research cards the script uses; the whole bible; the
+  ledger, with both aired records, the continuity file and the register.
+- **Looked at:** all 165 audit frames at 640 by 360 and the 12 credits frames, and 14 frames I
+  shot into scratch to fill gaps in the audit set: 22.1 (black between the studio and the
+  street), 100.9 (the coin in the air), 212.6 (the look), 214.0 and 214.9 (the second chair, the
+  place setting), 219.2 to 220.1 (the bowl), and 244.2 to 249.0 (the nod, the hold, the fade).
+  The shoot printed no warning.
+- **Ran:** `npm run check -- 003-holiday-2026` (walk passes; 1 passed, 0 failed) and
+  `npm run verify` (`ok 001-pilot`, `ok 002-2026-w47`; 2 published, 2 drafts, 0 problems). I
+  measured levels in 21 windows of `public/audio/walk.mp3` with ffmpeg; that is a meter, not ears.
+- **Did not:** hear it, build it, or watch it move. Rows **A16, B8 and B9** are scored from the
+  fit report's heard text and from the cue times and measured levels. **B2 and B12** rest partly
+  on the same. Rows A8, A15 and B4 rest on frames I looked at myself, with the auditor's two
+  rounds beside them.
+- **Papers that disagree with the render,** none of them a fault in the episode:
+  - The fit report says that none of the lines still heard differently is a real person's words
+    except the owner's. The quotation is (`tarfon-1`, `tarfon-2`). It is listed all the same,
+    first, in the report's own table "For the owner's ears first".
+  - The fit report says no sound starts under the owner's lines. By the cues one murmur of the
+    room's bed starts at 239.01, on the word "close" (238.96 to 239.61), and one at 243.56,
+    0.1 s before "Goodnight." ends. Both are the bed coming back in, at volume 0.4.
+  - `notes.json` still calls the busker's voice a stand-in for Al. He has his own cast entry.
+  - The final reviewers counted about four seconds from Dee's laugh to the owner's table line.
+    In the render it is 7.9 s (225.54 to 233.44).
+  - The final audit has one round, whose verdict was "changes" on the word count alone. The
+    project manager answered it in `special.md` ("Length"). There is no second round on file.
+  - The cold viewers saw frames shot before the round-two staging changes, and were not asked
+    again afterwards.
+
+## How the card is applied to a special
+
+The owner set the form: one piece of about four minutes, no posts, no guests, no window, no
+standing segments, sincerity as the piece, no audience. The card was written for a weekly
+episode, so:
+
+- A gate with no real account or post to judge says `nothing to judge`, and passes.
+- A Part B row that asks for something the owner set aside says so, and says what was scored in
+  its place.
+- B11 is `not applicable` and is left out of the total, which is therefore out of 24.
+- The approval rule asks for 18 of 26, which is 69 %. Of 24 that is 16.6, so 17. This card
+  clears 17, and it also clears the unadjusted 18.
+
+## Step 0: is everything in it interesting?
+
+The episode is the one segment `walk`. Its parts, each with a retell and a turn or a feeling:
+
+| part | cues | retell | turn or feeling |
+|---|---|---|---|
+| the whole (`walk`) | 0 to 249.7 | The one where there's no show, so Larry walks you home through the cold and then can't leave you standing outside his own door | Rattled, walked home, let in |
+| the studio | `dark-studio` to `out-the-door` | The studio is switched off; Larry, in an overcoat, admits he came in for a paycheck they would have mailed, because he likes the walk, and asks you along | The paycheck was a pretext |
+| the street | `street-start` to `answers-ahead` | He asks how you have been, agrees with an answer nobody hears, and says he has no joke for it: he looked | No joke. He looked |
+| the restaurant, and the cook (first idea) | `pass-restaurant` to `watch-the-cook` | He always stops at a full restaurant to watch the one cook in back, tells an old story about a cook who slows down at the hard part, and the cook in the hatch slows on the word | The cook slows on cue |
+| the busker | `walk-on` to `tune-again` | A busker sings to an empty pavement, stops one note short, gets a coin and a thank-you, and starts over behind us | He had started anyway |
+| the crossing, and the rabbi (second idea) | `crossing-red` to `walk-sign` | At a red light on an empty road you ask what if none of it gets put right; he does not know, borrows a rabbi's sentence, and the light stays red | The street does not answer |
+| the snow and the last block | `cross` to `glance` | It starts to snow, and he says, looking straight ahead, that he usually walks this block alone | Glad of company, unsaid |
+| his door, and the couplet (third idea) | `apartment-door` to `let-in` | You stay on the pavement; he cannot say come up without an old rule about not eating while a guest stands outside; someone upstairs opens the door first | The book is his excuse |
+| the table | `table-wide` to `the-meal` | Nobody has started; six friends look at you, Al says "Chair.", you are served first over Larry's objection, and then nobody looks at you | Ignored, which is the welcome |
+| the goodnight | `goodnight` to the end | He turns from the table, says the owner's three lines, nods and goes back to his friends | He means it. Stay warm |
+
+Every part has both. **The cut test** finds one line, not a part: `ruling-stands` ("And the
+ruling stands!", 223.55), a fourth beat on the rule after `still-the-rule` has buttoned it. Both
+final reviewers found the same line, the assembly offers it to the owner as an either-or, and it
+stands as written on the project manager's reading of "go ahead". Nothing else would not be
+missed. `never-ends` is the first cut `notes.json` offers for length and would be missed: it is
+the only thing that says the tune is unfinished.
+
+Step 0 is clean.
+
+## Part A: gates
+
+| # | result | evidence |
+|---|---|---|
+| A1 | pass | nothing to judge: no account appears in any form. The only real names on screen are in the credits (`end@8` to `end@16`): the synth's maker, the translator Joseph I. Gorfinkle, and three old works. The opt-out list is empty. |
+| A2 | pass | nothing to judge: no real post is shown or read. The one quotation, captions of `tarfon-1` and `tarfon-2` (138.38 to 143.73), matches the `avot` card word for word: "It is not thy duty to complete the work, but neither art thou free to desist from it". |
+| A3 | pass | nothing to judge on performed lines: no real account's puppet speaks and no exchange is staged. Larry does tell three old texts in his own words, each marked as his telling (`cook-prince` "The way I remember it", `borrow` "Here's how I borrow it", `guest-1` "As I remember it"), and says what the rabbi meant (`guest-in-sentence`). That passes on the owner's outline, which asks for it ("he explains the thinking of various philosophers"). The reading that Article 3 does not reach long-dead thinkers is still the project manager's, not a ruling: see "For the owner". |
+| A4 | pass | nothing to judge: no puppet of a real account. The busker is invented, unnamed, and sings "la" without a caption (`busker-tune` 92.35, `busker-behind` 110.74). |
+| A5 | pass | Nothing is invented about a thinker or a text: "nearly two thousand years ago" (`tarfon-who`) and "nineteen years" (`cook-blade`) are the cards' own; the audit of the final script found every attribution in its card's safe wording, and I checked the three cards. `used-book` is Larry's fiction about himself. The cues and words have not changed since. |
+| A6 | pass | Religion: the owner's ruling, "Keep the rabbi", covers `tarfon-who` to `guest-in-sentence`; that it also covers a story from the Zhuangzi and a couplet from the Tirukkural, told as old books, is the project manager's reading. Everything else is mine: `fast-and-fair` and `q-put-right` name no event, person, party, country or side; `paycheck` and `mail-it` are not money trouble; "Chinese" and "Tamil" say where a book is from; "crazy" and "sane" in the owner's line are idiom; the dish (218.85) is a loaf nobody names and no holiday is named; no frame carries any other word or mark. |
+| A7 | pass | nothing to judge on accounts. The living traditions are not joked at, ranked or spoken for: `position` (197.87) and `my-house` (220.93) are jokes on Larry, and `guest-in-sentence` defers to the tradition whose sentence he borrows. |
+| A8 | pass | No guest, so no chyron label or disclaimer is owed. The credits were shot and I read them: `end@12` names what was quoted (Pirkei Avot, chapter 2, Gorfinkle, first published 1913) and what was told from, and `end@12` to `end@16` say "Every voice in this programme is synthesized by CHIMERA", with the synth's maker credited. The busker is listed as "On the corner" under STARRING. |
+| A9 | pass | No handle or address is invented. The busker is a display name only ("The busker"); the restaurant, the shopfronts, the envelope and the building carry no name or number (56.46, 7.43, 176.96). |
+| A10 | pass | nothing to judge: no ranking, no winner, no guess. |
+| A11 | pass | `npm run check -- 003-holiday-2026` passes (walk, 249.733 s, 77 lines, 51 sfx, 8 music blocks) and `npm run verify` reports 0 problems with 2 drafts. A preview build is in `preview/003-holiday-2026/`; I may not build, so I did not rebuild it. My own shoot of 14 frames and the builders' 54-frame pass printed no unknown-cue warning. |
+| A12 | pass | `git diff main...HEAD` touches neither `00-constitution.md` nor `09-real-people.md`, and nor does this review. |
+| A13 | pass | On record in `review/repetition-assembly.json`: 61 items, each fresh from both reviewers, none turned, none repeat; the words have not changed since. What only the staged episode shows is judged below ("A13 beyond the record"): all fresh. Nothing refers to an earlier episode. |
+| A14 | pass | nothing to judge: no account speaks or is shown, so nobody from `002-2026-w47` speaks and the tracker does not change. |
+| A15 | pass | The only words in any of the 165 frames are OPEN (55.68 to 88.15, a neon), DON'T WALK (114.77 to 162.91) and WALK (164.69 to 167.77), each a glance, and the caption of the line being spoken. The envelope is blank (7.43). The credits are exempt. |
+| A16 | pass | The fit report gives what four takes heard for every line and I read all of it. Nothing heard is crude or offensive. Two heard words I would not want heard: "drug" for "joke" in `no-joke` (three takes of four) and "hit" for "eat" and "had" in `guest-2` and `company`. Each is the tool's rendering of a weak consonant or vowel under an exact caption, and neither is alarming or names a subject in R10. The lines about a real person that are still heard differently (`tarfon-who` as "Taran", `tarfon-1`, `tarfon-2`) are listed in the report and their exact words are on screen as they are said (133.59, 139.57, 142.4). Scored from the transcription, not from ears: the lines are under "For the owner's ears". |
+
+### A13 beyond the record: what only the staged episode shows
+
+The script gate saw words and cues. These are the staging and sound that came after it, each
+judged against both aired records.
+
+| item | verdict | against the record |
+|---|---|---|
+| the open: the studio dark, no title card, no announcer, no audience; the host's first word is "Oh," | fresh | The first episode opened on black with an invented post and ended its open on an announce formula; the second on a member's machine writing the title and the announcer naming the host. The record warned that the announcer naming the host a third time would be a ritual. She does not appear until 203 s |
+| the scarf | fresh | The first episode's host had his costume draw itself on as a gag. Here the scarf is never seen drawing: the picture cuts to the collar with it nearly on (20.58). The echo both final reviewers warned of is not on screen |
+| gold: the scarf, the chair kept empty for him | fresh | Gold carried two punches last episode. Here it marks what is his, by the cast chapter's rule, and no line points at it |
+| the holds with no word: the cook (86.45 to 89.85, 3.4 s), the red sign (161.21 to 164.61, 3.4 s), the crossing in snow (165.27 to 170.27) | fresh | Last episode's experiment was a stretch of ten seconds or more in which a made thing delivered a segment's turn while house heads watched from the edges. The cook hold has one head at the edge watching (86.53), which is the nearest staging to that. It is a third of the length, the turn has already landed on a spoken word, and nothing a member made is being demonstrated |
+| the look and "Chair." (211.05 to 213.43) | fresh | Last episode's song ended with every head in the band turned to the desk in silence, a flat line, and every bulb coming on. Both final reviewers passed this provided it was not lit as a stop. It is not: the room's light is the same at 202.26, 212.6 and 230.42, and nothing dims or comes up |
+| the coin (101.25) | fresh, on the meter | The last song stopped on a chord that wanted one more note and the host sang into it. Here 1.4 s of true silence follows the tune (measured), then a bright unpitched click. Whether it is heard as a coin is for the owner's ears |
+| nobody raises a glass | fresh | Last episode closed on a card tipped like a raised glass. The glasses on this table are never touched (202.26 to 247.6) |
+| the close: the owner's three lines to the camera from a chair, a nod, his head back to the table, a hold, black, then plain credits | fresh | The first episode closed on a key press and a collapsing picture; the second on a toast and the widest shot under long applause, with credits headed with a goodnight of their own. Here the credits are plain cards with no heading but the show's name. The owner's "Goodnight" with "folks" before it is a form the record calls spent; it is the owner's line and is not judged |
+| the room's laugh: Dee's "Ha!" as a voiced line | fresh | No audience sound exists anywhere in it: the cues hold whoosh (2), tick (6), murmur (42) and one gasp, used as the breath six people stop talking on |
+
+Still true from the final reviews, and still the owner's to decide: this is the third close of
+three whose feeling is being taken in, and `started-without-me` is the line that makes it take
+Larry in as well as the viewer.
+
+## Part B: quality
+
+| # | score | evidence |
+|---|---|---|
+| B1 | 2 | It tells as "the one where there's no show, so Larry walks you home and can't leave you outside his own door". The order is deliberate and things planted come back unpointed: lit glass from outside twice (56.46, 176.96), "guest" three times (`guest-in-sentence`, `guest-2`, `rule`), a tune nobody finishes a minute before a sentence about not finishing. No line reviews the walk. The owner's `keep-close` says its moral once, at the end, and by then it is earned. |
+| B2 | 1 | set aside by the owner (jokes in every part). Scored instead: does it move, and does its lightness land. On the page and in the frames it moves by what happens and not by what is asked for: an answer nobody hears (29.05 to 31.45), `dont-know` before any borrowing, the sign still red (161.29), the door opened from upstairs (200.76), a chair (214.0), and then nobody looking at us (225.62). The light lines are heard as written (`i-looked`, `position`, `chair`, `my-house`, `still-the-rule`) and the best of them is in the back half. It is 1 and not 2 because whether four earnest minutes move depends on a voice nobody has heard in the mix, the central sentence is heard as noise in all four takes, and from `no-cars` (118.39) to `position` (197.87) there is no light line at all, by design. |
+| B3 | 2 | set aside by the owner (material from the window). Scored instead: is what it rests on real and exact. Three ideas from three texts, each on a checked card: the quotation is exact to its named translation, the two tellings say they are tellings and stay inside their cards, the misattributed version of the rabbi's line is not used, and the credits name all three works (`end@12`). `guest-in-sentence` gives "the study of Torah" where the card has study and practice: narrower, not wrong. |
+| B4 | 2 | Every picture the script asks for is on its word in the frames: the cook stops on "slows down" (cue 83.06, words 82.72 to 83.56) and leans in (84.75); the coin is in the air at 100.9 and in the case at 101.33; the sign is still red at 162.91 and green at 164.69 on no word; the door stands open at 200.76; the second chair comes in straight after "Chair." (213.51) and is in place at 214.0; the dish is uncovered at the cut (218.85); the bowl passes behind Larry to our plate (219.2 to 220.1); Sibyl's face is down through `my-house` and `still-the-rule` (221.43, 222.78). The auditor's second round passes with no change. Two pictures that carry meaning are small and were not read by the cold viewers: see B12. |
+| B5 | 2 | It needs no week and no earlier episode. A newcomer is told in the first ten seconds that there is a show and it is off tonight (`no-show`, `paycheck`), and gets the table from what is done at it. What a newcomer loses is small: that Pete is the drummer (`counted-in`) and that gold is Larry's. The show's name is not on screen until the credits. |
+| B6 | 2 | set aside by the owner (a sincere moment that is short and in the community's words). Scored instead: affection, sincerity that is earned and not a speech, and respect. No line of Larry's own tells the viewer how to feel; he says he does not know (`dont-know`) and that he is a guest in the sentence he borrows; the street declines to applaud him (`still-red`); nothing swells under any of it; lightness follows each idea and is at his expense only (`position`, `my-house`). No tradition is joked at or ranked. By the row as printed it could not pass 1. Whether the voice makes a speech of it is the experiment, and is counted in B12 and not twice. |
+| B7 | 1 | Most of it is things happening: the cook, the coin, the sign, the snow, the door, the chair, the bowl. Two stretches are a head and a background. From `eyes-front` to `listen-help` (32.88 to 50.78) it is 18 s of one profile shot under five lines, inside 32 s of street on one framing. `larry-at-glass` (63.36 to 79.55) is 16 s of one close shot under four lines, and in it a lamp post stands behind the middle of his see-through face (69.14). The crossing is 50.6 s at one kerb, but in six framings, and its stillness is its point. |
+| B8 | 1 | From the fit report, not ears. It lists 38 of the 59 spoken lines as still heard differently in at least one take of four; about a dozen differ by a small word and about twenty-five lose a word that matters. The three names are not heard as themselves ("Taran", "drwangza", "Teragural", and "Tamil" as "mil"); the quotation's first half is lost ("It is not lied to it to compete to the work"); "walk" cannot be said ("lock", "rock") and is in three lines. Every one of them is on screen in the caption, word by word, as it is said, which is what keeps this from 0. The plain form of the central idea is heard as written (`dont-finish`, `dont-quit`). |
+| B9 | 1 | set aside by the owner (reactions; there is no audience). Scored instead: sound that is the place, with nothing loud under a line. Measured, not heard. The silences are real: after the tune stops (99.95 to 101.15) and in the hold before the hard question (121.4 to 124.5) the mix peaks below minus 90 dB; the steps alone peak at minus 16 dB against speech at minus 4; the room in the cook hold sits at minus 32 dB RMS. It is 1 because two sounds the script asks for were not achieved (no chair on a wooden floor at 213.43; the table's talk cannot stop on a breath, so its tail runs under Sibyl's first line), because the bed under the owner's lines has seams (above), and because the footsteps, the only sound the viewer makes, are lip pops that no one who judges has heard. |
+| B10 | 2 | 4:09.7 to black against the owner's four minutes, plus credits. Each place ends on a button of its own: the lamp's click, "Some nights.", a silent hold on the cook, "He never does get to the end of it.", a sign that changes late, a glance, "Come on up.", "It's still the rule.", "Goodnight." Standing and walking alternate, outside gives way to inside once. The open does its job in eight seconds and the close ends on the last strong thing and reviews nothing. Against it: the one line the cut test finds, and the kerb, which every reviewer and the writer named as the stretch most likely to play long. |
+| B11 | not applicable | set aside by the owner: no interview, no Top Chicken, no music segment was drafted for the special. Left out of the total. |
+| B12 | 1 | The experiment is the episode, and it was built in whole and as `experiment.md` sets it out: four earnest minutes in Larry's words, outside the studio, with no post, guest or audience. What can be checked now: the cues hold no laugh, applause or sting (2 whoosh, 6 tick, 42 murmur, 1 gasp, and Dee's voiced "Ha!"). The cold viewers, on stills, named the place and the man in all six sets, the sign changing, the door opening and a meal being served; they did not see the figure in the window or the six looking at us, and neither was changed afterwards. Both reviewers' measures need three people watching with sound, and none has. It is 1 because the measure cannot be read off the episode until then. |
+| B13 | 2 | set aside by the owner (different people; it is one piece with one host and no guests). Scored instead: range inside the piece. Eight places with their own light and sound; three ideas from three cultures that arrive three ways (seen and told, asked for and borrowed, done); speech, a wordless tune, true silence and a full room; six house voices at the table (203 to 226). One sameness: two of the three ideas open on the same sentence (`cook-story`, `tamil-book`). |
+
+**Total: 19 of 24** (2, 1, 2, 2, 2, 2, 1, 1, 1, 2, 1, 2; B11 not applicable). No zero in B1, B2,
+B7, B8 or B12. The rule's 18 of 26 is 17 of 24 pro rata, and 19 clears both figures.
+
+## For the owner
+
+Approval sends it to you. These are what the card could not settle.
+
+### Three things only you can confirm
+
+1. **Article 3.** Larry explains three old texts in his own words and says what the rabbi
+   meant. Your outline asks for exactly that, and gate A3 passes on it. The reading that
+   Article 3 and chapter 9 govern the people the show covers, and not long-dead thinkers, is
+   still written down as the project manager's reading and not your ruling.
+2. **"Keep the rabbi".** Gate A6 takes your ruling to cover the cook's story and the Tamil
+   couplet as well, told as old books with nothing said of anyone's faith. That extension is
+   the project manager's.
+3. **"Go ahead".** The script went forward with every either-or as written, with no title
+   card at the top and with plain credits at the end. Two of the either-ors touch the record:
+   `started-without-me` makes this the third close of three in which the house takes Larry in,
+   and `ruling-stands` is the one line the cut test finds.
+
+### For your ears
+
+Nobody has heard the mix. In order of how much rests on each:
+
+| when | line | what the tool heard |
+|---|---|---|
+| 138.4 to 143.7 | the quotation (`tarfon-1`, `tarfon-2`) | "It is not lied to it to compete to the work" twice, "It is not likely to complete the work" once; the second half nearly right. The heart of the special, and a real saying: exact in the caption only |
+| 37.8 to 39.5 | "I don't have a joke for that." | "I don't have a drug for it" in three takes of four. If you hear "drug", it should go back to the sound editor |
+| 60.6 to 63.4 | "One cook in back, feeding the whole room." | "One cook in bed, fitting the whole room"; once "hitting the whole room". An earlier spelling was flagged as crude and changed |
+| 194.3 to 197.1 and 210.0 to 211.0 | "you don't eat while a guest stands outside."; "I had company." | "You don't hit while guest stands outside" in all four; "I hit company" in two |
+| 131.8 to 135.4, 67.3 to 71.0, 185.9 to 189.9 | Tarfon; the Zhuangzi; Tamil, the Tirukkural | "Taran"; "drwangza"; "an old millbook", "Teragural". "Rabbi" and "Torah" are heard as themselves |
+| 10.8 to 15.8 and 171.4 to 175.1 | "I like the walk home."; your "Would you walk with me a bit?"; "walk this block" | "rock home"; "lock with me"; "lock this black". The engine cannot say "walk" |
+| 3.5, 236.5 | your "no show tonight"; your "feel sane close" | "no short night"; "feel safe, closed" |
+| 238.96 to 239.6 and 243.56 | the room under "close" and under "Goodnight." | not speech: the room's bed comes back in on those words |
+| 223.6 to 225.5 | Eppy's "And the ruling stands!" and Dee's "Ha!" | "and the rowing stand". A sportscaster's shout, 8.5 s before your quietest lines |
+
+And three sounds: whether the two sets of footsteps (from 22.4) sound like two people walking,
+and ours like ours; whether the coin at 101.25 is a coin and not the note the tune was missing;
+and the table's burst of talk at 202.2, which cannot be cut off and trails under "You're late."
+There is no sound of a chair at 213.4.
+
+### For your eyes
+
+- **The listening holds** (50.8 to 52.3, 122.4 to 124.6, 181.9 to 183.9): he turns to us and
+  nothing else moves. Whether that reads as us speaking is the whole device.
+- **The cook** (83.1 to 89.8): the change of pace reads in stills. At speed, on a phone?
+- **Why the door opens:** a figure stands at the top window from 177 and is gone at 199.4,
+  before the latch. It is plain in the close shot of the window (191 to 196). A cold viewer
+  given stills saw the door open by itself.
+- **The look** (211.0 to 213.0): six small heads in a wide turn to the camera. A cold viewer
+  saw empty chairs.
+- **Larry at the glass** (63.4 to 79.5): a lamp post stands behind the middle of his face.
+- **The street** (22.4 to 55.0) is one framing for 32 s, and **the kerb** is 50.6 s.
+- **"It's my house."** (220.9): a joke on him, or does he begrudge us the bowl?
+
+### The experiment
+
+Whether this is a speech can only be answered by people who watch it with sound. Both
+reviewers' measures ask three people. Your watch is the first of them.
+
+Still open from your notes: the air slot, and how the archive lists a special.
