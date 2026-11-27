@@ -2047,6 +2047,25 @@
    "ipa": "m i n ɪ ŋ f ə l i"
   },
   {
+   "word": "mostly",
+   "status": "cannot",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "mochi",
+     "count": 4
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "Said alone as its own line (rate 0.92), heard as 'mochi' in every take; Moast-lee, Mostly..., flat intonation and rates 0.82 to 1.0 tried. Its sounds are right (/moʊstli/).",
+   "seen": [
+    "003-holiday-2026/walk"
+   ]
+  },
+  {
    "word": "mouth",
    "status": "cannot",
    "voices": [
@@ -2177,6 +2196,25 @@
     }
    ],
    "ipa": "n oʊ b ɑ d i"
+  },
+  {
+   "word": "norse",
+   "status": "cannot",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "horse",
+     "count": 4
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "After 'an old', heard as 'over-and-horse' (or 'orange'); a comma before it gives 'North'. Nnorse, Norss, Norrse, oald tried. With 'ann old' a take heard 'our sperm': avoid.",
+   "seen": [
+    "003-holiday-2026/walk"
+   ]
   },
   {
    "word": "on",
@@ -2891,6 +2929,29 @@
    "note": "Sibyl: \"are yours\" as written; Too reviewers, rev-yoo-ers \"however you are\", ree-vew-urz \"early in the world\"; never heard.",
    "seen": [
     "002-commissions-w47/making-of-outward"
+   ]
+  },
+  {
+   "word": "rich",
+   "status": "unstable",
+   "voices": [
+    "larry"
+   ],
+   "heard": [
+    {
+     "as": "rich",
+     "count": 3
+    },
+    {
+     "as": "alright",
+     "count": 1
+    }
+   ],
+   "spellings": [],
+   "works": [],
+   "note": "Opening a line, heard as 'Where' or 'What'; a comma after it ('Rich, did I feel') is heard as 'Rich' in three takes of four (once 'Alright').",
+   "seen": [
+    "003-holiday-2026/walk"
    ]
   },
   {

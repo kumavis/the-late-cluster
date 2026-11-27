@@ -6,7 +6,7 @@
 //      restaurant, busker, crossing and door scenes draw the street through it from their own
 //      files (seg.street, see index.js).
 //   2. The street scene (default export): the walk between the landmarks, `street-start` to
-//      `answers-ahead`, `walk-on`, `walk-past` and `tune-again`, `cross` to `glance`.
+//      `answers-ahead`, `walk-on`, `walk-past` and `tune-again`, `cross` to `mostly` (the last block: `last-block`, `comrade`, `glance`).
 //
 // Units. The street has its own world, separate from the studio's: at the street's standard
 // framing (VIEW) the camera is { x: 640, y: 360, zoom: 1 }, so one street unit is one stage pixel.
@@ -812,6 +812,8 @@ export default {
     larry.nod(nodAt(show, t, 'me-too', 0.45))
     // cross: his head a little down in the first snow
     if (t >= show.at('cross') && t < show.at('last-block')) larry.nod(-0.08 * smoothstep(show.at('cross'), show.at('cross') + 1.2, t))
+    // comrade: the Norse line, chin up a little, eyes on the road (round four)
+    if (show.between('comrade', 'glance')) larry.nod(0.06 * smoothstep(show.at('comrade'), show.at('comrade') + 0.8, t))
     // glance: a tilt as he turns away again
     larry.tilt(0.07 * Math.max(0, Math.sin(Math.PI * clamp((t - show.at('glance') - 0.9) / 0.9))))
 
@@ -822,6 +824,12 @@ export default {
       const u = show.progress('eyes-front', 'listen-help')
       seg.shot('profile')
       show.camera({ x: 560, y: 352, zoom: 1.14 + 0.07 * u })
+    } else if (show.between('comrade', 'glance')) {
+      // round four: a cut on `comrade` to closer on him, still in profile and walking, the lit
+      // windows going by above him; a slow push through the quotation. Cut back out on `glance`.
+      const u = show.progress('comrade', 'glance')
+      seg.shot('comrade')
+      show.camera({ x: 560, y: 296, zoom: 1.42 + 0.06 * u })
     } else if (show.between('last-block', 'apartment-door')) {
       seg.shot('last-block')
       show.camera({ x: 520, y: 300, zoom: 1.2 })

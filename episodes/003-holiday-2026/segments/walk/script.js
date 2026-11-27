@@ -11,15 +11,17 @@
 //   starting `q-`). Each has a `listen-` cue before it: he turns to us and holds, and the line's
 //   `gap` is the moment where the question would be. Once, early, he asks us something and we
 //   answer in a silence nobody hears. Once he answers a look.
-// - Three ideas, each said only in the wording its card in research/philosophy.md calls safe,
+// - Four ideas, each said only in the wording its card in research/philosophy.md calls safe,
 //   and no two arriving the same way:
 //     zhuangzi      Chinese  he sees a cook, and tells the story as he remembers it; the cook slows on the word
 //     avot          Jewish   we ask, he does not know, and he borrows: the exact quotation (Gorfinkle, 1913),
 //                            then his own reading, named as his. The street does not answer on cue
+//     havamal       Norse    one line he says to himself on the last block (Bellows, 1923), said to the
+//                            road and half taken back. The owner's fourth idea, added 27 November 2026
 //     kural-guests  Tamil    told as he remembers it, as the reason he cannot leave us on the pavement
 // - The owner's five lines are marked. Only punctuation and capitals were tidied.
-// - The only words on screen are OPEN, DON'T WALK and WALK. The translation quoted is named in
-//   the credits (notes.json, "credits"), not during the walk.
+// - The only words on screen are OPEN, DON'T WALK and WALK. The two translations quoted are named
+//   in the credits (notes.json, "credits"), not during the walk.
 // - Nobody has hands. Things are already in place, or arrive from just out of frame.
 // - Larry is off the air: slower than on a show night, and nothing is pushed. Rates are marked
 //   only where a line wants air.
@@ -327,19 +329,50 @@ export default {
 
     { cue: 'last-block' },
     // Tracking, a little closer than before: snow across the frame, a row of lit apartment
-    // windows sliding by above him. Nobody else on the pavement. He says the line looking
-    // straight ahead, not at us.
+    // windows sliding by above him. Nobody else on the pavement. He says both lines looking
+    // straight ahead, not at us. The second mends the first, a step later and drier: he is not
+    // quite on his own here, he has one line that he walks this block with.
     { wait: 0.8 },
     { say: 'larry', id: 'this-block', text: 'Nearly there. I usually walk this block on my own.', as: 'Nearly, there. I usually walk this block on my own.' },
+    // The owner's fourth idea, 27 November 2026: the Norse line, on this block. It does not
+    // arrive as the cook's story and the Tamil couplet do ("There's ..."). Nothing is introduced:
+    // it comes out of the line above as the thing he has with him here every night, and then he
+    // says it. The poem is named only as far as its card calls safe, and its name is left to
+    // the credits.
+    { say: 'larry', id: 'one-line', text: 'Just me and one line from an old Norse poem.', as: 'Just me, and one line from an old Norse poem.', gap: 0.7 },   // card: havamal, told
+    { cue: 'comrade' },
+    // (builder) Closer on him, still in profile and still walking: eyes on the road ahead, chin
+    // up a little, the lit windows going by above him and the snow across him. His head does
+    // not turn. He says it to the road, by heart and not performed, the way he says it on the
+    // nights when nobody is beside him. It is not advice and he does not explain it; nothing in
+    // the picture explains it for him either, and no words go on screen.
+    // Sound: the two sets of footsteps in the snow, and nothing else under the line.
+    { say: 'larry', id: 'comrade-line', text: '"Rich did I feel when a comrade I found".',              // card: havamal, quoted
+      as: 'Rich, did I feel when a comrade I found.', rate: 0.92, gap: 0.9 },
     { cue: 'glance' },
-    // A beat of footsteps. Then his head turns to us, and away again at once. A tilt. He says
-    // nothing else about it.
+    // A beat of footsteps. Then his head turns to us, and away again at once. A tilt. He has
+    // just heard what he said, and who was walking beside him when he said it.
     { wait: 1.8 },
+    // Eyes front again, and they stay there for both of these. The first takes it back. The
+    // second, a step or two later, gives half of it back. He does not look at us for either,
+    // and he says nothing else about it. The glance was the only time his head turned.
+    // (sound editor) "Mostly." is its own beat so that its caption arrives when he says it and
+    // not with the line before. If the one word will not stand alone, the two may be one beat
+    // again. The block is now about twelve seconds longer than the steps below were laid for.
+    // It wants a step or two of footsteps after "Mostly." before the street stops, and no more.
+    { say: 'larry', id: 'poem-talking', text: "That's the poem talking." },                             // card: havamal, told
+    { say: 'larry', id: 'mostly', text: 'Mostly.', rate: 0.92, gap: 0.9 },
+    { wait: 1.2 },   // (sound editor) a step or two more, then the street stops at his door
 
-    { wait: -9.4118 },
+    // (sound editor) The snow's steps: 36 beats laid back from apartment-door, soft, so they run
+    // from halfway over the crossing through the whole block, under the Norse line with nothing
+    // else, and stop on the cue.
+    { wait: -10 },
+    { wait: -10 },
+    { wait: -1.176471 },
     { music: { id: 'steps-snow', bpm: 102, gap: 0, swing: 0.08, tracks: [
-        { who: 'al', beat: 'P! . . . ', loops: 16, vol: 0.08, pan: 0.25 },
-        { who: 'pete', beat: '. . . P! . . . P! . . . P! . . . . P! . . . P! . . . P! . . . . P! . . . P! . . . P! . . . P! . . . . P! . . . P! . . . P! . . . P! . . . . P!', vol: 0.1, pan: -0.05 },
+        { who: 'al', beat: 'P! . . . ', loops: 36, vol: 0.08, pan: 0.25 },
+        { who: 'pete', beat: '. . . P! . . . P! . . . P! . . . . P! . . . P! . . . P! . . . . P! . . . P! . . . P! . . . P! . . . . P! . . . P! . . . P! . . . P! . . . . P! . . . P! . . . P! . . . P! . . . . P! . . . P! . . . P! . . . . P! . . . P! . . . P! . . . P! . . . . P! . . . P! . . . P! . . . P! . . . . P! . . . P! . . . P! . . . P! . . . .', vol: 0.1, pan: -0.05 },
       ] } },
     { cue: 'apartment-door' },
     // The street stops. Wide on a brick front in the snow: a street door with a lit pane over

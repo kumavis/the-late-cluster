@@ -228,6 +228,59 @@ The script now has `The good way, and the bad wway. Same hour.` "bad" is heard i
 
 New length: **251.17 s**. `npm run check -- 003-holiday-2026 walk` passes.
 
+## Fifth follow-up: the Norse line on the last block
+
+Every line was heard in four takes in the full mix, with the snow's steps under it.
+
+- `this-block`, unchanged: "Nearly there, I usually lock this black/block on my own." ×4.
+- `one-line`, now `Just me, and one line from an old Norse poem.` (a comma after "me"): "Trust me, find one line from an over-and-horse poem." ×2, "Trust me, and run aligned from an over-and-horse poem." ×1, "Trust me, when one aligns from an over-and-horse poem." ×1.
+  - **"Norse" is heard as "and horse"** ("an old Norse" runs together as "over-and-horse"). It is never heard as "nurse" or "north" in this spelling.
+  - The tries:
+
+    | spelling or rate | heard as |
+    |---|---|
+    | plain | "an orange poem", "for Menor in our poem" |
+    | `old, Norse` | "an old North poem" ×2, "the north, north poem" ×2 |
+    | `oaldd Norse` | "an ordinary North poem" |
+    | `Norss`, `Nnorse`, `oald Nnorse`, `oald Norse` | "over-and-horse" |
+    | `Norse, poem` | "no renoirs, poem" |
+    | `and, one line … Norrse` | "for Menor in our poem" |
+    | rate 0.9 or 0.92 | "over-and-horse"/"over-in-horse" |
+    | `ann old` (also at rate 0.94) | "…our sperm" in most takes. **Rejected as crude.** |
+    | `one line, from` | "…our sperm" once. Rejected |
+
+    Nothing in the chosen spelling is heard as crude. "Just" is heard as "Trust" throughout. Please listen to this line yourself.
+- `comrade-line`, now `Rich, did I feel when a comrade I found.` (a comma after "Rich"; every word kept; rate 0.92, gap 0.9): "Rich, did I feel when a comrade I found?" ×1, "Rich, did I feel when the camera that I found?" ×1, "Rich, did I feel when the camera had I found?" ×1, "Alright, did I feel when the camera that I found?" ×1.
+  - "Rich" is now heard in three takes of four. Plain, it was "Where did I feel…" ×4.
+  - "comrade" is heard as "comrade" or "camera", and "found" in every take.
+  - The tries:
+    - `Rrich` and `Ritch`: "Where…".
+    - A comma after "feel": "What did I feel…".
+    - Rate 0.86: "Where/Or did I feel…".
+    - `Rich,` at rate 0.88: "Rich" ×2, "Alright" ×2.
+    - `comm-rad`: "camera" ×4.
+    - `uh comrade`: flagged by the fit ("…a camera died found"). Rejected.
+- `poem-talking`, plain: "Let's the poem talking." ×4. "That's" is heard as "Let's" in this voice, as in `good-one`. `That's,` was also heard as "Let's" ×4.
+- `mostly`, plain, **kept as its own beat**: "mochi" ×4.
+  - Alone, the one word is a guess for the transcription in every form I tried: `Moast-lee`, `Mostly...`, rates 0.82, 0.85, 0.92 and 1.0, and flat intonation. Every one was heard as "mochi", once as "MOVE GEE".
+  - The engine's sounds for it are right (/moʊstli/), so a listener should hear "Mostly." The caption carries it.
+  - I did not merge it with the line before: the pause before it is the point, and merging would remove the line id `mostly`. The owner should listen to it.
+
+**Pacing.**
+- `one-line` follows `this-block` after 0.7 s, as one thought.
+- The quotation comes after the 0.9 s breath, at rate 0.92.
+- The 1.8 s after `glance` holds only the footsteps.
+- "That's the poem talking." follows at the default gap.
+- "Mostly." comes 0.9 s later.
+- An added `wait: 1.2` after "Mostly." gives two more steps before `apartment-door`.
+- No silence around the quotation was shortened.
+
+**Footsteps.** `steps-snow` is now 36 beats (21.18 s), laid back from `apartment-door` (190.40). It starts at 169.22, one stride after the last step of `steps-cross`, as before. It runs soft (0.08 / 0.10) under the whole block and stops on the cue. Under the quotation (181.19 to 184.07) nothing sounds but the two sets of steps.
+
+**Voice research.** Recorded: "mostly" (cannot, alone), "norse" (cannot; with the note to avoid `ann old`), "rich" (unstable; the comma helps).
+
+New length: **263.22 s**. `npm run check -- 003-holiday-2026 walk` passes.
+
 ## The mp3
 
 `/Users/xyz/Development/the-late-cluster/episodes/003-holiday-2026/public/audio/walk.mp3` (cues in `episodes/003-holiday-2026/segments/walk/cues.json`)

@@ -1066,6 +1066,110 @@
       "verdict": "fresh",
       "fromPrevious": false
     },
+    "walk:one-line": {
+      "id": "walk:one-line",
+      "version": "a4298ef4348c",
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 3,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "No aired line, joke or device is near it. It mends the line before it (he is not quite on his own, he has a line he walks with) and brings nothing in. A host who walks alone is the character the ledger describes, and this is not a punch that he is only a host or is left out of something. Noted against the special and not against the record: it is the fourth time he says 'old' of a text, and the only one of the four that is not introduced."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 3,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "No aired line says it or works this way. Looked at hard and passed: the previous aired episode's song turned on the host having exactly one small thing to offer (one note) after saying he only hosts, and the record says a joke whose punch is that he is only a host, a mouth or a throat has been made. This is not that joke. The line is a set-up and not a punch, it does not name his job or his size, and the 'one line' is his company on the block, not his shortfall; it mends 'on my own' in the line before it. The pilot's 'exactly one setting' was a joke about a bot's tic. What the line adds to the shape of the ending is a different matter, set out under earnsItsPlace and forTheOwner; it does not make the line a repeat."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "walk:comrade-line": {
+      "id": "walk:comrade-line",
+      "version": "55ba916d94bf",
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 3,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "Nothing aired quotes a poem, and no aired line has these words. Looked at against two things and passed. (1) The pilot's close, where the sincere thing was also said in borrowed words about friends (a real post held on a card as the answer to the night's question) and the host added a short line of his own. The subject returns, and so does the bible's own principle that the sincere words are someone else's; the device does not: no question is restated, nothing is on screen, it answers nothing that was asked, it is said to the road, and he then disowns it. (2) The two aired endings in which the house takes the host in. Nobody takes anybody in here: he lets slip that he was glad to be joined, and no one answers. Whether the quotation and its full stop match the card is the auditor's."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 3,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "An exact line of a published translation that the show has never said, and no aired episode has had a house character recite an old text at all. The nearest thing in the record is the pilot's sincere beat, which let other people's words (real posts held on cards) say what the night was about and then undercut it with a sound from the audience. Different mechanism: here one man says one line by heart to the road, nothing is put on screen, and what follows is his own flinch and not an interruption. Borrowed words and lightness within a beat are the premise chapter's craft for sincerity, not a device of an episode. Both reviewers read these same words against the same aired record at select and neither stopped them."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "walk:poem-talking": {
+      "id": "walk:poem-talking",
+      "version": "7be3038a5106",
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 3,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "An idiom no aired line has. Looked at against what the two aired episodes did straight after their sincere moments: the pilot undercut its own with an animal call from the audience and a card, and the previous aired episode had the host make himself small ('I'm a mouth.') and then burp. Lightness within a beat of sincerity is the bible's craft and a writer may arrive at it; what is done is how each was staged, and neither is here. This line does not make him small or name what he is. It hands the feeling to the poem."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 3,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "Looked at hardest of the four. Twice last week Larry ended a sincere passage by saying the thing was not really his: at the bottom of the making-of, after telling the viewer they make the show, he was only a mouth; in the song, asked for his best, he only hosted. One sentence can be stretched over all three (after something sincere, the host says it is not his). I pass it because the punch is different in kind: those two were about how small his part in the show is, and the record lists that joke as made. This one is a man embarrassed at having been overheard meaning something, blaming the book; it says nothing about the show or his job, and the next beat takes it half back, which neither earlier line did. It is the character (ducks credit at the tender moment) with a new line, which the record allows. No aired line uses the words."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "walk:mostly": {
+      "id": "walk:mostly",
+      "version": "5ee542ffd5ac",
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 3,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "Looked at against the previous aired episode's 'Nothing gets in twice.' and then 'Except review.': a flat statement, a beat, and a short tag that takes part of it back. The figure is the same; the premise and the turn are not. There the exception was a fact the picture had planted (the word is in the pipeline twice) and the joke was one of logic. Here nothing catches him out: it is a concession of feeling, and it gives back half of what the line before withdrew. Like 'Same hour.' in round 2, it is a figure of ordinary speech used once; a third short walk-back as a beat of its own, in a later episode, would start to be a form. Within the special it is the second line of his own that he tops with a dry tag after a pause (`i-looked` is the first), three minutes apart and to the opposite effect."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 3,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "Never said on air. The form, a flat statement and then a one- or two-word qualifier as its own beat, has one near relative in the previous aired episode (a claim that nothing gets in twice, then a dry exception). There the qualifier was the joke, about the show's own process; here it is a man giving back half of what he has just disowned, and it is the truest word in the moment. Ordinary speech, different job. It also belongs to this script's own Larry, who answered 'Does it help?' with 'Some nights.'"
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
     "walk:this-is-me": {
       "id": "walk:this-is-me",
       "version": "acdd58525e56",

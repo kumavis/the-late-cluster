@@ -3,8 +3,8 @@
   "title": "The Walk Home",
   "retell": "The one where there's no show, so Larry walks you home through the cold, tells you what an old cook and an old rabbi knew about hard parts and unfinished work, and then can't leave you standing outside his own door.",
   "feeling": "Rattled, walked home, let in",
-  "seconds": 251,
-  "words": 414,
+  "seconds": 263,
+  "words": 438,
   "ideas": [
     { "card": "zhuangzi", "use": "told", "line": "cook-story" },
     { "card": "zhuangzi", "use": "told", "line": "zhuangzi-name" },
@@ -20,6 +20,9 @@
     { "card": "avot", "use": "told", "line": "borrow" },
     { "card": "avot", "use": "told", "line": "dont-finish" },
     { "card": "avot", "use": "told", "line": "dont-quit" },
+    { "card": "havamal", "use": "told", "line": "one-line" },
+    { "card": "havamal", "use": "quoted", "line": "comrade-line" },
+    { "card": "havamal", "use": "told", "line": "poem-talking" },
     { "card": "kural-guests", "use": "told", "line": "tamil-book" },
     { "card": "kural-guests", "use": "told", "line": "guest-1" },
     { "card": "kural-guests", "use": "told", "line": "guest-2" }
@@ -32,7 +35,7 @@
     "a busker under a lamp singing seven notes to an empty pavement, stopping one short, and starting again behind us",
     "a crossing on an empty road: DON'T WALK in red through everything he says, still red after it, and WALK only when the sign is ready",
     "crossing in the first snow, no words",
-    "the last block in the snow: he says he usually walks it alone, looking straight ahead",
+    "the last block in the snow, lit windows going by above him: he usually walks it alone with one line from an old Norse poem, and says the line to the road, looking straight ahead; a glance at us and away; he half takes it back",
     "his street door, a crowded lit window above it, us still on the pavement, the door opening from upstairs",
     "the table: six friends, every plate clean, his gold chair empty; a second chair comes in and the camera sits in it",
     "the meal, from our chair, with nobody looking at us"
@@ -54,6 +57,7 @@
   "worry": "The crossing. It is fifty seconds standing at a kerb, and the most important sentence in the special is in the English of 1913. The five changes of shot and the two silences are what keep it from being a lecture, and the sign that does not change afterwards has to read as the street being honest, not as nothing happening. If it plays long, shorten what is around it and not the hold after the quotation.",
   "credits": [
     { "work": "Pirkei Avot, chapter 2, in The Sayings of the Jewish Fathers", "translator": "Joseph I. Gorfinkle", "year": 1913, "line": "tarfon-1" },
-    { "work": "Pirkei Avot, chapter 2, in The Sayings of the Jewish Fathers", "translator": "Joseph I. Gorfinkle", "year": 1913, "line": "tarfon-2" }
+    { "work": "Pirkei Avot, chapter 2, in The Sayings of the Jewish Fathers", "translator": "Joseph I. Gorfinkle", "year": 1913, "line": "tarfon-2" },
+    { "work": "The Hávamál, stanza 47, in The Poetic Edda", "translator": "Henry Adams Bellows", "year": 1923, "line": "comrade-line" }
   ]
 }

@@ -1,6 +1,6 @@
 # The owner's notes
 
-**Air slot:** not named yet.
+**Air slot:** Saturday 28 November 2026, in the morning, local time (JST, UTC+9). The owner, on the evening of 27 November: "solid, lets publish tomorrow morning local". The hour is not named yet.
 
 ## 27 November 2026: the outline
 
@@ -84,3 +84,28 @@ should arrive by a cut too, the owner answered:
 > one thought - at the start of the walk i think theres a little too much negativity, or focus
 > on it. things are changing fast, horrors are witnessed, incredible joys are experienced. a lot
 > is happening. how can we convey that a bit better.
+
+## 27 November 2026, evening: the air slot
+
+After watching the cut with the rewritten start of the walk:
+
+> solid, lets publish tomorrow morning local
+
+So the episode is approved by the owner as watched, and it goes out on the morning of Saturday
+28 November 2026, local time. Tonight is the day before the slot: the published build is made
+on the episode's branch, the posting cut is checked at phone size, and the cut, the post text
+and the alt text are put to the owner as one set. Nothing is merged, pushed or posted until the
+owner's word in the morning.
+
+## 27 November 2026, evening: a fourth idea
+
+> are we quoting three ancient wisdoms? if we were to add a fourth what would you reach for
+
+The project manager named four candidates from the research shelf and recommended the Hávamál's
+line on the last block; the owner asked for a paragraph on each, and then chose:
+
+> The Norse line
+
+So the special gains a fourth idea before the cut is frozen: on the last block, the line "Rich
+did I feel when a comrade I found" from the Hávamál in Bellows's translation of 1923, which an
+earlier draft had and the final script cut to stay at three.

@@ -81,3 +81,16 @@ hoodie is applied in `crewLook`.
 **Left alone on purpose:** the second chair at `chair-in`, and the plate, fork and glass that slide into place along the bottom of the frame as we sit. They were not in the owner's note. Now that nothing else on the table moves by itself, the place setting sliding in is the one remaining slide, and it may read as out of keeping. That is for the owner.
 
 **Looked at:** every change at full size and at 640 × 360. One frame at every crossing and table cue printed no console warnings, and `npm run check -- 003-holiday-2026` passes. The cues have moved slightly since the last pass, and the shots were taken against the current `cues.json`.
+
+## Round four: the last block, with the Norse line
+
+| # | file | change | why |
+|---|---|---|---|
+| 1 | — | The walk needed no change. The door move is keyed to `walk-sign` and `apartment-door`, so it stretched by itself to the longer block: a steady 1.3 × pace from the crossing's far kerb to the door. The lit flats run past above him through all four lines and do not run out. His building comes in only at the elliptical cut on `apartment-door`, and the stop at his door still lands there. The cut at `walk-on` still behaves: restaurant before it, dark street after. | |
+| 2 | `street.js` | New shot `comrade`: **a cut on the cue** to a closer framing on him (zoom 1.42, centre 560/296, pushing to 1.48 through the quotation). He is still in profile and walking, with the windows going by above him and snow across him. His chin rises a little (nod +0.06) and his head does not turn. On `glance` it cuts back to the last-block framing. | The comment asks for the closer shot. A cut on the cue, rather than a long push, keeps the push from being mistaken for a slip. |
+| 3 | `street.js` | Nothing new for the glance: its turn and tilt are keyed to `glance`, which now falls after the quotation. Eyes are front for `poem-talking` and `mostly`. The header's scene range now runs `cross` to `mostly`. | Nothing in `street.js` or `door.js` was keyed to `this-block` or `this-block.end`. |
+| 4 | — | Snow is unchanged and continuous through the block. | |
+
+**Looked at:** every cue, and the middle of every line and gap from `cross` to `let-in` (34 frames), at full size and at 640 × 360 with `--caption-scale 1.4`. In the comrade shot his profile and the windows read, and the bar stays below his mouth. I also looked at the glance over four frames, and both sides of `walk-on`. One frame at every cue (55) printed no console warnings, and `npm run check -- 003-holiday-2026` passes.
+
+**For the auditor:** whether a cut (not a push) on `comrade` is the right weight for the quotation. Also, `plan.md`'s table of cue seconds is out of date again.
