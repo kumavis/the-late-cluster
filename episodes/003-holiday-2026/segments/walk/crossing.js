@@ -244,6 +244,45 @@ function farSideStreet(ctx, t, show, at) {
   }
   const L = { bld: [FAR.x0, 632], kerb: [FAR.x0 + 26, 648], kerbR: [FAR.x1 - 26, 712], bldR: [FAR.x1, 728] }
   const seg = (n, f) => [along(n, f, 0), along(n, f, 1)]
+  // The side street is closed (the owner's note, round three: the distant skyline showed straight
+  // through it, down to the road). Its two rows of buildings recede to a building across its far
+  // end, which closes the view; everything below their roof lines is filled black first, so no
+  // other layer's lines cross the street. Above the roofs the far city may show, as over any roof.
+  const WALL = 260 // the corner buildings' height at the near end
+  const roof = (n, f, d) => {
+    const [x, y] = along(n, f, d)
+    const e = 1 - (1 - d) ** 1.6
+    return [x, y - 18 - WALL * (1 - 0.82 * e)]
+  }
+  const rL0 = roof(...L.bld, 0), rL1 = roof(...L.bld, 1), rR0 = roof(...L.bldR, 0), rR1 = roof(...L.bldR, 1)
+  const endTop = Math.min(rL1[1], rR1[1]) - 26
+  const end0 = along(...L.bld, 1), end1 = along(...L.bldR, 1)
+  const dark = new Path2D()
+  dark.moveTo(g0 - 2, Y.roadTop)
+  dark.lineTo(g0 - 2, rL0[1])
+  dark.lineTo(rL1[0], rL1[1])
+  dark.lineTo(rL1[0], endTop)
+  dark.lineTo(rR1[0], endTop)
+  dark.lineTo(rR1[0], rR1[1])
+  dark.lineTo(g1 + 2, rR0[1])
+  dark.lineTo(g1 + 2, Y.roadTop)
+  dark.closePath()
+  occlude(ctx, dark)
+  // the roof lines of the two receding rows
+  stroke(ctx, [rL0, rL1], P.blueMid, 1.1, 0.5)
+  stroke(ctx, [rR0, rR1], P.blueMid, 1.1, 0.5)
+  // the building across the far end: one plain front, a door, two windows, one of them lit
+  const ex0 = rL1[0], ex1 = rR1[0], eb = end0[1] - 18
+  stroke(ctx, [[ex0, eb], [ex0, endTop], [ex1, endTop], [ex1, eb]], P.blueMid, 1.1, 0.55)
+  const ew = ex1 - ex0
+  const win = (u, lit) => {
+    const p = rectPath(ex0 + ew * u - 4, endTop + 10, 8, 9)
+    beam(ctx, p, lit ? P.amber : P.blueDim, 1, { alpha: lit ? 0.75 : 0.45 })
+  }
+  win(0.28, true)
+  win(0.72, false)
+  beam(ctx, rectPath(ex0 + ew * 0.5 - 4, eb - 13, 8, 13), P.blueDim, 1, { alpha: 0.45 })
+  void end1
   // the building lines and the kerbs of the side street
   stroke(ctx, seg(...L.bld).map(([x, y]) => [x, y - 18]), P.blueMid, 1.1, 0.5)
   stroke(ctx, seg(...L.bldR).map(([x, y]) => [x, y - 18]), P.blueMid, 1.1, 0.5)
@@ -262,7 +301,7 @@ function farSideStreet(ctx, t, show, at) {
   for (const [n, f, side] of [[...L.bld, -1], [...L.bldR, 1]]) {
     for (const d of [0.18, 0.42, 0.66, 0.86]) {
       const [x, y] = along(n, f, d)
-      const h = 150 * (1 - 0.82 * (1 - (1 - d) ** 1.6))
+      const h = WALL * (1 - 0.82 * (1 - (1 - d) ** 1.6))
       stroke(ctx, [[x, y - 18], [x, y - 18 - h]], P.blueDim, 1, 0.4)
       // a lit window now and then, small with distance
       if (d === 0.42 && side < 0) dot(ctx, x + 6 * (1 - d), y - 18 - h * 0.6, 2.2 * (1 - d * 0.6), P.amber, 0.55)
@@ -286,9 +325,6 @@ function farSideStreet(ctx, t, show, at) {
       stroke(ctx, [[x - 3 * s, y + 4 * s], [x + 3 * s, y + 4 * s]], P.amber, 1, 0.3 * (1 - d * 0.5))
     }
   }
-  // where the picture ends: another junction, and nothing on it
-  const e0 = along(...L.bld, 1), e1 = along(...L.bldR, 1)
-  stroke(ctx, [[e0[0] - 30, e0[1] - 2], [e1[0] + 30, e1[1] - 2]], P.blueDim, 1, 0.35)
   ctx.restore()
 }
 

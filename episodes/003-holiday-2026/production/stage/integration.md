@@ -66,3 +66,18 @@ hoodie is applied in `crewLook`.
 **Looked at:** each change at full size and at 640 × 360: the push frame by frame, the busker over four frames, the snow over eight, the goodnight push from start to fade, and the studio wide and the desk shot. One frame at every cue (54 frames) printed no console warnings, and `npm run check -- 003-holiday-2026` passes.
 
 **Left alone, as asked:** the scarf, the cook slowing, the figure in the window, both chairs, the bowl, the light, the listening holds, and the first and last frames.
+
+## Round three: the owner's notes
+
+| # | file | change | why |
+|---|---|---|---|
+| 1 | `crossing.js` | The side street now has a clean end. Its two rows of buildings recede, with roof lines, to one plain building across the far end (a door and two windows, one lit), which closes the view. Everything below those roofs is filled black before anything of the street is drawn. The street's lamps still get smaller, and the line marking "another junction" is gone. | The distant skyline's outlines showed straight through the street, down to the road. Above the roofs the far city may still show, as it does over any roof. |
+| 1 | — | Checked the rest of the walk, nothing to change. The street builds the building fronts edge to edge, and the side street is the only gap in them; no other place clears the fronts. Checked at `crossing-red` + 1.5, every crossing cue, the walk-in, `cross` and the start of the last block. | |
+| 2 | `table.js` | `the-meal`: the two bowls that went along the table in opposite directions are gone. `goodnight`: so is the one drifting bowl. | Nothing slides along the table. |
+| 2 | `table.js` | `served` is now two shots, and the bowl does not move in either. In `served` it stands just handed along at Larry's left, nearer us than the dish. He looks at it, and as the shot ends his head comes round toward us. At the cut (`served` + 1.05, the new shot `served-at`, a little closer) it is at our plate and he is looking down at it there. | Larry's look carries the bowl past him to us. |
+| 2 | `table.js` | Draw order from our chair is now far to near: the far side's glasses, then the candles, then the dish. The door view is reordered the same way. | In `the-meal` a sliding bowl had a glass drawn through it. That bowl is gone, and nothing on the table now overlaps out of depth order in any table shot. |
+| 3 | `table.js` | Sibyl from our chair sits at the head: the right end of the far side, just inside the table's corner, as in the door shots. Her chair is an open wooden back whose top rail shows at her shoulders, in both views. In `larry-and-sibyl` she is at her plate (chin down, gently) through "It's my house.". From just before "It's still the rule." she lifts her head and turns to Larry over 0.8 s, unhurried, and stays level on him. | She sat small under a tall black chair back that read as a picture on the wall, with her head tipped hard down. |
+
+**Left alone on purpose:** the second chair at `chair-in`, and the plate, fork and glass that slide into place along the bottom of the frame as we sit. They were not in the owner's note. Now that nothing else on the table moves by itself, the place setting sliding in is the one remaining slide, and it may read as out of keeping. That is for the owner.
+
+**Looked at:** every change at full size and at 640 × 360. One frame at every crossing and table cue printed no console warnings, and `npm run check -- 003-holiday-2026` passes. The cues have moved slightly since the last pass, and the shots were taken against the current `cues.json`.

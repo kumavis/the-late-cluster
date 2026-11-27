@@ -425,13 +425,16 @@ export default {
 
     { cue: 'served' },
     // From our chair. The big dish has lost its lid while nobody was looking, and steam goes up
-    // past the candles. A bowl comes along the table from Dee's end, in from the left edge
-    // behind the candles, and stops at our plate. It goes past Larry to get there. His head
-    // follows it all the way.
+    // past the candles. A bowl stands at Larry's left, just handed along, and he is looking at
+    // it. After a cut it is at our plate, and his head has followed it there: it went past him
+    // to get to us. Nothing is seen to slide along the table (the owner's note, 27 November
+    // 2026: "the small bowls are sliding").
     { wait: 1.8 },
     { cue: 'larry-and-sibyl' },
     // Larry, close beside us in profile, and Sibyl at the head of the table past him. He says
-    // it to her. She does not look up from her plate.
+    // it to her. She is at her plate while he says it, and to answer she lifts her head and
+    // looks at him, unhurried and level (the owner's note, 27 November 2026: she had been
+    // "looking down" for her line).
     { say: 'larry', id: 'my-house', text: "It's my house." },
     { say: 'sibyl', id: 'still-the-rule', text: "It's still the rule.", gap: 0.3 },
     { cue: 'eppy-calls-it' },
@@ -442,7 +445,7 @@ export default {
 
     { cue: 'the-meal' },
     // From our chair, and nobody is looking at us any more, which is the welcome. Everyone
-    // talks at once. Bowls go along the table in both directions. Hy leans across to Dee;
+    // talks at once. Nothing moves along the table; the life is in the heads. Hy leans across to Dee;
     // Pete's head is down over his plate; Al nods at something Sibyl has said. Our plate, at
     // the bottom of the frame, has something on it now. Let it run.
     // Sound: the room's own murmur, layered, a voiced laugh or two with no caption. Keep it as
@@ -459,8 +462,8 @@ export default {
 
     { cue: 'goodnight' },
     // Larry, in the next chair, turns from the table to camera. The table is soft and warm
-    // behind him and nobody at it is looking our way: heads turned to one another, a bowl going
-    // along. While he says the next two lines nothing behind him asks to be looked at and no
+    // behind him and nobody at it is looking our way: heads turned to one another. While he
+    // says the next two lines nothing behind him asks to be looked at and no
     // sound is cued against them. He means them. Push in slowly.
     // After his last word he stays on us a moment, nods, and his head goes back to the table.
     // Hold three seconds from our chair, the room still talking, our plate in the frame. Then

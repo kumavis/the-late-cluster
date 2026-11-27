@@ -58,3 +58,15 @@ The project manager takes "go ahead" to mean the script goes forward as reviewed
 the writer's either-ors left as written, and that the special may have a title and an end of
 its own in place of the studio's stock cards. Both are the project manager's reading, and the
 owner can reverse either after watching.
+
+## 27 November 2026: after watching the video
+
+> good. couple weak visual details. the distant buildings are visible through the side streets.
+> at the dinner table the small bowls are sliding, and one has a z-depth issue. sybil ant is
+> positioned weirdly and looking down when he says "its still the rule"
+
+What follows from it, as the project manager reads it: nothing far shows through a side street;
+nothing slides along the table by itself, so the bowl that is served to us arrives across cuts
+and the bowls of the meal stay put; and Sibyl sits as a person at the head of the table and
+looks at Larry when she says "It's still the rule." The last two differ from the script's cue
+comments, which are brought into line. No word of any line changes.

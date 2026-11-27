@@ -53,7 +53,10 @@ const SEAT = {
   headY: 318,
   scale: 0.95,
   seats: { pete: 0, hy: 340, dee: 680, al: 1020, eppy: 1360 },
-  sibyl: { x: 1720, y: 312, scale: 1.0 },
+  // at the head: the right end of the far side, just inside the table's corner, as she sits at
+  // its right end in the door shots (round three: she was further right, under a tall black
+  // chair back that read as a picture on the wall)
+  sibyl: { x: 1790, y: 314, scale: 1.0 },
   end: 1830, // the head of the table
   window: { x: 1040, y: 26, w: 300, h: 180 },
   window2: { x: 120, y: 26, w: 300, h: 180 },
@@ -95,7 +98,8 @@ function shotAt(show, t) {
     const base = { x: 1200, y: 360, zoom: 1 }
     const u = show.ease.outCubic(clamp((t - SIT) / 0.7))
     s = { name: 'sit', view: 'seat', base, cam: { x: base.x, y: base.y - 26 * (1 - u), zoom: 1.03 - 0.03 * u } }
-  } else if (t < at('larry-and-sibyl')) s = { name: 'served', view: 'seat', base: { x: 1100, y: 360, zoom: 1.25 } }
+  } else if (t < at('served') + SERVED_CUT) s = { name: 'served', view: 'seat', base: { x: 1100, y: 360, zoom: 1.25 } }
+  else if (t < at('larry-and-sibyl')) s = { name: 'served-at', view: 'seat', base: { x: 1100, y: 380, zoom: 1.35 } }
   else if (t < at('eppy-calls-it')) s = { name: 'house', view: 'seat', base: { x: 1618, y: 360, zoom: 1.2 } }
   else if (t < at('the-meal')) s = { name: 'ruling', view: 'seat', base: { x: 1020, y: 360, zoom: 1.1 } }
   else if (t < at('goodnight')) s = { name: 'meal', view: 'seat', base: { x: 460, y: 360, zoom: 1 } }
@@ -108,7 +112,7 @@ function shotAt(show, t) {
     s = { name: 'goodnight', view: 'seat', base, cam: { x: base.x - 60 * u, y: base.y - 10 * u, zoom: base.zoom * (1 + 0.12 * u) } }
   }
   s.cam = s.cam ?? s.base
-  s.near = ['sit', 'served', 'ruling', 'meal', 'goodnight'].includes(s.name)
+  s.near = ['sit', 'served', 'served-at', 'ruling', 'meal', 'goodnight'].includes(s.name)
   return s
 }
 
@@ -125,6 +129,7 @@ const LARRY_AT = {
   'they-look': { world: DOOR.larry },
   sit: { stage: { x: 175, y: 350, scale: 1.6 } },
   served: { stage: { x: 268, y: 352, scale: 1.5 } },
+  'served-at': { stage: { x: 250, y: 372, scale: 1.62 } },
   house: { stage: { x: 300, y: 385, scale: 1.9 } },
   goodnight: { stage: { x: 350, y: 368, scale: 1.65 } },
 }
@@ -163,21 +168,20 @@ function dip(t, t0, depth = 0.1, dur = 0.5) {
   return u > 0 && u < 1 ? -depth * Math.sin(Math.PI * u) : 0
 }
 
-/** the bowl's path in `served`, stage pixels against the shot's base: in from the left edge behind the candles, past Larry, to our plate */
-function servedBowl(show, t) {
-  // along the table behind the candles at an even pace, then forward to our plate, easing to a stop
-  const s0 = show.at('served')
-  const a0 = s0 + 0.1, a1 = s0 + 1.1, a2 = s0 + 1.6
-  const P0 = [-110, 508], P1 = [520, 506], P2 = NEAR.bowl
-  if (t < a1) {
-    const v = clamp((t - a0) / (a1 - a0))
-    const u = v < 0.15 ? (v * v) / 0.3 : v - 0.075 // a gentle start, then steady
-    const k = u / 0.925
-    return { x: P0[0] + (P1[0] - P0[0]) * k, y: P0[1] + (P1[1] - P0[1]) * k, r: 40, u: 0.6 * k }
-  }
-  const v = show.ease.outCubic(clamp((t - a1) / (a2 - a1)))
-  return { x: P1[0] + (P2[0] - P1[0]) * v, y: P1[1] + (P2[1] - P1[1]) * v, r: 40 + (P2[2] - 40) * v, u: 0.6 + 0.4 * v }
+/** 0..1: Sibyl lifting her head to Larry, from just before her line, over 0.8 s */
+function sibylLift(show, t) {
+  const t0 = show.at('still-the-rule') - 0.35
+  return clamp((t - t0) / 0.8)
 }
+
+/**
+ * `served` is two shots, and the bowl never moves within one (round three, the owner's note: nothing
+ * slides along the table). In `served` it stands just handed along, on the table at Larry's left,
+ * nearer us than the dish; he looks at it, and as the shot ends his head comes round toward us.
+ * At the cut, `served-at`, it is at our plate and he is looking at it there.
+ */
+const SERVED_CUT = 1.05
+const BOWL_HANDED = [96, 572, 40]
 
 function lookFor(show, t, s, id) {
   const at = (c) => show.at(c)
@@ -198,11 +202,13 @@ function lookFor(show, t, s, id) {
     case 'sit':
       return id === 'sibyl' ? 2.72 : 0.4 // Sibyl tells Larry the rule; the others look to her
     case 'served':
+    case 'served-at':
       return PAIR[id]
     case 'house':
-      // Sibyl faces her plate, nearly to us, so her chin going down reads (review round two:
-      // turned to Larry she read as level and talking to him)
-      return id === 'sibyl' ? 1.8 : 2.35
+      // Sibyl at her plate through "It's my house.", then, unhurried, she turns to him for "It's
+      // still the rule." (round three, the owner's note)
+      if (id !== 'sibyl') return 2.35
+      return 1.8 + (2.54 - 1.8) * show.ease.inOutSine(sibylLift(show, t))
     case 'ruling':
       return id === 'eppy' ? 2.05 : 0.45 // Eppy to the table at large; Al and Dee to Eppy
     case 'meal':
@@ -225,11 +231,12 @@ function larryLookFor(show, t, s) {
     case 'sit':
       return 0.32 // to Sibyl as she says the rule
     case 'served': {
-      // his head follows the bowl all the way, from the left edge, past him, to our plate
-      const b = servedBowl(show, t)
-      const d = b.x - LARRY_AT.served.stage.x
-      return Math.PI / 2 - Math.atan(d / 150) * 0.95
+      // at the bowl, just handed along at his left; then his head comes round toward our place
+      const u = show.ease.inOutSine(clamp((t - at('served') - 0.5) / 0.55))
+      return 2.55 + (1.2 - 2.55) * u
     }
+    case 'served-at':
+      return 0.62 // down at our plate, where the bowl is
     case 'house':
       return 0.12 // in profile, to her
     case 'goodnight': {
@@ -277,7 +284,7 @@ export default {
         if (c.id === 'dee') nod -= dip(t, tm + 1.6, 0.12, 0.6) + dip(t, tm + 3.5, 0.1, 0.5)
         if (c.id === 'al') nod += dip(t, tm + 0.9, 0.1, 0.5) + dip(t, tm + 2.2, 0.09, 0.5) + dip(t, tm + 3.6, 0.1, 0.5) // nodding at something Sibyl said
       }
-      if (s.name === 'house' && c.id === 'sibyl') nod -= 0.62 // she does not look up from her plate
+      if (s.name === 'house' && c.id === 'sibyl') nod -= 0.4 * (1 - show.ease.inOutSine(sibylLift(show, t))) // at her plate, then level
       if (s.name === 'goodnight') {
         // the room going on behind him, quietly: small nods, nothing that asks to be looked at
         const tg = show.at('goodnight')
@@ -294,7 +301,7 @@ export default {
     if (lp) {
       seg.place('larry', { ...lp, look: larryLookFor(show, t, s), z: 7 })
       const L = show.puppet('larry')
-      if (s.name === 'served') L.nod(-0.12 * smoothstep(0.75, 1, servedBowl(show, t).u))
+      if (s.name === 'served' || s.name === 'served-at') L.nod(-0.13)
       if (s.name === 'house') L.tilt(0.07 * Math.sin(Math.PI * clamp((t - show.at('my-house.end') - 0.1) / 0.9))) // fond: he is losing, and knows it
       if (s.name === 'goodnight') {
         const end = show.at('stay-warm.end')
@@ -349,7 +356,9 @@ function doorBack(ctx, t, show, seg, s) {
   showBeam(ctx, jamb, R.C.wood, k * 1.2, 0.5)
   showBeam(ctx, R.poly([[112, D.floor], [112, 56]]), R.C.wood, k, 0.35)
   // the head of the table's chair, behind Sibyl
-  R.chairFront(ctx, D.sibyl.x + 8, D.sibyl.y - 52, D.far + 4, { width: 120, w: k })
+  // her chair: an open wooden back, its top rail at her shoulders (round three: a tall black panel
+  // above her head read as a picture on the wall)
+  R.chairBack(ctx, D.sibyl.x, D.sibyl.y + 30, D.far + 4, D.far + 30, { width: 112, color: R.C.wood, w: k * 1.2, alpha: 0.6, fill: false })
   table(ctx, t, s, k)
   // a clean place at every seat, and one set in front of the gold chair
   for (const id of ['pete', 'hy', 'dee', 'al', 'eppy']) R.plate(ctx, D.seats[id], D.far + 9, 30, { tilt: 0.22, w: k * 0.85 })
@@ -380,9 +389,10 @@ function doorFront(ctx, t, show, seg, s) {
   const D = DOOR
   const k = lw(s)
   const covered = true // in every door shot the dish is still covered
+  // far to near (round three): the glasses (far + 14), then the candles (+ 22) and the dish (+ 26)
+  for (const id of ['pete', 'hy', 'dee', 'al', 'eppy']) R.glass(ctx, D.seats[id] + 42, D.far + 14, 30, { w: k * 0.8 })
   for (const [i, x] of D.candles.entries()) R.candle(ctx, x, D.far + 22, 48, t, i, { w: k })
   R.dish(ctx, D.dish, D.far + 26, 58, t, { covered, w: k })
-  for (const id of ['pete', 'hy', 'dee', 'al', 'eppy']) R.glass(ctx, D.seats[id] + 42, D.far + 14, 30, { w: k * 0.8 })
   // the gold chair, his, back to us and empty, and ours that slides in beside it from the right
   R.glass(ctx, D.gold + 50, D.far + 34, 32, { w: k * 0.85, alpha: 0.6 })
   R.chairBack(ctx, D.gold, D.near - 26, D.skirt + 8, D.floor, { width: 80, color: R.C.gold, w: k * 1.6, alpha: 1, hot: true })
@@ -401,7 +411,6 @@ function seatBack(ctx, t, show, seg, s) {
   const k = lw(s)
   const at = (c) => show.at(c)
   const meal = t >= at('the-meal')
-  const tg = at('goodnight')
   // no change of light anywhere at the table (integration pass): the softness at goodnight is the
   // slow push and the heads turned to one another
   const soft = 1
@@ -409,7 +418,8 @@ function seatBack(ctx, t, show, seg, s) {
   R.windowWithSnow(ctx, t, show, seg.street, S.window, { w: k, alpha: soft, snow: soft })
   R.windowWithSnow(ctx, t, show, seg.street, S.window2, { w: k, alpha: soft, snow: soft })
   R.standingLamp(ctx, S.lamp.x, S.lamp.top, S.floor - 200, { w: k, size: 1.3 })
-  R.chairFront(ctx, S.sibyl.x + 10, S.sibyl.y - 80, S.edge, { width: 180, w: k })
+  // her chair: an open wooden back whose top rail shows just at her shoulders, not a black panel
+  R.chairBack(ctx, S.sibyl.x, S.sibyl.y + 46, S.edge, S.edge + 40, { width: 176, color: R.C.wood, w: k * 1.2, alpha: 0.6, fill: false })
   // the table top, from its far edge to below the frame
   const top = R.poly([[-1400, S.edge], [S.end, S.edge], [S.end + 420, 1100], [-1400, 1100]], true)
   occludeP(ctx, top)
@@ -420,12 +430,8 @@ function seatBack(ctx, t, show, seg, s) {
   for (const id of ['pete', 'hy', 'dee', 'al', 'eppy']) R.plate(ctx, S.seats[id], S.edge + 28, 62, { tilt: 0.2, w: k, food: meal ? 1 : 0, seed: S.seats[id], alpha: 0.7 * soft })
   R.plate(ctx, S.sibyl.x - 90, S.edge + 30, 60, { tilt: 0.2, w: k, food: meal ? 1 : 0, seed: 9, alpha: 0.7 * soft })
   // bowls going along the table
-  if (s.name === 'meal') {
-    const tm = at('the-meal')
-    R.bowl(ctx, 120 + 150 * (t - tm), S.edge + 74, 40, { w: k }) // left to right
-    R.bowl(ctx, 1180 - 130 * (t - tm), S.edge + 52, 34, { w: k }) // and right to left
-  }
-  if (s.name === 'goodnight') R.bowl(ctx, 1290 - 16 * (t - tg), S.edge + 58, 36, { w: k, alpha: 0.55 })
+  // (round three, the owner's note: nothing slides along the table; the bowls that went along it
+  // in the meal and at goodnight are gone. The meal's life is the heads, the steam, Pete's head down.)
   // the gold chair he sits in: its back post and the end of its top rail, behind his shoulder
   const L = LARRY_AT[s.name]?.stage
   if (L) {
@@ -462,7 +468,7 @@ function nearPlace(ctx, t, show, s, k) {
     const [x, y] = w(s, gx + dx(gu), gy)
     R.glass(ctx, x, y, gh / z, { w: k * 1.1, alpha: 0.6 })
   }
-  if (t >= at('served') + 1.45 && s.name !== 'served') {
+  if (t >= at('served') && s.name !== 'served') {
     const [bx, by, br] = NEAR.bowl
     const [x, y] = w(s, bx, by)
     R.bowl(ctx, x, y, br / z, { w: k })
@@ -474,15 +480,13 @@ function seatFront(ctx, t, show, seg, s) {
   const k = lw(s)
   const open = t >= show.at('served')
   const soft = 1
-  const b = s.name === 'served' ? servedBowl(show, t) : null
-  // while it goes along the far side of the table the bowl is behind the candles and the dish
-  if (b && b.u < 0.6) bowlAt(ctx, s, b, k)
-  for (const [i, x] of S.candles.entries()) R.candle(ctx, x, S.edge + 50, 78, t, i + 5, { w: k, alpha: 0.85 * soft })
-  R.dish(ctx, S.dish, S.edge + 52, 96, t, { covered: !open, w: k * 1.1, alpha: 0.85 * soft, steam: soft })
+  // far to near (round three): the glasses (edge + 34), then the candles (+ 50) and the dish (+ 52)
   for (const id of ['pete', 'hy', 'dee', 'al', 'eppy']) R.glass(ctx, S.seats[id] + 92, S.edge + 34, 62, { w: k, alpha: 0.5 * soft })
   R.glass(ctx, S.sibyl.x - 170, S.edge + 34, 62, { w: k, alpha: 0.5 * soft })
-  // and when it comes forward to our plate it is in front of them
-  if (b && b.u >= 0.6) bowlAt(ctx, s, b, k)
+  for (const [i, x] of S.candles.entries()) R.candle(ctx, x, S.edge + 50, 78, t, i + 5, { w: k, alpha: 0.85 * soft })
+  R.dish(ctx, S.dish, S.edge + 52, 96, t, { covered: !open, w: k * 1.1, alpha: 0.85 * soft, steam: soft })
+  // the bowl just handed along, at Larry's left, nearer us than everything on the far side
+  if (s.name === 'served') bowlAt(ctx, s, { x: BOWL_HANDED[0], y: BOWL_HANDED[1], r: BOWL_HANDED[2] }, k)
 }
 
 /** the served bowl (drawn inside drawFront's clip, so it passes behind Larry) */
