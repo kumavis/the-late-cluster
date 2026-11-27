@@ -162,3 +162,34 @@ After this nothing in the set is edited or rendered again. The published build i
 episode's branch tonight. In the morning, on the owner's word: the branch is merged into `main`
 and pushed, the live page is checked, and the video is posted.
 
+
+## 28 November 2026, morning (local time): it went out
+
+The owner, in the morning:
+
+> we're good to ship it
+
+and, before anything was merged or posted:
+
+> lets do a test post with the video and ill report if it works
+
+- **Pre-flight.** The cut and both texts matched the fingerprints recorded at approval; `verify`,
+  the source-record check, the on-record check and the tests were clean.
+- **The test post**, 27 November 2026, 23:45 UTC (08:45 local, 28 November): the frozen cut with
+  the text "test post" and the approved alt text, at
+  `at://did:plc:zdobmviiuyfkc6xyylmpm2sf/app.bsky.feed.post/3n3demvotap2z`. Read back from the
+  public side: both streams served (640 by 360 and 1280 by 720), and the poster Bluesky made was
+  the lit logo. The owner looked and answered "Works, ship it". The test post was then deleted
+  (23:47 UTC).
+- **Published.** The episode's branch was merged into `main` without a merge commit and pushed
+  (`fa70fbb`). The first deploy run failed at the Pages step on GitHub's side ("No artifacts
+  named github-pages were found", after the upload step had succeeded); the same run was run
+  again and passed. The live archive lists episode three as the latest, and its page, audio and
+  thumbnail answer at `https://kumavis.github.io/the-late-cluster/episodes/003-holiday-2026/`.
+- **Posted**, 27 November 2026, 23:49 UTC (08:49 local, 28 November):
+  `at://did:plc:zdobmviiuyfkc6xyylmpm2sf/app.bsky.feed.post/3n3deuvais32q`
+  (https://bsky.app/profile/latecluster.simcluster.tv/post/3n3deuvais32q), the frozen cut with
+  the approved post text and alt text and no captions file. Bluesky had dropped the stored
+  video when the test post was deleted, so the cut was uploaded a second time; it is the same
+  file, with the same fingerprint. Read back from the public side, the post's text and alt text
+  match the approved files exactly. There is no reply, because nobody real appears.
