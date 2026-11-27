@@ -445,3 +445,125 @@ said so.
 - **The credits:** the second translation's year sits alone on its line.
 - Settled since the first addendum: "bad" is heard as "bad", and the room no longer falls
   silent under "close".
+
+---
+
+## Third addendum, 27 November 2026, late evening: the logo at the opening
+
+The card and its two addenda are left as written. The owner was shown the cut with the fourth
+idea ("i think its great") and asked for two more things. No word of any line changed. **The
+verdict stands: approve, 19 of 24.**
+
+Times here are from the current `cues.json`. Everything is 3.5 s later than in the second
+addendum.
+
+### What changed
+
+1. **The opening** ("at the opening id like to see the official logo, but flicker out"). Three
+   cues sit before `dark-studio`: `logo`, `logo-flicker`, `logo-out`. The studio's own logo,
+   drawn by the studio's own function, is alone on black and fully lit from the first frame. It
+   holds in silence to 1.7, stutters for 1.2 s with seven quiet dry ticks, and is out at 2.9.
+   Black to 3.8, then the dark studio as before. The lit logo is the file's first frame, so it
+   is what a feed shows before the video plays.
+2. **Sibyl's seat.** She now sits inside the right-hand end of the table's far side in both
+   views, so the tabletop is in front of what it hides.
+3. **Since the second addendum,** the stage audit caught up with the fourth idea: round 4
+   asked for the credits to be tidied, which was done, and round 5 passes that cut. A round 6
+   on the opening is under way.
+
+The segment is now 266.7 s (4:26.7). The words are the same 427 in the same 64 lines.
+
+### What I checked this time
+
+- **Read:** the owner's two notes; the builder's rounds five and six; the sound editor's sixth
+  follow-up; the stage audit's rounds 4 and 5; the top of the script and the cues.
+- **Ran:** check (passes at 266.724 s), verify (0 problems) and on-record (findings=0).
+- **Looked at:** 41 frames I shot: 27 across the first eight and a half seconds (every flicker
+  slot from 1.65 to 2.95), 11 of the table and the end, and 3 of the credits. No warning.
+- **Measured:** the logo holds in digital silence; the ticks peak at minus 17 dB, against
+  minus 10 for the lamp and minus 9 for the coin; then silence until the car at 5.0.
+- **Read against the record:** both aired episodes' ledger records and continuity entries, and
+  the staging code of both aired opens, for the logo, for lights and power, and for how each
+  episode began.
+
+### Does the opening repeat anything? No. It turns something.
+
+**Verdict: turned.** It is this special's one turned item; every other item is fresh. It came
+from the owner, so this is for the record and for the owner's eyes, and is not a send-back.
+
+- **The logo as a picture at the top.** Both aired episodes put this same logo, from the same
+  studio function, on screen in their first seconds, and both times it *arrived* and the show
+  began: in the pilot it swept on over the skyline with the theme and the announce; in 002 a
+  member's handwriting became it on the announcer's line, to applause. So a viewer has been
+  taught that when the logo comes up, someone names the show and it starts. Here the logo is
+  already up, alone, in silence; nobody names anything; and what it does is fail. That is the
+  earlier expectation defeated, which is what the record means by a turn. It is one moment, and
+  it is a whole picture for someone who has never seen the show: a sign losing its power.
+- **The pilot's first ten seconds, run backwards.** The pilot began on black, the lights came
+  up, and the host's first words were "Oh. Oh no. We're on." This begins lit, goes dark, and
+  the host's first words are "Oh, no show tonight, folks." A final reviewer called the echo of
+  those words a happy accident. With the logo in front of them it is no longer only the words.
+  Both halves are the owner's.
+- **A sign or light failing.** Nothing aired does this. The nearest things: the pilot's last
+  picture collapsed like a screen switching off when the host pressed a key, as the payoff of
+  a runner; a bulb in the pilot's game cracked a little at every build; both aired songs dimmed
+  to a spot on the host and came back up. Each has a cause on screen and a different job. Here
+  nobody causes it and nothing comes back. But the show has now both ended an episode and
+  begun one by losing power.
+- **An opening that begins lit and goes dark.** None. The pilot's did the reverse.
+
+Why not a repeat: by mechanism it shares nothing with either aired open but the logo itself,
+and the logo is the show's name, which is frame. No announcer, no theme, no applause, no
+arrival. Why not simply fresh: it works on what the two aired opens taught, and upside down.
+
+**For the next gate.** The logo has now been in the first seconds of all three episodes: twice
+arriving, once leaving. A fourth opening built on the logo, either way, is a ritual way to
+start. The announcer has still named the host at the top twice and not three times. The turn is
+spent: an episode carries one, and this cannot be turned again.
+
+### Which rows it touches
+
+No score changes. The evidence of nine rows does.
+
+| row | was | now | what changed in the evidence |
+|---|---|---|---|
+| Step 0 | clean | clean | The studio part now begins with the logo. Its turn is unchanged and comes sooner: the show is off before anyone says so |
+| A8 | pass | pass | The credits were tidied after the stage audit's fourth round. I shot them again: the second translation reads "The Havamal, stanza 47 / translated by Henry Adams Bellows, / "The Poetic Edda", 1923", every letter in one face and no year left hanging. The poem's name is spelled without its accents there |
+| A11 | pass | pass | Check, verify and on-record pass on the cut as it stands |
+| A13 | pass | pass | Still 66 items, all fresh. One staging item is now turned, the opening, as set out above. The gate allows one turned item and no repeat, so it passes. Sibyl's seat repeats nothing |
+| A15 | pass | pass | There are now four things with words on them: the logo (THE LATE CLUSTER, with Larry Nx: six words, the show's own name, up for 2.6 s), OPEN, DON'T WALK and WALK. Each is a glance |
+| B4 | 2 | 2 | The logo is lit at 0.0, cuts off first at 1.72, is on, half lit or off in each slot after that, and is gone by 2.9; the studio is there at 3.85 and his first word is at 7.0. Sibyl is behind the tabletop in the wide (219.4), beside Eppy (220.6) and from our chair (232.9); chin down at 238.4 and up to him at 239.9 |
+| B5 | 2 | 2 | The card said the show's name was not on screen until the credits. It is now the first thing on screen, with the host's name under it |
+| B9 | 1 | 1 | Seven ticks for the flicker, quieter than every other click in it, with silence before and after. The same family of click is now the flicker, the lamp, the coin, the sign and the latch |
+| B10 | 2 | 2 | 4:26.7 against the owner's four minutes, by the owner's additions. The open now does what the episode-shape chapter asks of one in its first frame: the title and the host. The first word comes at 7.0 where it came at 3.5 |
+| B12 | 1 | 1 | The cues are now 13 tick, 2 whoosh, 44 murmur and 1 gasp: still no laugh, applause or sting. The owner has now seen the cut with the fourth idea and called it great. The measure's three people are still to come |
+
+Unchanged in score and evidence: every other row.
+
+**Total: 19 of 24,** as before (2, 1, 2, 2, 2, 2, 1, 1, 1, 2, 1, 2; B11 not applicable). No
+zero. **The verdict stands.**
+
+### Papers and audits
+
+- The stage audit's rounds 4 and 5 now cover the cut with the fourth idea, which answers the
+  second addendum's note that no audit did. Round 6, on the opening, has not reported.
+- The second addendum said the record did not show the owner had watched the cut with the
+  fourth idea. It now does.
+
+### New for the owner
+
+- **The opening turns your own open on its head.** In both aired episodes this logo came up
+  and the show started; in the pilot the lights came up and Larry said "Oh. Oh no. We're on."
+  Here it is up, it dies, and he says "Oh, no show tonight, folks." It is a turn and not a
+  repeat, it is the only one in the special, and it reads cold as a sign losing power. Keep it
+  knowing that the logo has now opened all three, and that the next episode should not open on
+  it either way.
+- **Watch the flicker** (1.7 to 2.9) on a phone and in a feed. It has to read as the sign's
+  power going and not as the video stuttering, since the poster is the lit logo and the first
+  thing the video does is flicker.
+- **Listen to the seven ticks** under it. They are meant to be dry and quiet, with nothing of
+  an alarm or a clock in them. The lamp's click at 25.1 is the same kind of sound, louder.
+- **The first three and a half seconds have no one in them,** and Larry's first word is now at
+  7.0.
+- **Sibyl** (219.4 to 240.4) is now seated at the table and not beyond it.
+- **The credits** spell the poem's name "Havamal", without its accents.

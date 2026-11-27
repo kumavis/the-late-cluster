@@ -1,0 +1,25 @@
+{
+  "round": 6,
+  "cut": "70c5d52ce40a75c83c60e8132b8b8dab4bfeccb47f9dfd0faa48fab912055a93",
+  "segments": {
+    "walk": {
+      "verdict": "pass",
+      "changes": []
+    }
+  },
+  "accepted": [
+    "Round 4, table.js: the caption bar over our plate during captioned lines at eppy-calls-it and goodnight. The project manager accepted it in round 5, and it is unchanged."
+  ],
+  "looksRight": [
+    "The first frame of the file (0.00) is the logo, whole and fully lit, centred on black, with nothing else on screen. It reads 'THE LATE / CLUSTER / with Larry Nx' with the constellation badge, and it is readable at 640 by 360.",
+    "It is the studio's own logo, not a redraw. Against episode 002's stock title card (shot from 002-2026-w47 at title 2 s), the letterforms, the colours (cyan THE LATE, gold CLUSTER, white italic 'with Larry Nx'), the badge, and the double rule with its shorter second line are the same.",
+    "The flicker, frame by frame from 0.45 to 3.05: the same logo, either whole and lit, whole and dimmer, or wholly off (1.80, 2.20, 2.40, 2.70). It ends on a dim frame (2.95, 3.05) and then goes out. No frame is torn, partial or off-colour, and no frame is missing a letter. It reads as a sign losing power.",
+    "After logo-out no trace of the logo remains. The frames at 3.20 and 3.60 are pure black (RGB maximum 0). The dark studio follows at dark-studio (3.95) exactly as passed, with the overhead lamp, Larry in the coat, the envelope on the desk and the window the only other light.",
+    "Text on screen: the logo's words appear in the opening only, and everything else is as in round 5.",
+    "I spot-checked fifteen frames across the rest of the cut: 18.31, 44.13, 64.92, 88.18, 112.00, 132.08, 159.54, 179.51, 199.05, 216.49, 223.13, 228.21, 237.74, 242.34 and 285.72. Each matches round 5 at its time plus 3.5 s. That covers the studio, the street, the restaurant with OPEN and the hatch, the cook slowing, the busker leaving, the crossing in red, the last block, the door and the watcher, the table with Sibyl in her seat, and the credits. The episode's last frame (266.62) is black. The QUOTED and TOLD FROM credits read exactly as in round 5, and the roll ends on black (285.72)."
+  ],
+  "forTheOwner": [
+    "Whether the logo's stutter feels like a sign losing power at speed, and how it sits with the sound, is for you to watch. In stills it is clean.",
+    "As before, only sound can settle whether the listening holds are heard as us speaking, and whether the coin lands as the tune's missing note."
+  ]
+}
