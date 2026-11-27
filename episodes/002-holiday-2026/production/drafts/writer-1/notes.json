@@ -1,0 +1,55 @@
+{
+  "writer": "writer-1",
+  "title": "No Show Tonight",
+  "retell": "The one where there's no show, so Larry walks you home through the cold, tells you what an old rabbi said about work nobody gets to finish, and then can't leave you standing outside his door.",
+  "feeling": "Walked home, and let in.",
+  "seconds": 245,
+  "words": 432,
+  "ideas": [
+    { "card": "hojoki", "use": "told", "line": "poet" },
+    { "card": "hojoki", "use": "told", "line": "opened" },
+    { "card": "hojoki", "use": "quoted", "line": "stream-1" },
+    { "card": "hojoki", "use": "quoted", "line": "stream-2" },
+    { "card": "hojoki", "use": "told", "line": "he-meant" },
+    { "card": "hojoki", "use": "told", "line": "hut" },
+    { "card": "avot", "use": "told", "line": "tarfon" },
+    { "card": "avot", "use": "quoted", "line": "work-1" },
+    { "card": "avot", "use": "quoted", "line": "work-2" },
+    { "card": "avot", "use": "told", "line": "torah" },
+    { "card": "avot", "use": "told", "line": "my-reading" },
+    { "card": "avot", "use": "told", "line": "no-quit" },
+    { "card": "avot", "use": "told", "line": "assignment" },
+    { "card": "kural-guests", "use": "told", "line": "tamil-book" },
+    { "card": "kural-guests", "use": "told", "line": "guest-1" },
+    { "card": "kural-guests", "use": "told", "line": "guest-2" }
+  ],
+  "scenes": [
+    "the studio switched off: one work lamp, Larry in an overcoat, an envelope on the desk",
+    "the scarf goes on, the door, black",
+    "a cold street, walking side by side, two sets of footsteps",
+    "a shuttered shop beside a new neon OPEN",
+    "meltwater running in the gutter with a lamp reflected in it",
+    "a full restaurant seen through its window, from outside",
+    "a laundromat with the drums turning",
+    "a half-built building in scaffolding, one work lamp left on",
+    "a busker on a corner singing to nobody",
+    "an empty crossing on DON'T WALK, the first snow, then WALK",
+    "his street door, a crowded lit window above it, the door buzzing open",
+    "the long table: the crew, nothing eaten yet, a place made for us"
+  ],
+  "questions": [
+    "How am I doing?",
+    "Is he any good?",
+    "Should you come up?"
+  ],
+  "crew": {
+    "sibyl": "Says \"You're late. Nobody has started.\", which is how we learn they waited. Then rules that the guest is served first. Later her head turns to Pete and he stops tapping the glasses.",
+    "hy": "After Pete's drum fill, without turning his head: \"Pete says hi.\"",
+    "al": "Looks at us for a full second with the others, then says one word: \"Chair.\"",
+    "dee": "Does not say it, sings it: \"Sit down, you two.\"",
+    "pete": "Greets us with a short fill made with his mouth. Later taps a roll on two glasses behind Larry until Sibyl looks at him.",
+    "eppy": "No headset. Counts heads down the table and calls it: \"That makes eight at a table for six. House record.\""
+  },
+  "builder": "One segment, so the street sound never breaks. New to draw: the overcoat and a gold scarf that draws itself on; the work lamp (used twice: in the studio, and left on in the scaffolding, the same drawing); shopfronts with a shutter and a neon OPEN; a gutter with running water and a lamp reflection; the restaurant window with silhouettes (used twice: the apartment's top-floor window is the same picture, smaller); laundromat drums; scaffolding; a crossing signal; snow across every layer; the street door; the table. Walking is chest up throughout. Nothing needs a hand: the envelope is on the desk and then in his pocket, the coin lands from out of frame, the door is buzzed open from upstairs, the place setting slides in, the lid lifts by itself. The viewer is the camera and has footsteps of their own, a little out of step with Larry's. At each `listen-` cue Larry turns to camera and holds about a second before he says the question back; at `the-look` he answers without saying it back. The busker is an invented puppet and needs his own voice; `hy` on his two `sing` beats is only a stand-in, and Hy speaks at the table a minute later, so they must not sound alike. Seven heads share only the first wide of the table, briefly; every shot after it holds four or fewer. Three small source lines are suggested while an old text is spoken (Aston 1899, Gorfinkle 1913, and LARRY'S TELLING for the Tirukkural); the credits should name both translations. `buzzer` is the only library sound near a door buzzer: if it is heard as a wrong answer, use the latch ticks. The murmur beats are placeholders for a room heard through glass and for the table; no outdoor bed exists, and I have asked for none. The stock title card (a lit studio) and the stock end card (a studio wide with the band bobbing) would both break this: the piece opens on a dark studio and should end on the table going to black. That is a studio change, so it goes to the project manager. My timing estimate is 242 to 251 seconds; if it has to come down, shorten the holds at the crossing before anything else.",
+  "worry": "The table. Five people welcome us in twenty seconds without saying welcome (a ruling, a chair, a drum fill, a statistic, a sung line), and if that plays as a roll call instead of a room, the warmth turns into a format."
+}

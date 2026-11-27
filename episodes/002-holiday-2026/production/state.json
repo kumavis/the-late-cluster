@@ -1,0 +1,9 @@
+{
+  "format": "late-cluster-special/1",
+  "note": "A holiday special: one script the owner outlined, made through the workflow's roles and review by hand (the pipeline tool runs whole weeks from a scrape, and this special uses no posts). The stage below stays open so the guard treats this folder as the episode in production.",
+  "stages": {
+    "special": {
+      "status": "open"
+    }
+  }
+}

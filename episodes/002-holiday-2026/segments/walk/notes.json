@@ -1,0 +1,59 @@
+{
+  "writer": "assemble",
+  "title": "The Walk Home",
+  "retell": "The one where there's no show, so Larry walks you home through the cold, tells you what an old cook and an old rabbi knew about hard parts and unfinished work, and then can't leave you standing outside his own door.",
+  "feeling": "Rattled, walked home, let in",
+  "seconds": 243,
+  "words": 408,
+  "ideas": [
+    { "card": "zhuangzi", "use": "told", "line": "cook-story" },
+    { "card": "zhuangzi", "use": "told", "line": "zhuangzi-name" },
+    { "card": "zhuangzi", "use": "told", "line": "cook-prince" },
+    { "card": "zhuangzi", "use": "told", "line": "cook-blade" },
+    { "card": "zhuangzi", "use": "told", "line": "cook-hard-part" },
+    { "card": "zhuangzi", "use": "told", "line": "cook-gently" },
+    { "card": "avot", "use": "told", "line": "tarfon-who" },
+    { "card": "avot", "use": "told", "line": "tarfon-recorded" },
+    { "card": "avot", "use": "quoted", "line": "tarfon-1" },
+    { "card": "avot", "use": "quoted", "line": "tarfon-2" },
+    { "card": "avot", "use": "told", "line": "guest-in-sentence" },
+    { "card": "avot", "use": "told", "line": "borrow" },
+    { "card": "avot", "use": "told", "line": "dont-finish" },
+    { "card": "avot", "use": "told", "line": "dont-quit" },
+    { "card": "kural-guests", "use": "told", "line": "tamil-book" },
+    { "card": "kural-guests", "use": "told", "line": "guest-1" },
+    { "card": "kural-guests", "use": "told", "line": "guest-2" }
+  ],
+  "scenes": [
+    "the studio switched off: one work lamp, Larry in an overcoat, a blank pay envelope on the desk",
+    "the scarf goes on, the door, black",
+    "the street: wet road, lamps, two sets of footsteps, nobody talking for a while",
+    "a full restaurant seen from outside its window: one cook in the kitchen hatch, who slows down on the word, and then nobody says anything",
+    "a busker under a lamp singing seven notes to an empty pavement, stopping one short, and starting again behind us",
+    "a crossing on an empty road: DON'T WALK in red through everything he says, still red after it, and WALK only when the sign is ready",
+    "crossing in the first snow, no words",
+    "the last block in the snow: he says he usually walks it alone, looking straight ahead",
+    "his street door, a crowded lit window above it, us still on the pavement, the door opening from upstairs",
+    "the table: six friends, every plate clean, his gold chair empty; a second chair comes in and the camera sits in it",
+    "the meal, from our chair, with nobody looking at us"
+  ],
+  "questions": [
+    "Does it help?",
+    "What if none of it ever gets put right?",
+    "Should you come up?"
+  ],
+  "crew": {
+    "sibyl": "Tells him, without raising her voice, \"You're late. Nobody has started.\", which is how we learn they waited. Once we are seated she rules that the guest is served first. Larry says it is his house; she says \"It's still the rule.\" and does not look up from her plate.",
+    "hy": "\"You took the long way.\" He knows where Larry has been without being told. Later he is leaning across to Dee, mid-conversation.",
+    "al": "Looks at us for a full second with the others, then says one word: \"Chair.\" A chair comes in.",
+    "dee": "The first bowl comes along the table from her end. She is the one who laughs, out loud and alone, when Sibyl's ruling stands.",
+    "pete": "\"I counted you in twice.\" What a drummer says to someone who missed his entrance. Then his head is down over his plate.",
+    "eppy": "No headset. Watches Larry lose an argument about his own house and calls it to the table: \"And the ruling stands!\""
+  },
+  "builder": "One segment, id 'walk', because the footsteps and the busker have to run across places without a cut in the sound. NEW DRAWINGS, all kept with the special: the overcoat (long, rumpled, collar up, no bow tie) and a gold scarf that draws on; the work lamp and exit door; a blank pay envelope, first on the desk and then showing at his coat pocket; street layers with wet-road lamp reflections and a puff of breath; a restaurant window with a kitchen hatch whose cook silhouette can stop, lean in and start again slowly on a cue; the busker; a crossing signal, red DON'T WALK to green WALK; snow; a row of lit apartment windows; a brick front with a street door that swings in and a top-floor window that is the restaurant picture again, smaller, with one figure watching the street; the long table, a gold chair on its near side, a second chair that slides in beside it, a place setting that slides in along the bottom of the frame, a big dish with and without its lid, a bowl that slides along the table. TEXT ON SCREEN is OPEN, DON'T WALK and WALK and nothing else: no source lines, nothing on the envelope. HANDS: none. The scarf draws itself (or cut to the collar as it settles); the coin falls from out of frame; the door is let open from upstairs; the chair, the place setting and the bowl come in from a frame edge; the dish is covered in the wide and uncovered after the cut, and its lid is never seen to move. THE VIEWER: the camera, with footsteps of its own a little out of step with Larry's. At each `listen-` cue he turns to camera and holds for the length of the next line's gap (1.2 to 1.6 s) before he says the question back; that hold is where we speak, so nothing else should happen in it. At `turn-to-us` he asks and we answer in the 2.2 s wait; at `our-look` he answers a look and repeats nothing. THE COOK: `cook-slows` is placed half a second before the end of `cook-hard-part` so that it lands on 'slows down'. Nothing is said after `cook-gently`: the 2.4 s that follow are the cook going slowly while the room hurries, with Larry watching. THE BUSKER is an invented one-off and needs his own cast entry, look and voice: the script uses `al` as a stand-in id only, and he must not sound like Al, who speaks at the table. Seven notes in G that stop on A; keep that relation if the key changes. Both sung beats carry `caption: false` so that no row of 'la' sits on the caption line; if a viewer without sound needs a sign that he is singing, draw it on him (a note glyph), not as words. `busker-in` uses a negative `at` to land two notes into the tune, so he is heard before he is seen. After `busker-behind` a `wait: -1.8` starts Larry's line under the last long note; if a sung beat does not sit under speech the way an effect does, take the step back out and let the line follow the tune. THE CROSSING: the sign stays red for 2.6 s after `dont-quit` and then changes with one tick. Do not move the change onto a word, and add no chirp, look or reaction to it; the point is that the street does not answer him. THE DOOR: two ticks for the latch, never `buzzer`. THE TABLE: all seven share the frame only in `table-wide` and `they-look`, both short and both from the door with Larry at the frame's edge; from `chair-in` on, every shot is from our chair and holds four heads or fewer, and Larry is beside us, never seen from behind. The gold chair is Larry's, kept empty for him; ours is the one that slides in. Dee's laugh is a voiced line with no caption, because an audience laugh would light the studio's sign. THE OWNER'S TABLE LINE is one line taken as two consecutive beats at its full stop (`mixed-up-world`, `keep-close`). No cue and no sound beat sits between them: the murmur for both is laid before the first, and nothing in the picture behind him should move to the front while he says them. THE END: the last beat is `stay-warm`; the murmur laid before it outlasts it by about two seconds. Hold three seconds from our chair, then fade to black. The stock title card and end card would put the lit studio before the dark one and after the table; that is a studio change and is with the project manager. SOUNDS asked for in comments that are not beats: the two sets of footsteps, stopping whenever we stop; murmur as a continuous bed at the restaurant and from `chair-in` to the end; a chair pulled across a wooden floor. Nothing here needs a new sound in the shared library. WORDS: `Zhuangzi` and `Tirukkural` have `as` respellings from their cards; `Tarfon` is left plain at the end of its line, where a name is clearest; `joke` is respelled as the house table has it. Best effort stands, and the captions carry them. Two captions carry quotation marks (`tarfon-1`, `tarfon-2`) and their `as` says the same words without them; the full stop sits outside the closing mark because the source's sentence runs on. CREDITS: one translation is quoted (see `credits`); the card says 1913 is its first publication and the checked e-text is an undated second edition, so the auditor should confirm how the year is shown. The cook's story and the Tamil couplet are told in Larry's words, not quoted; their sources are on the `zhuangzi` and `kural-guests` cards if the credits name works that were told. THE NUMBERS: 408 words by the count command, 11 of them the busker's sung syllables. 243 seconds is arithmetic (159 words a minute, the written gaps and waits), not a render; the same sum puts the three drafts at 235 to 243. If it has to come down, take the busker's second phrase and `never-ends` first (about six seconds), and leave the crossing's silences alone.",
+  "worry": "The crossing. It is fifty seconds standing at a kerb, and the most important sentence in the special is in the English of 1913. The five changes of shot and the two silences are what keep it from being a lecture, and the sign that does not change afterwards has to read as the street being honest, not as nothing happening. If it plays long, shorten what is around it and not the hold after the quotation.",
+  "credits": [
+    { "work": "Pirkei Avot, chapter 2, in The Sayings of the Jewish Fathers", "translator": "Joseph I. Gorfinkle", "year": 1913, "line": "tarfon-1" },
+    { "work": "Pirkei Avot, chapter 2, in The Sayings of the Jewish Fathers", "translator": "Joseph I. Gorfinkle", "year": 1913, "line": "tarfon-2" }
+  ]
+}

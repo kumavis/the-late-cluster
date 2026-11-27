@@ -1,0 +1,49 @@
+{
+  "writer": "writer-3",
+  "title": "The Long Way",
+  "retell": "The one where Larry, off the air, walks you home through the cold past a busker who has been one line short of a song since the spring, tells you an old rabbi's line about not having to finish and not getting to quit, and gets home to find his friends have held dinner and Dee has the busker's missing line.",
+  "feeling": "unfinished is allowed; keep going",
+  "seconds": 240,
+  "words": 434,
+  "ideas": [
+    { "card": "analects", "use": "told", "line": "analects" },
+    { "card": "analects", "use": "told", "line": "gatekeeper-says" },
+    { "card": "analects", "use": "told", "line": "gatekeeper" },
+    { "card": "avot", "use": "told", "line": "tarfon" },
+    { "card": "avot", "use": "quoted", "line": "tarfon-1" },
+    { "card": "avot", "use": "quoted", "line": "tarfon-2" },
+    { "card": "avot", "use": "told", "line": "guest" },
+    { "card": "avot", "use": "told", "line": "finish-quit" },
+    { "card": "havamal", "use": "told", "line": "norse" },
+    { "card": "havamal", "use": "told", "line": "norse-road" },
+    { "card": "havamal", "use": "quoted", "line": "comrade-line" }
+  ],
+  "scenes": [
+    "The dark studio: everything off, one work lamp, Larry in an overcoat with a pay envelope",
+    "The scarf (gold) and the exit door",
+    "The street: a tracking walk, steam from a grate, a bus and its reflection",
+    "A lit lobby with a night doorman, who nods as Larry finishes the gatekeeper's line",
+    "A full restaurant seen through its window; two silhouettes share a dessert",
+    "A busker under a lamp, singing a song that stops one line and one note short",
+    "A crossing: DON'T WALK on an empty road, the snow starting, then WALK",
+    "The last block: snow, lit apartment windows, nobody else on the pavement",
+    "The apartment door, a full room heard behind it",
+    "The table: six friends, nothing touched, one empty chair drawn in gold",
+    "Larry in the doorway, turned back to us, the table behind him"
+  ],
+  "questions": [
+    "What do I do about it?",
+    "What are you supposed to do?",
+    "Does it help?"
+  ],
+  "crew": {
+    "sibyl": "States the rule: 'Nobody starts until everyone is seated. House rule.' Larry says it is his house; she says 'It's still the rule.' The rule is how we learn they waited.",
+    "hy": "'You took the long way.' One step ahead of Larry, as ever: he knows where Larry has been without being told. Larry answers 'I had company', and every head turns to the camera.",
+    "al": "One word, the last the crew says: 'Sit.' It is the only answer Larry gets to 'Where did you hear that song?', and with the heads having just turned to us it may be for the viewer too. He also gives one slow nod to camera.",
+    "dee": "A sung aside, to the empty chair: 'and I saved you a seat'. It is the busker's tune from the place where he stops, two octaves up, and it lands on the note he never reaches. Nobody explains how she knows it; she walked the same street.",
+    "pete": "'I counted you in twice.' What a drummer says to someone who missed his entrance.",
+    "eppy": "Calls the wait like a sporting result: 'Forty-one minutes and not one fork lifted! I believe that's a record.' A guess, and he says so. No headset."
+  },
+  "builder": "One segment, id 'walk', so the street sound never breaks at a cut. NEW PICTURES: Larry's overcoat (rumpled, muted, collar up, no bow tie) and a gold scarf that draws on at 'scarf-on'; a pay envelope reading 'L. NX'; the street layers for a chest-up tracking walk; a lit lobby door with one silhouette at a desk that can nod; the restaurant window with silhouettes, two of which lean over one plate on the word 'dessert'; the busker; a crossing signal (DON'T WALK red, WALK green) that changes on the word 'cue'; snow; lit apartment windows; a doorway with light round it; the long table with one empty chair drawn in gold at the end nearest the camera. Off-duty clothes for the six from the existing costume kinds, Eppy with no headset. THE BUSKER is an invented one-off puppet, not a house character, and this draft may only write script.js and notes.json, so his four sung beats (busker-1 to busker-4) use Al's voice and Al's tested range (MIDI 43 to 50) as a stand-in. He needs a cast entry and a voice of his own before anything is rendered for the owner, far enough from Al that nobody thinks Al was busking, since Al speaks at the table. Keep the notes or transpose them whole: the tune matters. It is in G, the busker's hum falls C, B, A and stops on A, and Dee's line ('saved-a-seat', MIDI 67 to 74, her tested range) is the same phrase two octaves up that goes on to G. Sung lines need the lyric shown as it is sung: the caption 'and I' is how a viewer learns the song has no next line. SOUND: no audience and no band anywhere; no laugh, applause or sting is written, and none should be added. Each cue's comment says what the place sounds like. Only library sounds that exist are written as beats (murmur, whoosh, tick); the footsteps are described, not written, and want a soft bed of beatbox ticks that stops whenever Larry stops (the busker, the crossing, the door). The murmur at the restaurant and at the apartment door wants layering and a fade, and must stop when the heads turn at 'table-wide'. WORDS: 'Hávamál' has an `as` respelling; 'Analects', 'Confucius' and 'Tarfon' are left for the sound editor. The Tarfon quotation is one sentence taken as two consecutive beats at its comma (tarfon-1, tarfon-2); nothing may come between them and no word in them may change. The owner's table line is one line taken as two consecutive beats at its full stop (mixed-up-world, keep-close). THE END: the special ends on 'Goodnight.' with a hold on Larry in the doorway. The stock end card would cut from there to the lit studio with the band bobbing, when the band has just been seen at the table. That is a studio matter to raise with the project manager, not something this script works around. FRAME BUDGET: the two wides of all seven ('table-wide', 'they-look') are meant to be short; every other table shot is two or three heads.",
+  "worry": "The middle of the walk rests on sung words, the thing the engine says least clearly. If a viewer cannot tell that the busker's song stops at 'and I', then Larry's 'He can't find the next line' is carrying it alone, and Dee finishing the line at the table is only a pleasant tune. It depends on the lyric being readable on screen as it is sung, and on a busker's voice that does not exist yet."
+}

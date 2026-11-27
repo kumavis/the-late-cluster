@@ -1,0 +1,53 @@
+{
+  "writer": "writer-2",
+  "title": "One Extra Chair",
+  "retell": "The one where Larry, off the air, walks you home through the cold past a cook, a busker and a red light that each answer an old book for him, and his friends turn out to have a chair waiting for you.",
+  "feeling": "Rattled, then steadied, then welcomed",
+  "seconds": 243,
+  "words": 415,
+  "ideas": [
+    { "card": "marcus", "use": "told", "line": "marcus-who" },
+    { "card": "marcus", "use": "told", "line": "marcus-notebook" },
+    { "card": "marcus", "use": "told", "line": "marcus-mornings" },
+    { "card": "marcus", "use": "quoted", "line": "marcus-quote" },
+    { "card": "zhuangzi", "use": "told", "line": "cook-story" },
+    { "card": "zhuangzi", "use": "told", "line": "zhuangzi-name" },
+    { "card": "zhuangzi", "use": "told", "line": "cook-prince" },
+    { "card": "zhuangzi", "use": "told", "line": "cook-blade" },
+    { "card": "zhuangzi", "use": "told", "line": "cook-hard-part" },
+    { "card": "zhuangzi", "use": "told", "line": "cook-gently" },
+    { "card": "avot", "use": "told", "line": "tarfon-who" },
+    { "card": "avot", "use": "told", "line": "tarfon-recorded" },
+    { "card": "avot", "use": "quoted", "line": "tarfon-1" },
+    { "card": "avot", "use": "quoted", "line": "tarfon-2" },
+    { "card": "avot", "use": "told", "line": "tarfon-borrow" },
+    { "card": "avot", "use": "told", "line": "dont-finish" },
+    { "card": "avot", "use": "told", "line": "dont-quit" }
+  ],
+  "scenes": [
+    "the studio switched off: one work lamp, Larry in an overcoat, a pay envelope on the desk",
+    "the street: wet road, lamps, two sets of footsteps, nobody talking for a while",
+    "apartment fronts: one lit window with a small figure, which goes dark on the emperor's line",
+    "a full restaurant through its window: one cook in the kitchen hatch, who slows down on the word",
+    "a steam grate, then a busker under a lamp singing seven notes to an empty pavement",
+    "a crossing on an empty road: DON'T WALK in red, and WALK the moment he has said it plainly",
+    "crossing in the first snow, no words",
+    "his street and the stair: voices behind a door, Larry humming the tune wrong",
+    "the table: all six in their own clothes, one empty chair with a place set, and the camera sits in it"
+  ],
+  "questions": [
+    "Am I all right?",
+    "Who's he singing to?",
+    "What if none of it ever gets put right?"
+  ],
+  "crew": {
+    "sibyl": "Without looking up from her plate, tells him he is also eleven minutes late. When he says he had company, she rules on it: \"House rule. There is always one extra chair.\"",
+    "hy": "Hears Larry come in humming and says \"Nearly, Larry. Flat, but nearly.\" Then nods Dee in.",
+    "al": "Puts one low note under Dee's tune, and says two words to the viewer: \"Sit. Eat.\"",
+    "dee": "Sings the busker's tune properly and lands it on the home note the street never reached. Laughs at Eppy.",
+    "pete": "Does not speak. Two notes into Dee's tune he is tapping time on the table edge.",
+    "eppy": "No headset. Hears \"eleven minutes\" and calls it: \"Eleven! That's a house record!\""
+  },
+  "builder": "One segment, because the footsteps and the busker have to run across places without a cut in the sound. New drawings, all kept with the special: the overcoat and a gold scarf that draws on; the work lamp and exit door; street layers with wet-road lamp reflections; apartment fronts with one lit window and a small figure that goes dark on a cue; a restaurant window with a kitchen hatch whose cook silhouette can stop, lean in and start again slowly on a cue (cook-slows is timed to the words 'slows down'); a steam grate; a crossing signal, red DON'T WALK to green WALK; snow; a stair door; the long table with one empty chair and a set place the camera can move into. Text on screen is OPEN, DON'T WALK and WALK and nothing else. Seven heads share the frame only in two short wides (table-wide, they-look); everything else at the table is four or fewer. The busker is an invented one-off and needs his own cast entry and look: the script uses `al` as a stand-in voice id only, and he must not sound like Al, who is at the table. The tune is seven notes in G: the busker stops on A, Larry's hum puts its fourth note a semitone flat, Dee ends on G. Keep those relations if a voice or key changes. Sounds asked for in comments that are not beats: two sets of footsteps (soft beatbox ticks, slightly out of step) that stop whenever we stop; the busker's phrase once more, low and panned left, under the three lines after we pass him; murmur as a continuous bed at the restaurant and at the table. The crossing's chirp is the songbird's `chirps` call. Nothing here needs a new sound in the shared library, and there is no laugh, applause or sting anywhere. Three captions carry quotation marks (marcus-quote, tarfon-1, tarfon-2) and their `as` says the same words without them; the Tarfon quotation's full stop sits outside the closing mark because the source's sentence runs on. The count command does not read lyrics inside a music block, so Dee's seven sung syllables at the table are on top of the 415. The 243 seconds is arithmetic at Larry's usual pace, not a render. For the project manager rather than the builder: the special wants to open on the dark studio and end on a fade to black from the table, and the stock title and end cards would put the lit studio before and after it.",
+  "worry": "Whether seven sung notes are enough for a viewer to know, at the table, that Dee is finishing the busker's tune. If the engine's singing blurs the melody the ending still plays, but its quietest payoff is lost and Hy's line has less to stand on."
+}
