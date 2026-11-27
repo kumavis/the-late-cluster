@@ -14,8 +14,13 @@ function playsOf(cast, id) {
  * The credit lines for `cast` (id → entry, in order) and `who` (a Set of the ids that appear, or
  * null for everyone). An entry with `plays` is never listed itself: when it appears, the character
  * it plays counts as appearing, so each character is credited once, whichever voice spoke.
+ *
+ * o.extra: the episode's own credits (episode.json `credits`: [{ head, lines: [string] }]), each
+ * a section of its own after the cast and guests, before the voices. o.plain: the roll of an
+ * episode with `plainCards` (see endModule): no GOOD NIGHT, BLUESKY heading at its foot, and the
+ * line that guests are puppets only when a guest appears. With neither, the roll is as it always was.
  */
-export function creditLines(cast, who = null) {
+export function creditLines(cast, who = null, o = {}) {
   const seen = who ? new Set([...who].map((id) => playsOf(cast, id) ?? id)) : null
   const listed = Object.entries(cast).filter(([id]) => !playsOf(cast, id) && (!seen || seen.has(id)))
   const out = [{ head: 'The Late Cluster' }, ['with', 'Larry Nx'], '']
@@ -26,8 +31,68 @@ export function creditLines(cast, who = null) {
     out.push('', { head: 'Puppets played the' }, { head: 'posting personas of' })
     for (const [, c] of guests) out.push(c.handle ? [c.name, c.handle] : ['', c.name])
   }
+  for (const s of episodeCredits(o.extra)) out.push('', { head: s.head }, ...s.lines)
   out.push('', { head: 'Voices & faces' }, 'Every voice in this programme', 'is synthesized by CHIMERA.', '')
-  out.push(['physical models', 'CHIMERA vocal synth'], ['by', 'jamesondh · MIT'], ['github.com', 'jamesondh/chimera-vocal-synth'], '')
-  out.push('Guests are puppets', 'playing posting personas.', '', { head: 'Good night, Bluesky' })
+  out.push(['physical models', 'CHIMERA vocal synth'], ['by', 'jamesondh · MIT'], ['github.com', 'jamesondh/chimera-vocal-synth'])
+  if (!o.plain) out.push('', 'Guests are puppets', 'playing posting personas.', '', { head: 'Good night, Bluesky' })
+  else if (guests.length) out.push('', 'Guests are puppets', 'playing posting personas.')
+  return out
+}
+
+/**
+ * An episode's own credit sections, as given in episode.json `credits` (an array of
+ * { head: string, lines: [string, …] }); anything else is left out. scripts/lib/episodes.mjs
+ * refuses a malformed `credits`, so here this is only a guard.
+ */
+export function episodeCredits(credits) {
+  if (!Array.isArray(credits)) return []
+  return credits
+    .filter((s) => s && typeof s.head === 'string' && s.head.trim() && Array.isArray(s.lines))
+    .map((s) => ({ head: s.head, lines: s.lines.filter((l) => typeof l === 'string' && l.trim()) }))
+    .filter((s) => s.lines.length)
+}
+
+/**
+ * What an episode.json asks of the cards: { plain, extra }. `plain` only for `plainCards: true`
+ * (no title card; the credits roll once over black), so an episode that does not say so keeps the
+ * stock title and end cards. `extra`: its own credit sections (`credits`), or none.
+ */
+export function cardOptions(ep) {
+  return { plain: ep?.plainCards === true, extra: episodeCredits(ep?.credits) }
+}
+
+/**
+ * Break a credit line into lines that each pass `fits(line)` (a width test), at spaces, never
+ * changing a character of it: joined with single spaces the pieces are the line again. A break
+ * goes after a ',' or ' · ' in the line where there is one, else at the last space that fits; a
+ * ' · ' stays at the end of the piece before it, so no piece starts with one. A single word too
+ * wide for the column is left whole.
+ */
+export function wrapCredit(text, fits) {
+  const s = String(text)
+  if (fits(s)) return [s]
+  const words = []
+  for (const w of s.split(' ')) {
+    if (w === '·' && words.length) words[words.length - 1] += ' ·'
+    else words.push(w)
+  }
+  const out = []
+  let cur = []
+  const join = (ws) => ws.join(' ')
+  for (const w of words) {
+    cur.push(w)
+    while (cur.length > 1 && !fits(join(cur))) {
+      // the line without its last word fits: break after the last ',' or '·' in it, else before that word
+      let k = -1
+      for (let j = cur.length - 2; j >= 0; j--) if (/[,·]$/.test(cur[j])) {
+        k = j
+        break
+      }
+      if (k < 0) k = cur.length - 2
+      out.push(join(cur.slice(0, k + 1)))
+      cur = cur.slice(k + 1)
+    }
+  }
+  if (cur.length) out.push(join(cur))
   return out
 }

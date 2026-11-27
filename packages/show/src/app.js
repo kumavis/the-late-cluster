@@ -7,12 +7,17 @@
 //   ?seg=<id>&t=<s>&freeze=1   render that segment at exactly t (no audio, no gesture), set window.__ready
 //                              (seg may also be `title` or `end`)
 //   ?autostart=1               skip the title card; with &mute=1 runs silent on the wall clock (QA)
+//
+// An episode with `plainCards: true` in its episode.json has no title card: the page opens on its
+// first segment's first frame, held under the START button, and `seg=title` in freeze mode is that
+// segment at t (black if no segment is ready). Its end is the credits over black (builtins.js).
 //   ?capscale=<n>              scale the caption bar (0.5–3, default 1): the video tools' --caption-scale
 import { Stage } from './stage/stage.js'
 import { Show } from './show/show.js'
 import { Transport } from './engine/transport.js'
 import { rundown, load, loadMeta, audioLead, hasSegment } from './show/segments.js'
-import { titleModule, endModule, productionModule } from './show/builtins.js'
+import { titleModule, endModule, productionModule, blackModule } from './show/builtins.js'
+import { cardOptions } from './show/credits.js'
 import { episode } from './episode.js'
 import { makeBar } from './ui/bar.js'
 import { label, P } from './kit/draw.js'
@@ -51,13 +56,18 @@ export async function startApp(params) {
   // wantPlay: what the viewer asked for. It survives the gap while the next segment loads, so a
   // pause pressed at (or just across) a segment boundary sticks instead of being overridden.
   const state = { mode: 'title', index: 0, show: null, t: 0, captions: params.captions !== '0', token: 0, epoch: -1, loadingMsg: '', loadingSince: 0, wantPlay: true }
-  const makeTitle = () => new Show({ module: titleModule(tonight, episode), cues: null, tele: null, puppets })
-  const makeEnd = () => new Show({ module: endModule(appearing), cues: null, tele: null, puppets })
+  // plainCards: no title card, and the end is the credits over black (off unless episode.json says true)
+  const { plain, extra } = cardOptions(episode)
+  const firstReady = ready.indexOf(true)
+  const makeTitle = () => new Show({ module: plain ? blackModule('title') : titleModule(tonight, episode), cues: null, tele: null, puppets })
+  const makeEnd = () => new Show({ module: endModule(appearing, { plain, extra }), cues: null, tele: null, puppets })
   const makeProduction = (i) => new Show({ module: productionModule(titles[i], i + 1), cues: null, tele: null, puppets })
 
   // ------------------------------------------------------------ deterministic frame mode
   if (params.freeze) {
-    const id = params.seg ?? 'title'
+    // a plain episode's opening is its first segment: `title` shoots that
+    const asked = params.seg ?? 'title'
+    const id = asked === 'title' && plain && firstReady >= 0 ? ids[firstReady] : asked
     const t = Number(params.t ?? 0)
     let show
     if (id === 'title') show = makeTitle()
@@ -248,6 +258,26 @@ export async function startApp(params) {
     state.t0 = performance.now() - 2000
     overlay.replaceChildren()
     button('START THE SHOW', 'start', () => start(), { x: 96, y: 640 })
+    if (plain && firstReady >= 0) holdOpening(firstReady)
+  }
+
+  /** a plain episode's opening: the first segment's frame at t = 0, held (no audio until START) */
+  async function holdOpening(i) {
+    const token = state.token
+    try {
+      const d = await load(ids[i], { audio: false })
+      if (state.mode !== 'title' || token !== state.token) return
+      const show = new Show({ module: d.module, cues: d.cues, tele: d.tele, puppets })
+      try {
+        d.module.setup?.(show)
+      } catch (e) {
+        console.error(e)
+      }
+      state.show = show
+      state.holdAt = 0
+    } catch (e) {
+      console.error(e) // the black frame stays up; START still plays
+    }
   }
 
   // ------------------------------------------------------------ keyboard
@@ -298,12 +328,14 @@ export async function startApp(params) {
       t = state.t
       if (now - state.loadingSince > LOADING_CARD_AFTER * 1000) extra.overlay = (ctx) => loadingCard(ctx, state.loadingMsg, now / 1000)
       if (!show) show = state.show = makeTitle()
+    } else if (state.mode === 'title' && state.holdAt != null) {
+      t = state.holdAt
     } else {
       t = (now - state.t0) / 1000
     }
     state.t = t
     show.captions = state.captions
-    show.frame(t, dt, { light: stage.stats.ms > 14, paused: state.mode === 'play' && !transport.isPlaying })
+    show.frame(t, dt, { light: stage.stats.ms > 14, paused: (state.mode === 'play' && !transport.isPlaying) || (state.mode === 'title' && state.holdAt != null) })
     stage.draw(show, drawOpts(extra))
     stage.budget(performance.now() - w0)
     bar.update({

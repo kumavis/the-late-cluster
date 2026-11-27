@@ -78,6 +78,13 @@ export function readEpisodeJson(file) {
   if (!Array.isArray(meta.rundown)) throw new EpisodeError(`${file}: rundown must be an array of segment ids`)
   for (const s of meta.rundown) if (typeof s !== 'string' || !SEG_RE.test(s)) throw new EpisodeError(`${file}: bad segment id in rundown: ${JSON.stringify(s)}`)
   if (meta.status !== 'draft' && meta.status !== 'published') throw new EpisodeError(`${file}: status must be "draft" or "published", not ${JSON.stringify(meta.status)}`)
+  // plainCards: no title card and a plain credits roll over black (packages/show/README.md); off unless true
+  if ('plainCards' in meta && typeof meta.plainCards !== 'boolean') throw new EpisodeError(`${file}: plainCards must be true or false, not ${JSON.stringify(meta.plainCards)}`)
+  // credits: the episode's own sections of the roll, [{ head, lines: [string, …] }]
+  if ('credits' in meta) {
+    const ok = (s) => s && typeof s === 'object' && typeof s.head === 'string' && s.head.trim() && Array.isArray(s.lines) && s.lines.length && s.lines.every((l) => typeof l === 'string' && l.trim())
+    if (!Array.isArray(meta.credits) || !meta.credits.every(ok)) throw new EpisodeError(`${file}: credits must be a list of { "head": "…", "lines": ["…", …] }, each with a heading and at least one line`)
+  }
   return meta
 }
 

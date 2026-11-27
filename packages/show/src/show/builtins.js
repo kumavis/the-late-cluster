@@ -5,7 +5,7 @@ import { logo } from '../stage/chrome.js'
 import { label, labelWidth, seg, box, P, creditsRoll, crow } from '../kit/draw.js'
 import { noise1, clamp, unlerp, ease } from '../kit/ease.js'
 import { CAST } from '../cast.js'
-import { creditLines } from './credits.js'
+import { creditLines, wrapCredit, episodeCredits } from './credits.js'
 
 const MONTHS = ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC']
 
@@ -118,17 +118,80 @@ export function productionModule(title, n) {
  * The credits (Article 4, R9): the house cast who appear; the real accounts whose posting personas
  * guest puppets played, by display name and handle (from the cast, including an episode's own
  * cast.js); that every voice is synthesized; the CHIMERA project. `who`: the ids that appear (all
- * if null). Lines are kept short enough for the roll's column (see endModule).
+ * if null). `o`: { plain, extra } as creditLines takes them (show/credits.js). Lines are kept
+ * short enough for the roll's column (see endModule).
  */
-export function credits(who = null) {
+export function credits(who = null, o = {}) {
   // A cast entry with `plays: '<cast id>'` is another voice of that character: it is not listed
   // itself, and its lines count as the character's (a `plays` naming an id not in the cast is
   // ignored, and the entry is credited normally). See show/credits.js.
-  return creditLines(CAST, who)
+  return creditLines(CAST, who, o)
 }
 
-export function endModule(who = null) {
-  const lines = credits(who)
+/** a black frame and nothing else: a plain episode's opening when no segment is ready to show */
+export function blackModule(id = 'title') {
+  return {
+    id,
+    title: 'The Late Cluster',
+    duration: 1e9,
+    cast: [],
+    direct(t, show) {
+      show.shot('wide', { band: false })
+      show.onAir = false
+    },
+    drawFront(ctx) {
+      ctx.fillStyle = '#000'
+      ctx.fillRect(0, 0, 1280, 720)
+    },
+  }
+}
+
+/**
+ * The end. `o.plain` (episode.json `plainCards`): the credits roll once over black, from a second
+ * after the last segment's last frame, with no studio, no band and no logo, then the screen stays
+ * black. Otherwise the stock end card: the band plays out under the logo and the roll loops.
+ * `o.extra`: the episode's own credit sections (episode.json `credits`), in either.
+ */
+export function endModule(who = null, o = {}) {
+  return o.plain ? plainEndModule(who, o.extra) : stockEndModule(who, o.extra)
+}
+
+/** the plain roll's column: the WATCH AGAIN button (y 640) is below it */
+export const PLAIN_ROLL = { x: 240, y: 80, w: 800, h: 520, speed: 34, delay: 1 }
+
+/** credit lines with every string wider than `w` (as creditsRoll sets a string) broken at spaces */
+function wrapLines(ctx, lines, w) {
+  const fits = (s) => labelWidth(ctx, s.toUpperCase(), { size: 18, ls: 0.2 }) <= w
+  return lines.flatMap((l) => (typeof l === 'string' && l ? wrapCredit(l, fits) : [l]))
+}
+
+function plainEndModule(who, extra) {
+  const lines = credits(who, { plain: true, extra })
+  const rect = PLAIN_ROLL
+  let wrapped = null
+  return {
+    id: 'end',
+    title: 'Credits',
+    duration: 1e9,
+    cast: [],
+    direct(t, show) {
+      show.shot('wide', { band: false })
+      show.onAir = false
+    },
+    drawFront(ctx, t) {
+      ctx.fillStyle = '#000'
+      ctx.fillRect(0, 0, 1280, 720)
+      wrapped ??= wrapLines(ctx, lines, rect.w - 40)
+      // once, from the bottom of the column to past its top; then black
+      creditsRoll(ctx, wrapped, Math.max(0, t - rect.delay), { rect, speed: rect.speed, split: 0.5 })
+    },
+  }
+}
+
+function stockEndModule(who, extra) {
+  const raw = credits(who, { extra })
+  // an episode's own lines may be long: only then is the roll wrapped to its column
+  let lines = episodeCredits(extra).length ? null : raw
   return {
     id: 'end',
     title: 'Good night',
@@ -153,6 +216,7 @@ export function endModule(who = null) {
       ctx.fillStyle = '#000'
       ctx.fillRect(rect.x, rect.y, rect.w, rect.h)
       ctx.restore()
+      lines ??= wrapLines(ctx, raw, rect.w - 40)
       const speed = 34
       // one loop: the lines' height (creditsRoll: 34 per line, 1.5× for a heading) plus the window
       const total = lines.reduce((h, l) => h + (l?.head ? 51 : 34), 0) + rect.h

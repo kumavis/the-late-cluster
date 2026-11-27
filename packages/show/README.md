@@ -28,7 +28,8 @@ npm run build -- 1                            # → dist/episodes/<id>/ (works f
 The script format and the audio tools are documented in [`tools/README.md`](tools/README.md).
 
 URL parameters: `?seg=<id>` (start at that segment), `?seg=<id>&t=<s>&freeze=1` (one exact frame,
-no audio, sets `window.__ready`; `seg` may also be `title` or `end`), `?autostart=1&mute=1`
+no audio, sets `window.__ready`; `seg` may also be `title` or `end`, and for an episode with
+`plainCards` `title` is its first segment, see "Title, production and end cards"), `?autostart=1&mute=1`
 (skip the title card and run silent on the wall clock, for automated runs), `?captions=0`.
 Keys: space play/pause · ←/→ seek 5 s · n/p next/previous segment · c captions · f fullscreen.
 
@@ -61,7 +62,7 @@ to the committed build `dist/episodes/<id>/`.
 
 ```
 src/
-  app.js            flow: title → segments → end card; keyboard; frame loop; ?freeze mode
+  app.js            flow: title → segments → end card (plainCards: first frame → segments → roll); keys; frame loop; ?freeze
   episode.js        the current episode (from vite/episode.js) + its cast/looks merged in
   cast.js           who's who, and how they sound: the house cast
   roster.js         the one resolver: house cast + an episode's legacy entries (001-pilot only) + its own cast.js/looks.js
@@ -413,7 +414,8 @@ the authoring loop needs a build: `dev`, `shoot` and `check` read fresh renders 
   telemetry forward when there is no fresh render. Two builds of one episode at once are not
   supported; builds of different episodes are independent.
 - `npm run thumbnail -- <ep>` shoots the title card into `episodes/<ep>/thumbnail.jpg` (needed
-  for a published build; `--t <s>` picks the moment). `npm run thumbnail -- <ep> <seg> <t>`
+  for a published build; `--t <s>` picks the moment; for an episode with `plainCards` it is
+  that moment of the first segment, as there is no title card). `npm run thumbnail -- <ep> <seg> <t>`
   shoots that moment of a segment instead, for an episode's best picture; `--out <file>`
   writes elsewhere to compare candidates.
 - The Open Graph tags in a build are relative until `siteUrl` is set in the repo root's
@@ -431,9 +433,36 @@ with a line, plus each segment's `cast` and `guests`), and a WATCH AGAIN button.
 constitution (Article 4) and R9 require, the credits list the house cast under STARRING, then
 every guest who appears, by display name and handle (from the cast entry, including the episode's
 own `cast.js`), under PUPPETS PLAYED THE POSTING PERSONAS OF, and say that every voice is
-synthesized by CHIMERA. So a guest's cast entry needs its real `name` and `handle`. Shoot them as
+synthesized by CHIMERA. So a guest's cast entry needs its real `name` and `handle`. A cast entry
+with no `guest` flag (an invented one-off, say a busker who only sings) is listed under STARRING
+by its `title` and `name`, never under the personas heading. Shoot them as
 `title`, `end`, or any not-yet-made rundown id (`npm run shoot -- <ep> <id> 1` shows its "in
 production" card).
+
+**An episode's own credits.** `episode.json` may add sections to the roll, each a heading and its
+lines, shown after the cast (and guests) and before VOICES & FACES:
+
+```json
+"credits": [{ "head": "Quoted", "lines": ["A book, chapter 2 · translated by …, first published 1913"] }]
+```
+
+A line wider than the roll's column is broken at spaces (`show/credits.js` `wrapCredit`), never
+reworded. Credits are the one place unspoken text is allowed: keep them to what is needed.
+
+**`plainCards`: an episode that opens and closes on its own.** Off unless `episode.json` says
+`"plainCards": true`; an episode without it plays exactly as above. With it on:
+
+- **no title card.** The page opens on the first ready segment's first frame, held (no sound)
+  under the START THE SHOW button, and plays it from there. `?seg=title&freeze=1&t=<s>` (so
+  `npm run shoot -- <ep> title <t>` and `npm run thumbnail -- <ep>`, at its default 2 s) shows
+  that segment at `t`; while no segment has an `index.js` it is a black frame. The video never
+  had a title card: its scenes are the rundown, and its default poster is the cut's first frame.
+- **a plain end.** After the last segment the credits roll once over black, from a second after
+  its last frame: no studio, no band, no music, no logo and no GOOD NIGHT, BLUESKY heading; the
+  line that guests are puppets only when a guest appears. Then the screen stays black, and WATCH
+  AGAIN is offered as before. The roll keeps everything Article 4 requires: the cast who appear,
+  any guests by name and handle, and that every voice is synthesized by CHIMERA. Shoot it at
+  several moments, `npm run shoot -- <ep> end 3 10 20 30`, and read every line.
 
 ### Do / don't
 

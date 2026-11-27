@@ -46,6 +46,32 @@ test('the episode folder and episode.json id must agree', () => {
   }
 })
 
+test('plainCards and credits: absent is fine; present, they must be well formed', () => {
+  const fx = tempRoot()
+  const write = (extra) => fx.put('episodes/004-x/episode.json', JSON.stringify({ id: '004-x', status: 'draft', rundown: ['a'], ...extra }))
+  try {
+    write({})
+    assert.equal('plainCards' in resolveEpisode('4', { root: fx.root }).meta, false)
+    const credits = [{ head: 'Quoted', lines: ['A book, chapter 2'] }, { head: 'Told from', lines: ['One', 'Two'] }]
+    write({ plainCards: true, credits })
+    const meta = resolveEpisode('4', { root: fx.root }).meta
+    assert.equal(meta.plainCards, true)
+    assert.deepEqual(meta.credits, credits)
+    write({ plainCards: false })
+    assert.equal(resolveEpisode('4', { root: fx.root }).meta.plainCards, false)
+    for (const bad of [{ plainCards: 'true' }, { plainCards: 1 }]) {
+      write(bad)
+      assert.throws(() => resolveEpisode('4', { root: fx.root }), /plainCards must be true or false/)
+    }
+    for (const bad of [{ credits: {} }, { credits: [{ head: 'A' }] }, { credits: [{ head: '', lines: ['x'] }] }, { credits: [{ head: 'A', lines: [] }] }, { credits: [{ head: 'A', lines: ['x', 2] }] }]) {
+      write(bad)
+      assert.throws(() => resolveEpisode('4', { root: fx.root }), /credits must be a list/)
+    }
+  } finally {
+    fx.cleanup()
+  }
+})
+
 test('rendered assets: public/ first, then the committed build', () => {
   const fx = tempRoot()
   try {

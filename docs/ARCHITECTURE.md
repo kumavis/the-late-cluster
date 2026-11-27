@@ -97,7 +97,12 @@ Every command and tool resolves an episode's paths through one module,
 (gitignored), shared by all episodes because the cache keys are content hashes.
 
 The end-card credits list who appears in the episode: every character with a line, plus each
-segment's `cast` and `guests`.
+segment's `cast` and `guests`, then any sections the episode's `credits` adds. An episode with
+`plainCards: true` has no title card (the page opens on its first segment's first frame, and
+`title` in freeze mode, `shoot` and `thumbnail` mean that segment) and ends on the credits rolled
+once over black with no studio, band or good-night heading; without it, the stock cards play
+(`packages/show/README.md`, "Title, production and end cards"). The video's scenes are the
+rundown, so it has neither card either way.
 
 ## An episode: `episodes/<id>/`
 
@@ -134,6 +139,10 @@ episodes/001-pilot/
   "rundown": ["cold-open", "monologue", "weather", "top-chicken", "built-or-bit", "panel", "song", "goodnight"]
 }
 ```
+
+Two optional fields change the cards: `"plainCards": true` (default off) and `"credits": [{
+"head": "Quoted", "lines": ["…"] }]`, extra sections for the roll. `scripts/lib/episodes.mjs`
+refuses either if malformed.
 
 `status` is `draft` or `published`. A draft is in production: it does not need a build and is
 not listed on the site. `week` is the ISO week the episode covers and may be omitted.
@@ -254,7 +263,7 @@ episode. `<seg>` is a segment id.
 | `npm run voice-research -- <ep> --draft <slug> \| --drafts \| <seg> [--add <word> --line <id> --status … --note "…" \| --pattern "…"] [--dry-run]`, `-- --page` | the voice research file (`packages/show/tools/data/voice-research.json`, committed): harvest working spellings from `fit.json`, list the lines still hard, record a hard word or a pattern by hand (never a name), and regenerate `docs/voice-research.md`; `-- --sounds` (bun) marks every working spelling whose sounds are not the word's as `misleads` (the transcription accepts it, a listener does not); exit 1 while a hard line is unrecorded (node, nothing installed) |
 | `npm run voices -- <ep> [--drafts] [--rule <id>:<rule>] [--dry-run] [--json]` | give every guest (of the episode, and with `--drafts` of every draft together) a voice at least 1.5 from the house and each other, and write the cast entries |
 | `npm run shoot -- <ep> <seg> <t>... [--caption-scale <n>]` | frozen frames to PNG for review (Playwright); `--caption-scale` draws the caption bar larger, as the phone cut does (`?capscale=` on the page; frames named `…@<t>-cs<n>.png`) |
-| `npm run thumbnail -- <ep> [<seg> <t>]` | shoot a frame into `thumbnail.jpg`: the title card, or a moment of a segment |
+| `npm run thumbnail -- <ep> [<seg> <t>]` | shoot a frame into `thumbnail.jpg`: the title card (with `plainCards`, the first segment at `--t`), or a moment of a segment |
 | `npm run avatar [-- --variant a\|b\|c] [--out file] [--candidates]` | render `brand/avatar.png`, the show's Bluesky profile picture, from the host puppet (Playwright); `--candidates` writes all three to `preview/_avatar/` with a contact sheet |
 | `npm run banner [-- --variant a\|b\|c] [--out file.png] [--candidates]` | render `brand/banner.png`, the account's banner: the title over the set's skyline, no host (Playwright); 3000×1000 PNG, or 1500×500 when the larger is over Bluesky's 1,000,000 bytes; refused if the title is under the profile picture or a phone button or under 140 points wide on a phone; `--candidates` writes all three to `brand/candidates/` with `banner-sheet.png` (each as a desktop and a phone profile) |
 | `npm run build -- <ep> [--preview]` | build into `dist/episodes/<id>/`, or a draft into `preview/<id>/`; runs the sources check and the gates-on-record check first (refuses a published build on a finding, warns in a preview) |

@@ -6,7 +6,8 @@
 //   @late-cluster/episode/<path>  → the current episode's folder
 //
 // The virtual module exports
-//   episode   the episode.json fields the page uses (id, number, title, airDate, …, rundown)
+//   episode   the episode.json fields the page uses (id, number, title, airDate, …, rundown, and
+//             plainCards and credits when the episode sets them)
 //   modules   { <seg>: () => import(index.js) }     lazy chunks via import.meta.glob
 //   cues      { <seg>: () => import(cues.json) }    lazy chunks via import.meta.glob
 //   cast      the episode's cast.js CAST (or {})
@@ -48,7 +49,7 @@ export function showConfig(ep, { outDir } = {}) {
 }
 
 /** the fields of episode.json the page sees */
-const PAGE_FIELDS = ['id', 'number', 'slug', 'title', 'description', 'airDate', 'week', 'status', 'rundown']
+const PAGE_FIELDS = ['id', 'number', 'slug', 'title', 'description', 'airDate', 'week', 'status', 'rundown', 'plainCards', 'credits']
 
 export function episodePlugin(ep) {
   let command = 'serve'
