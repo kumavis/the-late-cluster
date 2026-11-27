@@ -159,8 +159,8 @@ test('logged-out-hidden and labelled posts are excluded and counted', async () =
 test('members, window and the top story come out as expected', async () => {
   const { c, d } = await runFake()
   const handles = c.members.map((m) => m.handle).sort()
-  // quiet.example.test qualifies by the rules but its profile opts out, so it is dropped before its feed is fetched
-  assert.deepEqual(handles, ['alpha.example.test', 'bravo.example.test', 'builder.alpha.example.test', 'charlie.example.test', 'delta.example.test', 'echo.example.test', 'foxtrot.example.test'])
+  // quiet.example.test's bio asks not to be quoted: a note, not an opt-out (bible R11), so it is a member
+  assert.deepEqual(handles, ['alpha.example.test', 'bravo.example.test', 'builder.alpha.example.test', 'charlie.example.test', 'delta.example.test', 'echo.example.test', 'foxtrot.example.test', 'quiet.example.test'])
   assert.ok(d.posts.every((p) => p.time >= '2026-11-09' && p.time < '2026-11-16'))
   const top = d.stories.find((x) => x.posts[0].uri === uriOf('alpha', 'root'))
   assert.ok(top.rank <= 3, `root thread ranks near the top (${top.rank})`)
@@ -188,19 +188,17 @@ test('two runs on the same inputs give the same stories', async () => {
   assert.deepEqual(b.d.posts, a.d.posts)
 })
 
-test('a profile that asks not to be quoted is an opt-out: never fetched, never shown, counted', async () => {
+test('a bio that asks not to be quoted is a note, not an opt-out: read, kept, its words private (27 November 2026)', async () => {
   const { fake, digest, md, d, consent } = await runFake()
-  for (const url of fake.requested) {
-    if (url.includes('getAuthorFeed')) assert.ok(!decodeURIComponent(url).includes(ACCOUNTS.quiet.did), 'no feed request for the account')
-  }
+  assert.ok(fake.requested.some((url) => url.includes('getAuthorFeed') && decodeURIComponent(url).includes(ACCOUNTS.quiet.did)), 'the account is read like anyone else')
   const out = JSON.stringify(digest) + md + JSON.stringify(d.posts)
-  assert.ok(!out.includes('QUIET TEXT'))
-  assert.ok(!out.includes(ACCOUNTS.quiet.did))
-  assert.ok(!out.includes('quiet.example.test'))
-  assert.ok(!out.includes('Please do not quote'), 'the description itself is never written')
-  assert.equal(consent.stats.selfDeclaredAccounts, 1)
+  assert.ok(out.includes('QUIET TEXT'), 'its posts stay')
+  assert.ok(!out.includes('Please do not quote'), 'the description itself is never written outside private/')
+  assert.equal(consent.excludedDid(ACCOUNTS.quiet.did), false)
+  assert.equal(consent.bioNotes.get(ACCOUNTS.quiet.did)?.kind, 'direct')
+  assert.equal(consent.stats.bioNoteAccounts, 1)
   const reply = d.posts.find((p) => p.uri === uriOf('alpha', 'a-q'))
-  assert.equal(reply.reply.hidden, true)
+  assert.ok(!reply.reply.hidden, 'a reply to them keeps its link')
 })
 
 test('authors carry follower counts and small accounts are marked in both outputs', async () => {
@@ -412,7 +410,7 @@ test('skeletons and lanes hold nothing about the show and no excluded account', 
   const run = await runFake()
   const { sk } = await skeletonsOf(run)
   const out = JSON.stringify([...sk.files.values()]) + JSON.stringify(sk.lanes) + JSON.stringify(sk.index)
-  for (const s of ['crow bit', 'cold open', 'please leave me out', 'GHOST TEXT', ACCOUNTS.ghost.did, 'ghost.example.test', 'QUIET TEXT', ACCOUNTS.quiet.did]) assert.ok(!out.includes(s), s)
+  for (const s of ['crow bit', 'cold open', 'please leave me out', 'GHOST TEXT', ACCOUNTS.ghost.did, 'ghost.example.test', 'Please do not quote']) assert.ok(!out.includes(s), s)
   const { renderLane, stringifySkeleton, stringifyIndex } = await import('../src/skeletons.js')
   for (const l of Object.values(sk.lanes)) assert.ok(!renderLane(l).includes('crow'))
   for (const f of sk.files.values()) assert.deepEqual(JSON.parse(stringifySkeleton(f)), f)
@@ -440,13 +438,16 @@ test('lanes: the games slice marks which results may be named; voices leave out 
   assert.deepEqual(sk.lanes.made.skeletons, sk.lanes.made.entries.map((e) => e.id))
 })
 
-test('the run keeps profile descriptions privately, and reads them for opt-outs', async () => {
+test('the run keeps profile descriptions privately, and reads them for repost notes', async () => {
   const run = await runFake()
   const { priv } = await skeletonsOf(run)
   const out = JSON.stringify(run.digest) + run.md
   assert.ok(!out.includes('Please do not quote'))
   assert.ok(priv.file.accounts.length > 0)
-  assert.ok(!priv.file.accounts.some((a) => a.did === ACCOUNTS.quiet.did || a.did === ACCOUNTS.ghost.did), 'excluded accounts are not kept, even privately')
+  assert.ok(!priv.file.accounts.some((a) => a.did === ACCOUNTS.ghost.did), 'excluded accounts are not kept, even privately')
   assert.ok(priv.file.accounts.every((a) => typeof a.description === 'string'))
-  assert.equal(priv.counts.excludedDirect, 1)
+  // a bio line is a note: the account is kept, marked bioReview, the phrase only in private/
+  const quiet = priv.file.accounts.find((a) => a.did === ACCOUNTS.quiet.did)
+  assert.equal(quiet.bioReview.kind, 'direct')
+  assert.equal(priv.counts.bioReviewByKind.direct, 1)
 })

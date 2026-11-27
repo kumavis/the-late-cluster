@@ -20,8 +20,8 @@ export const LOOKUP_USAGE = `Usage: npm run lookup -- [--dir <digest folder>] <o
   --full               print the full stored record instead of the compact one
 
 Output: one compact JSON record per line by default: uri, handle, time, text, counts,
-replyTo and quote (addresses), media (kind and whether it has alt text), marks, redacted,
-and the skeleton it is in. Text is exact as stored; nothing is trimmed. Posts about the
+replyTo and quote (addresses), media (kind and whether it has alt text), marks, repostNotes
+(what it says about being quoted: a note, not a mark), redacted, and the skeleton it is in. Text is exact as stored; nothing is trimmed. Posts about the
 show are for reviewers only and are not printed (--about-show prints them). A record with
 "redacted": true had an excluded account's name replaced with [opted-out]: it is not verbatim
 and must not be quoted. Posts withheld for naming an excluded account are not in the digest.
@@ -54,6 +54,7 @@ export function compact(p, storyOf = () => null, pronounsOf = () => null) {
   else if (p.hasImages || p.hasVideo) out.media = [p.hasVideo ? 'video' : 'image']
   const marks = [...(p.sensitive ?? []), ...(p.consent ?? [])]
   if (marks.length) out.marks = marks
+  if (p.repostNotes?.length) out.repostNotes = p.repostNotes
   if (p.redacted) out.redacted = true
   if (p.depth !== undefined) out.depth = p.depth
   const sid = storyOf(p.uri)
@@ -128,7 +129,7 @@ function skeletonToRecord(p) {
     uri: p.uri, handle: p.author?.handle, authorDid: p.author?.did, pronouns: p.author?.pronouns ?? null, time: p.time, text: p.text, counts: p.counts,
     reply: p.replyTo ? (p.replyTo.hidden ? { hidden: true } : { parent: p.replyTo.uri }) : null,
     quote: p.quoted ? (p.quoted.state === 'removed' ? { state: 'removed' } : { uri: p.quoted.uri }) : null,
-    media: p.media, sensitive: p.sensitive, consent: p.consent, redacted: p.redacted,
+    media: p.media, sensitive: p.sensitive, consent: p.consent, repostNotes: p.repostNotes, redacted: p.redacted,
   }
 }
 

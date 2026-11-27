@@ -3,12 +3,15 @@
 //
 //   planBuild(ep, { preview })        → { finalDir, assets, problems, warnings }
 //   buildEpisode(ep, { preview, bundle(outDir) })   bundle the page into outDir, then add the
-//                                     audio, telemetry, thumbnail and manifest; swap into place
+//                                     audio, telemetry, thumbnail and manifest; swap into place.
+//                                     First it runs the sources check (./aired.mjs): a finding
+//                                     refuses a published build and is a warning in a preview
 import { copyFileSync, existsSync, mkdirSync, writeFileSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 import { EpisodeError, isFile } from './episodes.mjs'
 import { sourceHash, studioHash } from './hash.mjs'
 import { replaceDir } from './swap.mjs'
+import { airedFindings, PREDATES_SOURCES } from './aired.mjs'
 
 /** the rendered files every rundown segment needs */
 export const segmentAssets = (seg) => [`audio/${seg}.mp3`, `tele/${seg}.bin`]
@@ -54,6 +57,14 @@ export function manifest(ep) {
  */
 export async function buildEpisode(ep, { preview = false, bundle }) {
   const plan = planBuild(ep, { preview })
+  // what airs from a real account has a record in production/sources.json (scripts/lib/aired.mjs):
+  // a published build refuses on a finding; a preview, which may be mid-production, warns
+  if (PREDATES_SOURCES.has(ep.id)) plan.warnings.push(`sources check skipped: ${ep.id} predates production/sources.json (PREDATES_SOURCES in scripts/lib/aired.mjs)`)
+  else {
+    const aired = await airedFindings(ep)
+    for (const f of aired.findings) (preview ? plan.warnings : plan.problems).push(`no record in sources.json: ${f.message}`)
+    for (const n of aired.notes) plan.warnings.push(`sources not checked: ${n}`)
+  }
   if (plan.problems.length) throw new EpisodeError(`cannot build ${ep.id}:\n  ${plan.problems.join('\n  ')}`, 1)
   const man = manifest(ep)
   await replaceDir(plan.finalDir, async (tmp) => {

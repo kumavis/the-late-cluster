@@ -117,10 +117,11 @@ own.
 | 9 | **select** | 2 reviewers score; tool combines and applies the caps; **repetition gate (scripts)** by 2 reviewers; 1 auditor refreshes consent over the network | `select/scores.json`, `review/repetition-scripts.json`, `review/consent-r<n>.md`, `plan.json` | no selected script repeats, no cap is broken, every selected account and post passes the consent refresh, and the rundown fits |
 | 10 | **assemble** | 1 writer for the order, open, close and joins; 2 reviewers on the lines the writer added; 1 sound editor; tools | final `segments/*/script.js`, `sources.json`, `assembly.md`, audio | scripts validate and render; the added lines pass the repetition gate; the real-people and heard-text gates pass |
 | 11 | **stage** | builders in parallel, one segment each; then 1 auditor on the frames | `segments/*/index.js`, frames, `review/stage.json` | frames render clean; the cards, unread-text and credits gates pass; the auditor passes every segment |
-| 12 | **build** | tools | thumbnail, preview or published build, `review/sources-live.md` | the build and `verify` pass, and every cited post still exists unchanged |
+| 12 | **build** | tools | thumbnail, preview or published build, `review/sources-live.md` | the build and `verify` pass, everything from a real account that airs has a record in `sources.json` (`npm run aired`, run by the build: a finding refuses a published build, a preview only warns), and every cited post still exists unchanged |
 | 13 | **review** | tool runs the cold-viewer test; then 1 reviewer | `review/cold-viewers.md` (the viewers' frames and answers stay outside `production/`, under `shots/<id>/_cold/`), `scorecard.md`, ledger entries, the pull request text | nothing; a send-back is a valid result and routes to the stage that can fix it |
 
-Then the owner watches the whole episode with sound. Nothing is published without that.
+Then the owner watches the whole episode with sound. Nothing is published without that. What
+happens after, publishing and posting, is in "After review: publishing and posting" below.
 
 ### 1. Scope: are we looking at the right community, widely enough?
 
@@ -272,8 +273,17 @@ too.
 
 An auditor then refreshes consent over the network for every account and post in the
 selection: the bio and labels as they are now, the pinned post, posts since the scrape, any
-post about the show, and that each cited post still exists unchanged. An account whose bio or
-posts ask not to be quoted, kept or used is out, and the run returns to selection.
+post about the show, and that each cited post still exists unchanged. The owner's ruling of 27
+November 2026 (bible R2, R11): "anything said in public is fair game unless they explicitly
+asked this account to not do that". An account is out only when it is on the opt-out list,
+carries the `!no-unauthenticated` label, or asked the show itself (a reply or tag to the show's
+account, a direct message to it, or a post about the show saying they do not want to be in it);
+a cited post is out when it is gone or changed. Only then does the run return to selection. A
+flagged bio or a general remark about bots, quoting or screenshots is recorded as a note, with
+the exact words and the post's address, for the reviewer's repost test (R6); it removes
+nothing. The auditor does not infer an ask from how someone reacted to another account, and does
+not rule on whom the show's account may tag or message: it reports what was said, to whom, and
+where.
 
 **Television** means nothing is put on screen for the viewer to read in silence. A post that
 is shown is performed or read aloud, or it is short enough to take in at a glance.
@@ -299,6 +309,68 @@ tool then shows each wordless or pictorial stretch the experiment names to a col
 frames and nothing else, and records what the viewer says happened. A reviewer fills in the
 scorecard and writes the episode into the ledger. A send-back at any review is a valid
 result: it names the stage that can fix it, and the run returns there.
+
+## After review: publishing and posting
+
+**These are not pipeline stages.** The pipeline never deploys and never announces: what goes
+out under the show's name goes out because a person decided it should. The project manager
+does each step below by hand, each on the owner's word, and one approval covers one thing. An
+approval of the cut is not an approval to post it, and a yes to the post is not a yes to the
+reply.
+
+**The air slot.** When a run starts, the owner names the air slot, a date and a local time, and
+it is written at the top of the episode's `production/owner-notes.md`. Everything below counts
+back from it. Episode two had no slot written down, its posting materials were still being
+fixed on the night, and it missed its window and went out the next morning.
+
+**Publishing is merging.** An episode is made on its own branch, `episode/<id>`, the branch
+the pipeline pushes and opens its pull request from. Since 27 November 2026 the repository is
+public on GitHub, and `deploy.yml` deploys `dist/` on every push to `main`, so a push to `main`
+that carries a published build puts the episode on the site. That is why an episode stays on
+its branch until it is approved. The owner first watches the whole episode with sound from the
+preview build (the constitution, Article 5). Then, on the owner's word: the episode's status
+becomes `published`, the build is made and committed on the branch, the branch is merged into
+`main`, and `main` is pushed. Episode two was committed straight to `main` while the repository
+was still private; that no longer works, because a commit on `main` is now a deploy.
+
+**The posting cut, made the day before the slot.** The video for Bluesky is cut with the phone
+settings from "For phones" in `packages/show/tools/README.md`: `--bluesky --soften box
+--caption-scale 1.4 --poster <the title's time> --preview-360 --preview-720`. No captions file
+is attached to the post, because the picture already carries captions and the web player would
+switch a second set on over them. The settings come from episode two: Bluesky serves phones a
+360p stream, and the first cut was unreadable there; and the poster is the video's first frame,
+which was a blank sheet. An auditor looks at frames of the 360p preview, because that is what
+most viewers get: every card, credit and name tag is readable and uncovered.
+
+**Approval, the day before the slot, as one set.** The owner watches the 360p and 720p previews
+and reads the post text, the alt text and the tagged reply together, because they go out
+together and are judged together. The reply tags only accounts in that episode's
+`production/sources.json`. Two checks are clean at this point: the live source check (`npm run
+sources -- check`) and the source-record check (`npm run aired -- <ep>`), which finds anything
+that airs from a real account with no record in `sources.json`, so the live check cannot miss
+it. On approval the set is frozen, and the cut's
+sha256 and the paths of the three texts are written into `owner-notes.md`, so that what goes out
+can be shown to be what was approved.
+
+**Go.** On the owner's word to post: run the live source check once more, then `post` with
+`--live`, then `reply` with `--live` when the owner says so. After approval nothing in the set
+is edited or re-rendered: the owner's ruling of 22 November 2026, "we prepped so we only needed
+to press go for live. we are past editing the video". If the last check reports something that
+needs a person (someone has opted out or asked the show to leave them out, or a cited post is
+gone or edited), the post does not go out, and the owner is told in two lines what it is and
+what the choices are. Only the owner reopens the set. A note (a changed display name or handle,
+a bio line) does not hold the post; it is reported after.
+
+**The show's account never goes into someone else's thread.** The tagged reply goes under the
+show's own post. The owner's ruling of 22 November 2026: "we're not crashing the middle of
+someone elses thread - thats the important distinction".
+
+**After posting.** The addresses of the post and the reply go into `owner-notes.md`, so the
+episode's record says where it went out. A test post is made only when the owner asks for one,
+and `post --undo` deletes one of the show's own posts.
+
+**Close-out.** The reviewer's final scorecard and ledger entry, then the publishing steps above
+if the site has not been updated yet.
 
 ## What carries forward from one episode to the next
 

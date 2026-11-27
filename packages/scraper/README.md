@@ -76,7 +76,7 @@ Written to `data/weeks/<week>/` at the repo root (gitignored), or to `--out`:
 | `media/` | pictures and video thumbnails fetched by `npm run media`, on request only |
 | `.cache/http/` | raw API responses keyed by URL; see "The response cache" |
 
-Each author in `authors` carries `followers`, `small`, `member`, `bot`, `pronouns` (see "Pronouns"), `pronounsReview` and `bioReview` (when set),
+Each author in `authors` carries `followers`, `small`, `member`, `bot`, `pronouns` (see "Pronouns"), `pronounsReview` and `bioReview` (when set: the bio says something about quoting or bots, a note for the repost test; see "Bios"),
 and from the ledger `featuredPrevious` / `featuredEarlier` (`"spoke"`, `"shown"` or null) and
 `timesFeatured`; posts carry `featured` when either is set, and `reach` (see "Reach").
 
@@ -111,6 +111,7 @@ agent that read it:
  "pronouns":"she/they",            // the author's stated pronouns as written; absent: none stated
  "media":["image (no alt)"],       // each picture or video, and whether it has alt text
  "marks":["health"],               // sensitive topics and consent reasons, when any
+ "repostNotes":["says \"no QTs\" (...)"], // what it says about being quoted: a note, refuses nothing
  "redacted":true,                  // when the consent rules altered the text
  "skeleton":"s-4781333501"}        // the story it is in
 ```
@@ -151,6 +152,7 @@ CDN), `thumb`, `alt`, `hasAlt`), `embedded` (a feed or list card), `tags`,
 `feed`), `member`, `memberReposts` where members reposted it, `authorFollowers` and
 `smallAccount` (under `safety.smallAccountFollowers`, 300), `guest` for a recurring guest,
 `sensitive` (the out-of-bounds topics it matched), `consent` (consent reasons, see "Marks"),
+`repostNotes` (what it says about being quoted, kept or screenshotted: a note, see "Marks"),
 `aboutShow` (for reviewers only), and, when the consent rules changed its text, `redacted: true` with `outOfBounds: { topics: ["redacted"], rule: "R11" }` (the field the
 writers' room gates refuse as a source). Every summary of such a post elsewhere in the digest
 (a brief, a quoted post, a reply's parent, a winning post) carries the same two fields. Story posts also carry `inReplyTo` (the
@@ -178,6 +180,7 @@ A story in `digest.json`:
   "outOfBounds": null,             // consent only: { "rule": "R11", "reasons": [...] }; see "Marks"
   "sensitivity": { "topics": ["health"], "counts": { "health": 3 }, "postsMarked": 3, "leadMarked": false, "hint": [] },
   "consentMarked": 0,              // posts in the story with a consent mark
+  "repostNoted": 0,                // posts in the story with a repost note (when any)
   "context": [],                   // the thread root, when it predates the window
   "posts": [ /* post records plus metrics: engagement, baseline, lift, score; and quoted */ ]
 }
@@ -201,7 +204,7 @@ what the pipeline reads; a change to one is a change to this section.
   "skeletons": [
     { "id": "s-4781333501", "rank": 1, "kind": "thread", "headline": "first line of the lead post",
       "posts": 148, "members": 30, "authors": 49, "reach": 1518, "lanes": ["made", "talk"],
-      "postsMarked": 2, "leadMarked": false, "consentMarked": 7, "excluded": false, "media": 11,
+      "postsMarked": 2, "leadMarked": false, "consentMarked": 7, "repostNoted": 1, "excluded": false, "media": 11,
       "file": "skeletons/s-4781333501.json" } ] }
 ```
 
@@ -214,7 +217,7 @@ what the pipeline reads; a change to one is a change to this section.
   "makers": [{ "did", "handle", "evidence": ["a video"], "posts": ["at://..."] }],   // made stories only
   "reason": [], "stats": { "posts", "authors", "members", "days", "quotePosts", "memberReposts" },
   "reach": { "score", "likes", "reposts", "quotes", "replies", "participants", "formula", "note" },
-  "marks": { "postsMarked", "leadMarked", "topics": { "health": 2 }, "consentMarked", "leadConsent", "hint": [] },
+  "marks": { "postsMarked", "leadMarked", "topics": { "health": 2 }, "consentMarked", "leadConsent", "repostNoted", "hint": [] },
   "excluded": null,                          // or { "rule": "R11", "reasons": [] }: then posts is []
   "links": [{ "url", "title", "domain", "members", "built" }], "phrases": [],
   "omitted": { "aboutShow": 3 },             // when posts about the show were taken out
@@ -236,7 +239,8 @@ A **post** in a skeleton (the same fields `posts.jsonl` uses for marks):
   "quoted": null,                                             // as replyTo with "state": "ok", or { "state": "removed", "note" }
   "links": [], "media": [{ "kind": "image", "url", "thumb", "alt": null, "hasAlt": false }],
   "embedded": {}, "redacted": true,
-  "sensitive": ["health"], "consent": ["asks not to be quoted"] }   // only when marked
+  "sensitive": ["health"], "consent": ["redacted"],                  // only when marked
+  "repostNotes": ["says \"don't quote me\" (asked not to be quoted)"] } // only when noted; refuses nothing
 ```
 
 Optional fields are left out when empty. A post with a picture or video and no text is a valid
@@ -261,12 +265,12 @@ lane.
 
 - `made`, `talk`, `games`: one entry per skeleton.
 - `games` adds `games`: per game the `standings` (each `{ time, likes, winner, mayName, why,
-  winningPost: { uri, url, skeleton, mayQuote, marks }, resultPost }`; an excluded winner is
+  winningPost: { uri, url, skeleton, mayQuote, marks, repostNotes }, resultPost }` (a repost note does not change `mayQuote`); an excluded winner is
   `{ excluded: true }` with no post), the `record` (`mayName`), the `leaderboard` (an entry has
   `mayName` only for the record holder and the window's winners: R7 names the winner of the
   moment), history, participation and streaks.
 - `voices`: one entry per person, `{ rank, did, handle, displayName, followers, small,
-  postsInWindow, strength, line, posts: [{ id, uri, score, line }] }`. Members the show has never
+  postsInWindow, strength, line, posts: [{ id, uri, score, line, repostNotes }] }`. Members the show has never
   featured; each unmarked post scores `ln(1 + engagement) + 1.2 × lift − 1.5 × log10(followers +
   10)`, so a small account's good day can lead. Left out: bots, accounts over 3,000 followers,
   marked posts, and anything in a story the consent rules leave out.
@@ -274,7 +278,8 @@ lane.
 - `interview`: one entry per candidate, `{ rank, did, handle, displayName, followers, small,
   featuredEarlier, timesFeatured, line, made: [{ id, asked, line }], pairs: [{ skeleton,
   aboutMade, kind, question: { uri, url, handle, displayName, text, time, member, followers,
-  small }, answer: { uri, url, text, time, counts } }] }`. Ranked by having made something and
+  small, repostNotes }, answer: { uri, url, text, time, counts, repostNotes } }] }`. A repost note
+  never keeps a pair out. Ranked by having made something and
   been asked about it in public (finding 8): pairs whose question replies to, quotes or sits
   under the post that shows the made thing, then how many such pairs, from how many people,
   about how many things; then members with at least three usable pairs of any kind. Inside a
@@ -385,14 +390,23 @@ Findings 7 and 37: a keyword marks the post it is in, not its story.
   matched. The story carries `sensitivity` (topics with counts, `postsMarked`, `leadMarked`, and
   the old story-level `hint`), and the rest of the story stays usable. A marked post is listed in
   `digest.md`, never quoted, and a story whose lead is marked is listed by its mark.
-- **`consent`** on a post: `asks not to be quoted` (the `consentTopics` in `safety.json`), `its
-  author asked not to be quoted in this story` (that author's other posts in the story),
-  `redacted` (it names an excluded account), `replies to an excluded account`.
+- **`consent`** on a post: `redacted` (it names an excluded account), `replies to an excluded
+  account`. These refuse the post.
+- **`repostNotes`** on a post: what it says about being quoted, kept or screenshotted, with the
+  words matched (`says "don't quote me" (asked not to be quoted)`, from `sensitivity.consentTopics`
+  and `selfDeclaredOptOut.indirectPatterns`), and `its author said something about being quoted
+  elsewhere in this story` on that author's other posts in the story. The owner's ruling of 27
+  November 2026 (bible R2, R11): "anything said in public is fair game unless they explicitly
+  asked this account to not do that". A general remark is not an ask to the show, so a note
+  refuses nothing, removes no story and excludes nobody; it travels with the post into the
+  skeletons, the lanes, `digest.md` and `npm run lookup`, as evidence for the reviewer's repost
+  test (R6). The same words in a post about the show are an ask to the show (see "About the
+  show"). A digest written before the ruling carries `consent: ["asks not to be quoted"]`
+  instead; `npm run media` and the writers' room read that as a note.
 - **A story is left out whole only for consent** (`outOfBounds: { rule: "R11", reasons }`): its
   thread starts with an excluded account's post, or its lead post or thread root carries a
-  consent mark (a lead that asks not to be quoted, a redacted lead). Its skeleton keeps the
-  counts and no posts or headline; `digest.md` lists it as **LEFT OUT (consent)**. A request not
-  to be quoted anywhere else in a story covers its author's posts there, not the story.
+  consent mark (a redacted lead). Its skeleton keeps the counts and no posts or headline;
+  `digest.md` lists it as **LEFT OUT (consent)**.
 - `overview.outOfBounds` lists the consent exclusions in the top 30; `overview.sensitive` the
   stories with marked posts.
 
@@ -404,7 +418,7 @@ post's pictures at full size, or its video's thumbnail, from Bluesky's public CD
 under `/data/`), and prints each file's path with its alt text or "no alt text" (finding 9).
 A file already there is not fetched again. It fetches only posts that are in the digest, and
 refuses a redacted post, a post with a consent mark, a post about the show, and a post inside
-a story the consent rules leave out (exit 1). The User-Agent is the scraper's generic one.
+a story the consent rules leave out (exit 1). A post with only a repost note is fetched. The User-Agent is the scraper's generic one.
 
 ## The live source check
 
@@ -418,21 +432,35 @@ and `cuts`, `posts[].replyTo` and `quoted`, `lines[].post` and `context` with `c
   and in the digest; a stored text or cut with an ellipsis is a **marked cut** and must match
   the live text where it overlaps, its parts in order;
 - every account as it is now (`getProfiles`): handle and display name against what was stored,
-  labels (`!no-unauthenticated` is an opt-out), and the bio read for opt-outs, direct and
-  indirect, and for wording an auditor should judge (only the matched words are printed);
+  labels (`!no-unauthenticated` is an opt-out), and the bio read for what it says about quoting,
+  keeping or bots (a bio is never printed; for the wording an auditor should look at, only the
+  matched words);
 - its pinned post, and its posts since the digest's window ended (two pages of its feed), read
-  for requests not to be quoted, kept or used (`consentTopics` and the indirect opt-out
-  patterns) and for posts about the show (with any request to be left out);
+  for posts about the show or addressed to its account (naming, linking or mentioning it, or
+  replying to or quoting the show's own post), with any ask to be left out or not to be quoted,
+  kept, used or tagged, and for general remarks about being quoted (`consentTopics` and the
+  indirect patterns);
 - an account on the opt-out list is never requested and never named: it is reported by its
   place in the file.
 
-Exit 0 when clean, 1 when something needs a person, 2 for bad arguments. `--json` prints one
-line, `late-cluster-sources-check/1`: `{ checkedAt, since, clean, counts: { posts, accounts,
-issues, requests }, issues: [{ kind, where, what }], posts: [{ uri, where, status }],
-accounts: [{ did, handle, where, status, checks }], notes }`. Issue kinds: `post gone`, `text
-changed`, `cut does not match`, `opt-out`, `bio review`, `handle changed`, `display name
-changed`, `pronouns changed`, `pinned post asks`, `post asks`, `about the show`, `asks the show`, `account gone`.
-Each account row carries `pronouns` as read now.
+Findings come at two levels (the owner's ruling, 27 November 2026; bible R2, R11). **Needs a
+person** (`issues`): `opt-out` (the list, or `!no-unauthenticated` on the account or a cited
+post's author), `post gone`, `account gone`, `text changed`, `cut does not match`, `pronouns
+changed`, `about the show` (any new post about the show: a person reads it, since it may be an
+ask) and `asks the show` (a post or pinned post about or addressed to the show that asks to be
+left out, or not to be quoted, kept, used or tagged). **Notes** (`notes`), reported and stopping
+nothing: `bio says` (the bio matches `selfDeclaredOptOut`), `bio review` (wording from
+`bioReview.patterns`), `pinned post asks` and `post asks` (a general remark not addressed to the
+show), `handle changed`, `display name changed` (the owner ruled on 22 November 2026 that a
+changed display name does not reopen an approved episode). The Markdown report has a "Notes"
+section after the findings that need a person.
+
+Exit 0 when nothing needs a person, notes or not; 1 when something does; 2 for bad arguments.
+`--json` prints one line, `late-cluster-sources-check/1`: `{ checkedAt, since, clean, counts:
+{ posts, accounts, issues, notes, requests }, issues: [{ kind, where, what }], notes: [{ kind,
+where, what }], posts: [{ uri, where, status }], accounts: [{ did, handle, where, status, checks
+}], remarks }` (`remarks`: how the check ran, such as "no digest window"). An account row's
+`status` is `ok`, `noted`, `opt-out` or `gone`. Each account row carries `pronouns` as read now.
 For the trial's `sources.json` (48 posts, 16 accounts) it made 21 requests.
 
 ## Who is "the cluster"
@@ -634,8 +662,8 @@ needs. Where each item is:
 | per post: URI, URL, verbatim text, handle, display name, date, counts, reply/quote of what, alt text, links | every post record; story posts add `inReplyTo` and `quoted` |
 | per author: follower count, featured before | `authors`, `members`, and `authorFollowers` / `smallAccount` / `featured` on posts; `digest.md` writes "(**small account**, 43 followers)" next to every name |
 | thread context for anything quotable | `inReplyTo` on story posts; the thread root as `context`; stories list the strongest replies |
-| opt-outs applied, plus bios and posts asking not to be quoted, and posts to the show's account | see "Consent and safety"; requests to the show are listed in About the show |
-| sensitivity flags | `sensitive` and `consent` on posts; `sensitivity` (a hint) and `outOfBounds` (consent only) on stories; `outOfBounds` on builds and phrases; see "Marks" |
+| opt-outs applied (the list, `!no-unauthenticated`, asks to the show); bios and posts that say something about being quoted, as notes | see "Consent and safety" and "Marks"; requests to the show are listed in About the show |
+| sensitivity flags | `sensitive` and `consent` on posts, and `repostNotes` (a note, not a flag); `sensitivity` (a hint) and `outOfBounds` (consent only) on stories; `outOfBounds` on builds and phrases; see "Marks" |
 | things built this week | `sections.built`, "Built this week" |
 | recurring phrases, "X week" declarations, first posts of anything that spread | `appendices.phrases` (with `first`), `appendices.weeks` |
 | reactions to the show | `reviewers/about-show.json`, for reviewers only |
@@ -718,10 +746,11 @@ said that", "wasn't me", "misquoted", ... and no longer "actually" or "I didn't 
 fired on praise), and **the lines it quotes** (`showQuotePattern`), so a viewer quoting
 something the show put in a real person's mouth is listed for the writer to check. A post in this set that matches
 `showOptOutPatterns` ("leave me out", "please don't", "remove me", "not ok with", "without my
-consent", "opt out", ...) is treated as a request to be left out: its author is excluded from
-everything else in the digest, and the section lists them by handle and link only, for the
-reviewer to add to `optout.json` (R11). Ordinary posts saying "don't quote me" are not
-treated this way; it is too common an idiom outside the show.
+consent", "opt out", ...) or a `consentTopics` term ("don't quote me") is an explicit ask to the
+show, treated as a request to be left out: its author is excluded from everything else in the
+digest, and the section lists them by handle and link only, for the reviewer to add to
+`optout.json` (R11). The same words in an ordinary post, not about the show, are a general
+remark: a repost note (see "Marks"), never an exclusion.
 
 ### New voices
 
@@ -777,20 +806,23 @@ Built into the code path, not left to the reader (`src/consent.js`):
   account" below. Their DID never reaches an output file.
 - **`!no-unauthenticated`**: accounts carrying this self-label are treated exactly like
   opt-outs, even though the public AppView does return their posts (verified: 505 of the
-  cached W46 responses contained such authors, with post text).
-- **Self-declared opt-outs**: an account whose profile description asks not to be quoted,
-  screenshotted, reposted, clipped or unrolled, or used by bots or AI (`safety.json`
-  `selfDeclaredOptOut.patterns`: "no QTs", "do not screenshot", "No AI", "AI DNI", "do not
-  consent", any "DNI", ...), is treated exactly like the opt-out list. The patterns err towards
-  excluding: "Minors DNI" or "No AI" in an artist's bio also excludes the account. Members
-  are checked before their posts are fetched; every other author and mentioned account is
-  checked before the digest is written. On W46: 47 accounts, 78 posts; none of them was a member.
-- **Indirect opt-outs** (`selfDeclaredOptOut.indirectPatterns`): a bio that says the same
-  another way (posts described as temporary or meant to disappear, "not to be quoted", "ask
-  before you screenshot") excludes the account exactly the same, counted apart
-  (`stats.excluded.selfDeclaredIndirect`). See "Bios".
-- **Requests to the show**: see "About the show".
-- **Naming an excluded account**: see below. Applies to every kind of exclusion above.
+  cached W46 responses contained such authors, with post text). The owner kept this stop
+  when narrowing the rule on 27 November 2026, because the show's archive is open to
+  logged-out viewers.
+- **Requests to the show**: an explicit ask addressed to the show (bible R11) excludes its author
+  exactly like the opt-out list; see "About the show".
+- **Not an opt-out: bios and general remarks.** The owner's ruling of 27 November 2026 (bible R2,
+  R11): "anything said in public is fair game unless they explicitly asked this account to not
+  do that". A profile description that asks not to be quoted, screenshotted, reposted, clipped
+  or used by bots or AI (`selfDeclaredOptOut.patterns`: "no QTs", "AI DNI", ...; said another
+  way, `indirectPatterns`: posts meant to disappear, "ask before you screenshot"; or wording
+  from `bioReview.patterns`) is a line addressed to everyone. It excludes nobody, redacts nobody
+  else's post and leaves no story out: the account is marked `bioReview`, a note for the
+  reviewer's repost test (R6), with the words in `private/` only (see "Bios"), counted in
+  `stats.excluded.bioNoteAccounts`. A post saying the same is a repost note (see "Marks").
+  These remarks are still read, because they are evidence for the repost test.
+- **Naming an excluded account**: see below. Applies to every kind of exclusion above (the
+  opt-out list, `!no-unauthenticated`, a request to the show).
 - **Content labels**: posts labelled `porn`, `sexual`, `nudity`, `graphic-media`, `gore`,
   `nsfl` or `sexual-figurative` (post or account level, `blockedLabels`) are dropped, and so
   is quoted content carrying them.
@@ -827,13 +859,16 @@ in the run's private data, `private/profiles.json` (`late-cluster-private-profil
 accounts: [{ did, handle, displayName, member, description, labels, pinnedPost, bioReview }] }`,
 for members and every author in the output, never for an excluded account). It is for the
 auditor only: no description is copied into a file another role reads. The bio pass reads each
-for opt-outs: a clear one, direct or indirect, excludes the account like any other consent
-exclusion, counted and not named. Wording that might be one (`safety.json` `bioReview.patterns`:
-temporary, delete, consent, permission, "no ... screenshots", "if I detach your quote", ...)
-marks the account `bioReview` in `authors` and on its skeleton posts, with the phrase that
-matched in `private/profiles.json` and `private/bio-review.md`, for an auditor to judge. Counts
-are in `stats.bios`. On the trial window: 6,267 profiles read; 59 accounts excluded by a direct
-opt-out, 2 by an indirect one; 22 accounts in the output marked for review, 3 of them members.
+for what it says about quoting, screenshots, keeping posts or bots: said directly
+(`selfDeclaredOptOut.patterns`, kind `direct`), another way (`indirectPatterns`, `indirect`), or
+in wording worth a look (`bioReview.patterns`: temporary, delete, consent, permission, "no ...
+screenshots", ..., `review`). None of it excludes the account (bible R11: a bio is addressed to
+everyone, not to the show). A match marks the account `bioReview` in `authors` and on its
+skeleton posts, a note for the reviewer's repost test (R6), with the kind and the phrase that
+matched in `private/profiles.json` and `private/bio-review.md`; the auditor records the ones
+that bear on the material as notes, with the exact words. Counts are in `stats.bios`
+(`bioReview`, `bioReviewByKind`, `bioReviewMembers`). Before the ruling of 27 November 2026 the
+direct and indirect kinds excluded the account: on the trial window, 59 and 2 accounts.
 
 ### Naming an excluded account
 
@@ -954,7 +989,7 @@ makes a parent a wish), `reach.weights`, and `weekDeclarations` (`maxN`, `top`).
 `bots` (`accounts`, `bioPatterns`); `lineChars`. See "Skeletons and lanes".
 
 `config/safety.json`: `smallAccountFollowers`, `selfDeclaredOptOut.patterns` and
-`indirectPatterns`, `bioReview.patterns`, `sensitivity.consentTopics`,
+`indirectPatterns` and `bioReview.patterns` (bio notes, never exclusions), `sensitivity.consentTopics` (repost notes; an ask in a post about the show),
 `showOptOutPatterns.patterns`, `showCorrectionPatterns`, `sensitivity` (`minShare`,
 `minPosts`, `topics`, `combinations`), `showQuotePattern`, `excludedMentions` (`minOwnWords`,
 `minNameChars`, `minLooseNameChars`, `commonNameAuthors`, `aboutPatterns`; see "Naming an

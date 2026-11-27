@@ -25,7 +25,10 @@ function consent() {
   const c = new Consent({ optOut: [G.handle], blockedLabels: cfg.scoring.blockedLabels, selfDeclaredPatterns: cfg.safety.selfDeclaredOptOut.patterns, naming })
   c.check(actor('ghost'))
   c.check(actor('lantern'))
+  // quiet's bio asks not to be quoted, which excludes nobody (bible R11); it is excluded here
+  // because it asked the show itself
   c.checkProfile(profile('quiet'))
+  c.declareShowRequest(ACCOUNTS.quiet.did, ACCOUNTS.quiet.handle)
   return c
 }
 const filter = (c, key, rkey, o) => c.filterPost(normalizePost(post(key, rkey, o)))

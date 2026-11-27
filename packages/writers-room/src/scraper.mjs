@@ -3,12 +3,13 @@
 //
 //   data/weeks/<week>/skeletons/index.json and <id>.json   a card skeleton per story: the posts with
 //                                                           exact text, people, reach, replies and quotes,
-//                                                           alt text, media addresses and a sensitivity
-//                                                           mark per post
+//                                                           alt text, media addresses, a sensitivity
+//                                                           mark per post and any repost note
 //   data/weeks/<week>/lanes/<lane>.json and .md             the digest sliced for one research lane
 //   npm run media -- --dir <digest dir> --uri <at://…>      fetch a post's pictures and video to look at
 //   npm run sources -- check <sources.json> [--dir d] [--out f.md] [--json]
-//                                                           consent and live sources: exit 0 clean, 1 needs a person
+//                                                           consent and live sources: exit 0 nothing needs a
+//                                                           person (notes or not), 1 something does
 //   npm run lookup -- --uri|--url|--text|… <value> [--fields a,b] (compact)
 //
 // Until the scraper writes skeletons, they are derived here from the digest's stories, with the same
@@ -34,15 +35,30 @@ export function laneTaggers(digestDir) {
 }
 
 /**
+ * Consent reasons an older digest gave a general remark ("don't quote me"). Under the owner's ruling
+ * of 27 November 2026 (bible R2, R11) they are repost notes, not reasons to refuse a post; the
+ * scraper's consent.js keeps the same list.
+ */
+export const LEGACY_NOTE_REASONS = new Set(['asks not to be quoted', 'its author asked not to be quoted in this story'])
+
+/**
  * Why a post is refused, or null: the scraper's keyword mark (`sensitive`) or its consent reasons
- * (`consent`: asks not to be quoted, redacted, replies to an excluded account). A marked post is
- * refused; the rest of its story stays usable.
+ * (`consent`: redacted, replies to an excluded account). A marked post is refused; the rest of its
+ * story stays usable. A repost note (`repostNotes`, what a post says about being quoted) refuses
+ * nothing: it is evidence for the reviewer's repost test (R6); see `notesOf`.
  */
 export function markOf(p) {
-  if (Array.isArray(p?.consent) && p.consent.length) return `consent: ${p.consent.join('; ')}`
+  const consent = Array.isArray(p?.consent) ? p.consent.filter((r) => !LEGACY_NOTE_REASONS.has(r)) : []
+  if (consent.length) return `consent: ${consent.join('; ')}`
   const s = p?.sensitive ?? p?.sensitivity ?? p?.mark ?? null
   if (!s) return p?.redacted ? 'redacted' : null
   return typeof s === 'string' ? s : `sensitive${s.topics ? `: ${[].concat(s.topics).join(', ')}` : ''}`
+}
+
+/** a post's repost notes, or null: the scraper's `repostNotes`, and an older digest's "asks not to be quoted" */
+export function notesOf(p) {
+  const notes = [...(Array.isArray(p?.repostNotes) ? p.repostNotes : []), ...(Array.isArray(p?.consent) ? p.consent.filter((r) => LEGACY_NOTE_REASONS.has(r)) : [])]
+  return notes.length ? [...new Set(notes)] : null
 }
 
 /** a skeleton's post, normalised: exact text and everything a card needs, never retyped */
@@ -69,6 +85,8 @@ function skeletonPost(d, p) {
     alt: ref.alt ?? ref.imageAlts ?? (ref.media ?? []).map((m) => m.alt).filter(Boolean),
     media: ref.media ?? [],
     sensitive: markOf(ref) ?? markOf(g) ?? (g.outOfBounds ? 'out of bounds (consent)' : null),
+    // what the post says about being quoted: a note for the repost test, never a refusal
+    repostNotes: notesOf(ref) ?? notesOf(g),
   }
 }
 

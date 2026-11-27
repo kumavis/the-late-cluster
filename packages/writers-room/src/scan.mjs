@@ -93,7 +93,7 @@ export function lex(src) {
 const lineOf = (src, index) => src.slice(0, index).split('\n').length
 
 /** the index of the `{` that encloses `at` in masked code, and its matching `}` */
-function enclosingObject(masked, at) {
+export function enclosingObject(masked, at) {
   let depth = 0
   let open = -1
   for (let k = at; k >= 0; k--) {

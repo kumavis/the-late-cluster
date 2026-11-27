@@ -15,6 +15,7 @@ import { scriptLines } from '../scan.mjs'
 import { SEG_RE, writeJson } from '../repo.mjs'
 import { RESEARCH_FILE, RESEARCH_PAGE, ensureFit, fitCommand, fitProblems, heardLine, isRecorded, readFit, readResearch, renderDraftCommand, researchCommand, researchSource, voicesCommand } from '../studio.mjs'
 import { sourcesCommand } from '../scraper.mjs'
+import { CONSENT_STOPS, POST_STOPS, NOTE_FORMAT, NOTE_RULE, REPORT_RULE, STOP_RULE, noteProblems, outProblems } from '../consent.mjs'
 import { draftPlan } from './early.mjs'
 import { P, W, R, REPETITION_RULES, excludedOf, has, json, pendingRepetition, previousAired, previousLabel, repetitionFiles, reviewerIds, sha, shaText, task } from './common.mjs'
 
@@ -393,9 +394,13 @@ function pairRepeats(ctx) {
   return out
 }
 
-/** what the consent refreshes put out: accounts and posts, from every round */
+/**
+ * what the consent refreshes put out: accounts and posts, from every round. Only an entry that names
+ * a stop counts (src/consent.mjs): a bio line or a general remark is a note and drops nothing, and
+ * an entry without a stop leaves the round current, so its gate asks for the stop.
+ */
 function consentOut(ctx) {
-  return filesIn(P(ctx, 'review/consent'), '.json').flatMap((f) => readJsonFile(f).out ?? [])
+  return filesIn(P(ctx, 'review/consent'), '.json').flatMap((f) => readJsonFile(f).out ?? []).filter((o) => (o?.account ? CONSENT_STOPS.includes(o.stop) : o?.post ? POST_STOPS.includes(o.stop) : false))
 }
 
 /** the selection, with the caps applied as the rundown fills (finding 22) */
@@ -540,11 +545,13 @@ const select = {
             alsoEdits: [W(ctx, `review/consent-r${n}.md`)],
             reads: [W(ctx, 'select/sources.json'), `${dd}/private/bio-review.md?`],
             instructions: [
-              `Run \`${sourcesCommand(W(ctx, 'select/sources.json'), dd, W(ctx, `review/consent-r${n}.md`))} --json\`. It reads, over the network, every selected account's bio and labels as they are now, the pinned post, posts since the scrape and any post about the show, and checks that each cited post still exists unchanged. Exit 1 means something needs a person: you.`,
-              'Rule on every selected account the scraper flagged for its bio (private/bio-review.md, "bioReview"). An account whose bio or posts ask not to be quoted, kept or used is out; so is a cited post that is gone or changed. Use the network only through npm run sources and npm run media.',
-              `Write review/consent/r${n}.json: { "selection": "${hash}", "verdict": "pass" | "out", "out": [{ "account": "<handle or DID>" } or { "post": "<at://>" }], "reason": "<one sentence>" }. The tool drops every draft with something out and selects again.`,
+              `Run \`${sourcesCommand(W(ctx, 'select/sources.json'), dd, W(ctx, `review/consent-r${n}.md`))} --json\`. It reads, over the network, every selected account's bio and labels as they are now, the pinned post, posts since the scrape and any post about the show, and checks that each cited post still exists unchanged. Its "issues" need a person: you. Its "notes" (a bio line, a general remark, a changed handle or display name) need nobody; carry the ones that bear on the material into your notes. Exit 0 with notes is a clean check.`,
+              `${STOP_RULE} A cited post is out when it is gone or its text changed. Only an out returns the run to selection. Use the network only through npm run sources and npm run media.`,
+              `${NOTE_RULE} That covers every selected account the scraper flagged for its bio (private/bio-review.md, "bioReview").`,
+              REPORT_RULE,
+              `Write review/consent/r${n}.json: { "selection": "${hash}", "verdict": "pass" | "out", "out": [{ "account": "<handle or DID>", "stop": ${CONSENT_STOPS.map((s) => `"${s}"`).join(' | ')}, "evidence": "<the post's address, or optout.json>" } or { "post": "<at://>", "stop": "gone" | "changed" | <its author's stop> }], "notes": [${NOTE_FORMAT}], "reason": "<one sentence>" }. The tool drops every draft with something out and selects again; notes go to the reviewers as they are.`,
             ],
-            rules: [`"selection" is "${hash}"; "verdict" is "pass" with "out" empty, or "out" with at least one account or post.`],
+            rules: [`"selection" is "${hash}"; "verdict" is "pass" with "out" empty, or "out" with at least one account or post.`, `Every "out" entry names its "stop": an account only for ${CONSENT_STOPS.map((s) => `"${s}"`).join(', ')}; a post also for "gone" or "changed".`, 'Each note has "account", the exact "words", "where" (an at:// address or "bio") and "to".'],
           }),
         ]
       },
@@ -623,7 +630,12 @@ async function selectConsent(ctx) {
   if (!round) g.fail(`no consent refresh for the current selection (${hash})`)
   else if (!['pass', 'out'].includes(round.j.verdict)) g.fail(`${R(ctx, round.f)}: "verdict" is "pass" or "out"`)
   else if (round.j.verdict === 'out' && !(round.j.out ?? []).length) g.fail(`${R(ctx, round.f)}: "out" names no account or post`)
-  else if (round.j.verdict === 'out') g.fail(`${R(ctx, round.f)}: the current selection still has something out; the tool selects again on the next run`)
+  else if (round.j.verdict === 'pass' && (round.j.out ?? []).length) g.fail(`${R(ctx, round.f)}: "verdict" is "pass" but "out" names something; an out is a stop, a note goes in "notes"`)
+  else {
+    const shape = [...outProblems(round.j.out ?? [], R(ctx, round.f)), ...noteProblems(round.j.notes, R(ctx, round.f))]
+    shape.forEach((f) => g.fail(f))
+    if (!shape.length && round.j.verdict === 'out') g.fail(`${R(ctx, round.f)}: the current selection still has something out; the tool selects again on the next run`)
+  }
   return g.done()
 }
 

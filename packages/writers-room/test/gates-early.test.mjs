@@ -78,6 +78,10 @@ test('research.screen: one file; a decision for every card; merges recorded as m
   fails(await run('research', 'researchScreen', { ...card(), ...screen({ 'talk-throat': { keep: true, reason: 'x' } }) }), /a kept card needs "terms"/)
   fails(await run('research', 'researchScreen', { ...card(), ...screen({ 'talk-throat': { keep: true, reason: 'x', terms: 'none', drop: [POSTS.anaClaim.uri, POSTS.boReply.uri] } }) }), /kept, but every post is dropped/)
   fails(await run('research', 'researchScreen', { ...card(), ...screen({ 'talk-throat': { keep: true, reason: 'x', terms: 'none', drop: [POSTS.build.uri] } }) }), /"drop" names .* which is not on this card/)
+  // a bio line or a general remark is a note with the exact words, where and to whom (bible R11)
+  const note = { account: 'ana.test', words: 'no QTs', where: 'bio', to: 'everyone' }
+  ok(await run('research', 'researchScreen', { ...card(), ...screen({ 'talk-throat': { keep: true, reason: 'a real turn', terms: 'none', notes: [note] } }) }))
+  fails(await run('research', 'researchScreen', { ...card(), ...screen({ 'talk-throat': { keep: true, reason: 'x', terms: 'none', notes: [{ account: 'ana.test', where: 'bio', to: 'everyone' }] } }) }), /notes\[0\]: give "words"/)
 })
 
 const RANK = (rows) => ({ 'production/rank/cards.json': { weights: {}, cards: rows } })

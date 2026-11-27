@@ -2,9 +2,19 @@
 // 12). Over the network, with the scraper's generic client name, it confirms that every cited
 // post still exists with the same text (a stored marked cut must match the live text where
 // it overlaps), and reads every account as it is now: handle, display name, labels and bio,
-// its pinned post, and its posts since the digest's window ended. It reports anything that
-// asks not to be quoted, kept or used, any post about the show, and anything that changed.
-// Exit 0 when clean, 1 when something needs a person, 2 for bad arguments.
+// its pinned post, and its posts since the digest's window ended.
+//
+// Two levels (the owner's ruling, 27 November 2026; bible R2, R11: "anything said in public is
+// fair game unless they explicitly asked this account to not do that"):
+//   need  stops the episode until a person reads it: an opt-out (the list, !no-unauthenticated),
+//         a cited post gone or changed, an account gone, pronouns changed, any new post about
+//         the show (it may be an ask), and any post about or addressed to the show that asks
+//         not to be quoted, kept, used or tagged.
+//   note  reported for the reviewer's repost test (R6), changes nothing: a bio line addressed to
+//         everyone, a general remark not addressed to the show, a changed handle or display
+//         name (the owner's ruling, 22 November 2026: a display name does not reopen an
+//         approved episode).
+// Exit 0 when nothing needs a person (notes or not), 1 when something does, 2 for bad arguments.
 //
 // A description is never printed: only the phrase that matched. An account on the opt-out
 // list is never requested and never named; it is reported by its place in the file.
@@ -18,6 +28,7 @@ import { loadConfig, DEFAULT_CONFIG_DIR } from './config.js'
 import { Consent, NO_UNAUTH } from './consent.js'
 import { normalizePost, didOfUri } from './normalize.js'
 import { showMatcher } from './show.js'
+import { showDids } from './tagged.js'
 import { pronounsOf } from './pronouns.js'
 import { compileTopics, topicsOf } from './sensitivity.js'
 import { feedItemTime } from './api.js'
@@ -27,14 +38,17 @@ export const SOURCES_USAGE = `Usage: npm run sources -- check <path/to/sources.j
 Checks every post and account sources.json cites against the network, now:
   posts      still there, with the same text; a marked cut (… for what is left out) must
              match the live text where it overlaps
-  accounts   handle, display name and labels as now; the bio read for opt-outs (direct,
-             indirect, or wording an auditor should judge); the pinned post; posts since the
-             digest's window ended, read for requests not to be quoted and posts about the show
+  accounts   handle, display name and labels as now; the bio read for what it says about
+             quoting or bots (a note); the pinned post; posts since the digest's window ended,
+             read for posts about or addressed to the show and for remarks about being quoted
 --dir      the digest folder (default: data/weeks/<sources.week>); its window end is where
            "posts since" starts
 --out      also write the report as Markdown
 --json     print the result as JSON instead of the report
-Exit: 0 clean, 1 something needs a person, 2 bad arguments.
+Findings are "needs a person" (an opt-out, a post gone or changed, anything about or
+addressed to the show) or notes (a bio line, a general remark, a changed handle or display
+name: evidence for the repost test, nothing to stop for).
+Exit: 0 nothing needs a person (notes or not), 1 something does, 2 bad arguments.
 `
 
 const ELLIPSIS = /…|\.\.\./
@@ -111,9 +125,12 @@ export async function checkSources({ sources, digest = null, digestPosts = new M
   const issues = []
   const notes = []
   const need = (kind, where, what) => issues.push({ kind, where, what })
+  const note = (kind, where, what) => notes.push({ kind, where, what })
+  // How the check itself ran (not findings about anyone)
+  const remarks = []
   const windowEnd = digest?.window?.end ? Date.parse(digest.window.end) : null
   const since = windowEnd ?? now - 7 * 86_400_000
-  if (!windowEnd) notes.push('no digest window: posts since are read from seven days ago')
+  if (!windowEnd) remarks.push('no digest window: posts since are read from seven days ago')
 
   // Accounts on the opt-out list are never requested and never named.
   const optedOut = (a) => (a.did && consent.dids.has(a.did)) || (a.handle && consent.skipHandle(a.handle))
@@ -178,12 +195,22 @@ export async function checkSources({ sources, digest = null, digestPosts = new M
   const topics = compileTopics(config.safety.sensitivity.topics, config.safety.sensitivity.combinations)
   const consentTopics = new Set(config.safety.sensitivity.consentTopics ?? ['asked not to be quoted'])
   const showOptOut = (config.safety.showOptOutPatterns?.patterns ?? []).map((x) => new RegExp(x, 'iu'))
-  const aboutShow = showMatcher(config.show)
+  const showAccounts = showDids(config)
+  const aboutShowText = showMatcher({ ...config.show, accountDids: [...showAccounts] })
+  // About the show, or addressed to its account: it names, links or mentions the show, or
+  // replies to or quotes the show's own post.
+  const aboutShow = (np) => {
+    const r = aboutShowText(np)
+    for (const u of [np.reply?.parent, np.reply?.root, np.quote?.uri]) if (u && showAccounts.has(didOfUri(u)) && !r.includes("addressed to the show's account")) r.push("addressed to the show's account")
+    return r
+  }
   // A post asks when it says not to quote it ("don't quote this") or describes posts as
   // temporary or not to be kept; a bio's direct patterns ("no AI") are for bios, where they
   // are about the account, not for posts, where they are usually about something else.
   const indirect = (config.safety.selfDeclaredOptOut.indirectPatterns ?? []).map((x) => new RegExp(x, 'iu'))
   const asksNot = (text) => topicsOf(text, topics).some((t) => consentTopics.has(t)) || indirect.some((re) => re.test(text))
+  // Said to the show: a request to be left out, or an ask not to be quoted, kept or used.
+  const asksShow = (text) => showOptOut.some((re) => re.test(text)) || asksNot(text)
   const digestAuthors = digest?.authors ?? {}
   const accountRows = []
   for (const a of live) {
@@ -193,16 +220,17 @@ export async function checkSources({ sources, digest = null, digestPosts = new M
     if (!pr) { row.status = 'gone'; need('account gone', where, `${a.handle ?? a.did} could not be read: deleted, suspended, or hidden from logged-out readers`); accountRows.push(row); continue }
     const labels = (pr.labels ?? []).map((l) => l.val)
     if (labels.includes(NO_UNAUTH)) { row.status = 'opt-out'; need('opt-out', where, `@${pr.handle} now hides from logged-out readers (${NO_UNAUTH})`) }
-    const kind = consent.optOutKind(pr.description)
-    if (kind) { row.status = 'opt-out'; need('opt-out', where, `@${pr.handle}'s bio opts out (${kind})`) }
-    else {
-      const r = consent.bioReview(pr.description)
-      if (r) { row.status = 'review'; need('bio review', where, `@${pr.handle}'s bio might opt out: matched "${r.matched}"`) }
+    // A bio is addressed to everyone, not to the show: a note, never an opt-out (bible R11).
+    const r = consent.bioReview(pr.description)
+    if (r) {
+      if (row.status === 'ok') row.status = 'noted'
+      if (r.kind === 'review') note('bio review', where, `@${pr.handle}'s bio has wording about quoting, keeping or bots: matched "${r.matched}"`)
+      else note('bio says', where, `@${pr.handle}'s bio, addressed to everyone, says something about being quoted or used (said ${r.kind === 'direct' ? 'directly' : 'another way'}; this report never prints a bio)`)
     }
     const storedHandle = a.stored.handle ?? digestAuthors[pr.did]?.handle
-    if (storedHandle && String(storedHandle).toLowerCase() !== String(pr.handle).toLowerCase()) need('handle changed', where, `was @${storedHandle}, now @${pr.handle}`)
+    if (storedHandle && String(storedHandle).toLowerCase() !== String(pr.handle).toLowerCase()) note('handle changed', where, `was @${storedHandle}, now @${pr.handle}`)
     const storedName = a.stored.displayName ?? digestAuthors[pr.did]?.displayName
-    if (storedName != null && (pr.displayName ?? '').trim() !== String(storedName).trim()) need('display name changed', where, `@${pr.handle}: was ${JSON.stringify(storedName)}, now ${JSON.stringify(pr.displayName ?? '')}`)
+    if (storedName != null && (pr.displayName ?? '').trim() !== String(storedName).trim()) note('display name changed', where, `@${pr.handle}: was ${JSON.stringify(storedName)}, now ${JSON.stringify(pr.displayName ?? '')}`)
     // Stated pronouns as they are now (README "Pronouns"), and a change since the scrape.
     const prNow = pronounsOf(pr)
     row.pronouns = prNow.pronouns
@@ -215,8 +243,10 @@ export async function checkSources({ sources, digest = null, digestPosts = new M
     if (pin) {
       row.checks.push('pinned post')
       const t = pin.record?.text ?? ''
-      if (asksNot(t)) need('pinned post asks', where, `@${pr.handle}'s pinned post asks not to be quoted, kept or used: ${pin.uri}`)
-      if (aboutShow(normalizePost(pin) ?? {}).length) need('about the show', where, `@${pr.handle}'s pinned post is about the show: ${pin.uri}`)
+      const about = aboutShow(normalizePost(pin) ?? {})
+      if (about.length && asksShow(t)) need('asks the show', where, `@${pr.handle}'s pinned post is about or addressed to the show and asks not to be quoted, kept, used or tagged: ${pin.uri}`)
+      else if (about.length) need('about the show', where, `@${pr.handle}'s pinned post is about the show: ${pin.uri}`)
+      else if (asksNot(t)) { if (row.status === 'ok') row.status = 'noted'; note('pinned post asks', where, `@${pr.handle}'s pinned post, a general remark not addressed to the show, says something about being quoted, kept or used: ${pin.uri}`) }
     }
     // posts since the window ended
     let cursor
@@ -233,9 +263,9 @@ export async function checkSources({ sources, digest = null, digestPosts = new M
         const t = np?.text ?? ''
         const about = np ? aboutShow(np) : []
         if (about.length) {
-          const req = showOptOut.some((re) => re.test(t))
-          need(req ? 'asks the show' : 'about the show', where, `@${pr.handle} posted about the show${req ? ' and it reads as a request to be left out' : ''}: ${it.post.uri}`)
-        } else if (asksNot(t)) need('post asks', where, `@${pr.handle} posted something that asks not to be quoted, kept or used: ${it.post.uri}`)
+          const req = asksShow(t)
+          need(req ? 'asks the show' : 'about the show', where, `@${pr.handle} posted about or to the show${req ? ' and it reads as an ask to be left out, or not to be quoted, kept, used or tagged' : ''}: ${it.post.uri}`)
+        } else if (asksNot(t)) { if (row.status === 'ok') row.status = 'noted'; note('post asks', where, `@${pr.handle} posted a general remark, not addressed to the show, about being quoted, kept or used: ${it.post.uri}`) }
       }
       cursor = res.cursor
       if (older || !cursor || !(res.feed ?? []).length) break
@@ -243,22 +273,24 @@ export async function checkSources({ sources, digest = null, digestPosts = new M
     row.checks.push(`${seen} posts since ${new Date(since).toISOString().slice(0, 16)}Z`)
     accountRows.push(row)
   }
-  return { format: 'late-cluster-sources-check/1', checkedAt: new Date(now).toISOString(), since: new Date(since).toISOString(), clean: issues.length === 0, counts: { posts: posts.length, accounts: accounts.length, issues: issues.length, requests: client.stats.requests }, issues, posts: postRows, accounts: accountRows, notes }
+  return { format: 'late-cluster-sources-check/1', checkedAt: new Date(now).toISOString(), since: new Date(since).toISOString(), clean: issues.length === 0, counts: { posts: posts.length, accounts: accounts.length, issues: issues.length, notes: notes.length, requests: client.stats.requests }, issues, notes, posts: postRows, accounts: accountRows, remarks }
 }
 
 export function renderSourcesCheck(r, { file = '' } = {}) {
   const out = [`# Live source check${file ? `: ${file}` : ''}`, '', `Checked ${r.checkedAt.slice(0, 16)}Z over the network: ${r.counts.posts} posts and ${r.counts.accounts} accounts, posts since ${r.since.slice(0, 16)}Z, ${r.counts.requests} requests.`, '']
-  out.push(r.clean ? '**Clean.** Every cited post exists with the same text; no account asks not to be quoted, kept or used; nothing new about the show.' : `**Needs a person: ${r.issues.length}.**`, '')
-  if (r.issues.length) {
-    out.push('| what | where | detail |', '|---|---|---|')
-    for (const i of r.issues) out.push(`| ${i.kind} | ${i.where.replace(/\|/g, '\\|')} | ${i.what.replace(/\|/g, '\\|')} |`)
-    out.push('')
+  const findings = (list) => { out.push('| what | where | detail |', '|---|---|---|'); for (const i of list) out.push(`| ${i.kind} | ${i.where.replace(/\|/g, '\\|')} | ${i.what.replace(/\|/g, '\\|')} |`); out.push('') }
+  const noted = r.notes.length ? ` ${r.notes.length} ${r.notes.length === 1 ? 'note' : 'notes'} below; a note needs nobody.` : ''
+  out.push(r.clean ? `**Clean.** Every cited post exists with the same text; no account is on the opt-out list or hidden from logged-out readers, nobody has asked the show to leave them out or not to quote them, and nothing new is about the show.${noted}` : `**Needs a person: ${r.issues.length}.**${noted}`, '')
+  if (r.issues.length) findings(r.issues)
+  if (r.notes.length) {
+    out.push('## Notes', '', 'Reported, not stopping anything (bible R2, R11): a bio line or a general remark is addressed to everyone, not to the show, and is evidence for the reviewer\'s repost test (R6); a changed handle or display name is for the record.', '')
+    findings(r.notes)
   }
   out.push('## Posts', '')
   for (const p of r.posts) out.push(`- ${p.status}: ${p.uri} (${p.where.join(', ')})`)
   out.push('', '## Accounts', '')
   for (const a of r.accounts) out.push(`- ${a.status}: @${a.handle ?? a.did} (${a.checks.join('; ') || 'not read'})`)
-  for (const n of r.notes) out.push('', `*${n}*`)
+  for (const n of r.remarks ?? []) out.push('', `*${n}*`)
   return out.join('\n') + '\n'
 }
 

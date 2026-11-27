@@ -43,11 +43,16 @@ export function stringifyIndex(ix) {
   return JSON.stringify(head, null, 1).replace(/\n\}$/, '') + `,\n "skeletons": [\n${skeletons.map((x) => '  ' + JSON.stringify(x)).join(',\n')}\n ]\n}\n`
 }
 
-/** A post's marks, or null: `sensitive` (keyword topics) and `consent` (reasons). */
+/**
+ * A post's marks, or null: `sensitive` (keyword topics), `consent` (reasons it may not be
+ * used) and `repostNotes` (what it says about being quoted: a note for the repost test, which
+ * refuses nothing; README "Marks").
+ */
 export function marksOf(p) {
   const m = {}
   if (p?.sensitive?.length) m.sensitive = [...p.sensitive]
   if (p?.consent?.length) m.consent = [...p.consent]
+  if (p?.repostNotes?.length) m.repostNotes = [...p.repostNotes]
   return Object.keys(m).length ? m : null
 }
 
@@ -72,7 +77,7 @@ export function botTest({ profiles = new Map(), bios = new Map(), games = [], cf
  * @param {Map} a.profiles did -> slim profile (followersCount, labels)
  * @param {Map} a.bios did -> private profile (description), read only for the bot test
  * @param {Set} a.memberDids
- * @param {Set} a.bioReview DIDs marked for an auditor
+ * @param {Set} a.bioReview DIDs whose bio carries a repost note (private/bio-review.md)
  * @param {Function} a.featured (did, handle) -> { previous, earlier, appearances }
  * @param {object} a.config the loaded config (lanes, safety, show, games)
  */
@@ -197,6 +202,7 @@ export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map
       topics: s.sensitivity?.counts ?? {},
       consentMarked: kept.filter((p) => p.consent?.length).length,
       leadConsent: !!lookup(leadUri)?.consent?.length,
+      repostNoted: kept.filter((p) => p.repostNotes?.length).length,
       hint: s.sensitivity?.hint ?? [],
     }
     const excluded = s.outOfBounds ? { rule: s.outOfBounds.rule ?? 'R11', reasons: s.outOfBounds.reasons ?? [] } : null
@@ -273,7 +279,7 @@ export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map
       posts: kept.length, members: members.size, authors: people.size,
       reach: s.reach?.score ?? null,
       lanes: lanes.map((x) => x.lane),
-      postsMarked: marks.postsMarked, leadMarked: marks.leadMarked, consentMarked: marks.consentMarked,
+      postsMarked: marks.postsMarked, leadMarked: marks.leadMarked, consentMarked: marks.consentMarked, ...(marks.repostNoted ? { repostNoted: marks.repostNoted } : {}),
       excluded: !!excluded,
       ...(outside ? { outsideCluster: true } : {}),
       media: kept.reduce((n, p) => n + (p.media?.length ?? 0), 0),
@@ -285,7 +291,7 @@ export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map
   const line = (s, why) => {
     const sk = files.get(s.id)
     const lead = sk.marks.leadMarked ? `(lead post marked: ${Object.keys(sk.marks.topics).join(', ')})` : clip(sk.headline, lineChars)
-    return `${lead} — ${why}; ${sk.stats.posts} posts, ${sk.stats.members} members, reach ${s.reach?.score ?? '?'}${sk.marks.postsMarked ? `, ${sk.marks.postsMarked} posts marked` : ''}`
+    return `${lead} — ${why}; ${sk.stats.posts} posts, ${sk.stats.members} members, reach ${s.reach?.score ?? '?'}${sk.marks.postsMarked ? `, ${sk.marks.postsMarked} posts marked` : ''}${sk.marks.repostNoted ? `, ${sk.marks.repostNoted} with a repost note` : ''}`
   }
   const storyEntries = (rows, limit) => rows.sort((a, b) => b.score - a.score || (a.s.id < b.s.id ? -1 : 1)).slice(0, limit).map((r, i) => ({ rank: i + 1, id: r.s.id, line: line(r.s, r.why), score: round(r.score) }))
   const lanes = {}
@@ -306,7 +312,7 @@ export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map
           winner: x.winner?.excluded ? { excluded: true } : x.winner ? { did: x.winner.did, handle: x.winner.handle, displayName: x.winner.displayName, pronouns: x.winner.did ? authorOf(x.winner.did, x.winner.handle).pronouns : null, followers: x.winner.followers, small: x.winner.small } : null,
           mayName: !!x.winner && !x.winner.excluded,
           why: x.winner?.excluded ? 'the winner is left out by the consent rules: not named, not described, the result counted only' : 'a winner may be named (R7), subject to R10 and R11',
-          winningPost: wp && !x.winner?.excluded ? { uri: wp.uri, url: wp.url, skeleton: storyOfPost.get(wp.uri) ?? null, mayQuote: !Object.keys(wpMarks).length, ...(Object.keys(wpMarks).length ? { marks: wpMarks } : {}) } : null,
+          winningPost: wp && !x.winner?.excluded ? { uri: wp.uri, url: wp.url, skeleton: storyOfPost.get(wp.uri) ?? null, mayQuote: !Object.keys(wpMarks).length, ...(Object.keys(wpMarks).length ? { marks: wpMarks } : {}), ...(wp.repostNotes?.length ? { repostNotes: wp.repostNotes } : {}) } : null,
           resultPost: x.winner?.excluded ? null : x.resultPost ?? null,
         }
       }),
@@ -356,7 +362,7 @@ export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map
     entries: voiceRows.slice(0, V.limit ?? 30).map((r, i) => ({
       rank: i + 1, did: r.a.did, handle: r.a.handle, displayName: r.a.displayName, pronouns: r.a.pronouns, followers: r.a.followers, small: r.a.small, postsInWindow: r.n, strength: round(r.strength),
       line: `@${r.a.handle}${r.a.small ? ' (small account)' : ''}, ${r.a.followers ?? '?'} followers: ${clip(r.top[0].p.text || (r.top[0].p.media?.length ? `(${r.top[0].p.media[0].kind})` : ''), lineChars)}`,
-      posts: r.top.map(({ p, m }) => ({ id: storyOfPost.get(p.uri), uri: p.uri, score: m.score, line: clip(p.text || (p.media?.length ? `(${p.media.map((x) => x.kind).join(', ')}${p.media.every((x) => !x.hasAlt) ? ', no alt text' : ''})` : '(no text)'), lineChars) })),
+      posts: r.top.map(({ p, m }) => ({ id: storyOfPost.get(p.uri), uri: p.uri, score: m.score, line: clip(p.text || (p.media?.length ? `(${p.media.map((x) => x.kind).join(', ')}${p.media.every((x) => !x.hasAlt) ? ', no alt text' : ''})` : '(no text)'), lineChars), ...(p.repostNotes?.length ? { repostNotes: p.repostNotes } : {}) })),
     })),
   }
 
@@ -427,8 +433,8 @@ export function buildSkeletons({ d, window, profiles = new Map(), bios = new Map
   ivRows.sort((x, y) => { const kx = key(x), ky = key(y); for (let i = 0; i < kx.length; i++) if (kx[i] !== ky[i]) return ky[i] - kx[i]; return x.a.did < y.a.did ? -1 : 1 })
   const qa = (x) => ({
     skeleton: x.skeleton, aboutMade: x.aboutMade, kind: x.kind,
-    question: { uri: x.question.uri, url: x.question.url, handle: x.question.handle, displayName: x.question.displayName, pronouns: authorOf(x.question.authorDid, x.question.handle).pronouns, text: x.question.text, time: x.question.time, member: x.question.member, followers: x.question.authorFollowers, small: x.question.smallAccount, bioReview: bioReview.has(x.question.authorDid) || undefined },
-    answer: { uri: x.answer.uri, url: x.answer.url, text: x.answer.text, time: x.answer.time, counts: x.answer.counts },
+    question: { uri: x.question.uri, url: x.question.url, handle: x.question.handle, displayName: x.question.displayName, pronouns: authorOf(x.question.authorDid, x.question.handle).pronouns, text: x.question.text, time: x.question.time, member: x.question.member, followers: x.question.authorFollowers, small: x.question.smallAccount, bioReview: bioReview.has(x.question.authorDid) || undefined, repostNotes: lookup(x.question.uri)?.repostNotes },
+    answer: { uri: x.answer.uri, url: x.answer.url, text: x.answer.text, time: x.answer.time, counts: x.answer.counts, repostNotes: lookup(x.answer.uri)?.repostNotes },
   })
   lanes.interview = {
     format: LANE_FORMAT, lane: 'interview', window: window.label,
@@ -481,7 +487,7 @@ export function renderLane(slice) {
   if (slice.lane === 'voices') {
     for (const e of slice.entries) {
       out.push(`${e.rank}. ${e.line}`)
-      for (const p of e.posts) out.push(`   - \`${p.id}\` ${p.line}`)
+      for (const p of e.posts) out.push(`   - \`${p.id}\` ${p.line}${p.repostNotes ? ` (repost note: ${p.repostNotes.join('; ')})` : ''}`)
     }
   } else if (slice.lane === 'interview') {
     for (const e of slice.entries) {

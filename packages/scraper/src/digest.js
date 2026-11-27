@@ -4,7 +4,7 @@
 import { publicPost, engagement } from './normalize.js'
 import { spikedPhrases, weekDeclarations } from './phrases.js'
 import { authorBaselines, buildStories, postMetrics } from './stories.js'
-import { compileTopics, topicsOf, postText } from './sensitivity.js'
+import { compileTopics, topicsOf, postText, repostNotesOf } from './sensitivity.js'
 import { buildsThisWeek } from './builds.js'
 import { findShowPosts, correctionFlag, quotedLines } from './show.js'
 import { gameResults, gameSegment } from './games.js'
@@ -13,8 +13,6 @@ import { makeReach } from './reach.js'
 import { interviewCandidates } from './interview.js'
 import { firstLine } from './text.js'
 import { consentFlags } from './consent.js'
-
-export const ASKS_NOT_QUOTED = 'asks not to be quoted'
 import { iso, utcDay } from './window.js'
 
 const byTime = (a, b) => (a.time < b.time ? -1 : a.time > b.time ? 1 : a.uri < b.uri ? -1 : 1)
@@ -59,9 +57,11 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
 
   const small = safety.smallAccountFollowers ?? 300
   const topics = compileTopics(safety.sensitivity?.topics, safety.sensitivity?.combinations)
-  // Topics that are a matter of consent (a post asking not to be quoted), not of subject:
-  // they mark the post `consent`, never `sensitive` (README "Marks").
+  // Topics that are a matter of consent (a post asking not to be quoted), not of subject. A
+  // general remark is not an ask to the show (bible R11): it is a repost note on the post,
+  // never `sensitive` or `consent`, and it removes nothing (README "Marks").
   const consentTopics = new Set(safety.sensitivity?.consentTopics ?? ['asked not to be quoted'])
+  const noteCfg = { compiled: topics, consentTopics, indirect: (safety.selfDeclaredOptOut?.indirectPatterns ?? []).map((x) => new RegExp(x, 'iu')) }
   const annotate = (p) => {
     const f = profiles.get(p.authorDid)?.followersCount
     p.authorFollowers = Number.isFinite(f) ? f : null
@@ -72,8 +72,10 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
     const sens = t.filter((x) => !consentTopics.has(x))
     if (sens.length) p.sensitive = sens
     else delete p.sensitive
+    const notes = repostNotesOf(postText(p), noteCfg)
+    if (notes.length) p.repostNotes = notes
+    else delete p.repostNotes
     const cons = []
-    if (t.some((x) => consentTopics.has(x))) cons.push(ASKS_NOT_QUOTED)
     if (p.redacted) cons.push('redacted')
     if (p.reply?.hidden) cons.push('replies to an excluded account')
     if (cons.length) p.consent = cons
@@ -212,7 +214,7 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
 
   const brief = (p, n = 280) => p && {
     uri: p.uri, url: p.url, handle: p.handle, displayName: p.displayName, text: firstLine(p.text, n), time: p.time, counts: p.counts, reach: reachOf(p),
-    member: !!p.member, authorFollowers: p.authorFollowers ?? null, smallAccount: !!p.smallAccount, ...(p.sensitive ? { sensitive: p.sensitive } : {}), ...(p.consent ? { consent: p.consent } : {}), ...consentFlags(p),
+    member: !!p.member, authorFollowers: p.authorFollowers ?? null, smallAccount: !!p.smallAccount, ...(p.sensitive ? { sensitive: p.sensitive } : {}), ...(p.consent ? { consent: p.consent } : {}), ...(p.repostNotes ? { repostNotes: p.repostNotes } : {}), ...consentFlags(p),
   }
   const earliest = (ps) => [...ps].sort(byTime)[0]
   const share = (ps, f) => (ps.length ? ps.filter(f).length / ps.length : 0)
@@ -304,8 +306,10 @@ export function analyze({ posts, memberDids, members = [], reposts = new Map(), 
       const merged = [...new Set(t.filter((x) => !consentTopics.has(x)))]
       if (merged.length) r.winningPost.sensitive = merged
       else r.winningPost.sensitive = null
-      const cons = [...new Set([...(own?.consent ?? []), ...(t.some((x) => consentTopics.has(x)) ? [ASKS_NOT_QUOTED] : []), ...(storyFlag.has(r.winningPost.uri) ? ['in a story the consent rules leave out'] : [])])]
+      const cons = [...new Set([...(own?.consent ?? []), ...(storyFlag.has(r.winningPost.uri) ? ['in a story the consent rules leave out'] : [])])]
       if (cons.length) r.winningPost.consent = cons
+      const notes = own?.repostNotes ?? repostNotesOf(r.winningPost.text, noteCfg)
+      if (notes.length) r.winningPost.repostNotes = notes
     }
     const results = all.filter((r) => { const t = Date.parse(r.time); return t >= window.start && t < window.end })
     const personView = (h) => {

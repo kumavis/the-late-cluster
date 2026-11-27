@@ -22,26 +22,30 @@ const consent = () => new Consent({ selfDeclaredPatterns: cfg.safety.selfDeclare
 const D = (n) => `did:plc:invented${String(n).padStart(17, '0')}`
 const U = (n, r) => `at://${D(n)}/app.bsky.feed.post/${r}`
 
-test('bios: a direct or indirect opt-out excludes; wording that might be one is for review', () => {
+test('bios: a line about quoting, said directly, another way or loosely, is a note and excludes nobody', () => {
   const c = consent()
-  assert.equal(c.optOutKind('please do not quote me'), 'direct')
-  assert.equal(c.optOutKind('my posts are meant to disappear'), 'indirect')
-  assert.equal(c.optOutKind('posts are temporary, I auto-delete'), 'indirect')
-  assert.equal(c.optOutKind('ephemeral thoughts, mostly'), null)
-  assert.equal(c.optOutKind('making synths and small games'), null)
+  assert.equal(c.bioKind('please do not quote me'), 'direct')
+  assert.equal(c.bioKind('my posts are meant to disappear'), 'indirect')
+  assert.equal(c.bioKind('posts are temporary, I auto-delete'), 'indirect')
+  assert.equal(c.bioKind('ephemeral thoughts, mostly'), 'review')
+  assert.equal(c.bioKind('making synths and small games'), null)
   const r = c.bioReview('making synths. I delete a lot of what I post')
   assert.equal(r.matched, 'delete')
   assert.match(r.phrase, /delete a lot/)
   assert.equal(c.bioReview('making synths and small games'), null)
-  assert.equal(c.bioReview('do not quote me'), null, 'already an opt-out, not a question')
-  assert.ok(c.checkProfile({ did: D(1), handle: 'gone.example.test', description: 'posts meant to disappear' }))
-  assert.equal(c.stats.selfDeclaredIndirect, 1)
+  assert.equal(c.bioReview('do not quote me').kind, 'direct')
+  assert.equal(c.checkProfile({ did: D(1), handle: 'gone.example.test', description: 'posts meant to disappear' }), false, 'a bio line is not an opt-out')
+  assert.equal(c.excludedDid(D(1)), false)
+  assert.equal(c.bioNotes.get(D(1)).kind, 'indirect')
   const bios = new Map([[D(1), { did: D(1), handle: 'gone.example.test', description: 'posts meant to disappear', labels: [] }], [D(2), { did: D(2), handle: 'maybe.example.test', description: 'ephemeral thoughts, mostly', labels: [] }], [D(3), { did: D(3), handle: 'plain.example.test', description: 'synths', labels: [] }]])
   const priv = buildPrivate({ bios, consent: c, members: [{ did: D(2) }, { did: D(3) }], authors: { [D(1)]: {} }, memberDids: new Set([D(2), D(3)]) })
-  assert.deepEqual(priv.file.accounts.map((a) => a.handle), ['maybe.example.test', 'plain.example.test'], 'the excluded account is not kept')
-  assert.equal(priv.counts.excludedIndirect, 1)
-  assert.equal(priv.counts.bioReview, 1)
-  assert.match(renderBioReview(priv), /@maybe\.example\.test .*member: matched "ephemeral"/)
+  assert.deepEqual(priv.file.accounts.map((a) => a.handle), ['gone.example.test', 'maybe.example.test', 'plain.example.test'], 'every account is kept, the noted ones too')
+  assert.equal(priv.counts.bioReview, 2)
+  assert.deepEqual(priv.counts.bioReviewByKind, { direct: 0, indirect: 1, review: 1 })
+  const md = renderBioReview(priv)
+  assert.match(md, /@maybe\.example\.test .*member: review, matched "ephemeral"/)
+  assert.match(md, /@gone\.example\.test .*: indirect, matched "posts meant to disappear"/)
+  assert.match(md, /not an opt-out/)
 })
 
 test('bots: the self-label, a game account, the config list, or the bio', () => {
@@ -51,6 +55,7 @@ test('bots: the self-label, a game account, the config list, or the bio', () => 
   assert.deepEqual([1, 2, 3, 4].map((n) => isBot(D(n))), [true, false, true, true])
   assert.equal(marksOf({}), null)
   assert.deepEqual(marksOf({ sensitive: ['health'], consent: ['redacted'] }), { sensitive: ['health'], consent: ['redacted'] })
+  assert.deepEqual(marksOf({ repostNotes: ['says "no QTs"'] }), { repostNotes: ['says "no QTs"'] })
 })
 
 test('media addresses are kept for pictures and videos, with whether each has alt text', () => {
@@ -85,7 +90,8 @@ test('media: fetches a post\'s pictures from the public CDN, refuses what it may
     rec(1, 'pic', { text: '', media: [pic] }),
     rec(2, 'vid', { media: [vid] }),
     rec(3, 'red', { media: [pic], redacted: true }),
-    rec(4, 'ask', { media: [pic], consent: ['asks not to be quoted'] }),
+    rec(4, 'ask', { media: [pic], consent: ['replies to an excluded account'] }),
+    rec(7, 'note', { media: [pic], repostNotes: ['says "don\'t quote me" (asked not to be quoted)'] }),
     rec(5, 'out', { media: [pic] }),
     rec(6, 'evil', { media: [{ kind: 'image', url: 'https://elsewhere.example.test/x.jpg', alt: null, hasAlt: false }] }),
   ], { skeletons: { 's-out': { excluded: { rule: 'R11', reasons: ['x'] }, _uris: [U(5, 'out')] } } })
@@ -115,6 +121,8 @@ test('media: fetches a post\'s pictures from the public CDN, refuses what it may
     }
     await assert.rejects(media(['--dir', dir, '--uri', U(6, 'evil')], { fetchImpl, write }), /not Bluesky's public CDN/)
     assert.equal(fetched.length, n, 'nothing refused was fetched')
+    // a repost note refuses nothing
+    assert.equal(await media(['--dir', dir, '--uri', U(7, 'note')], { fetchImpl, write, userAgent: 'g' }), 0)
   } finally { await rm(dir, { recursive: true, force: true }) }
   assert.equal(refusal(null), 'not in the digest')
   assert.deepEqual(mediaTargets({ media: [vid] }).map((t) => t.url), [vid.thumb])
@@ -218,7 +226,11 @@ test('sources check: live text, bios, pinned posts and posts since the window, o
     const r = JSON.parse(out)
     assert.equal(code, 1)
     const kinds = r.issues.map((i) => i.kind).sort()
-    assert.deepEqual(kinds, ['about the show', 'bio review', 'handle changed', 'opt-out', 'pinned post asks', 'post gone', 'text changed'].sort(), JSON.stringify(r.issues, null, 1))
+    assert.deepEqual(kinds, ['about the show', 'post gone', 'text changed'].sort(), JSON.stringify(r.issues, null, 1))
+    // a bio line, a general remark in a pinned post and a new handle are notes (bible R11)
+    assert.deepEqual(r.notes.map((i) => i.kind).sort(), ['bio review', 'bio says', 'handle changed', 'pinned post asks'], JSON.stringify(r.notes, null, 1))
+    assert.equal(r.counts.notes, 4)
+    assert.equal(r.accounts.find((a) => a.did === D(2)).status, 'noted')
     assert.equal(r.posts.find((p) => p.uri === U(1, 'cut')).status, 'ok', 'a marked cut matches where it overlaps')
     assert.ok(requested.every(([, ua]) => ua === 'generic-client/1'))
     assert.ok(requested.every(([u]) => u.startsWith('https://public.api.bsky.app/xrpc/')))
@@ -231,6 +243,46 @@ test('sources check: live text, bios, pinned posts and posts since the window, o
     assert.equal(await sources(['check', file, '--out', join(dir, 'live.md')], { fetchImpl: quiet, write: (s) => { out += s }, now }), 0)
     assert.match(out, /\*\*Clean\.\*\*/)
     assert.ok(existsSync(join(dir, 'live.md')))
+    // only notes: a bio line, a general "don't quote me", a new display name. Exit 0, and the
+    // report says so
+    await writeFile(file, JSON.stringify({ week: 'W', accounts: [{ did: D(2), handle: 'p2-renamed.example.test', displayName: 'Two old' }], posts: [] }))
+    const notesOnly = async (url, init) => {
+      const u = new URL(url)
+      if (u.pathname.endsWith('getAuthorFeed')) return new Response(JSON.stringify({ feed: [{ post: view(2, 'general', "pls don't screenshot this one", '2026-11-17T09:00:00Z') }] }), { status: 200 })
+      return fetchImpl(url, init)
+    }
+    out = ''
+    assert.equal(await sources(['check', file, '--out', join(dir, 'notes.md')], { fetchImpl: notesOnly, write: (s) => { out += s }, now }), 0, 'notes only: nothing needs a person')
+    assert.match(out, /\*\*Clean\.\*\* .* 4 notes below; a note needs nobody\./)
+    assert.match(out, /## Notes/)
+    for (const k of ['bio says', 'pinned post asks', 'display name changed', 'post asks']) assert.match(out, new RegExp(`\\| ${k} \\|`))
+    assert.ok(!out.includes('meant to disappear'), 'a bio is never printed')
+    out = ''
+    await sources(['check', file, '--json'], { fetchImpl: notesOnly, write: (s) => { out += s }, now })
+    const j = JSON.parse(out)
+    assert.equal(j.clean, true)
+    assert.deepEqual(j.issues, [])
+    assert.equal(j.notes.length, 4)
+    // a real stop: the account now carries !no-unauthenticated, or asks the show in a reply to it
+    const SHOW = 'did:plc:latecluster00000000000001'
+    const stops = async (url, init) => {
+      const u = new URL(url)
+      if (u.pathname.endsWith('getProfiles')) return new Response(JSON.stringify({ profiles: [{ did: D(2), handle: 'p2-renamed.example.test', displayName: 'Two old', description: 'synths', labels: [{ val: '!no-unauthenticated' }] }] }), { status: 200 })
+      if (u.pathname.endsWith('getAuthorFeed')) return new Response(JSON.stringify({ feed: [{ post: view(2, 'toshow', 'please do not quote me', '2026-11-17T09:00:00Z', { record: { $type: 'app.bsky.feed.post', text: 'please do not quote me', createdAt: '2026-11-17T09:00:00Z', reply: { root: { uri: `at://${SHOW}/app.bsky.feed.post/ep`, cid: 'c' }, parent: { uri: `at://${SHOW}/app.bsky.feed.post/ep`, cid: 'c' } } } }) }] }), { status: 200 })
+      return fetchImpl(url, init)
+    }
+    out = ''
+    const cfgDir = join(dir, 'config')
+    await mkdir(cfgDir)
+    for (const f of ['client', 'cluster', 'games', 'lanes', 'optout', 'safety', 'scoring', 'show']) {
+      const j = JSON.parse(await readFile(join(import.meta.dirname, '..', 'config', `${f}.json`), 'utf8'))
+      if (f === 'cluster') j.showAccount = { did: SHOW }
+      await writeFile(join(cfgDir, `${f}.json`), JSON.stringify(j))
+    }
+    assert.equal(await sources(['check', file, '--json', '--config', cfgDir], { fetchImpl: stops, write: (s) => { out += s }, now }), 1)
+    const s2 = JSON.parse(out)
+    assert.deepEqual(s2.issues.map((i) => i.kind).sort(), ['asks the show', 'opt-out'], JSON.stringify(s2.issues, null, 1))
+    assert.match(s2.issues.find((i) => i.kind === 'opt-out').what, /!no-unauthenticated/)
     // an account on the opt-out list is never requested and never named
     const c2 = loadConfig()
     assert.equal(await sources(['check', join(dir, 'missing.json')], { fetchImpl, write: () => {} }), 2)

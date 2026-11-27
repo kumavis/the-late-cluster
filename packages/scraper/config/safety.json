@@ -2,7 +2,7 @@
   "$comment": "Safety rules from docs/bible/09-real-people.md (R7, R10, R11, R13). Patterns are case-insensitive JavaScript regexes. When in doubt, a pattern should match too much rather than too little.",
   "smallAccountFollowers": 300,
   "selfDeclaredOptOut": {
-    "$comment": "R11: a profile description matching any of these makes the account an opt-out. Errs towards excluding: 'DNI' and 'no AI' match too. indirectPatterns are opt-outs said another way (trial 002, findings 9 and 36): posts described as temporary or meant to disappear, 'not to be quoted', 'ask before you screenshot'. They exclude the account the same way and are counted separately.",
+    "$comment": "R11 (the owner's ruling, 27 November 2026: anything said in public is fair game unless they explicitly asked this account not to): a profile description is addressed to everyone, not to the show, so these patterns exclude nobody. A bio matching one ('no QTs', 'AI DNI'; indirectPatterns: posts described as temporary or meant to disappear, 'not to be quoted', 'ask before you screenshot') marks the account bioReview, a note for the reviewer's repost test (R6), with the matched words in private/bio-review.md. indirectPatterns also give a post a repostNotes entry, and are read in posts by the live source check, as notes.",
     "patterns": [
       "\\b(do ?n[o']?t|don't|dont|please don't|pls don't|never|no)\\s+(qt|qrt|quote|quote[- ]?post|quote[- ]?tweet|screenshot|screen ?cap|ss|repost|rt|clip|share|archive|scrape|train on)\\w*",
       "\\b(do ?n[o']?t|don't|dont|never)\\s+use\\s+((my|these|this account'?s?)\\s+(posts|art|work|content|words|images|photos|likeness)|unroll\\w*|thread ?reader\\w*|bots?|ai|llms?)\\b",
@@ -32,7 +32,7 @@
     ]
   },
   "showOptOutPatterns": {
-    "$comment": "In a post about the show (see show.json), any of these reads as a request to be left out. The author is excluded everywhere and listed for the reviewer by handle and link only.",
+    "$comment": "An explicit ask to the show (R11): in a post about the show (see show.json), or addressed to its account, any of these reads as a request to be left out, and so does a consentTopics match ('don't quote me'). The author is excluded everywhere and listed for the reviewer by handle and link only.",
     "patterns": [
       "\\b(leave|keep|take|cut|edit)\\s+me\\s+out\\b",
       "\\bdon'?t\\s+(put|include|use|quote|clip|feature|show|parody|puppet)\\s+me\\b",
@@ -57,7 +57,7 @@
     "\\bput words in\\b"
   ],
   "sensitivity": {
-    "$comment": "R10 topics. Each term is matched as a whole word or phrase (word boundaries are added). A post matching a topic is marked with it, and the mark stays on that post. A story carries a hint (sensitivity.hint) when its lead or context post matches, when at least minShare of its member posts match, or when at least minPosts of its posts match one topic; the hint never takes the rest of the story with it. Coarse on purpose: a hint for the researcher and the auditor, not a ruling. combinations: a post matching at least one term from every list in 'all' gets that topic. consentTopics are matters of consent, not subject (R11): a post matching one is marked consent ('asks not to be quoted'), and so are its author's other posts in the same story; the story is left out whole when the lead post or thread root is so marked. Every other topic marks only the post it is in (trial 002, findings 7 and 37).",
+    "$comment": "R10 topics. Each term is matched as a whole word or phrase (word boundaries are added). A post matching a topic is marked with it, and the mark stays on that post. A story carries a hint (sensitivity.hint) when its lead or context post matches, when at least minShare of its member posts match, or when at least minPosts of its posts match one topic; the hint never takes the rest of the story with it. Coarse on purpose: a hint for the researcher and the auditor, not a ruling. combinations: a post matching at least one term from every list in 'all' gets that topic. consentTopics are matters of consent, not subject (R11): outside a post about the show they are a general remark, not an ask to the show, so a post matching one is not marked sensitive or consent and its story stays in; it carries a repostNotes entry with the words matched, and its author's other posts in the story carry a note too, for the reviewer's repost test (R6). In a post about the show, a match is an ask to the show (see showOptOutPatterns). Every other topic marks only the post it is in (trial 002, findings 7 and 37).",
     "minShare": 0.2,
     "minPosts": 3,
     "topics": {
@@ -386,7 +386,7 @@
     ]
   },
   "excludedMentions": {
-    "$comment": "R11: someone else's post that names an excluded account (opt-out list, !no-unauthenticated, profile opt-out, request to the show). The reference is replaced with [opted-out] and the post marked redacted (never quotable); the post is withheld whole when it is mainly about the account: it replies to or quotes the account, fewer than minOwnWords words of its own remain, it opens with the reference, the reference is possessive (\"X's post\"), or the sentence holding the reference matches aboutPatterns. Display names shorter than minNameChars letters, or a single stopword, are not matched in text; a display name that commonNameAuthors or more people write outside any conversation with its account is an ordinary word in that run, and is matched only in posts that reply to, quote, mention or link the account or sit in its thread; so is a one-word display name shorter than minLooseNameChars. A post whose image alt text names an excluded account is withheld whole (a screenshot or quote card of it cannot be redacted).",
+    "$comment": "R11: someone else's post that names an excluded account (opt-out list, !no-unauthenticated, request to the show). The reference is replaced with [opted-out] and the post marked redacted (never quotable); the post is withheld whole when it is mainly about the account: it replies to or quotes the account, fewer than minOwnWords words of its own remain, it opens with the reference, the reference is possessive (\"X's post\"), or the sentence holding the reference matches aboutPatterns. Display names shorter than minNameChars letters, or a single stopword, are not matched in text; a display name that commonNameAuthors or more people write outside any conversation with its account is an ordinary word in that run, and is matched only in posts that reply to, quote, mention or link the account or sit in its thread; so is a one-word display name shorter than minLooseNameChars. A post whose image alt text names an excluded account is withheld whole (a screenshot or quote card of it cannot be redacted).",
     "minOwnWords": 4,
     "minNameChars": 3,
     "commonNameAuthors": 3,
@@ -410,7 +410,7 @@
   "showQuotePattern": "[\"“”]([^\"“”\\n]{3,200})[\"“”]",
   "$commentShowQuote": "showQuotePattern finds a line a viewer quotes in a post about the show ('it sounds exactly like me \"built it\"'). Each quoted line is listed so the writer can check whether the show put it in a real person's mouth.",
   "bioReview": {
-    "$comment": "A profile description that matches one of these, and no opt-out pattern, might be an opt-out: the account is marked bioReview, with the phrase that matched, for an auditor to judge (private/bio-review.md). It is not excluded by the tool. Broad on purpose.",
+    "$comment": "A profile description that matches one of these (or a selfDeclaredOptOut pattern) says something about quoting, keeping posts or bots: the account is marked bioReview, a note for the reviewer's repost test (R6), with the phrase that matched in private/bio-review.md. It is never excluded for it (R11). Broad on purpose.",
     "patterns": [
       "\\b(ephemeral|temporary|impermanent|transient)\\b",
       "\\b(delet(e|es|ed|ing)|disappear\\w*|vanish\\w*|wipe[sd]?|purge[sd]?)\\b",

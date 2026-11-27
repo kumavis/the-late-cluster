@@ -17,8 +17,9 @@ import { utcDay } from './window.js'
 import { storySensitivity } from './sensitivity.js'
 import { consentFlags } from './consent.js'
 
-const ASKS = 'asks not to be quoted'
-const AUTHOR_ASKED = 'its author asked not to be quoted in this story'
+// A repost note on one post (README "Marks") travels to its author's other posts in the story,
+// as a note: a general remark excludes nothing (bible R11).
+const AUTHOR_NOTED = 'its author said something about being quoted elsewhere in this story'
 
 class DSU {
   constructor() { this.p = new Map(); this.size = new Map() }
@@ -334,6 +335,7 @@ function summarizeContext(p) {
   if (p.authorFollowers != null) out.authorFollowers = p.authorFollowers
   if (p.smallAccount) out.smallAccount = true
   if (p.sensitive?.length) out.sensitive = p.sensitive
+  if (p.repostNotes?.length) out.repostNotes = p.repostNotes
   Object.assign(out, consentFlags(p))
   return out
 }
@@ -352,9 +354,9 @@ function shapeStory(r, { byUri, metrics, quoteTarget, context, memberReposts, cf
   if (anchorUri && !r.inStory.has(anchorUri) && context.has(anchorUri)) ctx.push(summarizeContext(context.get(anchorUri)))
 
   const lookup = (uri) => byUri.get(uri) ?? context.get(uri) ?? null
-  // A post asking not to be quoted covers its author's other posts in the same story.
-  const askers = new Set(r.ps.filter((p) => p.consent?.includes(ASKS)).map((p) => p.authorDid))
-  for (const p of r.ps) if (askers.has(p.authorDid) && !p.consent?.includes(ASKS)) p.consent = [...new Set([...(p.consent ?? []), AUTHOR_ASKED])]
+  // A note about being quoted goes with its author's other posts in the same story, as a note.
+  const noted = new Set(r.ps.filter((p) => p.repostNotes?.some((n) => n !== AUTHOR_NOTED)).map((p) => p.authorDid))
+  for (const p of r.ps) if (noted.has(p.authorDid) && !p.repostNotes?.length) p.repostNotes = [AUTHOR_NOTED]
   const posts = ordered.slice(0, maxPosts).map(({ p, m }) => {
     const out = publicPost(p)
     out.metrics = m
@@ -398,6 +400,7 @@ function shapeStory(r, { byUri, metrics, quoteTarget, context, memberReposts, cf
     outOfBounds,
     sensitivity: storySens,
     consentMarked: r.ps.filter((p) => p.consent?.length).length,
+    repostNoted: r.ps.filter((p) => p.repostNotes?.length).length,
     ...(reach ? { reach: reach.story(r.ps) } : {}),
     scores: { total: r.total, ...r.scores },
     stats: {

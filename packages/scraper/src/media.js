@@ -9,6 +9,7 @@ import { join, resolve } from 'node:path'
 import { parseArgs } from 'node:util'
 import { allRecords, findByAddress, newestDigestDir } from './lookup.js'
 import { DEFAULT_USER_AGENT } from './http.js'
+import { exclusionReasons } from './consent.js'
 
 export const MEDIA_USAGE = `Usage: npm run media -- --dir <digest folder> --uri <at:// or bsky.app address> [--json]
 
@@ -27,7 +28,9 @@ const EXT = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'im
 export function refusal(p, { skeleton = null } = {}) {
   if (!p) return 'not in the digest'
   if (p.redacted) return 'redacted: it names an account the consent rules exclude'
-  if (p.consent?.length) return `marked for consent (${p.consent.join(', ')})`
+  // A repost note refuses nothing; only an exclusion-grade consent reason does.
+  const why = exclusionReasons(p)
+  if (why.length) return `marked for consent (${why.join(', ')})`
   if (p.aboutShow) return 'about the show: for reviewers only'
   if (skeleton?.excluded) return 'inside a story the consent rules leave out'
   return null

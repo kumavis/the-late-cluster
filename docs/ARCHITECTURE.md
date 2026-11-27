@@ -176,6 +176,23 @@ swapped into place only when complete.
 Only a `published` episode can be built into `dist/`, and it needs a `thumbnail.jpg`. A draft
 is built with `npm run build -- <ep> --preview` into `preview/<id>/`, which is gitignored.
 
+Before bundling, the build runs the sources check (`npm run aired`, `scripts/lib/aired.mjs`): it
+reads every `.js` file in the rundown segments' folders, not what `production/sources.json` lists,
+and finds anything from a real account that airs with no record there: a line tagged
+`// verbatim`, `// interview` or `// catchphrase` (rule R3) whose post is not in `posts` or, when a
+real account's puppet speaks it, which has no `lines` record; a post address written in a
+segment; a post card (an object with `text` and counts) whose text is no recorded post's; a real
+account whose puppet speaks or appears, or whose card is shown, that is not in `accounts`. It
+reuses the writers' room's lexer, line locator and cast loader, and needs no digest. A published
+build refuses on any finding; a preview prints each as a warning and carries on, because a draft
+may be mid-production. It exists because episode 002's close-out found two performed posts
+dropped from `sources.json` while their lines stayed, which the live check (`npm run sources`),
+reading only what is listed, could not see. Episode 001 predates the sources format and has no
+`sources.json`, so the check is not part of `npm run verify`. It is exempt by id
+(`PREDATES_SOURCES` in `scripts/lib/aired.mjs`, a closed list nothing is added to): its build skips
+the check with a one-line warning, and `npm run aired -- 001-pilot` still prints its findings under a
+first line saying the build does not enforce them.
+
 Absolute URLs in a build (the Open Graph image and page URL) come from `siteUrl` in
 `show.config.json`, never from the environment, so a committed build does not depend on who
 built it. While `siteUrl` is empty those tags are relative.
@@ -222,14 +239,15 @@ episode. `<seg>` is a segment id.
 | `npm run thumbnail -- <ep> [<seg> <t>]` | shoot a frame into `thumbnail.jpg`: the title card, or a moment of a segment |
 | `npm run avatar [-- --variant a\|b\|c] [--out file] [--candidates]` | render `brand/avatar.png`, the show's Bluesky profile picture, from the host puppet (Playwright); `--candidates` writes all three to `preview/_avatar/` with a contact sheet |
 | `npm run banner [-- --variant a\|b\|c] [--out file.png] [--candidates]` | render `brand/banner.png`, the account's banner: the title over the set's skyline, no host (Playwright); 3000×1000 PNG, or 1500×500 when the larger is over Bluesky's 1,000,000 bytes; refused if the title is under the profile picture or a phone button or under 140 points wide on a phone; `--candidates` writes all three to `brand/candidates/` with `banner-sheet.png` (each as a desktop and a phone profile) |
-| `npm run build -- <ep> [--preview]` | build into `dist/episodes/<id>/`, or a draft into `preview/<id>/` |
+| `npm run build -- <ep> [--preview]` | build into `dist/episodes/<id>/`, or a draft into `preview/<id>/`; runs the sources check first (refuses a published build on a finding, warns in a preview) |
+| `npm run aired -- <ep>` | the sources check alone: every tagged line, post address, post card and real account that airs in the rundown segments has a record in `production/sources.json`; one line per finding with segment, file, line and the post's address or handle; exit 1 on a finding (Node builtins only, no digest) |
 | `npm run verify` | committed builds match their sources (Node builtins only) |
 | `npm run site` | generate the archive index into `dist/` (ignored, never committed) |
 | `npm run preview` | generate the index, then serve `dist/` locally |
 | `npm run scrape -- [--week 2026-W47 \| --days 7 \| --since <date> [--until <date>]] [--out <dir>]` | write the Bluesky digest into `data/`; no window flag means since the previous aired episode |
 | `npm run lookup -- --uri\|--url\|--text\|--author\|--story\|--thread <value> [--dir <digest>] [--fields a,b \| --full]` | print compact exact post records from the newest (or a given) digest |
 | `npm run media -- --dir <digest> --uri <at://…>` | fetch a post's pictures, or a video's thumbnail, from Bluesky's public CDN into `<digest>/media/` and print paths and alt text |
-| `npm run sources -- check <sources.json> [--dir <digest>] [--out <file.md>] [--json]` | the live source check: cited posts unchanged, accounts' bios, labels, pinned and recent posts; exit 1 when something needs a person |
+| `npm run sources -- check <sources.json> [--dir <digest>] [--out <file.md>] [--json]` | the live source check: cited posts unchanged, accounts' bios, labels, pinned and recent posts; exit 1 when something needs a person, 0 with only notes |
 | `npm run bot -- announce <ep> [--live]` | compose the announcement post; dry run unless `--live` |
 | `npm run bot -- post <ep> --video <file.mp4> --text-file <file> [--alt-file <file>] [--captions <file.vtt>] [--lang en] [--aspect <w>:<h>] [--upload-only] [--live]` | post the episode's video (no mention, no link), uploaded as a stream to the video service; `--upload-only` uploads and keeps the blob for a later post; dry run unless `--live` |
 | `npm run bot -- post --undo <post> [--live]` | delete one of the show's own posts (another account's is refused before any request); the dry run shows what goes with it; dry run unless `--live` |
@@ -284,6 +302,11 @@ and `dist/site-assets/`. Those four paths are gitignored and are the only things
 push to `main`: `npm run verify`, `npm run site`, upload `dist/`. No dependency install, no
 episode build, no browser. `ci.yml` runs the same checks and the tests on pull requests.
 
+The repository is public, and a push to `main` deploys, so a published build on `main` is on
+the site. An episode therefore lives on its own branch, `episode/<id>`, until the owner has
+watched it; publishing is merging that branch and pushing `main`. The steps, and how the video
+is posted, are in `docs/WORKFLOW.md`, "After review: publishing and posting".
+
 ## The scraper: `packages/scraper`
 
 Reads public Bluesky through the public AppView API and writes a digest of one window: what
@@ -298,14 +321,19 @@ and no credentials by default. `packages/scraper/README.md` has the detail.
   near the seeds qualify on signals that do not depend on the seeds alone: seed follows,
   interactions, a community's public roster (Top Chicken's), the community feed, lists. The
   show's history plays no part in who is a seed.
-- **Consent.** The opt-out list (`config/optout.json`, prefer DIDs), the `!no-unauthenticated`
-  label and self-declared opt-outs, direct or indirect (posts meant to disappear, "not to be
-  quoted"), are applied in the code path: such accounts never reach an output file. Bios are
-  kept only in the run's private data (`private/`, for the auditor), and wording that might be
-  an opt-out marks the account `bioReview`.
+- **Consent.** Three stops are applied in the code path, and such accounts never reach an output
+  file: the opt-out list (`config/optout.json`, prefer DIDs), the `!no-unauthenticated` label
+  (the archive is open to logged-out viewers), and an explicit ask to the show (a post about the
+  show, or addressed to its account, asking to be left out or not to be quoted). Nothing else
+  excludes anyone (the owner's ruling, 27 November 2026; bible R2, R11). A bio line about
+  quoting, screenshots or AI is addressed to everyone: bios are kept only in the run's private
+  data (`private/`, for the auditor), and such a line marks the account `bioReview`, a note for
+  the reviewer's repost test (R6).
 - **Marks** are post by post: a keyword marks the post it is in (`sensitive`), and a consent
-  matter marks it `consent`. A story is left out whole only for consent: an excluded account's
-  thread, or a lead post that asks not to be quoted or is redacted.
+  matter that refuses the post (it is redacted, or replies to an excluded account) marks it
+  `consent`. What a post says about being quoted ("don't quote me") is a note, `repostNotes`,
+  that travels with it into the skeletons, lanes and `digest.md` and refuses nothing. A story is
+  left out whole only for consent: an excluded account's thread, or a redacted lead post.
 - **Output** in `data/weeks/<week>/` (gitignored) or `--out`: `posts.jsonl`; `digest.json`
   (ranked stories, sections, members, authors, the ledger it read, coverage); `digest.md` for a
   writer with ten minutes; `coverage.md` for the scope review (worries against thresholds,
@@ -337,7 +365,10 @@ and no credentials by default. `packages/scraper/README.md` has the detail.
 - **Media:** `npm run media` fetches one digest post's pictures or video thumbnail from the
   public CDN for a researcher to look at; never a redacted, consent-marked or about-the-show post.
 - **The live source check:** `npm run sources -- check` re-reads every post and account an
-  episode's `sources.json` cites, over the network, and exits 1 when something needs a person.
+  episode's `sources.json` cites, over the network, and exits 1 when something needs a person:
+  an opt-out, a post or account gone, a text or cut changed, pronouns changed, or any post about
+  or addressed to the show. A bio line, a general remark, a changed handle or display name is a
+  note: reported in its own "Notes" section (and `notes` in `--json`), exit 0.
 - **Lookup:** `npm run lookup` prints compact exact records (by URI, URL, text, author, story or
   thread), so agents never read `digest.json` whole.
 - What an episode actually used is recorded in `episodes/<id>/production/sources.json`.

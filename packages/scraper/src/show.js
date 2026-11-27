@@ -1,6 +1,8 @@
 // "About the show": posts that mention or link the show, and replies and quotes reacting to
 // them, so the writers see reactions, corrections and requests to be left out.
 
+import { compileTopics, topicsOf } from './sensitivity.js'
+
 /** Matcher for posts about the show, from config/show.json. */
 export function showMatcher(show = {}) {
   const phrases = (show.phrases ?? []).map((p) => new RegExp(p, 'iu'))
@@ -54,12 +56,17 @@ export function findShowPosts(rawWindowPosts, show, safety, tagged = {}) {
       if (why) { about.set(p.uri, [why]); changed = true }
     }
   }
+  // An ask addressed to the show (bible R11): a request to be left out, or, in a post about the
+  // show, an ask not to be quoted (the consentTopics), which is said to the show.
   const optOut = (safety?.showOptOutPatterns?.patterns ?? []).map((x) => new RegExp(x, 'iu'))
+  const consentTopics = new Set(safety?.sensitivity?.consentTopics ?? [])
+  const askTopics = compileTopics(Object.fromEntries(Object.entries(safety?.sensitivity?.topics ?? {}).filter(([k]) => consentTopics.has(k))))
+  const asks = (t) => optOut.some((re) => re.test(t)) || topicsOf(t, askTopics).length > 0
   const requests = []
   const byUri = new Map(rawWindowPosts.map((p) => [p.uri, p]))
   for (const uri of [...about.keys()].sort()) {
     const p = byUri.get(uri)
-    if (p && optOut.some((re) => re.test(p.text ?? ''))) requests.push({ did: p.authorDid, handle: p.handle, url: p.url, uri: p.uri })
+    if (p && asks(p.text ?? '')) requests.push({ did: p.authorDid, handle: p.handle, url: p.url, uri: p.uri })
   }
   return { about, requests }
 }

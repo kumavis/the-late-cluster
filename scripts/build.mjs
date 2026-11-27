@@ -5,7 +5,9 @@
 // preview/<id>/ (gitignored; drafts can only be built this way). Refuses when a rundown segment
 // lacks its script, module, cues or rendered audio and telemetry. The bundle is made in a temp
 // folder and swapped in only when complete, carrying the current build's audio and telemetry
-// forward when there is no fresh render in episodes/<id>/public/.
+// forward when there is no fresh render in episodes/<id>/public/. Before bundling it runs the
+// sources check (npm run aired; scripts/lib/aired.mjs): anything from a real account that airs with
+// no record in production/sources.json refuses a published build and is a warning in a preview.
 //
 // Open Graph URLs are absolute only when show.config.json has a siteUrl (never from the environment).
 // Output: one line, `built <id> <dir> segments=<n> public=<n> carried=<n> sourceHash=<hash>`.

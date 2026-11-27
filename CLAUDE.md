@@ -111,6 +111,10 @@ npm run produce -- --week 2026-W47     # the whole weekly pipeline, stage by sta
   for, after the plan shows exactly that change. Edit `terraform.tfvars` and
   `terraform/tests/committed.tftest.hcl` together. Never edit or delete `terraform.tfstate`.
 - Never push, open a pull request, or switch on a workflow schedule unless asked.
+- Since 27 November 2026 the repository is public on GitHub and a push to `main` deploys
+  `dist/` to the site. An episode is made on its own branch; merging it into `main` and
+  pushing is publishing, and happens on the owner's word after they have watched it. Write
+  every commit as something the public will read.
 
 **Housekeeping**
 - Lockfile changes go in their own commit.

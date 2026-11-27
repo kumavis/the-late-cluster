@@ -1,9 +1,9 @@
 // The bio pass (trial 002, findings 9 and 36). Every profile description the run read is kept
-// in the run's private data (`private/profiles.json`), for the auditor only, and read for
-// opt-outs said directly and indirectly. A clear opt-out has already excluded the account in
-// the consent rules, like any other exclusion: counted, never named, never written. Wording
-// that might be one marks the account `bioReview`, with the phrase that matched, for an
-// auditor to judge. Descriptions are never copied into a file another role reads.
+// in the run's private data (`private/profiles.json`), for the auditor only, and read for what
+// it says about quoting, screenshots, keeping posts or bots. A bio is addressed to everyone, not
+// to the show, so it excludes nobody (the owner's ruling, 27 November 2026; bible R2, R11): a
+// match marks the account `bioReview`, a note for the reviewer's repost test (R6), with the
+// phrase that matched kept here. Descriptions are never copied into a file another role reads.
 
 /**
  * @param {object} a
@@ -30,25 +30,25 @@ export function buildPrivate({ bios = new Map(), consent, members = [], authors 
   const counts = {
     profilesRead: read,
     membersRead,
-    excludedDirect: (consent.stats.selfDeclaredAccounts ?? 0) - (consent.stats.selfDeclaredIndirect ?? 0),
-    excludedIndirect: consent.stats.selfDeclaredIndirect ?? 0,
     bioReview: review.size,
+    bioReviewByKind: Object.fromEntries(['direct', 'indirect', 'review'].map((k) => [k, [...review.values()].filter((r) => r.kind === k).length])),
     bioReviewMembers: [...review.keys()].filter((d) => memberDids.has(d)).length,
     pronounsStated: accounts.filter((a) => a.pronouns).length,
     pronounsFromBio: accounts.filter((a) => a.pronouns?.source === 'bio').length,
     pronounsReview: accounts.filter((a) => a.pronounsReview).length,
-    note: 'excluded counts cover every profile the run read; bioReview covers accounts that appear in the output',
+    note: 'bioReview covers accounts that appear in the output; a bio note excludes nobody, it is evidence for the repost test (R6)',
   }
-  return { file: { format: 'late-cluster-private-profiles/1', note: 'private: for the auditor only; never copy a description into a file another role reads', counts, accounts }, review, counts }
+  return { file: { format: 'late-cluster-private-profiles/1', note: 'private: for the auditor only; never copy a description into a file another role reads, except the exact matched words as a repost note', counts, accounts }, review, counts }
 }
 
-/** private/bio-review.md: the accounts an auditor should judge, with the phrase that matched. */
+/** private/bio-review.md: the accounts whose bio carries a note for the repost test, with the phrase that matched. */
 export function renderBioReview({ file, review }) {
-  const out = ['# Bio review', '', 'Private: for the auditor only. Each account below has a profile description with wording that might be an opt-out (not to be quoted, screenshotted, archived or used by bots or AI, or posts meant to disappear). The tool did not exclude them. Judge each one; a clear opt-out goes into `packages/scraper/config/optout.json` by DID, or a pattern into `config/safety.json` `selfDeclaredOptOut.indirectPatterns`.', '', `Profiles read: ${file.counts.profilesRead}. Excluded by a direct opt-out: ${file.counts.excludedDirect}. Excluded by an indirect one: ${file.counts.excludedIndirect}. Marked for review: ${file.counts.bioReview} (${file.counts.bioReviewMembers} members).`, '']
+  const k = file.counts.bioReviewByKind ?? {}
+  const out = ['# Bio review', '', "Private: for the auditor only. Each account below has a profile description that says something about quoting, screenshots, keeping posts, or bots and AI. A bio is a line addressed to everyone, not an ask to the show, so it is not an opt-out and the tool excluded nobody for it (the owner's ruling, 27 November 2026; bible R2 and R11). Record each one that matters as a note, with the exact words, for the reviewer's repost test (R6). An account is out only when it is on the opt-out list, carries the !no-unauthenticated label, or asked the show's account itself.", '', `Profiles read: ${file.counts.profilesRead}. Accounts with a bio note: ${file.counts.bioReview} (${file.counts.bioReviewMembers} members): ${k.direct ?? 0} said directly ("no QTs", "no AI"), ${k.indirect ?? 0} said another way (posts meant to disappear), ${k.review ?? 0} wording worth a look.`, '']
   // From the file's own copy, which the final consent scrub has been over.
   for (const a of file.accounts.filter((x) => review.has(x.did))) {
     const r = a.bioReview ?? review.get(a.did)
-    out.push(`- @${a.handle} (${a.did})${a.member ? ', member' : ''}: matched "${r.matched}" in "${r.phrase}"`)
+    out.push(`- @${a.handle} (${a.did})${a.member ? ', member' : ''}: ${r.kind ?? 'review'}, matched "${r.matched}" in "${r.phrase}"`)
   }
   const pr = file.accounts.filter((x) => x.pronounsReview)
   if (pr.length) {

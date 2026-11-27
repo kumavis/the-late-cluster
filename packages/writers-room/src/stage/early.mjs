@@ -14,6 +14,7 @@ import { laneFiles, laneSkeletons, laneTaggers, loadSkeletons, lookupCommand, ma
 import { writeJson } from '../repo.mjs'
 import { pronounLabel } from '../pronouns.mjs'
 import { verbatimMismatch } from '../scan.mjs'
+import { NOTE_FORMAT, NOTE_RULE, REPORT_RULE, STOP_RULE, noteProblems } from '../consent.mjs'
 import { P, W, R, REPETITION_RULES, excludedOf, has, json, pendingRepetition, previousLabel, repetitionFiles, reviewerIds, task } from './common.mjs'
 
 // ---------------------------------------------------------------- 1. scope
@@ -150,7 +151,7 @@ function writeLonglist(ctx) {
     const posts = cardPosts(ctx, card, skeletons).filter((p) => !p.missing && !dropped.has(p.uri))
     const reach = Math.round(posts.reduce((t, p) => t + (typeof p.reach === 'number' ? p.reach : reachOf(ctx.digest, [p.uri], w)), 0))
     const people = [...new Map(posts.filter((p) => p.handle).map((p) => [p.did ?? p.handle, { handle: p.handle, did: p.did, followers: p.followers, featured: p.featured, pronouns: pronounLabel(p.pronouns), pronounForms: p.pronouns?.forms ?? [] }])).values()]
-    return { id: card.id, lane: card.lane, title: card.title, summary: card.summary, file: R(ctx, file), reach, kept: s ? s.keep === true : null, mergedInto: s?.mergedInto ?? null, posts: posts.map(({ uri, url, handle, did, text, followers, replyTo, quotes, alt }) => ({ uri, url, handle, did, text, followers, replyTo, quotes, alt, media: card.media?.[uri] ?? null })), people, showable: card.showable, unknown: card.unknown, sensitive: card.sensitive }
+    return { id: card.id, lane: card.lane, title: card.title, summary: card.summary, file: R(ctx, file), reach, kept: s ? s.keep === true : null, mergedInto: s?.mergedInto ?? null, posts: posts.map(({ uri, url, handle, did, text, followers, replyTo, quotes, alt, repostNotes }) => ({ uri, url, handle, did, text, followers, replyTo, quotes, alt, media: card.media?.[uri] ?? null, ...(repostNotes ? { repostNotes } : {}) })), people, showable: card.showable, unknown: card.unknown, sensitive: card.sensitive }
   })
   for (const c of cards) if (c.mergedInto) {
     const t = cards.find((x) => x.id === c.mergedInto)
@@ -193,7 +194,7 @@ const research = {
               '"title" and "summary" are not empty; "sensitive", "showable" and "unknown" are each a sentence or "none".',
               'No joke fields: jokes, ideas, premise, turn, punchline, gag, angle.',
               'Every skeleton exists; every post is one of the card\'s skeletons\' posts.',
-              'No post the scraper marks sensitive and no opted-out account: leave that post out; the rest of the story stays usable.',
+              'No post the scraper marks sensitive and no opted-out account: leave that post out; the rest of the story stays usable. A post with a repost note ("repostNotes": what it says about being quoted) is usable; the note goes with it to the longlist.',
               'Every kept post with a picture or video has its "media" description.',
               ...(lane.id === 'tagged' ? ['"pointedBy" names at least one tagger\'s post, each one listed for the card\'s skeletons in lanes/tagged.json; no proposal fields.'] : []),
             ],
@@ -213,11 +214,13 @@ const research = {
           writes: ['review/screen.json'],
           reads: [W(ctx, 'research/longlist.json'), `${R(ctx, ctx.digestDir)}/private/bio-review.md?`],
           instructions: [
-            'Screen every card in research/longlist.json post by post against the constitution: out-of-bounds subjects, opted-out accounts and bios, small accounts who would not come off well, anything that cannot be used in its own context. One flagged post removes that post; it removes the card only if the story cannot stand without it.',
-            'Every account on a kept card whose bio the scraper flagged (private/bio-review.md, "bioReview" with the phrase that matched) gets a ruling: rule on each in that card\'s "reason", and drop or refuse what the bio forbids.',
-            'Write review/screen.json: { "cards": { "<card id>": { "keep": true|false, "reason": "<one sentence>", "drop": ["<at:// uri of a post removed>"], "mergedInto": "<card id that carries this story, for a duplicate>", "terms": "<on what terms a kept card may be used, or none>" } } }. This is the only file you write; the tool writes research/terms.md and the longlist from it.',
+            'Screen every card in research/longlist.json post by post against the constitution: out-of-bounds subjects, accounts that are out, small accounts who would not come off well, anything that cannot be used in its own context. One flagged post removes that post; it removes the card only if the story cannot stand without it.',
+            `${STOP_RULE} An account that is out takes its posts off every card.`,
+            `${NOTE_RULE} That covers every account on a kept card whose bio the scraper flagged (private/bio-review.md) and every post with "repostNotes".`,
+            REPORT_RULE,
+            `Write review/screen.json: { "cards": { "<card id>": { "keep": true|false, "reason": "<one sentence>", "drop": ["<at:// uri of a post removed>"], "mergedInto": "<card id that carries this story, for a duplicate>", "terms": "<on what terms a kept card may be used, or none>", "notes": [${NOTE_FORMAT}] } } }. This is the only file you write; the tool writes research/terms.md and the longlist from it.`,
           ],
-          rules: ['A decision for every card: "keep" true or false, and a "reason".', 'A merged card has "keep": false and "mergedInto" naming a kept card.', '"drop" names posts on that card; a kept card keeps at least one post, none of them marked sensitive, out of bounds or opted out.', 'Every kept card has "terms" (a sentence, or "none").'],
+          rules: ['A decision for every card: "keep" true or false, and a "reason".', 'A merged card has "keep": false and "mergedInto" naming a kept card.', '"drop" names posts on that card; a kept card keeps at least one post, none of them marked sensitive, out of bounds or opted out.', 'Every kept card has "terms" (a sentence, or "none").', 'Each note has "account", the exact "words", "where" (an at:// address or "bio") and "to".'],
         }),
       ],
       after: (ctx) => writeLonglist(ctx),
@@ -273,6 +276,7 @@ async function researchScreen(ctx) {
     for (const p of left) if (markOf(p) || isOptedOut(ctx.digest, p.handle) || ctx.digest.posts.get(p.uri)?.outOfBounds) g.fail(`${at}: keeps ${p.uri}, which is marked sensitive, out of bounds or opted out; drop it`)
     if (typeof s.terms !== 'string') g.fail(`${at}: a kept card needs "terms" (a sentence, or "none")`)
   }
+  for (const [id, s] of Object.entries(screen)) for (const f of noteProblems(s?.notes, `review/screen.json ${id}`)) g.fail(f)
   if (!cards.some(({ card }) => screen[card.id]?.keep)) g.fail('the screen keeps no card')
   return g.done()
 }

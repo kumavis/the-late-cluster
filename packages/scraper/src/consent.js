@@ -4,10 +4,15 @@
 //    are dropped. A post by someone else that quotes them keeps its own text but loses the
 //    quoted content; a reply to them keeps its own text but loses the link to their post.
 //    @-mentions of them in other people's text are replaced with "@[opted-out]".
-// 2. Accounts self-labelled `!no-unauthenticated` are treated exactly like opt-outs.
-// 3. Accounts whose profile description asks not to be quoted, screenshotted, reposted,
-//    clipped or used by bots or AI (config/safety.json selfDeclaredOptOut) are treated
-//    exactly like opt-outs. So are accounts whose post about the show asks to be left out.
+// 2. Accounts self-labelled `!no-unauthenticated` are treated exactly like opt-outs (the
+//    show's archive is open to logged-out viewers).
+// 3. Accounts whose post about the show, or addressed to its account, asks to be left out
+//    are treated exactly like opt-outs (bible R11: an explicit ask to the show).
+//    A profile description that asks not to be quoted, screenshotted or used by bots or AI
+//    (config/safety.json selfDeclaredOptOut, bioReview) is a line addressed to everyone, not
+//    an ask to the show (the owner's ruling, 27 November 2026; bible R2, R11). It excludes
+//    nobody: it is kept as a note on the account (`bioNotes`, private/bio-review.md), evidence
+//    for the reviewer's repost test (R6).
 // 4. Posts carrying an adult or graphic-content label (post or account level) are dropped.
 //    The same applies to quoted content.
 // 5. Naming an excluded account (README "Consent and safety", "Naming an excluded account"):
@@ -33,6 +38,16 @@ export const MARKER = '[opted-out]'
  * source; `redacted` says why.
  */
 export const redactedFlags = () => ({ redacted: true, outOfBounds: { topics: ['redacted'], rule: 'R11', note: 'names an account the consent rules exclude; the text is altered, so it is not quotable or performable' } })
+
+/**
+ * Consent reasons that digests written before 27 November 2026 used for a general remark ("don't
+ * quote me"). Under the owner's ruling of that day (bible R2, R11) they are repost notes, not
+ * reasons to refuse a post; `exclusionReasons` drops them so an older digest reads the same.
+ */
+export const LEGACY_NOTE_REASONS = new Set(['asks not to be quoted', 'its author asked not to be quoted in this story'])
+
+/** A post's `consent` reasons that still refuse it (README "Marks"). */
+export const exclusionReasons = (p) => (p?.consent ?? []).filter((r) => !LEGACY_NOTE_REASONS.has(r))
 
 /** The flags to copy onto any summary of a post (a brief, a quoted post, a thread entry). */
 export const consentFlags = (p) => (p?.redacted || p?._redacted ? redactedFlags() : {})
@@ -104,15 +119,16 @@ export class Consent {
       else this.handles.add(normHandle(v))
     }
     this.noUnauth = new Set()
-    this.selfDeclared = new Set()
     this.showRequests = new Set()
+    // did -> { kind: 'direct' | 'indirect' | 'review', phrase, matched, pattern }: a bio line
+    // for the repost test. Never an exclusion.
+    this.bioNotes = new Map()
     this.excludedHandles = new Set()
+    // What a bio says about quoting, keeping or bots, said directly ("no QTs"), another way
+    // ("posts meant to disappear") or in words worth a look ("ephemeral"): notes, all three.
     this.selfDeclaredRes = selfDeclaredPatterns.map((x) => new RegExp(x, 'iu'))
-    // Opt-outs said another way (posts meant to disappear, "not to be quoted"): the same
-    // exclusion, counted apart. Review patterns only mark the account for an auditor.
     this.indirectRes = indirectPatterns.map((x) => new RegExp(x, 'iu'))
     this.reviewRes = reviewPatterns.map((x) => new RegExp(x, 'iu'))
-    this.indirect = new Set()
     this.blockedLabels = new Set(blockedLabels)
     this.naming = {
       minOwnWords: naming.minOwnWords ?? 4,
@@ -132,9 +148,7 @@ export class Consent {
       noUnauthenticatedAccounts: 0,
       postsDroppedOptOut: 0,
       postsDroppedNoUnauthenticated: 0,
-      selfDeclaredAccounts: 0,
-      selfDeclaredIndirect: 0,
-      postsDroppedSelfDeclared: 0,
+      bioNoteAccounts: 0,
       showOptOutRequests: 0,
       postsDroppedShowRequest: 0,
       postsDroppedLabel: {},
@@ -199,7 +213,7 @@ export class Consent {
       this.countAccount('opt', did)
       return true
     }
-    if (did && (this.selfDeclared.has(did) || this.showRequests.has(did))) return true
+    if (did && this.showRequests.has(did)) return true
     const labels = (actor.labels ?? []).map((l) => l?.val ?? l)
     if (labels.includes(NO_UNAUTH)) {
       if (did) this._exclude(this.noUnauth, did)
@@ -218,67 +232,55 @@ export class Consent {
   }
 
   excludedDid(did) {
-    return !!did && (this.dids.has(did) || this.noUnauth.has(did) || this.selfDeclared.has(did) || this.showRequests.has(did))
+    return !!did && (this.dids.has(did) || this.noUnauth.has(did) || this.showRequests.has(did))
   }
 
   reasonFor(did) {
     if (this.dids.has(did)) return 'optOut'
     if (this.noUnauth.has(did)) return 'noUnauthenticated'
-    if (this.selfDeclared.has(did)) return 'selfDeclared'
     if (this.showRequests.has(did)) return 'showRequest'
     return null
   }
 
-  /** Does a profile description ask not to be quoted, clipped, reposted or used by AI? */
-  descriptionOptsOut(description) {
-    return !!this.optOutKind(description)
-  }
-
-  /** 'direct', 'indirect' (an opt-out said another way) or null. */
-  optOutKind(description) {
-    const d = String(description ?? '')
-    if (!d) return null
-    if (this.selfDeclaredRes.some((re) => re.test(d))) return 'direct'
-    if (this.indirectRes.some((re) => re.test(d))) return 'indirect'
-    return null
+  /**
+   * Which of the bio lists a text matches: 'direct' (selfDeclaredOptOut.patterns), 'indirect'
+   * (indirectPatterns), 'review' (bioReview.patterns) or null. A label for a note, never an
+   * exclusion.
+   */
+  bioKind(description) {
+    return this.bioReview(description)?.kind ?? null
   }
 
   /**
-   * Wording in a description that might be an opt-out, for an auditor to judge: the first
-   * matching phrase and its pattern, or null. Accounts that already opt out are not asked.
+   * What a description says about quoting, keeping, screenshots or bots, as a note for the
+   * repost test: { kind, phrase, matched, pattern } (the matched words with a little of the
+   * sentence around them), or null. Bio text is private: the phrase goes only to private/.
    */
   bioReview(description) {
     const d = String(description ?? '')
-    if (!d || this.optOutKind(d)) return null
-    for (const re of this.reviewRes) {
-      const m = re.exec(d)
-      if (m) {
-        // the matched words with a little of the sentence around them
+    if (!d) return null
+    for (const [kind, list] of [['direct', this.selfDeclaredRes], ['indirect', this.indirectRes], ['review', this.reviewRes]]) {
+      for (const re of list) {
+        const m = re.exec(d)
+        if (!m) continue
         const a = Math.max(0, d.lastIndexOf(' ', Math.max(0, m.index - 25)))
         const b = d.indexOf(' ', Math.min(d.length, m.index + m[0].length + 25))
-        return { phrase: d.slice(a, b < 0 ? d.length : b).trim(), matched: m[0], pattern: re.source }
+        return { kind, phrase: d.slice(a, b < 0 ? d.length : b).trim(), matched: m[0], pattern: re.source }
       }
     }
     return null
   }
 
   /**
-   * Learn from a full profile (with description). Returns true if the account is excluded,
-   * by the opt-out list, the logged-out label, or its own description.
+   * Learn from a full profile (with description). Returns true if the account is excluded:
+   * by the opt-out list, the logged-out label, or an ask to the show. A bio never excludes;
+   * what it says is kept as a note (`bioNotes`).
    */
   checkProfile(profile) {
     if (!profile?.did) return false
     if (this.check(profile)) return true
-    const kind = this.optOutKind(profile.description)
-    if (kind) {
-      if (!this.selfDeclared.has(profile.did)) {
-        this.stats.selfDeclaredAccounts++
-        if (kind === 'indirect') { this.stats.selfDeclaredIndirect++; this.indirect.add(profile.did) }
-      }
-      this._exclude(this.selfDeclared, profile.did)
-      if (profile.handle) this.excludedHandles.add(normHandle(profile.handle))
-      return true
-    }
+    const r = this.bioReview(profile.description)
+    if (r && !this.bioNotes.has(profile.did)) { this.bioNotes.set(profile.did, r); this.stats.bioNoteAccounts++ }
     return false
   }
 
@@ -310,7 +312,7 @@ export class Consent {
    */
   index() {
     if (this._index) return this._index
-    const dids = new Set([...this.dids, ...this.noUnauth, ...this.selfDeclared, ...this.showRequests])
+    const dids = new Set([...this.dids, ...this.noUnauth, ...this.showRequests])
     const handles = new Map()
     for (const h of [...this.handles, ...this.excludedHandles]) handles.set(h, null)
     const names = new Map() // first word -> [{ form, did, re }]
@@ -517,7 +519,6 @@ export class Consent {
     const reason = this.reasonFor(post.authorDid)
     if (reason === 'optOut') { bump('postsDroppedOptOut'); return null }
     if (reason === 'noUnauthenticated') { bump('postsDroppedNoUnauthenticated'); return null }
-    if (reason === 'selfDeclared') { bump('postsDroppedSelfDeclared'); return null }
     if (reason === 'showRequest') { bump('postsDroppedShowRequest'); return null }
     const label = this.blockedLabel(post)
     if (label) {

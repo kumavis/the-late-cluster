@@ -14,32 +14,45 @@ import { post, profile, ACCOUNTS, uriOf } from './fixtures/synthetic.js'
 const cfg = loadConfig()
 const consent = () => new Consent({ selfDeclaredPatterns: cfg.safety.selfDeclaredOptOut.patterns })
 
-test('profile descriptions that opt out are matched, and ordinary ones are not', () => {
+test('bio lines about quoting or AI are matched as notes, and ordinary ones are not', () => {
   const c = consent()
   const yes = [
     'no quotes, no screenshots', 'Please do not screenshot my posts', "don't QT me", 'No AI.', 'AI bots DNI',
     'I do not consent to my posts being used for AI training', 'Minors DNI', "don't use my art for AI", 'please do not repost',
   ]
   const no = ['I build synthesizers and post about them', 'quote of the day enthusiast', 'I dont use this account much', 'ex-AI researcher', 'clips from my stream']
-  for (const d of yes) assert.equal(c.descriptionOptsOut(d), true, d)
-  for (const d of no) assert.equal(c.descriptionOptsOut(d), false, d)
+  for (const d of yes) assert.equal(c.bioKind(d), 'direct', d)
+  for (const d of no) assert.equal(c.bioKind(d), null, d)
 })
 
-test('a self-declared opt-out is excluded exactly like the opt-out list, and counted', () => {
+test('a bio line addressed to everyone excludes nobody: it is a note (the ruling of 27 November 2026)', () => {
   const c = consent()
-  assert.equal(c.checkProfile(profile('quiet')), true)
+  // "Please do not quote or screenshot me. No AI." in a bio is not an ask to the show
+  assert.equal(c.checkProfile(profile('quiet')), false)
   assert.equal(c.checkProfile(profile('alpha')), false)
-  assert.equal(c.excludedDid(ACCOUNTS.quiet.did), true)
-  assert.equal(c.stats.selfDeclaredAccounts, 1)
-  assert.equal(c.filterPost(normalizePost(post('quiet', 'q1', { text: 'synths' }))), null)
-  assert.equal(c.stats.postsDroppedSelfDeclared, 1)
+  assert.equal(c.excludedDid(ACCOUNTS.quiet.did), false)
+  assert.equal(c.bioNotes.get(ACCOUNTS.quiet.did).kind, 'direct')
+  assert.match(c.bioNotes.get(ACCOUNTS.quiet.did).matched, /do not quote/i)
+  assert.equal(c.stats.bioNoteAccounts, 1)
+  assert.equal(c.bioNotes.has(ACCOUNTS.alpha.did), false)
+  // their posts stay, and other people's posts that quote or name them are not redacted
+  assert.equal(c.filterPost(normalizePost(post('quiet', 'q1', { text: 'synths' }))).text, 'synths')
   const quoting = c.filterPost(normalizePost(post('alpha', 'a1', { text: 'this is the best synth patch of the year', quote: post('quiet', 'q2') })))
-  assert.equal(quoting.quote.state, 'removed')
-  assert.equal(quoting.text, 'this is the best synth patch of the year')
-  // quoting them and naming them: in conversation with an excluded account, withheld whole
+  assert.notEqual(quoting.quote.state, 'removed')
   const naming = c.filterPost(normalizePost(post('alpha', 'a2', { text: 'lol @quiet.example.test', quote: post('quiet', 'q3'), mentions: [{ key: 'quiet', text: '@quiet.example.test' }] })))
-  assert.equal(naming, null)
-  assert.equal(c.stats.postsWithheldNamingExcluded, 1)
+  assert.equal(naming.text, 'lol @quiet.example.test')
+  assert.ok(!naming.redacted)
+  assert.equal(c.stats.postsWithheldNamingExcluded, 0)
+})
+
+test('the !no-unauthenticated label still excludes: the archive is open to logged-out viewers', () => {
+  const c = consent()
+  assert.equal(c.checkProfile(profile('hidden')), true)
+  assert.equal(c.excludedDid(ACCOUNTS.hidden.did), true)
+  assert.equal(c.filterPost(normalizePost(post('hidden', 'h1', { text: 'synths' }))), null)
+  assert.equal(c.stats.postsDroppedNoUnauthenticated, 1)
+  const naming = c.filterPost(normalizePost(post('alpha', 'a3', { text: 'this patch by @hidden.example.test is lovely and warm', mentions: [{ key: 'hidden', text: '@hidden.example.test' }] })))
+  assert.ok(!naming || naming.redacted, 'a post naming them is redacted or withheld')
 })
 
 test('a request to the show is an opt-out from then on', () => {

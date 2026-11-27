@@ -46,6 +46,9 @@ const markedNote = (p) => {
   return m.length ? `*(marked: ${m.join(', ')}; not quoted here)*` : null
 }
 
+/** A repost note (README "Marks"): what the post says about being quoted. It refuses nothing. */
+const repostNote = (p) => (p?.repostNotes?.length ? `> *(repost note, for the repost test: ${p.repostNotes.map(mdText).join('; ')}; a general remark, not an ask to the show)*` : null)
+
 function countsLine(c = {}) {
   const parts = [plural(c.likes, 'like'), plural(c.reposts, 'repost'), plural(c.replies, 'reply', 'replies')]
   if (c.quotes) parts.push(plural(c.quotes, 'quote'))
@@ -63,7 +66,7 @@ const clip = (s, max) => (s.length > max ? s.slice(0, max).replace(/\s+\S*$/, ''
 function renderPost(p, { maxChars = 600 } = {}) {
   const lines = []
   const marked = markedNote(p)
-  if (marked) return `> ${marked}\n— ${whoF(p)} · ${shortTime(p.time)} · ${countsLine(p.counts)} · [open](${p.url})`
+  if (marked) return `> ${marked}${repostNote(p) ? '\n' + repostNote(p) : ''}\n— ${whoF(p)} · ${shortTime(p.time)} · ${countsLine(p.counts)} · [open](${p.url})`
   let body = clip(p.text || '', maxChars)
   if (!body && p.imageAlts?.length) body = ''
   lines.push(body ? quoteBlock(body) : p.hasImages || p.hasVideo || p.quoted ? '>' : '> *(no text)*')
@@ -76,6 +79,7 @@ function renderPost(p, { maxChars = 600 } = {}) {
   if (p.inReplyTo) lines.push(`>`, `> > replying to ${whoF(p.inReplyTo)}: ${mdText(clip((p.inReplyTo.text || '').replace(/\s+/g, ' '), 200))}${red(p.inReplyTo)}`)
   if (p.quote?.state === 'removed') lines.push('> *(quoted post removed: author not included)*')
   if (p.reply?.hidden) lines.push('> *(reply to a post that is not included)*')
+  if (repostNote(p)) lines.push(repostNote(p))
   const lift = p.metrics?.lift >= 1 ? ` · ${times(p.metrics.lift)} the author's usual` : ''
   const reach = p.reach ? ` · reach ${n(p.reach.score)} (${plural(p.reach.participants, 'participant')})` : ''
   const rp = p.memberReposts ? ` · reposted by ${plural(p.memberReposts, 'member')}` : ''
@@ -115,6 +119,7 @@ export function renderStory(s, { postsPerStory = 4 } = {}) {
   out.push(`\`${KIND[s.kind] ?? s.kind}\` · ${plural(st.posts, 'post')} · ${plural(st.members, 'member')} · ${st.days.length > 1 ? `${st.days[0]} → ${st.days.at(-1)}` : st.days[0] ?? ''} · ${s.reach ? `reach ${n(s.reach.score)} (${n(s.reach.interactions)} interactions, ${plural(s.reach.participants, 'participant')}) · ` : ''}score ${s.scores.total.toFixed(2)} (${topComponents(s.scores)}) · id \`${s.id}\``)
   out.push('')
   out.push(`*Why these are together:* ${s.reason.map(mdText).join('; ')}.`)
+  if (s.repostNoted) out.push(`*Repost notes:* ${plural(s.repostNoted, 'post')} say something about being quoted (shown on each post): notes for the repost test, not exclusions.`)
   if (s.sensitivity?.postsMarked) out.push(`*Marked:* ${plural(s.sensitivity.postsMarked, 'post')} of ${n(st.posts)} (${Object.entries(s.sensitivity.counts).map(([t, k]) => `${t} ${k}`).join(', ')}): a keyword hint on those posts only; the rest of the story is usable.`)
   if (s.phrases?.length) out.push(`*Spiked phrases here:* ${s.phrases.slice(0, 5).map((t) => '"' + mdText(t) + '"').join(', ')}`)
   const built = s.links.filter((l) => l.isNewDomain || l.buildHost).slice(0, 3)
@@ -247,8 +252,8 @@ export function renderMarkdown(d) {
   out.push(`- Requests: ${n(r.requests)} made, ${n(r.cacheHits)} served from cache, ${n(r.retries)} retries, ${n(r.rateLimited)} rate-limited. Runtime ${r.runtimeSeconds ?? '?'}s.`)
   const ex = st.excluded ?? {}
   const labels = Object.entries(ex.postsDroppedLabel ?? {}).map(([k, v]) => `${v} ${k}`).join(', ')
-  out.push(`- Excluded: ${n(ex.optedOutAccountsSeen)} opted-out, ${n(ex.noUnauthenticatedAccounts)} logged-out-hidden, ${n(ex.selfDeclaredAccounts)} opted out in their profile and ${n(ex.showOptOutRequests)} asked the show to leave them out; posts dropped: ${n(ex.postsDroppedOptOut)} opt-out, ${n(ex.postsDroppedNoUnauthenticated)} logged-out-hidden, ${n(ex.postsDroppedSelfDeclared)} profile opt-out, ${n(ex.postsDroppedShowRequest)} show request, ${labels || '0'} by content label; ${n(ex.quotesStripped)} quoted posts and ${n(ex.replyLinksHidden)} reply links removed from others' posts; ${n(ex.mentionsRedacted)} posts by others had an excluded account's name redacted (marked, not quotable) and ${n(ex.postsWithheldNamingExcluded)} were withheld as mainly about one${ex.outputScrubbed ? `; **${n(ex.outputScrubbed)} strings were caught only by the final check**` : ''}.`)
-  if (st.profiles) out.push(`- Profiles: ${n(st.profiles.checked)} read for follower counts and profile opt-outs; ${n(st.profiles.missing)} authors without one (deleted, or not fetched). Small account: under ${n(st.profiles.smallThreshold)} followers.`)
+  out.push(`- Excluded: ${n(ex.optedOutAccountsSeen)} opted-out, ${n(ex.noUnauthenticatedAccounts)} logged-out-hidden and ${n(ex.showOptOutRequests)} asked the show to leave them out; posts dropped: ${n(ex.postsDroppedOptOut)} opt-out, ${n(ex.postsDroppedNoUnauthenticated)} logged-out-hidden, ${n(ex.postsDroppedShowRequest)} show request, ${labels || '0'} by content label; ${n(ex.quotesStripped)} quoted posts and ${n(ex.replyLinksHidden)} reply links removed from others' posts; ${n(ex.mentionsRedacted)} posts by others had an excluded account's name redacted (marked, not quotable) and ${n(ex.postsWithheldNamingExcluded)} were withheld as mainly about one${ex.outputScrubbed ? `; **${n(ex.outputScrubbed)} strings were caught only by the final check**` : ''}. ${n(ex.bioNoteAccounts)} bios say something about quoting or bots: a repost note each, never an exclusion (bible R11).`)
+  if (st.profiles) out.push(`- Profiles: ${n(st.profiles.checked)} read for follower counts and bio notes; ${n(st.profiles.missing)} authors without one (deleted, or not fetched). Small account: under ${n(st.profiles.smallThreshold)} followers.`)
   out.push('- Sensitivity flags are keyword matches against config/safety.json: a coarse hint. The writer and reviewer still apply R10 themselves.')
   if (r.warnings?.length) out.push(`- Warnings: ${r.warnings.slice(0, 8).map(mdText).join('; ')}${r.warnings.length > 8 ? ` (and ${r.warnings.length - 8} more in digest.json)` : ''}`)
   out.push('')

@@ -864,7 +864,8 @@ yuv420p frames to the temp folder. The posting cut is encoded from those, so it 
 generation like the master. That takes about 1 GB per minute of temp space while it runs. A
 `--bluesky` without `--all` re-encodes the CRF-16 clips instead, and says so.
 
-**For phones.** Bluesky re-encodes every video to two streams, and phones mostly get the low one:
+**For phones.** When the posting cut is made and approved is in `docs/WORKFLOW.md`, "After
+review: publishing and posting". Bluesky re-encodes every video to two streams, and phones mostly get the low one:
 640×360, H.264 Main 3.0, about 0.95 Mbit/s. From a 1920×1080 upload it keeps the centre pixel of
 every 3×3 block (pixel 3x+1, 3y+1) and drops the other eight, unfiltered, in luma and chroma
 alike, so thin strokes and small text break up everywhere on screen, not only in the captions.
