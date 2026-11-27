@@ -24,7 +24,8 @@
 // only cuts on the same numbers (integration pass: it used to dress Larry a second time).
 import { WORLD, buildSkyline, drawSkyline } from '@late-cluster/show/stage/set.js'
 import { occlude, rectPath } from '@late-cluster/show/kit/draw.js'
-import { rng, clamp, tween, ease } from '@late-cluster/show/kit/ease.js'
+import { rng, clamp, tween, ease, hash01 } from '@late-cluster/show/kit/ease.js'
+import { logo } from '@late-cluster/show/stage/chrome.js'
 import { SCARF } from '@late-cluster/episode/segments/walk/costumes.js'
 import { WIN, roomBeyond, onAirDark, signDark, seatsDark, windowFrame, pool, workLamp, deskDark, deskEnvelope, exitDoor } from '@late-cluster/episode/segments/walk/studio-props.js'
 
@@ -57,7 +58,26 @@ const lerp = (a, b, u) => a + (b - a) * u
 const camLerp = (a, b, u) => ({ x: lerp(a.x, b.x, u), y: lerp(a.y, b.y, u), zoom: lerp(a.zoom, b.zoom, u) })
 
 /** which shot is on at t */
+/**
+ * The ident (round six, the owner's ask): the show's own logo, exactly as the title card draws it
+ * (chrome.js logo, centred like the end card's), lit from the first frame on plain black. It is the
+ * last thing of the show still on: at `logo-flicker` it stutters like a sign losing its power, at
+ * `logo-out` it goes out for good, and only at `dark-studio` does the switched-off studio come up,
+ * work lamp and all. Its level is a pure function of t, seeded per 1/14 s slot.
+ */
+function logoLevel(t, show) {
+  const f0 = show.at('logo-flicker'), f1 = show.at('logo-out')
+  if (t < f0) return 1
+  if (t >= f1) return 0
+  const u = (t - f0) / (f1 - f0)
+  const slot = Math.floor((t - f0) * 14)
+  if (slot === 0) return 0 // the first drop is a clean cut
+  if (hash01(slot, 731) < 0.22 + 0.5 * u) return 0 // off, more often as the power fails
+  return hash01(slot, 732) < 0.35 ? 0.4 : 1 // now and then only half lit
+}
+
 function shotAt(t, show) {
+  if (t < show.at('dark-studio')) return 'ident'
   if (t >= show.at('out-the-door') - DOOR_SWING) return 'door'
   if (t >= show.at('scarf-on') + SCARF.down) return 'collar'
   if (t >= show.at('ask')) return 'medium'
@@ -84,6 +104,12 @@ export default {
   direct(t, show, seg) {
     const shot = shotAt(t, show)
     seg.shot(shot)
+    if (shot === 'ident') {
+      // black: no set piece, no puppet, only the logo (drawBack)
+      for (const k of Object.keys(show.set)) show.set[k] = false
+      show.set.dim = 0
+      return
+    }
     const P = show.puppet('larry')
 
     if (shot === 'wide') {
@@ -128,6 +154,11 @@ export default {
   },
 
   drawBack(ctx, t, show, seg) {
+    if (shotAt(t, show) === 'ident') {
+      const a = logoLevel(t, show)
+      if (a > 0) logo(ctx, 640, 396, 1.5, { t, align: 'center', alpha: a })
+      return
+    }
     const on = lampOn(t, show)
     const shot = shotAt(t, show)
     show.world(ctx, (c) => {

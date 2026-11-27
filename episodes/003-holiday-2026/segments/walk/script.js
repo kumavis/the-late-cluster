@@ -20,7 +20,7 @@
 //                            road and half taken back. The owner's fourth idea, added 27 November 2026
 //     kural-guests  Tamil    told as he remembers it, as the reason he cannot leave us on the pavement
 // - The owner's five lines are marked. Only punctuation and capitals were tidied.
-// - The only words on screen are OPEN, DON'T WALK and WALK. The two translations quoted are named
+// - The only words on screen are the show's own logo at the opening, and OPEN, DON'T WALK and WALK. The two translations quoted are named
 //   in the credits (notes.json, "credits"), not during the walk.
 // - Nobody has hands. Things are already in place, or arrive from just out of frame.
 // - Larry is off the air: slower than on a show night, and nothing is pushed. Rates are marked
@@ -32,6 +32,35 @@ export default {
   beats: [
 
     // ── THE DARK STUDIO ─────────────────────────────────────────────────────────────────────
+
+    // The owner's note, 27 November 2026, on the cut put up for approval: "at the opening id like
+    // to see the official logo, but flicker out". So the special opens on the show's own logo,
+    // lit as on any show night, in the dark. It holds for a breath, flickers like a sign whose
+    // power has been cut, and goes out. What is left is the studio switched off.
+    { cue: 'logo' },
+    // The official logo, the studio's own and exactly as the studio draws it, fully lit from the
+    // very first frame: that frame is also the picture a feed shows before the video plays.
+    // Nothing else is lit.
+    { wait: 1.4 },
+    { cue: 'logo-flicker' },
+    // It stutters: off, on, half, off, on, a few times in about a second, never in a rhythm.
+    // Sound: a few dry electrical ticks with the flicker, quiet. Nothing that reads as an alarm.
+    { wait: 1.2 },
+    { cue: 'logo-out' },
+    // It goes out and stays out. Dark for a moment, and then the room is there.
+    // (sound editor) The flicker's ticks, laid back from this cue so none moves the cursor: quiet,
+    // dry clicks at uneven times (0, 0.13, 0.41, 0.52, 0.86, 0.93 s after logo-flicker), the
+    // unvoiced tick-2 and the brighter tick-3 in pairs and singles, every one quieter than the lamp
+    // (tick-1, 0.8) and the coin (tick-3, 0.7). The last, a little louder, is the sign going out.
+    // Before it, silence; after it, nothing until the car.
+    { sfx: 'tick-2', vol: 0.35, pan: 0.05, at: -1.2, hold: 0 },
+    { sfx: 'tick-3', vol: 0.2, pan: -0.05, at: -1.07, hold: 0 },
+    { sfx: 'tick-2', vol: 0.25, pan: 0.05, at: -0.79, hold: 0 },
+    { sfx: 'tick-3', vol: 0.15, pan: 0, at: -0.68, hold: 0 },
+    { sfx: 'tick-2', vol: 0.3, pan: -0.05, at: -0.34, hold: 0 },
+    { sfx: 'tick-3', vol: 0.12, pan: 0.05, at: -0.27, hold: 0 },
+    { sfx: 'tick-2', vol: 0.4, pan: 0, at: 0, hold: 0 },
+    { wait: 0.9 },
 
     { cue: 'dark-studio' },
     // Wide. The studio switched off: truss, curtain, couch and bandstand barely there, ON AIR

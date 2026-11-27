@@ -118,3 +118,13 @@ earlier draft had and the final script cut to stay at three.
 In two shots from our chair she sat just past the table's far corner, cut off along a line
 where no table was in front of her. Sent to the lead builder: nobody at the table is cut off
 by anything that is not actually in front of them.
+
+## 27 November 2026, evening: the logo at the opening
+
+Shown the cut with the fourth idea, the post text and the alt text as one set:
+
+> i think its great. at the opening id like to see the official logo, but flicker out
+
+So the set is liked and not yet frozen: the special now opens on the show's own logo, lit, which
+flickers and goes out, leaving the studio switched off. Three cues are added at the top of the
+script (`logo`, `logo-flicker`, `logo-out`) and no word changes.

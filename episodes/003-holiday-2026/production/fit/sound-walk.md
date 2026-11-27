@@ -281,6 +281,18 @@ Every line was heard in four takes in the full mix, with the snow's steps under 
 
 New length: **263.22 s**. `npm run check -- 003-holiday-2026 walk` passes.
 
+## Sixth follow-up: the logo at the opening
+
+- **The cues are at their set waits** (1.4 s, 1.2 s, 0.9 s, 3.5 s in all): `logo` 0.30, `logo-flicker` 1.70, `logo-out` 2.90, `dark-studio` 3.80.
+- **The logo, lit:** silence (0.3 to 1.7).
+- **The flicker:** seven quiet, dry ticks at uneven times, 1.70, 1.83, 2.11, 2.22, 2.56, 2.63, and the last, a little louder, at 2.90 as it goes out.
+  - They are the unvoiced `tick-2` (vol 0.25 to 0.4) and the brighter, shorter `tick-3` (vol 0.12 to 0.2), in uneven pairs and singles, so there is no rhythm and nothing like a clock or a buzz.
+  - Every one is quieter than the lamp (`tick-1`, 0.8) and the coin (`tick-3`, 0.7), and none is a lip pop like the footsteps.
+  - They are laid back from `logo-out` with `hold: 0`, so no tick moves a cue.
+- **After `logo-out`:** nothing until the far car at 5.00, 1.2 s after `dark-studio`, as before. Nothing after `dark-studio` changed.
+
+Length: **266.72 s**. `npm run check -- 003-holiday-2026 walk` passes.
+
 ## The mp3
 
 `/Users/xyz/Development/the-late-cluster/episodes/003-holiday-2026/public/audio/walk.mp3` (cues in `episodes/003-holiday-2026/segments/walk/cues.json`)

@@ -102,3 +102,14 @@ hoodie is applied in `crewLook`.
 | `table.js` | Sibyl's seat moves inside the right-hand end of the table's far edge, in both views. From the door she is at x 1030 (was 1112), and the far edge ends at 1090. From our chair she is at x 1680 (was 1790), and the corner is at 1830. Her wooden chair moves with her. The tabletop is now really in front of her from the chest down in every shot, so her cut-off lies along the table, with no level line running on past the corner. | She sat beyond the corner and was cut off in mid-air (`sibyl-first`, `larry-and-sibyl`). She is still at her plate for "It's my house." and looks up at Larry for "It's still the rule.". |
 
 **Looked at:** every table shot at full size and at 640 × 360 with `--caption-scale 1.4`. That covers the wide, `sibyl-first`, `band-end`, `larry-at-door`, `they-look`, `chair-in`, both `served` shots, `larry-and-sibyl` (both lines), `eppy-calls-it`, `the-meal` and `goodnight`. In each I checked Sibyl, the five along the far side, Larry in the gold chair, and the table's other end. Nobody else is cut off by anything that is not in front of them. One frame at every table cue printed no console warnings, and `npm run check -- 003-holiday-2026` passes.
+
+## Round six: the logo, flickering out
+
+`studio.js`: a new first shot, `ident`, from t = 0 to `dark-studio`.
+
+- **The logo.** It is the studio's own `logo()` from `@late-cluster/show/stage/chrome.js`, centred as the end card centres it (`align: 'center'`), at scale 1.5, on plain black. It is fully lit from frame one, with no fade in. No set piece and no puppet are drawn in this shot.
+- **Why on black.** The logo is the last thing of the show still on. The switched-off studio, the work lamp and Larry looking down come up only at `dark-studio`, after about a second of dark.
+- **The flicker.** It runs from `logo-flicker` to `logo-out`, in 1/14 s slots. Each slot is seeded (`hash01`), so it is a pure function of t. The first slot is a clean cut to off. After that each slot is off, half lit (alpha 0.4) or fully lit, and off more and more often as the power fails. From `logo-out` it is gone, and it is not drawn anywhere else in the special.
+- **Words on screen.** The logo carries words (THE LATE CLUSTER, with Larry Nx). This is the owner's own ask and the show's own ident. They join OPEN, DON'T WALK and WALK as the words on screen.
+
+**Looked at:** at full size and at 640 × 360, t = 0, the middle of the hold, nine frames through the flicker, the black after `logo-out`, and the first frames of `dark-studio` and `sees-us`. Nothing else in the opening changed. One frame at every studio cue printed no console warnings, and `npm run check -- 003-holiday-2026` passes.
