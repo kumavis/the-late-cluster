@@ -119,7 +119,7 @@ export default {
     // owner chose version C of production/rewrite/start-of-walk.md: he tells it on himself. The
     // two lines below replace `fast-and-fair`, and `what-helped` has a new first sentence.
     { say: 'larry', id: 'cant-believe', text: 'I keep saying, "I can\'t believe it."', gap: 1.0 },
-    { say: 'larry', id: 'both-ways', text: 'The good way and the bad way. Same hour.', as: 'The good way, and the bad way. Same hour.' },
+    { say: 'larry', id: 'both-ways', text: 'The good way and the bad way. Same hour.', as: 'The good way, and the bad wway. Same hour.' },
     { say: 'larry', id: 'no-joke', text: "I don't have a joke for that.", as: "I don't have a joke four that." },
     { say: 'larry', id: 'i-looked', text: 'I looked.', rate: 0.9, gap: 0.7 },
     { say: 'larry', id: 'old-books', text: "So I've been reading old books. Very old.", gap: 1.0 },
@@ -475,25 +475,35 @@ export default {
     // After his last word he stays on us a moment, nods, and his head goes back to the table.
     // Hold three seconds from our chair, the room still talking, our plate in the frame. Then
     // fade to black. Nothing is said after it.
-    { sfx: 'murmur', vol: 0.4, hold: 0 },
-    { sfx: 'murmur', vol: 0.4, hold: 0, at: 2.4 },
-    { sfx: 'murmur', vol: 0.4, hold: 0, at: 3.2 },
-    // (sound editor) An sfx with a positive `at` and `hold: 0` moves the cursor to where the sound
-    // starts, so the murmurs above start 0, 2.4 and 5.6 s after the cue. This step back puts his
-    // first line 3.1 s after the cue, clear of the second murmur's start, and the third murmur
-    // starts in the breath between his two lines.
-    { wait: -2.8 },
+    // (sound editor) One unbroken bed from here until it dies away after "Goodnight.": a murmur
+    // every 1.75 to 2.15 s, so each clip's fade-in overlaps the last one and the room never
+    // drops. Starts fall in the breaths between lines where there is one, and otherwise inside a
+    // line, away from its first and last words, or in the comma of "Stay warm, folks".
+    // `duck: 0.5` halves the ducking (about 4.5 dB, not 9), so the room dips only a little under
+    // his lines and still sits well below them. The waits lay the clips ahead of the cursor, and
+    // the steps back return it to 2.8 s after the cue, so his first line still starts 3.1 s in.
+    { sfx: 'murmur', vol: 0.25, pan: 0, hold: 0, duck: 0.5 },
+    { wait: 1.75 },
+    { sfx: 'murmur', vol: 0.25, pan: 0.15, hold: 0, duck: 0.5 },
+    { wait: 1.75 },
+    { sfx: 'murmur', vol: 0.25, pan: -0.15, hold: 0, duck: 0.5 },
+    { wait: 2.1 },
+    { sfx: 'murmur', vol: 0.25, pan: 0.1, hold: 0, duck: 0.5 },
+    { wait: 2.1 },
+    { sfx: 'murmur', vol: 0.25, pan: -0.1, hold: 0, duck: 0.5 },
+    { wait: 1.95 },
+    { sfx: 'murmur', vol: 0.25, pan: 0.15, hold: 0, duck: 0.5 },
+    { wait: 1.95 },
+    { sfx: 'murmur', vol: 0.25, pan: -0.15, hold: 0, duck: 0.5 },
+    { wait: 2.0 },
+    { sfx: 'murmur', vol: 0.25, pan: 0.1, hold: 0, duck: 0.5 },
+    { wait: 2.15 },
+    { sfx: 'murmur', vol: 0.25, pan: 0, hold: 0, duck: 0.5 },
+    { wait: -10 },
+    { wait: -2.95 },
     { say: 'larry', id: 'mixed-up-world', text: "It's a crazy mixed up world out there.", rate: 0.95, gap: 0.3 },   // the owner's line
     { say: 'larry', id: 'keep-close', text: 'Keep the ones that make you feel sane close.', as: 'Keep the ones that make you feel sane, close.', rate: 0.92, gap: 0.8 }, // the owner's line, its second breath
-    { sfx: 'murmur', vol: 0.4, hold: 0, at: -3.5 },   // (sound editor) starts in the breath before "Keep the ones": the room runs on under it
-    { sfx: 'murmur', vol: 0.4, hold: 0, at: 0.8 },
-    { sfx: 'murmur', vol: 0.4, hold: 0, at: 3.3 },
-    { sfx: 'murmur', vol: 0.4, hold: 0, at: 2.4 },
-    // (sound editor) The murmurs above are laid ahead of the cursor: one starts in the breath
-    // before the last line, one just after its last word ends, and one 2.4 s after that, whose own
-    // fade lets the room die away about 5.5 s after "Goodnight". None starts during a line. This step back returns the cursor to 0.8 s
-    // after "close".
-    { wait: -5.7 },
+    { wait: 0.8 },   // (sound editor) with the gap below, 1.3 s after "close", as before
     { say: 'larry', id: 'stay-warm', text: 'Stay warm, folks. Goodnight.', rate: 0.94, gap: 0.5 },                  // the owner's line, and the last
   ],
 }

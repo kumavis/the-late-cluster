@@ -218,3 +218,113 @@ Whether this is a speech can only be answered by people who watch it with sound.
 reviewers' measures ask three people. Your watch is the first of them.
 
 Still open from your notes: the air slot, and how the archive lists a special.
+
+---
+
+## Addendum, 27 November 2026: after the owner's watch
+
+The card above is the review as it was made and is left as written. Since then the owner has
+watched the video and changed four things. This addendum says what changed, which rows it
+touches, and whether the verdict stands. **It stands: approve, 19 of 24.**
+
+Every time in the card after `eyes-front` (32.9 s) is now 1.4 s early, because the start of the
+walk is one line longer. Times in this addendum are from the current `cues.json`.
+
+### What changed, all at the owner's word
+
+1. **Three visual notes, after watching** ("good. couple weak visual details"). The crossing's
+   side street now ends in one plain building, so nothing far shows through it. Nothing slides
+   along the table: the served bowl stands at Larry's left in one shot and is at our plate after
+   a cut, and the bowls of the meal are gone. Sibyl sits at the head of the table in an open
+   chair, is at her plate through "It's my house.", and lifts her head to look at Larry for
+   "It's still the rule." The owner chose to leave the second chair and the place setting
+   sliding in ("Leave it sliding"). The stage auditor's third round passes.
+2. **The start of the walk,** which the owner found too much on the negative. `fast-and-fair`
+   is gone. In its place: `cant-believe` (I keep saying, "I can't believe it.") and `both-ways`
+   (The good way and the bad way. Same hour.), and `what-helped` now begins "They couldn't
+   believe it, either." The owner chose it from three versions. Both gate reviewers gave the
+   three lines fresh, and the auditor passed them.
+3. **Two things this card listed for the owner's ears were worked on by the sound editor.**
+   `no-joke` is now heard as written. No layer of the room's sound now starts during the
+   owner's last lines.
+
+The segment is now 251.1 s (4:11.1), with 403 spoken words and 11 sung, in 60 spoken lines.
+
+### What I checked this time
+
+- **Read:** the owner's notes after "on to the video"; the three versions of the start; both
+  gate reviewers' second-round files and the combined record; the auditor's second round on the
+  script and third round on the frames; the builder's round three; the fit report's second and
+  third follow-ups; the second cold viewing; the script and the cues as they stand.
+- **Ran:** `npm run check -- 003-holiday-2026` (passes at 251.129 s), `npm run verify`
+  (0 problems) and `npm run on-record -- 003-holiday-2026` (findings=0).
+- **Looked at:** 51 frames I shot on the current timeline, of the start of the walk, the
+  crossing, the table and the end. The audit set in `shots/003-holiday-2026/_audit/` is older
+  than the rewrite: its index still lists `fast-and-fair` and its last frame is at 249.62. So
+  these are the only frames anyone has looked at of the new lines. Their captions are exact and
+  the picture under them is the same profile shot. The shoot printed no warning.
+- **Measured:** the room's level around the last lines.
+- **Still not heard** by me. The owner has watched the video; that watch was before the start
+  of the walk was rewritten.
+
+### Which rows it touches
+
+No score changes. Six rows' evidence does.
+
+| row | was | now | what changed in the evidence |
+|---|---|---|---|
+| Step 0 | clean | clean | The street's retell is now: he asks how you have been, agrees with an answer nobody hears, says he keeps saying "I can't believe it", the good way and the bad way, and that he has no joke for that. Its turn is unchanged. The label for the whole began "Rattled", which is no longer a word of the script; the feeling it named is the same |
+| A6 | pass | pass | The lines that carried the owner's context were `fast-and-fair` and `q-put-right`. Now they are `cant-believe`, `both-ways` and `q-put-right`. None names an event, a person or a side, and "the bad way" is never given a subject. The auditor's second round passes them and I agree |
+| A11 | pass | pass | Check, verify and on-record all pass on the cut as it stands |
+| A13 | pass | pass | 62 items on record, two verdicts each, all fresh, matching the 62 lines exactly. The second-round reasons read the new lines against the nearest things on the record and I agree with each. Sibyl's look and a bowl carried by a cut repeat nothing |
+| A16 | pass | pass | "drug" is gone: `no-joke` is heard as written in three takes and as "a joke for the two" in one. One new thing: `both-ways` is heard with "best" for "bad" in two takes of four. That is not crude or alarming, but it turns the line round, and it is listed below. `cant-believe` and `what-helped` are heard as written in all four. "hit" for "eat" and "had" is as it was |
+| B4 | 2 | 2 | Two pictures are staged differently and both are on their words. The bowl stands at Larry's left with his head turned to it (220.4, 220.9) and after the cut is at our plate with his look on it (221.4). Sibyl's chin is down through `my-house` (222.7, 223.5) and her head is up and turned to him for `still-the-rule` (224.0, 224.5) |
+| B7 | 1 | 1 | The single profile shot on the street is now 19.3 s under six lines (32.88 to 52.18), inside 33.9 s on one framing. The side street's clean end is an improvement that no row measures |
+| B8 | 1 | 1 | The count is now 37 of 60 spoken lines still heard differently in at least one take, about twenty-four of them losing a word that matters. The names and the quotation are as they were |
+| B9 | 1 | 1 | The seams I listed are gone and a hole has taken their place. The room's layers now start at 234.14, 237.34, 237.51, 241.81, 245.11 and 247.51, each in a gap. But the two layers under `keep-close` both end at 240.4, as "close." begins, and the next starts at 241.8. Measured from 241.10 to 241.75 the mix is at minus 78 dB RMS, against minus 30 for the room in the meal. So the room is silent under the owner's word "close" and for 0.8 s after it. The chair and the burst are as they were |
+| B10 | 2 | 2 | 4:11.1 against the owner's four minutes |
+| B12 | 1 | 1 | The owner has watched it and called it good, which is the first watch by a person. The measure's three people who have not read it have not. Three cold viewers were shown the changed lamp, snow and hatch again: the lamp is a lamp, the snow is seen, the hatch is named a kitchen hatch. The figure at the window and the look were not shown again |
+
+Unchanged in score and evidence: A1 to A5, A7 to A10, A12, A14, A15, B1, B2, B3, B5, B6, B13.
+Two of them gain something. B1: the owner's "crazy mixed up world" is now set up in the first
+minute by good and bad in the same hour. B6: the one line in which Larry described the world is
+gone, so nothing of his now says what is wrong with it.
+
+**Total: 19 of 24,** as before (2, 1, 2, 2, 2, 2, 1, 1, 1, 2, 1, 2; B11 not applicable). No
+zero. **The verdict stands.**
+
+### The gate reviewers' notes on what the rewrite thins
+
+I agree with both, and neither moves a score. The cook: nobody now says that things are fast,
+but the hurry he answers is still spoken at the window ("One cook in back, feeding the whole
+room.") and shown behind it, so the first idea holds on less. The crossing is the thin place:
+"What if none of it ever gets put right?" has only "the bad way", a minute and a half earlier,
+to point back to, so the owner's "justice seems rare" is now carried by that one question, and
+it comes from us. That is the note doing what it asked. It is for the owner's ear and not a
+fault.
+
+### Papers that now lag behind the cut
+
+- The audit frames are of the 249.67 s cut (above).
+- The fit report's standing list still carries `fast-and-fair` and the old `what-helped`.
+- `segments/walk/notes.json` still gives the feeling as "Rattled, walked home, let in".
+- `production/dna-amendments.md` was written before the owner's watch and says nobody has
+  watched it with sound.
+- The second cold viewing answers this card's note that the viewers were not asked again, for
+  sets 1 to 3.
+
+### New for the owner
+
+- **Listen to "The good way and the bad way. Same hour."** (36.5 to 39.4). Two takes of four
+  were heard as "the good way, and the best way". "Bad" is the only word left for the dark half.
+- **"Same hour."** (38.8) and **"Some nights."** (55.5) are two clipped phrases of time, close
+  in sound, 17 s apart, and the second is the better line.
+- **Listen to the hard question** (126.0). It now arrives with less before it. It should not
+  seem to come from nowhere.
+- **Listen to the room under your last lines.** It falls silent as you say "close" (240.4) and
+  comes back half a second before "Stay warm" (241.8); it fades again under the end of
+  "Goodnight." and returns for five seconds. A hush, or a dropout?
+- **Watch the bowl** (220.2 to 222.0): it no longer moves. Does it read as one bowl that went
+  past him, and does "It's my house." (222.3) still land on it?
+- **Watch Sibyl** (223.6 to 224.7): she looks up at him to say it.
+- Nobody but this review has looked at frames of the new lines.

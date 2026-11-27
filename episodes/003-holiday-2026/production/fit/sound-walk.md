@@ -82,7 +82,7 @@ Two kinds of line here are a real person's words: the owner's lines, which are m
 - no-show (the owner's): "Oh, no short night, folks, holidays and all." ×4
 - mail-it, unsayable: "let me let I like the rock home" ×4. "They'd" and "walk" are recorded
 - walk-with-me (the owner's): "Would you lock with me a bit?" ×4
-- fast-and-fair: "Think move fast glitchy, and fair is hard to find." ×3
+- cant-believe, both-ways (replacing `fast-and-fair`, which is no longer in the script): see the third and fourth follow-ups
 - no-joke: now `a joke four that`: as written ×3, "I don't have a joke for the two." ×1 (see the second follow-up: it was heard as "drug")
 - old-books: "So I didn't ignore books. Very old." ×4
 - what-helped: "People read them too, some wrote down what helped." ×4
@@ -160,7 +160,7 @@ New length: **249.73 s** (+7.93 s on 241.80). `npm run check -- 003-holiday-2026
 
 The script now has `I don't have a joke four that.` "four" is the strong vowel of "for" (/fɔɹ/ for /fəɹ/), and "joke" is the plain word. No take hears "drug". The line is 0.06 s shorter.
 
-**Nothing in the room starts during the owner's last lines or `stay-warm` any more.** Before, a murmur started at 239.0, on "close", and another at 243.56, under the end of "Goodnight." Now:
+**(Superseded by the fourth follow-up: this left a hole in the room on "close".)** Nothing in the room starts during the owner's last lines or `stay-warm` any more. Before, a murmur started at 239.0, on "close", and another at 243.56, under the end of "Goodnight." Now:
 - The fill is laid at −3.5 instead of −0.6, so it starts at 236.05, in the breath before "Keep the ones" (236.47 to 239.55), and runs under it with the murmur from 235.88.
 - One starts at 240.35, in the breath before "Stay warm" (240.85 to 243.60).
 - One starts at 243.65, after "Goodnight." (`at` 3.15 → 3.3).
@@ -187,6 +187,46 @@ These lines replace `fast-and-fair`, and `what-helped` has new words, as the own
 **Footsteps.** The stretch is 1.0 s longer, which had opened a missed step between `steps-street-3` and `-4`. `steps-street-4` is now 12 beats laid back from `stop-at-window`: it starts at 50.72, one stride (0.63 s) after his last step in block 3, and still stops on the cue (57.78).
 
 New length: **251.13 s**. `npm run check -- 003-holiday-2026 walk` passes.
+
+## Fourth follow-up: one unbroken room at the end, and "bad"
+
+**`both-ways`.** "bad" was heard as "best" in two takes of four, which turns the line inside out. Every try, each heard in four takes (line alone unless marked):
+
+| spelling or rate | heard as |
+|---|---|
+| `The good way, and the bad way.` (was in the script) | "bad" ×3, "best" ×1 alone; "bad" ×2, "best" ×2 in the full mix |
+| `badd` | "bad" ×3, "best" ×1 |
+| `bad, way` | "bad" ×4, but "and the" heard as "went to the" ("The good way went to the bad way") ×4 |
+| `badd, way` | "bad" ×4, "and" heard as "went (to)" ×3 |
+| `bad, way` at rate 1.04 | "The good way went the bad way" ×4 |
+| `bad, way` without the comma after "way" | "The cutway into the back, the way" ×4 |
+| `thee bad` | "best" ×4 |
+| `bbad` | "best" ×4 |
+| `the, bad` | "best" ×4 |
+| rate 0.92 | "best" ×4 |
+| `badd` at rate 0.94 | "best" ×4 |
+| rate 1.05 | "best" ×4 |
+| **`bad wway`** (a held w; the sounds are the word's) | **as written ×4**. In the full mix: "The good way, and the bad way, same hour." ×3, "The good way and the bad way, same hour." ×1 |
+
+The script now has `The good way, and the bad wway. Same hour.` "bad" is heard in every take.
+
+**The room under the last lines** is now one bed. It runs from before `mixed-up-world` until it dies away after "Goodnight.". Nine murmurs at vol 0.25, starting 1.75 to 2.15 s apart, at 231.80, 233.55, 235.30, 237.40, 239.50, 241.45, 243.40, 245.40 and 247.55. Each one's fade-in overlaps the last.
+- Starts in a gap: 231.80, 233.55, 237.40, 241.45, 245.40 and 247.55.
+- Starts inside a line, away from its first and last words: 235.30 at "crazy", 239.50 at "feel", and 243.40 in the comma of "Stay warm, folks".
+- The bed has `duck: 0.5`, so under speech it drops about 4.5 dB rather than 9.
+- The `keep-close` fill and the later murmurs are replaced by a plain `wait: 0.8`, so `stay-warm` starts exactly where it did.
+
+**Measured, the room alone** (rendered with the three lines silent, so the ducking is as heard), in half-second windows from 234.9 s:
+- Between the first line and the die-away (to 249.4) it lies between **−41.2 and −33.9 dB**. No two neighbouring windows differ by more than about 3 dB, and there is no silence.
+- It dies away −38.7, then −42.2, then silence by 250.4, over the last second.
+- In the full mix the speech windows measure −12.7 to −21 dB, so the lines sit 15 to 25 dB above the room.
+
+**How the last lines are heard over the new bed:**
+- `mixed-up-world`: "It's crazy mixed up world out there." ×2 and "…mixed up real loud there." ×2. It was 7/8 under the old, fully ducked room.
+- `keep-close`: "Keep the ones that make you feel safe, closed." ×4.
+- `stay-warm`: as written ×4.
+
+New length: **251.17 s**. `npm run check -- 003-holiday-2026 walk` passes.
 
 ## The mp3
 
