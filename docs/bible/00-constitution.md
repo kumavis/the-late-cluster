@@ -54,7 +54,9 @@ exchange the show stages that recreates the occasion they said them on. A real p
 answer something it wasn't answering, never stitched together from unrelated conversations, and
 never staged so that it means something its author didn't. The show's own characters may set up,
 react and joke around real posts, but never restate, paraphrase or summarise a real person's view
-in words that person did not use. Chapter 9 (R3, R4) says how.
+in words that person did not use. Chapter 9 (R3, R4) says how. What someone sent the show's account
+by direct message counts as published only once they have said the show may quote it (chapter 9,
+R2).
 
 Asking someone and waiting for a reply is only ever an option, as in an interview; nothing in the
 process waits on a reply.

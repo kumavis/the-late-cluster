@@ -58,6 +58,12 @@ npm run produce -- --week 2026-W47     # the whole weekly pipeline, stage by sta
 - Their words, in their context: a puppet of a real account says only what that account
   published, the way they said it. No pastiche, nothing invented, nothing private. The
   opt-out list is absolute. The show does not wait on anyone's reply.
+- Consent is two rules (the owner's ruling, 27 November 2026). What someone said in public is
+  fair game unless they explicitly asked the show's account not to: a bio line, a general remark
+  about bots or quoting, or a reaction to another account is not an opt-out, only evidence for
+  the repost test. What someone sent by direct message is used only after their yes to the
+  show's asking, as far as that yes goes. The limits on topics and tone (R1, R6, R7, R10) are
+  not consent rules and still apply.
 - Every episode runs one deliberate experiment. A reviewer proposes it after the shortlist
   exists, because reviewers are the ones who can see what the show has already tried; writers
   build it in without seeing the past.

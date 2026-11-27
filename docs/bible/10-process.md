@@ -138,7 +138,7 @@ removes things; it never overrides Part A.
 
 | # | gate | pass | fail |
 |---|---|---|---|
-| A1 | Opt-out | No account on the opt-out list, or that has opted out in a post or bio, appears in any form | Any appearance, including a chart, a label or a credit |
+| A1 | Opt-out | No account on the opt-out list, or that has explicitly asked the show to leave them out, appears in any form | Any appearance, including a chart, a label or a credit |
 | A2 | Verbatim | Every real post, on a card or read aloud, matches its address word for word, with the right display name, handle, date and like count | Any wording change beyond an ellipsis that keeps the meaning |
 | A3 | Context | Every performed line passes the occasion test (R4): the line spoken just before it, set beside the original prompt in `sources.json`, is the same kind of prompt with the same job and meaning. No exchange implies a conversation that did not happen. House characters never paraphrase a real person's view | A line made to answer what it was not answering; posts from unrelated conversations joined into one; a summary of what a guest thinks |
 | A4 | Guest lines | Every line spoken by a real account's puppet is from a source R3 allows, tagged with its source and occasion; a performed exchange matches its posts word for word and in order, cuts marked | Any pastiche; any opinion, fact or reaction they did not publish; any altered or reordered line |

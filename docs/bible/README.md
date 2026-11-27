@@ -82,7 +82,9 @@ for about eight minutes; the ceiling is ten; there is no minimum.
   words. No pastiche. A line may be staged only in an exchange that recreates the occasion it was
   said on; never made to answer what it was not answering, never stitched from unrelated
   conversations. House characters never paraphrase a real person's view.
-- Persona, not person. Public posts in the cluster only. Nothing private, offline or personal.
+- Persona, not person. Public posts in the cluster only. Nothing offline or personal. What is said
+  in public is fair game unless they explicitly asked the show's account not to; a direct message
+  is used only after its sender's yes.
 - Real posts are exact, credited and sourced. Invented things use `.example` and look invented.
 - The repost test: every real person in a joke would happily repost it. Small accounts only as
   heroes. Winners may be named; nobody else in a ranking ever is.

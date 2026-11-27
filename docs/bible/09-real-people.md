@@ -26,14 +26,24 @@ personal rather than part of the persona.
 *Why:* the persona is a character the person chose to perform in public. The person behind it did
 not choose to be in a show.
 
-### R2. Nothing private, nothing deleted, nothing from outside
+### R2. Public posts freely, a direct message only with a yes, nothing deleted, nothing from outside
 
-Material comes from public posts in the digest. Not from DMs, private groups, Discords, deleted
-posts, other platforms, screenshots someone else took, or what an account's followers say about
-them.
+Material comes from public posts in the digest. What someone said in public may be used, under the
+rest of this chapter, unless they have explicitly asked the show's account not to (R11). The
+owner's ruling, 27 November 2026: "anything said in public is fair game unless they explicitly
+asked this account to not do that".
+
+What someone sent the show's account by direct message is private until they say otherwise. It is
+used only after they have answered yes to the show asking permission, for example the blanket
+permission asked in an interview ("Interviews by the show's account" below), and only as far as
+that yes goes. Until then it is not quoted, performed, described or committed. No answer means no.
+
+Never from private groups, Discords, deleted posts, other platforms, screenshots someone else took,
+or what an account's followers say about them.
 
 *Why:* the show uses what people published, in essentially its original context
-([constitution](00-constitution.md), Article 3). Anything else, the person reasonably thought had a
+([constitution](00-constitution.md), Article 3). A direct message was written for one reader, so
+only its sender can give it a wider audience. Anything else, the person reasonably thought had a
 smaller audience.
 
 ### R3. Don't put words in their mouths
@@ -45,8 +55,9 @@ A puppet that stands for a real account says only words that account published, 
    around it), or spoken in an exchange the show stages that recreates the occasion they were said
    on (R4).
 2. **Answers they gave the show's account**, verbatim, always with the question that was asked: that
-   question is the answer's occasion. *Proposal: depends on bot work not yet built and on
-   "Interviews by the show's account" below.*
+   question is the answer's occasion. A public reply to the account is a public post (R2). An
+   answer by direct message counts only once its author has said the show may quote it
+   ("Interviews by the show's account" below).
 3. **Their catchphrases, used the way they use them** (the owner's ruling): the same function, the
    same kind of occasion, the same meaning as in their own posts. This is R4's test applied to a
    phrase they repeat. Each catchphrase is listed for the account in `production/sources.json` with
@@ -73,12 +84,14 @@ its occasion:
 
 - `// verbatim: at://<post> · context: at://<the post it replied to>` (for a top-level post, the
   context is the post's own URI);
-- `// interview: at://<answer> · context: at://<the show's question>`;
+- `// interview: at://<answer> · context: at://<the show's question>` (for an answer by direct
+  message, the two message ids in place of the addresses);
 - `// catchphrase: "<phrase>" · context: at://<a post where the author uses it this way>`.
 
 For each such line, `sources.json` records the post, its parent's URI and text (or, for a top-level
 post, one line on the situation it was said in), and the show's own setup line, so the reviewer can
-compare them. `// invented` is for fictional characters on `.example` only. There is no pastiche tag
+compare them. For an answer by direct message it also records the id of the message in which the
+person said yes. `// invented` is for fictional characters on `.example` only. There is no pastiche tag
 for a real account.
 
 *Why:* a puppet saying something in a person's voice is heard as the person saying it, and a clip
@@ -222,11 +235,16 @@ where the person on the other end may be having the worst week of their year.
 
 `packages/scraper/config/` holds the opt-out list. An account on it never appears in any form: not as
 a guest, not quoted, not named, not shown in a screenshot or a chart, not described identifiably.
-Also treat these as opt-outs, even if the list has not caught up:
 
-- a post saying they don't want to be in the show, or dislike being quoted or clipped;
-- a request to the show's account;
-- a bio that says not to quote, screenshot or repost them.
+An opt-out is an explicit ask to the show: a reply or a tag to the show's account, a direct message
+to it, or a post that says they don't want to be in the show. Treat it as an opt-out from the
+moment it is made, even if the list has not caught up. An ask about one thing (not to be tagged,
+not to be messaged) is honoured for that thing.
+
+Not an opt-out by itself: a general remark about bots, quoting or screenshots; a line in a bio
+addressed to everyone; how someone reacted to another account. What is said in public is fair game
+unless they explicitly asked this account not to (the owner's ruling, 27 November 2026, quoted in
+R2). These remarks are still read, because they are evidence for the repost test (R6).
 
 After airing, an opt-out request means: remove them from all future episodes and from
 [lore](lore.md), and tell the reviewer, who decides whether a published episode needs re-cutting.
@@ -247,8 +265,10 @@ A bot account is run by a person, and the person is who the rules protect. Treat
 the operator's persona. Ask whether quoting the bot quotes someone else (BorJev quotes other
 people's posts; the quoted author is the one to check). The show's own account may tag the accounts
 that appear in an episode, in the post that announces it or in a reply under it: they have passed
-every gate to be there. It tags nobody else, and takes a tag off when the person asks. Interviews by
-the account follow the rules in the next section.
+every gate to be there. It tags nobody else, and takes a tag off when the person asks. It speaks
+only under its own posts and by direct message, never in someone else's thread (the owner's ruling,
+22 November 2026: "we're not crashing the middle of someone elses thread - thats the important
+distinction"). Interviews by the account follow the rules in the next section.
 
 ### R14. Recurring guests are re-checked every week
 
@@ -263,42 +283,52 @@ post.
 A reference you can't explain might be a private joke, a sore spot, or about someone's life. You can't
 check it, and you can't write a fair joke on it. Mark it unclear in the pitch and move on.
 
-## Interviews by the show's account (proposal)
+## Interviews by the show's account
 
-**Not built. This depends on bot work that does not exist yet** (`packages/bot` only announces
-episodes today). It is designed here so that asking is done right before anything is built.
+The show's account asks one person questions by direct message (`npm run bot -- dm send` and
+`dm read`). The bot is a command a person runs: it watches nothing and answers nobody on its own,
+and every message is sent on the owner's word.
 
 - **An occasional extra, never a prerequisite.** Featuring someone's public posts never depends on
   interviewing them. An unanswered question never blocks an episode: it goes ahead without that
   answer, and the pipeline never waits for a reply.
-
-- **How people come to be asked.** Only two ways: they answer an open call (a public post from the
-  show's account, "We're asking a question for next week's episode; reply if you'd like to be asked"),
-  or they are on a list of people who have said yes, by tagging or replying to the account. Never a
-  cold mention, never a reply to someone who hasn't addressed the account, never a direct message.
-  This follows Bluesky's guidance for bots: interact only with people who have tagged the account.
-- **What every question discloses.** That the answer may be performed word for word by a puppet on
-  the show, with their handle on screen, and posted publicly; and how to withdraw.
-- **The show's reviewer approves every question** before it is posted. Questions are light and about the
-  person's own work or the week: never about R10 topics, never about other people, never leading
-  towards a joke at their expense.
-- **Answers are public replies**, used verbatim under R3 and The Thread's rules. Nothing is collected
-  privately.
-- **Withdrawal until air.** Deleting the reply, or replying "withdraw", removes it. The pipeline
-  re-fetches every answer before the build; a deleted or edited answer is dropped, and the person is
-  not used that week.
-- **Small accounts** who opt in may appear, still only as heroes (R7).
+- **Who may be asked.** Anyone whose public posts the show could feature, unless they are on the
+  opt-out list or have asked the show's account not to contact them. The show asks by direct
+  message, never by turning up in someone else's thread (R13). A message carries no mention and no
+  link.
+- **What the first message says, plainly and out of character.** That this is the show's account;
+  that its messages are written by the show's AI writers' room and a person reads the answers;
+  that what they say stays with the production; that none of it is quoted or performed unless they
+  say it may be; and that they are free to ignore it.
+- **The permission.** The show asks, in so many words, whether it may use the conversation and what
+  follows from it, and whether it may quote them directly or only carry the sentiment. It is a
+  blanket permission: one yes covers the conversation, at the level they chose. No answer means no.
+  Until there is a yes, nothing they sent is quoted, performed, described or committed (R2).
+  - *Quote directly:* an answer may be performed word for word by a puppet with their handle on
+    screen, under R3 and R4, with the question that was asked.
+  - *Sentiment only:* what they said may shape what the show does. Nothing is attributed to them on
+    air, because R3 forbids restating a person's view in words they did not use.
+- **The owner approves every message** before it is sent. Questions are light and about the
+  person's own work, the week or the show: never about R10 topics, never about other people, never
+  leading towards a joke at their expense.
+- **Withdrawal until air.** Saying so in the conversation at any time before the episode airs takes
+  the yes back, for one answer or for all of it, and so does deleting a message. The conversation
+  is read again before the build, and anything withdrawn or deleted is dropped.
+- **Where the text lives.** Message text stays in the gitignored `data/bot/dm/`. Only what a yes
+  covers and an episode uses is committed, in that episode's `sources.json`, with the ids of the
+  question, the answer and the yes.
+- **Small accounts** who say yes may appear, still only as heroes (R7).
 - **On screen,** the answer's card carries *ANSWERED FOR THE SHOW · <date>*.
 
-The process would gain a mid-week stage (see [process](10-process.md)): ask early in the week,
-collect replies before the scrape.
+Interviews run beside the weekly pipeline, not inside it: no stage sends a message or waits for
+one.
 
 ## What the reviewer checks
 
 For every episode, before approving. Any "no" is a send-back.
 
 1. Every real account that appears is listed in `production/sources.json`, and none is on the opt-out
-   list or has opted out in a post or bio.
+   list or has explicitly asked the show to leave them out (R11).
 2. Every line spoken by a puppet of a real account is that account's verbatim post, an interview
    answer with its question, or a catchphrase used the way they use it (listed in `sources.json` with
    posts showing that use), each tagged with its source and the occasion it was said on. No pastiche. No puppet of a real
@@ -316,5 +346,7 @@ For every episode, before approving. Any "no" is a send-back.
 8. Every guest chyron shows PUPPET · PARODY; a disclaimer runs at the first guest; the credits list
    the personas; tributes are credited.
 9. Nothing in the episode would be a false claim about a real person if screenshotted alone.
-10. Every interview answer (when interviews exist) came from someone who opted in, was given to a
-    question the show's reviewer approved, and is still live at build time.
+10. Every interview answer is a public reply to the show's account, or a direct message whose author
+    said yes to being quoted, with that yes on record in `sources.json`. It is shown with the
+    question it answered, and it has not been deleted or withdrawn at build time. Nothing else from
+    a direct message appears, and nothing from one is attributed to its author in other words.
