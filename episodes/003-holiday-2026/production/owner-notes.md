@@ -78,3 +78,9 @@ now the only things on the table that move by themselves. Asked whether the plac
 should arrive by a cut too, the owner answered:
 
 > Leave it sliding
+
+## 27 November 2026: the start of the walk
+
+> one thought - at the start of the walk i think theres a little too much negativity, or focus
+> on it. things are changing fast, horrors are witnessed, incredible joys are experienced. a lot
+> is happening. how can we convey that a bit better.
