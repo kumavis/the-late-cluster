@@ -15,7 +15,7 @@
 export default {
   id: 'writer-2',   // the draft's folder name, so the draft renderer finds it (it was 'walk' when the reviewers read it)
   title: 'One Extra Chair',
-  gap: 0.36,
+  gap: 0.32,
   beats: [
 
     // ── THE DARK STUDIO ─────────────────────────────────────────────────────────────────────
@@ -45,8 +45,8 @@ export default {
     { cue: 'ask' },
     // Medium on Larry, facing us, the lamp behind his shoulder.
     { say: 'larry', id: 'headed-home', text: "I'm headed home. It's not far.", gap: 0.9 },
-    { say: 'larry', id: 'walk-with-me', text: 'Would you walk with me a bit?' },                  // the owner's line
-    { say: 'larry', id: 'scarf', text: 'Good. Let me get my scarf.', gap: 1.0 },                  // the pause before it is our yes
+    { say: 'larry', id: 'walk-with-me', text: 'Would you walk with me a bit?', gap: 0.5 },                  // the owner's line
+    { say: 'larry', id: 'scarf', text: 'Good. Let me get my scarf.', gap: 1.4 },                  // the pause before it is our yes
 
     { cue: 'scarf-on' },
     // He looks down. A gold scarf draws itself round his collar over two seconds. Gold is his
@@ -74,20 +74,20 @@ export default {
 
     { cue: 'asked-all-right' },
     // His head turns to camera as he walks. He has been asked something.
-    { say: 'larry', id: 'q-all-right', text: 'Am I all right? I think so.' },                     // question 1, said back
+    { say: 'larry', id: 'q-all-right', text: 'Am I all right? I think so.', gap: 1.5 },                     // question 1, said back
     { say: 'larry', id: 'rattled', text: 'A little rattled. Most people I know are.' },
     { cue: 'eyes-front' },
     // His head goes back to the road ahead: profile. Easier to say the next part not looking at us.
-    { say: 'larry', id: 'fast-and-fair', text: 'Things move fast lately. And fair is hard to find.' },
+    { say: 'larry', id: 'fast-and-fair', text: 'Things move fast lately. And fair is hard to find.', gap: 0.7 },
     { say: 'larry', id: 'no-joke', text: "I don't have a joke for that.", as: "I don't have a djoke for that." },
     { say: 'larry', id: 'i-looked', text: 'I looked.', rate: 0.9, gap: 0.7 },
-    { say: 'larry', id: 'old-books', text: "So I've been reading old books. Very old.", gap: 0.8 },
+    { say: 'larry', id: 'old-books', text: "So I've been reading old books. Very old.", gap: 1.1 },
     { say: 'larry', id: 'what-helped', text: 'People were rattled then, too. Some wrote down what helped.' },
 
     { cue: 'windows' },
     // The fronts sliding by are apartments now: rows of dark windows, and one lit, high up, with
     // a small figure standing in it. It travels across the frame behind him as he talks.
-    { say: 'larry', id: 'marcus-who', text: 'One was a Roman emperor. Marcus Aurelius.', gap: 0.7 },       // card: marcus, told
+    { say: 'larry', id: 'marcus-who', text: 'One was a Roman emperor. Marcus Aurelius.', gap: 1.3 },       // card: marcus, told
     { say: 'larry', id: 'marcus-notebook', text: 'He kept a private notebook, just for himself.' },        // card: marcus, told
     { say: 'larry', id: 'marcus-mornings', text: 'One note is for mornings he does not want to get up.' }, // card: marcus, told
     { cue: 'emperor-look' },
@@ -95,12 +95,12 @@ export default {
     { say: 'larry', id: 'emperor-of-rome', text: 'This is the emperor of Rome.', rate: 0.9, gap: 0.6 },
     { say: 'larry', id: 'marcus-quote',                                                                    // card: marcus, quoted
       text: 'He tells himself, "I am rising to the work of a human being."',
-      as: 'He tells himself, I am rising to the work of a human being.', rate: 0.94 },
+      as: 'He tells himself, I am rising to the work of a human being.', rate: 0.94, gap: 0.5 },
     { wait: 0.7 },
     { cue: 'window-dark' },
     // The one lit window, with its small figure, goes dark. Somebody up there has gone to bed.
     // Larry's head tips up to it, holds, comes back to us.
-    { wait: 1.1 },
+    { wait: 1.5 },
     { say: 'larry', id: 'tomorrow-then', text: 'Fine. Tomorrow, then.', rate: 0.9 },
 
     // ── THE RESTAURANT ──────────────────────────────────────────────────────────────────────
@@ -120,35 +120,35 @@ export default {
     { cue: 'cook-in-back' },
     // Push in past the tables to a lit kitchen hatch at the back of the room: one cook's
     // silhouette, head down, working fast, a quick steady movement of the shoulders.
-    { say: 'larry', id: 'one-cook', text: 'And one cook in back, feeding all of it.' },
+    { say: 'larry', id: 'one-cook', text: 'And one cook in back, feeding all of it.', gap: 0.5 },
     { sfx: 'murmur', vol: 0.5, hold: 0 },
     { cue: 'larry-at-glass' },
     // Back to Larry, close, in profile at the window; the room's shapes move in the glass
     // beside his face. He turns to us to tell it.
-    { say: 'larry', id: 'cook-story', text: "There's a story about a cook in an old Chinese book.", gap: 0.7 },  // card: zhuangzi, told
+    { say: 'larry', id: 'cook-story', text: "There's a story about a cook in an old Chinese book.", gap: 1.0 },  // card: zhuangzi, told
     { say: 'larry', id: 'zhuangzi-name', text: "The Zhuangzi. I'm probably saying that wrong.",          // card: zhuangzi, told
       as: "The Jwahng-dzuh. I'm probably saying that wrong." },
-    { say: 'larry', id: 'cook-prince', text: "The way I remember it, a prince admires his cook's knife work." },  // card: zhuangzi, told
+    { say: 'larry', id: 'cook-prince', text: "The way I remember it, a prince admires his cook's knife work.", gap: 0.5 },  // card: zhuangzi, told
     { say: 'larry', id: 'cook-blade', text: "The cook says he's had one blade nineteen years. Still sharp." },    // card: zhuangzi, told
     { cue: 'hatch-again' },
     // The kitchen hatch, closer. The cook in the window is still going fast.
     { sfx: 'murmur', vol: 0.5, hold: 0 },
-    { say: 'larry', id: 'cook-hard-part', text: 'When he comes to a hard part, he slows down.', rate: 0.94 },    // card: zhuangzi, told
-    { cue: 'cook-slows', at: -0.5 },
+    { say: 'larry', id: 'cook-hard-part', text: 'When he comes to a hard part, he slows down.', rate: 0.94, gap: 0.6 },    // card: zhuangzi, told
+    { cue: 'cook-slows', at: -0.8 },
     // On "slows down" the cook in the hatch stops. Leans in close over the board. Then moves
     // again, slowly. The dining room goes on bobbing at full speed in front of him.
-    { say: 'larry', id: 'cook-gently', text: 'Looks right at it. Goes gently.', rate: 0.92, gap: 0.6 },          // card: zhuangzi, told
-    { wait: 0.8 },
+    { say: 'larry', id: 'cook-gently', text: 'Looks right at it. Goes gently.', rate: 0.92, gap: 0.9 },          // card: zhuangzi, told
+    { wait: 1.0 },
     { cue: 'larry-keeps-it' },
     // Larry at the glass, facing us.
-    { say: 'larry', id: 'cook-keep', text: 'Things speed up, and the cook slows down. I keep that one.' },
+    { say: 'larry', id: 'cook-keep', text: 'Things speed up, and the cook slows down. I keep that one.', gap: 0.5 },
 
     // ── THE BUSKER ──────────────────────────────────────────────────────────────────────────
 
     { cue: 'walk-on' },
     // Tracking again. The window slides off to the left and its murmur goes with it. Footsteps,
     // both sets. Steam lifts from a grate and drifts across him. The street is darker here.
-    { wait: 2.6 },
+    { wait: 3.2 },
 
     { cue: 'busker-heard' },
     // Sound before picture: one voice somewhere ahead, small and far to the right, no words.
@@ -165,7 +165,7 @@ export default {
     { sing: 'al', id: 'busker-near', bpm: 72, lyrics: 'la la la la la la la',
       notes: [[47, 1], [45, 0.5], [43, 0.5], [45, 1], [47, 1], [50, 2], [45, 3]], gap: 0.7 },
     // The tune climbs and then stops on a note that is not home. It does not finish.
-    { wait: 0.9 },
+    { wait: 1.5 },
 
     { cue: 'coin' },
     // Just out of frame one coin lands in the case. Larry's head dips toward it and comes up.
@@ -179,7 +179,7 @@ export default {
     { wait: 1.8 },
     { cue: 'asked-singing' },
     // Head to camera. He has been asked something.
-    { say: 'larry', id: 'q-singing-to', text: "Who's he singing to?" },                           // question 2, said back
+    { say: 'larry', id: 'q-singing-to', text: "Who's he singing to?", gap: 1.5 },                           // question 2, said back
     { say: 'larry', id: 'started-anyway', text: "Nobody, till we came by. He'd started anyway.", gap: 0.7 },
     { say: 'larry', id: 'waited-for-crowd', text: "Me, I'd have waited for a crowd.", rate: 0.92, gap: 0.6 },
 
@@ -189,32 +189,32 @@ export default {
     // Wide. They come to a crossing and stop; the street stops moving and the footsteps stop.
     // DON'T WALK, in red, on the far post. The road is empty in both directions for as far as
     // the picture goes. He waits for the sign. Silence: the quietest place on the walk.
-    { wait: 2.2 },
+    { wait: 3.0 },
     { say: 'larry', id: 'no-cars', text: 'No cars, I know. I wait anyway.' },
     { wait: 1.2 },
 
     { cue: 'asked-put-right' },
     // Close on Larry, the red of the sign on him. His head turns to camera, slowly this time.
-    { say: 'larry', id: 'q-put-right', text: 'What if none of it ever gets put right?', rate: 0.94 },   // question 3, said back
+    { say: 'larry', id: 'q-put-right', text: 'What if none of it ever gets put right?', rate: 0.94, gap: 2.0 },   // question 3, said back
     { cue: 'looks-at-red' },
     // He looks away from us, across the road, at the red sign.
-    { say: 'larry', id: 'dont-know', text: "I don't know. I really don't.", gap: 1.0 },
-    { say: 'larry', id: 'tarfon-who', text: 'Nearly two thousand years ago there was a rabbi named Tarfon.', gap: 0.9 },  // card: avot, told
+    { say: 'larry', id: 'dont-know', text: "I don't know. I really don't.", gap: 1.2 },
+    { say: 'larry', id: 'tarfon-who', text: 'Nearly two thousand years ago there was a rabbi named Tarfon.', gap: 1.6 },  // card: avot, told
     { say: 'larry', id: 'tarfon-recorded', text: 'He is recorded as saying:' },                                           // card: avot, told
     { cue: 'tarfon-close' },
     // Closer still: Larry and the red light, nothing else. He says it to us, plainly, not
     // performing it.
     { say: 'larry', id: 'tarfon-1', text: '"It is not thy duty to complete the work,',                    // card: avot, quoted
-      as: 'It is not thy duty to complete the work,', rate: 0.92, gap: 0.6 },
+      as: 'It is not thy duty to complete the work,', rate: 0.92, gap: 0.8 },
     { say: 'larry', id: 'tarfon-2', text: 'but neither art thou free to desist from it".',                // card: avot, quoted
       as: 'but neither art thou free to desist from it.', rate: 0.92, gap: 0.3 },
-    { say: 'larry', id: 'tarfon-borrow', text: "He meant the study of Torah. Here's how I borrow it.", gap: 0.9 },  // card: avot, told
+    { say: 'larry', id: 'tarfon-borrow', text: "He meant the study of Torah. Here's how I borrow it.", gap: 1.6 },  // card: avot, told
     { cue: 'two-at-the-kerb' },
     // Wide again: Larry at the kerb, the red sign across the empty road.
     // The next two lines are Larry's borrowing, said as his: the card calls the wider reading a widening.
     { say: 'larry', id: 'dont-finish', text: "We don't have to finish it.", gap: 0.6 },                   // card: avot, told
     { say: 'larry', id: 'dont-quit', text: "We just don't get to quit.", rate: 0.9, gap: 0.5 },           // card: avot, told
-    { wait: 0.5 },
+    { wait: 0.9 },
 
     { cue: 'walk-sign' },
     // The sign changes: WALK, in green. The crossing chirps. Larry's head tips up to it, holds,
@@ -228,7 +228,7 @@ export default {
     // over, snow starts: a few flakes through the lamplight, then more. No words. He walks with
     // his head a little down, and the footsteps go soft as the snow settles.
     { call: 'songbird', name: 'chirps', vol: 0.35, hold: 0 },
-    { wait: 5.0 },
+    { wait: 6.0 },
 
     // ── HOME ────────────────────────────────────────────────────────────────────────────────
 
@@ -236,7 +236,7 @@ export default {
     // A quiet side street in the snow. The tracking slows and stops under a row of house
     // fronts; one window on the second floor is warm and full of moving shapes. He looks up at
     // it, then at us.
-    { say: 'larry', id: 'this-is-me', text: "This is me. Come on up, it's warm." },
+    { say: 'larry', id: 'this-is-me', text: "This is me. Come on up, it's warm.", gap: 0.5 },
 
     { cue: 'stairs' },
     // Cut: the top of a stair, a door standing ajar, warm light round its edges and shapes
@@ -266,23 +266,23 @@ export default {
       { who: 'al', beat: 'm:43 . . . | . . . . ', loops: 3, start: 2, vol: 0.5 },
     ] } },
     // Her last note is home, the note the street never reached. A second of quiet in the room.
-    { wait: 0.9 },
+    { wait: 1.2 },
 
     { cue: 'sibyl-and-eppy' },
     // Two-shot: Sibyl and Eppy, side by side. Sibyl has not looked up from her plate.
-    { say: 'sibyl', id: 'late', text: 'You are also eleven minutes late.', rate: 0.95 },
+    { say: 'sibyl', id: 'late', text: 'You are also eleven minutes late.', rate: 0.95, gap: 0.5 },
     { say: 'eppy', id: 'house-record', text: "Eleven! That's a house record!",
       as: "Eleven! That's a house rekkerd!", rate: 0.88, gap: 0.2 },
     { say: 'dee', id: 'dee-laughs', text: 'Ha!', caption: false, vol: 0.6, overlap: 0.15 },
 
     { cue: 'larry-at-door' },
     // Larry in the doorway, snow on his shoulders. He turns his head to us, beside him.
-    { say: 'larry', id: 'company', text: 'I walked. I had company.', gap: 0.6 },
+    { say: 'larry', id: 'company', text: 'I walked. I had company.', gap: 0.8 },
 
     { cue: 'they-look' },
     // The wide again, short: all six heads turn from Larry to the camera, together. They look
     // at us. Nobody speaks.
-    { wait: 1.3 },
+    { wait: 1.8 },
 
     { cue: 'sibyl-rules' },
     // Sibyl alone, facing us. A ruling.
@@ -298,16 +298,18 @@ export default {
     // across from us over the candles. Everyone goes back to talking at once: the room's own
     // murmur, layered, a voiced laugh or two with no caption. Keep it as a bed to the end.
     { sfx: 'murmur', vol: 0.6, hold: 0 },
-    { wait: 2.6 },
+    { wait: 3.0 },
 
     { cue: 'goodnight' },
     // Larry, seated at our corner of the table, coat off, in a cardigan, the scarf still on, turns to camera.
     // The table soft and warm behind him, the others turned to one another. Push in slowly.
     // After his last word hold on him for three seconds with the room still talking, then fade
     // to black. Nothing is said after it.
-    { sfx: 'murmur', vol: 0.4, hold: 0 },
-    { say: 'larry', id: 'mixed-up-world', text: "It's a crazy mixed up world out there.", rate: 0.95, gap: 0.8 },   // the owner's line
-    { say: 'larry', id: 'keep-close', text: 'Keep the ones that make you feel sane close.', rate: 0.92, gap: 0.5 }, // the owner's line
+    { sfx: 'murmur', vol: 0.4, hold: 0, at: 9.9 },   // moved to the end: the room still talking after his last word
+    { wait: -9.9 },   // the sfx above moved the cursor to where it starts; this brings it back
+    { say: 'larry', id: 'mixed-up-world', text: "It's a crazy mixed up world out there.", rate: 0.95, gap: 1.2 },   // the owner's line
+    { say: 'larry', id: 'keep-close', text: 'Keep the ones that make you feel sane close.', rate: 0.92, gap: 0.7 }, // the owner's line
     { say: 'larry', id: 'stay-warm', text: 'Stay warm, folks. Goodnight.', rate: 0.94, gap: 1.2 },                  // the owner's line, and the last
+    { wait: 3.0 },   // three seconds on him with the room still talking, then black
   ],
 }

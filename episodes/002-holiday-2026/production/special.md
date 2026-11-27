@@ -80,6 +80,16 @@ the special is being made on this reading: Article 3 and chapter 9 govern how th
 the people it covers, and for historical thinkers the rule is the accuracy rule above. This is
 the project manager's reading, not a ruling, and it is put to the owner with the script.
 
+**A second point, found at the final review.** The list of out-of-bounds subjects above is the
+short one from the bible's summary, and it leaves something out. Chapter 9, R10, in full, also
+names religion, "not as jokes, not as references, not as background". The reviewed script names
+a rabbi and the Torah, quotes the Mishnah, and tells a story from a Daoist book and a couplet
+from a Tamil one. The project manager wrote the short list into this file and into the briefs
+and did not see the conflict; both final reviewers did. The outline asks for "ancient wisdom
+from different cultures", and much of that wisdom is held as scripture by someone. Whether R10
+is about the religion of the people the show covers, or about any mention of a religious
+teacher or text, is the owner's to say, and nothing is staged until they have.
+
 ## How it is made
 
 By hand, through the workflow's roles (`docs/WORKFLOW.md`), because the pipeline tool runs
@@ -104,7 +114,10 @@ the owner has read it.
 
 Four minutes is 240 seconds. In the aired episodes Larry speaks at about 159 words a minute
 while he is speaking, and talk-heavy segments run at 120 to 133 words a minute overall. A walk
-needs room to look at things, so the script is 400 to 470 spoken words in all.
+needs room to look at things, so the script is 400 to 470 spoken words in all. The count
+includes sung syllables, as the writers' briefs said. The reviewed script has 397 spoken words
+and 11 sung; the auditor asked which count applies, and the project manager's answer is the
+briefs' count. The range is a planning figure. The test of length is the render.
 
 ## Numbering
 
