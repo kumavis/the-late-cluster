@@ -9,7 +9,7 @@ Sound editor, 27 November 2026. Timing only: no words, `as`, notes or beats were
 | before | 214.12 | 115.4 |
 | after | 242.38 | 102.0 |
 
-Three renders. `npm run check -- 002-holiday-2026 --draft writer-3` passes.
+Three renders. `npm run check -- 003-holiday-2026 --draft writer-3` passes.
 
 ## 2. Silences of 0.8 s or more in the final render
 
@@ -150,4 +150,4 @@ with `at` (`dessert`, `crossing-walk`) land within 5 ms of their words in the fi
 
 ## 7. The mp3
 
-`/Users/xyz/Development/the-late-cluster/packages/show/tools/.cache/drafts/002-holiday-2026/writer-3/audio/writer-3.mp3`
+`/Users/xyz/Development/the-late-cluster/packages/show/tools/.cache/drafts/003-holiday-2026/writer-3/audio/writer-3.mp3`

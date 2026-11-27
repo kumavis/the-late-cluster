@@ -3,7 +3,8 @@
 The owner outlined a special on 27 November 2026. Their words are in
 [`owner-notes.md`](owner-notes.md) and are the brief; read them first. This file says what the
 special changes about the show for this one piece, what does not change, and how it is made.
-It is not episode three, and the next weekly episode returns to the usual workflow.
+The owner first set it outside the numbering and then, the same day, said "we can call this
+episode 3 for simplicity". The next weekly episode returns to the usual workflow.
 
 ## What it is, in the owner's outline
 
@@ -130,6 +131,8 @@ briefs' count. The range is a planning figure. The test of length is the render.
 
 ## Numbering
 
-The folder is `002-holiday-2026` because the tools want a numbered id and the special is not
-episode three: it sorts after the second episode and leaves the number three for the next
-weekly one. How the archive lists a special is not settled and is a question for the build.
+The owner's outline said "this is not episode 3, its a holiday special", and the folder began
+as `002-holiday-2026` so that the number three stayed free. On 27 November 2026, after reading
+the script, the owner said: "we can call this episode 3 for simplicity. go ahead continue
+through to the video". So it is episode three, `003-holiday-2026`, and the next weekly episode
+is four. Being a numbered episode, it goes through the same build checks as any other.

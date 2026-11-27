@@ -1,20 +1,20 @@
 # Select: score the three drafts of the holiday special
 
 - **Role:** reviewer (spawn the `reviewer` subagent defined in .claude/agents/reviewer.md)
-- **Task:** `select.<your reviewer id>`, for the holiday special `002-holiday-2026`. Your
+- **Task:** `select.<your reviewer id>`, for the holiday special `003-holiday-2026`. Your
   reviewer id (`reviewer-1` or `reviewer-2`) is given to you when you are spawned.
-- **Write:** `episodes/002-holiday-2026/production/review/select/<your reviewer id>.json`.
+- **Write:** `episodes/003-holiday-2026/production/review/select/<your reviewer id>.json`.
   Nothing else.
 
 ## Read
 
-- `episodes/002-holiday-2026/production/owner-notes.md`: the owner's outline. It is the brief
+- `episodes/003-holiday-2026/production/owner-notes.md`: the owner's outline. It is the brief
   the drafts were written to, and the standard you judge them against.
-- `episodes/002-holiday-2026/production/special.md`: what the owner's outline sets aside for
+- `episodes/003-holiday-2026/production/special.md`: what the owner's outline sets aside for
   this special, and what does not change. Do not mark a draft down for what the owner set
   aside: no posts, no guests, no standing segments, sincerity as the piece, no audience.
-- `episodes/002-holiday-2026/production/research/philosophy.md` and `research/staging.md`
-- `episodes/002-holiday-2026/production/drafts/writer-1/`, `writer-2/`, `writer-3/`: each a
+- `episodes/003-holiday-2026/production/research/philosophy.md` and `research/staging.md`
+- `episodes/003-holiday-2026/production/drafts/writer-1/`, `writer-2/`, `writer-3/`: each a
   `script.js` and a `notes.json`
 - `docs/bible/00-constitution.md`, `docs/bible/02-cast.md`, `docs/bible/01-premise.md`,
   `docs/bible/07-voices.md`, `docs/bible/08-direction.md`, `docs/bible/10-process.md`
@@ -99,7 +99,7 @@ special, whether it worked.
 }
 ```
 
-Check it parses: `node -e 'JSON.parse(require("fs").readFileSync("episodes/002-holiday-2026/production/review/select/<your reviewer id>.json","utf8"));console.log("ok")'`
+Check it parses: `node -e 'JSON.parse(require("fs").readFileSync("episodes/003-holiday-2026/production/review/select/<your reviewer id>.json","utf8"));console.log("ok")'`
 
 ## Always
 

@@ -2,24 +2,24 @@
 
 - **Role:** reviewer (spawn the `reviewer` subagent defined in .claude/agents/reviewer.md)
 - **Task:** `final.<your reviewer id>`, round `<round>`, for the holiday special
-  `002-holiday-2026`. Your reviewer id and the round are given to you when you are spawned.
-- **Write:** `episodes/002-holiday-2026/production/review/final/<your reviewer id>-r<round>.json`.
+  `003-holiday-2026`. Your reviewer id and the round are given to you when you are spawned.
+- **Write:** `episodes/003-holiday-2026/production/review/final/<your reviewer id>-r<round>.json`.
   Nothing else.
 
 ## Read
 
-- `episodes/002-holiday-2026/production/owner-notes.md`: the owner's outline, the standard.
-- `episodes/002-holiday-2026/production/special.md`: what the owner set aside for this special
+- `episodes/003-holiday-2026/production/owner-notes.md`: the owner's outline, the standard.
+- `episodes/003-holiday-2026/production/special.md`: what the owner set aside for this special
   and what does not change. Do not mark the script down for what the owner set aside.
-- `episodes/002-holiday-2026/segments/walk/script.js` and `notes.json`: the final script.
-- `episodes/002-holiday-2026/production/assembly.md`: where each part came from, and how the
+- `episodes/003-holiday-2026/segments/walk/script.js` and `notes.json`: the final script.
+- `episodes/003-holiday-2026/production/assembly.md`: where each part came from, and how the
   writer says each reason sent back was answered.
-- `episodes/002-holiday-2026/production/select.md`: what was decided about the three drafts,
+- `episodes/003-holiday-2026/production/select.md`: what was decided about the three drafts,
   the five items stopped at the repetition gate, and the reasons sent back.
-- `episodes/002-holiday-2026/production/review/select/` and, if this is a later round,
+- `episodes/003-holiday-2026/production/review/select/` and, if this is a later round,
   `review/final/` from earlier rounds: the reviewers' own files. The three drafts are under
   `production/drafts/`.
-- `episodes/002-holiday-2026/production/research/philosophy.md` and `research/staging.md`
+- `episodes/003-holiday-2026/production/research/philosophy.md` and `research/staging.md`
 - `docs/bible/` (the constitution, the cast, premise, voices, direction and process chapters)
 - `docs/ledger/` (`README.md` for how to judge, `lore.md`, and the two aired records) and the
   aired scripts under `episodes/001-pilot/` and `episodes/002-2026-w47/`. The previous aired
@@ -71,7 +71,7 @@ line near a limit, anything that rests on how it will be staged or heard.
 {
   "reviewer": "<your reviewer id>",
   "round": 1,
-  "version": "<first 12 characters of the script's sha256: shasum -a 256 episodes/002-holiday-2026/segments/walk/script.js>",
+  "version": "<first 12 characters of the script's sha256: shasum -a 256 episodes/003-holiday-2026/segments/walk/script.js>",
   "verdict": "fresh | turned | repeat",
   "turned": { "what": "", "how": "" },
   "repeats": [{ "item": "<line id or cue>", "avoid": "", "reason": "" }],

@@ -108,4 +108,4 @@ That is 399 spoken, captioned words, not counting the sung "la"s. Larry speaks f
 
 ## 7. Audio
 
-`/Users/xyz/Development/the-late-cluster/packages/show/tools/.cache/drafts/002-holiday-2026/writer-2/audio/writer-2.mp3`
+`/Users/xyz/Development/the-late-cluster/packages/show/tools/.cache/drafts/003-holiday-2026/writer-2/audio/writer-2.mp3`

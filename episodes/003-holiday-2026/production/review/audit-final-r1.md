@@ -1,6 +1,6 @@
 # Audit: the final script's attributions and the out-of-bounds screen, round 1
 
-Task `audit.final`, round 1, holiday special `002-holiday-2026`. Auditor, 27 November 2026.
+Task `audit.final`, round 1, holiday special `003-holiday-2026`. Auditor, 27 November 2026.
 
 Checked against: `production/owner-notes.md`, `production/special.md` ("What does not change",
 and "Length" for item 9), `production/research/philosophy.md` (the cards),

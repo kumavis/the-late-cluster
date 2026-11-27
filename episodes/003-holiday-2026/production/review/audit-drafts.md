@@ -1,6 +1,6 @@
 # Audit: the drafts' attributions and the out-of-bounds screen
 
-Task `audit.drafts`, holiday special `002-holiday-2026`. Auditor, 27 November 2026.
+Task `audit.drafts`, holiday special `003-holiday-2026`. Auditor, 27 November 2026.
 
 Checked against: `production/owner-notes.md`, `production/special.md` ("What does not change"),
 `production/research/philosophy.md` (the cards), `docs/bible/00-constitution.md` and

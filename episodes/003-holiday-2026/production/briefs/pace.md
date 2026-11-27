@@ -1,18 +1,18 @@
 # A rough audio cut: pacing and pauses
 
 - **Role:** sound editor (spawn the `sound-editor` subagent defined in .claude/agents/sound-editor.md)
-- **Task:** `pace.<target>`, for the holiday special `002-holiday-2026`. Your target is given
+- **Task:** `pace.<target>`, for the holiday special `003-holiday-2026`. Your target is given
   to you when you are spawned: one of the drafts `writer-1`, `writer-2`, `writer-3`, or the
   final script `walk`.
 - **Edit:** your target's `script.js` only, and only its timing (below).
-  - a draft: `episodes/002-holiday-2026/production/drafts/<target>/script.js`
-  - the final: `episodes/002-holiday-2026/segments/walk/script.js`
-- **Write:** `episodes/002-holiday-2026/production/fit/pace-<target>.md`, your report.
+  - a draft: `episodes/003-holiday-2026/production/drafts/<target>/script.js`
+  - the final: `episodes/003-holiday-2026/segments/walk/script.js`
+- **Write:** `episodes/003-holiday-2026/production/fit/pace-<target>.md`, your report.
 - **Render with:**
-  - a draft: `npm run render -- 002-holiday-2026 --draft <target>`, which writes
-    `packages/show/tools/.cache/drafts/002-holiday-2026/<target>/audio/<target>.mp3`
-  - the final: `npm run render -- 002-holiday-2026 walk`, which writes
-    `episodes/002-holiday-2026/public/audio/walk.mp3` and `segments/walk/cues.json`
+  - a draft: `npm run render -- 003-holiday-2026 --draft <target>`, which writes
+    `packages/show/tools/.cache/drafts/003-holiday-2026/<target>/audio/<target>.mp3`
+  - the final: `npm run render -- 003-holiday-2026 walk`, which writes
+    `episodes/003-holiday-2026/public/audio/walk.mp3` and `segments/walk/cues.json`
 
 ## Why
 
@@ -23,8 +23,8 @@ are said and how much quiet is around them**, not on how words are pronounced.
 
 ## Read
 
-- `episodes/002-holiday-2026/production/owner-notes.md`: the owner's outline
-- `episodes/002-holiday-2026/production/special.md`: what the special is. Larry is off the
+- `episodes/003-holiday-2026/production/owner-notes.md`: the owner's outline
+- `episodes/003-holiday-2026/production/special.md`: what the special is. Larry is off the
   air, slower than on a show night, walking a friend home on a cold night. There is no
   audience.
 - your target's `script.js` and `notes.json`. The comment under each `cue` says what the
@@ -82,7 +82,7 @@ for a word the timeline's IPA shows plainly mangled; do not run the fitting sear
 **Only if your target is the final script (`walk`):** the busker's two sung beats use `al` as
 a stand-in voice, and Al speaks at the table soon after. If you can give the busker a voice
 of his own without touching the house cast (an invented one-off in the episode's own
-`episodes/002-holiday-2026/cast.js`, placed with `npm run voices -- 002-holiday-2026`, and the
+`episodes/003-holiday-2026/cast.js`, placed with `npm run voices -- 003-holiday-2026`, and the
 two `sing` beats pointed at it), do so, and say exactly what you added. This is the one place
 you may create a file besides your report and change a `sing` beat's cast id. If it cannot be
 done cleanly, leave `al` and say why.

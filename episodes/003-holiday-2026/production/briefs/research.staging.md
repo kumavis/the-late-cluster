@@ -1,14 +1,14 @@
 # Staging read: what the studio can show for the holiday special
 
 - **Role:** builder (spawn the `builder` subagent defined in .claude/agents/builder.md)
-- **Task:** `research.staging`, for the holiday special `002-holiday-2026`
-- **Write:** `episodes/002-holiday-2026/production/research/staging.md`. Nothing else. No code,
+- **Task:** `research.staging`, for the holiday special `003-holiday-2026`
+- **Write:** `episodes/003-holiday-2026/production/research/staging.md`. Nothing else. No code,
   no renders, no frames: this is a read of what exists, written down for writers.
 
 ## Read
 
-- `episodes/002-holiday-2026/production/owner-notes.md` (the owner's outline)
-- `episodes/002-holiday-2026/production/special.md`
+- `episodes/003-holiday-2026/production/owner-notes.md` (the owner's outline)
+- `episodes/003-holiday-2026/production/special.md`
 - `docs/bible/08-direction.md`
 - `packages/show/README.md`, `packages/show/tools/README.md` ("Writing a segment script" and
   "The audience and the band" only), `packages/show/src/stage/`, `packages/show/src/kit/`,

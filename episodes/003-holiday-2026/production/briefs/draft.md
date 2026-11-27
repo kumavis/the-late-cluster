@@ -1,21 +1,21 @@
 # Draft the holiday special
 
 - **Role:** writer (spawn the `writer` subagent defined in .claude/agents/writer.md)
-- **Task:** `draft.<your writer id>`, for the holiday special `002-holiday-2026`. Your writer id
+- **Task:** `draft.<your writer id>`, for the holiday special `003-holiday-2026`. Your writer id
   (`writer-1`, `writer-2` or `writer-3`) is given to you when you are spawned.
-- **Write:** `episodes/002-holiday-2026/production/drafts/<your writer id>/script.js` and
-  `episodes/002-holiday-2026/production/drafts/<your writer id>/notes.json`. Nothing else.
+- **Write:** `episodes/003-holiday-2026/production/drafts/<your writer id>/script.js` and
+  `episodes/003-holiday-2026/production/drafts/<your writer id>/notes.json`. Nothing else.
 - **Check before you stop:** the count command at the end of this brief.
 
 ## Read
 
-- `episodes/002-holiday-2026/production/owner-notes.md`: the owner's outline. This is the brief.
-- `episodes/002-holiday-2026/production/special.md`: what the special changes about the show
+- `episodes/003-holiday-2026/production/owner-notes.md`: the owner's outline. This is the brief.
+- `episodes/003-holiday-2026/production/special.md`: what the special changes about the show
   and what it does not.
-- `episodes/002-holiday-2026/production/research/philosophy.md`: the shelf of ideas, each with
+- `episodes/003-holiday-2026/production/research/philosophy.md`: the shelf of ideas, each with
   a checked source, a verified quotation where there is one, the safe wording for who said it,
   and the traps.
-- `episodes/002-holiday-2026/production/research/staging.md`: what the studio can show and
+- `episodes/003-holiday-2026/production/research/staging.md`: what the studio can show and
   what a cue can ask for.
 - `docs/bible/00-constitution.md`, Article 1 (the interesting test).
 - `docs/bible/02-cast.md`: who Larry, Sibyl, Hy, Al, Dee, Pete and Eppy are.
@@ -121,7 +121,7 @@ the lyrics of anything sung). The pace is a walk.
 ## The count
 
 ```bash
-node -e 'import(process.cwd()+"/episodes/002-holiday-2026/production/drafts/"+process.argv[1]+"/script.js").then(m=>{const s=m.default;const n=t=>String(t||"").trim().split(/\s+/).filter(Boolean).length;let w=0,l=0;const ids=new Set();for(const b of s.beats){if(b.say){l++;w+=n(b.text);if(b.as&&n(b.as)!==n(b.text))console.log("as/text word counts differ:",b.id||b.text)}if(b.sing)w+=n(b.lyrics);for(const k of ["id","cue"]){const v=typeof b[k]==="string"&&(k==="cue"||b.say||b.sing)?k+":"+b[k]:null;if(v){if(ids.has(v))console.log("duplicate",v);ids.add(v)}}}console.log(s.id,l,"spoken lines,",w,"words")})' <your writer id>
+node -e 'import(process.cwd()+"/episodes/003-holiday-2026/production/drafts/"+process.argv[1]+"/script.js").then(m=>{const s=m.default;const n=t=>String(t||"").trim().split(/\s+/).filter(Boolean).length;let w=0,l=0;const ids=new Set();for(const b of s.beats){if(b.say){l++;w+=n(b.text);if(b.as&&n(b.as)!==n(b.text))console.log("as/text word counts differ:",b.id||b.text)}if(b.sing)w+=n(b.lyrics);for(const k of ["id","cue"]){const v=typeof b[k]==="string"&&(k==="cue"||b.say||b.sing)?k+":"+b[k]:null;if(v){if(ids.has(v))console.log("duplicate",v);ids.add(v)}}}console.log(s.id,l,"spoken lines,",w,"words")})' <your writer id>
 ```
 
 It must load without an error, print `walk`, and report 400 to 470 words.

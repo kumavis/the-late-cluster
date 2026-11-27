@@ -3,14 +3,14 @@
 - **Role:** researcher, with the network (this brief is run by a general agent on Opus, because
   the show's `researcher` role is fenced from the network and this research is of published
   books, not of the community's posts)
-- **Task:** `research.philosophy`, for the holiday special `002-holiday-2026`
-- **Write:** `episodes/002-holiday-2026/production/research/philosophy.md`. Nothing else in the
+- **Task:** `research.philosophy`, for the holiday special `003-holiday-2026`
+- **Write:** `episodes/003-holiday-2026/production/research/philosophy.md`. Nothing else in the
   repository. Use your scratch folder for anything temporary.
 
 ## Read first
 
-- `episodes/002-holiday-2026/production/owner-notes.md` (the owner's outline: the brief)
-- `episodes/002-holiday-2026/production/special.md` (what the special is and its rules; read
+- `episodes/003-holiday-2026/production/owner-notes.md` (the owner's outline: the brief)
+- `episodes/003-holiday-2026/production/special.md` (what the special is and its rules; read
   "What does not change")
 
 Do not read anything else in the repository. In particular not `docs/ledger/`, `docs/trials/`,

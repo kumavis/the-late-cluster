@@ -1,19 +1,19 @@
 # Audit: the final script's attributions, and the out-of-bounds screen
 
 - **Role:** auditor (spawn the `auditor` subagent defined in .claude/agents/auditor.md)
-- **Task:** `audit.final`, round `<round>`, for the holiday special `002-holiday-2026`. The
+- **Task:** `audit.final`, round `<round>`, for the holiday special `003-holiday-2026`. The
   round is given to you when you are spawned.
-- **Write:** `episodes/002-holiday-2026/production/review/audit-final-r<round>.md`. Nothing else.
+- **Write:** `episodes/003-holiday-2026/production/review/audit-final-r<round>.md`. Nothing else.
 
 ## Read
 
-- `episodes/002-holiday-2026/production/owner-notes.md` and `special.md` ("What does not
+- `episodes/003-holiday-2026/production/owner-notes.md` and `special.md` ("What does not
   change" is the rule you check against)
-- `episodes/002-holiday-2026/production/research/philosophy.md`: the checked sources, and for
+- `episodes/003-holiday-2026/production/research/philosophy.md`: the checked sources, and for
   this audit the record of what may be attributed to whom and in what wording
-- `episodes/002-holiday-2026/segments/walk/script.js` and `notes.json`: the final script
-- `episodes/002-holiday-2026/production/assembly.md`
-- `episodes/002-holiday-2026/production/review/audit-drafts.md`: your earlier audit of the
+- `episodes/003-holiday-2026/segments/walk/script.js` and `notes.json`: the final script
+- `episodes/003-holiday-2026/production/assembly.md`
+- `episodes/003-holiday-2026/production/review/audit-drafts.md`: your earlier audit of the
   three drafts, which asked for two things to be rechecked in the final
 - `docs/bible/00-constitution.md` and `docs/bible/09-real-people.md` (R8 and R10)
 

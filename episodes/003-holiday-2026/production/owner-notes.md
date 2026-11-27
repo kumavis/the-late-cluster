@@ -49,3 +49,12 @@ owner answered:
 Still open with the owner: whether Larry may explain a long-dead thinker's idea in his own
 words (the reading of Article 3 in `special.md`), the either-ors in `assembly.md`, the end
 card, the air slot, and how the archive lists a special.
+
+## 27 November 2026: episode three, and on to the video
+
+> we can call this episode 3 for simplicity. go ahead continue through to the video
+
+The project manager takes "go ahead" to mean the script goes forward as reviewed, with each of
+the writer's either-ors left as written, and that the special may have a title and an end of
+its own in place of the studio's stock cards. Both are the project manager's reading, and the
+owner can reverse either after watching.

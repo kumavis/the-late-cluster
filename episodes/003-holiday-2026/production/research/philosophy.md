@@ -1,6 +1,6 @@
 # Research: what old thinkers said about carrying on
 
-For the holiday special `002-holiday-2026`, task `research.philosophy`. A shelf for the writers
+For the holiday special `003-holiday-2026`, task `research.philosophy`. A shelf for the writers
 to choose from. Every quotation below was copied from the fetched page named under it, on
 27 November 2026. Where a card says "also verified", those words were copied from the same page.
 

@@ -1,24 +1,24 @@
 # Write the final script of the holiday special
 
 - **Role:** writer (spawn the `writer` subagent defined in .claude/agents/writer.md)
-- **Task:** `assemble.writer`, for the holiday special `002-holiday-2026`
-- **Write:** `episodes/002-holiday-2026/segments/walk/script.js`,
-  `episodes/002-holiday-2026/segments/walk/notes.json` and
-  `episodes/002-holiday-2026/production/assembly.md`. Nothing else.
+- **Task:** `assemble.writer`, for the holiday special `003-holiday-2026`
+- **Write:** `episodes/003-holiday-2026/segments/walk/script.js`,
+  `episodes/003-holiday-2026/segments/walk/notes.json` and
+  `episodes/003-holiday-2026/production/assembly.md`. Nothing else.
 - **Check before you stop:** the count command at the end of this brief.
 
 ## Read
 
-- `episodes/002-holiday-2026/production/owner-notes.md`: the owner's outline. It is the brief.
-- `episodes/002-holiday-2026/production/special.md`: what the special changes and what it
+- `episodes/003-holiday-2026/production/owner-notes.md`: the owner's outline. It is the brief.
+- `episodes/003-holiday-2026/production/special.md`: what the special changes and what it
   does not.
-- `episodes/002-holiday-2026/production/select.md`: what two reviewers and an auditor decided
+- `episodes/003-holiday-2026/production/select.md`: what two reviewers and an auditor decided
   about the three drafts. **This is the heart of your task.** It names the base, what was
   stopped at the repetition gate, the reasons sent back, and what the other drafts do that the
   base does not.
-- `episodes/002-holiday-2026/production/drafts/writer-2/` (the base), `writer-1/` and
+- `episodes/003-holiday-2026/production/drafts/writer-2/` (the base), `writer-1/` and
   `writer-3/`: each a `script.js` and a `notes.json`.
-- `episodes/002-holiday-2026/production/research/philosophy.md` and `research/staging.md`
+- `episodes/003-holiday-2026/production/research/philosophy.md` and `research/staging.md`
 - `docs/bible/00-constitution.md`, Article 1; `docs/bible/02-cast.md`;
   `docs/bible/01-premise.md`, "Sincerity"; `docs/bible/07-voices.md` (skip "Songs" unless you
   write music); `docs/bible/08-direction.md`, "Television" and "Principles"
@@ -98,7 +98,7 @@ Short and plain, for the reviewers and the owner:
 ## The count
 
 ```bash
-node -e 'import(process.cwd()+"/episodes/002-holiday-2026/segments/walk/script.js").then(m=>{const s=m.default;const n=t=>String(t||"").trim().split(/\s+/).filter(Boolean).length;let w=0,l=0;const ids=new Set();for(const b of s.beats){if(b.say){l++;w+=n(b.text);if(b.as&&n(b.as)!==n(b.text))console.log("as/text word counts differ:",b.id||b.text)}if(b.sing)w+=n(b.lyrics);if(b.music)for(const t of b.music.tracks||[])if(t.lyrics)w+=n(t.lyrics);for(const k of ["id","cue"]){const v=typeof b[k]==="string"&&(k==="cue"||b.say||b.sing)?k+":"+b[k]:null;if(v){if(ids.has(v))console.log("duplicate",v);ids.add(v)}}}console.log(s.id,l,"spoken lines,",w,"words")})'
+node -e 'import(process.cwd()+"/episodes/003-holiday-2026/segments/walk/script.js").then(m=>{const s=m.default;const n=t=>String(t||"").trim().split(/\s+/).filter(Boolean).length;let w=0,l=0;const ids=new Set();for(const b of s.beats){if(b.say){l++;w+=n(b.text);if(b.as&&n(b.as)!==n(b.text))console.log("as/text word counts differ:",b.id||b.text)}if(b.sing)w+=n(b.lyrics);if(b.music)for(const t of b.music.tracks||[])if(t.lyrics)w+=n(t.lyrics);for(const k of ["id","cue"]){const v=typeof b[k]==="string"&&(k==="cue"||b.say||b.sing)?k+":"+b[k]:null;if(v){if(ids.has(v))console.log("duplicate",v);ids.add(v)}}}console.log(s.id,l,"spoken lines,",w,"words")})'
 ```
 
 It must load without an error, print `walk`, and report 400 to 470 words.

@@ -1,16 +1,16 @@
 # Audit: the drafts' attributions and the out-of-bounds screen
 
 - **Role:** auditor (spawn the `auditor` subagent defined in .claude/agents/auditor.md)
-- **Task:** `audit.drafts`, for the holiday special `002-holiday-2026`
-- **Write:** `episodes/002-holiday-2026/production/review/audit-drafts.md`. Nothing else.
+- **Task:** `audit.drafts`, for the holiday special `003-holiday-2026`
+- **Write:** `episodes/003-holiday-2026/production/review/audit-drafts.md`. Nothing else.
 
 ## Read
 
-- `episodes/002-holiday-2026/production/owner-notes.md` and `special.md` ("What does not
+- `episodes/003-holiday-2026/production/owner-notes.md` and `special.md` ("What does not
   change" is the rule you check against)
-- `episodes/002-holiday-2026/production/research/philosophy.md`: the checked sources. For this
+- `episodes/003-holiday-2026/production/research/philosophy.md`: the checked sources. For this
   audit it is the record of what may be attributed to whom, and in what wording.
-- `episodes/002-holiday-2026/production/drafts/writer-1/`, `writer-2/`, `writer-3/`
+- `episodes/003-holiday-2026/production/drafts/writer-1/`, `writer-2/`, `writer-3/`
 - `docs/bible/00-constitution.md` and `docs/bible/09-real-people.md` (R8 and R10)
 
 No network is needed and none is used: you check the drafts against the research file.

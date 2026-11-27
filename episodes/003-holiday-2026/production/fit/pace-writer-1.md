@@ -119,5 +119,5 @@ timeline shows it doing what is wanted: the line 236.51 to 239.14, the murmur 23
 
 ## 7. The mp3
 
-`/Users/xyz/Development/the-late-cluster/packages/show/tools/.cache/drafts/002-holiday-2026/writer-1/audio/writer-1.mp3`
-(`npm run check -- 002-holiday-2026 --draft writer-1`: passed)
+`/Users/xyz/Development/the-late-cluster/packages/show/tools/.cache/drafts/003-holiday-2026/writer-1/audio/writer-1.mp3`
+(`npm run check -- 003-holiday-2026 --draft writer-1`: passed)

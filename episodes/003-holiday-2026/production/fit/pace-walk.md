@@ -1,6 +1,6 @@
 # Pace: `walk` (the final script)
 
-Sound editor, 27 November 2026. Three renders. No words, beats or order changed. `npm run check -- 002-holiday-2026 walk` passes.
+Sound editor, 27 November 2026. Three renders. No words, beats or order changed. `npm run check -- 003-holiday-2026 walk` passes.
 
 ## 1. Length
 
@@ -95,7 +95,7 @@ Every listening hold (`how-have-you-been` wait, `q-does-it-help`, `q-put-right`,
 
 The other rates and gaps stay as the writer marked them.
 
-**The busker's voice.** I created `episodes/002-holiday-2026/cast.js` with one entry, `busker`: name "The busker", title "On the corner", no handle and no `guest` flag, because he is invented and not a real account. It has `rate 0.95`, `accent 0.18` and `pan 0.5`. `npm run voices -- 002-holiday-2026` placed him at `body { female: 0.25, child: 0.1 }`, `f0 140`, `source { tension: 0.62, brightness: 0.5 }`, measured median 145 Hz. His nearest voice is Dee at 1.88, which clears the 1.5 minimum, so he is distinct from Al and from the rest of the house. He only sings "la", so he has no respellings to refit. Both `sing` beats now point at `busker`. The house cast is untouched.
+**The busker's voice.** I created `episodes/003-holiday-2026/cast.js` with one entry, `busker`: name "The busker", title "On the corner", no handle and no `guest` flag, because he is invented and not a real account. It has `rate 0.95`, `accent 0.18` and `pan 0.5`. `npm run voices -- 003-holiday-2026` placed him at `body { female: 0.25, child: 0.1 }`, `f0 140`, `source { tension: 0.62, brightness: 0.5 }`, measured median 145 Hz. His nearest voice is Dee at 1.88, which clears the 1.5 minimum, so he is distinct from Al and from the rest of the house. He only sings "la", so he has no respellings to refit. Both `sing` beats now point at `busker`. The house cast is untouched.
 
 ## 4. What pauses could not fix
 
@@ -121,4 +121,4 @@ The other rates and gaps stay as the writer marked them.
 
 ## 7. The mp3
 
-`/Users/xyz/Development/the-late-cluster/episodes/002-holiday-2026/public/audio/walk.mp3` (cues in `episodes/002-holiday-2026/segments/walk/cues.json`)
+`/Users/xyz/Development/the-late-cluster/episodes/003-holiday-2026/public/audio/walk.mp3` (cues in `episodes/003-holiday-2026/segments/walk/cues.json`)
