@@ -1,0 +1,26 @@
+{
+  "round": 5,
+  "cut": "a55478ea0abbb8429738206544adeb01f79ade3295e8db9a06f3185589c1c7b2",
+  "segments": {
+    "walk": {
+      "verdict": "pass",
+      "changes": []
+    }
+  },
+  "accepted": [
+    "Round 4, table.js: at the phone caption scale the caption bar covers our plate, and part of the bowl, while lines are captioned at eppy-calls-it and goodnight. The project manager accepted this because the moments that depend on the plate carry no caption: the bowl at our plate after the cut at served, our plate in the-meal, and the hold after 'Goodnight'. Recorded as accepted, not open."
+  ],
+  "looksRight": [
+    "The file's sha256 matches the cut named above. Its first frame (0.00) is the poster: Larry in profile on the last block in the snow, with no caption.",
+    "Sibyl sits inside the right-hand end of the table's far side, with her chair behind her, in every shot she is in: table-wide (215.91), sibyl-first and late (216.82, 218.11), they-look and chair (224.78, 226.80), rule (230.56, 232.51) and larry-and-sibyl (234.31 to 236.37). The tabletop is in front of the part of her that is hidden, so she reads as seated at the table, not behind it. Her seat is the same in both views, and her size fits her distance in each.",
+    "For 'It's my house.' (234.31, 235.01) she is chin-down at her plate. For 'It's still the rule.' (236.37) her head is up and turned to Larry.",
+    "No one is cut off by anything that is not in front of them in any table shot. The bodies below the chest are hidden only by the tabletop, and Larry's coat or chair. The one partial figure, behind Larry at rule and served, is behind him as round 1 allowed. There is no head behind Larry at goodnight.",
+    "Six stay six in the same seats in every table shot, with seven heads only in table-wide and they-look. No glass is raised. The only things that slide are the second chair and the place setting at chair-in. The bowl is at Larry's left at served and at our plate after the cut. Neither the bowls in the-meal nor the one at goodnight moves. Nothing changes the light at they-look or goodnight.",
+    "The last frame of the episode (263.19) is black.",
+    "Every credit line is whole, readable and exact at 640 by 360. The cast includes 'On the corner: The busker'. QUOTED reads 'PIRKEI AVOT, CHAPTER 2' / 'TRANSLATED BY JOSEPH I. GORFINKLE,' / '\"THE SAYINGS OF THE JEWISH FATHERS\", FIRST PUBLISHED 1913' / 'THE HAVAMAL, STANZA 47' / 'TRANSLATED BY HENRY ADAMS BELLOWS,' / '\"THE POETIC EDDA\", 1923'. All of it is in one typeface, and no comma or year is left hanging. TOLD FROM names the Zhuangzi and the Tirukkural, and VOICES & FACES says every voice is synthesized. Nothing overlaps, and the roll ends on black (282.29).",
+    "I spot-checked ten frames against round 4: 10.25, 54.81, 83.44, 101.53, 141.10, 166.29, 182.24, 187.00, 198.64 and 212.18. The studio lamp, the listen hold, the hatch with the cook, the busker, the Tarfon close with DON'T WALK, WALK, the comrade close, eyes front for poem-talking, the door and the watcher in the top window are unchanged, and so are their captions."
+  ],
+  "forTheOwner": [
+    "As before, only sound can settle whether the listening holds are heard as us speaking, and whether the coin lands as the tune's missing note."
+  ]
+}
