@@ -114,6 +114,46 @@ From the second aired episode (002-2026-w47, aired 21 November 2026):
   owner has ruled that ending on a few lines and a goodnight is frame; the words are new each
   week. (002 music-alt)
 
+From the third aired episode (003-holiday-2026, a holiday special, aired 28 November 2026). It
+is one segment, `walk`; the place is given with each entry.
+
+- **SL-35** On a night with no show, the show's logo flickered like a sign whose power had been
+  cut and went out, and the studio was switched off. Larry, off the air: "Oh, no show tonight,
+  folks. Holidays and all." Nobody announced anything. (003 walk, the opening)
+- **SL-36** Larry came in for his paycheck, which they would have mailed, because he likes the
+  walk home. Off the air he wears a long taupe overcoat with the collar up and a gold scarf, no
+  tuxedo and no bow tie. He asked the viewer to walk with him and took the pause for a yes.
+  (003 walk, the studio)
+- **SL-37** He keeps saying "I can't believe it", "The good way and the bad way. Same hour.",
+  and has no joke for that: "I looked." So he has been reading old books, very old: "They
+  couldn't believe it, either. Some wrote down what helped." Does it help? "Some nights."
+  (003 walk, the street)
+- **SL-38** His walk home: a full restaurant where he always stops to watch the one cook in
+  back; a busker under a lamp who had started with nobody there and "never does get to the end
+  of it"; a red sign on an empty road, where he waits anyway. (003 walk, the restaurant, the
+  busker, the crossing)
+- **SL-39** What he took from the old books. A story in the Zhuangzi, as he remembers it: a
+  cook who has had one blade nineteen years and slows down at the hard part. A sentence of
+  Rabbi Tarfon's, quoted exactly, which he found in a used book where somebody had already
+  underlined it; "He meant the study of Torah. I'm a guest in that sentence."; he borrows it
+  as "We don't have to finish it. We just don't get to quit." Asked what if none of it ever
+  gets put right: "I don't know. I really don't." (003 walk, the restaurant, the crossing)
+- **SL-40** He usually walks the last block on his own, with one line from an old Norse poem:
+  "Rich did I feel when a comrade I found." Then: "That's the poem talking." / "Mostly."
+  (003 walk, the last block)
+- **SL-41** He lives on the top floor of a brick building and expected they would have started
+  without him. At his door he told a Tamil couplet, as he remembers it: even with the food of
+  immortality on your table, you don't eat while a guest stands outside. "So you see my
+  position." The door was opened from upstairs. (003 walk, his door)
+- **SL-42** The whole house cast eats at his table, off duty and in their own clothes, Sibyl at
+  its head; his chair is gold and is kept for him; nobody had started. Pete spoke alone for the
+  first time ("I counted you in twice."); Hy: "You took the long way."; Larry: "I had
+  company."; Al: "Chair."; Sibyl: "The guest is served first. That is the rule." / "It's my
+  house." / "It's still the rule."; Eppy: "And the ruling stands!"; Dee laughed. The viewer
+  was given a chair and served first. The episode ended on the owner's lines: "It's a crazy
+  mixed up world out there. Keep the ones that make you feel sane close." / "Stay warm, folks.
+  Goodnight." (003 walk, the table)
+
 ## Running gags and catchphrases
 
 Statuses are as written under the first protocol. Today every one of these is done.
@@ -169,6 +209,32 @@ From the second aired episode. No statuses: each belongs to that episode and is 
 - **G-28 The toast.** "Happy polyhedra week." The form fits any week the cluster names, so it is
   spent as a form.
 
+From the third aired episode, the holiday special. No statuses: each belongs to that episode
+and is done.
+
+- **G-29 The logo going out.** The show's own logo, lit and alone on black from the first frame,
+  flickering and dying. The episode's one turned item: in both earlier episodes the logo came
+  up in the first seconds and the show began. It has now been at the top of all three.
+- **G-30 The say-back.** The viewer never speaks; Larry turns, waits, and says our question
+  aloud: "Does it help?" / "What if none of it ever gets put right?" / "Should you come up?"
+  Also a yes taken in a pause, an unheard answer agreed with ("Yeah. Me too."), and a look
+  answered ("No cars, I know. I wait anyway.").
+- **G-31 The lit window.** A warm crowded room seen from the cold through glass: the
+  restaurant, then the top window over his own door. Then we are let in.
+- **G-32 An old text, then a dry line to get out from under it.** "That's the poem talking." /
+  "Mostly."; "So you see my position."; "I'm probably saying that wrong."; "I'm a guest in
+  that sentence."
+- **G-33 "guest".** "I'm a guest in that sentence." / "you don't eat while a guest stands
+  outside." / "The guest is served first."
+- **G-34 Not finishing.** The busker's tune that stops one note short; "He never does get to
+  the end of it."; "It is not thy duty to complete the work"; "We don't have to finish it."
+- **G-35 Larry by himself, then counted in.** "I usually walk this block on my own." / "Just
+  me" / "They'll have started without me.", answered by "Nobody has started." With G-13 and
+  G-22 this is the character; these lines are done. It is the third ending in three episodes
+  in which he is taken in, and the first in which the viewer is.
+- **G-36 Two sets of footsteps.** His and ours, a little out of step, stopping whenever we
+  stop.
+
 ## Set state (end of 001)
 
 As written under the first protocol ("what the next episode inherits unless it says otherwise").
@@ -199,6 +265,26 @@ last frame, for a reviewer who needs to recognise a returning prop.
 | the lights | a string of round bulbs, all on |
 | earlier in the night, and gone by the end | a pen plotter's sheet with the show's title on it; a pile of half-slabs through the top of the frame; a depth gauge of seven words; a Möbius board, every square gold, with Larry's flag tipped over; three lamps reading LIKE, REPOST, RESIGN |
 | the show's account | exists; its handle has been shown and read out on air |
+
+## Set state (end of 003-holiday-2026)
+
+The special left the studio in its first twenty-six seconds and never came back to it. Nothing
+from either earlier table was on screen. This is where things stood, for a reviewer who needs
+to recognise a returning prop or an episode that answers this one.
+
+| thing | state at the end |
+|---|---|
+| the logo | lit at the first frame, flickered, out by three seconds, not drawn again |
+| the studio | switched off: the set barely there, the sign and ON AIR dark and blank, one work lamp on a stand by the desk, which Larry clicked off as he left by the exit door |
+| Larry's desk | a mug; a blank pay envelope leaned on it and left in his coat pocket |
+| Larry | at his own table, top floor of a brick building, in a cardigan and a gold scarf, in a gold chair, turned back to his friends |
+| the house cast | at that table, off duty: Sibyl at its head, then Eppy, Al, Dee, Hy, Pete |
+| the viewer | in a second chair beside Larry's, served first, a plate with food on it |
+| outside | snow, falling since the crossing; a busker still on his corner; a pedestrian sign showing WALK |
+| the credits | plain cards on black, with no logo, no studio and no goodnight heading |
+
+A later episode that opens by switching the studio or the logo back on is answering this one,
+which is a callback.
 
 ## Community lore
 
@@ -301,6 +387,10 @@ addresses are in that episode's `production/sources.json`.
   descriptions; what company the chart showed and why its price moved, which the show never said;
   whether the scoring bot's manager says so from their own account. [unclear]
 
+From the third aired episode, the holiday special: nothing. It used no posts and said nothing
+about the community, so the next id is still CL-34. Nothing the community posted after the
+second episode's window has been on the show.
+
 ## Rotation log
 
 One row per aired episode. Formats in rundown order. Guests with how they appeared; words by source
@@ -310,6 +400,7 @@ type (V verbatim, I interview, C catchphrase, P pastiche; P is no longer allowed
 |---|---|---|---|---|---|---|---|---|---|
 | 001 | ask, monologue, simcluster-channel, top-chicken (full), built-or-bit, panel, song, goodnight | stomp-clap anthem | wanting a place to belong, in a scene that builds every want at once | Samantha (presenter; V, C), norvid (panel; V, C, P), Abel (panel; C, P), BorJev (cameo; V) | gm/gn | all eleven in the joke-craft table | "a man who is, technically, a throat" | belonging | rules only; crown on a blank card |
 | 002 | demonstration (the open), desk bit, interview, breaking news, making-of, top-chicken, demonstration and thread, performed exchange and demonstration, music (with the goodnight) | doo-wop | handing over the little you have without knowing whether it is enough, and somebody working with it | ver.ooo (V), David (interview; V), davidcrespo (V), moultano (V), Amber (two segments; V), Dave (V), mokkenstorm (V), Minor Mobius (V). Read aloud with no puppet: Samantha, Sophie, cee, the scoring bot, zetaof1, oszillate | "best i can do" | none: the line, the bot and the counter did not appear | none; the announcer said only the title and the host's name | the invitation, in the show's own words: you make this show | one named result with its post read, the record and the gap, two nameless scores; no guess |
+| 003 | one walk (a holiday special: the dark studio, the street, a restaurant, a busker, a crossing, his door, a table); no standing segment | none; a busker's wordless tune that stops one note short | none | none: nobody real appears. Four old texts instead: a rabbi's sentence and a line of a Norse poem quoted exactly, a Chinese story and a Tamil couplet told | none named; the viewer's question said back, three times | none | none; the announcer announced nothing, and the logo opened it by going out | the whole piece, in the show's own words and four old texts: keep going, and keep close the ones who make you feel sane | none |
 
 ## Experiment log
 
@@ -320,6 +411,7 @@ reviewer from the reactions and the scorecard. A draft's experiment stays in its
 |---|---|---|---|---|---|
 | 001 | the show itself (the formation) | that people want another | — | people seemed to like Larry Nx and the Formants (the owner's report); the trial's retro counted 48 posts about it in the first week and no opt-out requests, and found that its most-quoted guest line was invented words; the owner later judged its runner "done to death" | the DNA as first written; the house cast and the studio kept for now; on 19 Nov 2026 everything else the pilot did was removed from the frame |
 | 002 | ten seconds with no words: in each segment made from a made thing, the thing is shown in use and delivers the segment's turn itself | the stretch is in the cues (10 s or more, no word, no crowd sound), and a cold viewer given only the stretch names the turn the writer named | (a reviewer, on the draft) built in three segments; cold viewers on stills, with no sound, named the turn in two of the three | partly run on air: two stretches aired (13.15 s and 11.87 s) and the third was cut in the owner's trim; the owner, watching cold, kept the two the viewers could name. Reactions from the audience: to be added from the next window | the joke chapter: a thing shown working may take the punch itself with no word said, when the turn is something it visibly does; once in an episode |
+| 003 | four earnest minutes in the host's own words, outside the studio, with no posts, no guests and no audience; the owner set the form | shown once with sound to three people who have not read it: at least two give back the don't-have-to-finish, don't-get-to-quit idea and what happened when he got home, at least two name something that happens and not something they were told to feel, none calls it a speech, a lesson or a list; and its cues hold no laugh, applause or sting | (a reviewer, at the final review) built in whole; the cues hold no laugh, applause or sting; the three people were not asked. The owner watched three cuts and approved the last. Cold viewers on stills named the places and what was done in them and missed two pictures that carry meaning | ran on air in whole, 28 Nov 2026. Verdict so far: can't tell. The measure has not been run; reactions from the audience are to be added from the next window | none |
 
 ## Episode log
 
@@ -338,3 +430,14 @@ reviewer from the reactions and the scorecard. A draft's experiment stays in its
   *Left open:* whether anyone points, and what the show does when they do; what the audience made
   of the two wordless stretches; the words of the next goodnight. *Nothing from E-001 returned:*
   no key, crow, bulb, counter, bot or stock line.
+- **E-003 The Walk Home** (airDate 2026-11-28, a holiday special with no window, 4:26.7; a video
+  post from the show's account, 27 November 2026 at 23:49 UTC). *Question:* none asked by the
+  show; three asked by the viewer and said back. *Guests:* none; nobody real appears. *Formats:*
+  one walk, no standing segment. *Runner:* none. *BUILT:* no counter. *Introduced:* SL-35 to
+  SL-42, G-29 to G-36; no community lore. *Turned:* one item, the opening (G-29). *Left open:*
+  whether the experiment's three viewers are ever asked; whether a special with nobody in it
+  counts as the rest for those who spoke in E-002; the community's posts since E-002's window,
+  which no episode has covered; how the archive lists a special; the Article 3 reading for
+  long-dead thinkers, which the owner has not ruled on in so many words. *Returned from
+  earlier episodes:* only the logo at the top, as the turned item. No guest, post, song,
+  counter, key, crow, bot, handle or stock line.

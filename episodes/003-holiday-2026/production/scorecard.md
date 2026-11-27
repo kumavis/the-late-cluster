@@ -567,3 +567,7 @@ zero. **The verdict stands.**
   7.0.
 - **Sibyl** (219.4 to 240.4) is now seated at the table and not beyond it.
 - **The credits** spell the poem's name "Havamal", without its accents.
+
+---
+
+**28 November 2026: it aired.** On the owner's word ("we're good to ship it") the page was published by merging to `main`, and the video was posted from the show's account on 27 November 2026 at 23:49 UTC (08:49 local on the 28th) at `at://did:plc:zdobmviiuyfkc6xyylmpm2sf/app.bsky.feed.post/3n3deuvais32q`, exactly as the third addendum describes it, with nothing changed after the logo opening.

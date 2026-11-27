@@ -1,9 +1,10 @@
 {
   "format": "late-cluster-special/1",
-  "note": "A holiday special: one script the owner outlined, made through the workflow's roles and review by hand (the pipeline tool runs whole weeks from a scrape, and this special uses no posts). The stage below stays open so the guard treats this folder as the episode in production.",
+  "note": "A holiday special: one script the owner outlined, made through the workflow's roles and review by hand (the pipeline tool runs whole weeks from a scrape, and this special uses no posts). While it was in production the stage below stayed open so the guard treated this folder as the episode in production.",
   "stages": {
     "special": {
-      "status": "open"
+      "status": "done"
     }
-  }
+  },
+  "closed": "28 November 2026: aired as episode three. Published by merging episode/003-holiday-2026 into main and pushing, and posted from the show's account the same morning (owner-notes.md has the addresses). This folder is no longer in production."
 }
