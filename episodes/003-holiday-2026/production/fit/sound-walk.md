@@ -170,6 +170,24 @@ The full list of starts around the three lines is 232.68 (before "It's a crazy�
 
 New length: **249.67 s**. `npm run check -- 003-holiday-2026 walk` passes.
 
+## Third follow-up: the owner's new start of the walk
+
+These lines replace `fast-and-fair`, and `what-helped` has new words, as the owner chose. Each was heard in four takes in the full mix, with the steps under it:
+
+- `cant-believe`, plain: "I keep saying I can't believe it." ×4.
+- `both-ways`, now `The good way, and the bad way. Same hour.`: "The good way, and the bad way, same hour." ×2 and "The good way, and the best way, same hour." ×2.
+  - "way" is heard both times in every take. "Same hour." is heard in full after the line's own sentence break.
+  - Plain, "and the" was heard as "into the": "The cutway into the best way…" ×3.
+  - `annd` (/ænnd/) was heard as written ×2 and as "The good way ends the bad way" ×2. The fit also lists it as changing the vowel, so I did not keep it.
+- `what-helped`, plain (its old respelling removed): "They couldn't believe it, either, some wrote down what helped." ×4.
+- `no-joke` and `i-looked` were checked in the new context: "I don't have a joke for that." ×3, "…a joke for the two." ×1; "I looked" ×4. Nothing heard is flagged.
+
+**Pacing.** `cant-believe` keeps the 1.0 s gap after `eyes-front`. `both-ways` follows at the default 0.36 s, and its full stop gives the breath before "Same hour." `no-joke` follows at 0.36 s, as it followed the old line.
+
+**Footsteps.** The stretch is 1.0 s longer, which had opened a missed step between `steps-street-3` and `-4`. `steps-street-4` is now 12 beats laid back from `stop-at-window`: it starts at 50.72, one stride (0.63 s) after his last step in block 3, and still stops on the cue (57.78).
+
+New length: **251.13 s**. `npm run check -- 003-holiday-2026 walk` passes.
+
 ## The mp3
 
 `/Users/xyz/Development/the-late-cluster/episodes/003-holiday-2026/public/audio/walk.mp3` (cues in `episodes/003-holiday-2026/segments/walk/cues.json`)

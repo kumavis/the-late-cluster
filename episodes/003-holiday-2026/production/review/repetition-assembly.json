@@ -182,27 +182,53 @@
       "verdict": "fresh",
       "fromPrevious": false
     },
-    "walk:fast-and-fair": {
-      "id": "walk:fast-and-fair",
-      "version": "f52a9bd2f1a0",
+    "walk:cant-believe": {
+      "id": "walk:cant-believe",
+      "version": "851209d1ed25",
       "verdicts": [
         {
           "reviewer": "reviewer-1",
-          "round": 1,
+          "round": 2,
           "verdict": "fresh",
           "turned": null,
           "fromPrevious": false,
           "avoid": "",
-          "reason": "On record from review/final/reviewer-1-r1.json: reviewer-1 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+          "reason": "No aired line has these words, and no aired joke has this premise with this turn. The nearest thing on the record is the previous aired episode's interview tag in which the host quotes his own stock phrase ('Me, I just say, good question.'), the line a draft's tag was stopped for at select. That was a tag after a guest had simply made the thing, and its turn was the comparison: he came off the lesser. This is not a tag, sets him beside no maker, does not open on those two words, and its turn belongs to the next line (one sentence for opposite occasions). The subject returns with a different turn. Noted, not blocked: it is the second time Larry quotes what he says, and with `no-joke` and `i-looked` straight after it the stretch now has two beats running on what he has not got. The ledger classes the host made small as the character, and neither beat is a punch that he is only a host."
         },
         {
           "reviewer": "reviewer-2",
-          "round": 1,
+          "round": 2,
           "verdict": "fresh",
           "turned": null,
           "fromPrevious": false,
           "avoid": "",
-          "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+          "reason": "No aired line says it, and no aired joke works this way. Looked at hard and passed: (1) the previous aired episode's interview had Larry report his own stock phrase as a tag ('Me, I just say, good question.'), and a line of that kind was stopped at select in this special. There the job was a tag in which he comes off the lesser beside someone who had just made something. Here nobody has made anything, it is not a tag, and it is the plain answer to his own 'How have you been?'; it opens on different words and nothing is measured. (2) The pilot's monologue had a bot with one phrase for everything, which everybody then caught. That was a joke about a tic spreading, with an impression and a unison line; this is a man's own astonishment and gets no reaction. (3) 'I keep saying' gives him a recent habit of his own, like `always-stop`; he has never said the sentence on air, so it does not point at the show's past."
+        }
+      ],
+      "verdict": "fresh",
+      "fromPrevious": false
+    },
+    "walk:both-ways": {
+      "id": "walk:both-ways",
+      "version": "2f5e51ca9df6",
+      "verdicts": [
+        {
+          "reviewer": "reviewer-1",
+          "round": 2,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "Looked at against three aired things and passed. (1) The pilot's monologue punch that put two of the cluster's themed weeks on one Monday: also two things inside one small unit of time. There the laugh was a named span shrinking, a week that lasted a day, with a stamp and a rimshot. Here nothing shrinks and nothing contradicts itself; the hour only says that the two arrive together. The same kind of fact, used for a different point. (2) The previous aired episode's sports-desk button, 'The smallest win of the week. Same title.': the same clipped figure, a contrast and then 'Same' with a noun. A different speaker, register and surprise (unequal things given equal rank, with a picture and a sting). The figure is ordinary speech, and one use each is not a form; a third line ending on it would make it one. (3) The pilot's measure of how fast the cluster builds things (six minutes; a joke an hour ago): that runner was about wishes being built, and this is about the world outside, in the owner's own terms. No one sentence covers this line and any of the three without losing what each turns on."
+        },
+        {
+          "reviewer": "reviewer-2",
+          "round": 2,
+          "verdict": "fresh",
+          "turned": null,
+          "fromPrevious": false,
+          "avoid": "",
+          "reason": "Fresh by mechanism: the line's work is that one sentence is meant two opposite ways, which the show has not done. Two things in the record come near its last two words and I pass both. (1) The pilot's monologue had a button that put two named weeks on one day, and that episode's runner was how little time things took. There the collapse of time was the whole joke, with a clash of units and a stamp; here the time is an intensifier on a line about good and bad arriving together, the premise is different, and speed is the owner's own content for this stretch. Same kind of fact, different surprise. (2) The previous aired episode's sports desk ended on a contrast followed by a two-word 'Same <noun>.' button. Same rhythm, different speaker, place and job, and a viewer would not hear one as the other; it is ordinary clipped speech and not a phrase of the show's. Neither is from the previous episode in any way that counts."
         }
       ],
       "verdict": "fresh",
@@ -288,25 +314,25 @@
     },
     "walk:what-helped": {
       "id": "walk:what-helped",
-      "version": "f045735396bf",
+      "version": "cb828aa923e2",
       "verdicts": [
         {
           "reviewer": "reviewer-1",
-          "round": 1,
+          "round": 2,
           "verdict": "fresh",
           "turned": null,
           "fromPrevious": false,
           "avoid": "",
-          "reason": "On record from review/final/reviewer-1-r1.json: reviewer-1 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+          "reason": "Its second sentence is the one passed in round 1. Its new first sentence brings `cant-believe` back with the person and the tense changed, so I read it against the two forms the record holds for that: a guest's phrase paid back by the host as a segment's button with a word changed (three times in the previous aired episode, and listed as spent), and a song's last hook returning with a change of person that takes the listener in (aired twice). It is neither. The phrase is his own; it is not a button and gets no reaction; it sits in the first minute and not at a close; nothing is sung; and the change of person does a join's work, saying that the people in the old books were where he is, which the sentence it replaces said in other words. It is ordinary cohesion between two lines of one speech, not a staged return."
         },
         {
           "reviewer": "reviewer-2",
-          "round": 1,
+          "round": 2,
           "verdict": "fresh",
           "turned": null,
           "fromPrevious": false,
           "avoid": "",
-          "reason": "On record from review/final/reviewer-2-r1.json: reviewer-2 judged every line of the script at version 22e296d385af and gave the whole script the verdict fresh. This line's words are the words read then."
+          "reason": "Its second sentence is the one judged fresh in round 1. Its new first sentence brings `cant-believe` back four lines later with the person and the tense changed, and that is the thing I looked at hardest, because the record lists two near forms: a guest's real phrase paid back by the host as the button of a segment with a word changed (three times in the previous aired episode, recorded as a spent form), and a song's last hook returning with its person changed to take the listener in (both aired songs, and a line of that kind was stopped at select here). This is neither. The phrase is his own and not a guest's, it is not a button and gets no reaction, nothing is sung, it is not at a close, and it does not turn to the viewer: its job is to give the old books a reason, by saying the people in them felt as he does. It is how a person talks. No aired line says it."
         }
       ],
       "verdict": "fresh",

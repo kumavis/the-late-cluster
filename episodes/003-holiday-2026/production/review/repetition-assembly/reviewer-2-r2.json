@@ -1,0 +1,41 @@
+{
+  "reviewer": "reviewer-2",
+  "round": 2,
+  "items": [
+    {
+      "id": "walk:cant-believe",
+      "version": "851209d1ed25",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "No aired line says it, and no aired joke works this way. Looked at hard and passed: (1) the previous aired episode's interview had Larry report his own stock phrase as a tag ('Me, I just say, good question.'), and a line of that kind was stopped at select in this special. There the job was a tag in which he comes off the lesser beside someone who had just made something. Here nobody has made anything, it is not a tag, and it is the plain answer to his own 'How have you been?'; it opens on different words and nothing is measured. (2) The pilot's monologue had a bot with one phrase for everything, which everybody then caught. That was a joke about a tic spreading, with an impression and a unison line; this is a man's own astonishment and gets no reaction. (3) 'I keep saying' gives him a recent habit of his own, like `always-stop`; he has never said the sentence on air, so it does not point at the show's past."
+    },
+    {
+      "id": "walk:both-ways",
+      "version": "2f5e51ca9df6",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "Fresh by mechanism: the line's work is that one sentence is meant two opposite ways, which the show has not done. Two things in the record come near its last two words and I pass both. (1) The pilot's monologue had a button that put two named weeks on one day, and that episode's runner was how little time things took. There the collapse of time was the whole joke, with a clash of units and a stamp; here the time is an intensifier on a line about good and bad arriving together, the premise is different, and speed is the owner's own content for this stretch. Same kind of fact, different surprise. (2) The previous aired episode's sports desk ended on a contrast followed by a two-word 'Same <noun>.' button. Same rhythm, different speaker, place and job, and a viewer would not hear one as the other; it is ordinary clipped speech and not a phrase of the show's. Neither is from the previous episode in any way that counts."
+    },
+    {
+      "id": "walk:what-helped",
+      "version": "cb828aa923e2",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "Its second sentence is the one judged fresh in round 1. Its new first sentence brings `cant-believe` back four lines later with the person and the tense changed, and that is the thing I looked at hardest, because the record lists two near forms: a guest's real phrase paid back by the host as the button of a segment with a word changed (three times in the previous aired episode, recorded as a spent form), and a song's last hook returning with its person changed to take the listener in (both aired songs, and a line of that kind was stopped at select here). This is neither. The phrase is his own and not a guest's, it is not a button and gets no reaction, nothing is sung, it is not at a close, and it does not turn to the viewer: its job is to give the old books a reason, by saying the people in them felt as he does. It is how a person talks. No aired line says it."
+    }
+  ],
+  "joins": "The join holds, and at the front it is better than before: `cant-believe` is now his answer to his own 'How have you been?' after `yeah-me-too`, where the old line turned away to describe the world. `no-joke` still follows: 'that' is now the good and the bad in one hour, `both-ways` has the cadence of a comic's observation, and he declines to finish it, so `i-looked` lands as it did. `what-helped` now has something to answer ('either' picks up `cant-believe`), which mends the loose end I noted in round 1, where 'rattled ... too' arrived with nothing said before it. One small looseness comes with it: 'They' has only 'old books' in front of it, where the old line said 'People' and 'then'. `q-does-it-help` and `some-nights` are untouched and still follow 'what helped'; there are now three different 'it's in fifteen seconds (what he cannot believe, what they could not, the reading), which a listener sorts out but should be heard once before it is settled. Two threads further on are thinner, and neither is broken. (1) The cook. Nobody now says that things are fast; 'Same hour.' is the only trace of speed. The cook slowing down while the room hurries used to answer a word Larry had said, and with the summing-up line already gone the first idea now rests on its picture and on 'a hard part' alone. (2) The crossing. 'What if none of it ever gets put right?' used to point back at 'fair is hard to find'. It now has 'the bad way' and nothing that says anything is wrong or unjust, so the question is the first and only place the special says so. It still reads, because it is our question and we bring our own 'it', and it lets the walk darken as it goes instead of starting dark; but it lands colder than it did, and the nearest 'it' before it is the busker's tune in `never-ends`. Nothing at the door or the table leans on the old lines. Housekeeping, not script: `notes.json` still gives the feeling as 'Rattled, walked home, let in', and that word is no longer said. The staging's references (`eyes-front`, the end of `what-helped`) still resolve. 414 words by the round 1 count, inside the range.",
+  "answersTheNote": "Yes: 'I keep saying' carries how much is happening, 'the good way and the bad way' carries the joys and the horrors with the good named first, 'Same hour.' carries the speed, the owner's own 'incredible' is said in plain words as 'I can't believe it', and the two phrases that pointed only one way ('fair is hard to find', 'rattled') are gone, all without describing the world or telling anyone how to feel.",
+  "forTheOwner": [
+    "Your outline's 'justice seems rare' was carried by 'fair is hard to find'. With that line gone it is carried only by the question we ask at the red light, which now arrives with less before it. I think that is a fair price for the note, and arguably an improvement in shape; you should know it moved.",
+    "No spoken line now says things are fast, though your note does. 'Same hour.' is all of it, and those two words are the ones the writer expects the voice to clip. It matters a little further on: the cook who slows down is answering speed.",
+    "For the auditor, not a repetition matter: 'They couldn't believe it, either.' says something of the people in the old books that the earlier wording ('People were rattled then') said of people in general, and 'They' sits next to the books he goes on to name.",
+    "Not heard by me. The sense of `both-ways` hangs on 'way', twice, which the voice finds hard, and `cant-believe` carries its quotation marks into the voice with no respelling, where the other quoted lines strip them."
+  ]
+}

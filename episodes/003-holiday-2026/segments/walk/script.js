@@ -114,11 +114,16 @@ export default {
 
     { cue: 'eyes-front' },
     // Profile. A lamp post goes by first. Easier to say the next part not looking at us.
-    { say: 'larry', id: 'fast-and-fair', text: 'Things move fast lately. And fair is hard to find.', gap: 1.0 },
+    // The owner's note, 27 November 2026: the start of the walk dwelt on the negative, when what
+    // unsettles people is how much is happening, the terrible and the wonderful together. The
+    // owner chose version C of production/rewrite/start-of-walk.md: he tells it on himself. The
+    // two lines below replace `fast-and-fair`, and `what-helped` has a new first sentence.
+    { say: 'larry', id: 'cant-believe', text: 'I keep saying, "I can\'t believe it."', gap: 1.0 },
+    { say: 'larry', id: 'both-ways', text: 'The good way and the bad way. Same hour.', as: 'The good way, and the bad way. Same hour.' },
     { say: 'larry', id: 'no-joke', text: "I don't have a joke for that.", as: "I don't have a joke four that." },
     { say: 'larry', id: 'i-looked', text: 'I looked.', rate: 0.9, gap: 0.7 },
     { say: 'larry', id: 'old-books', text: "So I've been reading old books. Very old.", gap: 1.0 },
-    { say: 'larry', id: 'what-helped', text: 'People were rattled then, too. Some wrote down what helped.', as: 'People were rattled, then, too. Some wrote down what helped.' },
+    { say: 'larry', id: 'what-helped', text: "They couldn't believe it, either. Some wrote down what helped." },
 
     // Two lamp posts go by with nobody talking.
     { wait: 1.6 },
@@ -139,10 +144,12 @@ export default {
     // as a bed under the whole scene.
     { sfx: 'murmur', vol: 0.3, pan: 0.4, hold: 0 },   // (sound editor) the room through glass, from the right, rising
     { wait: 1.4 },
-    { wait: -5.8824 },
+    // (sound editor) 12 beats laid back from the stop: his first step here falls about one stride
+    // after his last in steps-street-3, and both stop on the cue.
+    { wait: -7.058824 },
     { music: { id: 'steps-street-4', bpm: 102, gap: 0, swing: 0.08, tracks: [
-        { who: 'al', beat: 'P! . . . ', loops: 10, vol: 0.14, pan: 0.25 },
-        { who: 'pete', beat: '. . P! . . . P! . . . P! . . . P! . . . . P! . . . P! . . . P! . . . P! . . . . P! . . .', vol: 0.18, pan: -0.05 },
+        { who: 'al', beat: 'P! . . . ', loops: 12, vol: 0.14, pan: 0.25 },
+        { who: 'pete', beat: '. . P! . . . P! . . . P! . . . P! . . . . P! . . . P! . . . P! . . . P! . . . . P! . . . P! . . . P! . . .', vol: 0.18, pan: -0.05 },
       ] } },
     { cue: 'stop-at-window' },
     // The street stops sliding and both sets of footsteps stop. He has stopped to look in, head

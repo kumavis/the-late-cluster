@@ -1,0 +1,43 @@
+{
+  "reviewer": "reviewer-1",
+  "round": 2,
+  "items": [
+    {
+      "id": "walk:cant-believe",
+      "version": "851209d1ed25",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "No aired line has these words, and no aired joke has this premise with this turn. The nearest thing on the record is the previous aired episode's interview tag in which the host quotes his own stock phrase ('Me, I just say, good question.'), the line a draft's tag was stopped for at select. That was a tag after a guest had simply made the thing, and its turn was the comparison: he came off the lesser. This is not a tag, sets him beside no maker, does not open on those two words, and its turn belongs to the next line (one sentence for opposite occasions). The subject returns with a different turn. Noted, not blocked: it is the second time Larry quotes what he says, and with `no-joke` and `i-looked` straight after it the stretch now has two beats running on what he has not got. The ledger classes the host made small as the character, and neither beat is a punch that he is only a host."
+    },
+    {
+      "id": "walk:both-ways",
+      "version": "2f5e51ca9df6",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "Looked at against three aired things and passed. (1) The pilot's monologue punch that put two of the cluster's themed weeks on one Monday: also two things inside one small unit of time. There the laugh was a named span shrinking, a week that lasted a day, with a stamp and a rimshot. Here nothing shrinks and nothing contradicts itself; the hour only says that the two arrive together. The same kind of fact, used for a different point. (2) The previous aired episode's sports-desk button, 'The smallest win of the week. Same title.': the same clipped figure, a contrast and then 'Same' with a noun. A different speaker, register and surprise (unequal things given equal rank, with a picture and a sting). The figure is ordinary speech, and one use each is not a form; a third line ending on it would make it one. (3) The pilot's measure of how fast the cluster builds things (six minutes; a joke an hour ago): that runner was about wishes being built, and this is about the world outside, in the owner's own terms. No one sentence covers this line and any of the three without losing what each turns on."
+    },
+    {
+      "id": "walk:what-helped",
+      "version": "cb828aa923e2",
+      "verdict": "fresh",
+      "turned": null,
+      "fromPrevious": false,
+      "avoid": "",
+      "reason": "Its second sentence is the one passed in round 1. Its new first sentence brings `cant-believe` back with the person and the tense changed, so I read it against the two forms the record holds for that: a guest's phrase paid back by the host as a segment's button with a word changed (three times in the previous aired episode, and listed as spent), and a song's last hook returning with a change of person that takes the listener in (aired twice). It is neither. The phrase is his own; it is not a button and gets no reaction; it sits in the first minute and not at a close; nothing is sung; and the change of person does a join's work, saying that the people in the old books were where he is, which the sentence it replaces said in other words. It is ordinary cohesion between two lines of one speech, not a staged return."
+    }
+  ],
+  "joins": "It holds, with one place thinner than it was. Into the stretch: 'Yeah. Me too.' now leads to what 'me too' means for him, which follows better than a description of the world did. `no-joke` still follows. Its 'that' is now the good and the bad arriving together, so the line has moved from declining to joke about something unfair to owning up that he cannot find the joke in the muddle, and `i-looked` lands as before. `old-books` into `what-helped`: 'They' has only 'old books' to point to and 'then' is gone, so for half a second it is the books that could not believe it; 'Some wrote down what helped' puts it right. `q-does-it-help` and `some-nights` are untouched and read as they did. On to the cook: 'what helped' still hands over to 'a story about a cook in an old Chinese book'. The cook slowing while the room hurries used to answer a spoken 'Things move fast'; the only word of pace before it now is 'Same hour', and the picture carries the hurry by itself, which it can. On to the crossing: this is the thin place. 'What if none of it ever gets put right?' used to point back to 'fair is hard to find'. Its only antecedent now is 'the bad way', about a minute and a half earlier, so the question is the first time anything in the piece is said to be wrong enough to need putting right, and it comes from us and not from him. I read that as the owner's note working and not as a break, and the long hold before the question helps it. Nothing later leans on what was cut: 'fast', 'fair' and 'rattled' are nowhere else in the script. One gain further on: 'It's a crazy mixed up world out there.' now has something to pick up, because good and bad in the same hour is what mixed up means. One thing to listen for: 'Same hour.' and 'Some nights.' are two clipped two-word phrases of time less than twenty seconds apart and close in sound in this voice, and the second is the best line of the stretch.",
+  "answersTheNote": "Yes: Larry no longer describes a world going wrong, he tells on himself that he keeps saying one sentence for the wonderful and the terrible alike in the same hour, so both halves and the amount of it are there and the weight is off the negative; 'changing fast' is now implied by 'Same hour' and 'I keep saying' and is no longer said.",
+  "forTheOwner": [
+    "With `fast-and-fair` gone, nothing before the crossing says that anything is unjust. 'The bad way' is the only trace, and the viewer's question, 'What if none of it ever gets put right?', now brings that in by itself. It reads to me as what you asked for: the dark half arrives late and from us. It is worth hearing once to be sure the question does not seem to come from nowhere.",
+    "The good and the bad are named and not shown. 'The good way and the bad way' is as plain as words get, and no joy and no horror is pictured or instanced. That keeps the special from naming anything, which its rules ask; it also means your 'incredible joys' are one adjective.",
+    "The stretch now opens on two beats in a row about what Larry has not got: only one sentence, and then no joke. Both are in character and I pass both. If he seems to be running himself down, it is the pairing and not either line.",
+    "'Same hour.' and 'Some nights.' share a shape and nearly a sound, less than twenty seconds apart.",
+    "A gain you did not ask for: your closing line, 'It's a crazy mixed up world out there.', is now set up in the first minute.",
+    "For the project manager, not the owner: the special's ledger record (docs/ledger/003-holiday-2026.md and .json) and the feeling in segments/walk/notes.json still carry the replaced words. The record is the last reviewer's to bring into line once the change is final."
+  ]
+}
