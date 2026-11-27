@@ -180,6 +180,12 @@ Absolute URLs in a build (the Open Graph image and page URL) come from `siteUrl`
 `show.config.json`, never from the environment, so a committed build does not depend on who
 built it. While `siteUrl` is empty those tags are relative.
 
+`siteUrl` is `https://kumavis.github.io/the-late-cluster/`, the address GitHub Pages gives the
+repository, for now (the owner's ruling, 27 November 2026); a hostname under `simcluster.tv`
+replaces it when one is chosen (`terraform/README.md`). Episodes 001 and 002 were built while it
+was empty, so their tags are relative, and they are not rebuilt for it. The archive page takes its
+address at deploy time, from the Pages configuration.
+
 Consequences to keep in mind:
 
 - After re-rendering a segment, rebuild before committing. Otherwise the committed
