@@ -128,3 +128,37 @@ Shown the cut with the fourth idea, the post text and the alt text as one set:
 So the set is liked and not yet frozen: the special now opens on the show's own logo, lit, which
 flickers and goes out, leaving the studio switched off. Three cues are added at the top of the
 script (`logo`, `logo-flicker`, `logo-out`) and no word changes.
+
+## 27 November 2026, evening: the set is approved and frozen
+
+Shown the cut with the logo at the opening, the post text and the alt text together, the owner
+answered:
+
+> Approve the set
+
+What was approved, so that what goes out can be shown to be this:
+
+- **The cut:** `video/003-holiday-2026/late-cluster-bluesky.mp4`, 286.7 s (the episode is 266.7 s,
+  then 20 s of credits), 273,613,902 bytes, sha256 `70c5d52ce40a75c83c60e8132b8b8dab4bfeccb47f9dfd0faa48fab912055a93`. Made with
+  `--all --bluesky --credits --max-mb 280 --soften box --caption-scale 1.4 --preview-360
+  --preview-720`; its first frame is the lit logo, so no separate poster frame is put in front.
+  The stage auditor's sixth round passed this file's 360p preview.
+- **The post text:** `data/bot/posts/003-holiday-2026.post.txt`, sha256 `937a13924c7e1f1a37d800cc05b95c09ecd1be38cc8e7ce3497d24662c6e67a0`:
+
+> The Late Cluster, episode three: a holiday special.
+>
+> No show tonight. The studio is dark, and Larry, the host, walks you home through the cold. Four and a half minutes.
+
+- **The alt text:** `data/bot/posts/003-holiday-2026.alt.txt`, sha256 `6b08390fce045852a0b4085130ccc51cc890737ed1b0f723b3a8d3457b036158`:
+
+> Animated video, about four and a half minutes: episode three of The Late Cluster, a holiday special. Line-drawn puppet heads on black. Larry, the host, in an overcoat and gold scarf, leaves a dark studio and walks through a city at night, talking to the viewer at his side. They stop at a crowded restaurant window, a street singer and a red crossing signal, then reach his door in falling snow. It ends indoors, at a long table with others. Every voice is synthesized. Captions are on screen throughout.
+
+- **No captions file** is attached, because the picture carries its captions. **No reply:**
+  nobody real appears in the episode, so there is nobody to tag. The source-record check
+  (`npm run aired`) finds nothing that airs from a real account, and there is no source list for
+  a live check to read.
+
+After this nothing in the set is edited or rendered again. The published build is made on the
+episode's branch tonight. In the morning, on the owner's word: the branch is merged into `main`
+and pushed, the live page is checked, and the video is posted.
+

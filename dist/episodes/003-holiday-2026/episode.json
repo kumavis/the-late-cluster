@@ -1,0 +1,36 @@
+{
+  "id": "003-holiday-2026",
+  "number": 3,
+  "slug": "holiday-2026",
+  "title": "The Walk Home",
+  "description": "A holiday special. No show tonight: Larry, off the air, walks you home through the cold.",
+  "airDate": "2026-11-28",
+  "status": "published",
+  "rundown": [
+    "walk"
+  ],
+  "plainCards": true,
+  "credits": [
+    {
+      "head": "Quoted",
+      "lines": [
+        "Pirkei Avot, chapter 2",
+        "translated by Joseph I. Gorfinkle, \"The Sayings of the Jewish Fathers\", first published 1913",
+        "The Havamal, stanza 47",
+        "translated by Henry Adams Bellows,",
+        "\"The Poetic Edda\", 1923"
+      ]
+    },
+    {
+      "head": "Told from",
+      "lines": [
+        "The Zhuangzi: the cook who carved the ox",
+        "The Tirukkural, chapter 9"
+      ]
+    }
+  ],
+  "build": {
+    "sourceHash": "6fd5b7fe58206871a8d28d48fc074c769573d13aab56a4beb86f0b0fe729d515",
+    "studioHash": "38537fc12a0cad9d85b732cbceab27b625569e630877fa0b404ebadb5dfaf005"
+  }
+}

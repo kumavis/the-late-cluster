@@ -4,7 +4,8 @@
   "slug": "holiday-2026",
   "title": "The Walk Home",
   "description": "A holiday special. No show tonight: Larry, off the air, walks you home through the cold.",
-  "status": "draft",
+  "airDate": "2026-11-28",
+  "status": "published",
   "rundown": [
     "walk"
   ],
