@@ -70,3 +70,11 @@ nothing slides along the table by itself, so the bowl that is served to us arriv
 and the bowls of the meal stay put; and Sibyl sits as a person at the head of the table and
 looks at Larry when she says "It's still the rule." The last two differ from the script's cue
 comments, which are brought into line. No word of any line changes.
+
+## 27 November 2026: the place setting stays
+
+The auditor's third round noted that the second chair and the place setting at `chair-in` are
+now the only things on the table that move by themselves. Asked whether the place setting
+should arrive by a cut too, the owner answered:
+
+> Leave it sliding
