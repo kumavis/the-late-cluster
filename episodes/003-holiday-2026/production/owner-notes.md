@@ -109,3 +109,12 @@ line on the last block; the owner asked for a paragraph on each, and then chose:
 So the special gains a fourth idea before the cut is frozen: on the last block, the line "Rich
 did I feel when a comrade I found" from the Hávamál in Bellows's translation of 1923, which an
 earlier draft had and the final script cut to stay at three.
+
+## 27 November 2026, evening: Sibyl at the table
+
+> while you are at it, at the dinner table sybil ant in some shots sits beyond the table, still
+> torso cutoff as if he was occluded
+
+In two shots from our chair she sat just past the table's far corner, cut off along a line
+where no table was in front of her. Sent to the lead builder: nobody at the table is cut off
+by anything that is not actually in front of them.

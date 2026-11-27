@@ -328,3 +328,120 @@ fault.
   past him, and does "It's my house." (222.3) still land on it?
 - **Watch Sibyl** (223.6 to 224.7): she looks up at him to say it.
 - Nobody but this review has looked at frames of the new lines.
+
+---
+
+## Second addendum, 27 November 2026, evening: a fourth idea
+
+The card and its first addendum are left as written. After the first addendum the owner watched
+the cut with the new start ("solid, lets publish tomorrow morning local"), and then added a
+fourth idea. This addendum is about that. **The verdict stands: approve, 19 of 24.**
+
+Times here are from the current `cues.json`. Everything before the last block is 0.07 s later
+than in the first addendum; everything from his door on is 12.1 s later.
+
+### What changed
+
+1. **A fourth idea, at the owner's word** ("The Norse line", chosen from four candidates). On
+   the last block, after `this-block`, come four new lines: `one-line` (Just me and one line
+   from an old Norse poem.), the quotation `comrade-line` at a new cue `comrade` ("Rich did I
+   feel when a comrade I found", the Hávamál, stanza 47, in Bellows's translation of 1923), the
+   cue `glance` moved to after it, then `poem-talking` (That's the poem talking.) and `mostly`
+   (Mostly.). The picture cuts closer on `comrade` and back on `glance`. The credits name the
+   second translation. Both gate reviewers gave the four lines fresh and the auditor passed the
+   quotation and its credit.
+2. **Two things the first addendum listed were fixed.** "bad" in `both-ways` is heard as "bad"
+   in every take. The room under the owner's last lines is one unbroken bed, and the hole under
+   "close" is gone.
+3. **The air slot** is the morning of Saturday 28 November 2026, local time. It is a draft
+   until then.
+
+The segment is now 263.2 s (4:23.2), with 427 spoken words and 11 sung, in 64 spoken lines.
+
+### What I checked this time
+
+- **Read:** the owner's notes on the air slot and the fourth idea; the writer's note; both gate
+  reviewers' third-round files and the combined record; the auditor's third round; the fit
+  report's fourth and fifth follow-ups; the builder's round four; the `havamal` card; the script
+  and the cues as they stand.
+- **Ran:** check (passes at 263.224 s), verify (0 problems) and on-record (findings=0).
+- **Looked at:** 51 more frames I shot on the current timeline: 39 of the walk (the last block
+  closely, then the door, the table and the end) and 12 of the credits. No stage audit has been run on this cut
+  and the audit folder still holds the first cut's frames, so again these are the only frames
+  anyone outside the builders has looked at. The shoot printed no warning.
+- **Measured:** the room in the gaps around the last lines, and the steps on the last block.
+- **Still not heard** by me. The record does not say that the owner has watched the cut with
+  the fourth idea in it.
+
+### Which rows it touches
+
+No score changes. The evidence of ten rows does.
+
+| row | was | now | what changed in the evidence |
+|---|---|---|---|
+| Step 0 | clean | clean | The part "the snow and the last block" now holds an idea. Its retell: it starts to snow; he says he usually walks this block on his own, then owns up to one line of an old poem he walks it with, says it to the road, glances at us, and takes half of it back. Its turn: "That's the poem talking. Mostly." The cut test passes it: the last two lines would be missed. `ruling-stands` is still the one line the test finds |
+| A2 | pass | pass | Two quotations now. The caption of `comrade-line` (181.19 to 184.07) matches the third line of stanza 47 on the `havamal` card word for word; I checked the card, and so did the auditor's third round |
+| A3 | pass | pass | He does not explain this one at all. He says a line and says it is the poem talking. The gate rests on the outline as before |
+| A6 | pass | pass | The Hávamál is sacred to some people living now, and its card says so. The owner chose this line by name, which is firmer ground than the extension of "Keep the rabbi" that still covers the other two books. The poem is not named aloud, its speaker is not named anywhere, and nothing is drawn for it |
+| A8 | pass | pass | I shot the credits again. QUOTED now lists both translations: "The Hávamál, stanza 47, translated by Henry Adams Bellows, "The Poetic Edda", 1923". The year wraps to a line of its own, which is how it sits and not an error. The synthesized-voices line is as it was |
+| A11 | pass | pass | Check, verify and on-record pass on the cut as it stands |
+| A13 | pass | pass | 66 items on record, two verdicts each, all fresh, matching the 66 lines exactly. I agree with the third-round verdicts. The cut to a closer shot repeats nothing. What the four lines do to the close is below |
+| A16 | pass | pass | Nothing kept is heard as crude or alarming. But `one-line` sits next to something that is: two spellings the sound editor tried were heard as "…our sperm" and were rejected for it. As kept it is heard as "Trust me, find one line from an over-and-horse poem". `comrade-line`, a real translator's words, is heard with "camera" for "comrade" in three takes of four; it is listed in the fit report and exact in its caption (181.5, 182.8, 183.9). "Mostly." alone is transcribed "mochi". `both-ways` is now heard as written |
+| B4 | 2 | 2 | The new pictures are on their words: the cut to the closer shot at `comrade` (180.4), eyes on the road through the quotation, his head turned to us at 184.8 after the cue `glance`, eyes front for the last two lines (186.8, 188.9). No word goes on screen for the poem |
+| B8 | 1 | 1 | Now 40 of 64 spoken lines are heard differently in at least one take. The four new ones are all among them: "Norse", "comrade", "That's" and the lone "Mostly." |
+| B9 | 1 | 1 | The hole is gone. In every gap around the owner's lines the mix now measures between minus 38 and minus 40 dB RMS, and the room runs on at that level for 5.4 s after "Goodnight." It costs something: the bed ducks half as much, three of its layers now start inside a line, and `mixed-up-world` is transcribed worse than it was ("mixed up real loud there" in two takes of four). On the block the quotation has only the snow's steps under it (minus 53 to minus 57 dB in the gaps). The chair and the burst are as they were |
+| B10 | 2 | 2 | 4:23.2 against the owner's four minutes, by the owner's choice. The fourth idea passes the cut test. Three of the four old texts now fall inside the eighty seconds from the rabbi to the couplet (133 to 211) |
+| B12 | 1 | 1 | The owner has now watched twice and approved the cut for publishing, before the fourth idea. The measure's three people who have not read it are still to come. One thing moves for the measure: it asks whether viewers give back the don't-have-to-finish idea, and there is now a second exact quotation, shorter and warmer, forty seconds after the first |
+
+Unchanged in score: every other row. Three gain something without moving. B2: the stretch I
+marked as having no light line from `no-cars` to `position` now has one in its middle, and the
+owner's two watches answer part of what I could not hear; it stays 1 because nobody is on
+record as having watched this cut, and because of what the reviewers call accumulation (below).
+B3: a second exact quotation from a checked card. B13: four ideas that arrive four ways: seen
+and told, asked for and borrowed, let slip and half taken back, done.
+
+**Total: 19 of 24,** as before (2, 1, 2, 2, 2, 2, 1, 1, 1, 2, 1, 2; B11 not applicable). No
+zero. **The verdict stands.**
+
+### Whether the fourth idea earns its place, and what it does to the close
+
+I agree with both gate reviewers that it earns its place, and for their reason: it is not a
+fourth lesson but the one old text he keeps for himself, it gives the heaviest stretch its one
+light beat, and it makes "I had company." the plain end of something. I also agree on its two
+costs. The door is no longer where we find out that he wants us to come; it is where he is
+caught at it a second time. And it brings the close nearer the two aired endings than it has
+been: he is now alone with one small thing of his own forty seconds before the house tells him
+nobody has started. It is still a different mechanism, since nobody answers his line and a whole
+scene stands between it and the table, and the owner chose it after a reviewer with the record
+said so.
+
+### Papers that now lag behind the cut
+
+- No stage audit covers this cut, and `shots/003-holiday-2026/_audit/` and `end/` are of the
+  first one.
+- The fit report's standing list still gives the old `what-helped`.
+- The second-round reviewers noted that `notes.json` and the comment at the top of the script
+  spoke of three ideas; the auditor's third round asks for them to be brought into line.
+
+### New for the owner
+
+- **Listen first to "Just me and one line from an old Norse poem."** (177.3 to 180.3). The
+  sound editor asks for your ear on it too. As kept it is heard as "over-and-horse poem"; two
+  other spellings were heard as something crude and thrown out. If you hear anything of the
+  kind, it goes back.
+- **Listen to the quotation** (181.2 to 184.1): "comrade" is heard as "camera" in three takes
+  of four. It is exact in the caption.
+- **Listen to "Mostly."** (188.5). One word on its own beat, which the tool cannot make out.
+  The writer and the sound editor both say it may have to rejoin the line before it.
+- **Listen from "Mostly." to "There's an old Tamil book"** (188.5 to 199.4), and through "on
+  my own", "Just me" and "They'll have started without me." (172.9 to 195.4). Three lines in
+  about twenty seconds have him by himself, and two old texts fall inside twenty. Dry, it is one
+  man with a tell. If it plays as coyness or as a man sorry for himself, that is where.
+- **Listen to your own "It's a crazy mixed up world out there."** (247.0): it is a little less
+  clear over the new, fuller room.
+- **Watch the cut on `comrade`** (180.3) and back on the glance (184.1). The builder asks
+  whether a cut is the right weight for the line. And the glance (184.1 to 185.9) now has to
+  read as a man who has just heard himself.
+- **The credits:** the second translation's year sits alone on its line.
+- Settled since the first addendum: "bad" is heard as "bad", and the room no longer falls
+  silent under "close".

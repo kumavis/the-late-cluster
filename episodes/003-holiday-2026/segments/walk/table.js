@@ -37,7 +37,9 @@ const DOOR = {
   headY: 378,
   scale: 0.62,
   seats: { pete: 230, hy: 400, dee: 570, al: 740, eppy: 910 },
-  sibyl: { x: 1112, y: 370, scale: 0.66 },
+  // inside the far edge's right-hand end (x1 1090), so the table is in front of her from the chest
+  // down (round five: at 1112 she sat beyond the corner, cut off in mid-air)
+  sibyl: { x: 1030, y: 370, scale: 0.66 },
   larry: { x: 60, y: 300, scale: 1.5 },
   gold: 400, // Larry's chair, across from Hy
   ours: 500, // where our chair stops, beside it
@@ -56,7 +58,9 @@ const SEAT = {
   // at the head: the right end of the far side, just inside the table's corner, as she sits at
   // its right end in the door shots (round three: she was further right, under a tall black
   // chair back that read as a picture on the wall)
-  sibyl: { x: 1790, y: 314, scale: 1.0 },
+  // inside the corner (S.end 1830), so the tabletop covers her from the chest down in this view
+  // too (round five: at 1790 her shoulders ran past the corner, cut off in mid-air)
+  sibyl: { x: 1680, y: 314, scale: 1.0 },
   end: 1830, // the head of the table
   window: { x: 1040, y: 26, w: 300, h: 180 },
   window2: { x: 120, y: 26, w: 300, h: 180 },

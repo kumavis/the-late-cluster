@@ -94,3 +94,11 @@ hoodie is applied in `crewLook`.
 **Looked at:** every cue, and the middle of every line and gap from `cross` to `let-in` (34 frames), at full size and at 640 × 360 with `--caption-scale 1.4`. In the comrade shot his profile and the windows read, and the bar stays below his mouth. I also looked at the glance over four frames, and both sides of `walk-on`. One frame at every cue (55) printed no console warnings, and `npm run check -- 003-holiday-2026` passes.
 
 **For the auditor:** whether a cut (not a push) on `comrade` is the right weight for the quotation. Also, `plan.md`'s table of cue seconds is out of date again.
+
+## Round five: Sibyl at the table, not beyond it
+
+| file | change | why |
+|---|---|---|
+| `table.js` | Sibyl's seat moves inside the right-hand end of the table's far edge, in both views. From the door she is at x 1030 (was 1112), and the far edge ends at 1090. From our chair she is at x 1680 (was 1790), and the corner is at 1830. Her wooden chair moves with her. The tabletop is now really in front of her from the chest down in every shot, so her cut-off lies along the table, with no level line running on past the corner. | She sat beyond the corner and was cut off in mid-air (`sibyl-first`, `larry-and-sibyl`). She is still at her plate for "It's my house." and looks up at Larry for "It's still the rule.". |
+
+**Looked at:** every table shot at full size and at 640 × 360 with `--caption-scale 1.4`. That covers the wide, `sibyl-first`, `band-end`, `larry-at-door`, `they-look`, `chair-in`, both `served` shots, `larry-and-sibyl` (both lines), `eppy-calls-it`, `the-meal` and `goodnight`. In each I checked Sibyl, the five along the far side, Larry in the gold chair, and the table's other end. Nobody else is cut off by anything that is not in front of them. One frame at every table cue printed no console warnings, and `npm run check -- 003-holiday-2026` passes.
